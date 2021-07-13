@@ -42,6 +42,23 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 
+html_theme_options = {
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/World4AI/World4AI",
+            "icon": "fab fa-github-square",
+        },
+        {
+            "name": "Twitter",
+            "url": "https://twitter.com/World4AI",
+            "icon": "fab fa-twitter-square",
+        },
+    ],
+}
+
+
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

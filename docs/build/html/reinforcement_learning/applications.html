@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applications &#8212; World4AI 0.1 documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agent and Environment" href="agent_env.html" />
+    <link rel="prev" title="Reinforcement Learning" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">World4AI</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Reinforcement Learning
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/World4AI/World4AI" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/World4AI" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="agent_env.html">
+   Agent and Environment
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#games">
+   Games
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-worlds">
+     Grid Worlds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#atari-2600-games">
+     Atari 2600 Games
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#board-games">
+     Board Games
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modern-games">
+     Modern Games
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trading">
+   Trading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#robotics">
+   Robotics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#medicine">
+   Medicine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reccomender-systems">
+   Reccomender Systems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-frontiers">
+   The Frontiers
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="applications">
+<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<p>It is entirely possible to introduce reinforcement learning using only formal definitions and math, but I would like to start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.</p>
+<div class="section" id="games">
+<h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grid-worlds">
+<h3>Grid Worlds<a class="headerlink" href="#grid-worlds" title="Permalink to this headline">¶</a></h3>
+<p>Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve.
+A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.</p>
+<img alt="../_images/grid_world.svg" class="align-center" src="../_images/grid_world.svg" /></div>
+<div class="section" id="atari-2600-games">
+<h3>Atari 2600 Games<a class="headerlink" href="#atari-2600-games" title="Permalink to this headline">¶</a></h3>
+<p>Computer games have become a testing ground for reinforcement learning algorithms. Most new algorithms are tested on the Atari 2600 games in order to show how efficient the algorithms are. For a human it is not especially hard to learn the rules of the game (although it might require some time to master the game), but for computers it is an entirely different story.</p>
+<img alt="../_images/breakout.svg" class="align-center" src="../_images/breakout.svg" /><p>The most known atari games are probably pong and breakout. In breakout for example you steer the paddle at the bottom of the screen. The goal of the game is to prevent the ball from falling by moving the paddle in the path of the ball. The ball bounces off the paddle and if it touches one of the blocks at the top of the screen, the block disappears, the ball starts moving in the opposite direction and you get some points. The game ends when either the ball falls on the ground or when you have destroyed all the blocks.</p>
+<p>The computer receives the current frames of the game and has to decide how to act based just on the pixel values. There are of course versions of the game, where the computer receives the positions of the ball, the paddle and the boxes as coordinate values, but using that version would be essentially cheating. Looking at the pictures and behaving accordingly is not unlike how humans act. Therefore it is especially impressive that with the help of reinforcement learning it is possible to create computer programs that are able to beat human scores in all the Atari 2600 games while making decisions on the basis of the screenshots of the game.</p>
+</div>
+<div class="section" id="board-games">
+<h3>Board Games<a class="headerlink" href="#board-games" title="Permalink to this headline">¶</a></h3>
+<p>Board games, like backgammon, chess and go used to be the frontier for ai. There was an assumption that a computer would require creativity and imagination to beat a professional player at backgammon, chess and go. Essentially that meant that the computer needed to possess human characteristics in order to win against a professional player. Nevertheless in all three games professionals and even world champions were beaten by AI systems.</p>
+<p>Even though all solutions were an unbelievable milestone for the AI community, the win of DeepMind with their AlphaGo system against the world champion was the most impressive for me. For a number of years the challenge of winning against the world champion was considered impossible. The number of legal board positions in the game of go is far greater than there are atoms in the observable universe. Iterating through all positions is therefore impossible. Nevertheless, not only did the algorithm win against the world champion Lee Sedol in the 4 of 5 games, but according to go experts AlphaGo showed creativity. In the second of the five games AlphaGo shocked the world with the now iconic move. This move has become known as “Move 37”.</p>
+<img alt="../_images/game_of_go.svg" class="align-center" src="../_images/game_of_go.svg" /></div>
+<div class="section" id="modern-games">
+<h3>Modern Games<a class="headerlink" href="#modern-games" title="Permalink to this headline">¶</a></h3>
+<p>Compared to Atari games, modern games have become a lot more complex and even for human players there is a steep learning curve, especially if you wish to become a professional player. In spite of that OpenAI and DeepMind have beaten top players in two of the most famous esports games, Dota II and StarCraft II.
+StarCraft II for example is a so-called rts (real time strategy) game. In these types of games you have to collect resources, build workers and different types of attack vehicles, construct buildings, improve your technology, scout the area for opponents and to finally destroy the buildings and units of your opponents. Many of these decisions have tradeoffs and there is no single best strategy, the player has to adapt to the current situation.</p>
+<img alt="../_images/rts.svg" class="align-center" src="../_images/rts.svg" /><p>The image above shows how an imagined rts game configuration might look like. The picture indicates how a player has to balance several decisions at the same time. What makes these types of games additionally hard is the so-called “fog of war”. The grey areas are not visible to the player, so that only a part of the map is observable. That creates an information imbalance and requires scouting the area to gain information.</p>
+</div>
+</div>
+<div class="section" id="trading">
+<h2>Trading<a class="headerlink" href="#trading" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="robotics">
+<h2>Robotics<a class="headerlink" href="#robotics" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="medicine">
+<h2>Medicine<a class="headerlink" href="#medicine" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="reccomender-systems">
+<h2>Reccomender Systems<a class="headerlink" href="#reccomender-systems" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-frontiers">
+<h2>The Frontiers<a class="headerlink" href="#the-frontiers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Reinforcement Learning</a>
+    <a class='right-next' id="next-link" href="agent_env.html" title="next page">Agent and Environment</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, World4AI Team.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
