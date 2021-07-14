@@ -55,5 +55,6 @@ It is usually at this stage where you have your “aha moments”. The math beco
    :maxdepth: 2
    :hidden:
 
+   resources/index
    reinforcement_learning/index
-
+   deep_learning/index
