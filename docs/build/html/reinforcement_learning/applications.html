@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Applications &#8212; World4AI 0.1 documentation</title>
+    <title>Reinforcement Learning Applications &#8212; World4AI 0.1 documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -133,7 +133,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Applications
+   Reinforcement Learning Applications
   </a>
  </li>
  <li class="toctree-l1">
@@ -234,8 +234,8 @@
               
               <div>
                 
-  <div class="section" id="applications">
-<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="reinforcement-learning-applications">
+<h1>Reinforcement Learning Applications<a class="headerlink" href="#reinforcement-learning-applications" title="Permalink to this headline">¶</a></h1>
 <p>It is entirely possible to introduce reinforcement learning using only formal definitions and math, but I would like to start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.</p>
 <div class="section" id="games">
 <h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +243,7 @@
 <h3>Grid Worlds<a class="headerlink" href="#grid-worlds" title="Permalink to this headline">¶</a></h3>
 <p>Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve. A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.</p>
 <div class="figure align-center" id="id1">
-<img alt="../_images/grid_world.svg" src="../_images/grid_world.svg" /><p class="caption"><span class="caption-text">An example of a grid world</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<img alt="../_images/grid_world1.svg" src="../_images/grid_world1.svg" /><p class="caption"><span class="caption-text">An example of a grid world</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the above example the player has to move the circle from the bottom left corner to the upper left corner. This seems like a trivial task for a human being, but it gets nontrivial if you are not allowed to hardcode the solution. Instead you have to make your computer learn the goal of the game and the strategy to achieve the goal. That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible (as indicated by the arrows in the cells).</p>
 </div>

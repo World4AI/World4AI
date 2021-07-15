@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="Arrow2Mend" overflow="visible" orient="auto">
+   <path transform="scale(.6) rotate(180) translate(0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10108" overflow="visible" orient="auto">
+   <path transform="scale(1.1) rotate(180) translate(1)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10056" overflow="visible" orient="auto">
+   <path transform="scale(1.1) rotate(180) translate(1)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker3604" overflow="visible" orient="auto">
+   <path transform="scale(.8) rotate(180) translate(12.5)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <filter id="filter9888" x="-3.2e-6" y="-9.6e-6" width="1" height="1" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="0.0001171777"/>
+  </filter>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <rect x=".5" y=".5" width="499" height="499" fill="none" stroke="#000" stroke-linejoin="round"/>
+ <g transform="translate(-444.17 -129.16)" stroke="#000">
+  <g fill="#fd5" fill-rule="evenodd" stroke-linejoin="round">
+   <circle cx="729.38" cy="279.6" r="1.3379"/>
+   <circle cx="732.46" cy="253.71" r="1.3379"/>
+   <circle cx="722.84" cy="242.88" r="1.3379"/>
+   <circle cx="733.05" cy="233.56" r="1.3379"/>
+   <circle cx="722.73" cy="224.12" r="1.3379"/>
+  </g>
+  <g fill="none">
+   <path d="m680.55 215.06v-9.5694"/>
+   <path d="m700.62 215.06v-9.5694"/>
+   <path d="m694.18 215.06v-9.5694"/>
+   <path d="m687.49 215.06s-0.85432-6.4961 0-9.5694c0.6784-2.4404 3.9218-6.5088 3.9218-6.5088"/>
+  </g>
+  <rect x="663.56" y="214.45" width="47.848" height="47.848" ry="4.7861" fill="#f59"/>
+  <rect x="668.35" y="219.23" width="38.277" height="38.277" ry="2.6463" fill="#ececec"/>
+  <g fill="none">
+   <path d="m687.24 262.54v17.064"/>
+   <path d="m711.41 224.02h9.5694"/>
+   <path d="m711.41 233.59h19.756"/>
+   <path d="m711.41 243.16h9.5694"/>
+   <path d="m663.56 224.02h-9.5694"/>
+   <path d="m663.56 233.59h-20.472"/>
+   <path d="m663.56 252.73h-18.242"/>
+   <path d="m681.04 262.54v21.64"/>
+   <path d="m674.11 213.72s1.3379-2.6759 0-8.0277c-1.338-5.3518-10.704-12.042-20.069-6.6897-9.3656 5.3518-10.704 6.6897-10.704 6.6897"/>
+  </g>
+  <circle cx="643.33" cy="205.7" r="1.3379" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+  <path d="m673.56 262.54s7.2404 8.7159 0.55063 11.392-10.704 4.0138-10.704 4.0138" fill="none"/>
+  <circle cx="663.4" cy="277.95" r="1.3379" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+  <circle cx="687.49" cy="238.37" r="13.15" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+  <path d="m691.75 228.36h-8.3832l4.1915-7.26z"/>
+  <circle cx="699.66" cy="241.95" r="3.5112"/>
+  <rect transform="rotate(-45)" x="302.34" y="649.14" width="5.7184" height="5.7184"/>
+  <g fill="#fd5" fill-rule="evenodd" stroke-linejoin="round">
+   <circle cx="680.52" cy="204.53" r="1.3379"/>
+   <circle cx="692.22" cy="198.13" r="1.3379"/>
+   <circle cx="653.46" cy="223.8" r="1.3379"/>
+   <circle cx="694.22" cy="204.39" r="1.3379"/>
+   <circle cx="700.62" cy="204.73" r="1.3379"/>
+   <circle cx="642.64" cy="233.58" r="1.3379"/>
+  </g>
+  <path d="m663.44 241.73s-9.7737-4.0609-16.174 0.0688" fill="none"/>
+  <g fill="#fd5" fill-rule="evenodd" stroke-linejoin="round">
+   <circle cx="647.15" cy="242.01" r="1.3379"/>
+   <circle cx="643.96" cy="252.71" r="1.3379"/>
+   <circle cx="681.04" cy="284.83" r="1.3379"/>
+   <circle cx="687.18" cy="280.84" r="1.3379"/>
+  </g>
+  <path d="m694.07 262.45s-3.8545 7.1583-0.27532 12.527c3.5791 5.3686 10.6 10.737 15.281 10.462" fill="none"/>
+  <circle cx="710.58" cy="285.52" r="1.3379" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+  <path d="m701.04 262.35s-4.8669 12.459 26.477 16.937" fill="none"/>
+  <path d="m711.41 253.83h19.756" fill="none"/>
+ </g>
+ <rect transform="matrix(-.67927 .73389 .73472 .67837 0 0)" x="-95.915" y="510.83" width="25.028" height="5.0026" ry="2.5013" fill="#fd5" fill-rule="evenodd" opacity=".999" stroke="#000" stroke-linejoin="round" stroke-width="1.3631"/>
+ <ellipse transform="matrix(-.99847 .055322 .055098 .99848 0 0)" cx="-386.9" cy="340.56" rx="2.3788" ry="2.3788" fill="#666" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.3631"/>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect transform="matrix(-.64247 .76631 .76725 .64134 0 0)" x="-44.638" y="513.21" width="25.026" height="5.0031" ry="2.5015" fill="#fd5" opacity=".999" stroke-width="1.3631"/>
+  <ellipse cx="445.5" cy="260.54" rx="12.399" ry="12.396" fill="#fd5" opacity=".999" stroke-width="1.3631"/>
+  <rect x="437.56" y="275.49" width="15.884" height="12.97" ry="4.6993" fill="#f59" stroke-width=".78904"/>
+  <rect x="434.49" y="321.9" width="21.129" height="17.202" ry="8.6012" fill="#f59" stroke-width=".98392"/>
+ </g>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.3631">
+  <ellipse cx="445.87" cy="282.46" rx="5.1972" ry="5.196" fill="#666"/>
+  <rect transform="matrix(.52331 .85214 -.85291 .52206 0 0)" x="479.42" y="-238.08" width="25.026" height="5.003" ry="2.5015" fill="#fd5" opacity=".999"/>
+  <ellipse transform="rotate(104.28)" cx="205.67" cy="-545.5" rx="2.3791" ry="2.3785" fill="#666"/>
+ </g>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect transform="matrix(.38087 .92463 -.92511 .37969 0 0)" x="462.13" y="-316.02" width="25.022" height="5.0037" ry="2.5019" opacity=".999" stroke-width="1.3631"/>
+  <rect transform="matrix(-.36734 .93009 -.99999 .0050998 0 0)" x="368.89" y="-577.68" width="42.385" height="8.0724" ry="4.0362" opacity=".999" stroke-width="1.4148"/>
+  <rect transform="matrix(-.34661 .93801 -.93749 -.34802 0 0)" x="210.04" y="-533.2" width="39.423" height="8.0559" ry="4.0279" opacity=".999" stroke-width="1.3631"/>
+ </g>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <g stroke-width="1.3631">
+   <ellipse cx="407.99" cy="424.49" rx="5.1972" ry="5.196" fill="#666"/>
+   <rect transform="matrix(.0066154 .99998 -.99999 .0051102 0 0)" x="342.37" y="-448.76" width="39.423" height="8.0559" ry="4.0279" fill="#fd5" opacity=".999"/>
+   <rect transform="matrix(.033012 .99945 -.99951 .031317 0 0)" x="394.2" y="-439.08" width="39.425" height="8.0554" ry="4.0277" fill="#fd5" opacity=".999"/>
+   <ellipse transform="matrix(.87235 -.48889 .48906 .87225 0 0)" cx="184.08" cy="591.44" rx="5.1969" ry="5.1963" fill="#666"/>
+  </g>
+  <rect x="437.56" y="290.49" width="15.884" height="12.97" ry="4.6993" fill="#f59" stroke-width=".78904"/>
+  <rect x="437.56" y="305.85" width="15.884" height="12.97" ry="4.6993" fill="#f59" stroke-width=".78904"/>
+  <rect x="21.213" y="397.54" width="87.883" height="29.294" ry="2.5019" fill="#c8b7b7" filter="url(#filter9888)" stroke-width="3"/>
+  <rect x=".5" y="429.29" width="500" height="69.286" ry="2.5019" fill="#b3b3b3"/>
+ </g>
+ <g stroke="#000">
+  <path d="m36.786 418.93 20.357-12.857 8.9286 12.143 26.786-14.643" fill="none" marker-end="url(#Arrow2Mend)" stroke-width="2"/>
+  <rect x="13.571" y="407.14" width="7.5" height="9.2857" ry="0" fill="#b3b3b3" fill-rule="evenodd" stroke-linejoin="round" stroke-width="2"/>
+  <path d="m299.28 104.46s79.207 26.271 103.04 57.579c19.735 25.929 23.234 94.954 23.234 94.954" fill="none" stroke-dasharray="1,1"/>
+ </g>
+ <text x="190.71428" y="42.142857" font-family="Roboto" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="190.71428" y="42.142857">Agent</tspan></text>
+ <text x="137.85713" y="221.42857" font-family="Roboto" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="137.85713" y="221.42857">Environment</tspan></text>
+ <g fill="none" stroke="#000" stroke-width="1px">
+  <path d="m190 228.57-133.57 157.14" marker-end="url(#marker3604)"/>
+  <path d="m251.43 228.57-0.71428 185" marker-end="url(#marker10056)"/>
+  <path d="m311.43 232.14 79.286 60.714" marker-end="url(#marker10108)"/>
+ </g>
+ <text transform="rotate(27.807)" x="321.40228" y="-57.382526" font-family="Roboto" font-size="18.487px" stroke-width=".46218" style="line-height:1.25" xml:space="preserve"><tspan x="321.40228" y="-57.382526" stroke-width=".46218">00010100111</tspan></text>
+</svg>

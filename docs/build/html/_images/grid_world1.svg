@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker10854" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10844" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9716" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9706" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9696" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9686" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9174" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9164" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9154" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9144" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8672" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8662" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8652" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8642" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8198" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8188" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8024" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8014" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7230" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker7220" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6874" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker6864" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6538" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker6528" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6222" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker6212" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5914" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5904" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5626" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5616" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5370" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5360" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5134" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5124" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4906" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4896" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4710" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4700" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4534" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4524" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4378" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4368" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4242" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4232" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4126" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker4116" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4006" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker3996" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="SquareM" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow2Lend" overflow="visible" orient="auto">
+   <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g stroke="#000">
+  <g fill="none" stroke-width=".998">
+   <path d="m0.499 0.499h499v499h-499z"/>
+   <path d="m100.3 0.499v499"/>
+   <path d="m200.1 0.499v499"/>
+   <path d="m299.9 0.499v499"/>
+   <path d="m399.7 0.499v499"/>
+   <path d="m0.499 100.3h499"/>
+   <path d="m0.499 200.1h499"/>
+   <path d="m0.499 299.9h499"/>
+   <path d="m0.499 399.7h499"/>
+  </g>
+  <circle cx="50.399" cy="449.6" r="29.94" fill="#fff" stroke-width="1.996"/>
+  <path transform="matrix(-5.6455 0 0 -5.9826 125.08 129.54)" d="m13.229 16.999-4.5827-7.9375 9.1654-3e-7z" fill="#fff" stroke-width=".34345"/>
+  <g transform="matrix(3.772 0 0 3.772 .499 .499)" fill="none">
+   <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+   <g stroke-width=".26458px">
+    <path d="m2.6458 60.854 5.2917-5.2917"/>
+    <path d="m2.6458 66.146 10.583-10.583"/>
+    <path d="m2.6458 71.437 15.875-15.875"/>
+    <path d="m2.6458 76.729 21.167-21.167"/>
+    <path d="m7.9375 76.729 15.875-15.875"/>
+    <path d="m13.229 76.729 10.583-10.583"/>
+    <path d="m18.521 76.729 5.2917-5.2917"/>
+   </g>
+  </g>
+  <g transform="matrix(3.772 0 0 3.772 100.3 .499)" fill="none">
+   <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+   <g stroke-width=".26458px">
+    <path d="m2.6458 60.854 5.2917-5.2917"/>
+    <path d="m2.6458 66.146 10.583-10.583"/>
+    <path d="m2.6458 71.437 15.875-15.875"/>
+    <path d="m2.6458 76.729 21.167-21.167"/>
+    <path d="m7.9375 76.729 15.875-15.875"/>
+    <path d="m13.229 76.729 10.583-10.583"/>
+    <path d="m18.521 76.729 5.2917-5.2917"/>
+   </g>
+  </g>
+  <g transform="matrix(3.772 0 0 3.772 200.1 .499)" fill="none">
+   <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+   <g stroke-width=".26458px">
+    <path d="m2.6458 60.854 5.2917-5.2917"/>
+    <path d="m2.6458 66.146 10.583-10.583"/>
+    <path d="m2.6458 71.437 15.875-15.875"/>
+    <path d="m2.6458 76.729 21.167-21.167"/>
+    <path d="m7.9375 76.729 15.875-15.875"/>
+    <path d="m13.229 76.729 10.583-10.583"/>
+    <path d="m18.521 76.729 5.2917-5.2917"/>
+   </g>
+  </g>
+  <g transform="matrix(3.772 0 0 3.772 299.9 .499)" fill="none">
+   <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+   <g stroke-width=".26458px">
+    <path d="m2.6458 60.854 5.2917-5.2917"/>
+    <path d="m2.6458 66.146 10.583-10.583"/>
+    <path d="m2.6458 71.437 15.875-15.875"/>
+    <path d="m2.6458 76.729 21.167-21.167"/>
+    <path d="m7.9375 76.729 15.875-15.875"/>
+    <path d="m13.229 76.729 10.583-10.583"/>
+    <path d="m18.521 76.729 5.2917-5.2917"/>
+   </g>
+  </g>
+  <g fill="none">
+   <g stroke-width=".998">
+    <path d="m10.479 349.8h79.84" marker-end="url(#Arrow2Lend)" marker-start="url(#SquareM)"/>
+    <path d="m110.28 349.8h79.84" marker-end="url(#marker4006)" marker-start="url(#marker3996)"/>
+    <path d="m210.08 349.8h79.84" marker-end="url(#marker4126)" marker-start="url(#marker4116)"/>
+    <path d="m309.88 349.8h79.84" marker-end="url(#marker4242)" marker-start="url(#marker4232)"/>
+    <path d="m449.05 389.41 0.55451-79.838" marker-end="url(#marker4378)" marker-start="url(#marker4368)"/>
+    <path d="m449.05 289.92 0.55451-79.838" marker-end="url(#marker4534)" marker-start="url(#marker4524)"/>
+    <path d="m488.97 190.12 0.55451-79.838" marker-end="url(#marker4710)" marker-start="url(#marker4700)"/>
+    <path d="m489.12 51.375-79.834-0.97538" marker-end="url(#marker4906)" marker-start="url(#marker4896)"/>
+    <path d="m389.71 51.375-79.834-0.97538" marker-end="url(#marker5134)" marker-start="url(#marker5124)"/>
+    <path d="m289.91 51.375-79.834-0.97538" marker-end="url(#marker5370)" marker-start="url(#marker5360)"/>
+    <path d="m190.11 51.375-79.834-0.97538" marker-end="url(#marker5626)" marker-start="url(#marker5616)"/>
+    <path d="m489.21 190.95-79.834-0.97538" marker-end="url(#marker5914)" marker-start="url(#marker5904)"/>
+    <path d="m389.71 151.17-79.834-0.97537" marker-end="url(#marker6222)" marker-start="url(#marker6212)"/>
+    <path d="m289.61 151.03-79.834-0.97536" marker-end="url(#marker6538)" marker-start="url(#marker6528)"/>
+    <path d="m190.11 151.17-79.834-0.97537" marker-end="url(#marker6874)" marker-start="url(#marker6864)"/>
+    <path d="m49.717 189.81 0.68182-79.837" marker-end="url(#marker7230)" marker-start="url(#marker7220)"/>
+    <path d="m10.016 489.22 0.55452-79.838" marker-end="url(#marker8024)" marker-start="url(#marker8014)"/>
+    <path d="m10.782 489.22 79.839 0.37267" marker-end="url(#marker8198)" marker-start="url(#marker8188)"/>
+    <path d="m109.82 489.22 0.55452-79.838" marker-end="url(#marker8672)" marker-start="url(#marker8652)"/>
+    <path d="m110.58 489.22 79.839 0.37267" marker-end="url(#marker8662)" marker-start="url(#marker8642)"/>
+    <path d="m209.62 489.22 0.55453-79.838" marker-end="url(#marker9174)" marker-start="url(#marker9154)"/>
+    <path d="m210.38 489.22 79.839 0.37267" marker-end="url(#marker9164)" marker-start="url(#marker9144)"/>
+    <path d="m309.42 489.22 0.55452-79.838" marker-end="url(#marker9716)" marker-start="url(#marker9696)"/>
+    <path d="m310.18 489.22 79.839 0.37267" marker-end="url(#marker9706)" marker-start="url(#marker9686)"/>
+    <path d="m449.14 489.22 0.55452-79.838" marker-end="url(#marker10854)" marker-start="url(#marker10844)"/>
+    <path d="m30.439 449.6 19.96-19.96"/>
+    <path d="m30.439 459.58 29.94-29.94"/>
+    <path d="m30.439 469.56 39.92-39.92"/>
+    <path d="m40.419 469.56 29.94-29.94"/>
+    <path d="m50.399 469.56 19.96-19.96"/>
+    <path d="m60.379 469.56 9.98-9.9801"/>
+   </g>
+   <g stroke-width=".998px">
+    <path d="m30.439 439.62 9.98-9.9801"/>
+    <path d="m40.419 50.399h19.96"/>
+    <path d="m40.419 60.379h19.96"/>
+    <path d="m30.439 70.359h39.92"/>
+    <path d="m80.339 10.479-19.96 19.96"/>
+    <path d="m70.359 50.399h19.96"/>
+    <path d="m70.359 80.339 9.98 9.98"/>
+    <path d="m30.439 80.339-9.98 9.98"/>
+    <path d="m30.439 50.399h-19.96"/>
+    <path d="m40.419 30.439-19.96-19.96"/>
+   </g>
+  </g>
+ </g>
+</svg>

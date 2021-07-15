@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker8793" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6835" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0f0" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6693" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#f00" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6557" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#f00" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="TriangleOutL" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0f0" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g fill="none" stroke="#000" stroke-width=".79441">
+  <path d="m2.7944 1.1178h397.21v397.21h-397.21z"/>
+  <path d="m82.236 1.1178v397.21"/>
+  <path d="m161.68 1.1178v397.21"/>
+  <path d="m241.12 1.1178v397.21"/>
+  <path d="m320.56 1.1178v397.21"/>
+  <path d="m2.7944 80.559h397.21"/>
+  <path d="m2.7944 160h397.21"/>
+  <path d="m2.7944 239.44h397.21"/>
+  <path d="m2.7944 318.88h397.21"/>
+ </g>
+ <path transform="matrix(-4.4938 0 0 -4.7622 101.96 103.84)" d="m13.229 16.999-4.5827-7.9375 9.1654-3e-7z" fill="#fff" stroke="#000" stroke-width=".34345"/>
+ <g transform="matrix(3.0025 0 0 3.0025 2.7944 1.1178)" fill="none" stroke="#000">
+  <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+  <g stroke-width=".26458px">
+   <path d="m2.6458 60.854 5.2917-5.2917"/>
+   <path d="m2.6458 66.146 10.583-10.583"/>
+   <path d="m2.6458 71.437 15.875-15.875"/>
+   <path d="m2.6458 76.729 21.167-21.167"/>
+   <path d="m7.9375 76.729 15.875-15.875"/>
+   <path d="m13.229 76.729 10.583-10.583"/>
+   <path d="m18.521 76.729 5.2917-5.2917"/>
+  </g>
+ </g>
+ <g transform="matrix(3.0025 0 0 3.0025 82.236 1.1178)" fill="none" stroke="#000">
+  <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+  <g stroke-width=".26458px">
+   <path d="m2.6458 60.854 5.2917-5.2917"/>
+   <path d="m2.6458 66.146 10.583-10.583"/>
+   <path d="m2.6458 71.437 15.875-15.875"/>
+   <path d="m2.6458 76.729 21.167-21.167"/>
+   <path d="m7.9375 76.729 15.875-15.875"/>
+   <path d="m13.229 76.729 10.583-10.583"/>
+   <path d="m18.521 76.729 5.2917-5.2917"/>
+  </g>
+ </g>
+ <g transform="matrix(3.0025 0 0 3.0025 161.68 1.1178)" fill="none" stroke="#000">
+  <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+  <g stroke-width=".26458px">
+   <path d="m2.6458 60.854 5.2917-5.2917"/>
+   <path d="m2.6458 66.146 10.583-10.583"/>
+   <path d="m2.6458 71.437 15.875-15.875"/>
+   <path d="m2.6458 76.729 21.167-21.167"/>
+   <path d="m7.9375 76.729 15.875-15.875"/>
+   <path d="m13.229 76.729 10.583-10.583"/>
+   <path d="m18.521 76.729 5.2917-5.2917"/>
+  </g>
+ </g>
+ <g transform="matrix(3.0025 0 0 3.0025 241.12 1.1178)" fill="none" stroke="#000">
+  <rect x="2.6458" y="55.562" width="21.167" height="21.167" stroke-width=".26458"/>
+  <g stroke-width=".26458px">
+   <path d="m2.6458 60.854 5.2917-5.2917"/>
+   <path d="m2.6458 66.146 10.583-10.583"/>
+   <path d="m2.6458 71.437 15.875-15.875"/>
+   <path d="m2.6458 76.729 21.167-21.167"/>
+   <path d="m7.9375 76.729 15.875-15.875"/>
+   <path d="m13.229 76.729 10.583-10.583"/>
+   <path d="m18.521 76.729 5.2917-5.2917"/>
+  </g>
+ </g>
+ <g fill="none" stroke="#000" stroke-width=".79441px">
+  <path d="m34.571 40.838h15.888"/>
+  <path d="m34.571 48.782h15.888"/>
+  <path d="m26.627 56.727h31.776"/>
+  <path d="m66.347 9.0619-15.888 15.888"/>
+  <path d="m58.403 40.838h15.888"/>
+  <path d="m58.403 64.671 7.9441 7.9441"/>
+  <path d="m26.627 64.671-7.9441 7.9441"/>
+  <path d="m26.627 40.838h-15.888"/>
+  <path d="m34.571 24.95-15.888-15.888"/>
+ </g>
+ <g stroke="#000" stroke-width="1.194">
+  <path d="m42.197 279.32v-31.84" fill="#f00" marker-end="url(#marker6557)"/>
+  <path d="m42.197 279.32h31.84" fill="#0f0" marker-end="url(#TriangleOutL)"/>
+  <path d="m42.197 279.32v31.84" fill="#0f0" marker-end="url(#marker6835)"/>
+  <path d="m42.197 279.32h-31.84" fill="#f00" marker-end="url(#marker6693)"/>
+ </g>
+ <g transform="matrix(.65046 0 0 .65046 9.7325 -13.125)" fill="#fff" stroke="#000">
+  <g>
+   <circle cx="50.399" cy="449.6" r="29.94" stroke-width="1.996"/>
+   <g stroke-width=".998">
+    <path d="m30.439 449.6 19.96-19.96"/>
+    <path d="m30.439 459.58 29.94-29.94"/>
+    <path d="m30.439 469.56 39.92-39.92"/>
+    <path d="m40.419 469.56 29.94-29.94"/>
+    <path d="m50.399 469.56 19.96-19.96"/>
+    <path d="m60.379 469.56 9.98-9.9801"/>
+   </g>
+  </g>
+  <path d="m30.439 439.62 9.98-9.9801" stroke-width=".998px"/>
+ </g>
+ <g transform="translate(-129.07 243.58)" stroke="#000">
+  <g transform="matrix(.13379 0 0 .13379 531.03 162.48)" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round" stroke-width="7.4742">
+   <circle cx="678.64" cy="642.95" r="10"/>
+   <circle cx="701.66" cy="449.46" r="10"/>
+   <circle cx="629.76" cy="368.51" r="10"/>
+   <circle cx="706.03" cy="298.86" r="10"/>
+   <circle cx="628.91" cy="228.29" r="10"/>
+  </g>
+  <g transform="translate(144.19 -2.74)">
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" fill="none" stroke-width="7.4742">
+    <path d="m317.42 159.98v-71.523"/>
+    <path d="m467.42 159.98v-71.523"/>
+    <path d="m419.27 159.98v-71.523"/>
+    <path d="m369.27 159.98s-6.3853-48.553 0-71.523c5.0705-18.24 29.312-48.648 29.312-48.648"/>
+   </g>
+   <rect x="411.81" y="186.09" width="47.848" height="47.848" ry="4.7861" fill="#f59"/>
+   <rect x="416.6" y="190.88" width="38.277" height="38.277" ry="2.6463" fill="#ececec"/>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" fill="none" stroke-width="7.4742">
+    <path d="m367.42 514.82v127.54"/>
+    <path d="m548.07 226.92h71.523"/>
+    <path d="m548.07 298.44h147.66"/>
+    <path d="m548.07 369.97h71.523"/>
+    <path d="m190.46 226.92h-71.523"/>
+    <path d="m190.46 298.44h-153.01"/>
+    <path d="m190.46 441.49h-136.34"/>
+    <path d="m321.12 514.82v161.74"/>
+    <path d="m269.27 149.98s10-20 0-60-80-90-150-50-80 50-80 50"/>
+   </g>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" stroke-width="7.4742">
+    <circle cx="39.266" cy="89.975" r="10" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+    <path d="m265.15 514.83s54.116 65.144 4.1155 85.144-80 30-80 30" fill="none"/>
+    <circle cx="189.27" cy="629.98" r="10" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+   </g>
+   <circle cx="435.74" cy="210.02" r="13.15" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" stroke-width="7.4742">
+    <path d="m401.14 259.34h-62.657l31.328-54.262z"/>
+    <circle cx="460.29" cy="360.93" r="26.243"/>
+    <rect transform="rotate(-45)" x="-89.012" y="456.01" width="42.74" height="42.74"/>
+   </g>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round" stroke-width="7.4742">
+    <circle cx="317.18" cy="81.245" r="10"/>
+    <circle cx="404.64" cy="33.402" r="10"/>
+    <circle cx="114.93" cy="225.3" r="10"/>
+    <circle cx="419.56" cy="80.216" r="10"/>
+    <circle cx="467.4" cy="82.788" r="10"/>
+    <circle cx="34.117" cy="298.35" r="10"/>
+   </g>
+   <path d="m411.69 213.37s-9.7737-4.0609-16.174 0.0688" fill="none"/>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round" stroke-width="7.4742">
+    <circle cx="67.81" cy="361.39" r="10"/>
+    <circle cx="43.936" cy="441.36" r="10"/>
+    <circle cx="321.12" cy="681.44" r="10"/>
+    <circle cx="366.95" cy="651.62" r="10"/>
+   </g>
+   <g transform="matrix(.13379 0 0 .13379 386.33 165.3)" stroke-width="7.4742">
+    <path d="m418.49 514.13s-28.809 53.502-2.0578 93.628c26.751 40.126 79.224 80.253 114.21 78.195" fill="none"/>
+    <circle cx="541.86" cy="686.6" r="10" fill="#fd5" fill-rule="evenodd" stroke-linejoin="round"/>
+    <path d="m470.6 513.42s-36.376 93.124 197.89 126.59" fill="none"/>
+   </g>
+   <path d="m459.66 225.48h19.756" fill="none"/>
+  </g>
+ </g>
+ <path d="m390 480h-350v-70" fill="none" marker-end="url(#marker8793)" stroke="#000" stroke-dasharray="1,2"/>
+ <text x="49.697266" y="464.80469" font-family="Roboto" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="49.697266" y="464.80469">Go North</tspan></text>
+ <text x="308.32019" y="466.43268" font-family="Roboto" font-size="18.096px" stroke-width=".45241" style="line-height:1.25" xml:space="preserve"><tspan x="308.32019" y="466.43268" stroke-width=".45241">0 1 0 0 1 0</tspan></text>
+</svg>
