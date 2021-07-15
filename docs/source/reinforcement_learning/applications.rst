@@ -1,6 +1,6 @@
-============
-Applications
-============
+===================================
+Reinforcement Learning Applications
+===================================
 
 It is entirely possible to introduce reinforcement learning using only formal definitions and math, but I would like to start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.
 
