@@ -2,7 +2,7 @@
 Agent and Environment
 =====================
 
-All of reinforcement learning is based on two main components, the agent and the environment. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.  
+All of reinforcement learning is based on two main components, the **agent** and the **environment**. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.  
 
 .. figure:: ../_static/images/reinforcement_learning/agent_env/grid_world.svg
    :align: center
