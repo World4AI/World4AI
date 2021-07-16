@@ -11,4 +11,5 @@ In this introduction I will go over the possible applications, the key concepts 
 
    applications
    agent_env
+   properties
    
