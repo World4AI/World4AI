@@ -49,11 +49,6 @@ html_theme_options = {
             "url": "https://github.com/World4AI/World4AI",
             "icon": "fab fa-github-square",
         },
-        {
-            "name": "Twitter",
-            "url": "https://twitter.com/World4AI",
-            "icon": "fab fa-twitter-square",
-        },
     ],
 }
 
