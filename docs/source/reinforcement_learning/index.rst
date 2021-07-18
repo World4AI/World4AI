@@ -13,4 +13,5 @@ In this introduction I will go over the possible applications, the key concepts 
    agent_env
    properties
    interaction
+   exploration_vs_exploitation
    
