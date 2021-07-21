@@ -3,14 +3,14 @@ Agent and Environment Components
 ================================
 
 
-.. figure:: ../_static/images/reinforcement_learning/components/components.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/components.svg
    :align: center
    
    Components of the agent and the environment
 
 When the agent receives the state or the environment receives the action both use their respective internal components to transform the received data into a form that can be sent back to the originator of the data. 
 
-.. figure:: ../_static/images/reinforcement_learning/components/function.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/function.svg
    :align: center
    
    A mathematical function 
@@ -27,7 +27,7 @@ Components of the Environment
     
 The environment has basically one single component called the model. 
 
-.. figure:: ../_static/images/reinforcement_learning/components/model.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/model.svg
    :align: center
    
    The model function of the environment
@@ -37,7 +37,7 @@ The environment has basically one single component called the model.
 
 How exactly the model looks depends on the environment. 
 
-.. figure:: ../_static/images/reinforcement_learning/components/grid_state.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/grid_state.svg
    :align: center
    
    A gridworld with the correspondig state values
@@ -91,7 +91,7 @@ Policy
 .. note::
    The policy of the agent maps states to actions.
 
-.. figure:: ../_static/images/reinforcement_learning/components/policy.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/policy.svg
    :align: center
    
    The policy function of the environment
@@ -120,7 +120,7 @@ Value Function
 .. note::
     The value function of the agent maps states to values.
  
-.. figure:: ../_static/images/reinforcement_learning/components/value.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/value.svg
    :align: center
     
    The value function of the environment
@@ -128,12 +128,12 @@ Value Function
 The second component is the so-called value function. The value function gets a state as an input and generates a single scalar value. The higher the value, the better the state.
 
 
-.. figure:: ../_static/images/reinforcement_learning/components/bad_state.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/bad_state.svg
    :align: center
     
    A relatively bad state
 
-.. figure:: ../_static/images/reinforcement_learning/components/good_state.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/components/good_state.svg
    :align: center
     
    A relatively good state

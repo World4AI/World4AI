@@ -7,32 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Properties of Reinforcement Learning &#8212; World4AI 0.1 documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="States, Actions, Rewards" href="interaction.html" />
     <link rel="prev" title="Agent and Environment" href="agent_env.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +49,7 @@
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
+<a class="navbar-brand" href="../../index.html">
 <p class="title">World4AI</p>
 </a>
 
@@ -67,19 +67,19 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../resources/index.html">
+ <a class="reference internal nav-link" href="../../resources/index.html">
   Resources
  </a>
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="index.html">
+ <a class="reference internal nav-link" href="../index.html">
   Reinforcement Learning
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../deep_learning/index.html">
+ <a class="reference internal nav-link" href="../../deep_learning/index.html">
   Deep Learning
  </a>
 </li>
@@ -114,7 +114,7 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -233,11 +233,11 @@
 <h2>Learning<a class="headerlink" href="#learning" title="Permalink to this headline">¶</a></h2>
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p>
 <div class="figure align-center" id="id5">
-<img alt="../_images/grid_world2.svg" src="../_images/grid_world2.svg" /><p class="caption"><span class="caption-text">In this grid world the goal is for the circle to reach the triangle.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/grid_world2.svg" src="../../_images/grid_world2.svg" /><p class="caption"><span class="caption-text">In this grid world the goal is for the circle to reach the triangle.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>For example the agent is expected to move the circle from the starting cell position (bottom left corner) to the goal cell position (top left corner).</p>
 <div class="figure align-center" id="id6">
-<img alt="../_images/learning.svg" src="../_images/learning.svg" /><p class="caption"><span class="caption-text">Suboptimal (red) and optimal (green) strategy.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/learning.svg" src="../../_images/learning.svg" /><p class="caption"><span class="caption-text">Suboptimal (red) and optimal (green) strategy.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>When I talk about learning, usually that means that the agent gets better at achieving that particular goal over time. He could start by moving in a random fashion (as indicated by the red arrows) and over time learn the best possible (meaning the shortest) route (as indicated by the green arrows).</p>
 <div class="admonition note">
@@ -249,11 +249,11 @@
 <h2>Rewards<a class="headerlink" href="#rewards" title="Permalink to this headline">¶</a></h2>
 <p>The question still remains how exactly does the agent know what the goal of the environment actually is? The environment with which the agent interacts gives feedback about the behaviour of the agent by giving out a reward after each single step that the agent takes. <a class="footnote-reference brackets" href="#id4" id="id2">2</a></p>
 <div class="figure align-center" id="id7">
-<img alt="../_images/rewards.svg" src="../_images/rewards.svg" /><p class="caption"><span class="caption-text">Negative (red) and positive (green) rewards.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/rewards.svg" src="../../_images/rewards.svg" /><p class="caption"><span class="caption-text">Negative (red) and positive (green) rewards.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>If the goal of the grid world is to move the circle to the cell with the triangle as fast as possible the environment could for example give positive reward for getting to the cell with the triangle and punish the agent in any other case.</p>
 <div class="figure align-center" id="id8">
-<img alt="../_images/routes.svg" src="../_images/routes.svg" /><p class="caption"><span class="caption-text">Different paths in the environment generate different sum of rewards.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/routes.svg" src="../../_images/routes.svg" /><p class="caption"><span class="caption-text">Different paths in the environment generate different sum of rewards.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>If the agent takes the direct route (path 1) to the triangle he will get less negative rewards while an indirect route creates a lot of negative rewards. The agent needs to learn through the reward feedback that some sequences of actions are better than others.</p>
 <div class="admonition note">
@@ -265,7 +265,7 @@
 <h2>Trial and Error<a class="headerlink" href="#trial-and-error" title="Permalink to this headline">¶</a></h2>
 <p>The problem with the rewards is that it is not clear from the very beginning what path produces the highest possible sum of rewards. In reinforcement learning there is only the reward signal and even if the agent receives a positive reward you never know if he could have done better. Unlike in supervised learning, there is no teacher/supervisor to tell the agent what the best behaviour is. So how can the agent figure out what sequence of actions produces the highest sum of rewards? The only way he can. By trial and error.</p>
 <div class="figure align-center" id="id9">
-<img alt="../_images/trial_error.svg" src="../_images/trial_error.svg" /><p class="caption"><span class="caption-text">The agent tries out different behaviour.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/trial_error.svg" src="../../_images/trial_error.svg" /><p class="caption"><span class="caption-text">The agent tries out different behaviour.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>The agent has to try out different behaviour to figure out which one produces optimal results. How long it takes the agent to find a good sequence of decisions depends on the complexity of the environment and the employed learning algorithm. It can be anything between a couple of seconds to many days. In some cases we can not solve an environment no matter how hard we try.</p>
 <div class="admonition note">
@@ -276,11 +276,11 @@
 <div class="section" id="delayed">
 <h2>Delayed<a class="headerlink" href="#delayed" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center" id="id10">
-<img alt="../_images/delayed.svg" src="../_images/delayed.svg" /><p class="caption"><span class="caption-text">In reinforcement learning rewards are often delayed.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/delayed.svg" src="../../_images/delayed.svg" /><p class="caption"><span class="caption-text">In reinforcement learning rewards are often delayed.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <p>In reinforcement learning the agent often needs to take dozens or even thousands of steps before a particular reward is achieved. In that case there has been a succession of many steps and the agent has to decide which step and in which proportion is responsible for the reward, so that the agent could select the decisions that lead to a good sequence of rewards more often.</p>
 <div class="figure align-center" id="id11">
-<img alt="../_images/credit_assignment.svg" src="../_images/credit_assignment.svg" /><p class="caption"><span class="caption-text">The credit assignment problem.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/credit_assignment.svg" src="../../_images/credit_assignment.svg" /><p class="caption"><span class="caption-text">The credit assignment problem.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <p>Which of the steps is responsible for the positive reward in the image above? Is it the action just prior to the reward? Or the one before that? Or the one before that? Reinforcement Learning has no easy answer to the question which decision gets the credit for the reward. This problem is called <em>the credit assignment problem</em>.</p>
 <div class="admonition note">
@@ -318,7 +318,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   <footer class="footer mt-5 mt-md-0">
   <div class="container">

@@ -7,33 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>States, Actions, Rewards &#8212; World4AI 0.1 documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Exploration vs Exploitation" href="exploration_vs_exploitation.html" />
     <link rel="prev" title="Properties of Reinforcement Learning" href="properties.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,7 +50,7 @@
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
+<a class="navbar-brand" href="../../index.html">
 <p class="title">World4AI</p>
 </a>
 
@@ -68,19 +68,19 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../resources/index.html">
+ <a class="reference internal nav-link" href="../../resources/index.html">
   Resources
  </a>
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="index.html">
+ <a class="reference internal nav-link" href="../index.html">
   Reinforcement Learning
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../deep_learning/index.html">
+ <a class="reference internal nav-link" href="../../deep_learning/index.html">
   Deep Learning
  </a>
 </li>
@@ -115,7 +115,7 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -242,7 +242,7 @@
 <p>In reinforcement learning the sequential information flow between the agent and the environment is called <strong>interaction</strong>.</p>
 </div>
 <div class="figure align-center" id="id5">
-<img alt="../_images/interaction.svg" src="../_images/interaction.svg" /><p class="caption"><span class="caption-text">Interaction between the agent and the environment.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/interaction.svg" src="../../_images/interaction.svg" /><p class="caption"><span class="caption-text">Interaction between the agent and the environment.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>In essence interaction means that there is a communication channel between the agent and the environment, where data flows sequentially between the two.</p>
 <p>In order for the data to be communicated there have to be three consecutive steps.</p>
@@ -252,13 +252,13 @@
 <li><p>The processed data is sent back to the originator</p></li>
 </ol>
 <div class="figure align-center" id="id6">
-<img alt="../_images/sequential.svg" src="../_images/sequential.svg" /><p class="caption"><span class="caption-text">Sequential flow of data in reinforcement learning.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/sequential.svg" src="../../_images/sequential.svg" /><p class="caption"><span class="caption-text">Sequential flow of data in reinforcement learning.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>What is important to mention is that this stream of data is sent in a strictly sequential way. When the environment sends the data for example, it has to wait until it receives the response from the agent. Only then a new batch of data can be sent to the agent again.</p>
 <p>The middle part of the three steps, the processing of the data by the <strong>agent</strong> is the main part of reinforcement learning. The processing will be covered in detail in later chapters. In this chapter I will only describe the types of data.</p>
 <p>In general in reinforcement learning there are just 3 types of data that need to be sent between the agent and the environment: <strong>state</strong> data, <strong>action</strong> data and <strong>reward</strong> data.</p>
 <div class="figure align-center" id="id7">
-<img alt="../_images/state_action_reward.svg" src="../_images/state_action_reward.svg" /><p class="caption"><span class="caption-text">State, action, reward.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/state_action_reward.svg" src="../../_images/state_action_reward.svg" /><p class="caption"><span class="caption-text">State, action, reward.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>The agent receives the current state of the environment and based on the state sends the action he would like to take. The environment sends the reward for that action and transitions into a new state taking the action of the agent and the current state into account. The agent then uses the reward to learn to make decisions based on states.</p>
 <div class="admonition note">
@@ -300,7 +300,7 @@
 </div>
 <p>The state describes how the environment actually looks like. It is the current situation the agent faces and based on the state the agent has to make his decisions. The state can be represented by a scalar, a vector, a matrix or a tensor and can be either discrete or continuous.</p>
 <div class="figure align-center" id="id8">
-<img alt="../_images/state.svg" src="../_images/state.svg" /><p class="caption"><span class="caption-text">State in the gridworld.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/state.svg" src="../../_images/state.svg" /><p class="caption"><span class="caption-text">State in the gridworld.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>In this simple gridworld example all the agent needs to know to make the decisions is the location of the circle in the environment. So in the starting position the state would be 1. The one to the right 2 and so on. Based on the position the agent can choose the path towards the triangle.</p>
 <p>There are of course more complex environments where the state is for example represented by a tensor containing rgb values. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
@@ -313,7 +313,7 @@
 </div>
 <p>The action is the behaviour the agent chooses based on the state of the environment. <a class="footnote-reference brackets" href="#id4" id="id2">2</a> Like the state the action can be a scalar, a vector, a matrix or a tensor of discrete or continuous values.</p>
 <div class="figure align-center" id="id9">
-<img alt="../_images/action.svg" src="../_images/action.svg" /><p class="caption"><span class="caption-text">Action in the gridworld.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/action.svg" src="../../_images/action.svg" /><p class="caption"><span class="caption-text">Action in the gridworld.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the above gridworld example the agent can move north, east, south and west. Each action is encoded by a discrete scalar value.</p>
 <ul class="simple">
@@ -333,7 +333,7 @@
 <p>The reward is what the agent receives from the environment for an action. It is the value that the environment uses to reinforce a behaviour to solve an environment and it is the value that the agent uses to improve his behaviour.</p>
 <p>Unlike the action or the state the reward has to be a scalar, one single number, it is not possible for the reward to be a vector, matrix or tensor. As expected larger numbers represent larger or better rewards so that the reward of 1 is higher than the reward of -1.</p>
 <div class="figure align-center" id="id10">
-<img alt="../_images/reward.svg" src="../_images/reward.svg" /><p class="caption"><span class="caption-text">Reward in the gridworld.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/reward.svg" src="../../_images/reward.svg" /><p class="caption"><span class="caption-text">Reward in the gridworld.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <p>In this gridworld example the agent receives a reward of -1 for each step taken with the exception of taking a step towards the triangle, where the agent receives a reward of 1.</p>
 </div>
@@ -375,7 +375,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   <footer class="footer mt-5 mt-md-0">
   <div class="container">

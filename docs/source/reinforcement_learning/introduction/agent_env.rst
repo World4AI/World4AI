@@ -4,7 +4,7 @@ Agent and Environment
 
 All of reinforcement learning is based on two main components, the **agent** and the **environment**. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.  
 
-.. figure:: ../_static/images/reinforcement_learning/agent_env/grid_world.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/agent_env/grid_world.svg
    :align: center
 
    In this grid world the circle has to reach the triangle.
@@ -21,14 +21,14 @@ Intuitively I would say that the circle is the agent and the grid world is the e
 
 All the agent can actually do is to make the decisions. In the case of the above gridworld the agent chooses the direction, meaning north, west, east or south. Whether the circle actually moves in that direction is outside of the influence of the agent. 
 
-.. figure:: ../_static/images/reinforcement_learning/agent_env/grid_world_barrier.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/agent_env/grid_world_barrier.svg
    :align: center
 
    The agent can always choose between the north, east, south or west direction.
 
 For example in the image above the agent can decide to go north even though the circle is against a barrier in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change.  
 
-.. figure:: ../_static/images/reinforcement_learning/agent_env/agent.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/agent_env/agent.svg
    :align: center
 
    The agent is the decision maker.
@@ -40,7 +40,7 @@ The agent is the program that generates the decision and the decision of the age
 
 Once the agent is identified, everything outside of the agent is defined as the environment.
 
-.. figure:: ../_static/images/reinforcement_learning/agent_env/robot_agent.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/agent_env/robot_agent.svg
    :align: center
 
    Where is the agent? Where is the environment?

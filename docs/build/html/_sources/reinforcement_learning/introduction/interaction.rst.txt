@@ -11,7 +11,7 @@ The agent and the environment interact continuously, each reacting to the data s
     In reinforcement learning the sequential information flow between the agent and the environment is called **interaction**.
 
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/interaction.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/interaction.svg
    :align: center
     
    Interaction between the agent and the environment.
@@ -25,7 +25,7 @@ In order for the data to be communicated there have to be three consecutive step
 #. The data is processed by the receiver
 #. The processed data is sent back to the originator
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/sequential.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/sequential.svg
    :align: center
     
    Sequential flow of data in reinforcement learning.
@@ -36,7 +36,7 @@ The middle part of the three steps, the processing of the data by the **agent** 
 
 In general in reinforcement learning there are just 3 types of data that need to be sent between the agent and the environment: **state** data, **action** data and **reward** data. 
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/state_action_reward.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/state_action_reward.svg
    :align: center
     
    State, action, reward.
@@ -87,7 +87,7 @@ State
  
 The state describes how the environment actually looks like. It is the current situation the agent faces and based on the state the agent has to make his decisions. The state can be represented by a scalar, a vector, a matrix or a tensor and can be either discrete or continuous.
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/state.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/state.svg
    :align: center
     
    State in the gridworld.
@@ -104,7 +104,7 @@ Action
 
 The action is the behaviour the agent chooses based on the state of the environment. [#]_ Like the state the action can be a scalar, a vector, a matrix or a tensor of discrete or continuous values. 
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/action.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/action.svg
    :align: center
     
    Action in the gridworld.
@@ -128,7 +128,7 @@ The reward is what the agent receives from the environment for an action. It is 
 
 Unlike the action or the state the reward has to be a scalar, one single number, it is not possible for the reward to be a vector, matrix or tensor. As expected larger numbers represent larger or better rewards so that the reward of 1 is higher than the reward of -1. 
 
-.. figure:: ../_static/images/reinforcement_learning/interaction/reward.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/interaction/reward.svg
    :align: center
     
    Reward in the gridworld.

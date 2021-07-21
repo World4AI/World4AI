@@ -9,9 +9,14 @@ In this introduction I will go over the possible applications, the key concepts 
    :maxdepth: 2
    :caption: Introduction
 
-   applications
-   agent_env
-   properties
-   interaction
-   exploration_vs_exploitation
-   components
+   introduction/applications
+   introduction/agent_env
+   introduction/properties
+   introduction/interaction
+   introduction/exploration_vs_exploitation
+   introduction/components
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Mathematics of Reinforcement Learning

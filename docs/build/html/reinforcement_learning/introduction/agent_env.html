@@ -7,32 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agent and Environment &#8212; World4AI 0.1 documentation</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Properties of Reinforcement Learning" href="properties.html" />
     <link rel="prev" title="Reinforcement Learning Applications" href="applications.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +49,7 @@
   <div id="navbar-start">
     
     
-<a class="navbar-brand" href="../index.html">
+<a class="navbar-brand" href="../../index.html">
 <p class="title">World4AI</p>
 </a>
 
@@ -67,19 +67,19 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../resources/index.html">
+ <a class="reference internal nav-link" href="../../resources/index.html">
   Resources
  </a>
 </li>
 
 <li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="index.html">
+ <a class="reference internal nav-link" href="../index.html">
   Reinforcement Learning
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../deep_learning/index.html">
+ <a class="reference internal nav-link" href="../../deep_learning/index.html">
   Deep Learning
  </a>
 </li>
@@ -114,7 +114,7 @@
           
             
             <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
@@ -195,7 +195,7 @@
 <h1>Agent and Environment<a class="headerlink" href="#agent-and-environment" title="Permalink to this headline">¶</a></h1>
 <p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>
 <div class="figure align-center" id="id1">
-<img alt="../_images/grid_world.svg" src="../_images/grid_world.svg" /><p class="caption"><span class="caption-text">In this grid world the circle has to reach the triangle.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/grid_world.svg" src="../../_images/grid_world.svg" /><p class="caption"><span class="caption-text">In this grid world the circle has to reach the triangle.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the gridworld above you have a player as represented by a circle. The player can move into 4 different directions: North, East, South and West. If the circle is against a wall (outermost lines) or a barrier (lined boxes) then he can not move in that particular direction. The goal of the game is for the circle to reach the triangle in the top left corner in as few steps as possible.</p>
 <div class="admonition warning">
@@ -209,11 +209,11 @@
 </div>
 <p>All the agent can actually do is to make the decisions. In the case of the above gridworld the agent chooses the direction, meaning north, west, east or south. Whether the circle actually moves in that direction is outside of the influence of the agent.</p>
 <div class="figure align-center" id="id2">
-<img alt="../_images/grid_world_barrier.svg" src="../_images/grid_world_barrier.svg" /><p class="caption"><span class="caption-text">The agent can always choose between the north, east, south or west direction.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/grid_world_barrier.svg" src="../../_images/grid_world_barrier.svg" /><p class="caption"><span class="caption-text">The agent can always choose between the north, east, south or west direction.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>For example in the image above the agent can decide to go north even though the circle is against a barrier in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change.</p>
 <div class="figure align-center" id="id3">
-<img alt="../_images/agent.svg" src="../_images/agent.svg" /><p class="caption"><span class="caption-text">The agent is the decision maker.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/agent.svg" src="../../_images/agent.svg" /><p class="caption"><span class="caption-text">The agent is the decision maker.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The agent is the program that generates the decision and the decision of the agent is then relayed to the environment. The environment then processes the decision, but that is not something that the agent can influence. In the simple grid-world game if the agent decides to go north the circle might actually move north or it could move in a totally different direction or not move at all.</p>
 <div class="admonition note">
@@ -222,7 +222,7 @@
 </div>
 <p>Once the agent is identified, everything outside of the agent is defined as the environment.</p>
 <div class="figure align-center" id="id4">
-<img alt="../_images/robot_agent.svg" src="../_images/robot_agent.svg" /><p class="caption"><span class="caption-text">Where is the agent? Where is the environment?</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/robot_agent.svg" src="../../_images/robot_agent.svg" /><p class="caption"><span class="caption-text">Where is the agent? Where is the environment?</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>A common example that is also used to make the distinction between the agent and the environment is that of a robot that interacts with the real world. The goal of the robot might be to go from right to left to recharge the battery. The agent is the code that makes the decision to move left. While the arms, the legs, the cooling system, the floor and everything else in the image is part of the environment.</p>
 <p>A similar argument can be made for a human or any other form of a biological machine. The neural network in our brain makes the decisions to move, to study or to sleep. How the body actually reacts is not really in our control. For example the movement could be stopped when you are parallyzed either because of an illness or through fear. The desire to study could be stopped through external triggers like the smell of food or a habit to listen to music. And the decision to go to bed to fall asleep is not always accompanied by actual sleep. We do not have full control of our body. For example, no matter how hard we try, we can not stop our heart.</p>
@@ -245,7 +245,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   <footer class="footer mt-5 mt-md-0">
   <div class="container">

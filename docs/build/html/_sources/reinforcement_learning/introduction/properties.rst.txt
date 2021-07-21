@@ -14,14 +14,14 @@ Learning
 
 Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve. 
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/grid_world.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/grid_world.svg
    :align: center
 
    In this grid world the goal is for the circle to reach the triangle.
 
 For example the agent is expected to move the circle from the starting cell position (bottom left corner) to the goal cell position (top left corner). 
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/learning.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/learning.svg
    :align: center
 
    Suboptimal (red) and optimal (green) strategy.
@@ -38,14 +38,14 @@ Rewards
 
 The question still remains how exactly does the agent know what the goal of the environment actually is? The environment with which the agent interacts gives feedback about the behaviour of the agent by giving out a reward after each single step that the agent takes. [#]_
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/rewards.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/rewards.svg
    :align: center
 
    Negative (red) and positive (green) rewards.
 
 If the goal of the grid world is to move the circle to the cell with the triangle as fast as possible the environment could for example give positive reward for getting to the cell with the triangle and punish the agent in any other case. 
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/routes.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/routes.svg
    :align: center
 
    Different paths in the environment generate different sum of rewards.
@@ -60,7 +60,7 @@ Trial and Error
 
 The problem with the rewards is that it is not clear from the very beginning what path produces the highest possible sum of rewards. In reinforcement learning there is only the reward signal and even if the agent receives a positive reward you never know if he could have done better. Unlike in supervised learning, there is no teacher/supervisor to tell the agent what the best behaviour is. So how can the agent figure out what sequence of actions produces the highest sum of rewards? The only way he can. By trial and error.
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/trial_error.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/trial_error.svg
    :align: center
 
    The agent tries out different behaviour.
@@ -73,14 +73,14 @@ The agent has to try out different behaviour to figure out which one produces op
 Delayed
 =======
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/delayed.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/delayed.svg
    :align: center
 
    In reinforcement learning rewards are often delayed.
 
 In reinforcement learning the agent often needs to take dozens or even thousands of steps before a particular reward is achieved. In that case there has been a succession of many steps and the agent has to decide which step and in which proportion is responsible for the reward, so that the agent could select the decisions that lead to a good sequence of rewards more often. 
 
-.. figure:: ../_static/images/reinforcement_learning/properties_of_rl/credit_assignment.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/properties_of_rl/credit_assignment.svg
    :align: center
 
    The credit assignment problem.

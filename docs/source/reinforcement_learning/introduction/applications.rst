@@ -12,7 +12,7 @@ Grid Worlds
 
 Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve. A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.
 
-.. figure:: ../_static/images/reinforcement_learning/applications/grid_world.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/grid_world.svg
    :align: center
 
    An example of a grid world
@@ -25,7 +25,7 @@ Atari 2600 Games
 
 Computer games have become a testing ground for reinforcement learning algorithms. Most new algorithms are tested on the Atari 2600 games in order to show how efficient the algorithms are. For a human it is not especially hard to learn the rules of the game (although it might require some time to master the game), but for computers it is an entirely different story. Due to the vast number of configurations the usual strategies that are used to solve the grid worlds break down. Usually good solutions require the use of neural networks. 
 
-.. figure:: ../_static/images/reinforcement_learning/applications/breakout.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/breakout.svg
    :align: center
 
    An example of breakout
@@ -41,7 +41,7 @@ Board Games
 Board games, like backgammon, chess and go used to be the frontier for ai. There was an assumption that a computer would require creativity and imagination to beat a professional player at backgammon, chess and go. Essentially that meant that the computer needed to possess human characteristics in order to win against a professional player. Nevertheless in all three games professionals and even world champions were beaten by AI systems.
 
 
-.. figure:: ../_static/images/reinforcement_learning/applications/game_of_go.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/game_of_go.svg
    :align: center
 
    Board configuration at move 37
@@ -54,7 +54,7 @@ Modern Games
 Compared to Atari games, modern games have become a lot more complex and even for human players there is a steep learning curve, especially if you wish to become a professional player. In spite of that OpenAI and DeepMind have beaten top players in two of the most famous esports games, Dota II and StarCraft II.
 StarCraft II for example is a so-called rts (real time strategy) game. In these types of games you have to collect resources, build workers and different types of attack vehicles, construct buildings, improve your technology, scout the area for opponents and to finally destroy the buildings and units of your opponents. Many of these decisions have tradeoffs and there is no single best strategy, the player has to adapt to the current situation.
 
-.. figure:: ../_static/images/reinforcement_learning/applications/rts.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/rts.svg
    :align: center
 
    An example of a simplified real time strategy
@@ -66,7 +66,7 @@ Finance
 
 Nowadays it seems that reinforcement learning is taking over the financial industry in every aspect imaginable. From valuing financial products to chatbots that communicate with prospective clients. 
 
-.. figure:: ../_static/images/reinforcement_learning/applications/finance.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/finance.svg
    :align: center
 
    An example of a reinforcement learning trading bot
@@ -79,7 +79,7 @@ Robotics
 
 The field of robotics is vast. I could talk about robots on assembly lines, drones or bipedal robots. In all the above mentioned cases it is possible to apply reinforcement learning to learn the desired task for the robot. 
 
-.. figure:: ../_static/images/reinforcement_learning/applications/robots.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/robots.svg
    :align: center
 
    An example of multitask reinforcement learning
@@ -93,7 +93,7 @@ The possible advances in healthcare through the help of reinforcement learning a
 
 Individual treatment plans for example, where drugs and treatments are adjusted quickly depending on the reaction of the patient could be developed. With each new patient the experience of the AI would increase. Unlike human doctors that have to go through medical studies, practice and have to eventually retire, the experience of AI could be centralized and made available to newer systems without loss of data. Thus the amount of mistakes and the cost of treatment should potentially decrease. 
 
-.. figure:: ../_static/images/reinforcement_learning/applications/healthcare.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/healthcare.svg
    :align: center
 
    An example of drug discovery
@@ -105,7 +105,7 @@ To my knowledge both applications are experimental and are not fully implemented
 Autonomous Vehicles
 -------------------
 
-.. figure:: ../_static/images/reinforcement_learning/applications/autonomous_driving.svg
+.. figure:: ../../_static/images/reinforcement_learning/introduction/applications/autonomous_driving.svg
    :align: center
 
    Autonomous Vehicle
