@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Definition of a Markov Decision Process &#8212; World4AI 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Deep Learning" href="../../deep_learning/index.html" />
+    <link rel="prev" title="Agent and Environment Components" href="../introduction/components.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">World4AI</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../resources/index.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Reinforcement Learning
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../deep_learning/index.html">
+  Deep Learning
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/World4AI/World4AI" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/applications.html">
+   Reinforcement Learning Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/agent_env.html">
+   Agent and Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/properties.html">
+   Properties of Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/interaction.html">
+   States, Actions, Rewards
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/exploration_vs_exploitation.html">
+   Exploration vs Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/components.html">
+   Agent and Environment Components
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Mathematics of Reinforcement Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Definition of a Markov Decision Process
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-a-stochastic-process-to-an-mdp">
+   From a Stochastic Process to an MDP
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-process">
+     Stochastic Process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markov-chain">
+     Markov Chain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mdp">
+     MDP
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#frozen-lake">
+       Frozen Lake
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mathcal-s">
+       <span class="math notranslate nohighlight">
+        \(\mathcal{S}\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mathcal-a">
+       <span class="math notranslate nohighlight">
+        \(\mathcal{A}\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#p">
+       <span class="math notranslate nohighlight">
+        \(P\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r">
+       <span class="math notranslate nohighlight">
+        \(R\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gamma">
+       <span class="math notranslate nohighlight">
+        \(\gamma\)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="definition-of-a-markov-decision-process">
+<h1>Definition of a Markov Decision Process<a class="headerlink" href="#definition-of-a-markov-decision-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Many of the components of a Markov Decision Process (MDP) were already introduced in one of the previous chapters. The main focus of those chapters was the building of an intuitive foundation. In the following chapters I am going to reiterate the already introduced material, but the focus is going to be on the more formal explanations of MDPs. The mathematics that is going to be introduced in the next chapters will form the basis of much of reinforcement learning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Markov Decision Process (MPD) is a formal description of a sequential decision problem with uncertainty.</p>
+</div>
+<p>In essence an MDP allows us to formalize the interaction loop between the agent and the environment, where the actions of the agent influence future states/rewards and the agent might have to decide to forego the current reward to get higher rewards in the future. The common assumption in reinforcement learning is the existence of an MDP at the core of each environment.</p>
+<p>HERE IS AN IMAGE</p>
+<p>The interaction is done sequentially, where the agent and the environment take turns to react to each other. Each iteration of actions, rewards and states happens in a period of time, called a time step, <span class="math notranslate nohighlight">\(t\)</span>. The time step is a discrete variable starting at 0 and increasing by 1 after each iteration. During the first time step the agent receives the initial state of the environment <span class="math notranslate nohighlight">\(S_0\)</span> and reacts accordingly with the action <span class="math notranslate nohighlight">\(A_0\)</span>. The environment transitions into a new state <span class="math notranslate nohighlight">\(S_1\)</span> and generates the reward <span class="math notranslate nohighlight">\(R_1\)</span>. The agent in turn reacts with the action <span class="math notranslate nohighlight">\(A_1\)</span> and the interaction continues. The general notation of writing States, Actions and Rewards is <span class="math notranslate nohighlight">\(S_t, A_t, R_t\)</span> where the subscript <span class="math notranslate nohighlight">\(t\)</span> represents a particular time step.</p>
+</div>
+<div class="section" id="from-a-stochastic-process-to-an-mdp">
+<h2>From a Stochastic Process to an MDP<a class="headerlink" href="#from-a-stochastic-process-to-an-mdp" title="Permalink to this headline">¶</a></h2>
+<p>A markov decision process consists of three parts. It involves a stochastic <strong>process</strong>, it abides by the <strong>markov</strong> property and there is the possibility to influence the states through <strong>decisions</strong>.</p>
+<div class="section" id="stochastic-process">
+<h3>Stochastic Process<a class="headerlink" href="#stochastic-process" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A stochastic or random process can be defined as a sequence of random variables.</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>In the above image there are no actions or rewards yet and the state evolves randomly over time following a stochastic process. There are two distinct states that the process can be in, the 1 and the 0. Each of the states can be reached  with 50% probability and the new state does not depend on any previous states. In essence this random process corresponds to a sequence of coin tosses where for example heads would correspond to 0 and tails to 1.</p>
+<p>For the above process the following can be said: <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_{t+1})\)</span></p>
+<p><span class="math notranslate nohighlight">\(Pr(S_{t+1})\)</span> is the probability that a certain state will be tossed, in the above case <span class="math notranslate nohighlight">\(Pr(S_{t+1}=HEADS) = 0.5\)</span> and <span class="math notranslate nohighlight">\(Pr(S_{t+1}=TAILS)=0.5\)</span>. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t)\)</span>, reads as x given y, depicts a conditional probability, where the probability of being in the new state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> depends on the current state <span class="math notranslate nohighlight">\(S_t\)</span>. For example <span class="math notranslate nohighlight">\(Pr(S_{t+1}=HEADS|S_t=TAILS)\)</span> shows the probability of a coin toss having a value of HEADS when the previous toss had a value of TAILS. When you consider a coin toss, then the new occurrence of either heads or tails does not depend on the previous specific value of the toss. The events are independent. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_t)\)</span> means that knowing the last value of a coin toss does not give us any more knowledge regarding the future toss. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_t) = 0.5\)</span>.</p>
+<table class="table" id="id1">
+<caption><span class="caption-text">Bernouli Process</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Process</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Markov</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decisions</p></td>
+<td><p>no</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="markov-chain">
+<h3>Markov Chain<a class="headerlink" href="#markov-chain" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Markov chain is a stochastic process that has the Markov property.</p>
+<p>Markov Property: <span class="math notranslate nohighlight">\(Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]\)</span></p>
+<p>The Markov property, or memorylessness, means that the next state only depends on the current state and not the states before that.</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>Unlike in the coin toss example, in a Markov chain the probability to be in the state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> depends on previous states, but only the most recent state, <span class="math notranslate nohighlight">\(S_t\)</span>, is relevant. The above image shows that each state depends on the previous state, while the previous information, the states that came before that, is irrelevant. The markov property is extremely convenient, as only the most recent events need to be tracked, which allows for more tractable computations.</p>
+<p>HERE IS AN IMAGE</p>
+<p>Each of the color coded circles above represents a state, while the numeric values near the arrows represent the transition probabilities from one state to another state. For example…</p>
+<p>HERE IS AN IMAGE</p>
+<p>If we unfold the process and follow it for a while, the following sequence might for example occur.</p>
+<div class="math notranslate nohighlight">
+\[S_0, S_1, S_2, S_3, S_4, ..., S_t\]</div>
+<table class="table" id="id2">
+<caption><span class="caption-text">Markov Chain</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Process</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Markov</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decisions</p></td>
+<td><p>no</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mdp">
+<h3>MDP<a class="headerlink" href="#mdp" title="Permalink to this headline">¶</a></h3>
+<p>HERE IS AN IMAGE</p>
+<p>A Markov chain can be extended to a Markov Decision Process with the introduction of rewards and actions. While in the case of a Markov chain the states evolve without any possibility of an influence on the environment, in the case of an MDP the agent has “agency” over his actions and gets rewards for his behaviour.</p>
+<p>The unrolled MDP forms a sequence of States, Actions and Rewards, called a trajectory.</p>
+<div class="math notranslate nohighlight">
+\[S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, ...\]</div>
+<table class="table" id="id3">
+<caption><span class="caption-text">MDP</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Process</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Markov</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Decisions</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A tuple is a finite ordered list of elements</p>
+</div>
+<p>In more mathematical terms a Markov decision process is a 5-tuple, <span class="math notranslate nohighlight">\((\mathcal{S, A}, P, R, \gamma)\)</span>.</p>
+<div class="section" id="frozen-lake">
+<h4>Frozen Lake<a class="headerlink" href="#frozen-lake" title="Permalink to this headline">¶</a></h4>
+<p>HERE IS AN IMAGE</p>
+<p>To explain the contents of the tuple I will introduce a new environment. “Frozen Lake” is a beginner level environment, suited well to explain the underlying components of an MDP. As the name of the environment suggests, the surface of the lake is frozen. This causes the surface to be either safe, but slippery or not safe at all. The player starts at the top left corner (indicated by the letter S as in Start). The goal of the environment is to reach the bottom right corner (indicated by the letter G as in Goal). The safe surface comprises the F (F as in Frozen) and the G cells. The unsafe surface is indicated by the H (H as in Hole) cells. The reward is in most cases 0, unless the agent reaches the goal where he achieves a reward of 1. The agent can move in 4 directions. When the agent tries to move into the direction of the wall the resulting state is the same as the previous state. The environment itself is stochastic. When the agent chooses an action in ⅓ of the cases the environment moves the player in that direction, while in ⅔ of the cases the player is moved into one of the orthogonal directions (divided equally).</p>
+<p>HERE IS AN IMAGE</p>
+</div>
+<div class="section" id="mathcal-s">
+<h4><span class="math notranslate nohighlight">\(\mathcal{S}\)</span><a class="headerlink" href="#mathcal-s" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is the set of all legal states</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>HERE IS AN EXPLANATION</p>
+</div>
+<div class="section" id="mathcal-a">
+<h4><span class="math notranslate nohighlight">\(\mathcal{A}\)</span><a class="headerlink" href="#mathcal-a" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{A}\)</span> is the set of all legal actions</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>HERE IS AN EXPLANATION</p>
+</div>
+<div class="section" id="p">
+<h4><span class="math notranslate nohighlight">\(P\)</span><a class="headerlink" href="#p" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(P\)</span> is the transition model.</p>
+<p><span class="math notranslate nohighlight">\(P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a]\)</span></p>
+<p>The transition model is the function  that calculates the probability of landing in some state <span class="math notranslate nohighlight">\(s'\)</span> at timestep <span class="math notranslate nohighlight">\(t+1\)</span> when at timestep <span class="math notranslate nohighlight">\(t\)</span> the state corresponds to <span class="math notranslate nohighlight">\(s\)</span> and the action taken by the agent is <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>HERE IS AN EXPLANATION</p>
+</div>
+<div class="section" id="r">
+<h4><span class="math notranslate nohighlight">\(R\)</span><a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(R\)</span> is the reward model.</p>
+<p><span class="math notranslate nohighlight">\(R(s,a) \doteq \mathbb{E}[R_{t+1} \mid S_{t}=s, A_{t}=a]\)</span></p>
+<p>The reward model is the function that calculates the expected value of the reward given state <span class="math notranslate nohighlight">\(s\)</span> and action <span class="math notranslate nohighlight">\(a\)</span> at time step <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>HERE IS AN EXPLANATION</p>
+</div>
+<div class="section" id="gamma">
+<h4><span class="math notranslate nohighlight">\(\gamma\)</span><a class="headerlink" href="#gamma" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> (gamma) is the discound factor, where <span class="math notranslate nohighlight">\(0 \leq \gamma \leq 1\)</span>.</p>
+<p>Gamma is used to calculate the current value of future rewards.</p>
+</div>
+<p>HERE IS AN IMAGE</p>
+<p>HERE IS AN EXPLANATION</p>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="../introduction/components.html" title="previous page">Agent and Environment Components</a>
+    <a class='right-next' id="next-link" href="../../deep_learning/index.html" title="next page">Deep Learning</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, World4AI Team.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
