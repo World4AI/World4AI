@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="200" version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker6686" overflow="visible" orient="auto">
+   <path transform="matrix(.8 0 0 .8 5.92 .8)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6469" overflow="visible" orient="auto">
+   <path transform="matrix(.8 0 0 .8 5.92 .8)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6240" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6053" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5872" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3728" overflow="visible" orient="auto">
+   <path transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3565" overflow="visible" orient="auto">
+   <path transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Mend" overflow="visible" orient="auto">
+   <path transform="matrix(-.4 0 0 -.4 -4 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1951" overflow="visible" orient="auto">
+   <path transform="matrix(.8 0 0 .8 5.92 .8)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker10844" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5616" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="m-5-5v10h10v-10z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.31553 0.31553h499.37v199.37h-499.37z" fill="none" stroke="#000" stroke-width=".63106"/>
+ <g font-family="Roboto">
+  <text x="290.93546" y="140.83578" font-size="30.483px" stroke-width=".76208" style="line-height:1.25" xml:space="preserve"><tspan x="290.93546" y="140.83578" stroke-width=".76208">S</tspan></text>
+  <text x="311.29276" y="148.13748" font-size="25.175px" stroke-width=".62937" style="line-height:1.25" xml:space="preserve"><tspan x="311.29276" y="148.13748" stroke-width=".62937">t</tspan></text>
+  <text x="373.85941" y="141.56718" font-size="30.483px" stroke-width=".76208" style="line-height:1.25" xml:space="preserve"><tspan x="373.85941" y="141.56718" stroke-width=".76208">S</tspan></text>
+  <text x="394.21671" y="148.86888" font-size="25.175px" stroke-width=".62937" style="line-height:1.25" xml:space="preserve"><tspan x="394.21671" y="148.86888" stroke-width=".62937">t+1</tspan></text>
+ </g>
+ <g fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect x="375" y="50" width="50" height="50"/>
+  <rect x="275" y="50" width="50" height="50"/>
+  <rect x="175" y="50" width="50" height="50"/>
+  <rect x="75" y="50" width="50" height="50"/>
+ </g>
+ <g font-family="Roboto">
+  <text x="180.93544" y="140.83578" font-size="30.483px" stroke-width=".76208" style="line-height:1.25" xml:space="preserve"><tspan x="180.93544" y="140.83578" stroke-width=".76208">S</tspan></text>
+  <text x="201.29274" y="148.13748" font-size="25.175px" stroke-width=".62937" style="line-height:1.25" xml:space="preserve"><tspan x="201.29274" y="148.13748" stroke-width=".62937">t-1</tspan></text>
+  <text x="77.522507" y="141.56718" font-size="30.483px" stroke-width=".76208" style="line-height:1.25" xml:space="preserve"><tspan x="77.522507" y="141.56718" stroke-width=".76208">S</tspan></text>
+  <text x="97.879807" y="148.86888" font-size="25.175px" stroke-width=".62937" style="line-height:1.25" xml:space="preserve"><tspan x="97.879807" y="148.86888" stroke-width=".62937">t-2</tspan></text>
+ </g>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width=".6">
+  <rect x="385" y="60" width="30" height="30"/>
+  <rect x="285" y="60" width="30" height="30"/>
+  <rect x="185" y="60" width="30" height="30"/>
+  <rect x="85" y="60" width="30" height="30"/>
+ </g>
+ <g fill="none" stroke="#000" stroke-width="1px">
+  <path d="m325 74.75h49.25" marker-end="url(#Arrow1Mend)" marker-start="url(#marker5616)"/>
+  <path d="m225.5 75h49" marker-end="url(#marker3565)" marker-start="url(#marker10844)"/>
+  <path d="m125.25 75.5h49.5" marker-end="url(#marker3728)" marker-start="url(#marker10844)"/>
+  <path d="m300 50v-10h50" marker-end="url(#marker6686)" marker-start="url(#marker6240)"/>
+  <path d="m200 50v-20h150" marker-end="url(#marker6469)" marker-start="url(#marker6053)"/>
+  <path d="m100 50v-30h250" marker-end="url(#marker1951)" marker-start="url(#marker5872)"/>
+ </g>
+ <rect x="350" y="10" width="10" height="40" fill="#f00" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+</svg>

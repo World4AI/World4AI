@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker2370" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4005" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m100 477.84v-430" fill="none" marker-end="url(#marker4005)" stroke="#000" stroke-width="1px"/>
+ <path d="m50 450h430" fill="none" marker-end="url(#marker2370)" stroke="#000" stroke-width="1px"/>
+ <g font-family="Roboto">
+  <text x="20.654697" y="461.84225" font-size="33.314px" stroke-width=".83286" style="line-height:1.25" xml:space="preserve"><tspan x="20.654697" y="461.84225" stroke-width=".83286">0</tspan></text>
+  <text x="32.688053" y="111.8992" font-size="33.314px" stroke-width=".83286" style="line-height:1.25" xml:space="preserve"><tspan x="32.688053" y="111.8992" stroke-width=".83286">1</tspan></text>
+  <text x="484.07227" y="482.92969" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="484.07227" y="482.92969">t</tspan></text>
+  <text x="23.535156" y="34.21875" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="23.535156" y="34.21875">State</tspan></text>
+ </g>
+ <g fill="#ff8080" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <circle cx="150" cy="450" r="10" opacity=".999"/>
+  <circle cx="200" cy="100" r="10" opacity=".999"/>
+  <circle cx="250" cy="100" r="10" opacity=".999"/>
+  <circle cx="300" cy="100" r="10" opacity=".999"/>
+  <circle cx="350" cy="450" r="10" opacity=".999"/>
+  <circle cx="400" cy="450" r="10" opacity=".999"/>
+  <circle cx="450" cy="100" r="10" opacity=".999"/>
+  <circle cx="100" cy="100" r="10" opacity=".999"/>
+ </g>
+ <g fill="none" stroke="#000">
+  <path d="m150 50v450" opacity=".1"/>
+  <path d="m200 50v450" opacity=".1"/>
+  <path d="m250 50v450" opacity=".1"/>
+  <path d="m300 50v450" opacity=".1"/>
+  <path d="m350 50v450" opacity=".1"/>
+  <path d="m400 50v450" opacity=".1"/>
+  <path d="m450 50v450" opacity=".1"/>
+  <path d="m55 400h450" opacity=".1"/>
+  <path d="m55 350h450" opacity=".1"/>
+  <path d="m55 300h450" opacity=".1"/>
+  <path d="m55 250h450" opacity=".1"/>
+  <path d="m55 200h450" opacity=".1"/>
+  <path d="m55 150h450" opacity=".1"/>
+  <path d="m55 100h450" opacity=".1"/>
+  <path d="m55 50h450" opacity=".1"/>
+ </g>
+</svg>

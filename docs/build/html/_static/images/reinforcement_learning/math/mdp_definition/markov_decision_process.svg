@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="350" version="1.1" viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker14561" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13958" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13539" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13278" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13023" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12776" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12452" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12138" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker11607" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker11390" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker11177" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker10897" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker10613" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker10130" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9949" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9774" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9605" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Mend" overflow="visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2500" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.41748 0.41748h499.17v349.17h-499.17z" fill="none" stroke="#000" stroke-width=".83496"/>
+ <g transform="translate(6.6667 35)">
+  <g transform="translate(-6.6667 70)" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+   <circle cx="50" cy="80" r="30" fill="#fd5"/>
+   <circle cx="50" cy="80" r="14.003" fill="#fff" stroke-width=".46677"/>
+   <circle cx="50" cy="80" r="30" fill="#fd5"/>
+   <circle cx="50" cy="80" r="14.003" fill="#fff" stroke-width=".46677"/>
+  </g>
+  <g transform="translate(30,70)" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+   <circle cx="280" cy="80" r="30" fill="#c8b7b7"/>
+   <circle cx="280" cy="80" r="14.003" fill="#fff" stroke-width=".46677"/>
+  </g>
+  <g transform="translate(-6.6667 70)" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+   <circle cx="450" cy="80" r="30" fill="#acf"/>
+   <circle cx="450" cy="80" r="14.003" fill="#fff" stroke-width=".46677"/>
+  </g>
+  <g transform="translate(-3.3333 70)" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+   <circle cx="180" cy="80" r="30" fill="#f59"/>
+   <circle cx="180" cy="80" r="14.003" fill="#fff" stroke-width=".46677"/>
+  </g>
+  <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+   <rect x="90" y="200" width="20" height="20" fill="#aef"/>
+   <rect x="90" y="80" width="20" height="20" fill="#fac"/>
+   <rect x="370" y="200" width="20" height="20" fill="#aef"/>
+   <rect x="370" y="80" width="20" height="20" fill="#fac"/>
+   <rect x="240" y="80" width="20" height="20" fill="#fac"/>
+  </g>
+  <g fill="none" stroke="#000" stroke-width="1px">
+   <path d="m80 150h20" marker-end="url(#marker2500)"/>
+   <path d="m100 140v-40" marker-end="url(#Arrow1Mend)"/>
+   <path d="m100 160v40" marker-end="url(#marker9605)"/>
+   <path d="m100 80v-10h-50v40" marker-end="url(#marker10130)"/>
+   <path d="m110 210h70v-20" marker-end="url(#marker9949)"/>
+   <path d="m110 90h70v20" marker-end="url(#marker9774)"/>
+  </g>
+  <rect x="240" y="200" width="20" height="20" fill="#aef" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+  <g fill="none" stroke="#000" stroke-width="1px">
+   <path d="m250 140.99v-40" marker-end="url(#marker10613)"/>
+   <path d="m250 159.01v40" marker-end="url(#marker10897)"/>
+   <path d="m260 90h50v20" marker-end="url(#marker11607)"/>
+   <path d="m250 220v20h-200v-50" marker-end="url(#marker11177)"/>
+   <path d="m260 210h50v-20" marker-end="url(#marker11390)"/>
+   <path d="m380 140.99v-40" marker-end="url(#marker12138)"/>
+   <path d="m380 159.01v40" marker-end="url(#marker12452)"/>
+   <path d="m390 90h50v20" marker-end="url(#marker12776)"/>
+   <path d="m390 210h50v-20" marker-end="url(#marker13023)"/>
+   <path d="m380 80v-50h-350v80" marker-end="url(#marker13278)"/>
+   <path d="m370 210h-50v-20" marker-end="url(#marker13539)"/>
+  </g>
+  <circle cx="443.33" cy="150" r="6.4645" fill="#0f0" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016"/>
+  <g fill="#f00" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016">
+   <circle cx="310" cy="150" r="6.4645"/>
+   <circle cx="176.67" cy="150" r="6.4645"/>
+   <circle cx="43.333" cy="150" r="6.4645"/>
+  </g>
+  <g font-family="Roboto" font-size="16.799px">
+   <text x="123.95705" y="225.80496" style="line-height:1.25" xml:space="preserve"><tspan x="123.95705" y="225.80496">100%</tspan></text>
+   <text x="124.66415" y="80.848076" style="line-height:1.25" xml:space="preserve"><tspan x="124.66415" y="80.848076">50%</tspan></text>
+   <text x="63.852966" y="63.170406" style="line-height:1.25" xml:space="preserve"><tspan x="63.852966" y="63.170406">50%</tspan></text>
+  </g>
+  <path d="m220 150h30" fill="none" marker-end="url(#marker13958)" stroke="#000" stroke-width="1px"/>
+  <path d="m350 150h30" fill="none" marker-end="url(#marker14561)" stroke="#000" stroke-width="1px"/>
+  <g font-family="Roboto" font-size="16.799px">
+   <text x="269.36676" y="85.971375" style="line-height:1.25" xml:space="preserve"><tspan x="269.36676" y="85.971375">100%</tspan></text>
+   <text x="274.14877" y="225.97137" style="line-height:1.25" xml:space="preserve"><tspan x="274.14877" y="225.97137">50%</tspan></text>
+   <text x="164.14879" y="265.97137" style="line-height:1.25" xml:space="preserve"><tspan x="164.14879" y="265.97137">50%</tspan></text>
+   <text x="404.14877" y="85.971375" style="line-height:1.25" xml:space="preserve"><tspan x="404.14877" y="85.971375">50%</tspan></text>
+   <text x="194.14879" y="25.971376" style="line-height:1.25" xml:space="preserve"><tspan x="194.14879" y="25.971376">50%</tspan></text>
+   <text x="404.14877" y="225.97137" style="line-height:1.25" xml:space="preserve"><tspan x="404.14877" y="225.97137">50%</tspan></text>
+   <text x="334.14877" y="225.97137" style="line-height:1.25" xml:space="preserve"><tspan x="334.14877" y="225.97137">50%</tspan></text>
+  </g>
+ </g>
+</svg>
