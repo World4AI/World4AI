@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Solve an MDP &#8212; World4AI 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Deep Learning" href="../../deep_learning/index.html" />
+    <link rel="prev" title="Definition of a Markov Decision Process" href="definition_markov_decision_process.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">World4AI</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../resources/index.html">
+  Resources
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Reinforcement Learning
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../deep_learning/index.html">
+  Deep Learning
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/World4AI/World4AI" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/applications.html">
+   Reinforcement Learning Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/agent_env.html">
+   Agent and Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/properties.html">
+   Properties of Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/interaction.html">
+   States, Actions, Rewards
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/exploration_vs_exploitation.html">
+   Exploration vs Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/components.html">
+   Agent and Environment Components
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Mathematics of Reinforcement Learning
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="definition_markov_decision_process.html">
+   Definition of a Markov Decision Process
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   To Solve an MDP
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#return">
+   Return
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#policy">
+   Policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#value-functions">
+   Value Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bellman-equations">
+   Bellman Equations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimality">
+   Optimality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bellman-optimality-equations">
+   Bellman Optimality Equations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="to-solve-an-mdp">
+<h1>To Solve an MDP<a class="headerlink" href="#to-solve-an-mdp" title="Permalink to this headline">¶</a></h1>
+<p>Once a particular MDP, the components of the tuple <span class="math notranslate nohighlight">\((\mathcal{S, A}, P, R, \gamma)\)</span>,  has been defined the next logical step would be to solve the MDP. In this chapter I am going to explain what it actually means to solve an MDP. In future chapters I will try to explore possible approaches to a solution.</p>
+<div class="section" id="return">
+<h2>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Episodic Tasks</strong>:</p>
+<p>In episodic tasks the return is the sum of rewards in a single episode starting from time step <span class="math notranslate nohighlight">\(t\)</span> and going up to the terminal time step <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[G_t = R_{t+1} + R_{t+2} + … + R_T,\]</div>
+<p><strong>Continuing Tasks</strong>:</p>
+<p>In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity, <span class="math notranslate nohighlight">\(T = \infty\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}\]</div>
+</div>
+<p>In order to simplify notation I will introduce the notion of a return <span class="math notranslate nohighlight">\(G\)</span>. A return is simply the sum of rewards starting from some time <span class="math notranslate nohighlight">\(t\)</span> and going either to some terminal state <span class="math notranslate nohighlight">\(T\)</span> or to infinity. The letter <span class="math notranslate nohighlight">\(G\)</span> stands for “Goal”, because the goal of the environment is encoded in the rewards.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/frozen_lake_return.svg" src="../../_images/frozen_lake_return.svg" /><p class="caption"><span class="caption-text">Frozen Lake Return.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to calculate the full return of an episode we have to play through the sequence of states, actions and rewards all the way through from the initial state to the terminal state. Let us assume that the sequence of states and the corresponding rewards played out as indicated in the image above. The agent received the reward of 0 for getting to the non terminal states and a reward of 1 for getting to the terminal state at the bottom right corner. Altogether there were 9 time steps starting from the initial time step t = 0 and ending with the timestep T = 8.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+G_0 &amp; = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+&amp; = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 1 = 1
+\end{align*}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Discounted Return</p>
+<div class="math notranslate nohighlight">
+\[G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}\]</div>
+</div>
+<p>To avoid an infinite return, future rewards (in continuing tasks) are discounted by <span class="math notranslate nohighlight">\(\gamma\)</span>. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return <span class="math notranslate nohighlight">\(G_0\)</span> looks as follows when we assume a gamma <span class="math notranslate nohighlight">\(\gamma\)</span> of <em>0.9</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+G_0 &amp; = R_1 + 0.9R_2 + 0.9^2 R_3 + 0.9^3 R_4 + 0.9^4 R_5 + 0.9^5 R_6 + 0.9^6 R_7 + 0.9^7 R_8 \\
+&amp; = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0.48 = 0.48
+\end{align*}\end{split}\]</div>
+<p>In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route means getting a higher return, as the time value of a reward reduces the farther away it is in the future. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent to maximize the expected return <span class="math notranslate nohighlight">\(\mathbb{E}(G_t)\)</span>.</p>
+</div>
+<p>To solve an MDP means for the agent to maximize the expected return.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
+&amp; = R_{t+1} + \gamma{(R_{t+2} + \gamma{R_{t+3}} + ...)} \\
+&amp; = R_{t+1} + \gamma{G_{t+1}}
+\end{align*}\end{split}\]</div>
+</div>
+<p>An important property of returns is that they can be expressed in terms of future returns.</p>
+<p>Using this property we get the same result as above.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+&amp; G_0 = R_1 + \gamma G_1 \\
+&amp; R_1 = 0 \\
+&amp; G_1 = R_2 + 0.9 R_3 + 0.9^2 R_4 + 0.9^3 R_5 + 0.9^4 R_6 + 0.9^5 R_7 + 0.9^6 R_8 = 0.53 \\
+&amp; G_0 = 0 + 0.9 * 0.53 = 0.48
+\end{align*}\end{split}\]</div>
+</div>
+<div class="section" id="policy">
+<h2>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math notranslate nohighlight">
+\[\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]\]</div>
+<p>A policy <span class="math notranslate nohighlight">\(\pi\)</span> is a mapping from a state <span class="math notranslate nohighlight">\(s\)</span> to a probability of an action <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>For a deterministic policy <span class="math notranslate nohighlight">\(\pi{(a \mid s) = 1}\)</span> for for the selected action and <span class="math notranslate nohighlight">\(\pi{(a \mid s) = 0}\)</span> for the rest of the actions. Therefore in deterministic environments a policy is often interpreted as a direct mapping from states to actions.</p>
+<p><span class="math notranslate nohighlight">\(\pi{(. \mid S_t)}\)</span> is the distribution of actions given states.</p>
+<p><span class="math notranslate nohighlight">\(A_t \sim \pi{(. \mid S_t)}\)</span></p>
+<p>Actions are draws from a policy distribution, where in a deterministic case the same action is always drawn given the same state.</p>
+</div>
+<p>The policy of an agent determines the behaviour of the agent expressed in terms of actions based on the current state of the environment.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/frozen_lake_policy.svg" src="../../_images/frozen_lake_policy.svg" /><p class="caption"><span class="caption-text">Frozen Lake Policy.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above image shows the actions that would be generated by a deterministic policy based on the 15 distinct states.</p>
+<table class="table" id="id3">
+<caption><span class="caption-text">Policy for the frozen lake</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>State <span class="math notranslate nohighlight">\(s\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\pi(left \mid s)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\pi(top \mid s)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\pi(right \mid s)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\pi(bottom \mid s)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The table is the policy that corresponds to the image above.</p>
+</div>
+<div class="section" id="value-functions">
+<h2>Value Functions<a class="headerlink" href="#value-functions" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>State-Value Function:</p>
+<div class="math notranslate nohighlight">
+\[v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]\]</div>
+<p>Action-Value Function:</p>
+<div class="math notranslate nohighlight">
+\[q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]\]</div>
+</div>
+<p>Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs.</p>
+<p>The state-value function expresses the expected return when following a particular policy <span class="math notranslate nohighlight">\(\pi\)</span> given the state <span class="math notranslate nohighlight">\(s\)</span>. The action-value function expresses the expected return given the state <span class="math notranslate nohighlight">\(s\)</span> while taking the action <span class="math notranslate nohighlight">\(a\)</span> in the current step and following the policy <span class="math notranslate nohighlight">\(\pi\)</span> afterwards.</p>
+</div>
+<div class="section" id="bellman-equations">
+<h2>Bellman Equations<a class="headerlink" href="#bellman-equations" title="Permalink to this headline">¶</a></h2>
+<p>By using the properties of returns <span class="math notranslate nohighlight">\(G_t\)</span> where each return can be expressed in terms of future returns <span class="math notranslate nohighlight">\(G_t = r_{t+1} + \gamma G_{t+1}\)</span> we can arrive at recursive equations, where a value of a state can be defined in terms of values of the next state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bellman equation for the state-value function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+v_{\pi}(s) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s] \\
+&amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
+&amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s]
+\end{align*}\end{split}\]</div>
+<p>Bellman equation for the action-value function</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
+&amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
+&amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t = a]
+\end{align*}\end{split}\]</div>
+</div>
+<p>Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work.</p>
+</div>
+<div class="section" id="optimality">
+<h2>Optimality<a class="headerlink" href="#optimality" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To solve an MDP is to find the optimal policy!</p>
+</div>
+<p>At the beginning of the chapter we asked ourselves what it means to solve a Markov decision process. The solution of an MDP means that the agent has learned an optimal policy function. Optimality implies that there is a way to compare different policies and to determine which of the policies is better.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Policies are evaluated in terms of their value functions</p>
+<p><span class="math notranslate nohighlight">\(\pi \geq \pi’\)</span> if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span></p>
+</div>
+<p>In finite MDPs value functions are used as a metric of the goodness of a policy. The policy  pi is said to be better than the policy pi’ if and only if the value function of pi is larger or equal to the value function of policy pi’ for all states in the state set S.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is defined as</p>
+<p><span class="math notranslate nohighlight">\(\pi_* \geq \pi\)</span> for all <span class="math notranslate nohighlight">\(\pi\)</span></p>
+</div>
+<p>The optimal policy is the policy that is better (or at least not worse) than any other policy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The optimal state-value funtion:</p>
+<p><span class="math notranslate nohighlight">\(v_*(s) = \max_{\pi} v_{\pi}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span></p>
+<p>The optimal action-value function:</p>
+<p><span class="math notranslate nohighlight">\(q_*(s, a) = \max_{\pi} q_{\pi}(s, a)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> and all actions <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span></p>
+</div>
+<p>The state-value function and the action-value function that are based on the optimal policy are called optimal state-value and optimal action-value function respectively.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>There might be several optimal policies, but there is always only one optimal value function.</p>
+</div>
+</div>
+<div class="section" id="bellman-optimality-equations">
+<h2>Bellman Optimality Equations<a class="headerlink" href="#bellman-optimality-equations" title="Permalink to this headline">¶</a></h2>
+<p>For finite MDPs the common approach is to calculate the optimal value functions <span class="math notranslate nohighlight">\(v_*\)</span> and/or <span class="math notranslate nohighlight">\(q_*\)</span> and to deduce the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> from those.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bellman Optimality Equation for the state-value function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+v_*(s) &amp; = \max_{a} q_{{\pi}_*}(s, a) \\
+&amp; = \max_{a} \mathbb{E_{\pi_{*}}}[G_t \mid S_t = s, A_t = a] \\
+&amp; = \max_{a} \mathbb{E_{\pi_{*}}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
+&amp; = \max_{a} \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a]
+\end{align*}\end{split}\]</div>
+<p>Bellman Optimality Equation for the state-value function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+q_*(s, a) &amp; = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\
+&amp; = \mathbb{E}[R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}, a') \mid S_t = s, A_t = a]
+\end{align*}\end{split}\]</div>
+</div>
+<p>For that purpose the Bellman equations of optimal value functions are required. These are called Bellman optimality equations.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In order to solve an MDP we need to learn the optimal policy. The optimal policy in turn is calculated using optimal state-value and action-value functions.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="definition_markov_decision_process.html" title="previous page">Definition of a Markov Decision Process</a>
+    <a class='right-next' id="next-link" href="../../deep_learning/index.html" title="next page">Deep Learning</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, World4AI Team.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
