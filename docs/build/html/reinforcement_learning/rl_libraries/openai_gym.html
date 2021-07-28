@@ -31,6 +31,7 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Motivation" href="motivation.html" />
@@ -212,9 +213,61 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialization">
+   Initialization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spaces">
+   Spaces
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete">
+     Discrete
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#box">
+     Box
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-environment-interface">
+   The Environment Interface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrappers">
+   Wrappers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monitor">
+   Monitor
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -236,6 +289,168 @@
                 
   <div class="section" id="openai-gym">
 <h1>OpenAI Gym<a class="headerlink" href="#openai-gym" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>OpenAI Gym is the de facto official collection of environments for the research community. Whenever you read a research paper describing the results for common reinforcement learning tasks, chances are high that OpenAI Gym was used. Gym contains several categories of environments ranging from easy discrete toy text problems like “Frozen Lake” and 2d physics based environments like “Lunar Lander” to complex 3d physics MuJoCo environments like “Ant” and “Hopper”. The list and a short description for each of the environments can be found on the official website
+<a class="reference external" href="https://gym.openai.com/envs">https://gym.openai.com/envs</a>.</p>
+<p>The beauty of the library is a common interface for all the environments in the library, meaning that you can implement a single algorithm and apply it to many different environments. For example the same algorithm can be tested against every single Atari game. More than that, Gym allows the creation of custom made environments. The general rule is that every imaginable environment can be created, as long as these implement some base classes of Gym and adhere to the interface standards.</p>
+<p>Speaking in slightly broader terms OpenAI Gym is a library that contains many commonly used MDPs and allows the creation of new custom MDPs. The knowledge about the agent-environment interface is general and is applicable to all environments.</p>
+<p>OpenAI Gym contains only single-agent environments. For multi-agent environments other libraries have to be used.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The installation process is quite straightforward. Create a virtual environment using either conda or venv and install the packages either with the conda install or pip install commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">gym</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">Box2D</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">gym</span><span class="p">[</span><span class="n">atari</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>After the installation the library can be imported</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>The initialization of the environment is a one liner.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function creates and returns an instance of the Env (environment) class. The only adjustment required to load a different environment is to change the string representation that is given as the parameter to the function.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">base_class</span> <span class="ow">in</span> <span class="nb">type</span><span class="p">(</span><span class="n">env</span><span class="p">)</span><span class="o">.</span><span class="n">mro</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">base_class</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">&lt;class &#39;gym.wrappers.time_limit.TimeLimit&#39;&gt;</span>
+<span class="go">&lt;class &#39;gym.core.Wrapper&#39;&gt;</span>
+<span class="go">&lt;class &#39;gym.core.Env&#39;&gt;</span>
+<span class="go">&lt;class &#39;object&#39;&gt;</span>
+</pre></div>
+</div>
+<p>There are several derived classes for environments, but at the base of all of them is the gym.core.Env class.</p>
+</div>
+<div class="section" id="spaces">
+<h2>Spaces<a class="headerlink" href="#spaces" title="Permalink to this headline">¶</a></h2>
+<p>Space is the base class that is used to implement action and observation/state spaces. The Space class itself is never used to instantiate the action/observation spaces, but provides basic functionalities that are inherited by all space implementations. The actual implementations are delegated to the derived classes discussed below.</p>
+<p>Three methods are of interest when working with OpenAI Gym Space.</p>
+<ul class="simple">
+<li><p>The sample() method samples a random Action or Observation from the set of available Actions or Observations.</p></li>
+<li><p>The seed(seed=None) method seeds the pseudo random number generator. This method is especially important if you intend to use the sample() method and want to create reproducible results.</p></li>
+<li><p>The contains(x) method takes an argument and checks it is contained in the set.</p></li>
+</ul>
+<p>To get the action or the observation space of the environment the following code can be used.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span>
+</pre></div>
+</div>
+<div class="section" id="discrete">
+<h3>Discrete<a class="headerlink" href="#discrete" title="Permalink to this headline">¶</a></h3>
+<p>The Discrete class derives from the Space class and is intended for discrete observation and action spaces. Additionally to the methods and properties derived from Space the Discrete implements the n property. The n property indicates the number of items in the set. The items contained in the set start with 0 and end with n-1. For example if n = 5 for the observation set then the set is <span class="math notranslate nohighlight">\(S = {0, 1, 2, 3, 4}\)</span>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">action_space</span><span class="p">)</span>
+<span class="go">&lt;class &#39;gym.spaces.discrete.Discrete&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">observation_space</span><span class="p">)</span>
+<span class="go">&lt;class &#39;gym.spaces.discrete.Discrete&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span>
+<span class="go">Discrete(4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span>
+<span class="go">Discrete(16)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
+<span class="go">16</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The “Frozen Lake” environment for example has a discrete action and observation space. There are 4 actions <span class="math notranslate nohighlight">\(A = {0, 1, 2, 3}\)</span> to move in 4 directions and 16 states <span class="math notranslate nohighlight">\(S = {0, 1, 2, … , 14, 15}\)</span>.</p>
+</div>
+<div class="section" id="box">
+<h3>Box<a class="headerlink" href="#box" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the Discrete class the Box class inherits from the Space class. Box is intended to deal with continuous environments and provides specific properties and methods for that purpose.</p>
+<ul class="simple">
+<li><p>The shape property returns the shape/dimensionality of the space</p></li>
+<li><p>The low property returns a list of lower boundaries for the space</p></li>
+<li><p>The high property returns a list of higher boundaries for the space</p></li>
+<li><p>The dtype property returns the numerical type of the space</p></li>
+</ul>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;CartPole-v1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">action_space</span><span class="p">)</span>
+<span class="go">&lt;class &#39;gym.spaces.discrete.Discrete&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">observation_space</span><span class="p">)</span>
+<span class="go">&lt;class &#39;gym.spaces.box.Box&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span>
+<span class="go">Discrete(2)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span>
+<span class="go">Box(-3.4028234663852886e+38, 3.4028234663852886e+38, (4,), float32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span>
+<span class="go">array([-4.8000002e+00, -3.4028235e+38, -4.1887903e-01, -3.4028235e+38],</span>
+<span class="go">      dtype=float32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span>
+<span class="go">array([4.8000002e+00, 3.4028235e+38, 4.1887903e-01, 3.4028235e+38],</span>
+<span class="go">      dtype=float32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(4,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observation_space</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype(&#39;float32&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-environment-interface">
+<h2>The Environment Interface<a class="headerlink" href="#the-environment-interface" title="Permalink to this headline">¶</a></h2>
+<p>The environment provides several methods to account for the agent-environment interaction expected from the MDP setting.</p>
+<p>The reset() method resets the environment and returns an initial observation of the environment. The method has to be called either to initialize the environment for the first time or to reinitialize the environment after a terminal state has been reached.</p>
+<p>The step() method takes the action from the agent as the argument and returns a tuple containing 4 elements</p>
+<ul class="simple">
+<li><p>the next observation</p></li>
+<li><p>the reward</p></li>
+<li><p>done,  a boolean flag indicating if the environment reached the terminal state</p></li>
+<li><p>info,  information used for debugging</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v0&#39;</span><span class="p">)</span>
+
+<span class="c1"># initialize the variables</span>
+<span class="n">done</span><span class="p">,</span> <span class="n">obs</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+<span class="c1"># interaction loop</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+    <span class="c1"># agent selects an action</span>
+    <span class="c1"># here the decision is done randomly, but usually it is based on the obs variable</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+    <span class="c1"># 1. agent takes the action</span>
+    <span class="c1"># 2. the environment transitions into the next state</span>
+    <span class="c1"># 3. the next observation, the reward and the done flag are send back to the agent</span>
+    <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+    <span class="c1"># the obs variable is reset in preparation for the next episode</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+</pre></div>
+</div>
+<p>The render() method renders the environment on the screen.</p>
+<p>The close() method closes the environment.</p>
+<p>The seed(seed=None), the seed is useful if you want reproducible results</p>
+</div>
+<div class="section" id="wrappers">
+<h2>Wrappers<a class="headerlink" href="#wrappers" title="Permalink to this headline">¶</a></h2>
+<p>Coming Soon</p>
+</div>
+<div class="section" id="monitor">
+<h2>Monitor<a class="headerlink" href="#monitor" title="Permalink to this headline">¶</a></h2>
+<p>Coming Soon</p>
+</div>
 </div>
 
 
