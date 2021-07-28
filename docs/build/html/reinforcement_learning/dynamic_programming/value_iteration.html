@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agent and Environment &#8212; World4AI 0.1 documentation</title>
+    <title>Value Iteration &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Properties of Reinforcement Learning" href="properties.html" />
-    <link rel="prev" title="Reinforcement Learning Applications" href="applications.html" />
+    <link rel="next" title="Deep Learning" href="../../deep_learning/index.html" />
+    <link rel="prev" title="Policy Iteration" href="policy_iteration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -124,34 +124,34 @@
   Introduction
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
+  <a class="reference internal" href="../introduction/applications.html">
    Reinforcement Learning Applications
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/agent_env.html">
    Agent and Environment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="properties.html">
+  <a class="reference internal" href="../introduction/properties.html">
    Properties of Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="interaction.html">
+  <a class="reference internal" href="../introduction/interaction.html">
    States, Actions, Rewards
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="exploration_vs_exploitation.html">
+  <a class="reference internal" href="../introduction/exploration_vs_exploitation.html">
    Exploration vs Exploitation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="components.html">
+  <a class="reference internal" href="../introduction/components.html">
    Agent and Environment Components
   </a>
  </li>
@@ -178,19 +178,19 @@
   Dynamic Programming
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../dynamic_programming/introduction.html">
+  <a class="reference internal" href="introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../dynamic_programming/policy_iteration.html">
+  <a class="reference internal" href="policy_iteration.html">
    Policy Iteration
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../dynamic_programming/value_iteration.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Value Iteration
   </a>
  </li>
@@ -230,41 +230,8 @@
               
               <div>
                 
-  <div class="section" id="agent-and-environment">
-<h1>Agent and Environment<a class="headerlink" href="#agent-and-environment" title="Permalink to this headline">¶</a></h1>
-<p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>
-<div class="figure align-center" id="id1">
-<img alt="../../_images/grid_world.svg" src="../../_images/grid_world.svg" /><p class="caption"><span class="caption-text">In this grid world the circle has to reach the triangle.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<p>In the gridworld above you have a player as represented by a circle. The player can move into 4 different directions: North, East, South and West. If the circle is against a wall (outermost lines) or a barrier (lined boxes) then he can not move in that particular direction. The goal of the game is for the circle to reach the triangle in the top left corner in as few steps as possible.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Do not mix up the agent with its physical representation in the environment.</p>
-</div>
-<p>Intuitively I would say that the circle is the agent and the grid world is the environment the agent interacts with, but that definition would not be entirely correct. There is actually a relatively strict separation between the agent and the environment.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The agent is the code that makes the decisions.</p>
-</div>
-<p>All the agent can actually do is to make the decisions. In the case of the above gridworld the agent chooses the direction, meaning north, west, east or south. Whether the circle actually moves in that direction is outside of the influence of the agent.</p>
-<div class="figure align-center" id="id2">
-<img alt="../../_images/grid_world_barrier.svg" src="../../_images/grid_world_barrier.svg" /><p class="caption"><span class="caption-text">The agent can always choose between the north, east, south or west direction.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>For example in the image above the agent can decide to go north even though the circle is against a barrier in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change.</p>
-<div class="figure align-center" id="id3">
-<img alt="../../_images/agent.svg" src="../../_images/agent.svg" /><p class="caption"><span class="caption-text">The agent is the decision maker.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<p>The agent is the program that generates the decision and the decision of the agent is then relayed to the environment. The environment then processes the decision, but that is not something that the agent can influence. In the simple grid-world game if the agent decides to go north the circle might actually move north or it could move in a totally different direction or not move at all.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Anything outside of the agent is the environment.</p>
-</div>
-<p>Once the agent is identified, everything outside of the agent is defined as the environment.</p>
-<div class="figure align-center" id="id4">
-<img alt="../../_images/robot_agent.svg" src="../../_images/robot_agent.svg" /><p class="caption"><span class="caption-text">Where is the agent? Where is the environment?</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<p>A common example that is also used to make the distinction between the agent and the environment is that of a robot that interacts with the real world. The goal of the robot might be to go from right to left to recharge the battery. The agent is the code that makes the decision to move left. While the arms, the legs, the cooling system, the floor and everything else in the image is part of the environment.</p>
-<p>A similar argument can be made for a human or any other form of a biological machine. The neural network in our brain makes the decisions to move, to study or to sleep. How the body actually reacts is not really in our control. For example the movement could be stopped when you are parallyzed either because of an illness or through fear. The desire to study could be stopped through external triggers like the smell of food or a habit to listen to music. And the decision to go to bed to fall asleep is not always accompanied by actual sleep. We do not have full control of our body. For example, no matter how hard we try, we can not stop our heart.</p>
+  <div class="section" id="value-iteration">
+<h1>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -273,8 +240,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="applications.html" title="previous page">Reinforcement Learning Applications</a>
-    <a class='right-next' id="next-link" href="properties.html" title="next page">Properties of Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="policy_iteration.html" title="previous page">Policy Iteration</a>
+    <a class='right-next' id="next-link" href="../../deep_learning/index.html" title="next page">Deep Learning</a>
 
               </div>
               

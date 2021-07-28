@@ -23,3 +23,11 @@ In this introduction I will go over the possible applications, the key concepts 
 
    math/definition_markov_decision_process
    math/to_solve_mdp
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Dynamic Programming
+
+   dynamic_programming/introduction
+   dynamic_programming/policy_iteration
+   dynamic_programming/value_iteration
