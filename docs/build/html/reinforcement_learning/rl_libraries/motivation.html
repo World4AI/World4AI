@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; World4AI 0.1 documentation</title>
+    <title>Motivation &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Policy Iteration" href="policy_iteration.html" />
-    <link rel="prev" title="To Solve an MDP" href="../math/to_solve_mdp.html" />
+    <link rel="next" title="OpenAI Gym" href="openai_gym.html" />
+    <link rel="prev" title="Value Iteration" href="../dynamic_programming/value_iteration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,19 +178,19 @@
   Dynamic Programming
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamic_programming/introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="policy_iteration.html">
+  <a class="reference internal" href="../dynamic_programming/policy_iteration.html">
    Policy Iteration
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="value_iteration.html">
+  <a class="reference internal" href="../dynamic_programming/value_iteration.html">
    Value Iteration
   </a>
  </li>
@@ -200,14 +200,14 @@
   Reinforcement Learning Libraries
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../rl_libraries/motivation.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Motivation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../rl_libraries/openai_gym.html">
+  <a class="reference internal" href="openai_gym.html">
    OpenAI Gym
   </a>
  </li>
@@ -247,9 +247,11 @@
               
               <div>
                 
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The algorithms that I am going to cover in this section are not those that are commonly used to solve reinforcement learning tasks. In fact there is no learning involved at all. <strong>Dynamic Programming</strong> (DP) requires the full knowledge of the model of the environment and calculates the optimal value function and policy through the knowledge of that model. The interaction between the agent and the environment is not necessary. Nevertheless Dynamic Programming is the usual introduction to the solution of finite MDPs, because the knowledge gained by studying DP algorithms is transferable to reinforcement learning.</p>
+  <div class="section" id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
+<p>During your introduction into the world of reinforcement learning you should not spend your time reinventing the wheel. The use of common libraries saves time and allows you to compare your results without the fear that the differences are based on different implementation details of the base libraries.</p>
+<p>The availability of good reinforcement learning libraries has grown over the last couple of years. DeepMind, OpenAI or independent entities and individuals publish their code and compete with each other for the attention of the users. It seems that the popularity of their projects is a matter of pride and reputation. The code is published with an open-source license, which allows the users to report bugs and contribute to the development of their favourite library.</p>
+<p>The problem nowadays is not the lack of good libraries, but the lack of good entry level materials. Even if documentation is available it is often not beginner friendly and in some cases the original documentation is counter productive. The intention of this section is to remedy the problem by providing beginner level tutorial style introductions. The hope is that after the short tutorial the motivated reader will be able to follow the official library documentation and get the necessary information when the need arises.</p>
 </div>
 
 
@@ -258,8 +260,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../math/to_solve_mdp.html" title="previous page">To Solve an MDP</a>
-    <a class='right-next' id="next-link" href="policy_iteration.html" title="next page">Policy Iteration</a>
+    <a class='left-prev' id="prev-link" href="../dynamic_programming/value_iteration.html" title="previous page">Value Iteration</a>
+    <a class='right-next' id="next-link" href="openai_gym.html" title="next page">OpenAI Gym</a>
 
               </div>
               
