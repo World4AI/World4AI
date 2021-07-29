@@ -31,7 +31,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="To Solve an MDP" href="to_solve_mdp.html" />
@@ -259,41 +258,31 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mathcal-s-states">
-     <span class="math notranslate nohighlight">
-      \(\mathcal{S}\)
-     </span>
+     <img alt="\mathcal{S}" class="math" src="../../_images/math/3f98591dff3521c50335f61964d0bab6fb82df24.svg"/>
      : States
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mathcal-a-actions">
-     <span class="math notranslate nohighlight">
-      \(\mathcal{A}\)
-     </span>
+     <img alt="\mathcal{A}" class="math" src="../../_images/math/8d026053f0eefe613ccf100261807688868d9c3a.svg"/>
      : Actions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#p-transitions">
-     <span class="math notranslate nohighlight">
-      \(P\)
-     </span>
+     <img alt="P" class="math" src="../../_images/math/252a21b8f2dc53f52d666f0f84cfdd74de3a1684.svg"/>
      : Transitions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#r-rewards">
-     <span class="math notranslate nohighlight">
-      \(R\)
-     </span>
+     <img alt="R" class="math" src="../../_images/math/91b1ab42e2af8861f5db27a19ac6b74c73e7004c.svg"/>
      : Rewards
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gamma-discounts">
-     <span class="math notranslate nohighlight">
-      \(\gamma\)
-     </span>
+     <img alt="\gamma" class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg"/>
      : Discounts
     </a>
    </li>
@@ -334,7 +323,7 @@
 <div class="figure align-center" id="id1">
 <img alt="../../_images/mdp.svg" src="../../_images/mdp.svg" /><p class="caption"><span class="caption-text">Interaction Loop.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The interaction is done sequentially, where the agent and the environment take turns to react to each other. Each iteration of actions, rewards and states happens in a period of time, called a time step, <span class="math notranslate nohighlight">\(t\)</span>. The time step is a discrete variable starting at 0 and increasing by 1 after each iteration. During the first time step the agent receives the initial state of the environment <span class="math notranslate nohighlight">\(S_0\)</span> and reacts accordingly with the action <span class="math notranslate nohighlight">\(A_0\)</span>. The environment transitions into a new state <span class="math notranslate nohighlight">\(S_1\)</span> and generates the reward <span class="math notranslate nohighlight">\(R_1\)</span>. The agent in turn reacts with the action <span class="math notranslate nohighlight">\(A_1\)</span> and the interaction continues. The general notation of writing States, Actions and Rewards is <span class="math notranslate nohighlight">\(S_t, A_t, R_t\)</span> where the subscript <span class="math notranslate nohighlight">\(t\)</span> represents a particular time step.</p>
+<p>The interaction is done sequentially, where the agent and the environment take turns to react to each other. Each iteration of actions, rewards and states happens in a period of time, called a time step, <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/>. The time step is a discrete variable starting at 0 and increasing by 1 after each iteration. During the first time step the agent receives the initial state of the environment <img class="math" src="../../_images/math/e51aa575dbe30b7827fdbf72d9456f1ef701d3ac.svg" alt="S_0"/> and reacts accordingly with the action <img class="math" src="../../_images/math/faab6b00d1f6be3243ddf4965f76de7679a0d083.svg" alt="A_0"/>. The environment transitions into a new state <img class="math" src="../../_images/math/9333d3e99a561226a06c410e3d0e0728ae031c31.svg" alt="S_1"/> and generates the reward <img class="math" src="../../_images/math/044e55b6408cf4698a7a2d6dde05cafc9dff7840.svg" alt="R_1"/>. The agent in turn reacts with the action <img class="math" src="../../_images/math/f1612b7c64291ca2cb4da785bbcb703ca3f2ef74.svg" alt="A_1"/> and the interaction continues. The general notation of writing States, Actions and Rewards is <img class="math" src="../../_images/math/32521b1075952d9b867fc6404714b24fcf4bb62a.svg" alt="S_t, A_t, R_t"/> where the subscript <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> represents a particular time step.</p>
 </div>
 <div class="section" id="from-a-stochastic-process-to-an-mdp">
 <h2>From a Stochastic Process to an MDP<a class="headerlink" href="#from-a-stochastic-process-to-an-mdp" title="Permalink to this headline">¶</a></h2>
@@ -349,8 +338,8 @@
 <img alt="../../_images/bernoulli.svg" src="../../_images/bernoulli.svg" /><p class="caption"><span class="caption-text">Bernoulli Process.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the above image there are no actions or rewards yet and the state evolves randomly over time following a stochastic process. There are two distinct states that the process can be in, the 1 and the 0. Each of the states can be reached  with 50% probability and the new state does not depend on any previous states. In essence this random process corresponds to a sequence of coin tosses where for example heads would correspond to 0 and tails to 1. This is a Bernoulli process.</p>
-<p>For the above process the following can be said: <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_{t+1})\)</span></p>
-<p><span class="math notranslate nohighlight">\(Pr(S_{t+1})\)</span> is the probability that a certain state will be tossed, in the above case <span class="math notranslate nohighlight">\(Pr(S_{t+1}=HEADS) = 0.5\)</span> and <span class="math notranslate nohighlight">\(Pr(S_{t+1}=TAILS)=0.5\)</span>. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t)\)</span>, reads as x given y, depicts a conditional probability, where the probability of being in the new state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> depends on the current state <span class="math notranslate nohighlight">\(S_t\)</span>. For example <span class="math notranslate nohighlight">\(Pr(S_{t+1}=HEADS|S_t=TAILS)\)</span> shows the probability of a coin toss having a value of HEADS when the previous toss had a value of TAILS. When you consider a coin toss, then the new occurrence of either heads or tails does not depend on the previous specific value of the toss. The events are independent. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_t)\)</span> means that knowing the last value of a coin toss does not give us any more knowledge regarding the future toss. <span class="math notranslate nohighlight">\(Pr(S_{t+1} \mid S_t) = Pr(S_t) = 0.5\)</span>.</p>
+<p>For the above process the following can be said: <img class="math" src="../../_images/math/a2ed04293bf13c9a4ca14f4a74ab5df4a70ca679.svg" alt="Pr(S_{t+1} \mid S_t) = Pr(S_{t+1})"/></p>
+<p><img class="math" src="../../_images/math/519aaabd716fadd2f9834fa0a6b931eb6f9aafd0.svg" alt="Pr(S_{t+1})"/> is the probability that a certain state will be tossed, in the above case <img class="math" src="../../_images/math/d8b8d98a0ab1eb793493f3d6e5ccbc96f776262b.svg" alt="Pr(S_{t+1}=HEADS) = 0.5"/> and <img class="math" src="../../_images/math/7ae040e0a912276227b520d237770d3a1efb6298.svg" alt="Pr(S_{t+1}=TAILS)=0.5"/>. <img class="math" src="../../_images/math/3d35ccd93e96eebe5c6957403425b63e5d7c8bab.svg" alt="Pr(S_{t+1} \mid S_t)"/>, reads as x given y, depicts a conditional probability, where the probability of being in the new state <img class="math" src="../../_images/math/b39ba9f9a36260a7dfcdeb1a29ac6278f97267a2.svg" alt="S_{t+1}"/> depends on the current state <img class="math" src="../../_images/math/edea1c48e2215a6477d60bb7cb19ff85b7474f4c.svg" alt="S_t"/>. For example <img class="math" src="../../_images/math/73b27bed7295ffe2497ec3cc9ae9e3d46e0a92fa.svg" alt="Pr(S_{t+1}=HEADS|S_t=TAILS)"/> shows the probability of a coin toss having a value of HEADS when the previous toss had a value of TAILS. When you consider a coin toss, then the new occurrence of either heads or tails does not depend on the previous specific value of the toss. The events are independent. <img class="math" src="../../_images/math/0454645daa922256f3b4e1fe0de4d30e7204fb8a.svg" alt="Pr(S_{t+1} \mid S_t) = Pr(S_t)"/> means that knowing the last value of a coin toss does not give us any more knowledge regarding the future toss. <img class="math" src="../../_images/math/26f29ead250952cf55712d7ba6774695542f1a81.svg" alt="Pr(S_{t+1} \mid S_t) = Pr(S_t) = 0.5"/>.</p>
 <table class="table" id="id3">
 <caption><span class="caption-text">Bernoulli Process</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -376,13 +365,13 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A Markov chain is a stochastic process that has the Markov property.</p>
-<p>Markov Property: <span class="math notranslate nohighlight">\(Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]\)</span></p>
+<p>Markov Property: <img class="math" src="../../_images/math/f55ba384a30888c8309addad7d8b1bef5195c7c8.svg" alt="Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]"/></p>
 <p>The Markov property, or memorylessness, means that the next state only depends on the current state and not the states before that.</p>
 </div>
 <div class="figure align-center" id="id4">
 <img alt="../../_images/markov_property.svg" src="../../_images/markov_property.svg" /><p class="caption"><span class="caption-text">Markov Property.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>Unlike in the coin toss example, in a Markov chain the probability to be in the state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> depends on previous states, but only the most recent state, <span class="math notranslate nohighlight">\(S_t\)</span>, is relevant. The above image shows that the new state depends on the previous state, while the previous information, the states that came before that, is irrelevant. The markov property is extremely convenient, as only the most recent events need to be tracked, which allows for more tractable computations.</p>
+<p>Unlike in the coin toss example, in a Markov chain the probability to be in the state <img class="math" src="../../_images/math/b39ba9f9a36260a7dfcdeb1a29ac6278f97267a2.svg" alt="S_{t+1}"/> depends on previous states, but only the most recent state, <img class="math" src="../../_images/math/edea1c48e2215a6477d60bb7cb19ff85b7474f4c.svg" alt="S_t"/>, is relevant. The above image shows that the new state depends on the previous state, while the previous information, the states that came before that, is irrelevant. The markov property is extremely convenient, as only the most recent events need to be tracked, which allows for more tractable computations.</p>
 <div class="figure align-center" id="id5">
 <img alt="../../_images/markov_chain.svg" src="../../_images/markov_chain.svg" /><p class="caption"><span class="caption-text">Markov Chain.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
@@ -391,9 +380,9 @@
 <img alt="../../_images/markov_chain_unrolled.svg" src="../../_images/markov_chain_unrolled.svg" /><p class="caption"><span class="caption-text">An unfolded Markov Chain.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>If we unfold the process and follow it for a while, the above sequence might for example appear. The mathematical notation would look as follows.</p>
-<div class="math notranslate nohighlight">
-\[S_0, S_1, S_2, S_3, S_4, ..., S_t\]</div>
-<table class="table" id="id7">
+<div class="math">
+<p><img src="../../_images/math/dfd42f497bcf4e5a5a4f6987babf462547f1dd50.svg" alt="S_0, S_1, S_2, S_3, S_4, ..., S_t"/></p>
+</div><table class="table" id="id7">
 <caption><span class="caption-text">Markov Chain</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
@@ -421,9 +410,9 @@
 </div>
 <p>The above image depicts an MDP with 4 states (yellow, red, grey and blue). The blue is the final state that the agent has to reach. The agent can influence the environment by taking one of the 2 available actions (the reddish and the bluish action). Landing in the first 3 states generates a negative reward (inner red circle), while landing in the blue state generates a positive reward (inner green circle).</p>
 <p>The unrolled MDP forms a sequence of States, Actions and Rewards, called a trajectory.</p>
-<div class="math notranslate nohighlight">
-\[S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, ...\]</div>
-<table class="table" id="id9">
+<div class="math">
+<p><img src="../../_images/math/2eeefa3721753034a0a7f589849870a9afa3742f.svg" alt="S_0, A_0, R_1, S_1, A_1, R_2, S_2, A_2, ..."/></p>
+</div><table class="table" id="id9">
 <caption><span class="caption-text">MDP</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 50%" />
@@ -441,7 +430,7 @@
 </tr>
 </tbody>
 </table>
-<p>An MDP is a stochastic process as the generation of new states develops in a random fashion. It is Markov, as only the last state <span class="math notranslate nohighlight">\(S_t\)</span> and the last action <span class="math notranslate nohighlight">\(A_t\)</span> are necessary to calculate the new State <span class="math notranslate nohighlight">\(S_{t+1}\)</span>. The agent can interact with the MDP to influence future states and rewards.</p>
+<p>An MDP is a stochastic process as the generation of new states develops in a random fashion. It is Markov, as only the last state <img class="math" src="../../_images/math/edea1c48e2215a6477d60bb7cb19ff85b7474f4c.svg" alt="S_t"/> and the last action <img class="math" src="../../_images/math/7f3546078d71a3138f4636f7f7359e290f4ca71c.svg" alt="A_t"/> are necessary to calculate the new State <img class="math" src="../../_images/math/b39ba9f9a36260a7dfcdeb1a29ac6278f97267a2.svg" alt="S_{t+1}"/>. The agent can interact with the MDP to influence future states and rewards.</p>
 </div>
 </div>
 <div class="section" id="mdp-as-a-tuple">
@@ -450,7 +439,7 @@
 <p class="admonition-title">Note</p>
 <p>A tuple is a finite ordered list of elements</p>
 </div>
-<p>In more mathematical terms a Markov decision process is a 5-tuple, <span class="math notranslate nohighlight">\((\mathcal{S, A}, P, R, \gamma)\)</span>. In the following sections we will take a look at each of the contents of the tuple individually.</p>
+<p>In more mathematical terms a Markov decision process is a 5-tuple, <img class="math" src="../../_images/math/2bad0a556ccdc9fbb4a2d612b078fbc76b9de743.svg" alt="(\mathcal{S, A}, P, R, \gamma)"/>. In the following sections we will take a look at each of the contents of the tuple individually.</p>
 <div class="section" id="frozen-lake">
 <h3>Frozen Lake<a class="headerlink" href="#frozen-lake" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-center" id="id10">
@@ -462,26 +451,26 @@
 </div>
 </div>
 <div class="section" id="mathcal-s-states">
-<h3><span class="math notranslate nohighlight">\(\mathcal{S}\)</span>: States<a class="headerlink" href="#mathcal-s-states" title="Permalink to this headline">¶</a></h3>
+<h3><img class="math" src="../../_images/math/3f98591dff3521c50335f61964d0bab6fb82df24.svg" alt="\mathcal{S}"/>: States<a class="headerlink" href="#mathcal-s-states" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is the set of all legal states</p>
+<p><img class="math" src="../../_images/math/3f98591dff3521c50335f61964d0bab6fb82df24.svg" alt="\mathcal{S}"/> is the set of all legal states</p>
 </div>
 <div class="figure align-center" id="id12">
 <img alt="../../_images/frozen_lake_states.svg" src="../../_images/frozen_lake_states.svg" /><p class="caption"><span class="caption-text">States in the Frozen Lake Environment.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the Frozen Lake environment the set of all allowed states looks as follows <span class="math notranslate nohighlight">\(\mathcal{S} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15\}\)</span>. A number from the set corresponds to a location in the grid world and is not allowed to deviate from the set, e.g. the environment can not present the agent with a state that corresponds to the number 32.</p>
+<p>In the Frozen Lake environment the set of all allowed states looks as follows <img class="math" src="../../_images/math/fdd7d9942a759071db41663a7d4e8f6f9cd2f5e3.svg" alt="\mathcal{S} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15\}"/>. A number from the set corresponds to a location in the grid world and is not allowed to deviate from the set, e.g. the environment can not present the agent with a state that corresponds to the number 32.</p>
 </div>
 <div class="section" id="mathcal-a-actions">
-<h3><span class="math notranslate nohighlight">\(\mathcal{A}\)</span>: Actions<a class="headerlink" href="#mathcal-a-actions" title="Permalink to this headline">¶</a></h3>
+<h3><img class="math" src="../../_images/math/8d026053f0eefe613ccf100261807688868d9c3a.svg" alt="\mathcal{A}"/>: Actions<a class="headerlink" href="#mathcal-a-actions" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{A}\)</span> is the set of all legal actions</p>
+<p><img class="math" src="../../_images/math/8d026053f0eefe613ccf100261807688868d9c3a.svg" alt="\mathcal{A}"/> is the set of all legal actions</p>
 </div>
 <div class="figure align-center" id="id13">
 <img alt="../../_images/frozen_lake_actions.svg" src="../../_images/frozen_lake_actions.svg" /><p class="caption"><span class="caption-text">Actions in the Frozen Lake Environment.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the Frozen Lake environment the set of all legal actions is <span class="math notranslate nohighlight">\(\mathcal{A} = \{0, 1, 2, 3\}\)</span>, where</p>
+<p>In the Frozen Lake environment the set of all legal actions is <img class="math" src="../../_images/math/b1fe97a1eae5ac11f210936c99c49e57bf2e4110.svg" alt="\mathcal{A} = \{0, 1, 2, 3\}"/>, where</p>
 <ul class="simple">
 <li><p>0 = Left</p></li>
 <li><p>1 = Down</p></li>
@@ -491,52 +480,52 @@
 <p>From the set of actions you can recognize that movement in diagonal directions or jumping over several cells is not allowed.</p>
 </div>
 <div class="section" id="p-transitions">
-<h3><span class="math notranslate nohighlight">\(P\)</span>: Transitions<a class="headerlink" href="#p-transitions" title="Permalink to this headline">¶</a></h3>
+<h3><img class="math" src="../../_images/math/252a21b8f2dc53f52d666f0f84cfdd74de3a1684.svg" alt="P"/>: Transitions<a class="headerlink" href="#p-transitions" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(P\)</span> is the transition model.</p>
-<p><span class="math notranslate nohighlight">\(P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a]\)</span></p>
-<p>The transition model is the function  that calculates the probability of landing in some state <span class="math notranslate nohighlight">\(s'\)</span> at timestep <span class="math notranslate nohighlight">\(t+1\)</span> when at timestep <span class="math notranslate nohighlight">\(t\)</span> the state corresponds to <span class="math notranslate nohighlight">\(s\)</span> and the action taken by the agent is <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p><img class="math" src="../../_images/math/252a21b8f2dc53f52d666f0f84cfdd74de3a1684.svg" alt="P"/> is the transition model.</p>
+<p><img class="math" src="../../_images/math/4ed8e555d76a2ef17e8acdca0d798a709965675c.svg" alt="P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a]"/></p>
+<p>The transition model is the function  that calculates the probability of landing in some state <img class="math" src="../../_images/math/c06a68d1f33b6af4fc737ed4bbc5da38ad2176dc.svg" alt="s'"/> at timestep <img class="math" src="../../_images/math/4268b7f9a6a5266438bd62c5426c082aefba1657.svg" alt="t+1"/> when at timestep <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> the state corresponds to <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and the action taken by the agent is <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/>.</p>
 </div>
 <div class="figure align-center" id="id14">
 <img alt="../../_images/frozen_lake_transition.svg" src="../../_images/frozen_lake_transition.svg" /><p class="caption"><span class="caption-text">Transision Model in the Frozen Lake Environment.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the above example the state is marked by the yellow circle, which corresponds to the state with the value of 6. If the agent takes the action 1 (going down), the transition function will calculate the following results.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P(5 \mid 6, 1) = 1/3 = 33.3\%\)</span>, chance of moving left</p></li>
-<li><p><span class="math notranslate nohighlight">\(P(7 \mid 6, 1) = 1/3 = 33.3\%\)</span>, chance of moving right</p></li>
-<li><p><span class="math notranslate nohighlight">\(P(10 \mid 6, 1) = 1/3 = 33.3\%\)</span>, chance of moving down</p></li>
+<li><p><img class="math" src="../../_images/math/0bcb84b2df5ac5075ca6d8cf78979a1f635ac715.svg" alt="P(5 \mid 6, 1) = 1/3 = 33.3\%"/>, chance of moving left</p></li>
+<li><p><img class="math" src="../../_images/math/5c2b2ade80087e1b5af8cbb62fd865887c865ee9.svg" alt="P(7 \mid 6, 1) = 1/3 = 33.3\%"/>, chance of moving right</p></li>
+<li><p><img class="math" src="../../_images/math/5998561b1e0cf0918b999a79cede823358c6663c.svg" alt="P(10 \mid 6, 1) = 1/3 = 33.3\%"/>, chance of moving down</p></li>
 </ul>
 </div>
 <div class="section" id="r-rewards">
-<h3><span class="math notranslate nohighlight">\(R\)</span>: Rewards<a class="headerlink" href="#r-rewards" title="Permalink to this headline">¶</a></h3>
+<h3><img class="math" src="../../_images/math/91b1ab42e2af8861f5db27a19ac6b74c73e7004c.svg" alt="R"/>: Rewards<a class="headerlink" href="#r-rewards" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(R\)</span> is the reward model.</p>
-<p><span class="math notranslate nohighlight">\(R(s,a) \doteq \mathbb{E}[R_{t+1} \mid S_{t}=s, A_{t}=a]\)</span></p>
-<p>The reward model is the function that calculates the expected value of the reward given state <span class="math notranslate nohighlight">\(s\)</span> and action <span class="math notranslate nohighlight">\(a\)</span> at time step <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><img class="math" src="../../_images/math/91b1ab42e2af8861f5db27a19ac6b74c73e7004c.svg" alt="R"/> is the reward model.</p>
+<p><img class="math" src="../../_images/math/39b2b1cd3f2f37cdc1190b05d141e67cf06ede67.svg" alt="R(s,a) \doteq \mathbb{E}[R_{t+1} \mid S_{t}=s, A_{t}=a]"/></p>
+<p>The reward model is the function that calculates the expected value of the reward given state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> at time step <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/>.</p>
 </div>
 <div class="figure align-center" id="id15">
 <img alt="../../_images/frozen_lake_reward.svg" src="../../_images/frozen_lake_reward.svg" /><p class="caption"><span class="caption-text">Reward Model in the Frozen Lake Environment.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the above image the state of the environment equals 14. The agent selects to move right (action 2).</p>
-<div class="math notranslate nohighlight">
-\[R(14, 2) = \mathbb{E}[R_{t+1} \mid S_t = 14, A_t = 2] = 0 * 1/3 + 0 * 1/3 + 1 * 1/3 = 1/3.\]</div>
-<p>The expected reward equals 1/3 when the agent takes the action 2 in the state 14.</p>
+<div class="math">
+<p><img src="../../_images/math/5de06a9543bd06a1fea630417a16b6fe47e4b1c1.svg" alt="R(14, 2) = \mathbb{E}[R_{t+1} \mid S_t = 14, A_t = 2] = 0 * 1/3 + 0 * 1/3 + 1 * 1/3 = 1/3."/></p>
+</div><p>The expected reward equals 1/3 when the agent takes the action 2 in the state 14.</p>
 </div>
 <div class="section" id="gamma-discounts">
-<h3><span class="math notranslate nohighlight">\(\gamma\)</span>: Discounts<a class="headerlink" href="#gamma-discounts" title="Permalink to this headline">¶</a></h3>
+<h3><img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/>: Discounts<a class="headerlink" href="#gamma-discounts" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(\gamma\)</span> (gamma) is the discount factor, where <span class="math notranslate nohighlight">\(0 \leq \gamma \leq 1\)</span>.</p>
+<p><img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> (gamma) is the discount factor, where <img class="math" src="../../_images/math/4ae96783164c48860f2b53f5fa38f75c60e6f47b.svg" alt="0 \leq \gamma \leq 1"/>.</p>
 <p>Gamma is used to calculate the current value of future rewards.</p>
 </div>
 <p>Consider the following example. You can get 1000$ now or 1000$ in 10 years. What would you choose? The answer is hopefully 1000$ now. The reason every rational agent would choose 1000$ is the time value of money or generally speaking the time value of rewards. In the case of dollars you could invest the money for 10 years and get an amount that is larger. Therefore there should be a compensation if the agent decides to delay his reward. The gamma or discount factor is used to adjust the value of rewards. Future rewards are considered of less value.</p>
-<p>The value of rewards from the perspective of the agent at time step <span class="math notranslate nohighlight">\(t\)</span> is as following:</p>
+<p>The value of rewards from the perspective of the agent at time step <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> is as following:</p>
 <ul class="simple">
-<li><p>The value of a reward received at timestep <span class="math notranslate nohighlight">\(t+1\)</span> is <span class="math notranslate nohighlight">\(\gamma^0 * R_{t+1}\)</span></p></li>
-<li><p>The value of a reward received at timestep <span class="math notranslate nohighlight">\(t+2\)</span> is <span class="math notranslate nohighlight">\(\gamma^1 * R_{t+2}\)</span></p></li>
-<li><p>The value of a reward received at timestep <span class="math notranslate nohighlight">\(t+3\)</span> is <span class="math notranslate nohighlight">\(\gamma^2 * R_{t+3}\)</span></p></li>
+<li><p>The value of a reward received at timestep <img class="math" src="../../_images/math/4268b7f9a6a5266438bd62c5426c082aefba1657.svg" alt="t+1"/> is <img class="math" src="../../_images/math/35186e8179eac89e5387e6ebed6fffbd7db8e43d.svg" alt="\gamma^0 * R_{t+1}"/></p></li>
+<li><p>The value of a reward received at timestep <img class="math" src="../../_images/math/a919e3930d3757b15d2d37c81767d6195338a296.svg" alt="t+2"/> is <img class="math" src="../../_images/math/6c959c675c82739beb626b18c4ea4ddfe32d2ccf.svg" alt="\gamma^1 * R_{t+2}"/></p></li>
+<li><p>The value of a reward received at timestep <img class="math" src="../../_images/math/c3af1726285a483b0b29c92cfa75285ad8556064.svg" alt="t+3"/> is <img class="math" src="../../_images/math/89742b6245dc25dc485824c83ad4f61880a5f748.svg" alt="\gamma^2 * R_{t+3}"/></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -547,11 +536,11 @@
 <p>Usually the value of gamma is between 0.9 and 0.99.</p>
 <p>Let’s assume a gamma with a value of 0.9.</p>
 <ul class="simple">
-<li><p>At <span class="math notranslate nohighlight">\(t+3\)</span>: the discount factor is <span class="math notranslate nohighlight">\(\gamma^2 = 0.81\)</span></p></li>
-<li><p>At <span class="math notranslate nohighlight">\(t+5\)</span>: the discount factor is <span class="math notranslate nohighlight">\(\gamma^4 = 0.66\)</span></p></li>
-<li><p>At <span class="math notranslate nohighlight">\(t+11\)</span>: the discount factor is <span class="math notranslate nohighlight">\(\gamma^{10} = 0.35\)</span></p></li>
-<li><p>At <span class="math notranslate nohighlight">\(t+21\)</span>: the discount factor is <span class="math notranslate nohighlight">\(\gamma^{20} = 0.12\)</span></p></li>
-<li><p>At <span class="math notranslate nohighlight">\(t+51\)</span>: the discount factor is <span class="math notranslate nohighlight">\(\gamma^{50} = 0.005\)</span></p></li>
+<li><p>At <img class="math" src="../../_images/math/c3af1726285a483b0b29c92cfa75285ad8556064.svg" alt="t+3"/>: the discount factor is <img class="math" src="../../_images/math/27b88799e4e8777ebfc2ed686585bf45ec460657.svg" alt="\gamma^2 = 0.81"/></p></li>
+<li><p>At <img class="math" src="../../_images/math/d7fde224d271b9d6c35694c6633ffe99d174d280.svg" alt="t+5"/>: the discount factor is <img class="math" src="../../_images/math/5de5b96649463578abc33812e2adeea72774ce52.svg" alt="\gamma^4 = 0.66"/></p></li>
+<li><p>At <img class="math" src="../../_images/math/d38368fd24b9416b2737d63e85ef0bc21f065672.svg" alt="t+11"/>: the discount factor is <img class="math" src="../../_images/math/bf3f1e0f819624a5465d2dee180a83992fd6b1fe.svg" alt="\gamma^{10} = 0.35"/></p></li>
+<li><p>At <img class="math" src="../../_images/math/e2ba5a34f153b6787278e562a8348bb530e29beb.svg" alt="t+21"/>: the discount factor is <img class="math" src="../../_images/math/a5a48badb280260f360280abe5c9ba58a669df75.svg" alt="\gamma^{20} = 0.12"/></p></li>
+<li><p>At <img class="math" src="../../_images/math/97c7d044e3dfc6c0ebadc1f7fb544084e0de3a35.svg" alt="t+51"/>: the discount factor is <img class="math" src="../../_images/math/460b9493a5ca6582be4771cd80b9950287c4a631.svg" alt="\gamma^{50} = 0.005"/></p></li>
 </ul>
 <p>The discount factor keeps approaching 0, which makes the value of rewards in the far future almost 0. That prevents an infinite sum of rewards.</p>
 </div>

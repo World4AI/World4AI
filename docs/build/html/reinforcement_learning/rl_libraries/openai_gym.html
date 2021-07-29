@@ -31,7 +31,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Motivation" href="motivation.html" />
@@ -348,7 +347,7 @@
 </div>
 <div class="section" id="discrete">
 <h3>Discrete<a class="headerlink" href="#discrete" title="Permalink to this headline">¶</a></h3>
-<p>The Discrete class derives from the Space class and is intended for discrete observation and action spaces. Additionally to the methods and properties derived from Space the Discrete implements the n property. The n property indicates the number of items in the set. The items contained in the set start with 0 and end with n-1. For example if n = 5 for the observation set then the set is <span class="math notranslate nohighlight">\(S = {0, 1, 2, 3, 4}\)</span>.</p>
+<p>The Discrete class derives from the Space class and is intended for discrete observation and action spaces. Additionally to the methods and properties derived from Space the Discrete implements the n property. The n property indicates the number of items in the set. The items contained in the set start with 0 and end with n-1. For example if n = 5 for the observation set then the set is <img class="math" src="../../_images/math/3ae846c77640988f3e5d976aae5db2a0ed2add10.svg" alt="S = {0, 1, 2, 3, 4}"/>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gym</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v0&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">action_space</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
@@ -368,7 +367,7 @@
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>The “Frozen Lake” environment for example has a discrete action and observation space. There are 4 actions <span class="math notranslate nohighlight">\(A = {0, 1, 2, 3}\)</span> to move in 4 directions and 16 states <span class="math notranslate nohighlight">\(S = {0, 1, 2, … , 14, 15}\)</span>.</p>
+<p>The “Frozen Lake” environment for example has a discrete action and observation space. There are 4 actions <img class="math" src="../../_images/math/f425d8e803828fa47d7f74819c8ef558f52cdb83.svg" alt="A = {0, 1, 2, 3}"/> to move in 4 directions and 16 states <img class="math" src="../../_images/math/c7fc4de2832f6302df186ed1063727ef10063a07.svg" alt="S = {0, 1, 2, … , 14, 15}"/>.</p>
 </div>
 <div class="section" id="box">
 <h3>Box<a class="headerlink" href="#box" title="Permalink to this headline">¶</a></h3>

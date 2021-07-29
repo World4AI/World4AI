@@ -35,7 +35,8 @@ In order to simplify notation I will introduce the notion of a return :math:`G`.
 In order to calculate the full return of an episode we have to play through the sequence of states, actions and rewards all the way through from the initial state to the terminal state. Let us assume that the sequence of states and the corresponding rewards played out as indicated in the image above. The agent received the reward of 0 for getting to the non terminal states and a reward of 1 for getting to the terminal state at the bottom right corner. Altogether there were 9 time steps starting from the initial time step t = 0 and ending with the timestep T = 8. 
 
 .. math::
-
+   :nowrap:
+   
    \begin{align*} 
    G_0 & = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
    & = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 1 = 1
@@ -52,6 +53,7 @@ In order to calculate the full return of an episode we have to play through the 
 To avoid an infinite return, future rewards (in continuing tasks) are discounted by :math:`\gamma`. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return :math:`G_0` looks as follows when we assume a gamma :math:`\gamma` of *0.9*.
 
 .. math::
+   :nowrap:
 
    \begin{align*} 
    G_0 & = R_1 + 0.9R_2 + 0.9^2 R_3 + 0.9^3 R_4 + 0.9^4 R_5 + 0.9^5 R_6 + 0.9^6 R_7 + 0.9^7 R_8 \\
@@ -69,6 +71,7 @@ To solve an MDP means for the agent to maximize the expected return.
 
 .. note::
    .. math::
+      :nowrap:
 
       \begin{align*}
       G_t & = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
@@ -82,6 +85,7 @@ Using this property we get the same result as above.
 
 
 .. math::
+   :nowrap:
 
    \begin{align*}
    & G_0 = R_1 + \gamma G_1 \\
@@ -237,6 +241,7 @@ By using the properties of returns :math:`G_t` where each return can be expresse
    Bellman equation for the state-value function
 
    .. math::
+      :nowrap:
       
       \begin{align*}
       v_{\pi}(s) & = \mathbb{E_{\pi}}[G_t \mid S_t = s] \\
@@ -247,6 +252,8 @@ By using the properties of returns :math:`G_t` where each return can be expresse
    Bellman equation for the action-value function
 
    .. math::
+      :nowrap:
+
       \begin{align*}
       q_{\pi}(s, a) & = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
       & = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
@@ -306,6 +313,7 @@ For finite MDPs the common approach is to calculate the optimal value functions 
    Bellman Optimality Equation for the state-value function:
 
    .. math::
+      :nowrap:
 
       \begin{align*}
       v_*(s) & = \max_{a} q_{{\pi}_*}(s, a) \\
@@ -317,6 +325,7 @@ For finite MDPs the common approach is to calculate the optimal value functions 
    Bellman Optimality Equation for the state-value function:
 
    .. math::
+      :nowrap:
 
       \begin{align*}
       q_*(s, a) & = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\

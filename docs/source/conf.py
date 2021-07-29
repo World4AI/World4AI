@@ -30,8 +30,11 @@ release = '0.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-]
+extensions = ['sphinx.ext.imgmath']
+
+imgmath_image_format = 'svg'
+imgmath_font_size = 14
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -41,6 +44,29 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+imgmath_latex_preamble = r'''
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage[verbose=true,letterpaper]{geometry}
+\geometry{
+    textheight=12in,
+    textwidth=6.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+    }
+'''
+
+latex_elements = {
+    'preamble': r'''
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+'''
+}
 
 html_theme_options = {
     "icon_links": [

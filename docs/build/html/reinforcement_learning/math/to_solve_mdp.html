@@ -31,7 +31,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Introduction" href="../dynamic_programming/introduction.html" />
@@ -278,77 +277,77 @@
                 
   <div class="section" id="to-solve-an-mdp">
 <h1>To Solve an MDP<a class="headerlink" href="#to-solve-an-mdp" title="Permalink to this headline">¶</a></h1>
-<p>Once a particular MDP, the components of the tuple <span class="math notranslate nohighlight">\((\mathcal{S, A}, P, R, \gamma)\)</span>,  has been defined the next logical step would be to solve the MDP. In this chapter I am going to explain what it actually means to solve an MDP. In future chapters I will try to explore possible approaches to a solution.</p>
+<p>Once a particular MDP, the components of the tuple <img class="math" src="../../_images/math/2bad0a556ccdc9fbb4a2d612b078fbc76b9de743.svg" alt="(\mathcal{S, A}, P, R, \gamma)"/>,  has been defined the next logical step would be to solve the MDP. In this chapter I am going to explain what it actually means to solve an MDP. In future chapters I will try to explore possible approaches to a solution.</p>
 <div class="section" id="return">
 <h2>Return<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Episodic Tasks</strong>:</p>
-<p>In episodic tasks the return is the sum of rewards in a single episode starting from time step <span class="math notranslate nohighlight">\(t\)</span> and going up to the terminal time step <span class="math notranslate nohighlight">\(T\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[G_t = R_{t+1} + R_{t+2} + … + R_T,\]</div>
-<p><strong>Continuing Tasks</strong>:</p>
-<p>In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity, <span class="math notranslate nohighlight">\(T = \infty\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}\]</div>
-</div>
-<p>In order to simplify notation I will introduce the notion of a return <span class="math notranslate nohighlight">\(G\)</span>. A return is simply the sum of rewards starting from some time <span class="math notranslate nohighlight">\(t\)</span> and going either to some terminal state <span class="math notranslate nohighlight">\(T\)</span> or to infinity. The letter <span class="math notranslate nohighlight">\(G\)</span> stands for “Goal”, because the goal of the environment is encoded in the rewards.</p>
+<p>In episodic tasks the return is the sum of rewards in a single episode starting from time step <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> and going up to the terminal time step <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/9ac5c92385dd4e87cb218b3d82123cecabc16811.svg" alt="G_t = R_{t+1} + R_{t+2} + … + R_T,"/></p>
+</div><p><strong>Continuing Tasks</strong>:</p>
+<p>In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity, <img class="math" src="../../_images/math/3cc526b72c8187aa8469062697490fd8aff88799.svg" alt="T = \infty"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/9ef7f228741369f942ec8bb0612a5417e0e2b7a9.svg" alt="G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}"/></p>
+</div></div>
+<p>In order to simplify notation I will introduce the notion of a return <img class="math" src="../../_images/math/7674515a21e3ea004ba30a13c5d826d6a407810d.svg" alt="G"/>. A return is simply the sum of rewards starting from some time <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> and going either to some terminal state <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/> or to infinity. The letter <img class="math" src="../../_images/math/7674515a21e3ea004ba30a13c5d826d6a407810d.svg" alt="G"/> stands for “Goal”, because the goal of the environment is encoded in the rewards.</p>
 <div class="figure align-center" id="id1">
 <img alt="../../_images/frozen_lake_return.svg" src="../../_images/frozen_lake_return.svg" /><p class="caption"><span class="caption-text">Frozen Lake Return.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>In order to calculate the full return of an episode we have to play through the sequence of states, actions and rewards all the way through from the initial state to the terminal state. Let us assume that the sequence of states and the corresponding rewards played out as indicated in the image above. The agent received the reward of 0 for getting to the non terminal states and a reward of 1 for getting to the terminal state at the bottom right corner. Altogether there were 9 time steps starting from the initial time step t = 0 and ending with the timestep T = 8.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/9f6cca9c30f8241107b878b3cb8ae412bb36a66b.svg" alt="\begin{align*}
 G_0 &amp; = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
 &amp; = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 1 = 1
-\end{align*}\end{split}\]</div>
-<div class="admonition note">
+\end{align*}"/></p>
+</div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Discounted Return</p>
-<div class="math notranslate nohighlight">
-\[G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}\]</div>
-</div>
-<p>To avoid an infinite return, future rewards (in continuing tasks) are discounted by <span class="math notranslate nohighlight">\(\gamma\)</span>. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return <span class="math notranslate nohighlight">\(G_0\)</span> looks as follows when we assume a gamma <span class="math notranslate nohighlight">\(\gamma\)</span> of <em>0.9</em>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/435bef738adcdc6bc8326e0d9ef8a22e2d74c6e7.svg" alt="G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}"/></p>
+</div></div>
+<p>To avoid an infinite return, future rewards (in continuing tasks) are discounted by <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/>. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return <img class="math" src="../../_images/math/fc1028873348e8cbf12e886652684ff245017ebe.svg" alt="G_0"/> looks as follows when we assume a gamma <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> of <em>0.9</em>.</p>
+<div class="math">
+<p><img src="../../_images/math/27ae44cfb4a638058b883477186d567155082128.svg" alt="\begin{align*}
 G_0 &amp; = R_1 + 0.9R_2 + 0.9^2 R_3 + 0.9^3 R_4 + 0.9^4 R_5 + 0.9^5 R_6 + 0.9^6 R_7 + 0.9^7 R_8 \\
 &amp; = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0.48 = 0.48
-\end{align*}\end{split}\]</div>
-<p>In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route means getting a higher return, as the time value of a reward reduces the farther away it is in the future. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible.</p>
+\end{align*}"/></p>
+</div><p>In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route means getting a higher return, as the time value of a reward reduces the farther away it is in the future. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent to maximize the expected return <span class="math notranslate nohighlight">\(\mathbb{E}(G_t)\)</span>.</p>
+<p>The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent to maximize the expected return <img class="math" src="../../_images/math/92f197498d79ecf351250c0b5d929e1d82cdf600.svg" alt="\mathbb{E}(G_t)"/>.</p>
 </div>
 <p>To solve an MDP means for the agent to maximize the expected return.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/a086d9dc62f7236e105f63cff3de4112405a03eb.svg" alt="\begin{align*}
 G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
 &amp; = R_{t+1} + \gamma{(R_{t+2} + \gamma{R_{t+3}} + ...)} \\
 &amp; = R_{t+1} + \gamma{G_{t+1}}
-\end{align*}\end{split}\]</div>
-</div>
+\end{align*}"/></p>
+</div></div>
 <p>An important property of returns is that they can be expressed in terms of future returns.</p>
 <p>Using this property we get the same result as above.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/fcd3a611403d8499633691a93b0a2eeb520f4dca.svg" alt="\begin{align*}
 &amp; G_0 = R_1 + \gamma G_1 \\
 &amp; R_1 = 0 \\
 &amp; G_1 = R_2 + 0.9 R_3 + 0.9^2 R_4 + 0.9^3 R_5 + 0.9^4 R_6 + 0.9^5 R_7 + 0.9^6 R_8 = 0.53 \\
 &amp; G_0 = 0 + 0.9 * 0.53 = 0.48
-\end{align*}\end{split}\]</div>
-</div>
+\end{align*}"/></p>
+</div></div>
 <div class="section" id="policy">
 <h2>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<div class="math notranslate nohighlight">
-\[\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]\]</div>
-<p>A policy <span class="math notranslate nohighlight">\(\pi\)</span> is a mapping from a state <span class="math notranslate nohighlight">\(s\)</span> to a probability of an action <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<p>For a deterministic policy <span class="math notranslate nohighlight">\(\pi{(a \mid s) = 1}\)</span> for for the selected action and <span class="math notranslate nohighlight">\(\pi{(a \mid s) = 0}\)</span> for the rest of the actions. Therefore in deterministic environments a policy is often interpreted as a direct mapping from states to actions.</p>
-<p><span class="math notranslate nohighlight">\(\pi{(. \mid S_t)}\)</span> is the distribution of actions given states.</p>
-<p><span class="math notranslate nohighlight">\(A_t \sim \pi{(. \mid S_t)}\)</span></p>
+<div class="math">
+<p><img src="../../_images/math/6ac1c93b7c31ba613c3b52f1c14d83e9b8ecd6a8.svg" alt="\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]"/></p>
+</div><p>A policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> is a mapping from a state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> to a probability of an action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/>.</p>
+<p>For a deterministic policy <img class="math" src="../../_images/math/49a4c2bd9a832f216b21737ebfc9345a7ce1ad81.svg" alt="\pi{(a \mid s) = 1}"/> for for the selected action and <img class="math" src="../../_images/math/7fbc94d05334c9ed42513cd1dd5442955736c26d.svg" alt="\pi{(a \mid s) = 0}"/> for the rest of the actions. Therefore in deterministic environments a policy is often interpreted as a direct mapping from states to actions.</p>
+<p><img class="math" src="../../_images/math/5f5a3fca1b0942506c9e168bd0c70768e57dd731.svg" alt="\pi{(. \mid S_t)}"/> is the distribution of actions given states.</p>
+<p><img class="math" src="../../_images/math/64cac9897dc1ed3542ee295b1865f198074b2b08.svg" alt="A_t \sim \pi{(. \mid S_t)}"/></p>
 <p>Actions are draws from a policy distribution, where in a deterministic case the same action is always drawn given the same state.</p>
 </div>
 <p>The policy of an agent determines the behaviour of the agent expressed in terms of actions based on the current state of the environment.</p>
@@ -366,11 +365,11 @@ G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
 <col style="width: 20%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>State <span class="math notranslate nohighlight">\(s\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\pi(left \mid s)\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\pi(top \mid s)\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\pi(right \mid s)\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\pi(bottom \mid s)\)</span></p></th>
+<tr class="row-odd"><th class="head"><p>State <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/></p></th>
+<th class="head"><p><img class="math" src="../../_images/math/67a6a5377794a4e8a68eb432c89e4dfad58d6309.svg" alt="\pi(left \mid s)"/></p></th>
+<th class="head"><p><img class="math" src="../../_images/math/b21cc62056cecf73ae4aa781baddac060feb0ecd.svg" alt="\pi(top \mid s)"/></p></th>
+<th class="head"><p><img class="math" src="../../_images/math/4da6d2fab3b50816df11a647d8c3a5903b1312f1.svg" alt="\pi(right \mid s)"/></p></th>
+<th class="head"><p><img class="math" src="../../_images/math/661cb6aba385ffbbc6be9b474c2455600fcefc41.svg" alt="\pi(bottom \mid s)"/></p></th>
 </tr>
 </thead>
 <tbody>
@@ -479,35 +478,35 @@ G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>State-Value Function:</p>
-<div class="math notranslate nohighlight">
-\[v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]\]</div>
-<p>Action-Value Function:</p>
-<div class="math notranslate nohighlight">
-\[q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]\]</div>
-</div>
+<div class="math">
+<p><img src="../../_images/math/c82c7940fbc849f77b56bc41bfbbee17016d14a5.svg" alt="v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]"/></p>
+</div><p>Action-Value Function:</p>
+<div class="math">
+<p><img src="../../_images/math/6c9da184a6810d05a18a273efcd0611f3d7ce21d.svg" alt="q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]"/></p>
+</div></div>
 <p>Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs.</p>
-<p>The state-value function expresses the expected return when following a particular policy <span class="math notranslate nohighlight">\(\pi\)</span> given the state <span class="math notranslate nohighlight">\(s\)</span>. The action-value function expresses the expected return given the state <span class="math notranslate nohighlight">\(s\)</span> while taking the action <span class="math notranslate nohighlight">\(a\)</span> in the current step and following the policy <span class="math notranslate nohighlight">\(\pi\)</span> afterwards.</p>
+<p>The state-value function expresses the expected return when following a particular policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> given the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/>. The action-value function expresses the expected return given the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> while taking the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> in the current step and following the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> afterwards.</p>
 </div>
 <div class="section" id="bellman-equations">
 <h2>Bellman Equations<a class="headerlink" href="#bellman-equations" title="Permalink to this headline">¶</a></h2>
-<p>By using the properties of returns <span class="math notranslate nohighlight">\(G_t\)</span> where each return can be expressed in terms of future returns <span class="math notranslate nohighlight">\(G_t = r_{t+1} + \gamma G_{t+1}\)</span> we can arrive at recursive equations, where a value of a state can be defined in terms of values of the next state.</p>
+<p>By using the properties of returns <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/> where each return can be expressed in terms of future returns <img class="math" src="../../_images/math/646765d5a05e05a0ccbc7b1f82c3772cc27a3fcf.svg" alt="G_t = r_{t+1} + \gamma G_{t+1}"/> we can arrive at recursive equations, where a value of a state can be defined in terms of values of the next state.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Bellman equation for the state-value function</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/7f6a6feb49fe40719f565018c6691630e5d0cb70.svg" alt="\begin{align*}
 v_{\pi}(s) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s] \\
 &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
 &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s]
-\end{align*}\end{split}\]</div>
-<p>Bellman equation for the action-value function</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+\end{align*}"/></p>
+</div><p>Bellman equation for the action-value function</p>
+<div class="math">
+<p><img src="../../_images/math/57c7916fc9b36e42ddc201b48ad47dbc5c774006.svg" alt="\begin{align*}
 q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
 &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
 &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t = a]
-\end{align*}\end{split}\]</div>
-</div>
+\end{align*}"/></p>
+</div></div>
 <p>Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work.</p>
 </div>
 <div class="section" id="optimality">
@@ -520,21 +519,21 @@ q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Policies are evaluated in terms of their value functions</p>
-<p><span class="math notranslate nohighlight">\(\pi \geq \pi’\)</span> if and only if <span class="math notranslate nohighlight">\(v_{\pi}(s) \geq v_{\pi'}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span></p>
+<p><img class="math" src="../../_images/math/2203bb8ccc1c7023178692ea6c0ac5e4636bdf43.svg" alt="\pi \geq \pi’"/> if and only if <img class="math" src="../../_images/math/63dbc78b44693f7ca2514b7f4e7c5c0c6d5d1267.svg" alt="v_{\pi}(s) \geq v_{\pi'}(s)"/> for all <img class="math" src="../../_images/math/93d7fd1da4319dc76dd4d696c2027716b025727f.svg" alt="s \in \mathcal{S}"/></p>
 </div>
 <p>In finite MDPs value functions are used as a metric of the goodness of a policy. The policy  pi is said to be better than the policy pi’ if and only if the value function of pi is larger or equal to the value function of policy pi’ for all states in the state set S.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is defined as</p>
-<p><span class="math notranslate nohighlight">\(\pi_* \geq \pi\)</span> for all <span class="math notranslate nohighlight">\(\pi\)</span></p>
+<p>The optimal policy <img class="math" src="../../_images/math/65f0bb840045c41b9051bc4ceac137de493ddc3a.svg" alt="\pi_*"/> is defined as</p>
+<p><img class="math" src="../../_images/math/e3a642404e544540a05b9ca6a40ee097cc7e49db.svg" alt="\pi_* \geq \pi"/> for all <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/></p>
 </div>
 <p>The optimal policy is the policy that is better (or at least not worse) than any other policy.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The optimal state-value funtion:</p>
-<p><span class="math notranslate nohighlight">\(v_*(s) = \max_{\pi} v_{\pi}(s)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span></p>
+<p><img class="math" src="../../_images/math/cf5a0e11c9430d7fc0f4a13818ffc3280ce88c1e.svg" alt="v_*(s) = \max_{\pi} v_{\pi}(s)"/> for all states <img class="math" src="../../_images/math/93d7fd1da4319dc76dd4d696c2027716b025727f.svg" alt="s \in \mathcal{S}"/></p>
 <p>The optimal action-value function:</p>
-<p><span class="math notranslate nohighlight">\(q_*(s, a) = \max_{\pi} q_{\pi}(s, a)\)</span> for all states <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> and all actions <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span></p>
+<p><img class="math" src="../../_images/math/14caff5f2371c95085a0f2d81233eaac6ea2c78d.svg" alt="q_*(s, a) = \max_{\pi} q_{\pi}(s, a)"/> for all states <img class="math" src="../../_images/math/93d7fd1da4319dc76dd4d696c2027716b025727f.svg" alt="s \in \mathcal{S}"/> and all actions <img class="math" src="../../_images/math/bb1b6a28eceffc4b685eb189e30c62e16ef0b311.svg" alt="a \in \mathcal{A}"/></p>
 </div>
 <p>The state-value function and the action-value function that are based on the optimal policy are called optimal state-value and optimal action-value function respectively.</p>
 <div class="admonition important">
@@ -544,24 +543,24 @@ q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
 </div>
 <div class="section" id="bellman-optimality-equations">
 <h2>Bellman Optimality Equations<a class="headerlink" href="#bellman-optimality-equations" title="Permalink to this headline">¶</a></h2>
-<p>For finite MDPs the common approach is to calculate the optimal value functions <span class="math notranslate nohighlight">\(v_*\)</span> and/or <span class="math notranslate nohighlight">\(q_*\)</span> and to deduce the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> from those.</p>
+<p>For finite MDPs the common approach is to calculate the optimal value functions <img class="math" src="../../_images/math/cd470423c63a627c055755b318a6273c585bb9be.svg" alt="v_*"/> and/or <img class="math" src="../../_images/math/afeeb7361af5b1430e75641c240ed1df2423959b.svg" alt="q_*"/> and to deduce the optimal policy <img class="math" src="../../_images/math/65f0bb840045c41b9051bc4ceac137de493ddc3a.svg" alt="\pi_*"/> from those.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Bellman Optimality Equation for the state-value function:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+<div class="math">
+<p><img src="../../_images/math/b66d8b3741fce7085fa5c188caf356dff00c9276.svg" alt="\begin{align*}
 v_*(s) &amp; = \max_{a} q_{{\pi}_*}(s, a) \\
 &amp; = \max_{a} \mathbb{E_{\pi_{*}}}[G_t \mid S_t = s, A_t = a] \\
 &amp; = \max_{a} \mathbb{E_{\pi_{*}}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
 &amp; = \max_{a} \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a]
-\end{align*}\end{split}\]</div>
-<p>Bellman Optimality Equation for the state-value function:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
+\end{align*}"/></p>
+</div><p>Bellman Optimality Equation for the state-value function:</p>
+<div class="math">
+<p><img src="../../_images/math/9b31bb8f420fcf82e777091934381ed288223c05.svg" alt="\begin{align*}
 q_*(s, a) &amp; = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\
 &amp; = \mathbb{E}[R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}, a') \mid S_t = s, A_t = a]
-\end{align*}\end{split}\]</div>
-</div>
+\end{align*}"/></p>
+</div></div>
 <p>For that purpose the Bellman equations of optimal value functions are required. These are called Bellman optimality equations.</p>
 </div>
 <div class="section" id="summary">
