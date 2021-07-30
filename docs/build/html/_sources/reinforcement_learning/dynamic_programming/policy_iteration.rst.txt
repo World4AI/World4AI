@@ -114,6 +114,7 @@ The model returns the list of possible next states, rewards and corresponding pr
 .. code::
 
     S = [x for x in range(env.observation_space.n)]
+    A = [x for x in range(env.action_space.n)]
 
 The below code covers the actual policy evaluation algorithm. 
 
@@ -150,4 +151,163 @@ The below code covers the actual policy evaluation algorithm.
 Policy Improvement
 ==================
 
+Remember what it means to solve an MDP? 
 
+.. note::
+
+    To solve an MDP is to find an optimal policy.  
+
+What do we need to find an optimal policy for a finite MDP?
+
+.. note::
+	To find an optimal policy for a finite MDP the optimal value-function is required.
+
+
+
+The policy evaluation step is a prerequisite to compare two policies and to determine which is better, but an additional step, policy improvement, is required to take an existing policy and to make it better. 
+
+There is a line of arguments that has to be made in order to show that the policy improvement step is a valid approach. 
+
+Let us assume that we have a policy :math:`\mu(s)` and contemplate if instead of following the policy strictly, in the current state :math:`s` just once we would like to take a different action :math:`a \neq \mu(s)`. After that action we will stick to the old policy :math:`\mu` and follow it until the terminal state :math:`T`. The state-value function of the original policy :math:`mu` is calculated using the above policy evaluation step. 
+
+Using the action :math:`a` at state :math:`s` and then following the policy :math:`\mu` is essentially the definition of the action-value function. 
+
+.. math:: 
+    q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]
+
+What if we compare v and q and we find out that taking a and then following mu generates an advantage?
+
+.. math::
+   q_{\mu}(s, a) > v_{\mu}(s)
+
+Does that suggest that we should always take the new :math:`a` when we face the state :math:`s` and thus adjust the policy to create a new policy :math:`\mu'` or should we stick to the old policy :math:`\mu`? The policy improvement theorem suggests the former.
+
+.. note::
+    
+    Policy Improvement theorem
+
+    .. math::
+        q_{\mu}(s, \mu'(s)) \geq v_{\mu}(s) \Rightarrow v_{\mu'}(s) \geq v_{\mu}(s), \forall s \in \mathcal{S}
+
+
+.. note::
+    
+    Policy Improvement Theorem Proof
+
+    .. math::
+        :nowrap:
+
+        \begin{align*}
+        v_{\mu}(s) & \leq q_{\mu}(s, \mu'(s)) \\
+        & = \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = \mu'(s)] \\
+        & \leq \mathbb{E}[R_{t+1} + \gamma q_{\mu}(S_{t+1}, \mu'(S_{t+1})) \mid S_t = s, A_t = \mu'(s)] \\
+        & = \mathbb{E}[R_{t+1} + \gamma \mathbb{E}[R_{t+2} + \gamma v_{\mu}(S_{t+2}) \mid S_{t+1}, A_{t+1} = \mu' (S_{t+1})] \mid S_t = s, A_t = \mu'(s)] \\
+        & \vdots \\
+        & \leq \mathbb{E}_{\mu'}[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ... \mid S_t = s] \\
+        & = v_{\mu'}(s)
+        \end{align*}
+
+
+How can we implement the proof of the policy improvement theorem into an algorithm? At each iteration step for at least one state we have to find an action that would create a higher value. If we find such an action we create a new policy :math:`\mu’` that always takes the new action :math:`a` at state :math:`s`. The question still remains: how do you find such an action? The simplest strategy would be to look at all the actions at state :math:`s` and choose the one that generates the highest value. The approach is undertaken for all states :math:`s \in \mathcal{S}`. 
+
+.. math::
+
+    \mu'(s) = \arg\max_a q_{\mu}(s, a)
+
+
+.. note::
+    Greedy means acting short-sighted by maximizing the short term gain.
+    
+By creating :math:`\mu'` we create a so-called greedy policy, but acting greedily means acting according to the policy improvement theorem, which guarantees an overall better policy. 
+
+
+Once the new policy and the old policy are exactly the same then we have reached the optimal policy.
+
+
+.. code:: python
+
+    def policy_improvement(V, model, S, A, gamma=0.99):
+        
+        Q = np.zeros(shape=(len(S), len(A)))
+        for state in S:
+            for action in A:
+                for prob, next_state, reward, done in model(state, action):
+                    Q[state][action] += prob * (reward + gamma * V[next_state] * (not done))
+            
+        
+        policy_mapping = Q.argmax(axis=1)
+        policy = lambda state: policy_mapping[state]
+        return policy
+
+Solving An MDP
+==============
+
+The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached. 
+
+.. math::
+    :nowrap:
+
+    \begin{algorithm}[H]
+        \caption{Policy Improvement}
+        \label{alg1}
+    \begin{algorithmic}
+        \STATE Input: model $p$, state set $\mathcal{S}$, action set $\mathcal{A}$, stop criterion $\theta > 0$, discount factor $\gamma$
+        \STATE Initialize: 
+        \STATE $V(s)$ and $V_{old}(s)$, for all $s \in \mathcal{S}$ with zeros
+        \STATE $\mu(s) \in \mathcal{A}(s)$ randomly
+        \STATE Policy Iteration
+        \REPEAT
+            \STATE Policy Evaluation
+            \REPEAT
+                \STATE $\Delta \leftarrow 0$
+                \STATE $V_{old}(s) = V(s)$ for all $s \in \mathcal{S}$
+                \FORALL{$s \in \mathcal{S}$}
+                    \STATE $V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+                    \STATE $\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)$
+                \ENDFOR
+            \UNTIL{$\Delta < \theta$}
+            \STATE Policy Improvement
+            \STATE policy-stable $\leftarrow$ true 
+            \FORALL{$s \in \mathcal{S}$}
+                \STATE old-action $\leftarrow \mu(s)$ 
+                \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+                \IF{old-action $\neq \mu(s)$}
+                    \STATE policy-stable $\leftarrow$ false
+                \ENDIF
+            \ENDFOR
+        \UNTIL policy-stable
+    \end{algorithmic}
+    \end{algorithm}
+
+.. code:: python
+
+    def random_policy(S, A):
+        policy_mapping = np.random.randint(low=0, high=len(A), size=len(S))
+        return lambda x: policy_mapping[x]
+
+.. code:: python
+
+    def policies_equal(policy_1, policy_2, S):
+        equal = True
+        for state in S:
+            if policy_1(state) != policy_2(state):
+                equal = False
+                break
+                
+        return equal
+
+.. code:: python
+
+    def policy_iteration(model, S, A, theta=0.00001, gamma=0.99):
+        policy = random_policy(S, A)
+        
+        while True:
+            V = policy_evaluation(policy, model, S, theta, gamma)
+            greedy_policy = policy_improvement(V, model, S, A, gamma)
+            
+            if policies_equal(policy, greedy_policy, S):
+                break
+            
+            policy = greedy_policy
+            
+        return policy

@@ -229,6 +229,11 @@
    Policy Improvement
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-an-mdp">
+   Solving An MDP
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -337,6 +342,7 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>The below code covers the actual policy evaluation algorithm.</p>
@@ -371,6 +377,135 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 </div>
 <div class="section" id="policy-improvement">
 <h2>Policy Improvement<a class="headerlink" href="#policy-improvement" title="Permalink to this headline">¶</a></h2>
+<p>Remember what it means to solve an MDP?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To solve an MDP is to find an optimal policy.</p>
+</div>
+<p>What do we need to find an optimal policy for a finite MDP?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To find an optimal policy for a finite MDP the optimal value-function is required.</p>
+</div>
+<p>The policy evaluation step is a prerequisite to compare two policies and to determine which is better, but an additional step, policy improvement, is required to take an existing policy and to make it better.</p>
+<p>There is a line of arguments that has to be made in order to show that the policy improvement step is a valid approach.</p>
+<p>Let us assume that we have a policy <img class="math" src="../../_images/math/cd89edb8d677e76ff2422b13ab39ad709e93db2e.svg" alt="\mu(s)"/> and contemplate if instead of following the policy strictly, in the current state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> just once we would like to take a different action <img class="math" src="../../_images/math/70b0f96cf249bacc26d34b1f5438fefccf1bde1e.svg" alt="a \neq \mu(s)"/>. After that action we will stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> and follow it until the terminal state <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/>. The state-value function of the original policy <img class="math" src="../../_images/math/809c91383d7aa79aab7471903435bc0ede29325b.svg" alt="mu"/> is calculated using the above policy evaluation step.</p>
+<p>Using the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> at state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and then following the policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> is essentially the definition of the action-value function.</p>
+<div class="math">
+<p><img src="../../_images/math/e4f911298244abbb55f2c4347e5940fec44f5e45.svg" alt="q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]"/></p>
+</div><p>What if we compare v and q and we find out that taking a and then following mu generates an advantage?</p>
+<div class="math">
+<p><img src="../../_images/math/35bca49d28752145bc050be725dfa690dbc9b175.svg" alt="q_{\mu}(s, a) &gt; v_{\mu}(s)"/></p>
+</div><p>Does that suggest that we should always take the new <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> when we face the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and thus adjust the policy to create a new policy <img class="math" src="../../_images/math/28c5045d9588b9bfe005b156f73242676055a41b.svg" alt="\mu'"/> or should we stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/>? The policy improvement theorem suggests the former.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Policy Improvement theorem</p>
+<div class="math">
+<p><img src="../../_images/math/34fb16271e67e2ee4509e094b0617aaf25783669.svg" alt="q_{\mu}(s, \mu'(s)) \geq v_{\mu}(s) \Rightarrow v_{\mu'}(s) \geq v_{\mu}(s), \forall s \in \mathcal{S}"/></p>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Policy Improvement Theorem Proof</p>
+<div class="math">
+<p><img src="../../_images/math/2fae920e2be953d907fbc3743e8e070a85c5d072.svg" alt="\begin{align*}
+v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
+&amp; = \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = \mu'(s)] \\
+&amp; \leq \mathbb{E}[R_{t+1} + \gamma q_{\mu}(S_{t+1}, \mu'(S_{t+1})) \mid S_t = s, A_t = \mu'(s)] \\
+&amp; = \mathbb{E}[R_{t+1} + \gamma \mathbb{E}[R_{t+2} + \gamma v_{\mu}(S_{t+2}) \mid S_{t+1}, A_{t+1} = \mu' (S_{t+1})] \mid S_t = s, A_t = \mu'(s)] \\
+&amp; \vdots \\
+&amp; \leq \mathbb{E}_{\mu'}[R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ... \mid S_t = s] \\
+&amp; = v_{\mu'}(s)
+\end{align*}"/></p>
+</div></div>
+<p>How can we implement the proof of the policy improvement theorem into an algorithm? At each iteration step for at least one state we have to find an action that would create a higher value. If we find such an action we create a new policy <img class="math" src="../../_images/math/ac7faf0a0b7000fb64cbed3b6ce2c2a8f7930a0d.svg" alt="\mu’"/> that always takes the new action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> at state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/>. The question still remains: how do you find such an action? The simplest strategy would be to look at all the actions at state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and choose the one that generates the highest value. The approach is undertaken for all states <img class="math" src="../../_images/math/93d7fd1da4319dc76dd4d696c2027716b025727f.svg" alt="s \in \mathcal{S}"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/4e41e23d4a658722c2297c9810f1eb9e58393f62.svg" alt="\mu'(s) = \arg\max_a q_{\mu}(s, a)"/></p>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Greedy means acting short-sighted by maximizing the short term gain.</p>
+</div>
+<p>By creating <img class="math" src="../../_images/math/28c5045d9588b9bfe005b156f73242676055a41b.svg" alt="\mu'"/> we create a so-called greedy policy, but acting greedily means acting according to the policy improvement theorem, which guarantees an overall better policy.</p>
+<p>Once the new policy and the old policy are exactly the same then we have reached the optimal policy.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy_improvement</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prob</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="ow">in</span> <span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+                <span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">]</span> <span class="o">+=</span> <span class="n">prob</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">V</span><span class="p">[</span><span class="n">next_state</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="ow">not</span> <span class="n">done</span><span class="p">))</span>
+
+
+    <span class="n">policy_mapping</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">policy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">state</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">policy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solving-an-mdp">
+<h2>Solving An MDP<a class="headerlink" href="#solving-an-mdp" title="Permalink to this headline">¶</a></h2>
+<p>The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached.</p>
+<div class="math">
+<p><img src="../../_images/math/c9ee88a5249ffa937d71fccbb4af31f5d68cd141.svg" alt="\begin{algorithm}[H]
+    \caption{Policy Improvement}
+    \label{alg1}
+\begin{algorithmic}
+    \STATE Input: model $p$, state set $\mathcal{S}$, action set $\mathcal{A}$, stop criterion $\theta &gt; 0$, discount factor $\gamma$
+    \STATE Initialize:
+    \STATE $V(s)$ and $V_{old}(s)$, for all $s \in \mathcal{S}$ with zeros
+    \STATE $\mu(s) \in \mathcal{A}(s)$ randomly
+    \STATE Policy Iteration
+    \REPEAT
+        \STATE Policy Evaluation
+        \REPEAT
+            \STATE $\Delta \leftarrow 0$
+            \STATE $V_{old}(s) = V(s)$ for all $s \in \mathcal{S}$
+            \FORALL{$s \in \mathcal{S}$}
+                \STATE $V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+                \STATE $\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)$
+            \ENDFOR
+        \UNTIL{$\Delta &lt; \theta$}
+        \STATE Policy Improvement
+        \STATE policy-stable $\leftarrow$ true
+        \FORALL{$s \in \mathcal{S}$}
+            \STATE old-action $\leftarrow \mu(s)$
+            \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+            \IF{old-action $\neq \mu(s)$}
+                \STATE policy-stable $\leftarrow$ false
+            \ENDIF
+        \ENDFOR
+    \UNTIL policy-stable
+\end{algorithmic}
+\end{algorithm}"/></p>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="n">policy_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policies_equal</span><span class="p">(</span><span class="n">policy_1</span><span class="p">,</span> <span class="n">policy_2</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="n">equal</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">policy_1</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">!=</span> <span class="n">policy_2</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+            <span class="n">equal</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">equal</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy_iteration</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+    <span class="n">policy</span> <span class="o">=</span> <span class="n">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">policy_evaluation</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        <span class="n">greedy_policy</span> <span class="o">=</span> <span class="n">policy_improvement</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">policies_equal</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">greedy_policy</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+            <span class="k">break</span>
+
+        <span class="n">policy</span> <span class="o">=</span> <span class="n">greedy_policy</span>
+
+    <span class="k">return</span> <span class="n">policy</span>
+</pre></div>
+</div>
 </div>
 </div>
 
