@@ -34,6 +34,12 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
+   :caption: Exploration Exploitation Tradeoff
+
+   exploration_exploitation_tradeoff/introduction
+
+.. toctree::
+   :maxdepth: 2
    :caption: Reinforcement Learning Libraries
 
    rl_libraries/motivation
