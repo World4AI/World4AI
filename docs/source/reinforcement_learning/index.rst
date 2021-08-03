@@ -38,6 +38,7 @@ In this introduction I will go over the possible applications, the key concepts 
 
    exploration_exploitation_tradeoff/introduction
    exploration_exploitation_tradeoff/bandits
+   exploration_exploitation_tradeoff/epsilon_greedy
 
 .. toctree::
    :maxdepth: 2
