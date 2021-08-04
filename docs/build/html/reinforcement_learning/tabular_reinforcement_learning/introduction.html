@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Bandits" href="bandits.html" />
-    <link rel="prev" title="Value Iteration" href="../dynamic_programming/value_iteration.html" />
+    <link rel="next" title="Motivation" href="../rl_libraries/motivation.html" />
+    <link rel="prev" title="Epsilon()-Greedy" href="../exploration_exploitation_tradeoff/epsilon_greedy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -188,19 +188,19 @@
   Exploration Exploitation Tradeoff
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="bandits.html">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/bandits.html">
    Bandits
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="epsilon_greedy.html">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/epsilon_greedy.html">
    Epsilon(
    <img alt="\epsilon" class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg"/>
    )-Greedy
@@ -212,9 +212,9 @@
   Tabular Reinforcement Learning
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../tabular_reinforcement_learning/introduction.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Introduction
   </a>
  </li>
@@ -273,7 +273,7 @@
                 
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>When the model of the environment is not available or the model is too complex it becomes essential for the agent to explore the environment through interaction. The necessity for interaction and exploration creates problems that are native to reinforcement learning. We need to create agents that are able to collect new experiences, that is to explore the environment, and that are able to use the knowledge to optimize the reward stream, that is to exploit the learned knowledge. Once the agent decides to exploit or to explore there is no turning back and he has to live with the consequences. This gives rise to the so-called exploration-exploitation dilemma, which states that at each time step either exploration or exploitation is possible, but definitely not both. In this chapter we are going to delve into the balancing act that is the exploration-exploitation tradeoff.</p>
+<p>Finite Markov Decision Processes have finite State, Action and Reward sets. This allows for the implementation of state-value and action-value functions that can be stored in lists or tables. Those implementations are appropriately called tabular methods. The current state of the art reinforcement learning rarely deals with tabular methods any more, but it is still more convenient to start the exploration of reinforcement learning techniques with those, as the general ideas are extremely relevant to modern (approximative) methods which are going to be introduced in following sections.</p>
 </div>
 
 
@@ -282,8 +282,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../dynamic_programming/value_iteration.html" title="previous page">Value Iteration</a>
-    <a class='right-next' id="next-link" href="bandits.html" title="next page">Bandits</a>
+    <a class='left-prev' id="prev-link" href="../exploration_exploitation_tradeoff/epsilon_greedy.html" title="previous page">Epsilon(<img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>)-Greedy</a>
+    <a class='right-next' id="next-link" href="../rl_libraries/motivation.html" title="next page">Motivation</a>
 
               </div>
               

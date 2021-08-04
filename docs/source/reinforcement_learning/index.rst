@@ -42,6 +42,12 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
+   :caption: Tabular Reinforcement Learning
+
+   tabular_reinforcement_learning/introduction
+
+.. toctree::
+   :maxdepth: 2
    :caption: Reinforcement Learning Libraries
 
    rl_libraries/motivation
