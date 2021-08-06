@@ -46,6 +46,7 @@ In this introduction I will go over the possible applications, the key concepts 
 
    tabular_reinforcement_learning/introduction
    tabular_reinforcement_learning/monte_carlo_methods
+   tabular_reinforcement_learning/td_learning
 
 .. toctree::
    :maxdepth: 2
