@@ -50,6 +50,12 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
+   :caption: Approximative Methods
+
+   approximative_methods/online_td_learning
+
+.. toctree::
+   :maxdepth: 2
    :caption: Reinforcement Learning Libraries
 
    rl_libraries/motivation
