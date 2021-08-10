@@ -53,6 +53,7 @@ In this introduction I will go over the possible applications, the key concepts 
    :caption: Approximative Methods
 
    approximative_methods/online_td_learning
+   approximative_methods/dqn
 
 .. toctree::
    :maxdepth: 2
