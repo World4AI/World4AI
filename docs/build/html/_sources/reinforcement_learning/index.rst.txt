@@ -50,10 +50,13 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Approximative Methods
+   :caption: Value-Based Approximation
 
-   approximative_methods/online_td_learning
-   approximative_methods/dqn
+   value_based_approximation/introduction
+   value_based_approximation/online_td_learning
+   value_based_approximation/dqn
+   value_based_approximation/double_dqn
+   value_based_approximation/duelling_dqn
 
 .. toctree::
    :maxdepth: 2
