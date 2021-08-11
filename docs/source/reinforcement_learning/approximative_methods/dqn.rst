@@ -204,3 +204,229 @@ Atari Wrappers
         env = ClipRewardEnv(env)
         env = FrameStack(env, 4)
         return env
+
+
+Experience Replay
+=================
+
+.. code:: python
+
+    class MemoryBuffer:
+    
+        def __init__(self, obs_shape, max_len, batch_size):
+            self.idx = 0
+            self.max_len = max_len
+            self.current_len = 0
+            self.batch_size = batch_size
+            
+            self.obs = np.zeros(shape=(max_len, *obs_shape), dtype=np.float32)
+            self.action = np.zeros(shape=(max_len, 1), dtype=np.float32)
+            self.reward = np.zeros(shape=(max_len, 1), dtype=np.float32)
+            self.next_obs = np.zeros(shape=(max_len, *obs_shape), dtype=np.float32)
+            self.done  = np.zeros(shape=(max_len, 1), dtype=np.float32)
+            
+        def __len__(self):
+            return self.current_len
+        
+        def add_experience(self, obs, action, reward, next_obs, done):
+            self.obs[self.idx] = obs
+            self.action[self.idx] = action
+            self.reward[self.idx] = reward
+            self.next_obs[self.idx] = next_obs
+            self.done[self.idx] = done
+            
+            self.idx = (self.idx + 1) % self.max_len
+            self.current_len = min(self.current_len + 1, self.max_len)
+        
+        def draw_samples(self):
+            
+            idxs = np.random.choice(len(self), self.batch_size, replace=False)
+            
+            obs = self.obs[idxs]
+            action = self.action[idxs]
+            reward = self.reward[idxs]
+            next_obs = self.next_obs[idxs]
+            done = self.done[idxs]
+            
+            return obs, action, reward, next_obs, done
+
+
+Action-Value Function
+=====================
+
+.. code:: python
+
+    class Q(nn.Module):
+        
+        def __init__(self, n_actions):
+            super(Q, self).__init__()
+            
+            self.model = nn.Sequential(
+                nn.Conv2d(in_channels=4, out_channels=32, kernel_size=(8, 8), stride=4),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(4, 4), stride=2),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1),
+                nn.ReLU(),
+                nn.Flatten(),
+                nn.Linear(in_features=64*7*7, out_features=512),
+                nn.ReLU(),
+                nn.Linear(in_features=512, out_features=n_actions)
+            )
+
+        def forward(self, state):
+            return self.model(state)
+
+
+Agent
+=====
+
+.. code:: python
+
+    class Agent:
+    
+        def __init__(self,
+                    obs_shape,
+                    n_actions,
+                    batch_size, 
+                    memory_size,
+                    update_frequency,
+                    warmup,
+                    alpha, 
+                    epsilon_start, 
+                    epsilon_steps, 
+                    epsilon_end, 
+                    gamma):
+            
+            self.n_actions = n_actions
+            self.memory_buffer = MemoryBuffer(obs_shape, memory_size, batch_size)
+            self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+            print(self.device)
+            
+            self.online_network = Q(n_actions).to(self.device)
+            self.target_network = deepcopy(self.online_network).to(self.device)
+            
+            for param in self.target_network.parameters():
+                param.requires_grad = False
+            
+            self.optimizer = optim.RMSprop(self.online_network.parameters(), alpha)
+            self.epsilon = epsilon_start
+            self.epsilon_end = epsilon_end
+            self.epsilon_step = (epsilon_start - epsilon_end) / epsilon_steps
+            print(self.epsilon_step)
+            self.gamma = gamma
+            self.warmup = warmup
+        
+        
+        def adjust_epsilon(self):
+            self.epsilon -= self.epsilon_step
+            if self.epsilon < self.epsilon_end:
+                self.epsilon = self.epsilon_end
+        
+        @torch.no_grad()
+        def epsilon_greedy(self, obs):
+            if np.random.rand() < self.epsilon:
+                action = np.random.choice(self.n_actions)
+            else:
+                action = self.greedy(obs)
+            return action
+        
+        @torch.no_grad()
+        def greedy(self, obs):
+            obs = torch.tensor(obs, device=self.device, dtype=torch.float32).unsqueeze(dim=0)
+            return self.online_network(obs).argmax().item()
+        
+        def store_memory(self, obs, action, reward, next_obs, done):
+            self.memory_buffer.add_experience(obs, action, reward, next_obs, done)
+        
+        def batch_memory(self):
+            obs, action, reward, next_obs, done = self.memory_buffer.draw_samples()
+            
+            obs = torch.tensor(obs, dtype=torch.float32).to(self.device)
+            action = torch.tensor(action, dtype=torch.int64).to(self.device)
+            reward = torch.tensor(reward, dtype=torch.float32).to(self.device)
+            next_obs = torch.tensor(next_obs, dtype=torch.float32).to(self.device)
+            done = torch.tensor(done, dtype=torch.float32).to(self.device)
+                    
+            return obs, action, reward, next_obs, done
+            
+        def learn(self):
+            if len(self.memory_buffer) < self.warmup:
+                return
+            
+            self.optimizer.zero_grad()
+            obs, action, reward, next_obs, done = self.batch_memory()
+            
+            with torch.no_grad():
+                target = reward + self.gamma * self.target_network(next_obs).max(dim=1, keepdim=True)[0] * (1 - done)
+
+            
+            online = self.online_network(obs).gather(dim=1, index=action)
+                    
+            td_error = target - online
+            loss = td_error.pow(2).mul(0.5).mean()
+            loss.backward()
+            self.optimizer.step()
+            
+            self.adjust_epsilon()
+            
+        def update_target_network(self):
+            self.target_network = deepcopy(self.online_network)
+
+
+Main Training Loop
+==================
+
+.. code:: python
+
+    # parameters
+    env_name = 'BreakoutNoFrameskip-v4'
+
+    EPISODES = 100000
+    BATCH_SIZE = 32
+    MEMORY_SIZE = 100000
+    UPDATE_FREQUENCY = 10000
+    WARMUP = 1000
+    ALPHA = 0.00025
+    EPSILON_START = 1
+    EPSILON_END = 0.1
+    EPSILON_STEPS = 100000
+    GAMMA = 0.99
+
+    # training loop
+    def main():
+        env = create_atari_env(env_name)
+        agent = Agent(
+            env.observation_space.shape,
+            env.action_space.n,
+            BATCH_SIZE,
+            MEMORY_SIZE,
+            UPDATE_FREQUENCY,
+            WARMUP,
+            ALPHA,
+            EPSILON_START,
+            EPSILON_STEPS,
+            EPSILON_END,
+            GAMMA
+        )
+        counter = 1
+        for episode in range(EPISODES):
+            obs = env.reset()
+            done = False
+            
+            reward_sum = 0
+            while not done:
+                counter+=1
+                action = agent.epsilon_greedy(obs)
+                next_obs, reward, done, info = env.step(action)
+                agent.store_memory(obs, action, reward, next_obs, done)
+                obs = next_obs
+                agent.learn()
+                
+                if counter % UPDATE_FREQUENCY == 0:
+                    print("Updating")
+                    agent.update_target_network()
+                    
+                reward_sum += reward
+            
+            print(f'Episode: {episode}, Counter: {counter}, Epsilon: {agent.epsilon}, Reward: {reward_sum}')

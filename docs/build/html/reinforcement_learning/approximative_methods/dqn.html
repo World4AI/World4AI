@@ -287,6 +287,26 @@
    Atari Wrappers
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experience-replay">
+   Experience Replay
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#action-value-function">
+   Action-Value Function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#agent">
+   Agent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-training-loop">
+   Main Training Loop
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -497,6 +517,224 @@
     <span class="n">env</span> <span class="o">=</span> <span class="n">ClipRewardEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
     <span class="n">env</span> <span class="o">=</span> <span class="n">FrameStack</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">env</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="experience-replay">
+<h2>Experience Replay<a class="headerlink" href="#experience-replay" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MemoryBuffer</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_shape</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_len</span> <span class="o">=</span> <span class="n">max_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="o">*</span><span class="n">obs_shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="o">*</span><span class="n">obs_shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_len</span>
+
+    <span class="k">def</span> <span class="nf">add_experience</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">obs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">action</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">reward</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_obs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_obs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">done</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_len</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">draw_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+        <span class="n">next_obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_obs</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="action-value-function">
+<h2>Action-Value Function<a class="headerlink" href="#action-value-function" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="agent">
+<h2>Agent<a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">obs_shape</span><span class="p">,</span>
+                <span class="n">n_actions</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">memory_size</span><span class="p">,</span>
+                <span class="n">update_frequency</span><span class="p">,</span>
+                <span class="n">warmup</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="p">,</span>
+                <span class="n">epsilon_start</span><span class="p">,</span>
+                <span class="n">epsilon_steps</span><span class="p">,</span>
+                <span class="n">epsilon_end</span><span class="p">,</span>
+                <span class="n">gamma</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_actions</span> <span class="o">=</span> <span class="n">n_actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span> <span class="o">=</span> <span class="n">MemoryBuffer</span><span class="p">(</span><span class="n">obs_shape</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">online_network</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="n">n_actions</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon_start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span> <span class="o">=</span> <span class="n">epsilon_end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span> <span class="o">=</span> <span class="p">(</span><span class="n">epsilon_start</span> <span class="o">-</span> <span class="n">epsilon_end</span><span class="p">)</span> <span class="o">/</span> <span class="n">epsilon_steps</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup</span> <span class="o">=</span> <span class="n">warmup</span>
+
+
+    <span class="k">def</span> <span class="nf">adjust_epsilon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span>
+
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">epsilon_greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_actions</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+    <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">):</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">store_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span><span class="o">.</span><span class="n">add_experience</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">batch_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span><span class="o">.</span><span class="n">draw_samples</span><span class="p">()</span>
+
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">next_obs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">next_obs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span>
+
+    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">warmup</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_memory</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">reward</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span><span class="p">(</span><span class="n">next_obs</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">done</span><span class="p">)</span>
+
+
+        <span class="n">online</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="n">td_error</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">online</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">td_error</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjust_epsilon</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">update_target_network</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="main-training-loop">
+<h2>Main Training Loop<a class="headerlink" href="#main-training-loop" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">env_name</span> <span class="o">=</span> <span class="s1">&#39;BreakoutNoFrameskip-v4&#39;</span>
+
+<span class="n">EPISODES</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">MEMORY_SIZE</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">UPDATE_FREQUENCY</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">WARMUP</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.00025</span>
+<span class="n">EPSILON_START</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">EPSILON_END</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">EPSILON_STEPS</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span>
+
+<span class="c1"># training loop</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">create_atari_env</span><span class="p">(</span><span class="n">env_name</span><span class="p">)</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+        <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">BATCH_SIZE</span><span class="p">,</span>
+        <span class="n">MEMORY_SIZE</span><span class="p">,</span>
+        <span class="n">UPDATE_FREQUENCY</span><span class="p">,</span>
+        <span class="n">WARMUP</span><span class="p">,</span>
+        <span class="n">ALPHA</span><span class="p">,</span>
+        <span class="n">EPSILON_START</span><span class="p">,</span>
+        <span class="n">EPSILON_STEPS</span><span class="p">,</span>
+        <span class="n">EPSILON_END</span><span class="p">,</span>
+        <span class="n">GAMMA</span>
+    <span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPISODES</span><span class="p">):</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">reward_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">epsilon_greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+            <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">agent</span><span class="o">.</span><span class="n">store_memory</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+            <span class="n">agent</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="n">UPDATE_FREQUENCY</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating&quot;</span><span class="p">)</span>
+                <span class="n">agent</span><span class="o">.</span><span class="n">update_target_network</span><span class="p">()</span>
+
+            <span class="n">reward_sum</span> <span class="o">+=</span> <span class="n">reward</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s1">, Counter: </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s1">, Epsilon: </span><span class="si">{</span><span class="n">agent</span><span class="o">.</span><span class="n">epsilon</span><span class="si">}</span><span class="s1">, Reward: </span><span class="si">{</span><span class="n">reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
