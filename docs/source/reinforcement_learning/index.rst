@@ -50,13 +50,21 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Value-Based Approximation
+   :caption: Approximative Reinforcement Learning
 
-   value_based_approximation/introduction
-   value_based_approximation/online_td_learning
-   value_based_approximation/dqn
-   value_based_approximation/double_dqn
-   value_based_approximation/duelling_dqn
+   approximative_reinforcement_learning/introduction
+   approximative_reinforcement_learning/on_policy_approximation
+   approximative_reinforcement_learning/off_policy_approximation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Modern Value-Based Approximation
+
+   modern_value_based_approximation/introduction
+   modern_value_based_approximation/nfq
+   modern_value_based_approximation/dqn
+   modern_value_based_approximation/double_dqn
+   modern_value_based_approximation/duelling_dqn
 
 .. toctree::
    :maxdepth: 2
