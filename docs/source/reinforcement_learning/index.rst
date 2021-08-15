@@ -53,8 +53,7 @@ In this introduction I will go over the possible applications, the key concepts 
    :caption: Approximative Reinforcement Learning
 
    approximative_reinforcement_learning/introduction
-   approximative_reinforcement_learning/on_policy_approximation
-   approximative_reinforcement_learning/off_policy_approximation
+   approximative_reinforcement_learning/approximation_with_oracle
 
 .. toctree::
    :maxdepth: 2
