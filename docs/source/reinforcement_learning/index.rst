@@ -21,6 +21,7 @@ In this introduction I will go over the possible applications, the key concepts 
    :maxdepth: 2
    :caption: Markov Decision Process
 
+   markov_decision_process/introduction
    markov_decision_process/definition_markov_decision_process
    markov_decision_process/to_solve_mdp
 
