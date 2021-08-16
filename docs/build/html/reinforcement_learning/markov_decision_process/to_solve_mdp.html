@@ -384,13 +384,11 @@
 <p class="admonition-title">Note</p>
 <p><strong>Episodic Tasks</strong>:</p>
 <p>In episodic tasks the return is the sum of rewards in a single episode starting from time step <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> and going up to the terminal time step <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/>.</p>
-<div class="math">
-<p><img src="../../_images/math/9ac5c92385dd4e87cb218b3d82123cecabc16811.svg" alt="G_t = R_{t+1} + R_{t+2} + … + R_T,"/></p>
-</div><p><strong>Continuing Tasks</strong>:</p>
+<p><img class="math" src="../../_images/math/3dca8a943374d3fd1a31ca868ca9244009662952.svg" alt="G_t = R_{t+1} + R_{t+2} + … + R_T"/></p>
+<p><strong>Continuing Tasks</strong>:</p>
 <p>In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity, <img class="math" src="../../_images/math/3cc526b72c8187aa8469062697490fd8aff88799.svg" alt="T = \infty"/>.</p>
-<div class="math">
-<p><img src="../../_images/math/9ef7f228741369f942ec8bb0612a5417e0e2b7a9.svg" alt="G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}"/></p>
-</div></div>
+<p><img class="math" src="../../_images/math/092b11737003a7c9f4383d0c3fd518a082f7eadf.svg" alt="G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}"/></p>
+</div>
 <p>In order to simplify notation I will introduce the notion of a return <img class="math" src="../../_images/math/7674515a21e3ea004ba30a13c5d826d6a407810d.svg" alt="G"/>. A return is simply the sum of rewards starting from some time <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/> and going either to some terminal state <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/> or to infinity. The letter <img class="math" src="../../_images/math/7674515a21e3ea004ba30a13c5d826d6a407810d.svg" alt="G"/> stands for “Goal”, because the goal of the environment is encoded in the rewards.</p>
 <div class="figure align-center" id="id1">
 <img alt="../../_images/frozen_lake_return.svg" src="../../_images/frozen_lake_return.svg" /><p class="caption"><span class="caption-text">Frozen Lake Return.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>

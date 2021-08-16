@@ -628,8 +628,8 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Episodic tasks are tasks that have a natural ending.</p>
-<p>Continuing tasks are tasks that do not have a natural ending and may theoretically go on forever.</p>
+<p><strong>Episodic</strong> tasks are tasks that have a natural ending. The last state in an episodic task is called a <em>terminal state</em>. The letter <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/> is used to mark the final time step.</p>
+<p><strong>Continuing</strong> tasks are tasks that do not have a natural ending and may theoretically go on forever.</p>
 </div>
 <p>Mathematically speaking if you are dealing with episodic tasks, like the Frozen Lake environment,  then the discount factors are not strictly required. For continuing tasks a discount factor is required. The reason for that is the need for the agent to maximize the expected sum of future rewards. If the task is continuing then the sum of rewards might become infinite and the agent can not deal with that. If the value of gamma is between 0 and 1 then the sum becomes finite.</p>
 <p>Usually the value of gamma is between 0.9 and 0.99.</p>

@@ -9,19 +9,18 @@ Return
 ======
 
 .. note::
+
    **Episodic Tasks**:
 
    In episodic tasks the return is the sum of rewards in a single episode starting from time step :math:`t` and going up to the terminal time step :math:`T`.
    
-   .. math::
-      G_t = R_{t+1} + R_{t+2} + … + R_T, 
-  
+   :math:`G_t = R_{t+1} + R_{t+2} + … + R_T`
+   
    **Continuing Tasks**:
 
    In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity, :math:`T = \infty`.
    
-   .. math::
-      G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}
+   :math:`G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}`
 
 
 In order to simplify notation I will introduce the notion of a return :math:`G`. A return is simply the sum of rewards starting from some time :math:`t` and going either to some terminal state :math:`T` or to infinity. The letter :math:`G` stands for “Goal”, because the goal of the environment is encoded in the rewards. 

@@ -249,9 +249,9 @@ The value of rewards from the perspective of the agent at time step :math:`t` is
 * The value of a reward received at timestep :math:`t+3` is :math:`\gamma^2 * R_{t+3}`
 
 .. note::
-   Episodic tasks are tasks that have a natural ending.
+   **Episodic** tasks are tasks that have a natural ending. The last state in an episodic task is called a *terminal state*. The letter :math:`T` is used to mark the final time step. 
    
-   Continuing tasks are tasks that do not have a natural ending and may theoretically go on forever. 
+   **Continuing** tasks are tasks that do not have a natural ending and may theoretically go on forever. 
 
 Mathematically speaking if you are dealing with episodic tasks, like the Frozen Lake environment,  then the discount factors are not strictly required. For continuing tasks a discount factor is required. The reason for that is the need for the agent to maximize the expected sum of future rewards. If the task is continuing then the sum of rewards might become infinite and the agent can not deal with that. If the value of gamma is between 0 and 1 then the sum becomes finite. 
 
