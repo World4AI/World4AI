@@ -8,7 +8,7 @@ MDP as Sequential Interaction
 =============================
 
 .. note::
-   A Markov Decision Process (MPD) is a formal description of a sequential decision problem with uncertainty.
+   A Markov decision process (MPD) is a formal description of a sequential decision problem with uncertainty.
 
 In essence an MDP allows us to formalize the interaction loop between the agent and the environment, where the actions of the agent influence future states/rewards and the agent might have to decide to forego the current reward to get higher rewards in the future. The common assumption in reinforcement learning is the existence of an MDP at the core of each environment.
 
@@ -59,7 +59,7 @@ Markov Chain
 .. note::
    A Markov chain is a stochastic process that has the Markov property. 
     
-   Markov Property: :math:`Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]` 
+   Markov property: :math:`Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]` 
     
    The Markov property, or memorylessness, means that the next state only depends on the current state and not the states before that. 
     
@@ -102,7 +102,7 @@ The Markov chain is a stochastic process. The sequence of states develops random
 MDP
 ---
 
-A Markov chain can be extended to a Markov Decision Process with the introduction of rewards and actions. While in the case of a Markov chain the states evolve without any possibility of an influence on the environment, in the case of an MDP the agent has “agency” over his actions and gets rewards for his behaviour.
+A Markov chain can be extended to a Markov decision process with the introduction of rewards and actions. While in the case of a Markov chain the states evolve without any possibility of an influence on the environment, in the case of an MDP the agent has “agency” over his actions and gets rewards for his behaviour.
 
 .. figure:: ../../_static/images/reinforcement_learning/math/mdp_definition/markov_decision_process.svg
    :align: center
