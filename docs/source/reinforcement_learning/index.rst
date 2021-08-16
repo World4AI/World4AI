@@ -19,10 +19,10 @@ In this introduction I will go over the possible applications, the key concepts 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Mathematics of Reinforcement Learning
+   :caption: Markov Decision Process
 
-   math/definition_markov_decision_process
-   math/to_solve_mdp
+   markov_decision_process/definition_markov_decision_process
+   markov_decision_process/to_solve_mdp
 
 .. toctree::
    :maxdepth: 2
