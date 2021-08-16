@@ -211,20 +211,37 @@ Value Functions
 ===============
 
 .. note::
-   State-Value Function:
+   *State-Value Function:* :math:`v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]`
 
-   .. math::
-      v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]
-
-   Action-Value Function:
-
-   .. math::
-      q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]
+   *Action-Value Function:* :math:`q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]`
       
 
 Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs. 
 
 The state-value function expresses the expected return when following a particular policy :math:`\pi` given the state :math:`s`. The action-value function expresses the expected return given the state :math:`s` while taking the action :math:`a` in the current step and following the policy :math:`\pi` afterwards.  
+
+To make the definitions clear we are going to use the example from below and calculate the value-functions for the policy as it is indicated by the arrows. 
+
+.. figure:: ../../_static/images/reinforcement_learning/math/mdp_solution/frozen_lake_policy.svg
+   :align: center
+
+   Frozen Lake Policy.
+
+The numbers in the cells in the image below show the state-values for the corresponding state when the agent follows the given policy. The left top corner contains the number 0.04. This means that if the agent follows this policy the expected sum of discounted rewards is 0.04. The discount factor that was used in the calculation is 0.99. Some of the numbers are noteworthy. For example the values in terminal states are 0. This is due to the fact that after the terminal state the agent can not expect any additional rewards. Furthermore it seems that generally speaking in the Frozen Lake environment the expected return is larger the closer the agent is to the terminal state in the bottom right corner.
+
+.. figure:: ../../_static/images/reinforcement_learning/math/mdp_solution/frozen_lake_state_value.svg
+   :align: center
+
+   Frozen Lake State-Value Function.
+
+The numbers in the image below show the action-values for the policy given above. For example in the top left corner in state 0 if the agent goes north and then follows the policy from the above image then the expected sum of rewards is 0.03. 
+
+.. figure:: ../../_static/images/reinforcement_learning/math/mdp_solution/frozen_lake_action_value.svg
+   :align: center
+
+   Frozen Lake Action-Value Function.
+
+The green arrows indicate the current policy. The red arrows indicate actions that have higher action-values than the current policy. Generally speaking there are a lot of states where it would be more advantageous for the agent to choose a different direction. We will see in future chapters that the action-value function will play a major role in finding a policy that is better than the current policy. 
 
 
 Bellman Equations
@@ -258,6 +275,18 @@ By using the properties of returns :math:`G_t` where each return can be expresse
 
 Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work. 
 
+
+For example if we want to calculate the value of the state 0 in the top left corner then we need the values from the 0, 1 and 4 states. It might seem slightly strange that you need to have the value of state 0 to calculate the value of state 0, but this is absolutely legal with the Bellman equation.  The reward for landing at state 0, 1 and 4 is 0. If the agent wants to move to state 1 (as indicated by the policy) there is 33.3% chance to move in that direction, 33.3% chance to stay in state 0 and 33.3% chance to move to state 4.
+
+.. figure:: ../../_static/images/reinforcement_learning/math/mdp_solution/frozen_lake_bellman.svg
+   :align: center
+
+   Frozen Lake Bellman Equation.
+
+If we insert the values in the Bellman equation for the state-value function, we get the result of 0.0395. The result is not exactly 0.04, but this is due to rounding errors and the fact that the algorithms we are going to use will allow for some (very small) errors. 
+
+>>> 1/3 * (0 + 0.99 * 0.04)  + 1/3 * (0 + 0.99 * 0.02) + 1/3 * (0 + 0.99 * 0.06)
+0.039599999999999996
 
 Optimality
 ==========

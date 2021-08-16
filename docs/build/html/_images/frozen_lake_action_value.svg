@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="marker3973" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3962" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3952" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3942" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9370" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9360" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9350" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9340" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8770" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8760" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8750" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8740" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8202" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8192" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8182" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8172" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7666" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7656" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7646" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-opacity=".99608" fill-rule="evenodd" stroke="#0a0" stroke-opacity=".99608" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7636" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7102" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7092" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7082" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-opacity=".99608" fill-rule="evenodd" stroke="#0a0" stroke-opacity=".99608" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7072" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6630" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6620" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6610" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-opacity=".99608" fill-rule="evenodd" stroke="#0a0" stroke-opacity=".99608" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6600" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6190" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#00a900" fill-rule="evenodd" stroke="#00a900" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6180" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6170" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker6160" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5782" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5772" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5762" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5752" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5406" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5396" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5386" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5376" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5062" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5052" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5042" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker5032" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4750" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4740" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4730" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4720" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4470" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4460" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2929" fill-opacity=".75294" fill-rule="evenodd" stroke="#ff2929" stroke-opacity=".75294" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4450" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4440" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4222" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4212" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4202" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4192" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4006" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3996" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3986" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker3976" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2628" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#ff2a2a" fill-rule="evenodd" stroke="#ff2a2a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2448" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2276" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="TriangleOutL" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="#0a0" fill-rule="evenodd" stroke="#0a0" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g fill="none" stroke="#000">
+  <path d="m0.499 0.499h499v499h-499z" stroke-width=".998"/>
+  <g stroke-width="1px">
+   <path d="m125.5 0v500"/>
+   <path d="m250.5 0v500"/>
+   <path d="m375.5 0v500"/>
+   <path d="m0 125.5h500"/>
+   <path d="m0 250.5h500"/>
+   <path d="m0 375.5h500"/>
+  </g>
+ </g>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <circle cx="60" cy="60" r="42" fill="#fd5" stroke-width="1.0016"/>
+  <path d="m485.92 480h-93.146l46.573-80.693z" fill="#f59" stroke-width="1.0016"/>
+  <g fill="#acf">
+   <rect x="137" y="137" width="100" height="100"/>
+   <g stroke-width="1.0016">
+    <rect x="388" y="136" width="100" height="100"/>
+    <rect x="388" y="263" width="100" height="100"/>
+    <rect x="13" y="387" width="100" height="100"/>
+   </g>
+  </g>
+ </g>
+ <g fill="none" stroke-width="1.0016">
+  <path d="m60 60h50" marker-end="url(#TriangleOutL)" stroke="#0a0"/>
+  <path d="m60 60v-50" marker-end="url(#marker2276)" stroke="#000"/>
+  <path d="m60 60v50" marker-end="url(#marker2448)" stroke="#000"/>
+  <path d="m60 60h-50" marker-end="url(#marker2628)" stroke="#ff2a2a"/>
+ </g>
+ <g font-family="Roboto" font-size="22.161px">
+  <text x="3.7115023" y="81.141808" style="line-height:1.25" xml:space="preserve"><tspan x="3.7115023" y="81.141808">0.05</tspan></text>
+  <text x="63.575447" y="121.95814" style="line-height:1.25" xml:space="preserve"><tspan x="63.575447" y="121.95814">0.04</tspan></text>
+  <text x="82.623062" y="55.971748" style="line-height:1.25" xml:space="preserve"><tspan x="82.623062" y="55.971748">0.04</tspan></text>
+  <text x="3.7115004" y="21.958143" style="line-height:1.25" xml:space="preserve"><tspan x="3.7115004" y="21.958143">0.03</tspan></text>
+ </g>
+ <g fill="none" stroke-width="1.0016">
+  <g>
+   <path d="m190 60h50" marker-end="url(#marker4006)" stroke="#0a0"/>
+   <path d="m190 60v-50" marker-end="url(#marker3996)" stroke="#ff2a2a"/>
+   <path d="m190 60v50" marker-end="url(#marker3986)" stroke="#000"/>
+   <path d="m190 60h-50" marker-end="url(#marker3976)" stroke="#000"/>
+   <path d="m310 60h50" marker-end="url(#marker4222)" stroke="#ff2a2a"/>
+   <path d="m310 60v-50" marker-end="url(#marker4212)" stroke="#000"/>
+   <path d="m310 60v50" marker-end="url(#marker4202)" stroke="#0a0"/>
+   <path d="m310 60h-50" marker-end="url(#marker4192)" stroke="#ff2a2a"/>
+   <path d="m440 60h50" marker-end="url(#marker4470)" stroke="#000"/>
+  </g>
+  <path d="m440 60v-50" marker-end="url(#marker4460)" stroke="#ff2929" stroke-opacity=".75294"/>
+  <g>
+   <path d="m440 60v50" marker-end="url(#marker4450)" stroke="#000"/>
+   <path d="m440 60h-50" marker-end="url(#marker4440)" stroke="#0a0"/>
+   <path d="m60 190h50" marker-end="url(#marker4750)" stroke="#000"/>
+   <path d="m60 190v-50" marker-end="url(#marker4740)" stroke="#000"/>
+   <path d="m60 190v50" marker-end="url(#marker4730)" stroke="#0a0"/>
+   <path d="m60 190h-50" marker-end="url(#marker4720)" stroke="#ff2a2a"/>
+   <path d="m60 310h50" marker-end="url(#marker5062)" stroke="#0a0"/>
+   <path d="m60 310v-50" marker-end="url(#marker5052)" stroke="#ff2a2a"/>
+  </g>
+  <g stroke="#000">
+   <path d="m60 310v50" marker-end="url(#marker5042)"/>
+   <path d="m60 310h-50" marker-end="url(#marker5032)"/>
+   <path d="m60 440h50" marker-end="url(#marker5406)"/>
+   <path d="m60 440v-50" marker-end="url(#marker5396)"/>
+   <path d="m60 440v50" marker-end="url(#marker5386)"/>
+   <path d="m60 440h-50" marker-end="url(#marker5376)"/>
+  </g>
+  <path d="m190 440h50" marker-end="url(#marker5782)" stroke="#0a0"/>
+  <g stroke="#000">
+   <path d="m190 440v-50" marker-end="url(#marker5772)"/>
+   <path d="m190 440v50" marker-end="url(#marker5762)"/>
+   <path d="m190 440h-50" marker-end="url(#marker5752)"/>
+  </g>
+  <g>
+   <path d="m310 440h50" marker-end="url(#marker6190)" stroke="#00a900"/>
+   <path d="m310 440v-50" marker-end="url(#marker6180)" stroke="#000"/>
+   <path d="m310 440v50" marker-end="url(#marker6170)" stroke="#ff2a2a"/>
+  </g>
+  <g stroke="#000">
+   <path d="m310 440h-50" marker-end="url(#marker6160)"/>
+   <path d="m310 310h50" marker-end="url(#marker6630)"/>
+   <path d="m310 310v-50" marker-end="url(#marker6620)"/>
+  </g>
+  <path d="m310 310v50" marker-end="url(#marker6610)" stroke="#0a0" stroke-opacity=".99608"/>
+  <g>
+   <path d="m310 310h-50" marker-end="url(#marker6600)" stroke="#ff2a2a"/>
+   <path d="m190 310h50" marker-end="url(#marker7102)" stroke="#000"/>
+   <path d="m190 310v-50" marker-end="url(#marker7092)" stroke="#000"/>
+  </g>
+  <path d="m190 310v50" marker-end="url(#marker7082)" stroke="#0a0" stroke-opacity=".99608"/>
+  <g>
+   <path d="m190 310h-50" marker-end="url(#marker7072)" stroke="#000"/>
+   <path d="m310 190h50" marker-end="url(#marker7666)" stroke="#ff2a2a"/>
+   <path d="m310 190v-50" marker-end="url(#marker7656)" stroke="#000"/>
+  </g>
+  <path d="m310 190v50" marker-end="url(#marker7646)" stroke="#0a0" stroke-opacity=".99608"/>
+  <path d="m310 190h-50" marker-end="url(#marker7636)" stroke="#ff2a2a"/>
+  <g stroke="#000">
+   <path d="m190 190h50" marker-end="url(#marker8202)"/>
+   <path d="m190 190v-50" marker-end="url(#marker8192)"/>
+   <path d="m190 190v50" marker-end="url(#marker8182)"/>
+   <path d="m190 190h-50" marker-end="url(#marker8172)"/>
+   <path d="m440 190h50" marker-end="url(#marker8770)"/>
+   <path d="m440 190v-50" marker-end="url(#marker8760)"/>
+   <path d="m440 190v50" marker-end="url(#marker8750)"/>
+   <path d="m440 190h-50" marker-end="url(#marker8740)"/>
+   <path d="m440 310h50" marker-end="url(#marker9370)"/>
+   <path d="m440 310v-50" marker-end="url(#marker9360)"/>
+   <path d="m440 310v50" marker-end="url(#marker9350)"/>
+   <path d="m440 310h-50" marker-end="url(#marker9340)"/>
+   <path d="m440 440h50" marker-end="url(#marker3973)"/>
+   <path d="m440 440v-50" marker-end="url(#marker3962)"/>
+   <path d="m440 440v50" marker-end="url(#marker3952)"/>
+   <path d="m440 440h-50" marker-end="url(#marker3942)"/>
+  </g>
+ </g>
+ <g font-family="Roboto" font-size="22.161px">
+  <text x="132.9632" y="81.141808" style="line-height:1.25" xml:space="preserve"><tspan x="132.9632" y="81.141808">0.02</tspan></text>
+  <text x="135.6843" y="21.958143" style="line-height:1.25" xml:space="preserve"><tspan x="135.6843" y="21.958143">0.04</tspan></text>
+  <text x="201.67068" y="51.209843" style="line-height:1.25" xml:space="preserve"><tspan x="201.67068" y="51.209843">0.02</tspan></text>
+  <text x="200.31013" y="114.47515" style="line-height:1.25" xml:space="preserve"><tspan x="200.31013" y="114.47515">0.03</tspan></text>
+  <text x="256.09247" y="21.958143" style="line-height:1.25" xml:space="preserve"><tspan x="256.09247" y="21.958143">0.03</tspan></text>
+  <text x="256.09247" y="83.182632" style="line-height:1.25" xml:space="preserve"><tspan x="256.09247" y="83.182632">0.06</tspan></text>
+  <text x="329.56186" y="50.529572" style="line-height:1.25" xml:space="preserve"><tspan x="329.56186" y="50.529572">0.06</tspan></text>
+  <text x="319.35779" y="119.91733" style="line-height:1.25" xml:space="preserve"><tspan x="319.35779" y="119.91733">0.05</tspan></text>
+  <text x="383.30334" y="83.182625" style="line-height:1.25" xml:space="preserve"><tspan x="383.30334" y="83.182625">0.02</tspan></text>
+  <text x="445.88837" y="117.19623" style="line-height:1.25" xml:space="preserve"><tspan x="445.88837" y="117.19623">0.02</tspan></text>
+  <text x="452.0108" y="53.250648" style="line-height:1.25" xml:space="preserve"><tspan x="452.0108" y="53.250648">0.02</tspan></text>
+  <text x="391.46658" y="21.958132" style="line-height:1.25" xml:space="preserve"><tspan x="391.46658" y="21.958132">0.03</tspan></text>
+  <text x="5.7523189" y="211.75406" style="line-height:1.25" xml:space="preserve"><tspan x="5.7523189" y="211.75406">0.07</tspan></text>
+  <text x="75.820343" y="243.04657" style="line-height:1.25" xml:space="preserve"><tspan x="75.820343" y="243.04657">0.06</tspan></text>
+  <text x="77.180885" y="181.82208" style="line-height:1.25" xml:space="preserve"><tspan x="77.180885" y="181.82208">0.05</tspan></text>
+  <text x="11.874763" y="149.84929" style="line-height:1.25" xml:space="preserve"><tspan x="11.874763" y="149.84929">0.03</tspan></text>
+  <text x="139.76591" y="212.43433" style="line-height:1.25" xml:space="preserve"><tspan x="139.76591" y="212.43433">0.00</tspan></text>
+  <text x="196.2285" y="186.58398" style="line-height:1.25" xml:space="preserve"><tspan x="196.2285" y="186.58398">0.00</tspan></text>
+  <text x="192.82715" y="234.20303" style="line-height:1.25" xml:space="preserve"><tspan x="192.82715" y="234.20303">0.00</tspan></text>
+  <text x="140.44618" y="154.61121" style="line-height:1.25" xml:space="preserve"><tspan x="140.44618" y="154.61121">0.00</tspan></text>
+  <text x="392.14685" y="152.57039" style="line-height:1.25" xml:space="preserve"><tspan x="392.14685" y="152.57039">0.00</tspan></text>
+  <text x="446.56863" y="183.8629" style="line-height:1.25" xml:space="preserve"><tspan x="446.56863" y="183.8629">0.00</tspan></text>
+  <text x="388.74551" y="213.79488" style="line-height:1.25" xml:space="preserve"><tspan x="388.74551" y="213.79488">0.00</tspan></text>
+  <text x="445.88837" y="230.80168" style="line-height:1.25" xml:space="preserve"><tspan x="445.88837" y="230.80168">0.00</tspan></text>
+  <text x="15.276114" y="406.99216" style="line-height:1.25" xml:space="preserve"><tspan x="15.276114" y="406.99216">0.00</tspan></text>
+  <text x="13.235298" y="460.73364" style="line-height:1.25" xml:space="preserve"><tspan x="13.235298" y="460.73364">0.00</tspan></text>
+  <text x="69.017609" y="433.52277" style="line-height:1.25" xml:space="preserve"><tspan x="69.017609" y="433.52277">0.00</tspan></text>
+  <text x="67.657066" y="480.46155" style="line-height:1.25" xml:space="preserve"><tspan x="67.657066" y="480.46155">0.00</tspan></text>
+  <text x="389.42578" y="396.78809" style="line-height:1.25" xml:space="preserve"><tspan x="389.42578" y="396.78809">0.00</tspan></text>
+  <text x="455.41217" y="497.46835" style="line-height:1.25" xml:space="preserve"><tspan x="455.41217" y="497.46835">0.00</tspan></text>
+  <text x="456.09244" y="430.12143" style="line-height:1.25" xml:space="preserve"><tspan x="456.09244" y="430.12143">0.00</tspan></text>
+  <text x="376.50061" y="462.77451" style="line-height:1.25" xml:space="preserve"><tspan x="376.50061" y="462.77451">0.00</tspan></text>
+  <text x="390.10605" y="334.88333" style="line-height:1.25" xml:space="preserve"><tspan x="390.10605" y="334.88333">0.00</tspan></text>
+  <text x="445.88837" y="356.65204" style="line-height:1.25" xml:space="preserve"><tspan x="445.88837" y="356.65204">0.00</tspan></text>
+  <text x="445.88837" y="306.99219" style="line-height:1.25" xml:space="preserve"><tspan x="445.88837" y="306.99219">0.00</tspan></text>
+  <text x="394.18768" y="285.22348" style="line-height:1.25" xml:space="preserve"><tspan x="394.18768" y="285.22348">0.00</tspan></text>
+  <text x="258.81354" y="213.79488" style="line-height:1.25" xml:space="preserve"><tspan x="258.81354" y="213.79488">0.12</tspan></text>
+  <text x="320.71829" y="244.40712" style="line-height:1.25" xml:space="preserve"><tspan x="320.71829" y="244.40712">0.10</tspan></text>
+  <text x="332.9632" y="183.8629" style="line-height:1.25" xml:space="preserve"><tspan x="332.9632" y="183.8629">0.12</tspan></text>
+  <text x="256.09244" y="147.1282" style="line-height:1.25" xml:space="preserve"><tspan x="256.09244" y="147.1282">0.02</tspan></text>
+  <text x="5.0720468" y="334.8833" style="line-height:1.25" xml:space="preserve"><tspan x="5.0720468" y="334.8833">0.06</tspan></text>
+  <text x="67.657082" y="369.57718" style="line-height:1.25" xml:space="preserve"><tspan x="67.657082" y="369.57718">0.14</tspan></text>
+  <text x="79.22171" y="302.23026" style="line-height:1.25" xml:space="preserve"><tspan x="79.22171" y="302.23026">0.12</tspan></text>
+  <text x="9.1536827" y="273.65881" style="line-height:1.25" xml:space="preserve"><tspan x="9.1536827" y="273.65881">0.16</tspan></text>
+  <text x="132.28293" y="335.56357" style="line-height:1.25" xml:space="preserve"><tspan x="132.28293" y="335.56357">0.19</tspan></text>
+  <text x="202.35095" y="364.81528" style="line-height:1.25" xml:space="preserve"><tspan x="202.35095" y="364.81528">0.3</tspan></text>
+  <text x="204.39177" y="303.59079" style="line-height:1.25" xml:space="preserve"><tspan x="204.39177" y="303.59079">0.26</tspan></text>
+  <text x="137.7251" y="271.61801" style="line-height:1.25" xml:space="preserve"><tspan x="137.7251" y="271.61801">0.14</tspan></text>
+  <text x="255.41217" y="337.6044" style="line-height:1.25" xml:space="preserve"><tspan x="255.41217" y="337.6044">0.35</tspan></text>
+  <text x="320.03802" y="368.21664" style="line-height:1.25" xml:space="preserve"><tspan x="320.03802" y="368.21664">0.31</tspan></text>
+  <text x="330.2421" y="303.59079" style="line-height:1.25" xml:space="preserve"><tspan x="330.2421" y="303.59079">0.25</tspan></text>
+  <text x="257.45297" y="275.01935" style="line-height:1.25" xml:space="preserve"><tspan x="257.45297" y="275.01935">0.13</tspan></text>
+  <text x="134.32375" y="464.81528" style="line-height:1.25" xml:space="preserve"><tspan x="134.32375" y="464.81528">0.25</tspan></text>
+  <text x="200.31013" y="492.70642" style="line-height:1.25" xml:space="preserve"><tspan x="200.31013" y="492.70642">0.37</tspan></text>
+  <text x="205.07204" y="432.1622" style="line-height:1.25" xml:space="preserve"><tspan x="205.07204" y="432.1622">0.47</tspan></text>
+  <text x="137.7251" y="401.54996" style="line-height:1.25" xml:space="preserve"><tspan x="137.7251" y="401.54996">0.31</tspan></text>
+  <text x="254.73192" y="463.45474" style="line-height:1.25" xml:space="preserve"><tspan x="254.73192" y="463.45474">0.47</tspan></text>
+  <text x="322.07886" y="492.70645" style="line-height:1.25" xml:space="preserve"><tspan x="322.07886" y="492.70645">0.70</tspan></text>
+  <text x="331.60266" y="432.16223" style="line-height:1.25" xml:space="preserve"><tspan x="331.60266" y="432.16223">0.65</tspan></text>
+  <text x="262.2149" y="402.91052" style="line-height:1.25" xml:space="preserve"><tspan x="262.2149" y="402.91052">0.6</tspan></text>
+ </g>
+</svg>

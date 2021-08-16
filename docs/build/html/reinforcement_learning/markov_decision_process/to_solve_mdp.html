@@ -572,15 +572,24 @@ G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
 <h2>Value Functions<a class="headerlink" href="#value-functions" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>State-Value Function:</p>
-<div class="math">
-<p><img src="../../_images/math/c82c7940fbc849f77b56bc41bfbbee17016d14a5.svg" alt="v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]"/></p>
-</div><p>Action-Value Function:</p>
-<div class="math">
-<p><img src="../../_images/math/6c9da184a6810d05a18a273efcd0611f3d7ce21d.svg" alt="q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]"/></p>
-</div></div>
+<p><em>State-Value Function:</em> <img class="math" src="../../_images/math/d7ac52f3990f07809397f192f6cc45a41731f99d.svg" alt="v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]"/></p>
+<p><em>Action-Value Function:</em> <img class="math" src="../../_images/math/88cfe0c044daee0af6423189b00a4757fd1d5730.svg" alt="q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]"/></p>
+</div>
 <p>Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs.</p>
 <p>The state-value function expresses the expected return when following a particular policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> given the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/>. The action-value function expresses the expected return given the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> while taking the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> in the current step and following the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> afterwards.</p>
+<p>To make the definitions clear we are going to use the example from below and calculate the value-functions for the policy as it is indicated by the arrows.</p>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/frozen_lake_policy.svg" src="../../_images/frozen_lake_policy.svg" /><p class="caption"><span class="caption-text">Frozen Lake Policy.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>The numbers in the cells in the image below show the state-values for the corresponding state when the agent follows the given policy. The left top corner contains the number 0.04. This means that if the agent follows this policy the expected sum of discounted rewards is 0.04. The discount factor that was used in the calculation is 0.99. Some of the numbers are noteworthy. For example the values in terminal states are 0. This is due to the fact that after the terminal state the agent can not expect any additional rewards. Furthermore it seems that generally speaking in the Frozen Lake environment the expected return is larger the closer the agent is to the terminal state in the bottom right corner.</p>
+<div class="figure align-center" id="id5">
+<img alt="../../_images/frozen_lake_state_value.svg" src="../../_images/frozen_lake_state_value.svg" /><p class="caption"><span class="caption-text">Frozen Lake State-Value Function.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>The numbers in the image below show the action-values for the policy given above. For example in the top left corner in state 0 if the agent goes north and then follows the policy from the above image then the expected sum of rewards is 0.03.</p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/frozen_lake_action_value.svg" src="../../_images/frozen_lake_action_value.svg" /><p class="caption"><span class="caption-text">Frozen Lake Action-Value Function.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>The green arrows indicate the current policy. The red arrows indicate actions that have higher action-values than the current policy. Generally speaking there are a lot of states where it would be more advantageous for the agent to choose a different direction. We will see in future chapters that the action-value function will play a major role in finding a policy that is better than the current policy.</p>
 </div>
 <div class="section" id="bellman-equations">
 <h2>Bellman Equations<a class="headerlink" href="#bellman-equations" title="Permalink to this headline">¶</a></h2>
@@ -603,6 +612,15 @@ q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
 \end{align*}"/></p>
 </div></div>
 <p>Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work.</p>
+<p>For example if we want to calculate the value of the state 0 in the top left corner then we need the values from the 0, 1 and 4 states. It might seem slightly strange that you need to have the value of state 0 to calculate the value of state 0, but this is absolutely legal with the Bellman equation.  The reward for landing at state 0, 1 and 4 is 0. If the agent wants to move to state 1 (as indicated by the policy) there is 33.3% chance to move in that direction, 33.3% chance to stay in state 0 and 33.3% chance to move to state 4.</p>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/frozen_lake_bellman.svg" src="../../_images/frozen_lake_bellman.svg" /><p class="caption"><span class="caption-text">Frozen Lake Bellman Equation.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>If we insert the values in the Bellman equation for the state-value function, we get the result of 0.0395. The result is not exactly 0.04, but this is due to rounding errors and the fact that the algorithms we are going to use will allow for some (very small) errors.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="mf">0.99</span> <span class="o">*</span> <span class="mf">0.04</span><span class="p">)</span>  <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="mf">0.99</span> <span class="o">*</span> <span class="mf">0.02</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="mf">0.99</span> <span class="o">*</span> <span class="mf">0.06</span><span class="p">)</span>
+<span class="go">0.039599999999999996</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="optimality">
 <h2>Optimality<a class="headerlink" href="#optimality" title="Permalink to this headline">¶</a></h2>
