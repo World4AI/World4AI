@@ -405,16 +405,16 @@ G_0 &amp; = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
 <div class="math">
 <p><img src="../../_images/math/435bef738adcdc6bc8326e0d9ef8a22e2d74c6e7.svg" alt="G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}"/></p>
 </div></div>
-<p>To avoid an infinite return, future rewards (in continuing tasks) are discounted by <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/>. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return <img class="math" src="../../_images/math/fc1028873348e8cbf12e886652684ff245017ebe.svg" alt="G_0"/> looks as follows when we assume a gamma <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> of <em>0.9</em>.</p>
+<p>To avoid an infinite return (in continuing tasks), future rewards  are discounted by <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/>. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return <img class="math" src="../../_images/math/fc1028873348e8cbf12e886652684ff245017ebe.svg" alt="G_0"/> looks as follows when we assume a gamma <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> of <em>0.9</em>.</p>
 <div class="math">
 <p><img src="../../_images/math/27ae44cfb4a638058b883477186d567155082128.svg" alt="\begin{align*}
 G_0 &amp; = R_1 + 0.9R_2 + 0.9^2 R_3 + 0.9^3 R_4 + 0.9^4 R_5 + 0.9^5 R_6 + 0.9^6 R_7 + 0.9^7 R_8 \\
 &amp; = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0.48 = 0.48
 \end{align*}"/></p>
-</div><p>In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route means getting a higher return, as the time value of a reward reduces the farther away it is in the future. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible.</p>
+</div><p>In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route corresponds to a higher expected return, as the time value of a reward is reduced the farther away it is from the current time step <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/>. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent to maximize the expected return <img class="math" src="../../_images/math/92f197498d79ecf351250c0b5d929e1d82cdf600.svg" alt="\mathbb{E}(G_t)"/>.</p>
+<p>The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent is to maximize the expected return <img class="math" src="../../_images/math/92f197498d79ecf351250c0b5d929e1d82cdf600.svg" alt="\mathbb{E}(G_t)"/>.</p>
 </div>
 <p>To solve an MDP means for the agent to maximize the expected return.</p>
 <div class="admonition note">

@@ -49,7 +49,7 @@ In order to calculate the full return of an episode we have to play through the 
  
 
 
-To avoid an infinite return, future rewards (in continuing tasks) are discounted by :math:`\gamma`. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return :math:`G_0` looks as follows when we assume a gamma :math:`\gamma` of *0.9*.
+To avoid an infinite return (in continuing tasks), future rewards  are discounted by :math:`\gamma`. Episodic tasks use discounting to emphasize the time value of rewards. Looking at the same example from above the return :math:`G_0` looks as follows when we assume a gamma :math:`\gamma` of *0.9*.
 
 .. math::
    :nowrap:
@@ -59,11 +59,11 @@ To avoid an infinite return, future rewards (in continuing tasks) are discounted
    & = 0 + 0 + 0 + 0 + 0 + 0 + 0 + 0.48 = 0.48 
    \end{align*}
 
-In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route means getting a higher return, as the time value of a reward reduces the farther away it is in the future. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible. 
+In the example without discounting the return would always be 1 as long as the agent reaches the goal state. That means that it is generally not important how many steps the agent takes. This is not the case with discounting. Taking the shorter route corresponds to a higher expected return, as the time value of a reward is reduced the farther away it is from the current time step :math:`t`. That essentially means that in the above example discounting generally encourages the agent to take as few steps as possible. 
 
 
 .. note::
-   The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent to maximize the expected return :math:`\mathbb{E}(G_t)`.
+   The goal of the agent is to maximize the expected (discounted) sum of rewards. In other words the goal of the agent is to maximize the expected return :math:`\mathbb{E}(G_t)`.
 
 To solve an MDP means for the agent to maximize the expected return.
 
