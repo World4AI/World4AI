@@ -98,18 +98,14 @@ Policy
 ======
 
 .. note::
-   .. math::
-      \pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]
 
-   A policy :math:`\pi` is a mapping from a state :math:`s` to a probability of an action :math:`a`. 
+   A policy can be defined in several ways.
 
-   For a deterministic policy :math:`\pi{(a \mid s) = 1}` for for the selected action and :math:`\pi{(a \mid s) = 0}` for the rest of the actions. Therefore in deterministic environments a policy is often interpreted as a direct mapping from states to actions.
+   If a policy is *deterministic* then it is usually the case that we define policy as a mapping from state :math:`s` to action :math:`a`. In that case the notation that we use for policy is :math:`\mu(s)`. To generate an action :math:`A_t` at timestep :math:`t` we input the state :math:`S_t` into the policy function:  :math:`A_t = \mu(S_t)`.
 
-   :math:`\pi{(. \mid S_t)}` is the distribution of actions given states.
+   If a policy is *stochastic* then we define policy as a mapping from a state :math:`s` to a probability of an action :math:`a` and the mathematical notation is :math:`\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]`. The “probability” notation can also be used in a deterministic case. For a deterministic policy :math:`\pi{(a \mid s) = 1}` for for the selected action and :math:`\pi{(a \mid s) = 0}` for the rest of the actions. 
 
-   :math:`A_t \sim \pi{(. \mid S_t)}` 
-   
-   Actions are draws from a policy distribution, where in a deterministic case the same action is always drawn given the same state. 
+   To generate an action we consider :math:`\pi{(. \mid S_t)}` to be the distribution of actions given states. Actions are draws from a policy distribution :math:`A_t \sim \pi{(. \mid S_t)}`, where in a deterministic case the same action is always drawn given the same state. 
 
 The policy of an agent determines the behaviour of the agent expressed in terms of actions based on the current state of the environment.  
 
