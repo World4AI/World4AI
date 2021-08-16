@@ -642,6 +642,10 @@
 <li><p>At <img class="math" src="../../_images/math/97c7d044e3dfc6c0ebadc1f7fb544084e0de3a35.svg" alt="t+51"/>: the discount factor is <img class="math" src="../../_images/math/460b9493a5ca6582be4771cd80b9950287c4a631.svg" alt="\gamma^{50} = 0.005"/></p></li>
 </ul>
 <p>The discount factor keeps approaching 0, which makes the value of rewards in the far future almost 0. That prevents an infinite sum of rewards.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Gamma <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> is defined as a part of an MDP, but in practice it is treated as a hyperparameter of the agent. Theoretically gamma should be obvious from the environment. In practice there is no clear indiciation regarding how large <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> should be. Tweaking the value might produce better results, because gamma can have an impact on how fast the algorithm converges and how stable the learning process is.</p>
+</div>
 </div>
 </div>
 </div>

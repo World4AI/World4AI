@@ -267,3 +267,6 @@ Let’s assume a gamma with a value of 0.9.
 
 The discount factor keeps approaching 0, which makes the value of rewards in the far future almost 0. That prevents an infinite sum of rewards. 
    
+.. important::
+
+   Gamma :math:`\gamma` is defined as a part of an MDP, but in practice it is treated as a hyperparameter of the agent. Theoretically gamma should be obvious from the environment. In practice there is no clear indiciation regarding how large :math:`\gamma` should be. Tweaking the value might produce better results, because gamma can have an impact on how fast the algorithm converges and how stable the learning process is.

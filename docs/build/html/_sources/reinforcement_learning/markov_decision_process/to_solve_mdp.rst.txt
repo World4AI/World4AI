@@ -105,7 +105,7 @@ Policy
 
    If a policy is *stochastic* then we define policy as a mapping from a state :math:`s` to a probability of an action :math:`a` and the mathematical notation is :math:`\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]`. The “probability” notation can also be used in a deterministic case. For a deterministic policy :math:`\pi{(a \mid s) = 1}` for for the selected action and :math:`\pi{(a \mid s) = 0}` for the rest of the actions. 
 
-   To generate an action we consider :math:`\pi{(. \mid S_t)}` as the distribution of actions given states. Actions are draws from a policy distribution :math:`A_t \sim \pi{(. \mid S_t)}`, where in a deterministic case the same action is always drawn given the same state. 
+   To generate an action we consider :math:`\pi{(. \mid S_t)}` to be the distribution of actions given states. Actions are draws from a policy distribution :math:`A_t \sim \pi{(. \mid S_t)}`, where in a deterministic case the same action is always drawn given the same state. 
 
 The policy of an agent determines the behaviour of the agent expressed in terms of actions based on the current state of the environment.  
 
