@@ -2,10 +2,35 @@
 Policy Iteration
 ================
 
-The policy iteration algorithm is an iterative method. Iterative methods start with initial (usually random or 0) values as approximations and improve the subsequent approximations with each iteration using the previous approximations as input. The policy iteration algorithm consists of two steps. The policy evaluation step calculates the value function for a given policy. The policy improvement step improves the given policy. Both steps run after each other to form the policy iteration algorithm. 
+The policy iteration algorithm is an iterative method. Iterative methods start with initial (usually random or 0) values as approximations and improve the subsequent approximations with each iteration using the previous approximations as input. 
+
+.. figure:: ../../_static/images/reinforcement_learning/dynamic_programming/policy_iteration/iterative_algorithm.svg
+   :align: center
+
+   Iterative Algorithm.
+
+The above image shows the general idea of an iterative algorithm. The blue box in the top left corner is the initial value. To arrive at the value for the next box, the value of the previous box is used as input. Each of the boxes gets closer and closer to the desired value, as indicated by the yellow box at the bottom right corner.
+
+The policy iteration algorithm consists of two steps. 
+
+* The policy evaluation step calculates the value function for a given policy. 
+* The policy improvement step improves the given policy based on the calculated value function. 
+
+Both steps run after each other to form the policy iteration algorithm. 
+
+.. figure:: ../../_static/images/reinforcement_learning/dynamic_programming/policy_iteration/evaluation_improvement.svg
+   :align: center
+
+   Policy Iteration.
+
+The algorithm starts with the definition of an arbitrary policy (blue box in the top left corner). The policy can be random or it can be defined by the user. In both cases the algorithm will find an optimal policy, yet the closer the starting policy is to the optimal policy, the faster policy iteration will converge. For the given policy a policy evaluation step is applied, meaning that we find the value function (first red box) for that policy. Policy evaluation requires many steps to find the correct value function for a policy, as indicated by a wiggly line. The policy improvement step takes the calculated value function to improve the previous policy. Unlike policy evaluation, policy improvement takes only one step, as indicated by a direct line. Each policy evaluation and policy improvement step gets closer to the optimal policy/value function as indicated by the growing yellow box. 
+
 
 Policy Evaluation
 =================
+
+Theory
+------
 
 The goal of policy evaluation is to find the true value function :math:`v_{\pi}` of the policy :math:`\pi`. 
 
@@ -19,19 +44,38 @@ The goal of policy evaluation is to find the true value function :math:`v_{\pi}`
     & = \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]
     \end{align*}
 
-The algorithm uses the mathematical definition of the value function and turns it into an iterative algorithm.
+When we have a deterministic policy the expression is slightly easier.
+
+.. math::
+
+    v_{\pi}(s) \doteq \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma v_{\pi}(s')]
+
+
+When we start the policy evaluation algorithm, the first step is to create a lookup table for the value of each state. The initial values are set either randomly or to zero (terminal states should be set to 0). When we start to use the above equation we will not surprisingly discover that the random/zero lookup table (the left side of the above equation) and the expected value of the reward plus value for the next state (the right side of the above equation) will diverge quite a lot. The goal of the policy evaluation algorithm is to make the left side of the equation and the right side of the equation be exactly equal. That is done in an iterative process where at each step the difference between both sides is reduced. In practice we do not expect the difference between the two to go all the way down to zero. Instead we define a threshold value. For example a threshold value of 0.0001 indicates that we can interrupt the iterative process as soon as for all of the states the difference between the left and the right side of the equation is below the value. 
+
+How exactly does the iterative process work? The policy evaluation algorithm uses the mathematical definition of the value function and turns it into an iterative algorithm.
 
 .. math::
     v_{k+1}(s) \doteq \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{k}(s')]
 
 
-At each iteration the approximate value for each state is calculated using the old value from in the Bellman equation. The old value is then substituted by the new value. At this point it should become apparent why the Bellman equation is useful. Only the reward from the next time step is required to improve the approximation, as all subsequent rewards are already condensed into the value function from the next time step. That allows the algorithm to use the model to look only one step into the future for the reward and use the approximated value function for the next time step. By repeating the update step over and over again the rewards are getting embedded into the value function and the approximation gets better and better. It can be shown mathematically that if the update step is repeated an unlimited number of times, the approximate value function approaches the true value function of the policy. In practice the improvement is done as long as the value function between two iterations is large enough. 
+At each iteration step :math:`k+1` the left side of the equation is updated by using the state values from the previous iteration and the model of the MDP. At this point it should become apparent why the Bellman equation is useful. Only the reward from the next time step is required to improve the approximation, because all subsequent rewards are already condensed into the value function from the next time step. That allows the algorithm to use the model to look only one step into the future for the reward and use the approximated value function for the next time step. By repeating the update step over and over again the rewards are getting embedded into the value function and the approximation gets better and better. It can be shown mathematically that if the update step is repeated an unlimited number of times, the approximate value function approaches the true value function of the policy. In practice the improvement is done as long as the value function between two iterations is large enough. 
+
+.. figure:: ../../_static/images/reinforcement_learning/dynamic_programming/policy_iteration/policy_evaluation.svg
+   :align: center
+
+   Policy Evaluation.
+
+The above image shows the interdependencies between the values at different states. The large arrows indicate the policy for which we want to calculate the value function. The smaller blue arrows show from what states the rewards and values are needed to calculate the update of the value function. For example in the top left corner (the initial state) the agent deterministically chooses the action to move right. There is a chance to stay in the same state, to move right or to move bottom with 33.3% probability. Consequently the rewards and values of those states are required for the update. If you look carefully you can detect different paths that lead all the way from the bottom right corner (the goal state) to the top left corner. These are the paths that propagate the reward of 1 to the starting state. 
+
+Algorithm
+---------
 
 .. math::
     :nowrap:
 
     \begin{algorithm}[H]
-        \caption{Iterative Policy Evaluation}
+        \caption{Iterative Policy Evaluation (Deterministic Case)}
         \label{alg1}
     \begin{algorithmic}
         \STATE Input: policy $\mu$, model $p$, state set $\mathcal{S}$, stop criterion $\theta > 0$, discount factor $\gamma$
@@ -40,25 +84,31 @@ At each iteration the approximate value for each state is calculated using the o
             \STATE $\Delta \leftarrow 0$
             \STATE $V_{old}(s) = V(s)$ for all $s \in \mathcal{S}$
             \FORALL{$s \in \mathcal{S}$}
-                \STATE $V(s) \leftarrow \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]$
+                \STATE $V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma V_{old}(s')]$
                 \STATE $\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)$
             \ENDFOR
         \UNTIL{$\Delta < \theta$}
+        \STATE Output: value function $V(s)$
     \end{algorithmic}
     \end{algorithm}
 
 
-In order to calculate the value function the algorithm needs 4 inputs.
+In order to calculate the value function the algorithm needs 5 inputs.
 
-* The deterministic policy :math:`mu` is a function that gets a state as an input and generates an action as an output. We are not going to deal with stochastic agents yet, therefore :math:`\pi(a \mid s) = 1` in the update step. :math:`a = \mu (s)` 
-* The model p will take the current state and action as input and return the next state, the next reward, the terminal flag and the corresponding probability. :math:`probability, next state, reward, terminal = p(s, a)` 
+* The deterministic policy :math:`\mu` is a function that gets a state :math:`s` as an input and generates an action :math:`a` as an output. We are not going to deal with stochastic agents yet, therefore :math:`\pi(a \mid s) = 1` in the update step. :math:`a = \mu (s)` 
+* The model p will take the current state and action as input and return the next state, the reward, the terminal flag and the corresponding probability. :math:`probability, next\_state, reward, is\_terminal = p(s, a)` 
 * :math:`\mathcal{S}` is the state set of the MDP
 * Theta :math:`\theta`  is the criterion to stop the algorithm once the difference between the old value function :math:`V_{old}` and new value function :math:`V` is less than :math:`\theta`
 * Gamma :math:`\gamma` is the discount factor for the update step in the Bellman equation
 
-We are going to keep two versions of the value function, :math:`V_{old}` and :math:`V`. During an update iteration we move through the states one at a time and it is more intuitive in my opinion to update all the states with old values before updating the value function as a whole. If we used only one value function we would update some of the states with the already updated values and some with old values. Both versions of updates are valid, but the “inplace” version is not going to be used in this chapter. 
+We are going to keep two versions of the value function, :math:`V_{old}` and :math:`V`. During an update iteration we move through the states one at a time. In my opinion it is more intuitive to update all the states with old values before updating the value function as a whole. If we used only one value function we would update some of the states with the already updated values and some with old values. Both versions of updates are valid, but the “inplace” version is not going to be used in this chapter. 
 
-The imports consist only of Gym and NumPy. Gym for the MDP and NumPy to make calculations more efficient. 
+At each time step we loop through all states and adjust :math:`V(s)` for that particular state :math:`s` using the Bellman equation. Once the difference between :math:`V_{old}(s)` and :math:`V(s)` for all :math:`s \in S` is smaller than :math:`\theta` we leave the loop and return the value function.
+
+Implementation
+--------------
+
+The imports consist only of OpenAI Gym and NumPy. Gym for the MDP and NumPy to make calculations more efficient. 
 
 .. code:: python
 
@@ -72,7 +122,7 @@ We are going to calculate the value function for the Frozen Lake environment, bu
     env = gym.make('FrozenLake-v0')
 
 
-The policy function contains internally a mapping table that maps states to actions deterministically. 
+The policy function contains internally a mapping table that maps states to actions deterministically. This policy corresponds to the policy discussed above and in previous lectures. 
 
 .. code:: python
 
@@ -110,6 +160,7 @@ The model returns the list of possible next states, rewards and corresponding pr
     def model(state, action):
         return env.P[state][action]
 
+The state set :math:`\mathcal{S}` and action set is :math:`\mathcal{A}` are implemented as lists.
 
 .. code::
 

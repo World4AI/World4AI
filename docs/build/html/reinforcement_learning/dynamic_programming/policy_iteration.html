@@ -323,6 +323,23 @@
   <a class="reference internal nav-link" href="#policy-evaluation">
    Policy Evaluation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theory">
+     Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation">
+     Implementation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#policy-improvement">
@@ -357,9 +374,25 @@
                 
   <div class="section" id="policy-iteration">
 <h1>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">¶</a></h1>
-<p>The policy iteration algorithm is an iterative method. Iterative methods start with initial (usually random or 0) values as approximations and improve the subsequent approximations with each iteration using the previous approximations as input. The policy iteration algorithm consists of two steps. The policy evaluation step calculates the value function for a given policy. The policy improvement step improves the given policy. Both steps run after each other to form the policy iteration algorithm.</p>
+<p>The policy iteration algorithm is an iterative method. Iterative methods start with initial (usually random or 0) values as approximations and improve the subsequent approximations with each iteration using the previous approximations as input.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/iterative_algorithm.svg" src="../../_images/iterative_algorithm.svg" /><p class="caption"><span class="caption-text">Iterative Algorithm.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above image shows the general idea of an iterative algorithm. The blue box in the top left corner is the initial value. To arrive at the value for the next box, the value of the previous box is used as input. Each of the boxes gets closer and closer to the desired value, as indicated by the yellow box at the bottom right corner.</p>
+<p>The policy iteration algorithm consists of two steps.</p>
+<ul class="simple">
+<li><p>The policy evaluation step calculates the value function for a given policy.</p></li>
+<li><p>The policy improvement step improves the given policy based on the calculated value function.</p></li>
+</ul>
+<p>Both steps run after each other to form the policy iteration algorithm.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/evaluation_improvement.svg" src="../../_images/evaluation_improvement.svg" /><p class="caption"><span class="caption-text">Policy Iteration.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The algorithm starts with the definition of an arbitrary policy (blue box in the top left corner). The policy can be random or it can be defined by the user. In both cases the algorithm will find an optimal policy, yet the closer the starting policy is to the optimal policy, the faster policy iteration will converge. For the given policy a policy evaluation step is applied, meaning that we find the value function (first red box) for that policy. Policy evaluation requires many steps to find the correct value function for a policy, as indicated by a wiggly line. The policy improvement step takes the calculated value function to improve the previous policy. Unlike policy evaluation, policy improvement takes only one step, as indicated by a direct line. Each policy evaluation and policy improvement step gets closer to the optimal policy/value function as indicated by the growing yellow box.</p>
 <div class="section" id="policy-evaluation">
 <h2>Policy Evaluation<a class="headerlink" href="#policy-evaluation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="theory">
+<h3>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h3>
 <p>The goal of policy evaluation is to find the true value function <img class="math" src="../../_images/math/fca07cf65356d5ea39189ade564697a31977f3be.svg" alt="v_{\pi}"/> of the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>.</p>
 <div class="math">
 <p><img src="../../_images/math/12697051e8f3cf7c447d156cf7afb5d51d6c9411.svg" alt="\begin{align*}
@@ -368,13 +401,24 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 &amp; = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s] \\
 &amp; = \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]
 \end{align*}"/></p>
-</div><p>The algorithm uses the mathematical definition of the value function and turns it into an iterative algorithm.</p>
+</div><p>When we have a deterministic policy the expression is slightly easier.</p>
+<div class="math">
+<p><img src="../../_images/math/97a2485bf7c6c4668c0d22c8d2fe9870c745e732.svg" alt="v_{\pi}(s) \doteq \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma v_{\pi}(s')]"/></p>
+</div><p>When we start the policy evaluation algorithm, the first step is to create a lookup table for the value of each state. The initial values are set either randomly or to zero (terminal states should be set to 0). When we start to use the above equation we will not surprisingly discover that the random/zero lookup table (the left side of the above equation) and the expected value of the reward plus value for the next state (the right side of the above equation) will diverge quite a lot. The goal of the policy evaluation algorithm is to make the left side of the equation and the right side of the equation be exactly equal. That is done in an iterative process where at each step the difference between both sides is reduced. In practice we do not expect the difference between the two to go all the way down to zero. Instead we define a threshold value. For example a threshold value of 0.0001 indicates that we can interrupt the iterative process as soon as for all of the states the difference between the left and the right side of the equation is below the value.</p>
+<p>How exactly does the iterative process work? The policy evaluation algorithm uses the mathematical definition of the value function and turns it into an iterative algorithm.</p>
 <div class="math">
 <p><img src="../../_images/math/4fc81de30f52390b61469c94ad75583f7ea9e15c.svg" alt="v_{k+1}(s) \doteq \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{k}(s')]"/></p>
-</div><p>At each iteration the approximate value for each state is calculated using the old value from in the Bellman equation. The old value is then substituted by the new value. At this point it should become apparent why the Bellman equation is useful. Only the reward from the next time step is required to improve the approximation, as all subsequent rewards are already condensed into the value function from the next time step. That allows the algorithm to use the model to look only one step into the future for the reward and use the approximated value function for the next time step. By repeating the update step over and over again the rewards are getting embedded into the value function and the approximation gets better and better. It can be shown mathematically that if the update step is repeated an unlimited number of times, the approximate value function approaches the true value function of the policy. In practice the improvement is done as long as the value function between two iterations is large enough.</p>
+</div><p>At each iteration step <img class="math" src="../../_images/math/133a254ed54e4805d831f1886d0f4e4041e27ca4.svg" alt="k+1"/> the left side of the equation is updated by using the state values from the previous iteration and the model of the MDP. At this point it should become apparent why the Bellman equation is useful. Only the reward from the next time step is required to improve the approximation, because all subsequent rewards are already condensed into the value function from the next time step. That allows the algorithm to use the model to look only one step into the future for the reward and use the approximated value function for the next time step. By repeating the update step over and over again the rewards are getting embedded into the value function and the approximation gets better and better. It can be shown mathematically that if the update step is repeated an unlimited number of times, the approximate value function approaches the true value function of the policy. In practice the improvement is done as long as the value function between two iterations is large enough.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/policy_evaluation.svg" src="../../_images/policy_evaluation.svg" /><p class="caption"><span class="caption-text">Policy Evaluation.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above image shows the interdependencies between the values at different states. The large arrows indicate the policy for which we want to calculate the value function. The smaller blue arrows show from what states the rewards and values are needed to calculate the update of the value function. For example in the top left corner (the initial state) the agent deterministically chooses the action to move right. There is a chance to stay in the same state, to move right or to move bottom with 33.3% probability. Consequently the rewards and values of those states are required for the update. If you look carefully you can detect different paths that lead all the way from the bottom right corner (the goal state) to the top left corner. These are the paths that propagate the reward of 1 to the starting state.</p>
+</div>
+<div class="section" id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h3>
 <div class="math">
-<p><img src="../../_images/math/c77022ffe1bd73c06ce3478479b920110f3fe913.svg" alt="\begin{algorithm}[H]
-    \caption{Iterative Policy Evaluation}
+<p><img src="../../_images/math/98934f0695669a4a36b301583a5ace72fa61e690.svg" alt="\begin{algorithm}[H]
+    \caption{Iterative Policy Evaluation (Deterministic Case)}
     \label{alg1}
 \begin{algorithmic}
     \STATE Input: policy $\mu$, model $p$, state set $\mathcal{S}$, stop criterion $\theta &gt; 0$, discount factor $\gamma$
@@ -383,22 +427,27 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
         \STATE $\Delta \leftarrow 0$
         \STATE $V_{old}(s) = V(s)$ for all $s \in \mathcal{S}$
         \FORALL{$s \in \mathcal{S}$}
-            \STATE $V(s) \leftarrow \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]$
+            \STATE $V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma V_{old}(s')]$
             \STATE $\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)$
         \ENDFOR
     \UNTIL{$\Delta &lt; \theta$}
+    \STATE Output: value function $V(s)$
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div><p>In order to calculate the value function the algorithm needs 4 inputs.</p>
+</div><p>In order to calculate the value function the algorithm needs 5 inputs.</p>
 <ul class="simple">
-<li><p>The deterministic policy <img class="math" src="../../_images/math/809c91383d7aa79aab7471903435bc0ede29325b.svg" alt="mu"/> is a function that gets a state as an input and generates an action as an output. We are not going to deal with stochastic agents yet, therefore <img class="math" src="../../_images/math/337206c5434d221d9bada59c52ddcb07e3d471fe.svg" alt="\pi(a \mid s) = 1"/> in the update step. <img class="math" src="../../_images/math/a9447568f89c9b36e179357bd8fe22dde9e188f0.svg" alt="a = \mu (s)"/></p></li>
-<li><p>The model p will take the current state and action as input and return the next state, the next reward, the terminal flag and the corresponding probability. <img class="math" src="../../_images/math/7139c06a93da1d4d2293f797d6c6b071d3356ebf.svg" alt="probability, next state, reward, terminal = p(s, a)"/></p></li>
+<li><p>The deterministic policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> is a function that gets a state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> as an input and generates an action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> as an output. We are not going to deal with stochastic agents yet, therefore <img class="math" src="../../_images/math/337206c5434d221d9bada59c52ddcb07e3d471fe.svg" alt="\pi(a \mid s) = 1"/> in the update step. <img class="math" src="../../_images/math/a9447568f89c9b36e179357bd8fe22dde9e188f0.svg" alt="a = \mu (s)"/></p></li>
+<li><p>The model p will take the current state and action as input and return the next state, the reward, the terminal flag and the corresponding probability. <img class="math" src="../../_images/math/f8ee97f06e8e100314f491a3198fa8bd209209a8.svg" alt="probability, next\_state, reward, is\_terminal = p(s, a)"/></p></li>
 <li><p><img class="math" src="../../_images/math/3f98591dff3521c50335f61964d0bab6fb82df24.svg" alt="\mathcal{S}"/> is the state set of the MDP</p></li>
 <li><p>Theta <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>  is the criterion to stop the algorithm once the difference between the old value function <img class="math" src="../../_images/math/40aef5248c1a6b97e9ba7eca2071542ba5068d25.svg" alt="V_{old}"/> and new value function <img class="math" src="../../_images/math/caf39627574b86c3d37285b2a9154f85d78dc6d9.svg" alt="V"/> is less than <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/></p></li>
 <li><p>Gamma <img class="math" src="../../_images/math/355a306aef281c7020403b8261b86eb28463dcbc.svg" alt="\gamma"/> is the discount factor for the update step in the Bellman equation</p></li>
 </ul>
-<p>We are going to keep two versions of the value function, <img class="math" src="../../_images/math/40aef5248c1a6b97e9ba7eca2071542ba5068d25.svg" alt="V_{old}"/> and <img class="math" src="../../_images/math/caf39627574b86c3d37285b2a9154f85d78dc6d9.svg" alt="V"/>. During an update iteration we move through the states one at a time and it is more intuitive in my opinion to update all the states with old values before updating the value function as a whole. If we used only one value function we would update some of the states with the already updated values and some with old values. Both versions of updates are valid, but the “inplace” version is not going to be used in this chapter.</p>
-<p>The imports consist only of Gym and NumPy. Gym for the MDP and NumPy to make calculations more efficient.</p>
+<p>We are going to keep two versions of the value function, <img class="math" src="../../_images/math/40aef5248c1a6b97e9ba7eca2071542ba5068d25.svg" alt="V_{old}"/> and <img class="math" src="../../_images/math/caf39627574b86c3d37285b2a9154f85d78dc6d9.svg" alt="V"/>. During an update iteration we move through the states one at a time. In my opinion it is more intuitive to update all the states with old values before updating the value function as a whole. If we used only one value function we would update some of the states with the already updated values and some with old values. Both versions of updates are valid, but the “inplace” version is not going to be used in this chapter.</p>
+<p>At each time step we loop through all states and adjust <img class="math" src="../../_images/math/41fc31585b3b13e811d8deb0b700ce4e1d0f2c1e.svg" alt="V(s)"/> for that particular state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> using the Bellman equation. Once the difference between <img class="math" src="../../_images/math/bb93e9fc8859c5aa4c323bc982628aada78ba88d.svg" alt="V_{old}(s)"/> and <img class="math" src="../../_images/math/41fc31585b3b13e811d8deb0b700ce4e1d0f2c1e.svg" alt="V(s)"/> for all <img class="math" src="../../_images/math/be8524ed26a8bccab0eb3e8984c5317d38df658b.svg" alt="s \in S"/> is smaller than <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/> we leave the loop and return the value function.</p>
+</div>
+<div class="section" id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<p>The imports consist only of OpenAI Gym and NumPy. Gym for the MDP and NumPy to make calculations more efficient.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -407,7 +456,7 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;FrozenLake-v0&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The policy function contains internally a mapping table that maps states to actions deterministically.</p>
+<p>The policy function contains internally a mapping table that maps states to actions deterministically. This policy corresponds to the policy discussed above and in previous lectures.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
 <span class="c1">#     LEFT = 0</span>
 <span class="c1">#     DOWN = 1</span>
@@ -441,6 +490,7 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
     <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>The state set <img class="math" src="../../_images/math/3f98591dff3521c50335f61964d0bab6fb82df24.svg" alt="\mathcal{S}"/> and action set is <img class="math" src="../../_images/math/8d026053f0eefe613ccf100261807688868d9c3a.svg" alt="\mathcal{A}"/> are implemented as lists.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
 </pre></div>
@@ -473,6 +523,7 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">policy_evaluation</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="policy-improvement">

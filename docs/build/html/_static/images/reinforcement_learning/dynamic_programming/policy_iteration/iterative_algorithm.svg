@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.499 0.499h499v499h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016">
+  <rect x="20" y="70" width="60" height="60"/>
+  <rect x="100" y="130" width="60" height="60"/>
+  <rect x="180" y="190" width="60" height="60"/>
+  <rect x="260" y="250" width="60" height="60"/>
+  <rect x="340" y="310" width="60" height="60"/>
+  <rect x="420" y="370" width="60" height="60"/>
+ </g>
+ <g fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect x="20" y="70" width="60" height="60"/>
+  <rect x="103.85" y="133.85" width="52.304" height="52.304"/>
+  <rect x="186.73" y="196.73" width="46.531" height="46.531"/>
+  <rect x="271.06" y="261.06" width="37.873" height="37.873" stroke-width=".99999"/>
+  <rect x="360.68" y="330.68" width="18.632" height="18.632"/>
+ </g>
+ <g fill="none" stroke="#000" stroke-width="1px">
+  <path d="m80 80h10v10h10v10h10v10h10v10h10v10"/>
+  <path d="m160 140h10v10h10v10h10v10h10v10h10v10"/>
+  <path d="m240 200h10v10h10v10h10v10h10v10h10v10"/>
+  <path d="m320 260h10v10h10v10h10v10h10v10h10v10"/>
+  <path d="m400 320h10v10h10v10h10v10h10v10h10v10"/>
+ </g>
+</svg>
