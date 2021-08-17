@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <defs>
+  <marker id="DotM" overflow="visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker23844" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2591" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2305" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2171" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker2045" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1535" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1457" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1393" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1337" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1283" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker1237" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+  <marker id="TriangleOutL" overflow="visible" orient="auto">
+   <path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="#000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g fill="none" stroke="#000" stroke-width="2">
+  <path d="m0.499 0.499h499v499h-499z"/>
+  <path d="m125.5 0v500"/>
+  <path d="m250.5 0v500"/>
+  <path d="m375.5 0v500"/>
+  <path d="m0 125.5h500"/>
+  <path d="m0 250.5h500"/>
+  <path d="m0 375.5h500"/>
+  <path d="m61 60h50" marker-end="url(#TriangleOutL)"/>
+ </g>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <circle cx="60" cy="60" r="34.304" fill="#fd5" stroke-width=".81806"/>
+  <path d="m477.51 470h-79.023l39.512-68.458z" fill="#f59" stroke-width=".84972"/>
+  <rect x="36" y="410" width="54" height="54" fill="#acf" stroke-width="1.0016"/>
+ </g>
+ <g fill="none" stroke="#000" stroke-width="2">
+  <path d="m184 60h50" marker-end="url(#marker1237)"/>
+  <path d="m315 59v50" marker-end="url(#marker1283)"/>
+  <path d="m315 180v50" marker-end="url(#marker1337)"/>
+  <path d="m315 305v50" marker-end="url(#marker1393)"/>
+  <path d="m307 440h50" marker-end="url(#marker1457)"/>
+  <path d="m446 60h-50" marker-end="url(#marker1535)"/>
+  <path d="m60 180v50" marker-end="url(#marker23844)"/>
+  <path d="m60 312h50" marker-end="url(#marker2045)"/>
+  <path d="m190 303v50" marker-end="url(#marker2171)"/>
+  <path d="m182 440h50" marker-end="url(#marker2305)"/>
+ </g>
+ <g fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016">
+  <rect x="160" y="160" width="54" height="54"/>
+  <rect x="412" y="160" width="54" height="54"/>
+  <rect x="414" y="290" width="54" height="54"/>
+ </g>
+ <g fill="none" stroke="#00f" stroke-width="1px">
+  <g>
+   <path d="m190 50v-30h-110" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m60 170v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m60 60h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m60 176h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+  </g>
+  <path d="m40 290v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)" stroke-linejoin="round"/>
+  <g>
+   <path d="m80 400v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m80 230v60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m170 270h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m60 420h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m190 190h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m440 170h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m450 300h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m440 430h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m190 70h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m200 140v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m270 40h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m150 180h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m104.32 290h60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m270 290h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m170 400v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m210 450h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m210 350v60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m290 420h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m230 20h60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m400 20h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m280 150v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m220 170h60" marker-end="url(#marker2591)"/>
+   <path d="m400 150h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m290 290v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m230 320h60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m400 290h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m340 400v-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m320 450h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m300 360v60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m390 410h-60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m460 80h-50v30h40" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+   <path d="m470 150v-60" marker-end="url(#marker2591)"/>
+   <path d="m340 40h60" marker-end="url(#marker2591)" marker-start="url(#DotM)"/>
+  </g>
+ </g>
+</svg>
