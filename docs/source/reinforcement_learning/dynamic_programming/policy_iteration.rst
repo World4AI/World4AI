@@ -279,8 +279,6 @@ By creating :math:`\mu'` we create a so-called greedy policy, but acting greedil
 
 The above image shows how the action-value looks like for the policy used throughout the chapter. The green lines show the current deterministic actions based on the state. The red arrows show the new policy based on greedy action-selection.  
 
-Once the new policy and the old policy are exactly the same then we have reached the optimal policy.
-
 Implementation
 --------------
 
@@ -306,7 +304,7 @@ Solving An MDP
 
 Theory
 ------
-The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached. 
+The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached. Once the new policy and the old policy are exactly the same then we have reached the optimal policy.
 
 Algorithm
 ---------
@@ -315,7 +313,7 @@ Algorithm
     :nowrap:
 
     \begin{algorithm}[H]
-        \caption{Policy Improvement}
+        \caption{Policy Iteration (Deterministic Policy)}
         \label{alg1}
     \begin{algorithmic}
         \STATE Input: model $p$, state set $\mathcal{S}$, action set $\mathcal{A}$, stop criterion $\theta > 0$, discount factor $\gamma$
@@ -337,23 +335,30 @@ Algorithm
             \STATE policy-stable $\leftarrow$ true 
             \FORALL{$s \in \mathcal{S}$}
                 \STATE old-action $\leftarrow \mu(s)$ 
-                \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+                \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, a)[r + \gamma V(s')]$
                 \IF{old-action $\neq \mu(s)$}
                     \STATE policy-stable $\leftarrow$ false
                 \ENDIF
             \ENDFOR
         \UNTIL policy-stable
+        \STATE Output: policy function $\mu(s)$, value function $V(s)$
     \end{algorithmic}
     \end{algorithm}
 
+The policy iteration algorithm alternates between policy evaluation and policy improvement. The algorithm continuous until a stable policy is reached.
+
 Implementation
 --------------
+
+We will start with a random policy and still arrive at an optimal policy.
 
 .. code:: python
 
     def random_policy(S, A):
         policy_mapping = np.random.randint(low=0, high=len(A), size=len(S))
         return lambda x: policy_mapping[x]
+
+The below function compares if two policies are equal.
 
 .. code:: python
 
@@ -365,6 +370,8 @@ Implementation
                 break
                 
         return equal
+
+The policy iteration algorithm calls policy_evaluation and policy_improvement functions and determines if the old and the new policy are equal. Once they are the iterative process is stopped and the loop is broken.
 
 .. code:: python
 
@@ -380,4 +387,4 @@ Implementation
             
             policy = greedy_policy
             
-        return policy
+        return policy, V

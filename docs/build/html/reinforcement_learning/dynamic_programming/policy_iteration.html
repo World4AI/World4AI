@@ -610,7 +610,6 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 <img alt="../../_images/policy_improvement.svg" src="../../_images/policy_improvement.svg" /><p class="caption"><span class="caption-text">Policy Improvement With Greedy Action-Selection.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>The above image shows how the action-value looks like for the policy used throughout the chapter. The green lines show the current deterministic actions based on the state. The red arrows show the new policy based on greedy action-selection.</p>
-<p>Once the new policy and the old policy are exactly the same then we have reached the optimal policy.</p>
 </div>
 <div class="section" id="id2">
 <h3>Implementation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
@@ -635,13 +634,13 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 <h2>Solving An MDP<a class="headerlink" href="#solving-an-mdp" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
 <h3>Theory<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached.</p>
+<p>The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached. Once the new policy and the old policy are exactly the same then we have reached the optimal policy.</p>
 </div>
 <div class="section" id="id4">
 <h3>Algorithm<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="math">
-<p><img src="../../_images/math/c9ee88a5249ffa937d71fccbb4af31f5d68cd141.svg" alt="\begin{algorithm}[H]
-    \caption{Policy Improvement}
+<p><img src="../../_images/math/824eb6d4b56a2a4be08ed693a4c0049bbbd32157.svg" alt="\begin{algorithm}[H]
+    \caption{Policy Iteration (Deterministic Policy)}
     \label{alg1}
 \begin{algorithmic}
     \STATE Input: model $p$, state set $\mathcal{S}$, action set $\mathcal{A}$, stop criterion $\theta &gt; 0$, discount factor $\gamma$
@@ -663,22 +662,26 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
         \STATE policy-stable $\leftarrow$ true
         \FORALL{$s \in \mathcal{S}$}
             \STATE old-action $\leftarrow \mu(s)$
-            \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, \mu(a))[r + \gamma V_{old}(s')]$
+            \STATE $\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, a)[r + \gamma V(s')]$
             \IF{old-action $\neq \mu(s)$}
                 \STATE policy-stable $\leftarrow$ false
             \ENDIF
         \ENDFOR
     \UNTIL policy-stable
+    \STATE Output: policy function $\mu(s)$, value function $V(s)$
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div></div>
+</div><p>The policy iteration algorithm alternates between policy evaluation and policy improvement. The algorithm continuous until a stable policy is reached.</p>
+</div>
 <div class="section" id="id5">
 <h3>Implementation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>We will start with a random policy and still arrive at an optimal policy.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
     <span class="n">policy_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
     <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>The below function compares if two policies are equal.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policies_equal</span><span class="p">(</span><span class="n">policy_1</span><span class="p">,</span> <span class="n">policy_2</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
     <span class="n">equal</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
@@ -689,6 +692,7 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
     <span class="k">return</span> <span class="n">equal</span>
 </pre></div>
 </div>
+<p>The policy iteration algorithm calls policy_evaluation and policy_improvement functions and determines if the old and the new policy are equal. Once they are the iterative process is stopped and the loop is broken.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy_iteration</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
     <span class="n">policy</span> <span class="o">=</span> <span class="n">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
 
@@ -701,7 +705,7 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 
         <span class="n">policy</span> <span class="o">=</span> <span class="n">greedy_policy</span>
 
-    <span class="k">return</span> <span class="n">policy</span>
+    <span class="k">return</span> <span class="n">policy</span><span class="p">,</span> <span class="n">V</span>
 </pre></div>
 </div>
 </div>
