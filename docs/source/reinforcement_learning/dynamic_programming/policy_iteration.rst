@@ -202,6 +202,9 @@ The below code covers the actual policy evaluation algorithm.
 Policy Improvement
 ==================
 
+Theory
+------
+
 Remember what it means to solve an MDP? 
 
 .. note::
@@ -219,19 +222,17 @@ The policy evaluation step is a prerequisite to compare two policies and to dete
 
 There is a line of arguments that has to be made in order to show that the policy improvement step is a valid approach. 
 
-Let us assume that we have a policy :math:`\mu(s)` and contemplate if instead of following the policy strictly, in the current state :math:`s` just once we would like to take a different action :math:`a \neq \mu(s)`. After that action we will stick to the old policy :math:`\mu` and follow it until the terminal state :math:`T`. The state-value function of the original policy :math:`mu` is calculated using the above policy evaluation step. 
-
-Using the action :math:`a` at state :math:`s` and then following the policy :math:`\mu` is essentially the definition of the action-value function. 
+Let us assume that we have a policy :math:`\mu(s)` and contemplate if instead of following the policy strictly, in the current state :math:`s` just once we would like to take a different action :math:`a \neq \mu(s)`. After that action we will stick to the old policy :math:`\mu` and follow it until the terminal state :math:`T`. The value of using the action :math:`a` at state :math:`s` and then following the policy :math:`\mu` is essentially the definition of the action-value function, which plays a key role in the policy improvement step. 
 
 .. math:: 
     q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]
 
-What if we compare v and q and we find out that taking a and then following mu generates an advantage?
+What if we compare :math:`v(s)` and :math:`q(s, a)` and we find out that taking some action :math:`a` and then following :math:`\mu` generates an advantage?
 
 .. math::
    q_{\mu}(s, a) > v_{\mu}(s)
 
-Does that suggest that we should always take the new :math:`a` when we face the state :math:`s` and thus adjust the policy to create a new policy :math:`\mu'` or should we stick to the old policy :math:`\mu`? The policy improvement theorem suggests the former.
+Does that suggest that we should always take the action :math:`a` when we face the state :math:`s` and thus adjust the policy to create a new policy :math:`\mu'` or should we stick to the old policy :math:`\mu`? The policy improvement theorem suggests the former.
 
 .. note::
     
@@ -271,9 +272,19 @@ How can we implement the proof of the policy improvement theorem into an algorit
     
 By creating :math:`\mu'` we create a so-called greedy policy, but acting greedily means acting according to the policy improvement theorem, which guarantees an overall better policy. 
 
+.. figure:: ../../_static/images/reinforcement_learning/dynamic_programming/policy_iteration/policy_improvement.svg
+   :align: center
+
+   Policy Improvement With Greedy Action-Selection.
+
+The above image shows how the action-value looks like for the policy used throughout the chapter. The green lines show the current deterministic actions based on the state. The red arrows show the new policy based on greedy action-selection.  
 
 Once the new policy and the old policy are exactly the same then we have reached the optimal policy.
 
+Implementation
+--------------
+
+The policy improvement algorithm with greedy action selection can be constructed with one single function. 
 
 .. code:: python
 
@@ -293,7 +304,12 @@ Once the new policy and the old policy are exactly the same then we have reached
 Solving An MDP
 ==============
 
+Theory
+------
 The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached. 
+
+Algorithm
+---------
 
 .. math::
     :nowrap:
@@ -329,6 +345,9 @@ The idea of policy iteration is to alternate between policy evaluation and polic
         \UNTIL policy-stable
     \end{algorithmic}
     \end{algorithm}
+
+Implementation
+--------------
 
 .. code:: python
 

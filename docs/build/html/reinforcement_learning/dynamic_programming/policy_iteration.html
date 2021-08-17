@@ -345,11 +345,40 @@
   <a class="reference internal nav-link" href="#policy-improvement">
    Policy Improvement
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Implementation
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solving-an-mdp">
    Solving An MDP
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Implementation
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -375,8 +404,8 @@
   <div class="section" id="policy-iteration">
 <h1>Policy Iteration<a class="headerlink" href="#policy-iteration" title="Permalink to this headline">¶</a></h1>
 <p>The policy iteration algorithm is an iterative method. Iterative methods start with initial (usually random or 0) values as approximations and improve the subsequent approximations with each iteration using the previous approximations as input.</p>
-<div class="figure align-center" id="id1">
-<img alt="../../_images/iterative_algorithm.svg" src="../../_images/iterative_algorithm.svg" /><p class="caption"><span class="caption-text">Iterative Algorithm.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/iterative_algorithm.svg" src="../../_images/iterative_algorithm.svg" /><p class="caption"><span class="caption-text">Iterative Algorithm.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>The above image shows the general idea of an iterative algorithm. The blue box in the top left corner is the initial value. To arrive at the value for the next box, the value of the previous box is used as input. Each of the boxes gets closer and closer to the desired value, as indicated by the yellow box at the bottom right corner.</p>
 <p>The policy iteration algorithm consists of two steps.</p>
@@ -385,8 +414,8 @@
 <li><p>The policy improvement step improves the given policy based on the calculated value function.</p></li>
 </ul>
 <p>Both steps run after each other to form the policy iteration algorithm.</p>
-<div class="figure align-center" id="id2">
-<img alt="../../_images/evaluation_improvement.svg" src="../../_images/evaluation_improvement.svg" /><p class="caption"><span class="caption-text">Policy Iteration.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/evaluation_improvement.svg" src="../../_images/evaluation_improvement.svg" /><p class="caption"><span class="caption-text">Policy Iteration.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>The algorithm starts with the definition of an arbitrary policy (blue box in the top left corner). The policy can be random or it can be defined by the user. In both cases the algorithm will find an optimal policy, yet the closer the starting policy is to the optimal policy, the faster policy iteration will converge. For the given policy a policy evaluation step is applied, meaning that we find the value function (first red box) for that policy. Policy evaluation requires many steps to find the correct value function for a policy, as indicated by a wiggly line. The policy improvement step takes the calculated value function to improve the previous policy. Unlike policy evaluation, policy improvement takes only one step, as indicated by a direct line. Each policy evaluation and policy improvement step gets closer to the optimal policy/value function as indicated by the growing yellow box.</p>
 <div class="section" id="policy-evaluation">
@@ -409,8 +438,8 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 <div class="math">
 <p><img src="../../_images/math/4fc81de30f52390b61469c94ad75583f7ea9e15c.svg" alt="v_{k+1}(s) \doteq \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{k}(s')]"/></p>
 </div><p>At each iteration step <img class="math" src="../../_images/math/133a254ed54e4805d831f1886d0f4e4041e27ca4.svg" alt="k+1"/> the left side of the equation is updated by using the state values from the previous iteration and the model of the MDP. At this point it should become apparent why the Bellman equation is useful. Only the reward from the next time step is required to improve the approximation, because all subsequent rewards are already condensed into the value function from the next time step. That allows the algorithm to use the model to look only one step into the future for the reward and use the approximated value function for the next time step. By repeating the update step over and over again the rewards are getting embedded into the value function and the approximation gets better and better. It can be shown mathematically that if the update step is repeated an unlimited number of times, the approximate value function approaches the true value function of the policy. In practice the improvement is done as long as the value function between two iterations is large enough.</p>
-<div class="figure align-center" id="id3">
-<img alt="../../_images/policy_evaluation.svg" src="../../_images/policy_evaluation.svg" /><p class="caption"><span class="caption-text">Policy Evaluation.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="id8">
+<img alt="../../_images/policy_evaluation.svg" src="../../_images/policy_evaluation.svg" /><p class="caption"><span class="caption-text">Policy Evaluation.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>The above image shows the interdependencies between the values at different states. The large arrows indicate the policy for which we want to calculate the value function. The smaller blue arrows show from what states the rewards and values are needed to calculate the update of the value function. For example in the top left corner (the initial state) the agent deterministically chooses the action to move right. There is a chance to stay in the same state, to move right or to move bottom with 33.3% probability. Consequently the rewards and values of those states are required for the update. If you look carefully you can detect different paths that lead all the way from the bottom right corner (the goal state) to the top left corner. These are the paths that propagate the reward of 1 to the starting state.</p>
 </div>
@@ -528,6 +557,8 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 </div>
 <div class="section" id="policy-improvement">
 <h2>Policy Improvement<a class="headerlink" href="#policy-improvement" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Theory<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Remember what it means to solve an MDP?</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -540,14 +571,13 @@ v_{\pi}(s) &amp; \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
 </div>
 <p>The policy evaluation step is a prerequisite to compare two policies and to determine which is better, but an additional step, policy improvement, is required to take an existing policy and to make it better.</p>
 <p>There is a line of arguments that has to be made in order to show that the policy improvement step is a valid approach.</p>
-<p>Let us assume that we have a policy <img class="math" src="../../_images/math/cd89edb8d677e76ff2422b13ab39ad709e93db2e.svg" alt="\mu(s)"/> and contemplate if instead of following the policy strictly, in the current state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> just once we would like to take a different action <img class="math" src="../../_images/math/70b0f96cf249bacc26d34b1f5438fefccf1bde1e.svg" alt="a \neq \mu(s)"/>. After that action we will stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> and follow it until the terminal state <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/>. The state-value function of the original policy <img class="math" src="../../_images/math/809c91383d7aa79aab7471903435bc0ede29325b.svg" alt="mu"/> is calculated using the above policy evaluation step.</p>
-<p>Using the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> at state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and then following the policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> is essentially the definition of the action-value function.</p>
+<p>Let us assume that we have a policy <img class="math" src="../../_images/math/cd89edb8d677e76ff2422b13ab39ad709e93db2e.svg" alt="\mu(s)"/> and contemplate if instead of following the policy strictly, in the current state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> just once we would like to take a different action <img class="math" src="../../_images/math/70b0f96cf249bacc26d34b1f5438fefccf1bde1e.svg" alt="a \neq \mu(s)"/>. After that action we will stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> and follow it until the terminal state <img class="math" src="../../_images/math/573c03b1afb9413354760f358c959354ca9577f0.svg" alt="T"/>. The value of using the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> at state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and then following the policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> is essentially the definition of the action-value function, which plays a key role in the policy improvement step.</p>
 <div class="math">
 <p><img src="../../_images/math/e4f911298244abbb55f2c4347e5940fec44f5e45.svg" alt="q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]"/></p>
-</div><p>What if we compare v and q and we find out that taking a and then following mu generates an advantage?</p>
+</div><p>What if we compare <img class="math" src="../../_images/math/1fc2df706e9625fa32bbbfea1500a7e783745c0f.svg" alt="v(s)"/> and <img class="math" src="../../_images/math/bbfcb7390eb48572ff6fa3e9ee3aa2955fefef2b.svg" alt="q(s, a)"/> and we find out that taking some action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> and then following <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> generates an advantage?</p>
 <div class="math">
 <p><img src="../../_images/math/35bca49d28752145bc050be725dfa690dbc9b175.svg" alt="q_{\mu}(s, a) &gt; v_{\mu}(s)"/></p>
-</div><p>Does that suggest that we should always take the new <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> when we face the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and thus adjust the policy to create a new policy <img class="math" src="../../_images/math/28c5045d9588b9bfe005b156f73242676055a41b.svg" alt="\mu'"/> or should we stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/>? The policy improvement theorem suggests the former.</p>
+</div><p>Does that suggest that we should always take the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> when we face the state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> and thus adjust the policy to create a new policy <img class="math" src="../../_images/math/28c5045d9588b9bfe005b156f73242676055a41b.svg" alt="\mu'"/> or should we stick to the old policy <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/>? The policy improvement theorem suggests the former.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Policy Improvement theorem</p>
@@ -576,7 +606,15 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 <p>Greedy means acting short-sighted by maximizing the short term gain.</p>
 </div>
 <p>By creating <img class="math" src="../../_images/math/28c5045d9588b9bfe005b156f73242676055a41b.svg" alt="\mu'"/> we create a so-called greedy policy, but acting greedily means acting according to the policy improvement theorem, which guarantees an overall better policy.</p>
+<div class="figure align-center" id="id9">
+<img alt="../../_images/policy_improvement.svg" src="../../_images/policy_improvement.svg" /><p class="caption"><span class="caption-text">Policy Improvement With Greedy Action-Selection.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above image shows how the action-value looks like for the policy used throughout the chapter. The green lines show the current deterministic actions based on the state. The red arrows show the new policy based on greedy action-selection.</p>
 <p>Once the new policy and the old policy are exactly the same then we have reached the optimal policy.</p>
+</div>
+<div class="section" id="id2">
+<h3>Implementation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The policy improvement algorithm with greedy action selection can be constructed with one single function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy_improvement</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
 
     <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
@@ -592,9 +630,15 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="solving-an-mdp">
 <h2>Solving An MDP<a class="headerlink" href="#solving-an-mdp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Theory<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>The idea of policy iteration is to alternate between policy evaluation and policy improvement until the optimal policy has been reached.</p>
+</div>
+<div class="section" id="id4">
+<h3>Algorithm<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="math">
 <p><img src="../../_images/math/c9ee88a5249ffa937d71fccbb4af31f5d68cd141.svg" alt="\begin{algorithm}[H]
     \caption{Policy Improvement}
@@ -627,7 +671,10 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
     \UNTIL policy-stable
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+</div></div>
+<div class="section" id="id5">
+<h3>Implementation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_policy</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
     <span class="n">policy_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
     <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 </pre></div>
@@ -656,6 +703,7 @@ v_{\mu}(s) &amp; \leq q_{\mu}(s, \mu'(s)) \\
 
     <span class="k">return</span> <span class="n">policy</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
