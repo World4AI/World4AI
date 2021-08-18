@@ -313,9 +313,29 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algorithm">
+   Algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -337,12 +357,21 @@
                 
   <div class="section" id="value-iteration">
 <h1>Value Iteration<a class="headerlink" href="#value-iteration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/pi_evaluation_improvement.svg" src="../../_images/pi_evaluation_improvement.svg" /><p class="caption"><span class="caption-text">Policy Iteration.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <p>When we consider policy iteration again, we remember that there are two distinct steps, policy evaluation and policy improvement. The policy improvement step is a single step, where the new policy is derived by acting greedily. The policy evaluation on the other hand is a longer iterative process.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A policy evaluation algorithm that is stopped  early is called a “truncated” policy evaluation.</p>
 </div>
-<p>It turns out that it is not necessary to wait for the policy evaluation algorithm to finish. A truncated policy evaluation algorithm is sufficient to generate an optimal policy. With the value iteration algorithm the truncation happens after a single step of policy evaluation.</p>
+<p>It turns out that it is not necessary to wait for the policy evaluation algorithm to finish. A truncated policy evaluation algorithm is sufficient to generate an optimal policy. Value iteration algorithm works with only one step of policy evaluation.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/vi_evaluation_improvement.svg" src="../../_images/vi_evaluation_improvement.svg" /><p class="caption"><span class="caption-text">Value Iteration.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The image above shows that policy iteration and value iteration are related. The only difference is the policy evaluation step, which is done in policy iteration for many steps until convergence and in value iteration for just a single step.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Value Iteration is the Bellman optimality equation, transformed from equation to an update step.</p>
@@ -352,15 +381,19 @@
 v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
 &amp; = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
 \end{align*}"/></p>
-</div><p>Although the update step looks like a single step it actually combines truncated policy evaluation and policy improvement in a single step.</p>
+</div><p>In policy evaluation</p>
+<p>Although the update step looks like a single step it actually combines truncated policy evaluation and policy improvement in a single step.</p>
 <ol class="arabic simple">
 <li><p><img class="math" src="../../_images/math/cf394fbd06146b1e2ee4a1218de3eb74e85b2cb2.svg" alt="q_{k+1}(s, a) = \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]"/></p></li>
-<li><p><img class="math" src="../../_images/math/dc304bcca635949431b0c7254891141ef49641af.svg" alt="v_{k+1} = \max_a q_{k+1}(s, a)"/></p></li>
+<li><p><img class="math" src="../../_images/math/1a3c09de25b06fc0113697b67ada4ee968f39306.svg" alt="v_{k+1}(s) = \max_a q_{k+1}(s, a)"/></p></li>
 </ol>
 <p>In the first step the action-value function is calculated based on the old state-value function and the model of the MDP. In the second step a max over the action-value function is taken in order to generate the new state-value function. That implicitly generates a new policy as a value function is always calculated for a particular policy.</p>
-<p>The combination of both is the value iteration algorithm. The iterative process continues until the difference between the old and the new value function is smaller than some parameter theta. As a final step the optimal policy can be deduced using the argmax over the optimal action-value function.</p>
+<p>The combination of both is the value iteration algorithm. The iterative process continues until the difference between the old and the new state-value function is smaller than some parameter theta <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>. As a final step the optimal policy can be deduced using the argmax over the optimal action-value function.</p>
+</div>
+<div class="section" id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <div class="math">
-<p><img src="../../_images/math/fa7e2a1dcb499a2479c0c24251703aef7ebdcf25.svg" alt="\begin{algorithm}[H]
+<p><img src="../../_images/math/d4e6ec4a69321a6b7f9129d117e3768d8ee61d02.svg" alt="\begin{algorithm}[H]
     \caption{Value Iteration}
     \label{alg1}
 \begin{algorithmic}
@@ -371,16 +404,22 @@ v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_
         \STATE $\Delta \leftarrow 0$
         \STATE $V_{old}(s) = V(s)$ for all $s \in \mathcal{S}$
         \FORALL{$s \in \mathcal{S}$}
-            \STATE $Q(s, a) \leftarrow \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]$
+            \FORALL{$a \in \mathcal{A}$}
+                \STATE $Q(s, a) \leftarrow \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]$
+            \ENDFOR
             \STATE $V(s) \leftarrow \max_a Q(s, a)$
             \STATE $\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)$
         \ENDFOR
     \UNTIL{$\Delta &lt; \theta$}
-    \STATE Output: value function $V(s)$ and policy $\mu(s)$
     \STATE $\mu(s) = \arg\max_a Q(s, a)$
+    \STATE Output: value function $V(s)$ and policy $\mu(s)$
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+</div><p>The policy iteration and value iteration algorithms are similar. For example the inputs and the outputs of both algorithms are exactly the same. But value iteration is simpler due to the truncated policy evaluation step.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -389,10 +428,13 @@ v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>Unlike policy iteration, value iteration is usually not split into separate functions for evaluation and improvement. Due to the truncated evaluation step the readability can be guaranteed without the overhead of separate functions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">value_iteration</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
     <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
     <span class="n">V_old</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -418,6 +460,7 @@ v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_
             <span class="n">policy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">policy</span><span class="p">,</span> <span class="n">V</span>
 </pre></div>
+</div>
 </div>
 </div>
 

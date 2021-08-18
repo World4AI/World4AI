@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <rect x="420" y="330" width="40" height="40" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016"/>
+ <path d="m0.499 0.499h499v499h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect x="20" y="10" width="40" height="40" fill="#acf"/>
+  <rect x="70" y="50" width="40" height="40" fill="#f59"/>
+  <rect x="120" y="90" width="40" height="40" fill="#acf"/>
+ </g>
+ <path d="m90 90v20h30" fill="none" stroke="#acf" stroke-width="2"/>
+ <rect x="170" y="130" width="40" height="40" fill="#f59" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+ <rect x="220" y="170" width="40" height="40" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+ <path d="m190 170v20h30" fill="none" stroke="#acf" stroke-width="2"/>
+ <g fill-rule="evenodd" stroke="#000" stroke-linejoin="round">
+  <rect x="270" y="210" width="40" height="40" fill="#f59"/>
+  <rect x="320" y="250" width="40" height="40" fill="#acf"/>
+  <rect x="370" y="290" width="40" height="40" fill="#f59"/>
+ </g>
+ <path d="m290 250v20h30" fill="none" stroke="#acf" stroke-width="2"/>
+ <path d="m390 330v20h30" fill="none" stroke="#acf" stroke-width="2"/>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016">
+  <rect x="135" y="105" width="10" height="10"/>
+  <rect x="185" y="145" width="10" height="10"/>
+  <rect x="230" y="180" width="20" height="20"/>
+  <rect x="280" y="220" width="20" height="20"/>
+  <rect x="326" y="256" width="28" height="28"/>
+  <rect x="375" y="295" width="30" height="30"/>
+ </g>
+ <rect x="10" y="260" width="40" height="40" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+ <rect x="10" y="310" width="40" height="40" fill="#f59" fill-rule="evenodd" stroke="#000" stroke-linejoin="round"/>
+ <path d="m10 390v20h30" fill="none" stroke="#acf" stroke-width="2"/>
+ <rect x="10" y="420" width="40" height="40" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="1.0016"/>
+ <g font-family="Roboto" font-size="21.641px">
+  <text x="54.605057" y="286.80869" style="line-height:1.25" xml:space="preserve"><tspan x="54.605057" y="286.80869">Policy Function</tspan></text>
+  <text x="54.605057" y="336.80869" style="line-height:1.25" xml:space="preserve"><tspan x="54.605057" y="336.80869">Value Function</tspan></text>
+  <text x="54.605057" y="377.625" style="line-height:1.25" xml:space="preserve"><tspan x="54.605057" y="377.625">Policy Evaluation</tspan></text>
+  <text x="54.605057" y="411.63861" style="line-height:1.25" xml:space="preserve"><tspan x="54.605057" y="411.63861">Policy Improvement</tspan></text>
+  <text x="54.605057" y="448.37329" style="line-height:1.25" xml:space="preserve"><tspan x="54.605057" y="448.37329">Optimal Policy / Value</tspan></text>
+ </g>
+ <g fill="none" stroke="#f59" stroke-width="2">
+  <path d="m60 30h25v20"/>
+  <path d="m160 110h25v20"/>
+  <path d="m260 190h25v20"/>
+  <path d="m360 270h25v20"/>
+  <path d="m10 360h25v20"/>
+ </g>
+</svg>
