@@ -32,6 +32,7 @@ In this introduction I will go over the possible applications, the key concepts 
    dynamic_programming/introduction
    dynamic_programming/policy_iteration
    dynamic_programming/value_iteration
+   dynamic_programming/generalized_policy_iteration
 
 .. toctree::
    :maxdepth: 2

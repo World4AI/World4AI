@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; World4AI 0.1 documentation</title>
+    <title>Generalized Policy Iteration &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Policy Iteration" href="policy_iteration.html" />
-    <link rel="prev" title="To Solve an MDP" href="../markov_decision_process/to_solve_mdp.html" />
+    <link rel="next" title="Introduction" href="../exploration_exploitation_tradeoff/introduction.html" />
+    <link rel="prev" title="Value Iteration" href="value_iteration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -172,8 +172,8 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
    Introduction
   </a>
  </li>
@@ -187,8 +187,8 @@
    Value Iteration
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="generalized_policy_iteration.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Generalized Policy Iteration
   </a>
  </li>
@@ -340,9 +340,10 @@
               
               <div>
                 
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The algorithms that I am going to cover in this section are not those that are commonly used to solve reinforcement learning tasks. In fact there is no learning involved at all. <strong>Dynamic Programming</strong> (DP) requires the full knowledge of the model of the environment and calculates the optimal value function and policy through the knowledge of that model. The interaction between the agent and the environment is not necessary. Nevertheless Dynamic Programming is the usual introduction to the solution of finite MDPs, because the knowledge gained by studying DP algorithms is transferable to reinforcement learning.</p>
+  <div class="section" id="generalized-policy-iteration">
+<h1>Generalized Policy Iteration<a class="headerlink" href="#generalized-policy-iteration" title="Permalink to this headline">¶</a></h1>
+<p>Policy iteration and value iteration are both versions of generalized policy iteration (GPI) algorithms. Switching between policy evaluation and policy improvement is the core of GPI regardless of the implementation details of the algorithm.</p>
+<p>Many of the reinforcement learning algorithms yet to come are based on generalized policy iteration. Evaluation and improvement alternate to eventually find optimal value and policy functions.</p>
 </div>
 
 
@@ -351,8 +352,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../markov_decision_process/to_solve_mdp.html" title="previous page">To Solve an MDP</a>
-    <a class='right-next' id="next-link" href="policy_iteration.html" title="next page">Policy Iteration</a>
+    <a class='left-prev' id="prev-link" href="value_iteration.html" title="previous page">Value Iteration</a>
+    <a class='right-next' id="next-link" href="../exploration_exploitation_tradeoff/introduction.html" title="next page">Introduction</a>
 
               </div>
               
