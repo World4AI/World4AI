@@ -323,9 +323,46 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#state-representation">
+   State Representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#value-representation">
+   Value Representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-policy-iteration">
+   General Policy Iteration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-evaluation">
+     Policy Evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-improvement">
+     Policy Improvement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limitations">
+     Limitations
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -347,20 +384,53 @@
                 
   <div class="section" id="value-approximation-with-an-oracle">
 <h1>Value Approximation With An Oracle<a class="headerlink" href="#value-approximation-with-an-oracle" title="Permalink to this headline">¶</a></h1>
-<p>Just as in the tabular case of general policy iteration we need to run prediction and improvement sequentially.</p>
-<p>For prediction it is sufficient to approximate the state-value function.</p>
-<div class="math">
-<p><img src="../../_images/math/12858a62406df41677a7fb7a804c5525e8894fd0.svg" alt="\hat{v}(s, \mathbf{w}) \approx v_{\pi}(s)"/></p>
-</div><p>For improvement we will need to approximate the action-value function.</p>
-<div class="math">
-<p><img src="../../_images/math/455207cac19c2107945c5ceb301499c7990db69c.svg" alt="\hat{q}(s, a, \mathbf{w}) \approx q_{\pi}(s, a)"/></p>
-</div><p><img class="math" src="../../_images/math/129d8f9483020a3917ebfed4f6ed8bc17e7c467e.svg" alt="\hat{v}(s, \mathbf{w})"/> and <img class="math" src="../../_images/math/1d0b71b43fe2db56a1c530879e699638368ec66c.svg" alt="\hat{q}(s, a, \mathbf{w})"/> are both parameterized functions where <img class="math" src="../../_images/math/8cdbc202ab98ecf4d1d1d5fd289844cc850c67cd.svg" alt="\mathbf{w} \in \mathbb{R}^d"/> is a weight vector.  That essentially means that in order for the function to calculate the value of the state or state-action pair a vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/> (the parameters of the function) is needed for the calculation. Better policy evaluation and policy improvement involve adjusting this weight vector. The novelty is also that the same vector is used for all states (or state-action pairs). That means that adjusting the weights to make better predictions for a certain state affects the predictions of all other states. Finding a balance for different states is going to be of great concern to us. Tweaking the weights for seen states we would like our solution to be general for many other, even unforeseen states.</p>
-<p>The state representation is also different from the tabular case. In the tabular case each state was represented by a single number, which was used as an address in the lookup table.</p>
-<p>With function approximators that approach is not sustainable, as for most interesting problems the number of states is larger than the number of atoms in the observable universe. For that purpose the state is represented by a so-called feature vector. Each number in the vector gives some information about the state. The whole vector is the available representation of the state.</p>
+<div class="section" id="state-representation">
+<h2>State Representation<a class="headerlink" href="#state-representation" title="Permalink to this headline">¶</a></h2>
+<p>So far for finite MDPs each state was represented by a single number. This number was used as an address in the state-value or action-value lookup table.</p>
+<table class="colwidths-given table" id="id1">
+<caption><span class="caption-text">Value Function for finite MDP</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>State</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>3</strong></p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>In the example above to get the the state-value for state 3 for a certain policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> the agent looked at the value in the lookup table to receive the value of 3.</p>
+<p>For complex MDPs that approach is not sustainable, as for most interesting problems the number of states is larger than the number of atoms in the observable universe. Therefore a state is represented by a so-called feature vector. Each number in the vector gives some information about the state. The whole vector is the representation of the state. In many cases the representation is only partial, therefore in approximative methods we are going to use the word <em>observation</em> instead of <em>state</em> to show the possible limitations of state representations.</p>
 <div class="math">
 <p><img src="../../_images/math/f491f5496bae27da0ed07fc2c1e9668221edeb51.svg" alt="\mathbf{x} \doteq (x_1(s), x_2(s), ... , x_d(s))^T"/></p>
-</div><p>In many cases the representation is only partial, therefore in approximative methods we are going to use the word observation instead of state to show the possible limitations of state representations.</p>
-<p>Pure value methods that use action-value functions to determine the policy are still limited to discrete actions spaces. To determine the action the agent needs to take the max over available options and that gets problematic with continuous action spaces. In case of a high number of possible actions it might take a long time to calculate the max and the performance would suffer. For now it is sufficient to know that there are other approximation methods that can deal with these sorts of problems.</p>
+</div><p>In the Cart Pole environment the feature vector consists of cart position, cart velocity, pole angle and angular velocity.</p>
+<div class="math">
+<p><img src="../../_images/math/b32bb3002ca1c371605c7fea636d2df605a013f5.svg" alt="\mathbf{x} \doteq (CartPosition, CartVelocity, PoleAngle, AngularVelocity)^T"/></p>
+</div></div>
+<div class="section" id="value-representation">
+<h2>Value Representation<a class="headerlink" href="#value-representation" title="Permalink to this headline">¶</a></h2>
+<p>The feature vector <img class="math" src="../../_images/math/89d2726666597f3718c5e755d6a6824639e25518.svg" alt="\mathbf{x}"/> is used as an input into the approximative value function and the output is a single state-value or action-value number.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/value_approximation.svg" src="../../_images/value_approximation.svg" /><p class="caption"><span class="caption-text">Approximation of a Value Function.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order for the value function to transform the feature vector into the single number representation an additional vector, called weight vector, <img class="math" src="../../_images/math/55c1c36a4783dceb299ce7a9f198e81df8d1ca1a.svg" alt="\mathbf{w} \in \mathbb{R}^n"/> is needed. How exactly the weights are used in the calculation depends on the type of the function.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/value_approximation_weights.svg" src="../../_images/value_approximation_weights.svg" /><p class="caption"><span class="caption-text">Weights of a Value Function.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>There are many different types of function approximators:</p>
 <ul class="simple">
 <li><p>Linear Function Approximators</p></li>
@@ -368,19 +438,48 @@
 <li><p>Decision Trees</p></li>
 <li><p>…</p></li>
 </ul>
-<p>Depending on the function approximators the weight vector might play a different role in the calculation of the value function. At the moment of writing most modern reinforcement learning function approximators are neural networks. Linear function approximators are especially useful to introduce the topic of function approximators, as those are easiest to grasp and show some useful mathematical properties. Linear functions and neural networks are differentiable, decision Trees are not differentiable functions. That means that for linear functions (and neural networks) it is easy to determine how to adjust the weight vector w so as to reduce some value of a function.</p>
+<p>Depending on the function approximators the weight vector might play a different role in the calculation of the value function, but the general way to write down function approximators is as follows.</p>
+<div class="math">
+<p><img src="../../_images/math/c2a83dcfd46828aa09d0bd85a06de988874732af.svg" alt="\hat{v}(s, \mathbf{w})"/></p>
+</div><div class="math">
+<p><img src="../../_images/math/e9bdbc9209d3f26e3f2fccd8d583d4e5780b13ce.svg" alt="\hat{q}(s, a, \mathbf{w})"/></p>
+</div><p>Where the “^” above the function (read as hat) shows that the function is an approximation and the weight vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/> shows that the calculation of state or action values requires that vector.</p>
+<p>At the moment of writing most modern reinforcement learning function approximators are neural networks. Linear function approximators are especially useful to introduce the topic of function approximators, as those are easiest to grasp and show some useful mathematical properties.</p>
 <p>In linear function approximators each of the features is “weighted” by the corresponding weight. The individual weighted features are summed up to produce the value.</p>
 <div class="math">
 <p><img src="../../_images/math/82ed720a06f3d9cba972bd3616ec95e20b8b5161.svg" alt="\hat{v}(s, \mathbf{w}) \doteq \mathbf{w}^T\mathbf{x}(s) \doteq \sum_{i=1}^d w_i x_i(s)"/></p>
-</div><p>Neural networks are non-linear function approximators, where each neuron in itself is a non-linear function. The calculation for each neuron is similar to that of the linear function, but the result of the weighted sum is used as an input to a non-linear function <img class="math" src="../../_images/math/1777507f050ed24127289d8e5564a88e8a386eea.svg" alt="f()"/>.</p>
+</div><p>Let us again look at the Cart Pole environment to clarify the linear function approximation. Below is one of the possible initial values for the feature vector.</p>
+<p><img class="math" src="../../_images/math/89d2726666597f3718c5e755d6a6824639e25518.svg" alt="\mathbf{x}"/> = [0.04371849, -0.04789172, -0.03998533, -0.01820894]</p>
+<p>In order to calculate the approximate state value for a particular <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> for the above state the following equation has to be calculated.</p>
+<div class="math">
+<p><img src="../../_images/math/64d428d879136bdb756a213076b4274aff235e5f.svg" alt="\hat{v}(s, \mathbf{w}) = w_1 * 0.04371849 + w_2 * (-0.04789172) + w_3 * (-0.03998533) + w_4 * (-0.01820894)"/></p>
+</div><p>The same four weights are used for the calculation of the state value for all possible feature vectors.</p>
+<p>Neural networks are non-linear function approximators, where each neuron in itself is a non-linear function. The calculation for each neuron is similar to that of the linear function, but the result of the weighted sum is used as an input to a non-linear function <img class="math" src="../../_images/math/1777507f050ed24127289d8e5564a88e8a386eea.svg" alt="f()"/>.</p>
 <div class="math">
 <p><img src="../../_images/math/69049a4d9209b12787ff288b22649eb4b57fc6ce.svg" alt="\hat{v}(s, \mathbf{w}) \doteq f(\mathbf{w}^T\mathbf{x}(s)) \doteq f(\sum_{i=1}^d w_i x_i(s))"/></p>
-</div><p>To build the theory that is going to be used throughout the rest of the book it is convenient to start the discussion by assuming that we are in a supervised learning setting and that there is an oracle who tells us what the true state-value <img class="math" src="../../_images/math/fc4a32e1a50cc2d8e5b50909ae74cdb02b135704.svg" alt="v_{\pi}(s)"/> for the given policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> and state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> is. Later the discussion can be extended to more complex reinforcement learning settings.</p>
+</div></div>
+<div class="section" id="general-policy-iteration">
+<h2>General Policy Iteration<a class="headerlink" href="#general-policy-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Similar to dynamic programming the general idea when using approximative functions is to switch between policy evaluation and policy improvement.</p>
+<p>In the policy evaluation step we are going to look for a function <img class="math" src="../../_images/math/6a6fa5d832253ad8e7452286d8f2247c5a7e4ae1.svg" alt="\hat{v}"/> that is as close as possible to the true value function <img class="math" src="../../_images/math/fca07cf65356d5ea39189ade564697a31977f3be.svg" alt="v_{\pi}"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/12858a62406df41677a7fb7a804c5525e8894fd0.svg" alt="\hat{v}(s, \mathbf{w}) \approx v_{\pi}(s)"/></p>
+</div><p>In the policy improvement step we are going to utilize <img class="math" src="../../_images/math/b0d8cd47e6ef9858e103ae75768eac2dd1eb036f.svg" alt="\hat{q}"/> in order to act greedily and improve our policy.</p>
+<div class="math">
+<p><img src="../../_images/math/455207cac19c2107945c5ceb301499c7990db69c.svg" alt="\hat{q}(s, a, \mathbf{w}) \approx q_{\pi}(s, a)"/></p>
+</div><div class="section" id="policy-evaluation">
+<h3>Policy Evaluation<a class="headerlink" href="#policy-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>Let us as always assume that we have some policy pi and are interested in the true value function of that particular policy. Finding the true value function is out of the question, so we have to deal with an approximation.</p>
+<div class="math">
+<p><img src="../../_images/math/12858a62406df41677a7fb7a804c5525e8894fd0.svg" alt="\hat{v}(s, \mathbf{w}) \approx v_{\pi}(s)"/></p>
+</div><p>Generally it might be sufficient for us to find an approximative value function that is just good enough. In this chapter we are going to discuss what constitutes a “good” approximation and how we can find the weight vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/> for that “good” approximation .</p>
+<p>To build the theory that is going to be used throughout the rest of the book it is convenient to start the discussion by assuming that we are in a supervised learning setting and that there is an oracle who tells us what the true state-value <img class="math" src="../../_images/math/fc4a32e1a50cc2d8e5b50909ae74cdb02b135704.svg" alt="v_{\pi}(s)"/> for the given policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> and state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> is. Later the discussion can be extended to reinforcement learning settings where the agent interacts with the environment.</p>
 <p>In supervised learning the goal is to find a weight vector w that produces a function that fits the training data as close as possible. That means that we want weights that reduce the difference between the true state-value and our approximation as much as possible. In reinforcement learning Mean Squared Error (MSE) is used to define the difference between the true value function and the approximate value function.</p>
 <div class="math">
 <p><img src="../../_images/math/5b090cd90e2e23d748b7ac95c993f8ca4de588fc.svg" alt="MSE \doteq \mathbb{E_{\pi}}[(v_{\pi} - \hat{v}(s, \mathbf{w}))^2]"/></p>
-</div><p>Stochastic gradient descent in a setting with an oracle would work as follows. Let us assume we interact with the environment using the policy pi. For each of the observations the oracle tells us the true value of the state v_pi(s), which we can use in stochastic gradient descent to update the weight vector w. <strong>Stochastic</strong> gradient descent means that we use gradient descent at each single observation and do not wait to collect these into a batch.</p>
-<p>The update rule is as follows.</p>
+</div><p>If we find the weight vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/> that minimizes the above expression, then we found an approximation that is as close as possible to the true value function given by the oracle.</p>
+<p>The common approach to find such a vector is to use stochastic gradient descent. Stochastic gradient descent in a setting with an oracle would work as follows. The agent interacts with the environment using the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>. For each of the observations the agent calculates the approximate value and compares the difference between the approximate value and the true value given by the oracle using the mean squared error. In the next step the agent calculates the gradients of MSE with respect to the weights of the value function. Using the gradient the agent reduces the MSE by adjusting the weight vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/>. <strong>Stochastic</strong> gradient descent means that the update of the weights is done at each single step.</p>
+<p>The update rule for the weight vector is as follows.</p>
 <div class="math">
 <p><img src="../../_images/math/72c85dfc2db0f3f4b830bd2b0852311fb2266147.svg" alt="\begin {align*}
 w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[v_{\pi}(S_t) - \hat{v}(S_t,\mathbf{w}_t)]^2 \\
@@ -389,7 +488,26 @@ w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[v_{\pi}(S_t) - \hat{v}(S_t,\m
 </div><p>The gradient <img class="math" src="../../_images/math/2e83d7c60460e86b76e6667fcdbc52757027114a.svg" alt="\nabla\hat{v}(S_t, \mathbf{w}_t)"/> is a vector that contains partial derivations of the approximative value function with respect to individual weights. We reduce the weights into the direction of the gradient.</p>
 <div class="math">
 <p><img src="../../_images/math/0087d3ade2732557045a0513da1c55f2c54d87d3.svg" alt="\nabla \hat{v}(s, \mathbf{w}) \doteq (\frac{\partial f(\mathbf{w})}{\partial w_1}, \frac{\partial f(\mathbf{w})}{\partial w_2}, ... , \frac{\partial f(\mathbf{w})}{\partial w_d})^T"/></p>
+</div><p>Linear functions and neural networks are differentiable, decision Trees are not differentiable functions. That means that for linear functions (and neural networks) it is easy to determine how to adjust the weight vector <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/>. From now on we are primarily going to focus on neural networks. To discuss some of the theoretical properties we will return to linear methods during the next few chapters.</p>
+</div>
+<div class="section" id="policy-improvement">
+<h3>Policy Improvement<a class="headerlink" href="#policy-improvement" title="Permalink to this headline">¶</a></h3>
+<p>Policy improvement with function approximators utilizes the action-value function instead of a state-value function.</p>
+<div class="math">
+<p><img src="../../_images/math/455207cac19c2107945c5ceb301499c7990db69c.svg" alt="\hat{q}(s, a, \mathbf{w}) \approx q_{\pi}(s, a)"/></p>
+</div><p>Once again we assume to have an oracle that provides the true action-value for a policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>, given the state and the action. At each time step the agent selects an action using <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>-greedy. Using the information from the oracle and the approximate estimation, the agent adjusts the weights of the function to get as close as possible to the true action-value function.</p>
+<div class="math">
+<p><img src="../../_images/math/0a250f01abd08ecdcf3a84b3768cab191117e95e.svg" alt="\begin {align*}
+w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[q_{\pi}(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]^2 \\
+&amp; = w_t + \alpha[q_{\pi}(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]\nabla\hat{q}(S_t, A_t, \mathbf{w}_t)
+\end {align*}"/></p>
 </div></div>
+<div class="section" id="limitations">
+<h3>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h3>
+<p>Pure value methods that use action-value functions to determine the policy are still limited to discrete actions spaces. To determine the action the agent needs to take the max over available options and that gets problematic with continuous action spaces. In case of a high number of possible actions it might take a long time to calculate the max and the performance would suffer. For now it is sufficient to know that there are other approximation methods that can deal with these sorts of problems.</p>
+</div>
+</div>
+</div>
 
 
               </div>
