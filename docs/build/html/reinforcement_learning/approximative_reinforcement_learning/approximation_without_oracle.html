@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agent and Environment &#8212; World4AI 0.1 documentation</title>
+    <title>Value Approximation Without An Oracle &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Properties of Reinforcement Learning" href="properties.html" />
-    <link rel="prev" title="Reinforcement Learning Applications" href="applications.html" />
+    <link rel="next" title="Introduction" href="../modern_value_based_approximation/introduction.html" />
+    <link rel="prev" title="Value Approximation With An Oracle" href="approximation_with_oracle.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -112,34 +112,34 @@
   Introduction
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="applications.html">
+  <a class="reference internal" href="../introduction/applications.html">
    Reinforcement Learning Applications
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/agent_env.html">
    Agent and Environment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="properties.html">
+  <a class="reference internal" href="../introduction/properties.html">
    Properties of Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="interaction.html">
+  <a class="reference internal" href="../introduction/interaction.html">
    States, Actions, Rewards
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="exploration_vs_exploitation.html">
+  <a class="reference internal" href="../introduction/exploration_vs_exploitation.html">
    Exploration vs Exploitation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="components.html">
+  <a class="reference internal" href="../introduction/components.html">
    Agent and Environment Components
   </a>
  </li>
@@ -244,24 +244,24 @@
   Approximative Reinforcement Learning
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/introduction.html">
+  <a class="reference internal" href="introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/cart_pole.html">
+  <a class="reference internal" href="cart_pole.html">
    Cart Pole Environment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_with_oracle.html">
+  <a class="reference internal" href="approximation_with_oracle.html">
    Value Approximation With An Oracle
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_without_oracle.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Value Approximation Without An Oracle
   </a>
  </li>
@@ -328,9 +328,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-prediction-and-control">
+   Monte Carlo Prediction And Control
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temporal-difference-prediction-and-control">
+   Temporal Difference Prediction and Control
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -350,41 +365,41 @@
               
               <div>
                 
-  <div class="section" id="agent-and-environment">
-<h1>Agent and Environment<a class="headerlink" href="#agent-and-environment" title="Permalink to this headline">¶</a></h1>
-<p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components I will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>
-<div class="figure align-center" id="id1">
-<img alt="../../_images/grid_world.svg" src="../../_images/grid_world.svg" /><p class="caption"><span class="caption-text">In this grid world the circle has to reach the triangle.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<p>In the gridworld above you have a player as represented by a circle. The player can move into 4 different directions: North, East, South and West. If the circle is against a wall (outermost lines) or a barrier (lined boxes) then he can not move in that particular direction. The goal of the game is for the circle to reach the triangle in the top left corner in as few steps as possible.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Do not mix up the agent with its physical representation in the environment.</p>
-</div>
-<p>Intuitively I would say that the circle is the agent and the grid world is the environment the agent interacts with, but that definition would not be entirely correct. There is actually a relatively strict separation between the agent and the environment.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The agent is the code that makes the decisions.</p>
-</div>
-<p>All the agent can actually do is to make the decisions. In the case of the above gridworld the agent chooses the direction, meaning north, west, east or south. Whether the circle actually moves in that direction is outside of the influence of the agent.</p>
-<div class="figure align-center" id="id2">
-<img alt="../../_images/grid_world_barrier.svg" src="../../_images/grid_world_barrier.svg" /><p class="caption"><span class="caption-text">The agent can always choose between the north, east, south or west direction.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<p>For example in the image above the agent can decide to go north even though the circle is against a barrier in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change.</p>
-<div class="figure align-center" id="id3">
-<img alt="../../_images/agent.svg" src="../../_images/agent.svg" /><p class="caption"><span class="caption-text">The agent is the decision maker.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<p>The agent is the program that generates the decision and the decision of the agent is then relayed to the environment. The environment then processes the decision, but that is not something that the agent can influence. In the simple grid-world game if the agent decides to go north the circle might actually move north or it could move in a totally different direction or not move at all.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Anything outside of the agent is the environment.</p>
-</div>
-<p>Once the agent is identified, everything outside of the agent is defined as the environment.</p>
-<div class="figure align-center" id="id4">
-<img alt="../../_images/robot_agent.svg" src="../../_images/robot_agent.svg" /><p class="caption"><span class="caption-text">Where is the agent? Where is the environment?</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-<p>A common example that is also used to make the distinction between the agent and the environment is that of a robot that interacts with the real world. The goal of the robot might be to go from right to left to recharge the battery. The agent is the code that makes the decision to move left. While the arms, the legs, the cooling system, the floor and everything else in the image is part of the environment.</p>
-<p>A similar argument can be made for a human or any other form of a biological machine. The neural network in our brain makes the decisions to move, to study or to sleep. How the body actually reacts is not really in our control. For example the movement could be stopped when you are parallyzed either because of an illness or through fear. The desire to study could be stopped through external triggers like the smell of food or a habit to listen to music. And the decision to go to bed to fall asleep is not always accompanied by actual sleep. We do not have full control of our body. For example, no matter how hard we try, we can not stop our heart.</p>
+  <div class="section" id="value-approximation-without-an-oracle">
+<h1>Value Approximation Without An Oracle<a class="headerlink" href="#value-approximation-without-an-oracle" title="Permalink to this headline">¶</a></h1>
+<p>The assumption that there is some oracle that gives us the correct state value or action value is obviously not realistic. Therefore we have to interact with the environment to generate the approximate value function. As per usual the choice is between Monte-Carlo and TD learning.</p>
+<div class="section" id="monte-carlo-prediction-and-control">
+<h2>Monte Carlo Prediction And Control<a class="headerlink" href="#monte-carlo-prediction-and-control" title="Permalink to this headline">¶</a></h2>
+<p>With Monte Carlo methods the state value and action value from the oracle is replaced by the return <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/>.</p>
+<p>In Monte Carlo prediction the agent has to play a full episode before a single update to the weights can be done. After the episode finishes the weights are updated for each step taken during the episode. Instead of the true state value function the return is used as an approximation.</p>
+<div class="math">
+<p><img src="../../_images/math/d5b9a26d2366b0f8395ffdfa5d734b749b9488ae.svg" alt="\begin {align*}
+w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[G_{t}(S_t) - \hat{v}(S_t,\mathbf{w}_t)]^2 \\
+&amp; = w_t + \alpha[G_{t}(S_t) - \hat{v}(S_t, \mathbf{w}_t)]\nabla\hat{v}(S_t, \mathbf{w}_t)
+\end {align*}"/></p>
+</div><p>In Monte Carlo control the agent tries to estimate the true action-value function using returns.</p>
+<div class="math">
+<p><img src="../../_images/math/53dfe76156dd873fa2281c7edad154d686f22dd1.svg" alt="\begin {align*}
+w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[G_t(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]^2 \\
+&amp; = w_t + \alpha[q_{\pi}(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]\nabla\hat{q}(S_t, A_t, \mathbf{w}_t)
+\end {align*}"/></p>
+</div></div>
+<div class="section" id="temporal-difference-prediction-and-control">
+<h2>Temporal Difference Prediction and Control<a class="headerlink" href="#temporal-difference-prediction-and-control" title="Permalink to this headline">¶</a></h2>
+<p>Temporal Difference methods use bootstrapped values as an approximation for the true state or action values.</p>
+<p>In TD prediction the state value function needs to be approximated.</p>
+<div class="math">
+<p><img src="../../_images/math/cbf83cab187d645bacd2df443be2de2d4c91472e.svg" alt="\begin {align*}
+w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[R_{t+1} + \hat{v}(S_{t+1},\mathbf{w}_t) - \hat{v}(S_t,\mathbf{w}_t)]^2 \\
+&amp; = w_t + \alpha[R_{t+1} + \hat{v}(S_{t+1},\mathbf{w}_t) - \hat{v}(S_t, \mathbf{w}_t)]\nabla\hat{v}(S_t, \mathbf{w}_t)
+\end {align*}"/></p>
+</div><p>In TD control the action value function needs to be approximated.</p>
+<div class="math">
+<p><img src="../../_images/math/aac5c53b435c3dc5e2f2339e5612dd9abf72a73d.svg" alt="\begin {align*}
+w_{t+1} &amp; \doteq w_t - \frac{1}{2}\alpha\nabla[R_{t+1} + \hat{q}(S_{t+1}, A_{t+1}, \mathbf{w}_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]^2 \\
+&amp; = w_t + \alpha[R_{t+1} + \hat{q}(S_{t+1}, A_{t+1}, \mathbf{w}_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]\nabla\hat{v}(S_t, \mathbf{w}_t)
+\end {align*}"/></p>
+</div></div>
 </div>
 
 
@@ -393,8 +408,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="applications.html" title="previous page">Reinforcement Learning Applications</a>
-    <a class='right-next' id="next-link" href="properties.html" title="next page">Properties of Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="approximation_with_oracle.html" title="previous page">Value Approximation With An Oracle</a>
+    <a class='right-next' id="next-link" href="../modern_value_based_approximation/introduction.html" title="next page">Introduction</a>
 
               </div>
               
