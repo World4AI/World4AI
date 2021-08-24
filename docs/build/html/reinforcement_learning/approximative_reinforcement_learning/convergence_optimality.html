@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Motivation &#8212; World4AI 0.1 documentation</title>
+    <title>Convergence And Optimality &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="OpenAI Gym" href="openai_gym.html" />
-    <link rel="prev" title="Duelling DQN" href="../modern_value_based_approximation/duelling_dqn.html" />
+    <link rel="next" title="Introduction" href="../modern_value_based_approximation/introduction.html" />
+    <link rel="prev" title="Value Approximation Without An Oracle" href="approximation_without_oracle.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -244,29 +244,29 @@
   Approximative Reinforcement Learning
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/introduction.html">
+  <a class="reference internal" href="introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/cart_pole.html">
+  <a class="reference internal" href="cart_pole.html">
    Cart Pole Environment
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_with_oracle.html">
+  <a class="reference internal" href="approximation_with_oracle.html">
    Value Approximation With An Oracle
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_without_oracle.html">
+  <a class="reference internal" href="approximation_without_oracle.html">
    Value Approximation Without An Oracle
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../approximative_reinforcement_learning/convergence_optimality.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Convergence And Optimality
   </a>
  </li>
@@ -308,14 +308,14 @@
   Reinforcement Learning Libraries
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl_libraries/motivation.html">
    Motivation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="openai_gym.html">
+  <a class="reference internal" href="../rl_libraries/openai_gym.html">
    OpenAI Gym
   </a>
  </li>
@@ -333,9 +333,34 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-definition">
+   Problem Definition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convergence">
+   Convergence
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimality">
+   Optimality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -355,11 +380,94 @@
               
               <div>
                 
-  <div class="section" id="motivation">
-<h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
-<p>During your introduction into the world of reinforcement learning you should not spend your time reinventing the wheel. The use of common libraries saves time and allows you to compare your results without the fear that the differences are based on different implementation details of the base libraries.</p>
-<p>The availability of good reinforcement learning libraries has grown over the last couple of years. DeepMind, OpenAI or independent entities and individuals publish their code and compete with each other for the attention of the users. It seems that the popularity of their projects is a matter of pride and reputation. The code is published with an open-source license, which allows the users to report bugs and contribute to the development of their favourite library.</p>
-<p>The problem nowadays is not the lack of good libraries, but the lack of good entry level materials. Even if documentation is available it is often not beginner friendly and in some cases the original documentation is counter productive. The intention of this section is to remedy the problem by providing beginner level tutorial style introductions. The hope is that after the short tutorial the motivated reader will be able to follow the official library documentation and get the necessary information when the need arises.</p>
+  <div class="section" id="convergence-and-optimality">
+<h1>Convergence And Optimality<a class="headerlink" href="#convergence-and-optimality" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="problem-definition">
+<h2>Problem Definition<a class="headerlink" href="#problem-definition" title="Permalink to this headline">¶</a></h2>
+<p>The algorithms that we discussed during the last chapters attempt to find weights that create an approximate function that is as close as possible to the true state or action value function. The measurement of closeness that is used throughout reinforcement learning is the mean squared error (MSE). But in what way does finding the weights that produce the minimal mean squared error contribute to a value function that is close to the optimal function? Therefore before we proceed to the next chapter there are several questions we have to ask ourselves.</p>
+<ul class="simple">
+<li><p>Can we find the optimal state/action value function?</p></li>
+<li><p>What does convergence mean?</p></li>
+<li><p>Do the algorithms have convergence guarantees?</p></li>
+<li><p>Towards what value does convergence happen?</p></li>
+</ul>
+</div>
+<div class="section" id="convergence">
+<h2>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h2>
+<p>When we talk about convergence we usually mean that as time moves along and the agent adjusts the weight vector through gradient descent the mean squared error converges towards some value. That does not necessarily mean that the agent finds a weight vector that generates the smallest possible MSE, as gradient descent might get stuck in a local minimum.</p>
+<table class="colwidths-given table" id="id1">
+<caption><span class="caption-text">Prediction Convergence</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Tabular</p></th>
+<th class="head"><p>Linear</p></th>
+<th class="head"><p>Non-Linear</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>Monte Carlo</em></p></td>
+<td><p>Converges</p></td>
+<td><p>Converges</p></td>
+<td><p>Converges</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Sarsa</em></p></td>
+<td><p>Converges</p></td>
+<td><p>Converges</p></td>
+<td><p>No Convergence</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Q-Learning</em></p></td>
+<td><p>Converges</p></td>
+<td><p>No Convergence</p></td>
+<td><p>No Convergence</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given table" id="id2">
+<caption><span class="caption-text">Control Convergence</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Tabular</p></th>
+<th class="head"><p>Linear</p></th>
+<th class="head"><p>Non-Linear</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>Monte Carlo</em></p></td>
+<td><p>Converges</p></td>
+<td><p>Oscilates</p></td>
+<td><p>No Convergence</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Sarsa</em></p></td>
+<td><p>Converges</p></td>
+<td><p>Oscilates</p></td>
+<td><p>No Convergence</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Q-Learning</em></p></td>
+<td><p>Converges</p></td>
+<td><p>No Convergence</p></td>
+<td><p>No Convergence</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="optimality">
+<h2>Optimality<a class="headerlink" href="#optimality" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -368,8 +476,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../modern_value_based_approximation/duelling_dqn.html" title="previous page">Duelling DQN</a>
-    <a class='right-next' id="next-link" href="openai_gym.html" title="next page">OpenAI Gym</a>
+    <a class='left-prev' id="prev-link" href="approximation_without_oracle.html" title="previous page">Value Approximation Without An Oracle</a>
+    <a class='right-next' id="next-link" href="../modern_value_based_approximation/introduction.html" title="next page">Introduction</a>
 
               </div>
               

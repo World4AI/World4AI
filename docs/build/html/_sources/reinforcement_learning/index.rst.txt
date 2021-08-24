@@ -58,6 +58,7 @@ In this introduction I will go over the possible applications, the key concepts 
    approximative_reinforcement_learning/cart_pole
    approximative_reinforcement_learning/approximation_with_oracle
    approximative_reinforcement_learning/approximation_without_oracle
+   approximative_reinforcement_learning/convergence_optimality
 
 .. toctree::
    :maxdepth: 2
