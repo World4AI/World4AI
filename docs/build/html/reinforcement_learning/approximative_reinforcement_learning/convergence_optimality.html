@@ -354,11 +354,6 @@
    Optimality
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
- </li>
 </ul>
 
 </nav>
@@ -394,7 +389,8 @@
 </div>
 <div class="section" id="convergence">
 <h2>Convergence<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h2>
-<p>When we talk about convergence we usually mean that as time moves along and the agent adjusts the weight vector through gradient descent the mean squared error converges towards some value. That does not necessarily mean that the agent finds a weight vector that generates the smallest possible MSE, as gradient descent might get stuck in a local minimum.</p>
+<p>When we talk about convergence we usually mean that as time moves along the value function of the agent changes towards some specific form. The steps towards that form get smaller and smaller and our function should have the desired form only in the limit (with an unlimited amount of improvement steps).</p>
+<p>What does convergence mean for prediction? For tabular methods we aspire to find the true value function of a policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>. Therefore convergence means that the value function of the agent converges towards the true value function. For approximative methods the agent adjusts the weight vector through gradient descent to reduce the mean squared error and if convergence is possible the weights move towards a specific vector. That does not necessarily mean that the agent finds a weight vector that generates the smallest possible MSE, as gradient descent might get stuck in a local minimum.</p>
 <table class="colwidths-given table" id="id1">
 <caption><span class="caption-text">Prediction Convergence</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -412,24 +408,37 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><em>Monte Carlo</em></p></td>
-<td><p>Converges</p></td>
-<td><p>Converges</p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(True Value Function)</em></p></td>
+<td><p>Converges <em>(Global Optimum)</em></p></td>
+<td><p>Converges <em>(Local Optimum)</em></p></td>
 </tr>
 <tr class="row-odd"><td><p><em>Sarsa</em></p></td>
-<td><p>Converges</p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(True Value Function)</em></p></td>
+<td><p>Converges <em>(Near Global Optimum)</em></p></td>
 <td><p>No Convergence</p></td>
 </tr>
 <tr class="row-even"><td><p><em>Q-Learning</em></p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(True Value Function)</em></p></td>
 <td><p>No Convergence</p></td>
 <td><p>No Convergence</p></td>
 </tr>
 </tbody>
 </table>
-<table class="colwidths-given table" id="id2">
-<caption><span class="caption-text">Control Convergence</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<p>Monte Carlo and TD (On-Policy and Off-Policy) all converge towards the true value function for pi when the agent deals with finite MDPs and uses tabular methods.</p>
+<p>When we talk about approximate solutions the answers to the question whether prediction algorithms converge depend strongly on the type of algorithm.</p>
+<p>Monte Carlo algorithms use returns as a proxy for the true value function. Returns are unbiased but noisy estimates of the true value function, therefore we have a guarantee of convergence when using gradient descent. Linear methods converge to global optimum while non-linear methods converge to a local optimum.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/convex.svg" src="../../_images/convex.svg" /><p class="caption"><span class="caption-text">Convex MSE.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The MSE for linear monte carlo approximators is convex, which means that there is a single optimum which is guaranteed to be found.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/local_minimum.svg" src="../../_images/local_minimum.svg" /><p class="caption"><span class="caption-text">Non Convex MSE.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The MSE for non-linear monte carlo approximators is non-convex, therefore gradient descent might get stuck in a local optimum.</p>
+<p>Temporal difference methods use bootstrapping. These algorithms use estimates for the target values in the update step. That makes them biased estimators. Q-Learning especially is problematic as there is no convergence guarantee even for linear methods.</p>
+<p>What does convergence mean for control? For tabular methods that means to find the optimal value function and thereby policy . Therefore convergence means that the value function of the agent converges towards the optimal value function. For approximative methods convergence means that gradient descent finds either a local or a global optimum for the mean squared error between the approximate function and the true optimal function..</p>
+<table class="colwidths-given table" id="id4">
+<caption><span class="caption-text">Control Convergence</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 40%" />
 <col style="width: 20%" />
@@ -445,28 +454,34 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><em>Monte Carlo</em></p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(Optimal Value Function)</em></p></td>
 <td><p>Oscilates</p></td>
 <td><p>No Convergence</p></td>
 </tr>
 <tr class="row-odd"><td><p><em>Sarsa</em></p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(Optimal Value Function)</em></p></td>
 <td><p>Oscilates</p></td>
 <td><p>No Convergence</p></td>
 </tr>
 <tr class="row-even"><td><p><em>Q-Learning</em></p></td>
-<td><p>Converges</p></td>
+<td><p>Converges <em>(Optimal Value Function)</em></p></td>
 <td><p>No Convergence</p></td>
 <td><p>No Convergence</p></td>
 </tr>
 </tbody>
 </table>
+<p>Linear functions (MC and SARSA) oscillate around the near optimal value. For non-linear methods no convergence guarantees are given.</p>
 </div>
 <div class="section" id="optimality">
 <h2>Optimality<a class="headerlink" href="#optimality" title="Permalink to this headline">¶</a></h2>
+<p>Finding the true optimal value function is not possible with function approximators, because the state and action space is continuous or very large and the idea is to find weights for functions that generalize well.</p>
+<p>When we speak about optimality with function approximators we often mean that it might be possible to find weights that minimize the mean squared error between the optimal function and the approximative function.</p>
+<p>The most important takeaway should be that when deciding between algorithms, convergence should not be the primary decision factor. If it was then linear approximators would be the first choice. Off-policy temporal difference algorithms are often the first choice, even though according to the table above there is no convergence guarantee.</p>
+<div class="figure align-center" id="id5">
+<img alt="../../_images/linear.svg" src="../../_images/linear.svg" /><p class="caption"><span class="caption-text">Linear Convergence.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Let us assume that in the image above the red line represents the optimal value function, which is non-linear. Even if we are able to find the minimum MSE, the linear  function (blue line) is not expressive enough to represent the optimal value function. We have no choice but to look for non-linear alternatives.</p>
+<p>The truth of the matter is that In practice neural networks work well, provided we use some particular techniques to prevent divergence. We will learn more about those in the next chapters.</p>
 </div>
 </div>
 
