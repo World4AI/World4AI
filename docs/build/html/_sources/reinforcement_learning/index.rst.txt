@@ -15,6 +15,7 @@ In this introduction I will go over the possible applications, the key concepts 
    introduction/interaction
    introduction/exploration_vs_exploitation
    introduction/components
+   introduction/terminology
 
 
 .. toctree::
