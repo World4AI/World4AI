@@ -359,6 +359,23 @@
    Optimality
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cart-pole-naive-neural-network-q-learning">
+   Cart Pole: Naive Neural Network Q-Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pytorch-implementation">
+     PyTorch Implementation
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
 </nav>
@@ -487,6 +504,231 @@
 </div>
 <p>Let us assume that in the image above the red line represents the optimal value function, which is non-linear. Even if we are able to find the minimum MSE, the linear  function (blue line) is not expressive enough to represent the optimal value function. We have no choice but to look for non-linear alternatives.</p>
 <p>The truth of the matter is that In practice neural networks work well, provided we use some particular techniques to prevent divergence. We will learn more about those in the next chapters.</p>
+</div>
+<div class="section" id="cart-pole-naive-neural-network-q-learning">
+<h2>Cart Pole: Naive Neural Network Q-Learning<a class="headerlink" href="#cart-pole-naive-neural-network-q-learning" title="Permalink to this headline">¶</a></h2>
+<p>To demonstrate the general functionality of the naive implementation of Q-Learning in a neural network setting we are going to try to solve the cart pole environment in OpenAI gym.</p>
+<div class="section" id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The algorithm below shows how the implementation should theoretically look like. For a given amount of episodes the agent interacts with the environment. To balance exploration and exploitation the actions are selected using epsilon-greedy action selection strategy. The agent applies so-called online learning, meaning that for each step of the episode the agent updates the weights <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/> using the most recent information. After the update the information is thrown away.</p>
+<div class="math">
+<p><img src="../../_images/math/3c3ed2ef6ade8bd17a342ca417e4e0191b8f775b.svg" alt="\begin{algorithm}[H]
+    \caption{Q-Learning with a Neural Network}
+    \label{alg1}
+\begin{algorithmic}
+    \STATE Input: Environment for interaction, $env$
+    \STATE Input: Neural Network initialized randomly (q-function) $\hat{q}$
+    \STATE Input: Number of episodes
+    \STATE Input: Learning Rate alpha $\alpha$
+    \STATE Input: Exploration Rate epsilon $\epsilon$
+    \STATE Input: Discount Rate gamma $\gamma$
+    \FOR{$episode=0$ to number of episodes}
+      \STATE Initialize $env$ and get initial state $S$
+      \REPEAT
+        \STATE Select action $A$ based on $S$ using $\epsilon$-greedy action selection
+        \STATE Observe reward $R$ and state $S'$
+        \STATE $\mathbf{w} \leftarrow \mathbf{w} + \alpha[R + \gamma\max_a\hat{q}(S',a, \mathbf{w}) - \hat{q}(S, A, \mathbf{w})]\nabla\hat{q}(S, A, \mathbf{w})$
+        \STATE $S \leftarrow S'$
+      \UNTIL{State $S'$ is terminal}
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}"/></p>
+</div></div>
+<div class="section" id="pytorch-implementation">
+<h3>PyTorch Implementation<a class="headerlink" href="#pytorch-implementation" title="Permalink to this headline">¶</a></h3>
+<p>To implement the algorithm we only need OpenAI gym for the environment, NumPy for several convenience functions and PyTorch for the automatic gradient calculation and backpropagation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+</pre></div>
+</div>
+<p>The neural network takes the feature vector consisting of 4 variables from the cart pole environment and the action the agent would like to take. The output is a single number representing the action-value of the state action pair. Generally the developer can create any hidden layer representation. In this example we have 2 hidden layers with 10 neurons each. Aside from the output layer each neuron uses the relu activation function.</p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/architecture.svg" src="../../_images/architecture.svg" /><p class="caption"><span class="caption-text">Q-Function Architecture.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The calculations are going to be performed on the GPU if a CUDA graphics card is installed on the system. The cart pole environment is easy enough to be solved by a CPU.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEVICE</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The agent is the class that is responsible for interacting with the environment and for updating the weights of the neural network. Altogether the class has 5 methods.</p>
+<ul class="simple">
+<li><p>The __init__() method initializes the agent with the variables described in the algorithm definition above. Additionally some more variables are created to track the performance of the algorithm.</p></li>
+<li><p>The greedy_action() method calculates the values of the different actions and returns the action with the highest value.</p></li>
+<li><p>The select_action()  method uses the epsilon-greedy selection technique. After each action selection step the epsilon variable is reduced until it converges to the minimum possible <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/> value.</p></li>
+<li><p>The evaluate() method interacts with the environment only using the greedy selection scheme. The method is primarily used to measure the performance of the agent.</p></li>
+<li><p>The learn() method is the heart of the agent. It is the method that is responsible for updating the weights of the neural network using Q-Learning.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">q_function</span><span class="p">,</span> <span class="n">episodes</span><span class="p">,</span> <span class="n">epsilon_start</span><span class="p">,</span> <span class="n">epsilon_end</span><span class="p">,</span> <span class="n">epsilon_step</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_function</span> <span class="o">=</span> <span class="n">q_function</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q_function</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">episodes</span> <span class="o">=</span> <span class="n">episodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon_start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span> <span class="o">=</span> <span class="n">epsilon_end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span> <span class="o">=</span> <span class="n">epsilon_step</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+        <span class="c1"># save sum of rewards after each evaluation episode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewards_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># save average reward for each 100 episodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">avg_rewards_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># max sum of rewards seen so far in a single game</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_reward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># max average sum of rewards over 100 games seen so far</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_avg_rewards</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># select greedy action</span>
+    <span class="k">def</span> <span class="nf">greedy_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+            <span class="n">action_left</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+            <span class="n">action_right</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_function</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action_left</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_function</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action_right</span><span class="p">):</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">action</span>
+
+    <span class="c1"># act epsilon greedy</span>
+    <span class="k">def</span> <span class="nf">select_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy_action</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span>
+
+        <span class="k">return</span> <span class="n">action</span>
+
+    <span class="c1"># play an episode using only greedy action selection</span>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">episode</span><span class="p">):</span>
+
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">reward_sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy_action</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+            <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+            <span class="n">reward_sum</span> <span class="o">+=</span> <span class="n">reward</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewards_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward_sum</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reward_sum</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_reward</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_reward</span> <span class="o">=</span> <span class="n">reward_sum</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards_list</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">avg_reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards_list</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:])</span>
+            <span class="k">if</span> <span class="n">avg_reward</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_avg_rewards</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">max_avg_rewards</span> <span class="o">=</span> <span class="n">avg_reward</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">avg_rewards_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_reward</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">EPISODES</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epsilon: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Reward Sum: </span><span class="si">{</span><span class="n">reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Reward Sum: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_reward</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Avg. Reward Sum: </span><span class="si">{</span><span class="n">avg_reward</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Avg. Reward Sum: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_avg_rewards</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># play an episode using epsilon-greedy action selection and learn from each step of the episode</span>
+    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># play for a predetermined number of episodes</span>
+        <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">episodes</span><span class="p">):</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_action</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+                <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+                <span class="n">next_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy_action</span><span class="p">(</span><span class="n">next_obs</span><span class="p">)</span>
+
+                <span class="c1"># push all those variables to the device (GPU or CPU)</span>
+                <span class="n">obs_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                <span class="n">action_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                <span class="n">next_obs_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">next_obs</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                <span class="n">next_action_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">next_action</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                <span class="n">reward_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                <span class="n">terminal_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">done</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s1">&#39;TimeLimit.truncated&#39;</span> <span class="ow">in</span> <span class="n">info</span> <span class="ow">and</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;TimeLimit.truncated&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------&#39;</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TRUNCATED&#39;</span><span class="p">)</span>
+                        <span class="n">terminal_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------&#39;</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+                <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                    <span class="n">target</span> <span class="o">=</span> <span class="n">reward_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_function</span><span class="p">(</span><span class="n">next_obs_t</span><span class="p">,</span> <span class="n">next_action_t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">terminal_t</span><span class="p">)</span>
+
+                <span class="n">online</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_function</span><span class="p">(</span><span class="n">obs_t</span><span class="p">,</span> <span class="n">action_t</span><span class="p">)</span>
+
+                <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">online</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+                <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">episode</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ENV</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;CartPole-v1&#39;</span><span class="p">)</span>
+<span class="n">EPISODES</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">EPSILON_END</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">EPSILON_START</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">EPSILON_STEP</span> <span class="o">=</span> <span class="mf">0.00005</span>
+<span class="n">Q_FUNCTION</span> <span class="o">=</span> <span class="n">Q</span><span class="p">()</span>
+<span class="n">Q_FUNCTION</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">,</span>
+            <span class="n">q_function</span><span class="o">=</span><span class="n">Q_FUNCTION</span><span class="p">,</span>
+            <span class="n">episodes</span><span class="o">=</span><span class="n">EPISODES</span><span class="p">,</span>
+            <span class="n">epsilon_start</span><span class="o">=</span><span class="n">EPSILON_START</span><span class="p">,</span>
+            <span class="n">epsilon_end</span><span class="o">=</span><span class="n">EPSILON_END</span><span class="p">,</span>
+            <span class="n">epsilon_step</span><span class="o">=</span><span class="n">EPSILON_STEP</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">,</span>
+            <span class="n">gamma</span><span class="o">=</span><span class="n">GAMMA</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>All things considered this naive implementation can deal with the cart pole environment relatively well. In some of the 1000 games the agent was able to collect the full reward of 500. The maximum average reward over 100 games was over 250 (although these numbers change from run to run). Yet as with many off-policy reinforcement learning algorithms the performance of the agent degraded once the performance of 500 was achieved. It is of course possible to save the weights of the agent that shows the performance of 500 and to let the agent then play 100 games in a row. It is entirely possible that the agent will get the average performance of 475, thereby solving the environment. But this agent will definitely not be able to deal with more complex algorithms. So let us move on to those algorithms that can actually solve Atari and other interesting environments.</p>
+</div>
 </div>
 </div>
 
