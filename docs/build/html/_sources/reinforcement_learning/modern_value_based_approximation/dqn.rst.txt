@@ -2,6 +2,24 @@
 Deep Q-Network (DQN)
 ====================
 
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/buffer.svg
+   :align: center
+
+   Experience Replay.
+
+
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/stable_target.svg
+   :align: center
+
+   Moving Target.
+
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/two_value_functions.svg
+   :align: center
+
+   Two Value Functions.
+
+
+
 Atari Wrappers
 ==============
 
