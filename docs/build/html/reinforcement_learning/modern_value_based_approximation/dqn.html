@@ -345,8 +345,55 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#atari-wrappers">
-   Atari Wrappers
+  <a class="reference internal nav-link" href="#preprocessing">
+   Preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#no-op">
+     No-Op
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fire">
+     Fire
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#end-of-life">
+     End Of Life
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#max-value-and-skip-frame">
+     Max Value and Skip Frame
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clip-reward">
+     Clip Reward
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aspect-ratio">
+     Aspect Ratio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stack-frames">
+     Stack Frames
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-environment">
+     New Environment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture">
+   Architecture
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -355,8 +402,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#action-value-function">
-   Action-Value Function
+  <a class="reference internal nav-link" href="#frozen-target-network">
+   Frozen Target Network
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -367,6 +414,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#main-training-loop">
    Main Training Loop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
   </a>
  </li>
 </ul>
@@ -392,17 +444,16 @@
                 
   <div class="section" id="deep-q-network-dqn">
 <h1>Deep Q-Network (DQN)<a class="headerlink" href="#deep-q-network-dqn" title="Permalink to this headline">¶</a></h1>
-<div class="figure align-center" id="id1">
-<img alt="../../_images/buffer.svg" src="../../_images/buffer.svg" /><p class="caption"><span class="caption-text">Experience Replay.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="id2">
-<img alt="../../_images/stable_target.svg" src="../../_images/stable_target.svg" /><p class="caption"><span class="caption-text">Moving Target.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-center" id="id3">
-<img alt="../../_images/two_value_functions.svg" src="../../_images/two_value_functions.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-<div class="section" id="atari-wrappers">
-<h2>Atari Wrappers<a class="headerlink" href="#atari-wrappers" title="Permalink to this headline">¶</a></h2>
+<p>The paper on the deep Q-network (often abbreviated as DQN) is regarded as one of the most seminal papers on modern reinforcement learning <a class="footnote-reference brackets" href="#id4" id="id1">1</a>. The research that came from DeepMind showed how a combination of Q-learning with deep neural networks can be applied to Atari games. The results were inspiring and groundbreaking in many respects, but the most important contribution of the paper was probably the rejuvenation of a field that seemed to be forgotten by the public. DQN spurred a research streak that continues up to this day.</p>
+<p>Many of the solutions by the DQN seem to show creativity and even if you are not a reinforcement learning enthusiast, you will most likely find the playthroughs of Atari games by the DQN agent to be almost magical.</p>
+<p>In this chapter we are going to explore the components that made the deep Q-network successful. We will look at how Atari games can be solved, but we are also going to explore solutions to other OpenAI gym environments, because those can be solved easier, especially if you do not possess a modern Nvidia graphics card.</p>
+<div class="section" id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>The Atari environment requires some additional preprocessing of observations and actions to make the learning process more efficient. The steps that we are going to undertake are described in the original paper. The OpenAI wrappers that we are going to implement are based on the “baselines” repository from OpenAI <a class="footnote-reference brackets" href="#id5" id="id2">2</a>. Nowadays it is not necessary to implement those from scratch, as highly efficient and readily tested libraries are available <a class="footnote-reference brackets" href="#id6" id="id3">3</a>. So instead of reinventing the wheel we should generally focus on the algorithm and not the preprocessing steps. That being said, especially when you look at the paper and the implementation for the first time it is advisable to work through the preprocessing steps.</p>
+<p>If you are not interested in Atari environments and would prefer to solve for example the pole balancing task or the lunar lander task you can skip this section.</p>
+<div class="section" id="no-op">
+<h3>No-Op<a class="headerlink" href="#no-op" title="Permalink to this headline">¶</a></h3>
+<p>The No-Op wrapper makes sure that when an episode ends and needs to be reset the first n steps are so called no-op actions. No-op (no operation) makes the agent basically do nothing. The number of no-op steps is calculated randomly and can take up to a maximum small number. The purpose of the wrapper is to sample slightly different observations at the beginning of an episode and to avoid the same initial state over and over again.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NoopResetEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">noop_max</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample initial states by taking random number of no-ops on reset.</span>
@@ -429,6 +480,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="fire">
+<h3>Fire<a class="headerlink" href="#fire" title="Permalink to this headline">¶</a></h3>
+<p>Some Atari games do not actually start until you press the “Fire” button. Imagine a game where a ball has to start rolling before any other action can be performed. This wrapper performs exactly that. It calls the “Fire” action when a game is reset.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FireResetEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Take action on reset for environments that are fixed until firing.&quot;&quot;&quot;</span>
@@ -450,6 +505,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="end-of-life">
+<h3>End Of Life<a class="headerlink" href="#end-of-life" title="Permalink to this headline">¶</a></h3>
+<p>In some Atari games the player has several lives. In that case when one of the lives is lost the terminal flag is not set to true. Instead the player has to lose all his lives until he gets a terminal signal. In the bellman equation the terminal flag is needed to figure out if the value function for the next state should be set to 0. If the player loses one of his lives then the value for the next state is 0. Therefore the wrapper changes the terminal flag to true when one of the lives is lost.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EpisodicLifeEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Make end-of-life == end-of-episode, but only reset on true game over.</span>
@@ -488,6 +547,12 @@
         <span class="k">return</span> <span class="n">obs</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="max-value-and-skip-frame">
+<h3>Max Value and Skip Frame<a class="headerlink" href="#max-value-and-skip-frame" title="Permalink to this headline">¶</a></h3>
+<p>Old Atari consoles did not have a lot of memory and only a limited amount of sprites could be drawn on the screen at the same time. The developers had to come up with techniques which were memory efficient on one side, but allowed relatively complex drawings on the other side. The idea that they implemented was to display one set of pixels on even frame numbers and the other set of pixels on the odd frame numbers. So at any point in time only half the pixels were displayed. This was not a problem for a human eye as Atari displayed 60 frames per second and we perceive the change of pixels at most as flickering. When researchers write about flickering they describe the problem that when the agent receives two successive observations they look completely different, because only half the pixels are available. The usual solution is to take the last two observations  and to take the maximum pixel values from both frames.</p>
+<p>Additionally, when a single frame passes in an Atari game not a lot of additional information has been incorporated in the frame and the agent is likely to make the same decision for the next state. Even if the agent makes a decision once every four frames, in a 60 frames per second environment the agent can take 15 actions during one single second. In the paper the researchers argued that more games can be played during a specific period if the agent takes the same action for a specific number of frames. The technique to skip frames is essentially a way to save resources, because an action from the agent requires additional computational resources.</p>
+<p>Both ideas are incorporated in the gym wrapper below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MaxAndSkipEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return only every `skip`-th frame&quot;&quot;&quot;</span>
@@ -517,6 +582,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="clip-reward">
+<h3>Clip Reward<a class="headerlink" href="#clip-reward" title="Permalink to this headline">¶</a></h3>
+<p>Different Atari games return different rewards. To make different environments consistent  the rewards are clipped. Only values of +1, -1 and 0 are allowed. This allows the researcher to use the same learning rate for different Atari games.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ClipRewardEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">RewardWrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
         <span class="n">gym</span><span class="o">.</span><span class="n">RewardWrapper</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
@@ -526,6 +595,10 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="aspect-ratio">
+<h3>Aspect Ratio<a class="headerlink" href="#aspect-ratio" title="Permalink to this headline">¶</a></h3>
+<p>The original observation that the OpenAI gym Atari environments provide is a single frame, an image of the size 210x160x3. The height is 210 pixels, the width is 160 pixels and the 3 represents the number of channels, each containing either red, green or blue color values. To save computational power the researcher at DeepMind transformed each frame into a greyscale image of size 84x84. Our final image is going to be of size 1x84x84, because PyTorch convolutional layers expect a 3-dimensional input with the channel size in the first dimension.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">WarpFrame</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">ObservationWrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">84</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -554,6 +627,10 @@
         <span class="k">return</span> <span class="n">obs</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="stack-frames">
+<h3>Stack Frames<a class="headerlink" href="#stack-frames" title="Permalink to this headline">¶</a></h3>
+<p>A single image of the Atari game is not sufficient for the agent to take actions, because the observation is not Markovian. To alleviate the problem four greyscale images are stacked on top of each other.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FrameStack</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Wrapper</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stack k last frames&quot;&quot;&quot;</span>
@@ -577,22 +654,61 @@
         <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="new-environment">
+<h3>New Environment<a class="headerlink" href="#new-environment" title="Permalink to this headline">¶</a></h3>
+<p>The below code shows how a new environment can be created by combining all the above wrappers.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_atari_env</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="c1"># original env</span>
     <span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">NoopResetEnv</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">noop_max</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">MaxAndSkipEnv</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">EpisodicLifeEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+    <span class="c1"># reset env</span>
     <span class="k">if</span> <span class="s2">&quot;FIRE&quot;</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">get_action_meanings</span><span class="p">():</span>
         <span class="n">env</span> <span class="o">=</span> <span class="n">FireResetEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">WarpFrame</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">NoopResetEnv</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">noop_max</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">EpisodicLifeEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+    <span class="c1"># change reward</span>
     <span class="n">env</span> <span class="o">=</span> <span class="n">ClipRewardEnv</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+    <span class="c1"># change observations</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">MaxAndSkipEnv</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">WarpFrame</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
     <span class="n">env</span> <span class="o">=</span> <span class="n">FrameStack</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">env</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="experience-replay">
 <h2>Experience Replay<a class="headerlink" href="#experience-replay" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="../../_images/buffer.svg" src="../../_images/buffer.svg" /></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MemoryBuffer</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_shape</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -634,29 +750,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="action-value-function">
-<h2>Action-Value Function<a class="headerlink" href="#action-value-function" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-</pre></div>
+<div class="section" id="frozen-target-network">
+<h2>Frozen Target Network<a class="headerlink" href="#frozen-target-network" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/stable_target.svg" src="../../_images/stable_target.svg" /><p class="caption"><span class="caption-text">Moving Target.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<img alt="../../_images/two_value_functions.svg" src="../../_images/two_value_functions.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="agent">
@@ -808,6 +908,20 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s1">, Counter: </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s1">, Epsilon: </span><span class="si">{</span><span class="n">agent</span><span class="o">.</span><span class="n">epsilon</span><span class="si">}</span><span class="s1">, Reward: </span><span class="si">{</span><span class="n">reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Mnih, V., Kavukcuoglu, K., Silver, D. et al. Human-level control through deep reinforcement learning. Nature 518, 529–533 (2015). <a class="reference external" href="https://doi.org/10.1038/nature14236">https://doi.org/10.1038/nature14236</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>OpenAI Baselines. <a class="reference external" href="https://github.com/openai/baselines">https://github.com/openai/baselines</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Look for example at SuperSuit. <a class="reference external" href="https://github.com/PettingZoo-Team/SuperSuit">https://github.com/PettingZoo-Team/SuperSuit</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
