@@ -267,6 +267,26 @@ The below code shows how a new environment can be created by combining all the a
 Architecture
 ============
 
+Thus far our Q function was of the form Q(s, a). The input of the function was a state action pair and the output was the corresponding q-value. The problem with that approach is the computational complexity. If we want to calculate what action leads to the maximum q-value we have to use the neural network as often as there are valid actions. 
+
+In the DQN paper the researchers used an architecture where the observation is the input to the neural network and the output layer has as many neurons as there are valid actions. Basically the Q function is of the form Q(s) where the output is a vector. To find the greedy action the agent can simply take the argmax of the output vector.
+
+For example in the cart pole environment the input consists of 4 neurons, as the state of the environment consists of a 4 dimensional vector and the output is a two dimensional vector, as there are only two valid actions (move left or move right). 
+
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/architecture.svg
+   :align: center
+
+   Fully Connected Architecture.
+
+The architecture of Atari games is only slightly more complex. The first layers are convolutional neural networks, which are followed by fully connected layers. 
+
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/architecture_cnn.svg
+   :align: center
+
+   CNN Architecture.
+
+The parameters of the neural network correspond exactly to those described in the original paper.
+
 .. code:: python
 
     class Q(nn.Module):
@@ -295,6 +315,8 @@ Experience Replay
 
 .. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/buffer.svg
    :align: center
+
+   Memory Buffer
 
 .. code:: python
 

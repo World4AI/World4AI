@@ -682,6 +682,17 @@
 </div>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>Thus far our Q function was of the form Q(s, a). The input of the function was a state action pair and the output was the corresponding q-value. The problem with that approach is the computational complexity. If we want to calculate what action leads to the maximum q-value we have to use the neural network as often as there are valid actions.</p>
+<p>In the DQN paper the researchers used an architecture where the observation is the input to the neural network and the output layer has as many neurons as there are valid actions. Basically the Q function is of the form Q(s) where the output is a vector. To find the greedy action the agent can simply take the argmax of the output vector.</p>
+<p>For example in the cart pole environment the input consists of 4 neurons, as the state of the environment consists of a 4 dimensional vector and the output is a two dimensional vector, as there are only two valid actions (move left or move right).</p>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/architecture1.svg" src="../../_images/architecture1.svg" /><p class="caption"><span class="caption-text">Fully Connected Architecture.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>The architecture of Atari games is only slightly more complex. The first layers are convolutional neural networks, which are followed by fully connected layers.</p>
+<div class="figure align-center" id="id8">
+<img alt="../../_images/architecture_cnn.svg" src="../../_images/architecture_cnn.svg" /><p class="caption"><span class="caption-text">CNN Architecture.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>The parameters of the neural network correspond exactly to those described in the original paper.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
@@ -707,8 +718,9 @@
 </div>
 <div class="section" id="experience-replay">
 <h2>Experience Replay<a class="headerlink" href="#experience-replay" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center">
-<img alt="../../_images/buffer.svg" src="../../_images/buffer.svg" /></div>
+<div class="figure align-center" id="id9">
+<img alt="../../_images/buffer.svg" src="../../_images/buffer.svg" /><p class="caption"><span class="caption-text">Memory Buffer</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MemoryBuffer</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_shape</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -752,11 +764,11 @@
 </div>
 <div class="section" id="frozen-target-network">
 <h2>Frozen Target Network<a class="headerlink" href="#frozen-target-network" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id7">
-<img alt="../../_images/stable_target.svg" src="../../_images/stable_target.svg" /><p class="caption"><span class="caption-text">Moving Target.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="id10">
+<img alt="../../_images/stable_target.svg" src="../../_images/stable_target.svg" /><p class="caption"><span class="caption-text">Moving Target.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id8">
-<img alt="../../_images/two_value_functions.svg" src="../../_images/two_value_functions.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<div class="figure align-center" id="id11">
+<img alt="../../_images/two_value_functions.svg" src="../../_images/two_value_functions.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="agent">
