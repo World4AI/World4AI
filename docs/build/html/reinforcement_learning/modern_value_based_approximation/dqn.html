@@ -784,7 +784,7 @@
 <p>The researchers at DeepMind introduced a second action-value function, where the weights of the target Q-function are frozen. That allows the action-value to catch up to the target values. After a given amount of update steps the weights from the action-value function are copied to the target function.</p>
 <p>The final mean squared error calculation is defined as follows.</p>
 <div class="math">
-<p><img src="../../_images/math/867f5fea17396127d8552ca7cdeff7f4305ade8d.svg" alt="MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta^-))^2]"/></p>
+<p><img src="../../_images/math/97b1a046845d46d3d61125718a76426a8a5953bd.svg" alt="MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta^-) - Q(s, a, \theta))^2]"/></p>
 </div></div>
 <div class="section" id="agent">
 <h2>Agent<a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h2>

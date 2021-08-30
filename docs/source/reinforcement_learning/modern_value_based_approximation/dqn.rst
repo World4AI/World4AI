@@ -403,7 +403,7 @@ The final mean squared error calculation is defined as follows.
 
 .. math::
     
-    MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta^-))^2]
+    MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta^-) - Q(s, a, \theta))^2]
 
 
 Agent
