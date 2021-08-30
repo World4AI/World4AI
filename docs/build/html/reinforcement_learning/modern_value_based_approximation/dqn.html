@@ -772,13 +772,20 @@
 </div>
 <div class="section" id="frozen-target-network">
 <h2>Frozen Target Network<a class="headerlink" href="#frozen-target-network" title="Permalink to this headline">¶</a></h2>
+<p>The second problem that the agent faces is the correlation between the action-values <img class="math" src="../../_images/math/a1936a2510d76c487b8c47c283b54b70154e7e04.svg" alt="Q(s, a)"/> and the target values <img class="math" src="../../_images/math/2336b1a3e57991cc9513898703df5742c531b17f.svg" alt="r + \gamma max_a Q(s', a')"/>, because the same action-value function is used for the target value and the current action-value.</p>
+<p>A different way to imagine the problem that arises from bootstrapping is to look at the below image.</p>
 <div class="figure align-center" id="id10">
 <img alt="../../_images/stable_target.svg" src="../../_images/stable_target.svg" /><p class="caption"><span class="caption-text">Moving Target.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
+<p>The yellow circle is the action-value function that is being updated. Through gradient descent the weights of the action-value function are updated in such a way that the action-values are closer to the rewards plus action-values for the next state (blue and yellow circles). But by changing the weights for the action-values we simultaneously change the values for the targets. To put it simply, the action-value function tries to catch up to a moving target. Therefore it is not surprising that we can experience divergence.</p>
 <div class="figure align-center" id="id11">
 <img alt="../../_images/two_value_functions.svg" src="../../_images/two_value_functions.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
-</div>
+<p>The researchers at DeepMind introduced a second action-value function, where the weights of the target Q-function are frozen. That allows the action-value to catch up to the target values. After a given amount of update steps the weights from the action-value function are copied to the target function.</p>
+<p>The final mean squared error calculation is defined as follows.</p>
+<div class="math">
+<p><img src="../../_images/math/867f5fea17396127d8552ca7cdeff7f4305ade8d.svg" alt="MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta^-))^2]"/></p>
+</div></div>
 <div class="section" id="agent">
 <h2>Agent<a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>

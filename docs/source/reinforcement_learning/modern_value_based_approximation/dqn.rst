@@ -381,15 +381,30 @@ If you ask yourself why the approach we took with NFQ is not scalable, remember 
 Frozen Target Network
 =====================
 
+The second problem that the agent faces is the correlation between the action-values :math:`Q(s, a)` and the target values :math:`r + \gamma max_a Q(s', a')`, because the same action-value function is used for the target value and the current action-value. 
+
+A different way to imagine the problem that arises from bootstrapping is to look at the below image.
+
 .. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/stable_target.svg
    :align: center
 
    Moving Target.
 
+The yellow circle is the action-value function that is being updated. Through gradient descent the weights of the action-value function are updated in such a way that the action-values are closer to the rewards plus action-values for the next state (blue and yellow circles). But by changing the weights for the action-values we simultaneously change the values for the targets. To put it simply, the action-value function tries to catch up to a moving target. Therefore it is not surprising that we can experience divergence. 
+
 .. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/two_value_functions.svg
    :align: center
 
    Two Value Functions.
+
+The researchers at DeepMind introduced a second action-value function, where the weights of the target Q-function are frozen. That allows the action-value to catch up to the target values. After a given amount of update steps the weights from the action-value function are copied to the target function. 
+
+The final mean squared error calculation is defined as follows.
+
+.. math::
+    
+    MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta^-))^2]
+
 
 Agent
 =====
