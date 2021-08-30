@@ -8,6 +8,22 @@ Many of the solutions by the DQN seem to show creativity and even if you are not
 
 In this chapter we are going to explore the components that made the deep Q-network successful. We will look at how Atari games can be solved, but we are also going to explore solutions to other OpenAI gym environments, because those can be solved easier, especially if you do not possess a modern Nvidia graphics card. 
 
+Imports
+=======
+
+.. code:: python
+
+    import gym
+    import numpy as np
+
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    import torch.optim as optim
+
+    import cv2
+    from copy import deepcopy
+    from collections import deque
 
 Preprocessing
 =============
@@ -278,6 +294,25 @@ For example in the cart pole environment the input consists of 4 neurons, as the
 
    Fully Connected Architecture.
 
+The number of hidden layers and number of neurons was chosen arbitrarily, but the configuration works well with the lunar lander environment. 
+
+.. code:: python
+
+    class Q_FC(nn.Module):
+        
+        def __init__(self, obs_dims, n_actions):
+            super(Q_FC, self).__init__()
+            self.model = nn.Sequential(
+                nn.Linear(in_features=obs_dims, out_features=64),
+                nn.ReLU(),
+                nn.Linear(in_features=64, out_features=128),
+                nn.ReLU(),
+                nn.Linear(in_features=128, out_features=n_actions)
+            )
+        
+        def forward(self, state):
+            return self.model(state)
+
 The architecture of Atari games is only slightly more complex. The first layers are convolutional neural networks, which are followed by fully connected layers. 
 
 .. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/architecture_cnn.svg
@@ -289,24 +324,18 @@ The parameters of the neural network correspond exactly to those described in th
 
 .. code:: python
 
-    class Q(nn.Module):
+    class Q_FC(nn.Module):
         
-        def __init__(self, n_actions):
-            super(Q, self).__init__()
-            
+        def __init__(self, obs_dims, n_actions):
+            super(Q_FC, self).__init__()
             self.model = nn.Sequential(
-                nn.Conv2d(in_channels=4, out_channels=32, kernel_size=(8, 8), stride=4),
+                nn.Linear(in_features=obs_dims, out_features=64),
                 nn.ReLU(),
-                nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(4, 4), stride=2),
+                nn.Linear(in_features=64, out_features=128),
                 nn.ReLU(),
-                nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1),
-                nn.ReLU(),
-                nn.Flatten(),
-                nn.Linear(in_features=64*7*7, out_features=512),
-                nn.ReLU(),
-                nn.Linear(in_features=512, out_features=n_actions)
+                nn.Linear(in_features=128, out_features=n_actions)
             )
-
+        
         def forward(self, state):
             return self.model(state)
 
@@ -409,42 +438,51 @@ The final mean squared error calculation is defined as follows.
 Agent
 =====
 
+The agent class brings all the components of the DQN together.
+
 .. code:: python
 
     class Agent:
     
         def __init__(self,
-                    obs_shape,
-                    n_actions,
-                    batch_size, 
-                    memory_size,
+                    env,
+                    solved_average_reward,
+                    q_function,
+                    memory_buffer,
+                    num_episodes,
+                    num_actions,
                     update_frequency,
                     warmup,
                     alpha, 
                     epsilon_start, 
                     epsilon_steps, 
                     epsilon_end, 
-                    gamma):
+                    gamma,
+                    device):
             
-            self.n_actions = n_actions
-            self.memory_buffer = MemoryBuffer(obs_shape, memory_size, batch_size)
-            self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-            print(self.device)
+            self.device = device
+            self.env = env
+            self.solved_average_reward = solved_average_reward
             
-            self.online_network = Q(n_actions).to(self.device)
+            # Two value functions and optimizer
+            self.online_network = q_function.to(self.device)
             self.target_network = deepcopy(self.online_network).to(self.device)
-            
             for param in self.target_network.parameters():
                 param.requires_grad = False
-            
             self.optimizer = optim.RMSprop(self.online_network.parameters(), alpha)
+            
+            # memory buffer
+            self.memory_buffer = memory_buffer
+            
+            self.num_episodes = num_episodes
+            self.num_actions = num_actions
+            self.update_frequency = update_frequency
+            self.warmup = warmup
+            
             self.epsilon = epsilon_start
             self.epsilon_end = epsilon_end
             self.epsilon_step = (epsilon_start - epsilon_end) / epsilon_steps
-            print(self.epsilon_step)
             self.gamma = gamma
-            self.warmup = warmup
-        
         
         def adjust_epsilon(self):
             self.epsilon -= self.epsilon_step
@@ -454,7 +492,7 @@ Agent
         @torch.no_grad()
         def epsilon_greedy(self, obs):
             if np.random.rand() < self.epsilon:
-                action = np.random.choice(self.n_actions)
+                action = np.random.choice(self.num_actions)
             else:
                 action = self.greedy(obs)
             return action
@@ -478,13 +516,13 @@ Agent
                     
             return obs, action, reward, next_obs, done
             
-        def learn(self):
+        def optimize(self):
             if len(self.memory_buffer) < self.warmup:
                 return
             
             self.optimizer.zero_grad()
             obs, action, reward, next_obs, done = self.batch_memory()
-            
+                    
             with torch.no_grad():
                 target = reward + self.gamma * self.target_network(next_obs).max(dim=1, keepdim=True)[0] * (1 - done)
 
@@ -500,20 +538,86 @@ Agent
             
         def update_target_network(self):
             self.target_network = deepcopy(self.online_network)
+            
+        def learn(self):
+            counter = 0
+            eval_rewards = []
+            eval_rewards_mean = []
+            avg_eval_reward_sum = float('-inf')
+            
+            max_eval_reward_sum = float('-inf')
+            max_avg_eval_reward_sum = float('-inf')
+            
+            for episode in range(self.num_episodes):
+                obs = self.env.reset()
+                done = False
 
+                while not done:
+                    # TRAINING
+                    counter += 1
+                    action = self.epsilon_greedy(obs)
+                    next_obs, reward, done, info = self.env.step(action)
+                    self.store_memory(obs, action, reward, next_obs, done)
+                    obs = next_obs
+                    self.optimize()
 
-Main Training Loop
-==================
+                    if counter % self.update_frequency == 0:
+                        print("Updating")
+                        self.update_target_network()
+                    
+                # EVALUATION AND LOGGING
+                #-----------------------------------------------------------
+                eval_reward_sum = self.evaluate()
+                eval_rewards.append(eval_reward_sum)
+                
+                if eval_reward_sum > max_eval_reward_sum:
+                    max_eval_reward_sum = eval_reward_sum
+
+                if len(eval_rewards) > 100:
+                    avg_eval_reward_sum = np.mean(eval_rewards[-100:])
+                    if avg_eval_reward_sum > max_avg_eval_reward_sum:
+                        max_avg_eval_reward_sum = avg_eval_reward_sum
+                        
+                    eval_rewards_mean.append(avg_eval_reward_sum)
+                
+                print('--------------------------------')
+                print(f'Episode: {episode + 1}')
+                print(f'Reward Sum: {eval_reward_sum}')
+                print(f'Max Reward Sum: {max_eval_reward_sum}')
+                print(f'Avg. Reward Sum: {avg_eval_reward_sum}')
+                print(f'Max Avg. Reward Sum: {max_avg_eval_reward_sum}')
+                
+                if avg_eval_reward_sum > self.solved_average_reward:
+                    print('SOLVED')
+                    break
+    
+        def evaluate(self):
+            reward_sum = 0
+            obs = self.env.reset()
+            done = False
+            while not done:
+                action = self.greedy(obs)
+                next_obs, reward, done, info = self.env.step(action)
+                obs = next_obs
+                reward_sum += reward
+            return reward_sum
+
+Parameters and Training
+=======================
 
 .. code:: python
 
-    # parameters
-    env_name = 'BreakoutNoFrameskip-v4'
-
-    EPISODES = 100000
+    # PARAMETERS FOR LUNAR LANDER
+    ENV_NAME = 'LunarLander-v2'
+    ENV = gym.make(ENV_NAME)
+    OBS_DIMS = ENV.observation_space.shape[0]
+    NUM_ACTIONS = ENV.action_space.n
+    DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    SOLVED_AVERAGE_REWARD = 200
+    NUM_EPISODES = 1000
     BATCH_SIZE = 32
-    MEMORY_SIZE = 100000
-    UPDATE_FREQUENCY = 10000
+    MEMORY_SIZE = 10000
+    UPDATE_FREQUENCY = 1000
     WARMUP = 1000
     ALPHA = 0.00025
     EPSILON_START = 1
@@ -521,44 +625,31 @@ Main Training Loop
     EPSILON_STEPS = 100000
     GAMMA = 0.99
 
-    # training loop
-    def main():
-        env = create_atari_env(env_name)
-        agent = Agent(
-            env.observation_space.shape,
-            env.action_space.n,
-            BATCH_SIZE,
-            MEMORY_SIZE,
-            UPDATE_FREQUENCY,
-            WARMUP,
-            ALPHA,
-            EPSILON_START,
-            EPSILON_STEPS,
-            EPSILON_END,
-            GAMMA
-        )
-        counter = 1
-        for episode in range(EPISODES):
-            obs = env.reset()
-            done = False
-            
-            reward_sum = 0
-            while not done:
-                counter+=1
-                action = agent.epsilon_greedy(obs)
-                next_obs, reward, done, info = env.step(action)
-                agent.store_memory(obs, action, reward, next_obs, done)
-                obs = next_obs
-                agent.learn()
-                
-                if counter % UPDATE_FREQUENCY == 0:
-                    print("Updating")
-                    agent.update_target_network()
-                    
-                reward_sum += reward
-            
-            print(f'Episode: {episode}, Counter: {counter}, Epsilon: {agent.epsilon}, Reward: {reward_sum}')
+    Q_FUNCTION = Q_FC(OBS_DIMS, NUM_ACTIONS)
+    MEMORY_BUFFER = MemoryBuffer(obs_shape=[OBS_DIMS], max_len=MEMORY_SIZE, batch_size=BATCH_SIZE)
 
+
+.. code:: python
+
+    # create agent
+    agent = Agent(
+        env=ENV,
+        solved_average_reward=SOLVED_AVERAGE_REWARD,
+        q_function=Q_FUNCTION,
+        memory_buffer=MEMORY_BUFFER,
+        num_episodes=NUM_EPISODES,
+        num_actions=NUM_ACTIONS,
+        update_frequency=UPDATE_FREQUENCY,
+        warmup=WARMUP,
+        alpha=ALPHA, 
+        epsilon_start=EPSILON_START, 
+        epsilon_steps=EPSILON_STEPS, 
+        epsilon_end=EPSILON_END, 
+        gamma=GAMMA,
+        device=DEVICE
+    )
+
+    agent.learn()
 
 Sources
 =======

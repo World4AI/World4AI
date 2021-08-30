@@ -345,6 +345,11 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preprocessing">
    Preprocessing
   </a>
@@ -412,8 +417,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#main-training-loop">
-   Main Training Loop
+  <a class="reference internal nav-link" href="#parameters-and-training">
+   Parameters and Training
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -447,6 +452,22 @@
 <p>The paper on the deep Q-network (often abbreviated as DQN) is regarded as one of the most seminal papers on modern reinforcement learning <a class="footnote-reference brackets" href="#id4" id="id1">1</a>. The research that came from DeepMind showed how a combination of Q-learning with deep neural networks can be applied to Atari games. The results were inspiring and groundbreaking in many respects, but the most important contribution of the paper was probably the rejuvenation of a field that seemed to be forgotten by the public. DQN spurred a research streak that continues up to this day.</p>
 <p>Many of the solutions by the DQN seem to show creativity and even if you are not a reinforcement learning enthusiast, you will most likely find the playthroughs of Atari games by the DQN agent to be almost magical.</p>
 <p>In this chapter we are going to explore the components that made the deep Q-network successful. We will look at how Atari games can be solved, but we are also going to explore solutions to other OpenAI gym environments, because those can be solved easier, especially if you do not possess a modern Nvidia graphics card.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="preprocessing">
 <h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <p>The Atari environment requires some additional preprocessing of observations and actions to make the learning process more efficient. The steps that we are going to undertake are described in the original paper. The OpenAI wrappers that we are going to implement are based on the “baselines” repository from OpenAI <a class="footnote-reference brackets" href="#id5" id="id2">2</a>. Nowadays it is not necessary to implement those from scratch, as highly efficient and readily tested libraries are available <a class="footnote-reference brackets" href="#id6" id="id3">3</a>. So instead of reinventing the wheel we should generally focus on the algorithm and not the preprocessing steps. That being said, especially when you look at the paper and the implementation for the first time it is advisable to work through the preprocessing steps.</p>
@@ -688,27 +709,38 @@
 <div class="figure align-center" id="id7">
 <img alt="../../_images/architecture1.svg" src="../../_images/architecture1.svg" /><p class="caption"><span class="caption-text">Fully Connected Architecture.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
+<p>The number of hidden layers and number of neurons was chosen arbitrarily, but the configuration works well with the lunar lander environment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q_FC</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_dims</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Q_FC</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">obs_dims</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>The architecture of Atari games is only slightly more complex. The first layers are convolutional neural networks, which are followed by fully connected layers.</p>
 <div class="figure align-center" id="id8">
 <img alt="../../_images/architecture_cnn.svg" src="../../_images/architecture_cnn.svg" /><p class="caption"><span class="caption-text">CNN Architecture.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>The parameters of the neural network correspond exactly to those described in the original paper.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q_FC</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_dims</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Q_FC</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">obs_dims</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">64</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">128</span><span class="p">),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
-            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
@@ -788,40 +820,48 @@
 </div></div>
 <div class="section" id="agent">
 <h2>Agent<a class="headerlink" href="#agent" title="Permalink to this headline">¶</a></h2>
+<p>The agent class brings all the components of the DQN together.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                <span class="n">obs_shape</span><span class="p">,</span>
-                <span class="n">n_actions</span><span class="p">,</span>
-                <span class="n">batch_size</span><span class="p">,</span>
-                <span class="n">memory_size</span><span class="p">,</span>
+                <span class="n">env</span><span class="p">,</span>
+                <span class="n">solved_average_reward</span><span class="p">,</span>
+                <span class="n">q_function</span><span class="p">,</span>
+                <span class="n">memory_buffer</span><span class="p">,</span>
+                <span class="n">num_episodes</span><span class="p">,</span>
+                <span class="n">num_actions</span><span class="p">,</span>
                 <span class="n">update_frequency</span><span class="p">,</span>
                 <span class="n">warmup</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="p">,</span>
                 <span class="n">epsilon_start</span><span class="p">,</span>
                 <span class="n">epsilon_steps</span><span class="p">,</span>
                 <span class="n">epsilon_end</span><span class="p">,</span>
-                <span class="n">gamma</span><span class="p">):</span>
+                <span class="n">gamma</span><span class="p">,</span>
+                <span class="n">device</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_actions</span> <span class="o">=</span> <span class="n">n_actions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span> <span class="o">=</span> <span class="n">MemoryBuffer</span><span class="p">(</span><span class="n">obs_shape</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solved_average_reward</span> <span class="o">=</span> <span class="n">solved_average_reward</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">online_network</span> <span class="o">=</span> <span class="n">Q</span><span class="p">(</span><span class="n">n_actions</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="c1"># Two value functions and optimizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">online_network</span> <span class="o">=</span> <span class="n">q_function</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
             <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">alpha</span><span class="p">)</span>
+
+        <span class="c1"># memory buffer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span> <span class="o">=</span> <span class="n">memory_buffer</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_episodes</span> <span class="o">=</span> <span class="n">num_episodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_actions</span> <span class="o">=</span> <span class="n">num_actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_frequency</span> <span class="o">=</span> <span class="n">update_frequency</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup</span> <span class="o">=</span> <span class="n">warmup</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_end</span> <span class="o">=</span> <span class="n">epsilon_end</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span> <span class="o">=</span> <span class="p">(</span><span class="n">epsilon_start</span> <span class="o">-</span> <span class="n">epsilon_end</span><span class="p">)</span> <span class="o">/</span> <span class="n">epsilon_steps</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warmup</span> <span class="o">=</span> <span class="n">warmup</span>
-
 
     <span class="k">def</span> <span class="nf">adjust_epsilon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_step</span>
@@ -831,7 +871,7 @@
     <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">epsilon_greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_actions</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_actions</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">action</span>
@@ -855,7 +895,7 @@
 
         <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span>
 
-    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">memory_buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">warmup</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -877,18 +917,85 @@
 
     <span class="k">def</span> <span class="nf">update_target_network</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">eval_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">eval_rewards_mean</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">avg_eval_reward_sum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+
+        <span class="n">max_eval_reward_sum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+        <span class="n">max_avg_eval_reward_sum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_episodes</span><span class="p">):</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+                <span class="c1"># TRAINING</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+                <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">store_memory</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
+                <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_frequency</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">update_target_network</span><span class="p">()</span>
+
+            <span class="c1"># EVALUATION AND LOGGING</span>
+            <span class="c1">#-----------------------------------------------------------</span>
+            <span class="n">eval_reward_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+            <span class="n">eval_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eval_reward_sum</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">eval_reward_sum</span> <span class="o">&gt;</span> <span class="n">max_eval_reward_sum</span><span class="p">:</span>
+                <span class="n">max_eval_reward_sum</span> <span class="o">=</span> <span class="n">eval_reward_sum</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eval_rewards</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                <span class="n">avg_eval_reward_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eval_rewards</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:])</span>
+                <span class="k">if</span> <span class="n">avg_eval_reward_sum</span> <span class="o">&gt;</span> <span class="n">max_avg_eval_reward_sum</span><span class="p">:</span>
+                    <span class="n">max_avg_eval_reward_sum</span> <span class="o">=</span> <span class="n">avg_eval_reward_sum</span>
+
+                <span class="n">eval_rewards_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_eval_reward_sum</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Reward Sum: </span><span class="si">{</span><span class="n">eval_reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Reward Sum: </span><span class="si">{</span><span class="n">max_eval_reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Avg. Reward Sum: </span><span class="si">{</span><span class="n">avg_eval_reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Avg. Reward Sum: </span><span class="si">{</span><span class="n">max_avg_eval_reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">avg_eval_reward_sum</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">solved_average_reward</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SOLVED&#39;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">reward_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+            <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
+            <span class="n">reward_sum</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="k">return</span> <span class="n">reward_sum</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="main-training-loop">
-<h2>Main Training Loop<a class="headerlink" href="#main-training-loop" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
-<span class="n">env_name</span> <span class="o">=</span> <span class="s1">&#39;BreakoutNoFrameskip-v4&#39;</span>
-
-<span class="n">EPISODES</span> <span class="o">=</span> <span class="mi">100000</span>
+<div class="section" id="parameters-and-training">
+<h2>Parameters and Training<a class="headerlink" href="#parameters-and-training" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># PARAMETERS FOR LUNAR LANDER</span>
+<span class="n">ENV_NAME</span> <span class="o">=</span> <span class="s1">&#39;LunarLander-v2&#39;</span>
+<span class="n">ENV</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">ENV_NAME</span><span class="p">)</span>
+<span class="n">OBS_DIMS</span> <span class="o">=</span> <span class="n">ENV</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">NUM_ACTIONS</span> <span class="o">=</span> <span class="n">ENV</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
+<span class="n">DEVICE</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+<span class="n">SOLVED_AVERAGE_REWARD</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">NUM_EPISODES</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">MEMORY_SIZE</span> <span class="o">=</span> <span class="mi">100000</span>
-<span class="n">UPDATE_FREQUENCY</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">MEMORY_SIZE</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">UPDATE_FREQUENCY</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">WARMUP</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.00025</span>
 <span class="n">EPSILON_START</span> <span class="o">=</span> <span class="mi">1</span>
@@ -896,43 +1003,29 @@
 <span class="n">EPSILON_STEPS</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span>
 
-<span class="c1"># training loop</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">env</span> <span class="o">=</span> <span class="n">create_atari_env</span><span class="p">(</span><span class="n">env_name</span><span class="p">)</span>
-    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
-        <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-        <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
-        <span class="n">BATCH_SIZE</span><span class="p">,</span>
-        <span class="n">MEMORY_SIZE</span><span class="p">,</span>
-        <span class="n">UPDATE_FREQUENCY</span><span class="p">,</span>
-        <span class="n">WARMUP</span><span class="p">,</span>
-        <span class="n">ALPHA</span><span class="p">,</span>
-        <span class="n">EPSILON_START</span><span class="p">,</span>
-        <span class="n">EPSILON_STEPS</span><span class="p">,</span>
-        <span class="n">EPSILON_END</span><span class="p">,</span>
-        <span class="n">GAMMA</span>
-    <span class="p">)</span>
-    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPISODES</span><span class="p">):</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">Q_FUNCTION</span> <span class="o">=</span> <span class="n">Q_FC</span><span class="p">(</span><span class="n">OBS_DIMS</span><span class="p">,</span> <span class="n">NUM_ACTIONS</span><span class="p">)</span>
+<span class="n">MEMORY_BUFFER</span> <span class="o">=</span> <span class="n">MemoryBuffer</span><span class="p">(</span><span class="n">obs_shape</span><span class="o">=</span><span class="p">[</span><span class="n">OBS_DIMS</span><span class="p">],</span> <span class="n">max_len</span><span class="o">=</span><span class="n">MEMORY_SIZE</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create agent</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">,</span>
+    <span class="n">solved_average_reward</span><span class="o">=</span><span class="n">SOLVED_AVERAGE_REWARD</span><span class="p">,</span>
+    <span class="n">q_function</span><span class="o">=</span><span class="n">Q_FUNCTION</span><span class="p">,</span>
+    <span class="n">memory_buffer</span><span class="o">=</span><span class="n">MEMORY_BUFFER</span><span class="p">,</span>
+    <span class="n">num_episodes</span><span class="o">=</span><span class="n">NUM_EPISODES</span><span class="p">,</span>
+    <span class="n">num_actions</span><span class="o">=</span><span class="n">NUM_ACTIONS</span><span class="p">,</span>
+    <span class="n">update_frequency</span><span class="o">=</span><span class="n">UPDATE_FREQUENCY</span><span class="p">,</span>
+    <span class="n">warmup</span><span class="o">=</span><span class="n">WARMUP</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">ALPHA</span><span class="p">,</span>
+    <span class="n">epsilon_start</span><span class="o">=</span><span class="n">EPSILON_START</span><span class="p">,</span>
+    <span class="n">epsilon_steps</span><span class="o">=</span><span class="n">EPSILON_STEPS</span><span class="p">,</span>
+    <span class="n">epsilon_end</span><span class="o">=</span><span class="n">EPSILON_END</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="n">GAMMA</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span>
+<span class="p">)</span>
 
-        <span class="n">reward_sum</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
-            <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">epsilon_greedy</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
-            <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-            <span class="n">agent</span><span class="o">.</span><span class="n">store_memory</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span>
-            <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
-            <span class="n">agent</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
-
-            <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="n">UPDATE_FREQUENCY</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating&quot;</span><span class="p">)</span>
-                <span class="n">agent</span><span class="o">.</span><span class="n">update_target_network</span><span class="p">()</span>
-
-            <span class="n">reward_sum</span> <span class="o">+=</span> <span class="n">reward</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s1">, Counter: </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s1">, Epsilon: </span><span class="si">{</span><span class="n">agent</span><span class="o">.</span><span class="n">epsilon</span><span class="si">}</span><span class="s1">, Reward: </span><span class="si">{</span><span class="n">reward_sum</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">agent</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
