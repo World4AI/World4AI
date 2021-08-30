@@ -313,10 +313,25 @@ The parameters of the neural network correspond exactly to those described in th
 Experience Replay
 =================
 
+With traditional (naive) online q-learning each experience is thrown away as soon as it has been used for training. Even if experiences are collected and stored for future training the agent faces difficulties that are present in many reinforcement learning tasks. Sequential observations from a single episode are highly correlated with each other, which destabilizes training. The solution is to use a technique called experience replay. 
+
 .. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/dqn/buffer.svg
    :align: center
 
    Memory Buffer
+
+The experience replay uses a data structure called memory buffer. Each experience tuple :math:`e_t = (s_t, a_t, r_t, s_{t+1}, t_t)` (observation, action, reward, next observation and terminal flag) is stored in a data structure with limited capacity. At each time step the agent faces a certain observation, uses epsilon-greedy action selection and collects the corresponding reward. The whole tuple is pushed into the memory buffer :math:`D_t = \{e_1, ... , e_t\}` until the defined maximum length is achieved. At full capacity the memory buffer removes the oldest tuple. 
+
+The agent learns only from the collected experiences and never online. At each time step the agent gets a randomized batch from the memory buffer and uses the whole batch to apply stochastic gradient descent. Using experience replay the mean squared error can be defined as follows.
+
+.. math::
+    
+    MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta))^2]
+
+The maximum length of the buffer and the batch size depend on the task the agent needs to solve. In the paper memory size corresponded to 1,000,000 and batch size to 32. Depending on your hardware you might need to reduce the memory size. 
+
+Using randomized batches decorrelates observations used for training and thus stabilizes it. Batch size of 32 means that each observation is used on average 32 times before it is replaced by a newer one. 
+   
 
 .. code:: python
 
@@ -358,6 +373,10 @@ Experience Replay
            done = self.done[idxs]
            
            return obs, action, reward, next_obs, done
+
+
+If you ask yourself why the approach we took with NFQ is not scalable, remember that we had to iterate over the whole available experience set. Once the set gets too large the iteration and  training gets extremely slow. It is more efficient to replace old memories and to take a gradient descent step at each time step. 
+
 
 Frozen Target Network
 =====================

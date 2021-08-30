@@ -718,9 +718,16 @@
 </div>
 <div class="section" id="experience-replay">
 <h2>Experience Replay<a class="headerlink" href="#experience-replay" title="Permalink to this headline">¶</a></h2>
+<p>With traditional (naive) online q-learning each experience is thrown away as soon as it has been used for training. Even if experiences are collected and stored for future training the agent faces difficulties that are present in many reinforcement learning tasks. Sequential observations from a single episode are highly correlated with each other, which destabilizes training. The solution is to use a technique called experience replay.</p>
 <div class="figure align-center" id="id9">
 <img alt="../../_images/buffer.svg" src="../../_images/buffer.svg" /><p class="caption"><span class="caption-text">Memory Buffer</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
+<p>The experience replay uses a data structure called memory buffer. Each experience tuple <img class="math" src="../../_images/math/301487c028ad20564282fb4564dc38c671d13335.svg" alt="e_t = (s_t, a_t, r_t, s_{t+1}, t_t)"/> (observation, action, reward, next observation and terminal flag) is stored in a data structure with limited capacity. At each time step the agent faces a certain observation, uses epsilon-greedy action selection and collects the corresponding reward. The whole tuple is pushed into the memory buffer <img class="math" src="../../_images/math/8873386a326822d559d069f1a1ee5dd89b090933.svg" alt="D_t = \{e_1, ... , e_t\}"/> until the defined maximum length is achieved. At full capacity the memory buffer removes the oldest tuple.</p>
+<p>The agent learns only from the collected experiences and never online. At each time step the agent gets a randomized batch from the memory buffer and uses the whole batch to apply stochastic gradient descent. Using experience replay the mean squared error can be defined as follows.</p>
+<div class="math">
+<p><img src="../../_images/math/f471b374e824f1d9b8e6a6fd6798875883e58db3.svg" alt="MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta))^2]"/></p>
+</div><p>The maximum length of the buffer and the batch size depend on the task the agent needs to solve. In the paper memory size corresponded to 1,000,000 and batch size to 32. Depending on your hardware you might need to reduce the memory size.</p>
+<p>Using randomized batches decorrelates observations used for training and thus stabilizes it. Batch size of 32 means that each observation is used on average 32 times before it is replaced by a newer one.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MemoryBuffer</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_shape</span><span class="p">,</span> <span class="n">max_len</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -761,6 +768,7 @@
         <span class="k">return</span> <span class="n">obs</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_obs</span><span class="p">,</span> <span class="n">done</span>
 </pre></div>
 </div>
+<p>If you ask yourself why the approach we took with NFQ is not scalable, remember that we had to iterate over the whole available experience set. Once the set gets too large the iteration and  training gets extremely slow. It is more efficient to replace old memories and to take a gradient descent step at each time step.</p>
 </div>
 <div class="section" id="frozen-target-network">
 <h2>Frozen Target Network<a class="headerlink" href="#frozen-target-network" title="Permalink to this headline">¶</a></h2>
