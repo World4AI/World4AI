@@ -350,13 +350,59 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#policy-estimation">
-   Policy Estimation
+  <a class="reference internal nav-link" href="#generalized-policy-iteration">
+   Generalized Policy Iteration
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-estimation">
+     Policy Estimation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theory">
+       Theory
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithm">
+       Algorithm
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implementation">
+       Implementation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy-improvement-and-control">
+     Policy Improvement and Control
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Theory
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Algorithm
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Implementation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#policy-improvement-and-control">
-   Policy Improvement and Control
+  <a class="reference internal nav-link" href="#sources">
+   Sources
   </a>
  </li>
 </ul>
@@ -384,21 +430,44 @@
 <h1>Monte Carlo Methods<a class="headerlink" href="#monte-carlo-methods" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
-<p>Monte Carlo methods are similar in spirit to bandit methods, as in both the action-value function can be estimated through continuous trial and error and averaging. Unlike in bandits though, monte carlo methods are able to deal with problems where decisions are based on different states.</p>
-<p>In reinforcement learning the goal of the agent is to maximize the expected sum of discounted rewards.</p>
-<p><img class="math" src="../../_images/math/c1c29b4501816c57985d217aa8b2ec20e341c66a.svg" alt="v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]"/></p>
-<p><img class="math" src="../../_images/math/46bccd63034ff14b0e6ab4e877a7f3c14c3454a7.svg" alt="q_\pi(s,a) = \mathbb{E}[G_t \mid S_t = s, A_t = a]"/></p>
-<p>In dynamic programming we were allowed to access the model, which allowed us to use the update rule for value functions with the knowledge of transition probabilities and expected rewards.</p>
-<p>In Reinforcement Learning on the other hand the agent has no access to the model and needs to learn the expected value through other means. The most straightforward way to accomplish that is to generate discounted returns through continuous interaction. The estimates of value functions can be calculated by averaging over the generated returns.</p>
-<p>Just as with dynamic programming the algorithm is going to be based on general policy iteration, which means that policy estimation and policy improvement will succeed each other.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Monte Carlo methods are a broad class of computational algorithms that rely on repeated random sampling to obtain numerical results <a class="footnote-reference brackets" href="#id5" id="id1">1</a>.</p>
 </div>
+<p>If we look at any definition of Monte Carlo methods, there is a high chance that the definition contains random sampling.</p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/paths.svg" src="../../_images/paths.svg" /><p class="caption"><span class="caption-text">Paths Generated Through Monte Carlo.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>When we apply Monte Carlo methods to reinforcement learning we sample episode paths, also called trajectories. The agent interacts with the environment and collects experience tuples that consist of states, actions and rewards.</p>
+<p>Monte Carlo methods are similar in spirit to bandit methods. The state-value and action-value functions can be estimated by taking the sampled trajectories and building averages. Unlike in bandits though, Monte Carlo methods are able to deal with environments where several non terminal states exist.</p>
+<p>Estimations can only be made once the trajectory is complete when the episode finishes, which means that Monte Carlo methods only work for episodic tasks.</p>
+</div>
+<div class="section" id="generalized-policy-iteration">
+<h2>Generalized Policy Iteration<a class="headerlink" href="#generalized-policy-iteration" title="Permalink to this headline">¶</a></h2>
+<p>The Monte Carlo algorithm will follow general policy iteration. We alternate between policy evaluation and policy improvement to find the optimal policy.</p>
 <div class="section" id="policy-estimation">
-<h2>Policy Estimation<a class="headerlink" href="#policy-estimation" title="Permalink to this headline">¶</a></h2>
-<p>Let us recall once again that the idea of policy estimation is to find the state-value and action-value functions for a corresponding policy.</p>
+<h3>Policy Estimation<a class="headerlink" href="#policy-estimation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="theory">
+<h4>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h4>
+<p>Policy estimation deals with finding the true value function of a given policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>. Mathematically speaking we are looking for the expected sum of discounted rewards (also called returns) when the agent follow the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>.</p>
 <p><img class="math" src="../../_images/math/c1c29b4501816c57985d217aa8b2ec20e341c66a.svg" alt="v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]"/></p>
-<p><img class="math" src="../../_images/math/46bccd63034ff14b0e6ab4e877a7f3c14c3454a7.svg" alt="q_\pi(s,a) = \mathbb{E}[G_t \mid S_t = s, A_t = a]"/></p>
-<p>A natural way to estimate the expected value of a random variable is to sample random variables and to use the average as an estimate. Therefore using a policy the agent can interact with the environment and generate full episodes. The returns can be used to build averages to estimate state-value and action-value functions. For each state or state-action pair we could keep a list or a table respectively where the estimate is stored and updated.</p>
-<p>Generally there are two methods to calculate the averages. Each time the agent faces a state (or state-action pair) during an episode is called a visit. In the “First Visit” monte carlo method only the return from the first visit to that state (state-action pair) until the end of the episode is calculated. If the state (state-action) is visited several times during an episode, the additional visits are not considered in the calculation. While in the “Every Visit” method each visit is counted. The “First Visit” method is more popular and is going to be covered in this section, but the algorithms can be easily adjusted to account for the “Every Visit” method.</p>
+<p>A natural way to estimate the expected value of a random variable is to get samples from a distribution and to use the average as an estimate. In reinforcement learning the agent can estimate the expected value of returns for a policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> by interacting with the environment, generating trajectories over and over again and building averages over the returns of the trajectories.</p>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/mc_backup.svg" src="../../_images/mc_backup.svg" /><p class="caption"><span class="caption-text">Monte Carlo Trajectories.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above image shows different trajectories that were created by following a policy pi. The large circles represent a certain state, the smaller black circles represent the actions and the boxes are the terminal states. To estimate the state value for the grey state located at the left we calculate the (discounted) return that is generated after the grey state and build a simple average. The same process is repeated for the yellow, green and all the other states.</p>
+<p>Generally there are two methods to calculate the averages. Each time the agent faces a state during an episode is called a visit. In the “First Visit” Monte Carlo method only the return from the first visit to that state until the end of the episode is calculated. If the state is visited several times during an episode, the additional visits are not considered in the calculation. While in the “Every Visit” method each visit is counted. The “First Visit” method is more popular and generally more straightforward and is going to be covered in this section, but the algorithms can be easily adjusted to account for the “Every Visit” method.</p>
+<p>To make the calculations of the averages computationally efficient we are going to use the incremental implementation that we already used for n-armed bandits.</p>
+<div class="math">
+<p><img src="../../_images/math/f93c617f8ad4815396f93dd760ff4bb5b08304b1.svg" alt="NewEstimate \leftarrow OldEstimate + StepSize[Target - OldEstimate]"/></p>
+</div></div>
+<div class="section" id="algorithm">
+<h4>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h4>
+<p>The algorithm is divided into two steps.</p>
+<ul class="simple">
+<li><p>In the first step using the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> (or <img class="math" src="../../_images/math/8d48296c0461799ee293045b7060e90bfbc9968f.svg" alt="\mu"/> if the policy is deterministic) the agent generates a trajectory.</p></li>
+<li><p>In the second step the agent improves the estimation for the state value function <img class="math" src="../../_images/math/41fc31585b3b13e811d8deb0b700ce4e1d0f2c1e.svg" alt="V(s)"/>. For that purpose the agent loops over the previously generated trajectory and for each experience tuple he determines if he deals with a first visit to that state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/>. If he does he calculates the discounted sum of rewards from that point on to the terminal state <img class="math" src="../../_images/math/590bafd0c30d1295e8abda9e493aa98d67766ee0.svg" alt="G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t"/>. Finally the agent performs an update step by using the incremental average calculation <img class="math" src="../../_images/math/0542aec32ce57c083780457d52be30086bfc559c.svg" alt="V(s) = V(s) + \alpha [G_{t:T} - V(s)]"/>.</p></li>
+</ul>
 <div class="math">
 <p><img src="../../_images/math/37ae5ed34da780220c46dc868b2a87666f02408f.svg" alt="\begin{algorithm}[H]
     \caption{Monte Carlo Prediction: First Visit}
@@ -433,7 +502,11 @@
     \STATE RETURN V(s)
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+</div></div>
+<div class="section" id="implementation">
+<h4>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h4>
+<p>Once again we are going to utilize the already discussed frozen lake environment to demonstrate the implementation of the algorithms.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -444,6 +517,7 @@
 <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
 </pre></div>
 </div>
+<p>The below policy is going to be evaluated.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
 <span class="c1">#     LEFT = 0</span>
 <span class="c1">#     DOWN = 1</span>
@@ -472,6 +546,7 @@
     <span class="k">return</span> <span class="n">mu</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
 </pre></div>
 </div>
+<p>The following code shows a relatively straightforward implementation of Monte Carlo evaluation. To get better results we could still increase the number of episodes and reduce the learning rate <img class="math" src="../../_images/math/c79ec9e86f4f2b22c56742ffd242fc41b8af040e.svg" alt="\alpha"/> over time.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mc_prediction</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
 
     <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
@@ -516,22 +591,49 @@
     <span class="k">return</span> <span class="n">V</span>
 </pre></div>
 </div>
+<p>The following state-value function is calculated for the policy <img class="math" src="../../_images/math/cd89edb8d677e76ff2422b13ab39ad709e93db2e.svg" alt="\mu(s)"/>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.03475</span><span class="o">|</span><span class="mf">0.02148</span><span class="o">|</span><span class="mf">0.04602</span><span class="o">|</span><span class="mf">0.02590</span><span class="o">|</span>
+<span class="mf">0.05337</span><span class="o">|</span><span class="mf">0.00000</span><span class="o">|</span><span class="mf">0.09429</span><span class="o">|</span><span class="mf">0.00000</span><span class="o">|</span>
+<span class="mf">0.11221</span><span class="o">|</span><span class="mf">0.28622</span><span class="o">|</span><span class="mf">0.30213</span><span class="o">|</span><span class="mf">0.00000</span><span class="o">|</span>
+<span class="mf">0.00000</span><span class="o">|</span><span class="mf">0.46326</span><span class="o">|</span><span class="mf">0.64936</span><span class="o">|</span><span class="mf">0.00000</span><span class="o">|</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="policy-improvement-and-control">
-<h2>Policy Improvement and Control<a class="headerlink" href="#policy-improvement-and-control" title="Permalink to this headline">¶</a></h2>
-<p>To find the optimal policy with a Monte Carlo method we are going to use general policy iteration by applying policy evaluation and policy improvement back-to-back. The approach is going to be similar to value iteration, as only one step of policy evaluation is going to be used.</p>
+<h3>Policy Improvement and Control<a class="headerlink" href="#policy-improvement-and-control" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Theory<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>The value iteration algorithm that we applied in the dynamic programming section used the following update step.</p>
 <div class="math">
 <p><img src="../../_images/math/5debc259bdb13224f7a5d5fcf4d0bbf97d9ef4c9.svg" alt="\begin{align*}
 v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
 &amp; = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
 \end{align*}"/></p>
-</div><p>The approach from value iteration where we estimated and improved the state-value function is not going to work with Monte Carlo methods, as those steps required the knowledge of the model.</p>
-<p>But what if we rewrite the above improvement step as follows?</p>
+</div><p>This exact update step is not going to work with Monte Carlo methods, because that would require the full knowledge of the model. We would have to know the transition probabilities from state <img class="math" src="../../_images/math/bd8c7c19971fab23be30458e8d4533d9ddb280d7.svg" alt="s"/> to state <img class="math" src="../../_images/math/c06a68d1f33b6af4fc737ed4bbc5da38ad2176dc.svg" alt="s'"/> and the corresponding reward.</p>
+<p>If we look closely at the above expression, we should notice that we can rewrite the update rule in terms of an action-value function?</p>
 <div class="math">
-<p><img src="../../_images/math/980133f376a20d82cc619ec991fc5542c7ee70ad.svg" alt="v_{k+1}(s) \doteq \max_a q_k(s, a) \\
-\mu_{k+1}(s) \doteq \arg\max_a q_k(s, a)"/></p>
-</div><p>With those rewrites we do not require the knowledge of the model, but it becomes obvious that the key is to estimate the action-value function and not the state-value function. Having an estimate of an action-value function allows the agent to select better actions and to gradually improve the policy towards the optimal policy.  In the first step we need to estimate the action-value function by calculating averages. In the second step we can calculate a new greedy policy by taking the argmax over q(s,a).</p>
-<p>There is still one problem that we face without the knowledge of the model of the MDP though. If our policy is fully deterministic and thus avoids some state-action pairs by design, then we can not compute a good estimate for certain state-action pairs and thus might not arrive at the optimal policy. The solution is as with bandits is to use an <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>-greedy policy, meaning that with a probability of <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/> we take a random action and with probability of <img class="math" src="../../_images/math/8ca63b57ca74b73571f69b8c297a6939525544ad.svg" alt="1-\epsilon"/> we take the greedy action. That way we are guaranteed that all state-action pairs are going to be visited.</p>
+<p><img src="../../_images/math/da8f6bec67b0ab131bdca5895dbb60dead6554ee.svg" alt="\begin{align*}
+v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
+&amp; = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')] \\
+&amp; = \max_a q_k(s, a) \\
+\end{align*}"/></p>
+</div><p>With those rewrites we do not require the knowledge of the model, but it becomes obvious that the key is to estimate the action-value function and not the state-value function. Having an estimate of an action-value function allows the agent to select better actions by acting greedily and to gradually improve the policy towards the optimal policy. To estimate the action-value function we will still generate episodes and compute averages, but the averages are not going to be for a state, but for a state-action pair.</p>
+<p>There is still one problem that we face without the knowledge of the model of the MDP though. If our policy is fully deterministic and thus avoids some state-action pairs by design, then we can not compute a good estimate for certain state-action pairs and thus might not arrive at the optimal policy. The solution is to use an <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>-greedy policy, meaning that with a probability of <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/> we take a random action and with probability of <img class="math" src="../../_images/math/8ca63b57ca74b73571f69b8c297a6939525544ad.svg" alt="1-\epsilon"/> we take the greedy action. That way we are guaranteed that all state-action pairs are going to be visited.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>On-policy</strong> methods improve the same policy that is used to generate the trajectory.</p>
+<p><strong>Off-policy</strong> methods improve a policy that is different from the one that is used to generate the trajectory.</p>
+</div>
+<p>Before we move on to the implementation of the Monte Carlo control algorithm it is important to discuss the difference between on-policy and off-policy methods. Once the need arises to explore the environment we could ask ourselves, “Do we need to improve the same policy that is used to generate actions or can we learn the optimal policy while using the data that was produced by a different policy?”. To frame the question differently “Is it possible to learn the optimal policy while only selecting random actions?”. That depends on the design of the algorithm. On-policy methods improve the same policy that is also used to generate the actions, while off-policy methods improve a policy that is not the one that is used to generate the trajectories. The algorithm that is covered below is an on-policy algorithm.</p>
+</div>
+<div class="section" id="id3">
+<h4>Algorithm<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Once again the algorithm follows a two step approach.</p>
+<ul class="simple">
+<li><p>In the first step the agent generates the trajectory using the <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>-greedy policy.</p></li>
+<li><p>In the second step the agent iterates over the trajectory and uses Monte Carlo and incremental improvement to estimate the action-values.</p></li>
+</ul>
 <div class="math">
 <p><img src="../../_images/math/85dad09417e3e843ac343b5971180a182ea07732.svg" alt="\begin{algorithm}[H]
     \caption{Monte Carlo Control: First Visit}
@@ -576,7 +678,11 @@ v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_
     \STATE RETURN policy, Q(s, a)
 \end{algorithmic}
 \end{algorithm}"/></p>
-</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mc_control</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+</div></div>
+<div class="section" id="id4">
+<h4>Implementation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>The python implementation follows directly from the above described algorithm.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mc_control</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
 
     <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
 
@@ -632,6 +738,16 @@ v_{k+1}(s) &amp; \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_
     <span class="k">return</span> <span class="n">policy</span><span class="p">,</span> <span class="n">Q</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">https://en.wikipedia.org/wiki/Monte_Carlo_method</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

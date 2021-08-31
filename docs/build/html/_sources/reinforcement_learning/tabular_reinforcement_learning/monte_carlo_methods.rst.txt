@@ -5,33 +5,61 @@ Monte Carlo Methods
 Motivation
 ==========
 
-Monte Carlo methods are similar in spirit to bandit methods, as in both the action-value function can be estimated through continuous trial and error and averaging. Unlike in bandits though, monte carlo methods are able to deal with problems where decisions are based on different states. 
+.. note:: 
+    Monte Carlo methods are a broad class of computational algorithms that rely on repeated random sampling to obtain numerical results [#]_.
 
-In reinforcement learning the goal of the agent is to maximize the expected sum of discounted rewards.  
+If we look at any definition of Monte Carlo methods, there is a high chance that the definition contains random sampling. 
 
-:math:`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`
+.. figure:: ../../_static/images/reinforcement_learning/tabular_rl/monte_carlo/paths.svg
+   :align: center
 
-:math:`q_\pi(s,a) = \mathbb{E}[G_t \mid S_t = s, A_t = a]`
+   Paths Generated Through Monte Carlo.
 
-In dynamic programming we were allowed to access the model, which allowed us to use the update rule for value functions with the knowledge of transition probabilities and expected rewards. 
+When we apply Monte Carlo methods to reinforcement learning we sample episode paths, also called trajectories. The agent interacts with the environment and collects experience tuples that consist of states, actions and rewards. 
 
-In Reinforcement Learning on the other hand the agent has no access to the model and needs to learn the expected value through other means. The most straightforward way to accomplish that is to generate discounted returns through continuous interaction. The estimates of value functions can be calculated by averaging over the generated returns. 
+Monte Carlo methods are similar in spirit to bandit methods. The state-value and action-value functions can be estimated by taking the sampled trajectories and building averages. Unlike in bandits though, Monte Carlo methods are able to deal with environments where several non terminal states exist.
 
-Just as with dynamic programming the algorithm is going to be based on general policy iteration, which means that policy estimation and policy improvement will succeed each other. 
+Estimations can only be made once the trajectory is complete when the episode finishes, which means that Monte Carlo methods only work for episodic tasks. 
+
+Generalized Policy Iteration
+============================
+
+The Monte Carlo algorithm will follow general policy iteration. We alternate between policy evaluation and policy improvement to find the optimal policy.
 
 Policy Estimation
-=================
+-----------------
 
-Let us recall once again that the idea of policy estimation is to find the state-value and action-value functions for a corresponding policy.
+Theory
+######
+
+Policy estimation deals with finding the true value function of a given policy :math:`\pi`. Mathematically speaking we are looking for the expected sum of discounted rewards (also called returns) when the agent follow the policy :math:`\pi`. 
 
 :math:`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`
 
-:math:`q_\pi(s,a) = \mathbb{E}[G_t \mid S_t = s, A_t = a]`
+A natural way to estimate the expected value of a random variable is to get samples from a distribution and to use the average as an estimate. In reinforcement learning the agent can estimate the expected value of returns for a policy :math:`\pi` by interacting with the environment, generating trajectories over and over again and building averages over the returns of the trajectories. 
 
+.. figure:: ../../_static/images/reinforcement_learning/tabular_rl/monte_carlo/mc_backup.svg
+   :align: center
 
-A natural way to estimate the expected value of a random variable is to sample random variables and to use the average as an estimate. Therefore using a policy the agent can interact with the environment and generate full episodes. The returns can be used to build averages to estimate state-value and action-value functions. For each state or state-action pair we could keep a list or a table respectively where the estimate is stored and updated. 
+   Monte Carlo Trajectories.
 
-Generally there are two methods to calculate the averages. Each time the agent faces a state (or state-action pair) during an episode is called a visit. In the “First Visit” monte carlo method only the return from the first visit to that state (state-action pair) until the end of the episode is calculated. If the state (state-action) is visited several times during an episode, the additional visits are not considered in the calculation. While in the “Every Visit” method each visit is counted. The “First Visit” method is more popular and is going to be covered in this section, but the algorithms can be easily adjusted to account for the “Every Visit” method.
+The above image shows different trajectories that were created by following a policy pi. The large circles represent a certain state, the smaller black circles represent the actions and the boxes are the terminal states. To estimate the state value for the grey state located at the left we calculate the (discounted) return that is generated after the grey state and build a simple average. The same process is repeated for the yellow, green and all the other states. 
+
+Generally there are two methods to calculate the averages. Each time the agent faces a state during an episode is called a visit. In the “First Visit” Monte Carlo method only the return from the first visit to that state until the end of the episode is calculated. If the state is visited several times during an episode, the additional visits are not considered in the calculation. While in the “Every Visit” method each visit is counted. The “First Visit” method is more popular and generally more straightforward and is going to be covered in this section, but the algorithms can be easily adjusted to account for the “Every Visit” method. 
+
+To make the calculations of the averages computationally efficient we are going to use the incremental implementation that we already used for n-armed bandits.
+
+.. math::
+
+    NewEstimate \leftarrow OldEstimate + StepSize[Target - OldEstimate]
+
+Algorithm
+#########
+
+The algorithm is divided into two steps. 
+
+* In the first step using the policy :math:`\pi` (or :math:`\mu` if the policy is deterministic) the agent generates a trajectory.
+* In the second step the agent improves the estimation for the state value function :math:`V(s)`. For that purpose the agent loops over the previously generated trajectory and for each experience tuple he determines if he deals with a first visit to that state :math:`s`. If he does he calculates the discounted sum of rewards from that point on to the terminal state :math:`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`. Finally the agent performs an update step by using the incremental average calculation :math:`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`.
 
 
 .. math::
@@ -71,6 +99,11 @@ Generally there are two methods to calculate the averages. Each time the agent f
     \end{algorithmic}
     \end{algorithm}
 
+Implementation
+##############
+
+Once again we are going to utilize the already discussed frozen lake environment to demonstrate the implementation of the algorithms.
+
 .. code:: python
 
     import gym
@@ -85,6 +118,8 @@ Generally there are two methods to calculate the averages. Each time the agent f
 
     S = [x for x in range(env.observation_space.n)]
     A = [x for x in range(env.action_space.n)]
+
+The below policy is going to be evaluated.  
 
 .. code:: python
 
@@ -114,6 +149,8 @@ Generally there are two methods to calculate the averages. Each time the agent f
         }
         
         return mu[state]
+
+The following code shows a relatively straightforward implementation of Monte Carlo evaluation. To get better results we could still increase the number of episodes and reduce the learning rate :math:`\alpha` over time.
 
 .. code:: python
 
@@ -160,11 +197,20 @@ Generally there are two methods to calculate the averages. Each time the agent f
                     
         return V
 
+The following state-value function is calculated for the policy :math:`\mu(s)`::
+
+    0.03475|0.02148|0.04602|0.02590|
+    0.05337|0.00000|0.09429|0.00000|
+    0.11221|0.28622|0.30213|0.00000|
+    0.00000|0.46326|0.64936|0.00000|
+
 Policy Improvement and Control
-==============================
+------------------------------
 
-To find the optimal policy with a Monte Carlo method we are going to use general policy iteration by applying policy evaluation and policy improvement back-to-back. The approach is going to be similar to value iteration, as only one step of policy evaluation is going to be used. 
+Theory
+######
 
+The value iteration algorithm that we applied in the dynamic programming section used the following update step.
 
 .. math::
     :nowrap:
@@ -175,19 +221,40 @@ To find the optimal policy with a Monte Carlo method we are going to use general
     \end{align*}
 
 
-The approach from value iteration where we estimated and improved the state-value function is not going to work with Monte Carlo methods, as those steps required the knowledge of the model. 
+This exact update step is not going to work with Monte Carlo methods, because that would require the full knowledge of the model. We would have to know the transition probabilities from state :math:`s` to state :math:`s'` and the corresponding reward.
 
-But what if we rewrite the above improvement step as follows?
+If we look closely at the above expression, we should notice that we can rewrite the update rule in terms of an action-value function?
 
 .. math::
+    :nowrap:
 
-    v_{k+1}(s) \doteq \max_a q_k(s, a) \\
-    \mu_{k+1}(s) \doteq \arg\max_a q_k(s, a)
+    \begin{align*}
+    v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
+    & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')] \\
+    & = \max_a q_k(s, a) \\
+    \end{align*}
 
-With those rewrites we do not require the knowledge of the model, but it becomes obvious that the key is to estimate the action-value function and not the state-value function. Having an estimate of an action-value function allows the agent to select better actions and to gradually improve the policy towards the optimal policy.  In the first step we need to estimate the action-value function by calculating averages. In the second step we can calculate a new greedy policy by taking the argmax over q(s,a). 
 
-There is still one problem that we face without the knowledge of the model of the MDP though. If our policy is fully deterministic and thus avoids some state-action pairs by design, then we can not compute a good estimate for certain state-action pairs and thus might not arrive at the optimal policy. The solution is as with bandits is to use an :math:`\epsilon`-greedy policy, meaning that with a probability of :math:`\epsilon` we take a random action and with probability of :math:`1-\epsilon` we take the greedy action. That way we are guaranteed that all state-action pairs are going to be visited.
-    
+With those rewrites we do not require the knowledge of the model, but it becomes obvious that the key is to estimate the action-value function and not the state-value function. Having an estimate of an action-value function allows the agent to select better actions by acting greedily and to gradually improve the policy towards the optimal policy. To estimate the action-value function we will still generate episodes and compute averages, but the averages are not going to be for a state, but for a state-action pair. 
+
+There is still one problem that we face without the knowledge of the model of the MDP though. If our policy is fully deterministic and thus avoids some state-action pairs by design, then we can not compute a good estimate for certain state-action pairs and thus might not arrive at the optimal policy. The solution is to use an :math:`\epsilon`-greedy policy, meaning that with a probability of :math:`\epsilon` we take a random action and with probability of :math:`1-\epsilon` we take the greedy action. That way we are guaranteed that all state-action pairs are going to be visited.
+
+.. note::
+
+    **On-policy** methods improve the same policy that is used to generate the trajectory.
+
+    **Off-policy** methods improve a policy that is different from the one that is used to generate the trajectory.
+
+Before we move on to the implementation of the Monte Carlo control algorithm it is important to discuss the difference between on-policy and off-policy methods. Once the need arises to explore the environment we could ask ourselves, “Do we need to improve the same policy that is used to generate actions or can we learn the optimal policy while using the data that was produced by a different policy?”. To frame the question differently “Is it possible to learn the optimal policy while only selecting random actions?”. That depends on the design of the algorithm. On-policy methods improve the same policy that is also used to generate the actions, while off-policy methods improve a policy that is not the one that is used to generate the trajectories. The algorithm that is covered below is an on-policy algorithm. 
+
+Algorithm
+#########
+
+Once again the algorithm follows a two step approach.
+
+* In the first step the agent generates the trajectory using the :math:`\epsilon`-greedy policy.
+* In the second step the agent iterates over the trajectory and uses Monte Carlo and incremental improvement to estimate the action-values. 
+
 
 .. math::
     :nowrap:
@@ -236,6 +303,10 @@ There is still one problem that we face without the knowledge of the model of th
     \end{algorithmic}
     \end{algorithm}
 
+Implementation
+##############
+
+The python implementation follows directly from the above described algorithm.
 
 .. code::
 
@@ -293,3 +364,9 @@ There is still one problem that we face without the knowledge of the model of th
         policy = lambda x: policy_mapping[x]
 
         return policy, Q
+
+
+Sources
+=======
+
+.. [#] https://en.wikipedia.org/wiki/Monte_Carlo_method
