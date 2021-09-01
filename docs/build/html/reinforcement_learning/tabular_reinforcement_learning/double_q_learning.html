@@ -353,9 +353,46 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generalized-policy-iteration">
+   Generalized Policy Iteration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theory">
+     Theory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation">
+     Implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -377,7 +414,116 @@
                 
   <div class="section" id="double-q-learning">
 <h1>Double Q-Learning<a class="headerlink" href="#double-q-learning" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“In some stochastic environments the well-known reinforcement learning algorithm Q-learning performs very poorly. This poor performance is caused by large overestimations of action values. These overestimations result from a positive bias that is introduced because Q-learning uses the maximum action value as an approximation for the maximum expected action value” <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+</div>
+<p>The update rule in Q-learning involves a maximization operation. This can lead to what is known as maximization bias.</p>
+<div class="math">
+<p><img src="../../_images/math/979c85fe9b1024d5f5317df6f19a618d173ec46f.svg" alt="Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha [R_{t+1} + \gamma \max_a Q(S_{t+1}, a) - Q(S_t, A_t)]"/></p>
+</div><div class="figure align-center" id="id3">
+<img alt="../../_images/maximization_bias.svg" src="../../_images/maximization_bias.svg" /><p class="caption"><span class="caption-text">Maximization Bias.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The above example of a Q-Table exemplifies the problem. We are making the assumption that the true action value of all actions for state 1 is 0. Yet the samples that were collected so far produced action values that are slightly above or below 0. If the next state <img class="math" src="../../_images/math/b39ba9f9a36260a7dfcdeb1a29ac6278f97267a2.svg" alt="S_{t+1}"/> corresponds to state 1 the maximization operation will pick the action-value of action 8. If the true action-values all correspond to 0 for state 1 then it should not matter for the agent which action should be picked next. Yet due to estimation errors the agent will select the action with the maximum estimated value. This is called maximization bias. Double Q-Learning aims to alleviate the problem.</p>
+</div>
+<div class="section" id="generalized-policy-iteration">
+<h2>Generalized Policy Iteration<a class="headerlink" href="#generalized-policy-iteration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="theory">
+<h3>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/two_value_functions1.svg" src="../../_images/two_value_functions1.svg" /><p class="caption"><span class="caption-text">Two Value Functions.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>To reduce maximization bias double Q-Learning introduces a second action value function.</p>
+<div class="figure align-center" id="id5">
+<img alt="../../_images/double_q.svg" src="../../_images/double_q.svg" /><p class="caption"><span class="caption-text">Double Q-Learning.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>Even if one of the functions has a bias towards one of the actions, it is unlikely that the second function will have the same exact bias. In the above example the first action value function prefers the action number 8 while the second prefers the very first action. Combining both Q-functions should make Q-Learning converge faster.</p>
+<p>The below update step updates one of the Q-functions while using the other function in the calculation of the target value. Which one of the functions is treated as function 1 and which one as function 2 is decided using a random variable. Usually the probability corresponds to a fair coin toss.</p>
+<div class="math">
+<p><img src="../../_images/math/1583b7047e1793c6db75c956cbdbbe9c861fe064.svg" alt="Q_1(S_t, A_t) \leftarrow Q_1(S_t, A_t) + \alpha [R_{t+1} + \gamma Q_2(S_{t+1}, \arg\max_aQ_1(S_{t+1}, a)) - Q_1(S_t, A_t)]"/></p>
+</div></div>
+<div class="section" id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../../_images/math/8af00987c117ec7a7b2f4107b9d3f700338a2f9e.svg" alt="\begin{algorithm}[H]
+    \caption{Double Q-Learning}
+    \label{alg1}
+\begin{algorithmic}
+    \STATE Input: environment $env$, state set $\mathcal{S}$, action set $\mathcal{A}$, number of episodes, learning rate $\alpha$, discount factor $\gamma$
+    \STATE Initialize:
+    \STATE $Q_1(s, a)$ and $Q_2(s, a)$ for all $s \in \mathcal{S}$ and $a \in \mathcal{A}$ with zeros
+    \STATE $\epsilon$-greedy policy $\pi(a \mid s)$ with $Q=Q_1+Q_2$ for all $a \in \mathcal{A}$, where $A \sim \pi(. \mid s)$
+    \STATE
+    \FOR{$i=0$ to number of episodes}
+        \STATE Reset state $S$
+        \REPEAT
+            \STATE Generate experience $tuple$ $(A,R,S')$ using policy $\pi$ and MDP $env$
+            \STATE EITHER
+            \STATE $Q_1(S_t, A_t) \leftarrow Q_1(S_t, A_t) + \alpha [R_{t+1} + \gamma Q_2(S_{t+1}, \arg\max_aQ_1(S_{t+1}, a)) - Q_1(S_t, A_t)]$
+            \STATE OR
+            \STATE $Q_2(S_t, A_t) \leftarrow Q_2(S_t, A_t) + \alpha [R_{t+1} + \gamma Q_1(S_{t+1}, \arg\max_aQ_2(S_{t+1}, a)) - Q_2(S_t, A_t)]$
+            \STATE $S \leftarrow S'$
+        \UNTIL{state is terminal}
+    \ENDFOR
+    \STATE
+    \STATE RETURN policy, Q(s,a)
+\end{algorithmic}
+\end{algorithm}"/></p>
+</div></div>
+<div class="section" id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_q_learning</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">Q_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+    <span class="n">Q_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+
+    <span class="c1"># an epsilon greedy policy</span>
+    <span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Q</span> <span class="o">=</span> <span class="n">Q_a</span> <span class="o">+</span> <span class="n">Q_b</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">state</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">policy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+            <span class="c1"># decide which Q function to update and which to use for target</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="n">Q_1</span> <span class="o">=</span> <span class="n">Q_a</span>
+                <span class="n">Q_2</span> <span class="o">=</span> <span class="n">Q_b</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Q_1</span> <span class="o">=</span> <span class="n">Q_b</span>
+                <span class="n">Q_2</span> <span class="o">=</span> <span class="n">Q_a</span>
+
+            <span class="n">next_action</span> <span class="o">=</span> <span class="n">Q_1</span><span class="p">[</span><span class="n">state</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+            <span class="n">Q_1</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">Q_2</span><span class="p">[</span><span class="n">next_state</span><span class="p">][</span><span class="n">next_action</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="ow">not</span> <span class="n">done</span><span class="p">)</span> <span class="o">-</span> <span class="n">Q_1</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">Q_a</span> <span class="o">+</span> <span class="n">Q_b</span>
+    <span class="n">policy_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">policy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">policy_mapping</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">policy</span><span class="p">,</span> <span class="n">Q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>van Hasselt, H. (2010). Double Q-learning. In Advances in Neural Information Processing Systems 23, pp. 2613–2621. Curran Associates, Inc.</p>
+</dd>
+</dl>
+</div>
 </div>
 
 
