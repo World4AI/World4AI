@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent and Environment Components &#8212; World4AI 0.1 documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reinforcement Learning Terminology" href="terminology.html" />
+    <link rel="prev" title="Exploration vs Exploitation" href="exploration_vs_exploitation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">World4AI</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Reinforcement Learning
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/World4AI/World4AI" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p class="caption" role="heading">
+ <span class="caption-text">
+  Intuition
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="applications.html">
+   Reinforcement Learning Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="agent_env.html">
+   Agent and Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="properties.html">
+   Properties of Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interaction.html">
+   States, Actions, Rewards
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exploration_vs_exploitation.html">
+   Exploration vs Exploitation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Agent and Environment Components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="terminology.html">
+   Reinforcement Learning Terminology
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Markov Decision Process
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markov_decision_process/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markov_decision_process/definition_markov_decision_process.html">
+   Definition of a Markov Decision Process
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../markov_decision_process/to_solve_mdp.html">
+   To Solve an MDP
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Dynamic Programming
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamic_programming/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamic_programming/policy_iteration.html">
+   Policy Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamic_programming/value_iteration.html">
+   Value Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../dynamic_programming/generalized_policy_iteration.html">
+   Generalized Policy Iteration
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Exploration Exploitation Tradeoff
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/bandits.html">
+   Bandits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/epsilon_greedy.html">
+   Epsilon(
+   <img alt="\epsilon" class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg"/>
+   )-Greedy
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Tabular Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tabular_reinforcement_learning/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tabular_reinforcement_learning/monte_carlo_methods.html">
+   Monte Carlo Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tabular_reinforcement_learning/td_learning.html">
+   Temporal Difference Learning
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Approximative Reinforcement Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../approximative_reinforcement_learning/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../approximative_reinforcement_learning/cart_pole.html">
+   Cart Pole Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_with_oracle.html">
+   Value Approximation With An Oracle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../approximative_reinforcement_learning/approximation_without_oracle.html">
+   Value Approximation Without An Oracle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../approximative_reinforcement_learning/convergence_optimality.html">
+   Convergence And Optimality
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Modern Value-Based Approximation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modern_value_based_approximation/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modern_value_based_approximation/nfq.html">
+   Neural Fitted Q Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modern_value_based_approximation/dqn.html">
+   Deep Q-Network (DQN)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modern_value_based_approximation/double_dqn.html">
+   Double DQN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modern_value_based_approximation/duelling_dqn.html">
+   Duelling DQN
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Reinforcement Learning Libraries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl_libraries/motivation.html">
+   Motivation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../rl_libraries/openai_gym.html">
+   OpenAI Gym
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components-of-the-environment">
+   Components of the Environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components-of-the-agent">
+   Components of the Agent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy">
+     Policy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#value-function">
+     Value Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model">
+     Model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="agent-and-environment-components">
+<h1>Agent and Environment Components<a class="headerlink" href="#agent-and-environment-components" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/components.svg" src="../../_images/components.svg" /><p class="caption"><span class="caption-text">Components of the agent and the environment</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>When the agent receives the state or the environment receives the action both use their respective internal components to transform the received data into a form that can be sent back to the originator of the data.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/function.svg" src="../../_images/function.svg" /><p class="caption"><span class="caption-text">A mathematical function</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The components of the agent and the environment are basically mathematical functions that take input and generate output. Oftentimes the word mapping is used in that context. A function that takes x as input and outputs y is said to map x to y.</p>
+</div>
+<div class="section" id="components-of-the-environment">
+<h2>Components of the Environment<a class="headerlink" href="#components-of-the-environment" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The model of the environment regulates the transition probabilities from the current state into the next state and the calculation of rewards using the current state and the action taken by the agent as input.</p>
+</div>
+<p>The environment has basically one single component called the model.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/model.svg" src="../../_images/model.svg" /><p class="caption"><span class="caption-text">The model function of the environment</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The process of changing the state of the environment is called transitioning (into a new state).</p>
+</div>
+<p>How exactly the model looks depends on the environment.</p>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/grid_state.svg" src="../../_images/grid_state.svg" /><p class="caption"><span class="caption-text">A gridworld with the correspondig state values</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<table class="table" id="id5">
+<caption><span class="caption-text">Model of a deterministic gridworld</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Current State</p></th>
+<th class="head"><p>Action North (1)</p></th>
+<th class="head"><p>Action East (2)</p></th>
+<th class="head"><p>Action South (3)</p></th>
+<th class="head"><p>Action West (4)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Probability 100%, Next State 6, Reward -1</p></td>
+<td><p>Probability 100%, Next State 2, Reward -1</p></td>
+<td><p>Probability 100%, Next State 1, Reward -1</p></td>
+<td><p>Probability 100%, Next State 1, Reward -1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Probability 100%, Next State 7, Reward -1</p></td>
+<td><p>Probability 100%, Next State 3, Reward -1</p></td>
+<td><p>Probability 100%, Next State 2, Reward -1</p></td>
+<td><p>Probability 100%, Next State 1, Reward -1</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>Probability 100%, Next State 25, Reward -1</p></td>
+<td><p>Probability 100%, Next State 25, Reward -1</p></td>
+<td><p>Probability 100%, Next State 20, Reward -1</p></td>
+<td><p>Probability 100%, Next State 24, Reward -1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Sometimes a simple table is all that is required. For a gridworld with 25 possible states and  4 possible actions a table with 25 rows and 5 columns could be used to represent the model. The inner cells at the interaction between the current state and the action would have the probabilities to transition into the next state and the reward.</p>
+<p>More complex environments like the atari games would have their game engine and game logic that would calculate the transitions and rewards.</p>
+<p>In reinforcement learning the model of the environment is usually not something that the agent has access to. The agent has to learn to navigate in an environment where the rules of the game are not known.</p>
+<p>In most cases reinforcement learning practitioners do not deal with the creation of new environments. There are already hundreds of ready made environments that they can access. This reduces development speed and allows comparisons among different researchers and algorithms.</p>
+</div>
+<div class="section" id="components-of-the-agent">
+<h2>Components of the Agent<a class="headerlink" href="#components-of-the-agent" title="Permalink to this headline">¶</a></h2>
+<p>The agent has up to three main components. The policy function, the value function and a model. Generally only the policy is actually required for the agent to work. Nevertheless, the model and the value function are major parts of many modern reinforcement learning algorithms. Especially the value function is often considered to be a necessary component.</p>
+<div class="section" id="policy">
+<h3>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The policy of the agent maps states to actions.</p>
+</div>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/policy.svg" src="../../_images/policy.svg" /><p class="caption"><span class="caption-text">The policy function of the environment</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>The policy has the purpose to calculate the action given the current state of the environment as the input.</p>
+<table class="table" id="id7">
+<caption><span class="caption-text">Policy in a deterministic gridworld</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Current State</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>East (2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>North (1)</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>West (4)</p></td>
+</tr>
+</tbody>
+</table>
+<p>For very simple environments the policy function might also be a table that contains all possible states and for each state there is a corresponding action. In more complex environments it is not possible to construct a mapping table like the one above, as the number of states is extremely high. In that case other solutions like neural networks are used.</p>
+</div>
+<div class="section" id="value-function">
+<h3>Value Function<a class="headerlink" href="#value-function" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The value function of the agent maps states to values.</p>
+</div>
+<div class="figure align-center" id="id8">
+<img alt="../../_images/value.svg" src="../../_images/value.svg" /><p class="caption"><span class="caption-text">The value function of the environment</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>The second component is the so-called value function. The value function gets a state as an input and generates a single scalar value. The higher the value, the better the state.</p>
+<div class="figure align-center" id="id9">
+<img alt="../../_images/bad_state.svg" src="../../_images/bad_state.svg" /><p class="caption"><span class="caption-text">A relatively bad state</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id10">
+<img alt="../../_images/good_state.svg" src="../../_images/good_state.svg" /><p class="caption"><span class="caption-text">A relatively good state</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<p>The two images above show different states in the gridworld. In the first image the circle is in the bottom right corner. In the second image the circle is almost at the goal. Which of the two states is more preferable for the agent? Intuitively speaking the second one, as the agent is close to getting a positive reward and has already gotten all the negative rewards. To transform this intuition into actual numeric values the value function is used.</p>
+<table class="table" id="id11">
+<caption><span class="caption-text">A thought up value function in a deterministic gridworld</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Current State</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>25</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Similar to the policy for simple environments the value function can be calculated with the help of a table or in more complex environments using a neural network.</p>
+</div>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The model of the agent is an approximation of the true model of the environment.</p>
+</div>
+<p>The third and last component is the model. The model of the environment is something that the agent generally has no access to, but the agent can theoretically learn about the model by interacting with the environment. So essentially the agent creates some sort of an approximation of the true model of the environment. Each interaction allows the agent to improve his knowledge regarding the transition probabilities from one state to the next and the corresponding reward. The model can then for example be used to improve the policy. This is especially useful when interacting with the environment is for some reason costly.</p>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="exploration_vs_exploitation.html" title="previous page">Exploration vs Exploitation</a>
+    <a class='right-next' id="next-link" href="terminology.html" title="next page">Reinforcement Learning Terminology</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, World4AI Team.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

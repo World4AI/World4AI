@@ -2,20 +2,18 @@
 Reinforcement Learning
 ======================
 
-In this introduction I will go over the possible applications, the key concepts and the components of reinforcement learning. The focus is to build up intuition before diving deep into mathematics.
-
-
 .. toctree::
    :maxdepth: 2
-   :caption: Introduction
+   :caption: Intuition
 
-   introduction/applications
-   introduction/agent_env
-   introduction/properties
-   introduction/interaction
-   introduction/exploration_vs_exploitation
-   introduction/components
-   introduction/terminology
+   intuition/introduction
+   intuition/applications
+   intuition/agent_env
+   intuition/properties
+   intuition/interaction
+   intuition/exploration_vs_exploitation
+   intuition/components
+   intuition/terminology
 
 
 .. toctree::
