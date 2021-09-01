@@ -48,7 +48,9 @@ Reinforcement Learning
    tabular_reinforcement_learning/introduction
    tabular_reinforcement_learning/monte_carlo_methods
    tabular_reinforcement_learning/td_learning
-
+   tabular_reinforcement_learning/bias_variance_tradeoff
+   tabular_reinforcement_learning/double_q_learning
+   
 .. toctree::
    :maxdepth: 2
    :caption: Approximative Reinforcement Learning
