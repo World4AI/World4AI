@@ -353,9 +353,34 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -377,7 +402,68 @@
                 
   <div class="section" id="duelling-dqn">
 <h1>Duelling DQN<a class="headerlink" href="#duelling-dqn" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Our dueling network represents two separate estimators: one for the state value function and one for the state-dependent action advantage function <a class="footnote-reference brackets" href="#id2" id="id1">1</a>. “</p>
+</div>
+<p>The neural network architectures that we have seen so far were not much different from typical convolutional or fully connected neural networks that are used in supervised learning. With the duelling DQN the researchers at DeepMind adjusted the DQN architecture in a way that is tailored specifically to reinforcement learning problems.</p>
+</div>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<p>So far we covered several quantities that are used throughout reinforcement learning. The state value function <img class="math" src="../../_images/math/87c152b6039079cc7197b1f3adc5fb5f8d8a3248.svg" alt="V_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]"/> measures the goodness of a state. It is the expected return when following the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>. The action value function <img class="math" src="../../_images/math/a86f6724f6220fad010110642f09cf0728933d47.svg" alt="Q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]"/> measures the value of taking the action <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> and then following the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>.</p>
+<p>In this section we introduce the advantage function <img class="math" src="../../_images/math/e34784b071c94acac2de9a8228eef555b5c87223.svg" alt="A(s,a)"/> that measures the advantage of taking the policy <img class="math" src="../../_images/math/039a355730982dfbc0ab9905c990b653c7d9128c.svg" alt="a"/> and then following policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> instead of always following <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/efa4a53b718e4cd3cab1aea9a1e9427025231a4f.svg" alt="A(s, a) = Q(s, a) - V(s)"/></p>
+</div><p>In other words the action value function can be rewritten in the following way.</p>
+<div class="math">
+<p><img src="../../_images/math/95da4afe52fa005c1a36a3c373db9196d279aff4.svg" alt="Q(s, a) = V(s) + A(s, a)"/></p>
+</div><div class="figure align-center" id="id3">
+<img alt="../../_images/architecture2.svg" src="../../_images/architecture2.svg" /><p class="caption"><span class="caption-text">Duelling DQN.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The architecture of the duelling DQN uses this exact interpretation of the action value function. In the first layers the weights are shared. In the later layers the single state value is calculated separately from the advantage values. The one state value is finally added to sevaral advantage values to reconstruct the action values.</p>
+<p>There is still a problem if we implement the calculation of the action value Q(s,a) naively as the sum of the state value V(s) and the advantage values A(s, a). Imagine we have four possible actions and the action value function Q(s, a) returns the following values [18, 15, 16, 16] for a particular state s. There is no unique solution to represent the action values as the sum of the advantages and the state value. If we assume that the state value is 10, then the advantages amount to [8, 5, 6, 6]. If we assume that the state value is 16 then advantages are [2, -1, 0, 0]. There are an unlimited number of possible combinations and therefore the training of the neural network is not going to be stable.</p>
+<p>To stabilize the training process we need to remove a degree of freedom in order to enforce unique solutions. The researchers at DeepMind suggested several solutions. Let us first think about how large the advantage is if we follow the greedy policy. The greedy policy selects the action with the highest possible value and therefore by design the advantage is always 0 if the agent picks the greedy action.</p>
+<div class="math">
+<p><img src="../../_images/math/03041676f6966b07d13d5186cd5f29a1f8177896.svg" alt="Q(s, a) = V(s) + A(s, a) - \max_a A(s, a)"/></p>
+</div><p>By using the above equation we enforce the advantage for the highest action value to be 0. Let us look at the same example where the action values correspond to [18, 15, 16, 16]. The solution that we come up with to make both sides of the equation equal is to set the state value to 18 and the advantages to [0, -3, -2, -2].</p>
+<p>A different solution that the authors suggest is to subtract the average advantage.</p>
+<div class="math">
+<p><img src="../../_images/math/f08881c1d2141060d404c4a1b1a0e03ad965b0b0.svg" alt="Q(s, a) = V(s) + A(s, a) - \frac{1}{\mathcal{|A|}} \sum_a A(s, a)"/></p>
+</div><p>Even though we lose the nice property that the highest advantage is 0, this version is more stable according to the paper. The values are offset by a constant, but the relative distribution remains.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q_FC</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obs_dims</span><span class="p">,</span> <span class="n">n_actions</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Q_FC</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">obs_dims</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">n_actions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="n">advantage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">state_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">state_value</span> <span class="o">+</span> <span class="n">advantage</span> <span class="o">-</span> <span class="n">advantage</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Wang Z. et al.  Dueling Network Architectures for Deep Reinforcement Learning. 2015.  <a class="reference external" href="https://arxiv.org/abs/1511.06581">https://arxiv.org/abs/1511.06581</a></p>
+</dd>
+</dl>
+</div>
 </div>
 
 
