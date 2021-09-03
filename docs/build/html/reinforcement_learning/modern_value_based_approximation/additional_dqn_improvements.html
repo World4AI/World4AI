@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bias-Variance Tradeoff &#8212; World4AI 0.1 documentation</title>
+    <title>Additional DQN Improvements &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Double Q-Learning" href="double_q_learning.html" />
-    <link rel="prev" title="Temporal Difference Learning" href="td_learning.html" />
+    <link rel="next" title="Motivation" href="../rl_libraries/motivation.html" />
+    <link rel="prev" title="Duelling DQN" href="duelling_dqn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -232,29 +232,29 @@
   Tabular Reinforcement Learning
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
+  <a class="reference internal" href="../tabular_reinforcement_learning/introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="monte_carlo_methods.html">
+  <a class="reference internal" href="../tabular_reinforcement_learning/monte_carlo_methods.html">
    Monte Carlo Methods
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="td_learning.html">
+  <a class="reference internal" href="../tabular_reinforcement_learning/td_learning.html">
    Temporal Difference Learning
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tabular_reinforcement_learning/bias_variance_tradeoff.html">
    Bias-Variance Tradeoff
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="double_q_learning.html">
+  <a class="reference internal" href="../tabular_reinforcement_learning/double_q_learning.html">
    Double Q-Learning
   </a>
  </li>
@@ -296,39 +296,39 @@
   Modern Value-Based Approximation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/introduction.html">
+  <a class="reference internal" href="introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/nfq.html">
+  <a class="reference internal" href="nfq.html">
    Neural Fitted Q Iteration
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/dqn.html">
+  <a class="reference internal" href="dqn.html">
    Deep Q-Network (DQN)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/double_dqn.html">
+  <a class="reference internal" href="double_dqn.html">
    Double DQN
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/prioritized_experience_replay.html">
+  <a class="reference internal" href="prioritized_experience_replay.html">
    Prioritized Experience Replay
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/duelling_dqn.html">
+  <a class="reference internal" href="duelling_dqn.html">
    Duelling DQN
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../modern_value_based_approximation/additional_dqn_improvements.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Additional DQN Improvements
   </a>
  </li>
@@ -363,9 +363,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polyak-averaging">
+   Polyak Averaging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#huber-loss">
+   Huber Loss
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -385,9 +400,14 @@
               
               <div>
                 
-  <div class="section" id="bias-variance-tradeoff">
-<h1>Bias-Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+  <div class="section" id="additional-dqn-improvements">
+<h1>Additional DQN Improvements<a class="headerlink" href="#additional-dqn-improvements" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="polyak-averaging">
+<h2>Polyak Averaging<a class="headerlink" href="#polyak-averaging" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="huber-loss">
+<h2>Huber Loss<a class="headerlink" href="#huber-loss" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -396,8 +416,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="td_learning.html" title="previous page">Temporal Difference Learning</a>
-    <a class='right-next' id="next-link" href="double_q_learning.html" title="next page">Double Q-Learning</a>
+    <a class='left-prev' id="prev-link" href="duelling_dqn.html" title="previous page">Duelling DQN</a>
+    <a class='right-next' id="next-link" href="../rl_libraries/motivation.html" title="next page">Motivation</a>
 
               </div>
               

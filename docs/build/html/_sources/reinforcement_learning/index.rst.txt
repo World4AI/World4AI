@@ -71,6 +71,7 @@ Reinforcement Learning
    modern_value_based_approximation/double_dqn
    modern_value_based_approximation/prioritized_experience_replay
    modern_value_based_approximation/duelling_dqn
+   modern_value_based_approximation/additional_dqn_improvements
 
 .. toctree::
    :maxdepth: 2
