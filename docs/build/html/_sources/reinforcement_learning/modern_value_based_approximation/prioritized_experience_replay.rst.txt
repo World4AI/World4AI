@@ -9,8 +9,51 @@ Motivation
 
     "In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently [#]_."
 
+The experience replay is one of the major DQN components that make the algorithm so efficient. The agent is able to store already seen experiences and to reuse them several times in training before they are discarded. The drawback of the experience replay is the uniform probability with which each stored experience can be drawn. It is reasonable to assume that some experiences are more *important* and therefore better suited to learn from. 
+
+.. figure:: ../../_static/images/reinforcement_learning/modern_value_based_approximation/per/prioritized_experience_replay.svg
+   :align: center
+
+   Prioritized Experience Replay.
+
+This is where the prioritized experience replay (PER) comes into play. Each of the experience tuples has a priority assigned to it and the probability with which the tuple is likely to be drawn from the replay buffer and be used in training increases with higher priority. That way more important experiences are used more often and contribute to faster learning of the agent. 
+
 Theory
 ======
+
+According to the authors of PER, the ideal quantity of priority would be a measure of how much an agent can learn from a given experience. Such a measure is obviously not available and TD error is used as a proxy of priority. 
+
+.. math:: 
+
+    \delta = r + \gamma \max_{a'} Q(s', a', \theta^-) - Q(s, a, \theta)
+
+TD error can be positive or negative, but we are only interested in the magnitude of the error and not in the direction. Therefore the absolute value of the error, :math:`| \delta |`,  is going to be used.
+
+If we sampled only according to the magnitude of TD error, some experiences would not be sampled at all before they are discarded. This is especially problematic when we consider that we bootstrap and have only access to estimates of TD errors. Therefore we generally want to sample experiences with high TD error more often, but still have a non zero probability for experiences with low TD errors. 
+
+If we sampled only according to the magnitude of TD error, some experiences would not be sampled at all before they are discarded. This is especially problematic when we consider that we bootstrap and have only access to estimates of TD errors. Therefore we generally want to sample experiences with high TD error more often, but still have a non zero probability for experiences with low TD errors. DeepMind proposes two approaches to calculate priorities.
+
+* Proportilan priorization: :math:`p_i = |\delta_i| + \epsilon`, where :math:`\epsilon` is a positive constant that makes sure that experience tuples with a TD error of 0 still have a non-zero percent probability of being selected.
+* Ranked-based priorization: :math:`p_i = \frac{1}{rank(i)}`, where :math:`rank(i)` is the index number of an experience tuple in a list, in which all absolute TD errors are sorted in descending order.
+
+Ranked-based prioritization is expected to be less sensitive to outliers, therefore this approach is going to be utilized in this chapter.
+
+Measuring TD errors for all experience tuples at each time step would be extremely inefficient, therefore the updates are done only periodically. The TD errors are updated only once they are drawn from the memory buffer and used in the training step. This is due to the fact that TD errors have to be calculated at the training step anyway and no additional computational power is therefore required. The calculations are not done for new experiences therefore each new experience tuple will receive the highest possible priority. 
+
+.. math:: 
+
+    P(i) = \frac{p^{\alpha}_i}{\sum_k p^{\alpha}_k}
+
+The distribution of experience tuples is not only determined by the priority :math:`p_i`, but is additionally controlled by a constant :math:`\alpha`. If :math:`\alpha` is 0 the tuples are uniformly distributed. Higher numbers of :math:`\alpha` correspond to higher importance of priorities. 
+
+If we are not careful and keep using the prioritized experience replay without any adjustment to the update step, we will introduce a bias. Let us assume that we possess the weights of the policy that minimize the mean squared error for the optimal policy. We utilize the policy and interact with the environment to fill the replay buffer. Lastly we want to recreate the weights for the above mentioned policy using the filled replay buffer. If we use the prioritized experience replay we utilize a different distribution than the one that is implied by the optimal weights (the uniform distribution). For example we might see rare experiences more often, which would imply gradient descent steps calculated based on rare experiences more often. On the one hand we want to use important experiences more often, but we would also like to avoid the bias. For that purpose we adjust the gradient descent step by a weight factor.
+
+.. math::
+
+    w_i = (\frac{1}{N} \cdot \frac{1}{P(i)})^\beta
+
+The simplest way to imagine why the adjustment works is to imagine that we have uniform distribution. :math:`\frac{1}{P(i)}` becomes :math:`\frac{1}{\frac{1}{N}}` and the whole expression amounts to 1, indicating that the uniform distribution is already the correct one and we do not need any adjustments. The :math:`\beta` factor is used to control the correction factor. The requirement that we would like to impose is the uniform distribution at the end of the training. Therefore we start with a low :math:`\beta` and allow for stronger updates towards the rare experiences and increase the value over time to make full corrections.
+
 
 Implementation
 ==============
