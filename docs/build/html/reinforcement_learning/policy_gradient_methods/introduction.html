@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Epsilon()-Greedy &#8212; World4AI 0.1 documentation</title>
+    <title>Introduction &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction" href="../tabular_reinforcement_learning/introduction.html" />
-    <link rel="prev" title="Bandits" href="bandits.html" />
+    <link rel="next" title="Policy Gradient Derivation" href="policy_gradient_derivation.html" />
+    <link rel="prev" title="Additional DQN Improvements" href="../modern_value_based_approximation/additional_dqn_improvements.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -208,19 +208,19 @@
   Exploration Exploitation Tradeoff
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="introduction.html">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/introduction.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="bandits.html">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/bandits.html">
    Bandits
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../exploration_exploitation_tradeoff/epsilon_greedy.html">
    Epsilon(
    <img alt="\epsilon" class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg"/>
    )-Greedy
@@ -338,14 +338,14 @@
   Policy Gradient Methods
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../policy_gradient_methods/introduction.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../policy_gradient_methods/policy_gradient_derivation.html">
+  <a class="reference internal" href="policy_gradient_derivation.html">
    Policy Gradient Derivation
   </a>
  </li>
@@ -402,67 +402,8 @@
               
               <div>
                 
-  <div class="section" id="epsilon-epsilon-greedy">
-<h1>Epsilon(<img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/>)-Greedy<a class="headerlink" href="#epsilon-epsilon-greedy" title="Permalink to this headline">¶</a></h1>
-<p>Epsilon-Greedy is on the one hand the easiest strategy to balance exploration and exploitation and on the other hand probably the most common one.</p>
-<p>With the probability of <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/> the agent selects the greedy action and with the probability of <img class="math" src="../../_images/math/0c587ed24f6490d9da22b7617d72846b2e8c97d0.svg" alt="1 - \epsilon"/> the agent selects a random action. Often <img class="math" src="../../_images/math/13b33819efce3da0df3eb849f77d88d02df50c45.svg" alt="\epsilon"/> is not constant and starts with a relatively high value to encourage exploration when the agent knows nothing about the environment. The value is decreased over time and reaches a final minimal value after a designated number of steps. The minimal value often lies in the range between 0.01 and 0.1.</p>
-<div class="math">
-<p><img src="../../_images/math/22f35b4ad411ba72643475362063ee3c929e2345.svg" alt="\begin{algorithm}[H]
-    \caption{Bandit $e$-greedy}
-    \label{alg1}
-\begin{algorithmic}
-    \STATE Input: bandit, action set $\mathcal{A}$, number of episodes,  learning rate $\alpha$, epsilon $\epsilon$
-    \STATE Initialize:
-    \STATE $Q(a)$, for all $a \in \mathcal{A}$ with zeros
-    \FOR{$i=0$ to number of episodes}
-        \STATE $r \leftarrow$ random number
-        \IF {$r &lt; \epsilon$}
-            \STATE $A \leftarrow$ random action
-        \ELSE
-        \STATE $A \leftarrow \arg\max_aQ(a)$
-        \ENDIF
-        \STATE $R \leftarrow bandit(A)$
-        \STATE $Q(A) \leftarrow Q(A) + \alpha[R - Q(A)]$
-    \ENDFOR
-\end{algorithmic}
-\end{algorithm}"/></p>
-</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Bandit</span><span class="p">(</span><span class="n">probs</span><span class="o">=</span><span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>  <span class="mi">1</span><span class="p">],</span> <span class="n">rewards</span><span class="o">=</span><span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)]</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bandit_algorithm</span><span class="p">(</span><span class="n">bandit</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.00005</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-<span class="n">num_actions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_actions</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
-        <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">num_actions</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">action</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
-
-    <span class="n">_</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">bandit</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-
-    <span class="n">Q</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">Q</span><span class="p">[</span><span class="n">action</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="n">episode</span> <span class="o">%</span> <span class="mi">100000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
-
-<span class="k">return</span> <span class="n">Q</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">10.19164014</span>  <span class="mf">2.8005554</span>   <span class="mf">0.56541809</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">9.74250886</span> <span class="mf">4.06751509</span> <span class="mf">0.80981186</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">10.46367616</span>  <span class="mf">4.56865385</span>  <span class="mf">0.91688351</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">9.92591477</span> <span class="mf">4.81001628</span> <span class="mf">0.9637959</span> <span class="p">]</span>
-<span class="p">[</span><span class="mf">10.15193048</span>  <span class="mf">4.84188377</span>  <span class="mf">0.98415424</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">9.68863263</span> <span class="mf">4.94749768</span> <span class="mf">0.99321726</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">9.7815899</span>  <span class="mf">5.04649584</span> <span class="mf">0.9970355</span> <span class="p">]</span>
-<span class="p">[</span><span class="mf">10.0928007</span>   <span class="mf">5.02973625</span>  <span class="mf">0.99869044</span><span class="p">]</span>
-<span class="p">[</span><span class="mf">10.60228385</span>  <span class="mf">5.01708181</span>  <span class="mf">0.99941974</span><span class="p">]</span>
-</pre></div>
-</div>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -471,8 +412,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="bandits.html" title="previous page">Bandits</a>
-    <a class='right-next' id="next-link" href="../tabular_reinforcement_learning/introduction.html" title="next page">Introduction</a>
+    <a class='left-prev' id="prev-link" href="../modern_value_based_approximation/additional_dqn_improvements.html" title="previous page">Additional DQN Improvements</a>
+    <a class='right-next' id="next-link" href="policy_gradient_derivation.html" title="next page">Policy Gradient Derivation</a>
 
               </div>
               

@@ -75,6 +75,14 @@ Reinforcement Learning
 
 .. toctree::
    :maxdepth: 2
+   :caption: Policy Gradient Methods
+
+   policy_gradient_methods/introduction
+   policy_gradient_methods/policy_gradient_derivation
+
+
+.. toctree::
+   :maxdepth: 2
    :caption: Reinforcement Learning Libraries
 
    rl_libraries/motivation
