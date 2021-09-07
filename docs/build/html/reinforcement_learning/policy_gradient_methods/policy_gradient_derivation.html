@@ -380,9 +380,29 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation">
+   Derivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -404,6 +424,107 @@
                 
   <div class="section" id="policy-gradient-derivation">
 <h1>Policy Gradient Derivation<a class="headerlink" href="#policy-gradient-derivation" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>I have seen several different methods to derive and explain the policy gradient. The first is described in the book by Richard Sutton and Andrew Barto <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The second is covered for example by Pieter Abbeel in his Deep RL Bootcamp lecture on “Policy Gradients and Actor Critic” <a class="footnote-reference brackets" href="#id4" id="id2">2</a>. I have always found the second type of derivation more intuitive and clear and therefore I am going to follow the same approach, but some notation and ideas are going to be taken from Sutton’s and Barto’s book. In any case I highly recommend both sources.</p>
+</div>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Before we move to the derivation of the policy gradient, let us discuss why it might be a good idea to use policy gradient methods. Below is a list of points that are often mentioned in the reinforcement learning literature and online lectures.</p>
+<ul class="simple">
+<li><p>Sometimes it is easier to estimate the policy directly, instead of estimating the action value function.</p></li>
+<li><p>Q-Learning does not easily allow the use of continuous action spaces, because of the max operation to determine the best action. In policy gradient methods we can sample an action from a continuous distribution.</p></li>
+<li><p>It is easy to implement a stochastic policy with policy gradient methods. This avoids the need for an additional exploration strategy, as we can randomly sample from the distribution. Through learning better actions are going to be assigned higher probabilities while bad actions will be unlikely.</p></li>
+<li><p>Policy gradient methods have better convergence properties. When in Q-Learning the action which constitutes the greedy action changes due to gradient descent, the change in the shape of the value function is abrupt and might destabilize training. In policy gradient methods the change of the probability distribution of actions is relatively smooth.</p></li>
+<li><p>Policy gradient methods have high variance, but improvements can be made to decrease the variance.</p></li>
+</ul>
+</div>
+<div class="section" id="derivation">
+<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<p>Let us remember the general interaction cycle between the agent and the environment.</p>
+<div class="figure align-center" id="id5">
+<img alt="../../_images/interaction_with_policy.svg" src="../../_images/interaction_with_policy.svg" /><p class="caption"><span class="caption-text">MDP Interaction Cycle.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>In policy gradient methods in order to interact with the environment the agent utilizes a parametrized policy <img class="math" src="../../_images/math/ed01a4e0dbf31ffd30130b350e265167ed2de109.svg" alt="\pi_{\theta}(a|s)"/>, instead of a value function. The policy provides a distribution of actions that is based on the current state and the learnable parameters <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>.</p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/architecture3.svg" src="../../_images/architecture3.svg" /><p class="caption"><span class="caption-text">Policy Architecture.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>In our case the policy is going to be a neural network with weights <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>. The neural network will generate a probability distribution that will be sampled to generate an action, <img class="math" src="../../_images/math/8d43dcab9e298b1b2ccfd5a60fc8c90a497cb876.svg" alt="a \sim \pi_{\theta}(. \mid s)"/>.</p>
+<p>The interaction generates trajectories <img class="math" src="../../_images/math/083931a3eece2fcfb41edbd3ec962bc4051ea12d.svg" alt="\tau"/>, a sequence of tuples consisting of states, actions and rewards <img class="math" src="../../_images/math/bea65f39e561e5731061190b58c2f30ea4855b6e.svg" alt="(s_t, a_t, r_t, s_{t+1}, a_{t+1}, r_{t+1}, ... , s_T, a_T, r_T)"/>. Each of the trajectories has a corresponding return <img class="math" src="../../_images/math/7674515a21e3ea004ba30a13c5d826d6a407810d.svg" alt="G"/>. Sometimes, especially when talking about policy gradients, the return is also defined as <img class="math" src="../../_images/math/a86deb3f35b0e85835d613f0d1e33d29cfc15e82.svg" alt="R(\tau)"/> to indicate that the return is based on the trajectory that was followed.</p>
+<p>The general goal of a reinforcement learning agent is to maximize the expected sum of rewards. In policy gradient methods the expected return is also called the <em>objective function</em>.</p>
+<div class="math">
+<p><img src="../../_images/math/e11db1280150e6fa697802dc84a254d776ea29bc.svg" alt="J(\pi_{\theta}) = \mathbb{E}_{\tau \sim \pi_{\theta}}[R(\tau)] = \sum_{\tau}\mathbb{P}(\tau \mid \theta) R(\tau)"/></p>
+</div><p>The expectation is defined over the trajectories <img class="math" src="../../_images/math/083931a3eece2fcfb41edbd3ec962bc4051ea12d.svg" alt="\tau"/> that are sampled using a policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> with parameters <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>. Each return that results from the trajectory <img class="math" src="../../_images/math/083931a3eece2fcfb41edbd3ec962bc4051ea12d.svg" alt="\tau"/> is weighted with the corresponding probability. For us this means that we have to find parameters <img class="math" src="../../_images/math/083931a3eece2fcfb41edbd3ec962bc4051ea12d.svg" alt="\tau"/> that generate trajectories with the highest expected returns.</p>
+<div class="math">
+<p><img src="../../_images/math/b872222304238a7420f560ec5a1f01c31ed0b702.svg" alt="\arg\max_{\theta}J(\theta)"/></p>
+</div><p>To find the parameters that maximize the objective function we are going to use gradient ascent.</p>
+<div class="math">
+<p><img src="../../_images/math/39e5f165e9b7cb64d85c44aa648b4655688c13cb.svg" alt="\theta \leftarrow \theta + \alpha \nabla_{\theta}J(\pi_{\theta})"/></p>
+</div><p>The objective function <img class="math" src="../../_images/math/b6524ff1f22ce0c58fa644396063172cfb9ee347.svg" alt="J(\pi_{\theta})"/> is unknown, because the calculation of the expectation over trajectories would require the knowledge of the dynamics of the model. Therefore it is not that simple to calculate the gradient of the objective function. We need to restate the problem from a different perspective in order to calculate the gradient <img class="math" src="../../_images/math/bbf68e8ae7562171714b0c5529c6c6d795811d7d.svg" alt="\nabla_{\theta}"/>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The likelihood ratio trick utilizes the following identity.</p>
+<div class="math">
+<p><img src="../../_images/math/85647ca10b711eed9ed006dbb4a2d11c1cbd6471.svg" alt="\nabla_x \log f(\mathbf{x}) = \nabla_x f(\mathbf{x}) \frac{1}{f(\mathbf{x})}"/></p>
+</div><p>Here we use the chain rule and the derivative of the log function to calculate the derivative.</p>
+</div>
+<div class="math">
+<p><img src="../../_images/math/f9bb76e4cf40d0408e314e57477f6cf055942a00.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \nabla_{\theta} \mathbb{E}_{\tau \sim \pi_{\theta}}[R(\tau)] \\
+&amp; = \nabla_{\theta} \sum_{\tau}\mathbb{P}(\tau \mid \theta) R(\tau) \\
+&amp; = \sum_{\tau}\nabla_{\theta} \mathbb{P}(\tau \mid \theta) R(\tau) \\
+&amp; = \sum_{\tau} \frac{\mathbb{P}(\tau \mid \theta)}{\mathbb{P}(\tau \mid \theta)} \nabla_{\theta} \mathbb{P}(\tau \mid \theta) R(\tau) \\
+&amp; = \sum_{\tau} \mathbb{P}(\tau \mid \theta) \frac{\nabla_{\theta} \mathbb{P}(\tau \mid \theta)}{\mathbb{P}(\tau \mid \theta)} R(\tau) \\
+&amp; = \sum_{\tau} \mathbb{P}(\tau \mid \theta) \nabla_{\theta} \log\mathbb{P}(\tau \mid \theta) R(\tau) \\
+&amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\nabla_{\theta} \log\mathbb{P}(\tau \mid \theta) R(\tau)]
+\end{align*}"/></p>
+</div><p>In the above reformulation we used a couple of mathematical tricks.</p>
+<ul class="simple">
+<li><p>First, from basic calculus we know that the derivative of a sum is a sum of derivatives. That allows us to bring in the derivative sign inside. We will talk about the huge importance of that step down below.</p></li>
+<li><p>Second, multiplying and dividing by the same number does not change the derivative calculation, because both operations cancel each other. We multiply and divide by the probability of trajectory. Combining the sum over trajectories and the weighting with the probabilities of trajectories gives us an expectation over trajectories.</p></li>
+<li><p>Third, we use the likelihood ratio trick to rewrite part of the derivative as a log expression. The log has some nice properties that we are going to apply in a later step.</p></li>
+</ul>
+<p>At this point in time we still do not know the derivative of <img class="math" src="../../_images/math/79d53e419d43c9458d35b782713fe739ffebef30.svg" alt="\mathbb{P}(\tau \mid \theta)"/> with respect to <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>, because we do not know the exact model of the model of the MDP. We reformulate the probability <img class="math" src="../../_images/math/79d53e419d43c9458d35b782713fe739ffebef30.svg" alt="\mathbb{P}(\tau \mid \theta)"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/9f3dd728c0181b767d3bcf091499e1853dc78197.svg" alt="\mathbb{P}(\tau \mid \theta) = \prod_t^H P(S_{t+1} \mid S_t, A_t) \pi_{\theta}(A_t \mid S_t)"/></p>
+</div><p>The probability of a trajectory depends on one side on the policy of the agent <img class="math" src="../../_images/math/54a5510ce494cc840bca3bdea542c10c4bb44c2c.svg" alt="\pi_{\theta}"/>, which determines the probability of the action <img class="math" src="../../_images/math/0a122c87b78a12e32ae34c4f42166591d02154ef.svg" alt="a_t"/> based on the current state <img class="math" src="../../_images/math/33d7663ce0bfeb571a564ae5cba916d77c1761cb.svg" alt="s_t"/>. On the other hand the model calculates the probability of the next state <img class="math" src="../../_images/math/e0e78147c86692e36da3e6746480bd4e04f9c29e.svg" alt="s_{t+1}"/> based on the action taken <img class="math" src="../../_images/math/0a122c87b78a12e32ae34c4f42166591d02154ef.svg" alt="a_t"/> and the current state <img class="math" src="../../_images/math/33d7663ce0bfeb571a564ae5cba916d77c1761cb.svg" alt="s_t"/>. The selection of actions and next states continues until the end of the episode, which is indicated by the horizon <img class="math" src="../../_images/math/107e19c45335923850db35344db2dd2a8b423b1b.svg" alt="H"/>. The calculation of the probability of the full trajectory is the product of individual probabilities that are calculated throughout the trajectory.</p>
+<div class="math">
+<p><img src="../../_images/math/f12c3176984af0231922423c5ad72c4ad2c42d01.svg" alt="\begin{align*}
+\nabla_{\theta} \log \mathbb{P}(\tau \mid \theta) &amp; = \nabla_{\theta} \log (\prod_t^H P(S_{t+1} \mid S_t, A_t) \pi_{\theta}(A_t \mid S_t)) \\
+&amp; = \nabla_{\theta} (\sum_t^H \log P(S_{t+1} \mid S_t, A_t) + \sum_t^H \log \pi_{\theta}(A_t \mid S_t)) \\
+&amp; = (\sum_t^H \nabla_{\theta} \log P(S_{t+1} \mid S_t, A_t) + \sum_t^H \nabla_{\theta}  \log \pi_{\theta}(A_t \mid S_t)) \\
+&amp; = \sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) \\
+\end{align*}"/></p>
+</div><p>It turns out that the gradient of the reformulated problem is an easier problem.</p>
+<ul class="simple">
+<li><p>First, we realize that the log of a product is the sum of the logs, <img class="math" src="../../_images/math/ecd9e8c2e978d1f6991f3b840246bb26ea7c610b.svg" alt="\log(x*y) = \log x + \log y"/>. This makes obvious why the reformulation of the problem in terms of logs was a necessary step. This allows us to separate the policy from the model in a powerful way.</p></li>
+<li><p>Finally we realize that <img class="math" src="../../_images/math/ec4673746b7723cf3cdeec76c904b1a0ca705721.svg" alt="\nabla_{\theta} \log P(S_{t+1} \mid S_t, A_t)"/> is 0. The derivative is with respect to <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>, which is the parameter vector of the policy and the policy has no impact on the model. No matter how the policy looks like, the agent can not change the underlying dynamics of the MDP.</p></li>
+</ul>
+<div class="math">
+<p><img src="../../_images/math/6d5b525f20d8308fe398bc15eed43e18d927ed7b.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\nabla_{\theta} \log\mathbb{P}(\tau \mid \theta) R(\tau)] \\
+&amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)]
+\end{align*}"/></p>
+</div><p>The final gradient depends only on the gradient of the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/> and the realized return, the knowledge of the dynamics of the model are not required.</p>
+<div class="math">
+<p><img src="../../_images/math/387b550cdb04435dea604f151f3e0f74f6d4e5b9.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
+&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) R(\tau^{(i)})
+\end{align*}"/></p>
+</div><p>Let us also discuss why it was important to push the gradient inside the expectation. The gradient of the expectation <img class="math" src="../../_images/math/21237bab7e9ff3b9568bda49ddb523a2bc8b739a.svg" alt="\nabla_{\theta}\mathbb{E}"/> implies that we have to know the expected value of returns to calculate the gradient, which we don’t. When the expectation is inside we can sample trajectories and estimate the true gradient. The larger the sample size the better the estimate. In practice often the gradient step is taken after a single episode, indicating <img class="math" src="../../_images/math/16b5eb9d3039d43027c7c485bb70e492c1e4b6bb.svg" alt="m = 1"/>.</p>
+<p>We are not going to implement this naive policy gradient algorithm, as there is high variance due to high noise of returns of individual episodes. Starting with the next chapter we will investigate methods to decrease the variance and implement the algorithm in PyTorch.</p>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Sutton, R. Barto, A. Reinforcement Learning: An Introduction (MIT Press, 2018).</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Abbeel P. et al. Deep RL Bootcamp. 2017. <a class="reference external" href="https://sites.google.com/view/deep-rl-bootcamp">https://sites.google.com/view/deep-rl-bootcamp</a></p>
+</dd>
+</dl>
+</div>
 </div>
 
 
