@@ -80,6 +80,7 @@ Reinforcement Learning
    policy_gradient_methods/introduction
    policy_gradient_methods/policy_gradient_derivation
    policy_gradient_methods/reinforce
+   policy_gradient_methods/reinforce_with_baseline_vpg
 
 
 .. toctree::

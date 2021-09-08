@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>REINFORCE &#8212; World4AI 0.1 documentation</title>
+    <title>REINFORCE With Baseline | Vanilla Policy Gradient (VPG) &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="REINFORCE With Baseline | Vanilla Policy Gradient (VPG)" href="reinforce_with_baseline_vpg.html" />
-    <link rel="prev" title="Policy Gradient Derivation" href="policy_gradient_derivation.html" />
+    <link rel="next" title="Motivation" href="../rl_libraries/motivation.html" />
+    <link rel="prev" title="REINFORCE" href="reinforce.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -349,13 +349,13 @@
    Policy Gradient Derivation
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reinforce.html">
    REINFORCE
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="reinforce_with_baseline_vpg.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    REINFORCE With Baseline | Vanilla Policy Gradient  (VPG)
   </a>
  </li>
@@ -405,18 +405,6 @@
   <a class="reference internal nav-link" href="#theory">
    Theory
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#temporal-decomposition">
-     Temporal Decomposition
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#discounting">
-     Discounting
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implementation">
@@ -444,40 +432,40 @@
               
               <div>
                 
-  <div class="section" id="reinforce">
-<h1>REINFORCE<a class="headerlink" href="#reinforce" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="reinforce-with-baseline-vanilla-policy-gradient-vpg">
+<h1>REINFORCE With Baseline | Vanilla Policy Gradient  (VPG)<a class="headerlink" href="#reinforce-with-baseline-vanilla-policy-gradient-vpg" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
-<p>The policy gradient algorithm developed in the previous section shows high variance and thus requires a high number of trajectories. In this chapter we are going to start to develop methods that reduce variance and implement the first variant of an algorithm with less variance called REINFORCE.</p>
+<p>The reinforce algorithm implemented in the last chapter is the first viable variant of a policy gradient method, yet not the one with the least variance. In this chapter we introduce an improvement to REINFORCE. The algorithm is called REINFORCE with baseline, but sometimes the name vanilla policy gradient (VPG) is also used.</p>
 </div>
 <div class="section" id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="temporal-decomposition">
-<h3>Temporal Decomposition<a class="headerlink" href="#temporal-decomposition" title="Permalink to this headline">¶</a></h3>
-<div class="math">
-<p><img src="../../_images/math/9148192a2e666dd264947c1176f73b5be7167e6a.svg" alt="\begin{align*}
-\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
-&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) R(\tau^{(i)}) \\
-&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) \sum_t^H R_t \\
-&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) [\sum_{k=0}^{t} R_k + \sum_{k=t+1}^{H} R_k]
-\end{align*}"/></p>
-</div><p>The policy gradient is calculated by multiplying the gradient of the log probability of an action <img class="math" src="../../_images/math/7f3546078d71a3138f4636f7f7359e290f4ca71c.svg" alt="A_t"/> given the state <img class="math" src="../../_images/math/edea1c48e2215a6477d60bb7cb19ff85b7474f4c.svg" alt="S_t"/> with the return from the whole trajectory <img class="math" src="../../_images/math/628b461d0265d7077797c8db6beb0f8c11c0cb7e.svg" alt="\sum_t^H R_t"/>. The return of the trajectory can be decomposed into two distinct parts. The return that was already realized and can not be changed <img class="math" src="../../_images/math/82364feeff39819282740eb0797c1337110b03d0.svg" alt="\sum_{k=0}^{t} R_k"/> and the return that is still to be earned and is going to be generated from the next step onward <img class="math" src="../../_images/math/bbaa1d48be6efa96a16644bb65645787b59d5617.svg" alt="\sum_{k=t+1}^{H} R_k"/>.</p>
-<div class="math">
-<p><img src="../../_images/math/14c46b7a6ff0c3ebd21b6c34a462b433fffd020b.svg" alt="\begin{align*}
-\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
-&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) \sum_{k=t+1}^{H} R_k
-\end{align*}"/></p>
-</div><p>There is no need to multiply the log probability of an action with the past return. The action has no impact on the past. It turns out that ignoring past returns reduces the variance.</p>
-</div>
-<div class="section" id="discounting">
-<h3>Discounting<a class="headerlink" href="#discounting" title="Permalink to this headline">¶</a></h3>
 <div class="math">
 <p><img src="../../_images/math/544f3ed77fea0b79d28e1d2f951be2cbf69bceb7.svg" alt="\begin{align*}
 \nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
 &amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) \sum_{k=t+1}^{H} \gamma^{k-t-1} R_k
 \end{align*}"/></p>
-</div><p>The second adjustment to the policy gradient algorithm that we are going to make is the introduction of discounting. Discounting that we have already seen with dynamic programming and q-learning accounts for the time value of rewards. Additionally discounting reduces variance in policy gradients methods.</p>
+</div><p>The gradient calculation for REINFORCE can be interpreted as follows. The log probability of actions that generate high returns is increased, while the log probability of actions that generate negative returns is decreased.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/no_baseline.svg" src="../../_images/no_baseline.svg" /><p class="caption"><span class="caption-text">Policy Gradient Without Baseline.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<p>But what if all returns are positive or clustered like in the image above? The probability of actions with highest returns will increase more than those with lower returns. But the process is slow.</p>
+<div class="math">
+<p><img src="../../_images/math/fe459af2cd34645839a437b82fb30b6393ac4572.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
+&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) \sum_{k=t+1}^{H} \gamma^{k-t-1} R_k - b
+\end{align*}"/></p>
+</div><p>The next improvement we are going to introduce is the baseline. The baseline <img class="math" src="../../_images/math/c2d4de8688bdeb824fee59ca2a7947737c82dd05.svg" alt="b"/> is deducted from the return, which reduces the variance.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/baseline.svg" src="../../_images/baseline.svg" /><p class="caption"><span class="caption-text">Policy Gradient With Baseline.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Intuitively some of the positive returns might stay positive, while others are pushed below the zero line. That makes the gradient positive for returns above the baseline and negative for returns below the baseline. There are different choices for the baseline <img class="math" src="../../_images/math/c2d4de8688bdeb824fee59ca2a7947737c82dd05.svg" alt="b"/>, which has an impact on how much variance and bias the algorithm has.</p>
+<div class="math">
+<p><img src="../../_images/math/a0786d890245901ea77c3d9e08031d4b7af725d8.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t) R(\tau)] \\
+&amp; \approx \frac{1}{m}\sum_i^m\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t^{(i)} \mid S_t^{(i)}) \sum_{k=t+1}^{H} \gamma^{k-t-1} R_k - V(S_t^{(i)})
+\end{align*}"/></p>
+</div><p>REINFORCE with baseline uses the state value function <img class="math" src="../../_images/math/06198a585f13dfc8b7120bb78d150f8945bf3de0.svg" alt="V(S_t)"/> as the baseline. This makes perfect sense as only the probability of those actions are increased that generate returns that are above the expected sum of rewards. In our implementation  <img class="math" src="../../_images/math/06198a585f13dfc8b7120bb78d150f8945bf3de0.svg" alt="V(S_t)"/> is going to be a learned neural network, meaning that we have two separate functions, one for the policy and one for the state value. In VPG the policy and value functions are updated with monte carlo simulations, therefore this algorithm is only suited for episodic tasks.</p>
 </div>
 <div class="section" id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
@@ -509,6 +497,22 @@
         <span class="n">action</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
         <span class="n">log_prob</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">action</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">log_prob</span>
+
+<span class="k">class</span> <span class="nc">V</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">():</span>
@@ -518,7 +522,9 @@
                 <span class="n">num_episodes</span><span class="p">,</span>
                 <span class="n">solved_average_reward</span><span class="p">,</span>
                 <span class="n">pi_function</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="p">,</span>
+                <span class="n">v_function</span><span class="p">,</span>
+                <span class="n">pi_alpha</span><span class="p">,</span>
+                <span class="n">v_alpha</span><span class="p">,</span>
                 <span class="n">gamma</span><span class="p">,</span>
                 <span class="n">device</span><span class="p">):</span>
 
@@ -527,7 +533,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">solved_average_reward</span> <span class="o">=</span> <span class="n">solved_average_reward</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pi_function</span> <span class="o">=</span> <span class="n">pi_function</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">pi_function</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_function</span> <span class="o">=</span> <span class="n">v_function</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">pi_function</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">pi_alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">v_function</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">v_alpha</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
@@ -535,6 +543,7 @@
     <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_probs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">len_trajectory</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
@@ -543,18 +552,31 @@
         <span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="n">t</span><span class="p">:])</span> <span class="o">*</span> <span class="n">gammas</span><span class="p">[:</span><span class="n">len_trajectory</span><span class="o">-</span><span class="n">t</span><span class="p">])</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_trajectory</span><span class="p">)])</span>
         <span class="n">returns</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">log_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
 
-        <span class="c1"># optimize</span>
+        <span class="c1"># OPTIMIZE</span>
 
+        <span class="c1">#POLICY OPTIMIZATION</span>
+        <span class="c1">#-----------------------------------------</span>
         <span class="c1">#clear past gradients</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="c1">#calculate the advantages</span>
+        <span class="n">advantages</span> <span class="o">=</span> <span class="n">returns</span> <span class="o">-</span> <span class="n">values</span>
         <span class="c1">#minus to make descent from ascent</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">returns</span> <span class="o">*</span> <span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">pi_loss</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">advantages</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">*</span> <span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="c1">#calcualte gradients</span>
-        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">pi_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="c1">#gradient descent</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="c1">#-----------------------------------------</span>
+        <span class="c1">#VALUE FUNCTION OPTIMIZATION</span>
+        <span class="c1">#-----------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">v_loss</span> <span class="o">=</span> <span class="n">advantages</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="c1"># gradients for the value function</span>
+        <span class="n">v_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="c1">#gradient descent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">eval_rewards</span> <span class="o">=</span> <span class="p">[]</span>
@@ -574,10 +596,12 @@
             <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
                 <span class="n">obs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
                 <span class="n">action</span><span class="p">,</span> <span class="n">log_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi_function</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_function</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
                 <span class="n">next_obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">log_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log_prob</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="n">obs</span> <span class="o">=</span> <span class="n">next_obs</span>
 
                 <span class="n">eval_reward_sum</span> <span class="o">+=</span> <span class="n">reward</span>
@@ -621,9 +645,12 @@
 <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda:0&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
 <span class="n">SOLVED_AVERAGE_REWARD</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">NUM_EPISODES</span> <span class="o">=</span> <span class="mi">5000</span>
-<span class="n">ALPHA</span> <span class="o">=</span> <span class="mf">0.0005</span>
+<span class="n">PI_ALPHA</span> <span class="o">=</span> <span class="mf">0.0005</span>
+<span class="n">V_ALPHA</span> <span class="o">=</span> <span class="mf">0.0005</span>
 <span class="n">GAMMA</span> <span class="o">=</span> <span class="mf">0.99</span>
+
 <span class="n">PI_FUNCTION</span> <span class="o">=</span> <span class="n">PI</span><span class="p">(</span><span class="n">NUM_FEATURES</span><span class="p">,</span> <span class="n">NUM_ACTIONS</span><span class="p">)</span>
+<span class="n">V_FUNCTION</span> <span class="o">=</span> <span class="n">V</span><span class="p">(</span><span class="n">NUM_FEATURES</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -635,8 +662,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="policy_gradient_derivation.html" title="previous page">Policy Gradient Derivation</a>
-    <a class='right-next' id="next-link" href="reinforce_with_baseline_vpg.html" title="next page">REINFORCE With Baseline | Vanilla Policy Gradient  (VPG)</a>
+    <a class='left-prev' id="prev-link" href="reinforce.html" title="previous page">REINFORCE</a>
+    <a class='right-next' id="next-link" href="../rl_libraries/motivation.html" title="next page">Motivation</a>
 
               </div>
               
