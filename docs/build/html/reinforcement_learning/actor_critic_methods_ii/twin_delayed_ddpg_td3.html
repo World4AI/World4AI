@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; World4AI 0.1 documentation</title>
+    <title>Twin Delayed DDPG (TD3) &#8212; World4AI 0.1 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
     <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Motivation" href="../rl_libraries/motivation.html" />
-    <link rel="prev" title="REINFORCE With Baseline | Vanilla Policy Gradient (VPG)" href="../policy_gradient_methods/reinforce_with_baseline_vpg.html" />
+    <link rel="next" title="Soft Actor-Critc (SAC)" href="soft_actor_critic_sac.html" />
+    <link rel="prev" title="Deep Deterministic Policy Gradient (DDPG)" href="deep_deterministic_policy_gradient_ddpg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -362,13 +362,70 @@
 </ul>
 <p class="caption" role="heading">
  <span class="caption-text">
-  Actor-Critic Methods
+  Actor-Critic Methods I
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/baseline_vs_actor_critic.html">
+   Baseline Methods vs Actor-Critic-Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/asynchronous_advantage_actor_critic_a3c.html">
+   Asynchronous Advantage Actor-Critic (A3C)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/generalized_advantage_estimation_gae.html">
+   Generalized Advantage Estimation (GAE)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/advantage_actor_critic_a2c.html">
+   Advantage Actor-Critic (A2C)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/trust_region_policy_optimization_trpo.html">
+   Trust Region Policy Optimization (TRPO)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../actor_critic_methods_i/proximal_policy_optimization_ppo.html">
+   Proximal Policy Optimization (PPO)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Actor-Critic Methods II
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Intoduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deep_deterministic_policy_gradient_ddpg.html">
+   Deep Deterministic Policy Gradient (DDPG)
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Introduction
+   Twin Delayed DDPG (TD3)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="soft_actor_critic_sac.html">
+   Soft Actor-Critc (SAC)
   </a>
  </li>
 </ul>
@@ -424,9 +481,9 @@
               
               <div>
                 
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>So far we have seen value based methods like DQN, which estimate state or action value function and policy based methods like REINFORCE, which estimate the policy directly. It turns out that combining both types of methods can result in so-called actor-critic methods. The actor is the decision maker and the policy of the agent. The critic is the value function that estimates how good or bad the decisions are that the critic makes. Both are usually implemented as neural networks and trained simultaneously. The actor-critic methods can have significant improvements over pure value or policy based methods and in many cases constitute state of the art methods that are available to us at this point in time.</p>
+  <div class="section" id="twin-delayed-ddpg-td3">
+<h1>Twin Delayed DDPG (TD3)<a class="headerlink" href="#twin-delayed-ddpg-td3" title="Permalink to this headline">¶</a></h1>
+<p>Coming Soon</p>
 </div>
 
 
@@ -435,8 +492,8 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../policy_gradient_methods/reinforce_with_baseline_vpg.html" title="previous page">REINFORCE With Baseline | Vanilla Policy Gradient  (VPG)</a>
-    <a class='right-next' id="next-link" href="../rl_libraries/motivation.html" title="next page">Motivation</a>
+    <a class='left-prev' id="prev-link" href="deep_deterministic_policy_gradient_ddpg.html" title="previous page">Deep Deterministic Policy Gradient (DDPG)</a>
+    <a class='right-next' id="next-link" href="soft_actor_critic_sac.html" title="next page">Soft Actor-Critc (SAC)</a>
 
               </div>
               

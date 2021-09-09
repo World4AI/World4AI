@@ -84,10 +84,24 @@ Reinforcement Learning
 
 .. toctree::
    :maxdepth: 2
-   :caption: Actor-Critic Methods
+   :caption: Actor-Critic Methods I
 
-   actor_critic_methods/introduction
+   actor_critic_methods_i/introduction
+   actor_critic_methods_i/baseline_vs_actor_critic
+   actor_critic_methods_i/asynchronous_advantage_actor_critic_a3c
+   actor_critic_methods_i/generalized_advantage_estimation_gae
+   actor_critic_methods_i/advantage_actor_critic_a2c
+   actor_critic_methods_i/trust_region_policy_optimization_trpo
+   actor_critic_methods_i/proximal_policy_optimization_ppo
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Actor-Critic Methods II
+
+   actor_critic_methods_ii/introduction
+   actor_critic_methods_ii/deep_deterministic_policy_gradient_ddpg
+   actor_critic_methods_ii/twin_delayed_ddpg_td3
+   actor_critic_methods_ii/soft_actor_critic_sac
 
 .. toctree::
    :maxdepth: 2
