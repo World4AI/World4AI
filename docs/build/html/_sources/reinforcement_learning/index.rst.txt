@@ -82,6 +82,12 @@ Reinforcement Learning
    policy_gradient_methods/reinforce
    policy_gradient_methods/reinforce_with_baseline_vpg
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Actor-Critic Methods
+
+   actor_critic_methods/introduction
+
 
 .. toctree::
    :maxdepth: 2
