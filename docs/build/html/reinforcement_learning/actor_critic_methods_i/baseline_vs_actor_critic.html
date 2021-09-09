@@ -483,7 +483,27 @@
                 
   <div class="section" id="baseline-methods-vs-actor-critic-methods">
 <h1>Baseline Methods vs Actor-Critic-Methods<a class="headerlink" href="#baseline-methods-vs-actor-critic-methods" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+<p>The general shape of the policy gradient can be represented in the following way <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<div class="math">
+<p><img src="../../_images/math/60cf7634ecc6a6c0a920bbf87ceba3a9df616464.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t)  \Psi_t]
+\end{align*}"/></p>
+</div><p>The letter <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> is a placeholder that in practice can be replaced by a number of variables. In the derivation of the policy gradient algorithm <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> corresponded to the return over the whole trajectory <img class="math" src="../../_images/math/628b461d0265d7077797c8db6beb0f8c11c0cb7e.svg" alt="\sum_t^H R_t"/>. The shape of <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> is what determines if we are talking about pure policy gradient algorithms or about actor-critic methods.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/actor_critic.svg" src="../../_images/actor_critic.svg" /><p class="caption"><span class="caption-text">Actor Critic Methods.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>An actor-critic algorithm has a policy, called an actor and a value function, called a critic. But not all agents that have separate policy and value functions are defined as actor-critic methods. For example the REINFORCE algorithm with baseline (VPG) does not have a critic even though the baseline is made of the state value function. The key component that is missing is bootstrapping. In VPG the agent takes the action and the action is evaluated by calculating the return that follows and subtucting the expecgted sum of returns <img class="math" src="../../_images/math/06198a585f13dfc8b7120bb78d150f8945bf3de0.svg" alt="V(S_t)"/>. The next state <img class="math" src="../../_images/math/b39ba9f9a36260a7dfcdeb1a29ac6278f97267a2.svg" alt="S_{t+1}"/> that results from the action is not evaluated by the value function, the action is not critiqued directly by the value function. Bootstrapping on the other hand critiques the action by evaluating the outcome of the action through evaluating the next state <img class="math" src="../../_images/math/9be547a5e4a9e5738c378105891ecbf1fb79eaaa.svg" alt="V(S_{t+1})"/>.</p>
+<p>There are several common choices for the calculation of <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> in actor-critic methods.</p>
+<ul class="simple">
+<li><p><img class="math" src="../../_images/math/b88ffbead00f1982caa453b3f583719697bf9783.svg" alt="\Psi = \delta = R_t + V(S_{t+1}) - V(S_t)"/></p></li>
+<li><p><img class="math" src="../../_images/math/f65102d89d99898c6caf926008e0adbafdea3192.svg" alt="\Psi = A(S_t, A_t) = Q(S_t, A_t) - V(S_t)"/></p></li>
+</ul>
+<p>Both variants are commonly used, but the most powerful and flexible choice for <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> that is used in state of the art systems is going to be covered in a separate section.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Schulman J. et al. High-Dimensional Continuous Control Using Generalized Advantage Estimation. 2015. <a class="reference external" href="https://arxiv.org/abs/1506.02438">https://arxiv.org/abs/1506.02438</a></p>
+</dd>
+</dl>
 </div>
 
 
