@@ -459,9 +459,29 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bias">
+   Bias
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variance">
+   Variance
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -483,7 +503,51 @@
                 
   <div class="section" id="bias-variance-tradeoff">
 <h1>Bias-Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>The bias-variance tradeoff plays a tremendous role in reinforcement learning and machine learning in general. Ideally we want to reduce both as much as possible, but reducing one means increasing the other at the same time. There is a tradeoff to be made.</p>
+<p>In this section we will look at the definitions of bias and variance and discuss at what side of the spectrum monte carlo and temporal difference methods are.</p>
+</div>
+<div class="section" id="bias">
+<h2>Bias<a class="headerlink" href="#bias" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math">
+<p><img src="../../_images/math/f59aa0ae876ee62b6e662e2db4500459ac15be39.svg" alt="bias(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta"/></p>
+</div></div>
+<p>In statiscics we define the bias of the estimator as the difference between the expected value of the estimator <img class="math" src="../../_images/math/103a6be1b9e7f61842a7501a4dac471aadbb2959.svg" alt="\mathbb{E}[\hat{\theta}]"/> and the true parameter <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/>. The true parameter <img class="math" src="../../_images/math/a90c917b59868527c9644dedcb304f87a6241b9f.svg" alt="\theta"/> that we are most interested in is the expected value <img class="math" src="../../_images/math/9f0d624a8590ba1d79af682e4c1ea5b2d4a219f0.svg" alt="\mathbb{E}[X]"/> of some random variable <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/>.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/random_variable.svg" src="../../_images/random_variable.svg" /><p class="caption"><span class="caption-text">Distribution of a random variable X.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>In the image above we see the distribution of the random variable <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/>. The calculation of the expectation is straightforward when we know the actual probability distribution.</p>
+<div class="math">
+<p><img src="../../_images/math/307138f7cf80fe09188eab3d5d98528c8b748172.svg" alt="\mathbb{E}[X] = 0.15 * 1 + 0.15 * 2 + 0.3 * 3 + 0.3 * 4 = 2.55"/></p>
+</div><p>We do not know the true distribution of <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/> and can not directly calculate the expected value, therefore we have to use some estimate <img class="math" src="../../_images/math/dd7c22d1d24f8b59b984dba49af93fcfd072d1b9.svg" alt="\hat{\theta}"/> as a proxy for the true <img class="math" src="../../_images/math/9f0d624a8590ba1d79af682e4c1ea5b2d4a219f0.svg" alt="\mathbb{E}[X]"/>. The most straightforward way to estimate the expected value of a random variable is to draw samples from the distribution and to use the individual samples <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/> as the estimate <img class="math" src="../../_images/math/dd7c22d1d24f8b59b984dba49af93fcfd072d1b9.svg" alt="\hat{\theta}"/>. Is there any bias by using the random samples as an estimate. No, using <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/> as an estimate for <img class="math" src="../../_images/math/9f0d624a8590ba1d79af682e4c1ea5b2d4a219f0.svg" alt="\mathbb{E}[X]"/> intorduces no bias.</p>
+<div class="math">
+<p><img src="../../_images/math/76cb077bbbb1a75dd69e2157e10edc4fd4879fa9.svg" alt="\begin{align*}
+&amp; \theta = \mathbb{E}[X] \\
+&amp; \hat{\theta} = X \\
+&amp; bias(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta = \mathbb{E}[X] - \mathbb{E}[X] = 0
+\end{align*}"/></p>
+</div><p>If on the other hand we used the number 3 constantly as the estimate of the expected value, then that would definitely introduce a bias.</p>
+<div class="math">
+<p><img src="../../_images/math/44b90a49ec7fb8533e33837f4af8859b6301c2d8.svg" alt="\begin{align*}
+&amp; \theta = \mathbb{E}[X] \\
+&amp; \hat{\theta} = 3 \\
+&amp; bias(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta = \mathbb{E}[3] - \mathbb{E}[X] = 3 - 2.55 = 0.45
+\end{align*}"/></p>
+</div><div class="figure align-center" id="id2">
+<img alt="../../_images/simple_mdp.svg" src="../../_images/simple_mdp.svg" /><p class="caption"><span class="caption-text">Distribution of a random variable X.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="variance">
+<h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math">
+<p><img src="../../_images/math/2e72190f40a691e57d7763b42ba03b9277f2e77b.svg" alt="var(\hat{\theta}) = \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}])]"/></p>
+</div></div>
+</div>
 </div>
 
 

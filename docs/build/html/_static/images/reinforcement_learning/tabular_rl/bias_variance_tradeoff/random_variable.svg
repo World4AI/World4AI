@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.499 0.499h499v499h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+  <g stroke-width="2">
+   <rect x="99.333" y="232" width="50" height="190" fill="#f59" style="paint-order:markers fill stroke"/>
+   <rect x="199.33" y="232" width="50" height="190" fill="#fd5" style="paint-order:markers fill stroke"/>
+   <rect x="299.33" y="52" width="50" height="370" fill="#59f" style="paint-order:markers fill stroke"/>
+  </g>
+  <rect x="399.33" y="52" width="50" height="370" fill="#acf" stroke-width="2" style="paint-order:markers fill stroke"/>
+ </g>
+ <g font-family="Roboto" font-size="40px">
+  <text x="6.6796875" y="264.21875" style="line-height:1.25" xml:space="preserve"><tspan x="6.6796875" y="264.21875">15%</tspan></text>
+  <text x="8.1640625" y="74.21875" style="line-height:1.25" xml:space="preserve"><tspan x="8.1640625" y="74.21875">30%</tspan></text>
+  <text x="109.76172" y="468" style="line-height:1.25" xml:space="preserve"><tspan x="109.76172" y="468">1</tspan></text>
+  <text x="215.76172" y="468" style="line-height:1.25" xml:space="preserve"><tspan x="215.76172" y="468">2</tspan></text>
+  <text x="315.76172" y="468" style="line-height:1.25" xml:space="preserve"><tspan x="315.76172" y="468">3</tspan></text>
+  <text x="415.76172" y="468" style="line-height:1.25" xml:space="preserve"><tspan x="415.76172" y="468">4</tspan></text>
+ </g>
+</svg>
