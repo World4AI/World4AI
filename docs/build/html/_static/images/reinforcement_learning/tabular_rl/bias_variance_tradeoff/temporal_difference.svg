@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="100" version="1.1" viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.499 0.499h499v99.002h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g transform="matrix(.6 0 0 .6 -22.9 4e-6)">
+  <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+  <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+ </g>
+ <g transform="matrix(.6 0 0 .6 -22.9 40)">
+  <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+  <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+ </g>
+ <text x="9.7701197" y="34.904034" font-family="Roboto" font-size="22.205px" style="line-height:1.25" xml:space="preserve"><tspan x="9.7701197" y="34.904034">1)</tspan></text>
+ <text x="9.7701197" y="74.904037" font-family="Roboto" font-size="22.205px" style="line-height:1.25" xml:space="preserve"><tspan x="9.7701197" y="74.904037">2)</tspan></text>
+ <g fill="none" stroke="#000">
+  <g stroke-width="1px">
+   <path d="m114 20v20"/>
+   <path d="m104 30h20"/>
+   <path d="m114 59.5v20"/>
+   <path d="m104 69.5h20"/>
+  </g>
+  <path d="m140 16 10 30 10-30" stroke-width="3"/>
+  <path d="m140 54.865 10 30 10-30" stroke-width="3"/>
+  <g stroke-width="1px">
+   <path d="m182 16h-10v30h10"/>
+   <path d="m182 56h-10v30h10"/>
+   <path d="m189.5 86h10v-30h-10"/>
+   <path d="m189.5 46h10v-30h-10"/>
+  </g>
+ </g>
+</svg>

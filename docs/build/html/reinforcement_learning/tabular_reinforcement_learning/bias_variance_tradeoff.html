@@ -539,14 +539,60 @@
 </div><div class="figure align-center" id="id2">
 <img alt="../../_images/simple_mdp.svg" src="../../_images/simple_mdp.svg" /><p class="caption"><span class="caption-text">Distribution of a random variable X.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
+<p>But how do the discussions regarding bias extend to the choice between monte carlo methods and temporal difference methods? The example above might provide some answers. Imagine an episodic environment where the agent starts at the left yellow box and has to arrive at the right red box. Each step that the agent takes generates a negative reward of -1. Only the terminal red state provides a positive reward. To make the calculations simple we make the environment and the policy of the agent fully deterministic. In our example the agent follows the strategy of always going right and the MDP always transitions in the desired way. We also do not use any discounting. Following these assumptions the agent receives a return <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/> of -2 at each single episode when he starts at the yellow state, which we designate as state 0.</p>
+<p>When we use policy evaluation our goal is to find the correct value function <img class="math" src="../../_images/math/fc4a32e1a50cc2d8e5b50909ae74cdb02b135704.svg" alt="v_{\pi}(s)"/>, which is the expected value of the rewards <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/> when following the policy <img class="math" src="../../_images/math/219b0d64dd3864293c420734a8924f4905a2a8d1.svg" alt="\pi"/>. It turns out that monte carlo methods are not biased, because we use the full returns <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/> as an estimator of the value function.</p>
+<div class="math">
+<p><img src="../../_images/math/c4dc0215468b24b67c8dd3001b5d3838fa1a07f2.svg" alt="\begin{align*}
+&amp; \theta = \mathbb{E}[G_t] \\
+&amp; \hat{\theta} = G_t \\
+&amp; bias(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta = \mathbb{E}[G_t] - \mathbb{E}[G_t] = -2 - (-2) = 0
+\end{align*}"/></p>
+</div><p>The return is an unbiased estimator of the value function and that would not change even if the environment and the policy of the agent were stochastic. Therefore it is reasonable to collect samples of <img class="math" src="../../_images/math/fa309ec25c85e0173ceed1bd8bf5166ee63b704c.svg" alt="G_t"/> for the state 0 and to calculate the average <img class="math" src="../../_images/math/421638de6085500bcf7a9c26253e5a6dd3e60dfa.svg" alt="\frac{1}{N}\sum_t^N G_t"/>.</p>
+<p>This is not the case for temporal difference methods. Let us assume that we set the initial values of the state value function to 0, <img class="math" src="../../_images/math/297e2772e90cacb8f9934a3f86fa29eb17b824ac.svg" alt="v_{\pi}(s) = 0"/>. TD methods use bootstrapping, therefore the estimate of the value for the 0th state is <img class="math" src="../../_images/math/307ce10b68f35e6a1e7fa2cd5fa9fd6401b955bf.svg" alt="R_t + v_{\pi}(1) = -1 + 0 = -1"/>, which makes bootstrapping biased, <img class="math" src="../../_images/math/177d6268c656aa8efd8475cae20ec78754780b96.svg" alt="\mathbb{E}[R_t + v_{\pi}(S_{t+1})] \neq \mathbb{E}[G_t]"/>.</p>
+<p>The reason we can get away with this type of bias in bootstrapping is by improving the estimate of the next state <img class="math" src="../../_images/math/ee3c7475da634e80bf1798c477262213f983d45e.svg" alt="v_{\pi}(S_{t+1})"/> with each iteration and thereby reducing the bias.</p>
 </div>
 <div class="section" id="variance">
 <h2>Variance<a class="headerlink" href="#variance" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <div class="math">
-<p><img src="../../_images/math/2e72190f40a691e57d7763b42ba03b9277f2e77b.svg" alt="var(\hat{\theta}) = \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}])]"/></p>
+<p><img src="../../_images/math/6f02fe678709c6c4340b81767b0fbd4e45a59a79.svg" alt="var(\hat{\theta}) = \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}])^2]"/></p>
 </div></div>
+<p>Intuitively the variance of an estimator tells us how strongly the estimator varies around the expected value of an estimator.</p>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/low_variance.svg" src="../../_images/low_variance.svg" /><p class="caption"><span class="caption-text">Low Variance.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let us assume we face the above distribution and decide that we would like to use the random variable <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/> as the estimator for the expected value <img class="math" src="../../_images/math/9f0d624a8590ba1d79af682e4c1ea5b2d4a219f0.svg" alt="\mathbb{E}[X]"/>. The true expected value of the estimate is 0, but the individual draws from the distribution can vary around the expected value, the variance is not 0.</p>
+<div class="math">
+<p><img src="../../_images/math/ac95ff2bdde28521425b90d2f98ec752fb4076ec.svg" alt="\begin{align*}
+var(\hat{\theta}) &amp; = \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}])^2] \\
+&amp; = \mathbb{E}[(\hat{\theta} - 0)^2] \\
+&amp; = 0.5 [(1 - 0)^2] +  0.5 [(-1 - 0)^2] = 1
+\end{align*}"/></p>
+</div><div class="figure align-center" id="id4">
+<img alt="../../_images/high_variance.svg" src="../../_images/high_variance.svg" /><p class="caption"><span class="caption-text">High Variance.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>The calculation looks different if we use the random variable <img class="math" src="../../_images/math/80c2bd2011eacc54782b1b5d7f86c078a8316143.svg" alt="X"/> as the estimate of the expected value of the above distribution. The expected value is the same, but the variance as you can imagine is higher.</p>
+<div class="math">
+<p><img src="../../_images/math/aebf426e1a7b3a682bd59ba24730577ec6a0c4ba.svg" alt="\begin{align*}
+var(\hat{\theta}) &amp; = \mathbb{E}[(\hat{\theta} - \mathbb{E}[\hat{\theta}])^2] \\
+&amp; = \mathbb{E}[(\hat{\theta} - 0)^2] \\
+&amp; = 0.5 [(5 - 0)^2] +  0.5 [(-5 - 0)^2] \\
+&amp; = 0.5 * 25 +  0.5 * 25 = 25
+\end{align*}"/></p>
+</div><div class="figure align-center" id="id5">
+<img alt="../../_images/random_mdp.svg" src="../../_images/random_mdp.svg" /><p class="caption"><span class="caption-text">Simple MDP with random policy.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let us build some intuition regarding the variance in monte carlo vs temporal difference methods. We are going to use the same deterministic environment, but the policy is going to be absolutely random.</p>
+<div class="figure align-center" id="id6">
+<img alt="../../_images/monte_carlo.svg" src="../../_images/monte_carlo.svg" /><p class="caption"><span class="caption-text">Trajectories with Monte Carlo methods.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>Taking random actions even in a deterministic environment will generate different trajectories. Considering that the environment is also usually stochastic and the rules of the MPD are much more complex, you generally require a lot of samples to approximate the expected value. Unlike in the above example where we only draw a single random variable, in monte carlo methods in reinforcement learning the randomness accumulates through many actions and transitions.</p>
+<div class="figure align-center" id="id7">
+<img alt="../../_images/temporal_difference.svg" src="../../_images/temporal_difference.svg" /><p class="caption"><span class="caption-text">Trajectories with Temporal Difference methods.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>The randomness in temporal difference methods is on the other hand manageable. In the simplest temporal difference approach we take a single action and add the result to the state or action value of the next state. In the above example the randomness is only present in the single stochastic action. The rest of randomness is already incorporated in the state value function.</p>
+<p>Monte Carlo methods have more variance and temporal difference methods have more bias. In practice we usually look for some compromise between the two extremes.</p>
 </div>
 </div>
 

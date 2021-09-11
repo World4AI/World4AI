@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="100" version="1.1" viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <path d="m0.499 0.499h499v99.002h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g transform="translate(28 -24)" stroke-width="1.6667">
+  <g transform="matrix(.6 0 0 .6 -50.9 24)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 49.1 24)">
+   <rect x="26.5" y="25" width="50" height="50" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="35.226562" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="35.226562" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 50.9 24)">
+   <rect x="423.5" y="25" width="50" height="50" fill="#f59" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="443.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="443.22656" y="63" stroke-width="1.6667">1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 29.1 24)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 129.1 24)">
+   <rect x="26.5" y="25" width="50" height="50" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="35.226562" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="35.226562" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 109.1 24)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 149.1 24)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 189.1 24)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+ </g>
+ <g stroke-width="1.6667">
+  <g transform="matrix(.6 0 0 .6 -22.9 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 78.1 40)">
+   <rect x="26.5" y="25" width="50" height="50" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="35.226562" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="35.226562" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 196.9 40)">
+   <rect x="423.5" y="25" width="50" height="50" fill="#f59" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="443.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="443.22656" y="63" stroke-width="1.6667">1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 57.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 158.1 40)">
+   <rect x="26.5" y="25" width="50" height="50" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="35.226562" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="35.226562" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 137.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 176.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 217.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 258.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 297.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+  <g transform="matrix(.6 0 0 .6 336.1 40)">
+   <rect x="126.5" y="25" width="50" height="50" fill="#acf" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.3333" style="paint-order:markers fill stroke"/>
+   <text x="143.22656" y="63" font-family="Roboto" font-size="40px" stroke-width="1.6667" style="line-height:1.25" xml:space="preserve"><tspan x="143.22656" y="63" stroke-width="1.6667">-1</tspan></text>
+  </g>
+ </g>
+ <text x="9.7701197" y="34.904034" font-family="Roboto" font-size="22.205px" style="line-height:1.25" xml:space="preserve"><tspan x="9.7701197" y="34.904034">1)</tspan></text>
+ <text x="9.7701197" y="76.359116" font-family="Roboto" font-size="22.205px" style="line-height:1.25" xml:space="preserve"><tspan x="9.7701197" y="76.359116">2)</tspan></text>
+</svg>
