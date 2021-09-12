@@ -498,8 +498,28 @@
                 
   <div class="section" id="additional-dqn-improvements">
 <h1>Additional DQN Improvements<a class="headerlink" href="#additional-dqn-improvements" title="Permalink to this headline">¶</a></h1>
+<p>There are still some tricks which we have not yet covered that might help to speed up training. These tricks are not specifically covered in a separate research paper, but have still become the norm in the common reinforcement learning libraries. This section is dedicated to those improvements.</p>
 <div class="section" id="polyak-averaging">
 <h2>Polyak Averaging<a class="headerlink" href="#polyak-averaging" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/classic_update.svg" src="../../_images/classic_update.svg" /><p class="caption"><span class="caption-text">Classic DQN Target Network Update.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The traditional DQN update to the target network is done every <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/> steps. Between the updates we keep the target network constant. This is done in order to keep the target values constant so as not to destabilize the training. But this process introduces some problems on its own. When the update is done only each several thousand steps the target network gets more and more out of date as we get closer to <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/>. The abrupt update that is eventually done to the target values might destabilize the training process.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/polyak_update.svg" src="../../_images/polyak_update.svg" /><p class="caption"><span class="caption-text">DQN Target Network Update with Polyak Averaging.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Polyak averaging makes the updates of the target network smooth. The update is usually performed every single step, but the magnitude of the update is limited.</p>
+<div class="math">
+<p><img src="../../_images/math/fc1b87ac7c56729056577060939ae3e5909d8278.svg" alt="\mathbf{w}_{target} \leftarrow \mathbf{w}_{target} * (1 - \tau) + \mathbf{w}_{current} * \tau"/></p>
+</div><p>For that purpose we define the factor <img class="math" src="../../_images/math/083931a3eece2fcfb41edbd3ec962bc4051ea12d.svg" alt="\tau"/>, which lies between 0 and 1, but is usually close to 0.01. The new weights of the target network are kept close to the old target network weights but a small part of the current weights is mixed in. This allows for a smooth transition towards the most current weights <img class="math" src="../../_images/math/78d892421daff9c2c4d06acbe122ccaf9d482e40.svg" alt="\mathbf{w}"/>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_target_network</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">online</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_network</span><span class="o">.</span><span class="n">parameters</span><span class="p">()):</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">)</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">online</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The only change that we have to implement is to the function update_target_network. The update of the weights is done inline by mixing the target and the current (online) weights.</p>
 </div>
 <div class="section" id="huber-loss">
 <h2>Huber Loss<a class="headerlink" href="#huber-loss" title="Permalink to this headline">¶</a></h2>
