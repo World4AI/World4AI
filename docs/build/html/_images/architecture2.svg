@@ -8,79 +8,53 @@
    </cc:Work>
   </rdf:RDF>
  </metadata>
- <g stroke="#000">
-  <rect x="314.62" y="128" width="68" height="175" ry="34" fill="#fea" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" style="paint-order:markers fill stroke"/>
-  <path d="m0.499 0.499h499v499h-499z" fill="none" stroke-width=".998"/>
-  <g fill="#fd5" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-   <circle cx="31.618" cy="66" r="20"/>
-   <circle cx="31.618" cy="131" r="20"/>
-   <circle cx="29.618" cy="215" r="20"/>
-   <circle cx="31.618" cy="292" r="20"/>
-  </g>
-  <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-   <ellipse cx="258.62" cy="219.44" rx="4.0617" ry="4.443"/>
-   <ellipse cx="258.62" cy="253.75" rx="4.0617" ry="4.443"/>
-   <ellipse cx="258.62" cy="288.56" rx="4.0617" ry="4.443"/>
-   <ellipse cx="137.68" cy="214" rx="4.0617" ry="4.443"/>
-   <ellipse cx="137.68" cy="254" rx="4.0617" ry="4.443"/>
-   <ellipse cx="137.68" cy="288.56" rx="4.0617" ry="4.443"/>
-  </g>
-  <g fill="#fd5" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-   <circle cx="258.62" cy="164" r="20"/>
-   <circle cx="258.62" cy="345" r="20"/>
-   <circle cx="258.62" cy="433" r="20"/>
-  </g>
-  <circle cx="348.62" cy="254" r="20" fill="#faa" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  <g fill="none">
-   <path d="m178.62 64.25h80" stroke-dasharray="1, 1"/>
-   <path d="m178.88 113.65 79.681-49.641" stroke-dasharray="0.999996, 0.999996"/>
-   <path d="m169.01 223.75 89.653-159.69" stroke-dasharray="0.999999, 0.999999"/>
-   <path d="m168.98 293.82 89.664-229.75" stroke-dasharray="0.999998, 0.999998"/>
-  </g>
-  <g fill="#fd5" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-   <circle cx="142.62" cy="164" r="20"/>
-   <circle cx="142.62" cy="344" r="20"/>
-   <circle cx="142.62" cy="434" r="20"/>
-   <circle cx="258.62" cy="65" r="20"/>
-  </g>
-  <g fill="none">
-   <path d="m62.72 54.246h80" stroke-dasharray="1, 1"/>
-   <path d="m62.986 103.65 79.681-49.641" stroke-dasharray="0.999996, 0.999996"/>
-   <path d="m53.113 213.74 89.653-159.69" stroke-dasharray="0.999999, 0.999999"/>
-   <path d="m53.083 283.82 89.664-229.75" stroke-dasharray="0.999998, 0.999998"/>
-  </g>
-  <g fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-   <circle cx="142.62" cy="63" r="20" fill="#fd5"/>
-   <circle cx="348.62" cy="180" r="20" fill="#faa"/>
-   <circle cx="348.62" cy="367" r="20" fill="#7f2aff"/>
-  </g>
-  <g transform="matrix(.9 0 0 .9 17 -63)" fill="none" stroke-width="3.3333">
-   <path d="m450 330v40"/>
-   <path d="m470 350"/>
-   <path d="m430 350h40"/>
-  </g>
-  <circle cx="473" cy="180" r="20" fill="#e9afdd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  <circle cx="473" cy="254" r="20" fill="#e9afdd" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-  <g transform="matrix(.9 0 0 .9 17 -135)" fill="none" stroke-width="3.3333">
-   <path d="m450 330v40"/>
-   <path d="m470 350"/>
-   <path d="m430 350h40"/>
-  </g>
-  <g fill="none">
-   <g>
-    <path d="m372 370h50v-190" stroke-dasharray="1, 1"/>
-    <path d="m370 180h80" stroke-dasharray="1,1"/>
-    <path d="m370 252h80" stroke-dasharray="1, 1"/>
-   </g>
-   <g stroke-width="5">
-    <path d="m330 406.65 20 40 20-40"/>
-    <path d="m370 91.342-20-40-20 40"/>
-    <path d="m340 70.894h20"/>
-   </g>
-  </g>
-  <g transform="translate(6)" fill="none" stroke-width="5">
-   <path d="m450 100h30v40h-30z" stroke-linejoin="round"/>
-   <path d="m480 140.5h10"/>
-  </g>
+ <path d="m0.499 0.499h499v499h-499z" fill="none" stroke="#000" stroke-width=".998"/>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <circle cx="77.618" cy="54" r="20"/>
+  <circle cx="77.618" cy="119" r="20"/>
+  <circle cx="75.618" cy="203" r="20"/>
+  <circle cx="77.618" cy="280" r="20"/>
  </g>
+ <g fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <ellipse cx="328.62" cy="207.44" rx="4.0617" ry="4.443"/>
+  <ellipse cx="328.62" cy="241.75" rx="4.0617" ry="4.443"/>
+  <ellipse cx="328.62" cy="276.56" rx="4.0617" ry="4.443"/>
+  <ellipse cx="183.68" cy="202" rx="4.0617" ry="4.443"/>
+  <ellipse cx="183.68" cy="242" rx="4.0617" ry="4.443"/>
+  <ellipse cx="183.68" cy="276.56" rx="4.0617" ry="4.443"/>
+ </g>
+ <g fill="none" stroke="#000" stroke-dasharray="6, 12" stroke-width="3">
+  <path d="m328.62 52 100 190"/>
+  <path d="m328.62 152 100 90"/>
+  <path d="m328.62 322 100-80"/>
+  <path d="m328.62 422 100-180"/>
+ </g>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <circle cx="328.62" cy="152" r="20"/>
+  <circle cx="328.62" cy="321" r="20"/>
+  <circle cx="328.62" cy="421" r="20"/>
+ </g>
+ <circle cx="432.62" cy="242" r="20" fill="#59f" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+ <g fill="none" stroke="#000">
+  <path d="m248.62 52.25h80" stroke-dasharray="1, 1"/>
+  <path d="m248.88 101.65 79.681-49.641" stroke-dasharray="0.999996, 0.999996"/>
+  <path d="m239.01 211.75 89.653-159.69" stroke-dasharray="0.999999, 0.999999"/>
+  <path d="m238.98 281.82 89.664-229.75" stroke-dasharray="0.999998, 0.999998"/>
+ </g>
+ <g fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <circle cx="188.62" cy="152" r="20"/>
+  <circle cx="188.62" cy="332" r="20"/>
+  <circle cx="188.62" cy="422" r="20"/>
+  <circle cx="328.62" cy="53" r="20"/>
+ </g>
+ <g fill="none" stroke="#000">
+  <path d="m108.72 42.246h80" stroke-dasharray="1, 1"/>
+  <path d="m108.99 91.65 79.681-49.641" stroke-dasharray="0.999996, 0.999996"/>
+  <path d="m99.113 201.74 89.653-159.69" stroke-dasharray="0.999999, 0.999999"/>
+  <path d="m99.083 271.82 89.664-229.75" stroke-dasharray="0.999998, 0.999998"/>
+ </g>
+ <circle cx="188.62" cy="51" r="20" fill="#fd5" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+ <text transform="rotate(-90)" x="-288.54056" y="44.505966" font-family="Roboto" font-size="50.588px" style="line-height:1.25" xml:space="preserve"><tspan x="-288.54056" y="44.505966">STATE</tspan></text>
+ <circle cx="432.62" cy="168" r="20" fill="#59f" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+ <text transform="rotate(-90)" x="-392.54056" y="495.50598" font-family="Roboto" font-size="50.588px" style="line-height:1.25" xml:space="preserve"><tspan x="-392.54056" y="495.50598">ACTION VALUE</tspan></text>
 </svg>

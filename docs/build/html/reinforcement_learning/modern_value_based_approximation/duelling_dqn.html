@@ -526,7 +526,7 @@
 <div class="math">
 <p><img src="../../_images/math/95da4afe52fa005c1a36a3c373db9196d279aff4.svg" alt="Q(s, a) = V(s) + A(s, a)"/></p>
 </div><div class="figure align-center" id="id3">
-<img alt="../../_images/architecture2.svg" src="../../_images/architecture2.svg" /><p class="caption"><span class="caption-text">Duelling DQN.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/architecture3.svg" src="../../_images/architecture3.svg" /><p class="caption"><span class="caption-text">Duelling DQN.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>The architecture of the duelling DQN uses this exact interpretation of the action value function. In the first layers the weights are shared. In the later layers the single state value is calculated separately from the advantage values. The one state value is finally added to sevaral advantage values to reconstruct the action values.</p>
 <p>There is still a problem if we implement the calculation of the action value Q(s,a) naively as the sum of the state value V(s) and the advantage values A(s, a). Imagine we have four possible actions and the action value function Q(s, a) returns the following values [18, 15, 16, 16] for a particular state s. There is no unique solution to represent the action values as the sum of the advantages and the state value. If we assume that the state value is 10, then the advantages amount to [8, 5, 6, 6]. If we assume that the state value is 16 then advantages are [2, -1, 0, 0]. There are an unlimited number of possible combinations and therefore the training of the neural network is not going to be stable.</p>

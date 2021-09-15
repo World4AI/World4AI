@@ -828,7 +828,7 @@
 <p>In the DQN paper the researchers used an architecture where the observation is the input to the neural network and the output layer has as many neurons as there are valid actions. Basically the Q function is of the form Q(s) where the output is a vector. To find the greedy action the agent can simply take the argmax of the output vector.</p>
 <p>For example in the cart pole environment the input consists of 4 neurons, as the state of the environment consists of a 4 dimensional vector and the output is a two dimensional vector, as there are only two valid actions (move left or move right).</p>
 <div class="figure align-center" id="id7">
-<img alt="../../_images/architecture1.svg" src="../../_images/architecture1.svg" /><p class="caption"><span class="caption-text">Fully Connected Architecture.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<img alt="../../_images/architecture2.svg" src="../../_images/architecture2.svg" /><p class="caption"><span class="caption-text">Fully Connected Architecture.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>The number of hidden layers and number of neurons was chosen arbitrarily, but the configuration works well with the lunar lander environment.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Q_FC</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
