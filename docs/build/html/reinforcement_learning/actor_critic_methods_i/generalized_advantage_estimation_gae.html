@@ -459,9 +459,34 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theory">
+   Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -483,7 +508,110 @@
                 
   <div class="section" id="generalized-advantage-estimation-gae">
 <h1>Generalized Advantage Estimation (GAE)<a class="headerlink" href="#generalized-advantage-estimation-gae" title="Permalink to this headline">¶</a></h1>
-<p>Coming Soon</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“We address the first challenge (the large number of samples typically required) by using value functions to substantially reduce the variance of policy gradient estimates at the cost of some bias, with an exponentially-weighted estimator of the advantage function that is analogous to TD(λ) <a class="footnote-reference brackets" href="#id2" id="id1">1</a>”.</p>
+</div>
+<p>Let us return to the general definition of the policy gradient.</p>
+<div class="math">
+<p><img src="../../_images/math/60cf7634ecc6a6c0a920bbf87ceba3a9df616464.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t)  \Psi_t]
+\end{align*}"/></p>
+</div><p>The greek letter psi <img class="math" src="../../_images/math/4150d5adeb3e51afa5b7c2820aafdb11061f9da6.svg" alt="\Psi"/> can be replaced by a variety of options, but in modern reinforcement learning algorithms it is most likely to contain an advantage estimation <img class="math" src="../../_images/math/628585aa2b7321260e034b0dc0ec28795d16a493.svg" alt="A(S_t, A_t)"/>, making it an advantage actor-critic algorithm.</p>
+<div class="math">
+<p><img src="../../_images/math/ac3eac127ce82d8d3ebe898afee4abbdfe360517.svg" alt="\begin{align*}
+\nabla_{\theta} J(\theta) &amp; = \mathbb{E}_{\tau \sim \pi_{\theta}}[\sum_t^H \nabla_{\theta} \log \pi_{\theta}(A_t \mid S_t)  A(S_t, A_t)]
+\end{align*}"/></p>
+</div><p>Additionally we can define the number of steps <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/>, where <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/> defines how many returns have to be unrolled following a policy <img class="math" src="../../_images/math/54a5510ce494cc840bca3bdea542c10c4bb44c2c.svg" alt="\pi_{\theta}"/> before an optimization step is taken. When we want to distinguish the advantage function based on the number of steps, we define the advantage function as <img class="math" src="../../_images/math/a5334fbfbc7004fed95de725f0ed9f35dd7468cb.svg" alt="A^{(n)}_t(S_t, A_t)"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/33aaf232f47fc3c3b1cb69893ba203d72789e0a1.svg" alt="\begin{align*}
+    &amp; \hat{A}^{(1)}_t(S_t, A_t) = R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \\
+    &amp; \hat{A}^{(2)}_t(S_t, A_t) = R_{t+1} + \gamma R_{t+2} + \gamma^2 V(S_{t+2}) - V(S_t) \\
+&amp; ... \\
+&amp; ... \\
+&amp; \hat{A}^{(n)}_t(S_t, A_t) = \sum_{t'=t}^{t+n-1} \gamma^{t'-t}R_{t'+1} + \gamma^{t+n}V(S_{t+n}) - V(S_t) \\
+\end{align*}"/></p>
+</div><p>The higher the number n the higher the variance and the lower the bias. The sweetspot is usually not at the extreme ends, where n is either 1 and we end up with a one step temporal difference advantage estimation or n is unbounded and we end up with a full monte carlo estimation. In the A3C algorithm n corresponded to 5, but it is not clear if it was the right choice.</p>
+<p>The generalized advantage estimation allows us to utilize many advantage functions <img class="math" src="../../_images/math/a5334fbfbc7004fed95de725f0ed9f35dd7468cb.svg" alt="A^{(n)}_t(S_t, A_t)"/> with different <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/>, to hopefully end up with a more robust advantage estimation.</p>
+</div>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<p>To come up with a better advantage estimator, each of the <img class="math" src="../../_images/math/eeb933c25a045422a29e3c8353fe83168543cabc.svg" alt="n"/> estimators is weighted and summed up.</p>
+<div class="math">
+<p><img src="../../_images/math/2181440544589e050d4fdccaa40d598d3c78a82b.svg" alt="\hat{A}^{GAE}_t = \sum_{n=1}^\infty w_n \hat{A}_t^{(n)}"/></p>
+</div><p>To control the strenghts of the weight decay, the authors utilize <img class="math" src="../../_images/math/22eaaf17a66587b8f44cfb63631d5ab2600848f8.svg" alt="\lambda"/> and create an exponentially-weighted estimator.</p>
+<div class="math">
+<p><img src="../../_images/math/5806f9280a8c114ad12bc7916bf083a29eab92e1.svg" alt="\hat{A}^{GAE}_t = (1 - \lambda)(\hat{A}_t^{(1)} + \lambda \hat{A}_t^{(2)} + \lambda^2 \hat{A}_t^{(3)} + ...)"/></p>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This estimator can be unpacked and reduced to the following form.</p>
+<div class="math">
+<p><img src="../../_images/math/c3471925e32eba5a32705ff7b401df09ca3ef4c4.svg" alt="\hat{A}^{GAE}_t = \sum^\infty_{l=0}(\gamma\lambda)^l\delta_{t+l}"/></p>
+</div><p>Where <img class="math" src="../../_images/math/7b1cd1d38028c0637fac059fc88a4ce2b016aef0.svg" alt="\delta_t"/> is the temporal difference error at the timestep <img class="math" src="../../_images/math/d6ee135adec5f7da4630191266c918e5c8225a75.svg" alt="t"/>.</p>
+<div class="math">
+<p><img src="../../_images/math/cd2aaec6171255c0c67f854a31ae0854421b6329.svg" alt="\begin{align*}
+\delta_t &amp; = R_{t+1} + \gamma V(S_{t+1}) - V(S_t) \\
+\delta_{t+1} &amp; = R_{t+2} + \gamma V(S_{t+2}) - V(S_{t+1})
+\end{align*}"/></p>
+</div><p>In the implementation below we are going to utilize this reduced form.</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">len_trajectory</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
+    <span class="n">gammas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">**</span><span class="n">exp</span> <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_trajectory</span><span class="p">)])</span>
+    <span class="n">taus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">tau</span><span class="o">**</span><span class="n">exp</span> <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_trajectory</span><span class="p">)])</span>
+
+    <span class="n">rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">log_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># OPTIMIZE</span>
+
+    <span class="c1">#POLICY OPTIMIZATION</span>
+    <span class="c1">#-----------------------------------------</span>
+    <span class="c1">#clear past gradients</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pi_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="c1">#calculate the gaes</span>
+    <span class="n">td_errors</span> <span class="o">=</span> <span class="n">rewards</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">gaes</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">td_errors</span><span class="p">[</span><span class="n">l</span><span class="p">:]</span> <span class="o">*</span> <span class="n">taus</span><span class="p">[:</span><span class="n">len_trajectory</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">gammas</span><span class="p">[:</span><span class="n">len_trajectory</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">l</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_trajectory</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">gaes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">gaes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1">#minus to make descent from ascent</span>
+    <span class="n">pi_loss</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">gaes</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">*</span> <span class="n">log_probs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1">#calcualte gradients</span>
+    <span class="n">pi_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="c1">#gradient descent</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pi_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="c1">#-----------------------------------------</span>
+    <span class="c1">#VALUE FUNCTION OPTIMIZATION</span>
+    <span class="c1">#-----------------------------------------</span>
+    <span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="n">t</span><span class="p">:])</span> <span class="o">*</span> <span class="n">gammas</span><span class="p">[:</span><span class="n">len_trajectory</span><span class="o">-</span><span class="n">t</span><span class="p">])</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_trajectory</span><span class="p">)])</span>
+    <span class="n">returns</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">v_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="c1"># exclude the last value, because it contains the bootstrapped values</span>
+    <span class="n">v_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">returns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="c1"># gradients for the value function</span>
+    <span class="n">v_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="c1">#gradient descent</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">v_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Schulman J. et al. High-Dimensional Continuous Control Using Generalized Advantage Estimation. 2015. <a class="reference external" href="https://arxiv.org/abs/1506.02438">https://arxiv.org/abs/1506.02438</a></p>
+</dd>
+</dl>
+</div>
 </div>
 
 
