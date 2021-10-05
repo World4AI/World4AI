@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: #E7B859;
+    --aside-color: #302F32;
+    --main-color-1: #FF683C;
+    --main-color-2: #4EB6D7;
+    --grid-color: rgba(255, 255, 255, 0.2);
+    --gap: 20px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+}
+
+.left-container {
+    height: 100%;
+    background-color: var(--background-color);
+}
+
+.right-container {
+    height: 100%;
+    background-color: var(--aside-color);
+}
+
+header {
+    height: calc(30vh - 2 * var(--gap));
+    margin: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+main {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: var(--gap);
+    min-height: calc(70vh - var(--gap));
+    margin: 0 var(--gap) var(--gap) var(--gap);
+    /* draw a grid including gaps */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 0), 
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 0),
+        linear-gradient(var(--grid-color) 1px, transparent 0),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 0);
+    background-size: 
+        calc((75vw - var(--gap)) / 9) calc((70vh) / 9), 
+        calc((75vw - var(--gap)) / 9) calc((70vh) / 9), 
+        calc((75vw - var(--gap)) / 9) calc((70vh) / 9),
+        calc((75vw - var(--gap)) / 9) calc((70vh) / 9);
+    background-position: 0px 0px, 0px 0px, 0px calc(-1 * var(--gap)), calc(-1 * var(--gap)) 0px;
+
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+    display: block;
+}
+
+.logo-text {
+    padding: 10px 0;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    grid-column: 1 / span 5;
+    grid-row: 2 / span 2;
+    width: 100%;
+}
+
+.mascot {
+    justify-self: center;
+    align-self: flex-end;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-column-end: 2;
+    grid-row-end: 6;
+    width: 80%;
+}
+
+.text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.text .learn {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.text.ai {
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.text.block-1 {
+    grid-column-start: 3;
+    grid-row-start: 5;
+}
+
+.text.by {
+    grid-column-start: 3;
+    grid-row-start: 6;
+}
+
+.text.block-2 {
+    grid-column-start: 3;
+    grid-row-start: 7;
+}
+
+.boxes {
+    grid-column-start: 5;
+    grid-column-end: 9;
+    grid-row-start: 5;
+    grid-row-end: 9;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.aside-top {
+    height: calc(30vh - 2 * var(--gap));
+    margin: var(--gap);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hamburger {
+    cursor: pointer;
+}
+
+
+.hamburger span {
+    display: block;
+    height: 1px;
+    width: 20px;
+    background-color: white;
+    margin-bottom: 0.5rem;
+}
+
+nav ul {
+    min-height: calc(70vh - var(--gap));
+    margin: 0 var(--gap) var(--gap) var(--gap);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: end;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: var(--gap);
+
+    /* draw a grid including gaps */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 0), 
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 0),
+        linear-gradient(var(--grid-color) 1px, transparent 0),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 0);
+    background-size: 
+        calc((25vw - var(--gap)) / 3) calc((70vh) / 9), 
+        calc((25vw - var(--gap)) / 3) calc((70vh) / 9), 
+        calc((25vw - var(--gap)) / 3) calc((70vh) / 9),
+        calc((25vw - var(--gap)) / 3) calc((70vh) / 9);
+    background-position: 0px 0px, 0px 0px, 0px calc(-1 * var(--gap)), calc(-1 * var(--gap)) 0px;
+}
+
+nav ul li {
+    list-style-type: none;
+    text-transform: uppercase;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+nav ul li a {
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+    color: #FFF;
+}
+
+.nav-1 {
+    grid-row-start: 1;
+}
+.nav-2 {
+    grid-row-start: 2;
+}
+.nav-3 {
+    grid-row-start: 3;
+}
+.nav-4 {
+    grid-row-start: 4;
+}
