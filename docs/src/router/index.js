@@ -8,6 +8,11 @@ const routes = [
         component: W4Home
     },
     {
+        path: '/blog',
+        name: 'Blog',
+        component: () => import ('../views/W4Blog.vue')
+    },
+    {
         path: '/blocks/math/introduction',
         name: 'Math Introduction',
         component: () => import ('../views/W4MathIntroduction.vue')

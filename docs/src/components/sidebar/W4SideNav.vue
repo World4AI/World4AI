@@ -39,53 +39,58 @@ export default {
                     link: '/'
                 },
                 {
-                    text: 'Blocks',
                     id: 2,
+                    text: 'Blog',
+                    link: '/blog'
+                },
+                {
+                    text: 'Blocks',
+                    id: 3,
                     visible: false,
                     children: [
                         {
-                            id: 3,
+                            id: 31,
                             text: 'Math',
                             visible: false,
                             children: [
                                 {
-                                    id: 4,
+                                    id: 311,
                                     text: 'Introduction',
                                     link: '/blocks/math/introduction'
                                 }
                             ]
                         },
                         {
-                            id: 5,
+                            id: 32,
                             text: 'Programming',
                             visible: false,
                             children: [
                                 {
-                                    id: 6,
+                                    id: 321,
                                     text: 'Introduction',
                                     link: '/blocks/programming/introduction'
                                 }
                             ]
                         },
                         {
-                            id: 7,
+                            id: 33,
                             text: 'Deep Learning',
                             visible: false,
                             children: [
                                 {
-                                    id: 8,
+                                    id: 331,
                                     text: 'Introduction',
                                     link: '/blocks/deep_learning/introduction'
                                 }
                             ]
                         },
                         {
-                            id: 9,
+                            id: 34,
                             text: 'Reinforcement Learning',
                             visible: false,
                             children: [
                                 {
-                                    id: 10,
+                                    id: 341,
                                     text: 'Introduction',
                                     link: '/blocks/reinforcement_learning/introduction'
                                 },
@@ -94,12 +99,12 @@ export default {
                     ]
                 },
                 {
-                    id: 11,
+                    id: 4,
                     text: 'Support',
                     link: '/support'
                 },
                 {
-                    id: 12, 
+                    id: 5, 
                     text: 'About',
                     link: '/about'
                 }
