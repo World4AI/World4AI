@@ -3,7 +3,7 @@
         <div class="container">
             <div class="number">1</div>
             <hr>
-            <h1>Learn AI Block by Block</h1>
+            <h1>World4AI</h1>
             <img src="../assets/img/landing/boxes.svg" alt="">
         </div>
     </main>
@@ -26,7 +26,7 @@ export default {
 }
 
 .number {
-    font-size: 50px;
+    font-size: 70px;
 }
 
 hr {
@@ -37,11 +37,12 @@ hr {
 
 h1 {
     text-transform: uppercase;
+    font-weight: 400;
     grid-column-start: 3;
     grid-row-start: 1;
     align-self: center;
     justify-self: left;
-    font-size: 50px;
+    font-size: 70px;
 }
 
 img {
