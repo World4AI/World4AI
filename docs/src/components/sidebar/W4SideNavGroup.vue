@@ -101,4 +101,8 @@ export default {
         cursor: pointer;
     }
 
+    .router-link-active {
+        color: var(--main-color-1);
+    }
+
 </style>
