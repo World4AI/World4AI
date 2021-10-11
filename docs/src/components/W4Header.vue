@@ -1,7 +1,9 @@
 <template>
-  <header>
-    <img class="logo" src="../assets/img/common/logo.svg" alt="Logo">
-  </header>
+  <div>
+    <header>
+      <img class="logo" src="../assets/img/common/logo.svg" alt="Logo">
+    </header>
+  </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ export default {
 
 <style scoped>
 header {
-    height: calc(10vh - 2 * var(--gap));
+    height: 30px;
     margin: var(--gap);
     display: flex;
     justify-content: flex-start;
