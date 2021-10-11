@@ -36,11 +36,11 @@ export default {
 }
 
 :root {
-    --background-color: #E7B859;
+    --text-color: #000;
+    --background-color: #FFF;
     --aside-color: #302F32;
     --main-color-1: #FF683C;
     --main-color-2: #4EB6D7;
-    --grid-color: rgba(255, 255, 255, 0.2);
     --gap: 20px;
 }
 
