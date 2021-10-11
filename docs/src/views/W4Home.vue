@@ -2,6 +2,7 @@
     <main>
         <div class="container background">
             <h1>World4AI</h1>
+            <h2>Advance In AI Block By Block</h2>
             <img src="../assets/img/landing/boxes.svg" alt="">
         </div>
     </main>
@@ -33,10 +34,13 @@ h1 {
     text-transform: uppercase;
     font-weight: 400;
     grid-column-start: 3;
-    grid-row-start: 1;
     align-self: center;
     justify-self: left;
     font-size: 70px;
+}
+
+h2 {
+    grid-column-start: 3;
 }
 
 img {
