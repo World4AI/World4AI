@@ -45,9 +45,17 @@ h1 {
 }
 
 img {
-    margin-top: 30vh;
+    margin-top: 15vh;
     grid-column-start: 3;
     justify-self: right;
 }
+
+.container {
+    background-image:
+      repeating-linear-gradient(rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%);
+    background-size: 30px 30px;
+}
+
 
 </style>
