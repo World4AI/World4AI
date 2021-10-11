@@ -39,7 +39,7 @@ h1 {
     grid-column-start: 3;
     grid-row-start: 1;
     align-self: center;
-    justify-self: right;
+    justify-self: left;
     font-size: 50px;
 }
 
