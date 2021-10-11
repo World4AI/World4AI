@@ -1,8 +1,6 @@
 <template>
     <main>
-        <div class="container">
-            <div class="number">1</div>
-            <hr>
+        <div class="container background">
             <h1>World4AI</h1>
             <img src="../assets/img/landing/boxes.svg" alt="">
         </div>
@@ -24,15 +22,11 @@ export default {
     justify-content: center;
     align-items: center;
 }
-
-.number {
-    font-size: 70px;
-}
-
-hr {
-    height: 1px;
-    width: 50%;
-    border: 2px solid black;
+.background {
+    background-image:
+      repeating-linear-gradient(rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%);
+    background-size: 30px 30px;
 }
 
 h1 {
@@ -50,13 +44,4 @@ img {
     grid-column-start: 3;
     justify-self: right;
 }
-
-.container {
-    background-image:
-      repeating-linear-gradient(rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%),
-      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px 100%);
-    background-size: 30px 30px;
-}
-
-
 </style>
