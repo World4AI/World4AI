@@ -4,6 +4,7 @@
             <div class="number">1</div>
             <hr>
             <h1>Learn AI Block by Block</h1>
+            <img src="../assets/img/landing/boxes.svg" alt="">
         </div>
     </main>
 </template>
@@ -41,6 +42,12 @@ h1 {
     align-self: center;
     justify-self: left;
     font-size: 50px;
+}
+
+img {
+    margin-top: 30vh;
+    grid-column-start: 3;
+    justify-self: right;
 }
 
 </style>
