@@ -11,6 +11,10 @@ const routes = [
         component: () => import ('../views/W4Blog.vue')
     },
     {
+        path: '/blocks/introduction',
+        component: () => import ('../views/W4BlocksIntroduction.vue')
+    },
+    {
         path: '/blocks/math/introduction',
         component: () => import ('../views/W4MathIntroduction.vue')
     },

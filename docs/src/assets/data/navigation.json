@@ -16,47 +16,52 @@
         "children": [
             {
                 "id": 31,
+                "text": "Introduction",
+                "link": "/blocks/introduction"
+            },
+            {
+                "id": 32,
                 "text": "Math",
                 "visible": false,
                 "children": [
                     {
-                        "id": 311,
+                        "id": 321,
                         "text": "Introduction",
                         "link": "/blocks/math/introduction"
                     }
                 ]
             },
             {
-                "id": 32,
+                "id": 33,
                 "text": "Programming",
                 "visible": false,
                 "children": [
                     {
-                        "id": 321,
+                        "id": 331,
                         "text": "Introduction",
                         "link": "/blocks/programming/introduction"
                     }
                 ]
             },
             {
-                "id": 33,
+                "id": 34,
                 "text": "Deep Learning",
                 "visible": false,
                 "children": [
                     {
-                        "id": 331,
+                        "id": 341,
                         "text": "Introduction",
                         "link": "/blocks/deep_learning/introduction"
                     }
                 ]
             },
             {
-                "id": 34,
+                "id": 35,
                 "text": "Reinforcement Learning",
                 "visible": false,
                 "children": [
                     {
-                        "id": 341,
+                        "id": 351,
                         "text": "Introduction",
                         "link": "/blocks/reinforcement_learning/introduction"
                     }
