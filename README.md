@@ -1,4 +1,4 @@
-<img src='logo.svg' align="right" width="40px" margin="20px">
+<img src='logo.svg' align="left" width="40px" margin="20px">
 
 # World4AI
 
