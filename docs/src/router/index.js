@@ -8,27 +8,27 @@ const routes = [
     },
     {
         path: '/blog',
-        component: () => import ('../views/W4Blog.vue')
+        component: () => import ('../views/blog/W4Blog.vue')
     },
     {
         path: '/blocks/introduction',
-        component: () => import ('../views/W4BlocksIntroduction.vue')
+        component: () => import ('../views/blocks/W4BlocksIntroduction.vue')
     },
     {
         path: '/blocks/math/introduction',
-        component: () => import ('../views/W4MathIntroduction.vue')
+        component: () => import ('../views/blocks/math/W4MathIntroduction.vue')
     },
     {
         path: '/blocks/programming/introduction',
-        component: () => import ('../views/W4ProgrammingIntroduction.vue')
+        component: () => import ('../views/blocks/programming/W4ProgrammingIntroduction.vue')
     },
     {
         path: '/blocks/deep_learning/introduction',
-        component: () => import ('../views/W4DeepLearningIntroduction.vue')
+        component: () => import ('../views/blocks/deep_learning/W4DeepLearningIntroduction.vue')
     },
     {
         path: '/blocks/reinforcement_learning/introduction',
-        component: () => import ('../views/W4ReinforcementLearningIntroduction.vue')
+        component: () => import ('../views/blocks/reinforcement_learning/W4ReinforcementLearningIntroduction.vue')
     },
     {
         path: '/support',
