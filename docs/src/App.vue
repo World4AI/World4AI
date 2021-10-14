@@ -44,8 +44,13 @@ export default {
     --gap: 20px;
 }
 
+html {
+    overflow: hidden;
+}
+
 body {
     font-family: 'Montserrat', Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 .grid-container {
@@ -55,12 +60,10 @@ body {
 }
 
 .left-container {
-    height: 100%;
     background-color: var(--background-color);
 }
 
 .right-container {
-    height: 100%;
     background-color: var(--aside-color);
 }
 

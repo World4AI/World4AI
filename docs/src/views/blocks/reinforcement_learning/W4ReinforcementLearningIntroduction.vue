@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="scrollbar">
         <div class="container">
             <h1>Introduction</h1>
             <h2>What is reinforcement learning?</h2>
@@ -16,6 +16,25 @@ export default {
 </script>
 
 <style scoped>
+    .scrollbar {
+        height: 80vh;
+        overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--aside-color) #EEE;
+    }
+
+    .scrollbar::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--aside-color);
+    }
+
+    .scrollbar::-webkit-scrollbar-track {
+        background-color: #EEE;
+    }
+
     .container {
         display: grid;
         grid-template-columns: 1fr 1fr 6fr 1fr 1fr;
@@ -51,5 +70,4 @@ export default {
         line-height: 2;
         font-size: 18px;
     }
-
 </style>
