@@ -8,7 +8,7 @@
 
             <p class="info">At the moment only a few sections have been started and none is considered finalized. More chapters will be published in the next weeks and months. But the overall process will most likely take many years.</p>
 
-            <img src="../assets/img/blocks/intro/blocks.svg" alt="Blocks">
+            <img src="../../assets/img/blocks/intro/blocks.svg" alt="Blocks">
         </div>
     </main>
 </template>
