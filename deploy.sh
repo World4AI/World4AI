@@ -10,7 +10,7 @@ cd docs
 npm run build
 
 # navigate into the build output directory
-cd dist
+cd build
 
 # if you are deploying to a custom domain
 echo 'www.world4ai.org' > CNAME
