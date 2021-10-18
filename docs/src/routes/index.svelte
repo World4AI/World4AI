@@ -1,20 +1,13 @@
-<template>
-    <main>
-        <div class="container">
-            <h1>Introduction</h1>
-            <h2>Coming soon ...</h2>
-        </div>
-    </main>
-</template>
 
-<script>
-export default {
+<div class="container">
+    <h1>World4AI</h1>
+    <h2>Advance In AI Block By Block</h2>
+    <img src="landing/boxes.svg" alt="">
+</div>
 
-}
-</script>
-
-<style scoped>
+<style>
     .container {
+        margin-top: 50px;
         display: grid;
         grid-template-columns: 1fr 1fr 6fr 1fr 1fr;
         grid-template-rows: auto;
@@ -23,11 +16,14 @@ export default {
         align-items: center;
     }
 
+    .container > * {
+        grid-column-start: 3;
+    }
+
     h1 {
         color: var(--text-color);
         text-transform: uppercase;
         font-weight: 700;
-        grid-column-start: 3;
         align-self: center;
         justify-self: left;
         font-size: 70px;
@@ -43,5 +39,9 @@ export default {
         font-weight: 400;
         letter-spacing: 5px;
     }
-
+    img {
+        margin-top: 25vh;
+        grid-column-start: 3;
+        justify-self: right;
+    }
 </style>
