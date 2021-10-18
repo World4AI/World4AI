@@ -15,6 +15,8 @@ cd build
 # if you are deploying to a custom domain
 echo 'www.world4ai.org' > CNAME
 
+touch .nojekyll
+
 git init
 git add -A
 git commit -m 'deploy'

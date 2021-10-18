@@ -3,10 +3,17 @@
 import adapter from '@sveltejs/adapter-static';
 const config = {
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
-		adapter: adapter()
-	}
+        target: '#svelte',
+        paths: {
+            base: '',
+            assets: ''
+        },      
+        adapter: adapter({
+            pages: 'build',  // path to public directory
+            assets: 'build',  // path to public directory
+            fallback: null
+        })
+    }
 };
 
 export default config;
