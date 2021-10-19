@@ -20,9 +20,6 @@
     <main>
         <slot></slot>
     </main>
-    <!-- <aside>
-        <slot name="aside"></slot>
-    </aside> -->
 </div>
 
 
@@ -44,10 +41,6 @@
         grid-column-start: 1;
         grid-row-start: 2;
     }
-
-    /* aside {
-        grid-column-start: 10;
-    } */
 
     .logo {
         height: 30px;
