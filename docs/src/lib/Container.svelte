@@ -50,4 +50,22 @@
         font-size: 18px;
     }
 
+    /* style scrollbar */
+    .container {
+        height: 80vh;
+        overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--aside-color) #EEE;
+    }
+    .container::-webkit-scrollbar {
+        width: 10px;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background-color: var(--aside-color);
+    }
+    .container::-webkit-scrollbar-track {
+        background-color: #EEE;
+    }
+
+
 </style>
