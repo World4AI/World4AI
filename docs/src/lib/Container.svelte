@@ -37,4 +37,17 @@
         letter-spacing: 5px;
     }
 
+    .container :global(h3) {
+        color: var(--text-color);
+        text-transform: uppercase;
+        font-size: 25px;
+        font-weight: 400;
+        letter-spacing: 5px;
+    }
+
+    .container :global(p) {
+        line-height: 2;
+        font-size: 18px;
+    }
+
 </style>
