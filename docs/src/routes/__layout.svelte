@@ -7,7 +7,7 @@
 
 <div class="container">
     <header>
-        <a href="/"><img class="logo" src="logo/logo.svg" alt="World4AI Logo"></a>
+        <a href="/"><img class="logo" src="/logo/logo.svg" alt="World4AI Logo"></a>
         <nav>
             <ul>
                 <li><a class:selected={active === '/'} href="/">Home</a></li>
@@ -20,9 +20,9 @@
     <main>
         <slot></slot>
     </main>
-    <aside>
+    <!-- <aside>
         <slot name="aside"></slot>
-    </aside>
+    </aside> -->
 </div>
 
 
@@ -45,9 +45,9 @@
         grid-row-start: 2;
     }
 
-    aside {
+    /* aside {
         grid-column-start: 10;
-    }
+    } */
 
     .logo {
         height: 30px;
