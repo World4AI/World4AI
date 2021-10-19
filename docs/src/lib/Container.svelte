@@ -10,7 +10,7 @@
         grid-template-rows: auto;
         gap: var(--gap);
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .container :global(*)  {
@@ -21,7 +21,6 @@
         color: var(--text-color);
         text-transform: uppercase;
         font-weight: 700;
-        align-self: center;
         justify-self: left;
         font-size: 70px;
         border-top: 1px solid var(--text-color);
