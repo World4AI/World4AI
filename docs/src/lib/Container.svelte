@@ -51,7 +51,7 @@
 
     /* style scrollbar */
     .container {
-        height: 80vh;
+        max-height: 80vh;
         overflow: auto;
         scrollbar-width: thin;
         scrollbar-color: var(--aside-color) #EEE;
