@@ -13,9 +13,10 @@
         <ul>
             <li><a class:selected={subPath === '/'} href="/">Home</a></li>
             <li class="dropdown">
-                <a class:selected={subPath === '/blocks'} href="/blocks">Blocks</a>
+                <a class:selected={subPath === '/blocks'} href="/blocks/introduction">Blocks</a>
                 <div class="dropdown-content">
                     <ul>
+                        <li><a class:selected={path === '/blocks/introduction'} href="/blocks/introduction">Introduction</a></li>
                         <li><a class:selected={path === '/blocks/mathematics'} href="/blocks/mathematics">Mathematics</a></li>
                         <li><a class:selected={path === '/blocks/programming'} href="/blocks/programming">Programming</a></li>
                         <li><a class:selected={path === '/blocks/deep_learning'} href="/blocks/deep_learning">Deep Learning</a></li>
