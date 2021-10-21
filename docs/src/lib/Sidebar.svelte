@@ -67,10 +67,6 @@
 		padding: var(--gap);
     }
 
-	.container :global(*) {
-		color: #FFF;
-	}
-
 	.top {
 		height: 5vh;
 	}

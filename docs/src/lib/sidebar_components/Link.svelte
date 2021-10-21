@@ -1,16 +1,22 @@
 <script>
+    import { page } from '$app/stores';
     export let name;
     export let link;
+
+    $: path = $page.path;
 </script>
 
-<a href={link}>{name}</a>
+<a class:selected={path===link} href={link}>{name}</a>
     
-
-
 <style>
     a {
         text-decoration: none;
         font-size: 15px;
+        color: #FFF;
+    }
+
+    .selected {
+        color: var(--main-color-1);
     }
 
     a:hover {

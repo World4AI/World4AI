@@ -39,6 +39,7 @@
     }
 
     span {
+        color: #FFF;
         display: inline-block;
         text-transform: uppercase;
         border-bottom: 1px dotted rgba(255, 255, 255, .3);
