@@ -4,7 +4,7 @@
 
 <svelte:head>
     <title>World4AI | Learn AI Block By Block</title>
-    <meta name="description" content="World4AI is a learning resource for all AI related topics. This includes machine learning, reinforcement learning, ai related matha and programming and much more.">
+    <meta name="description" content="World4AI is a learning resource for all AI related topics. This includes machine learning, reinforcement learning, ai related mathematics, programming and much more.">
 </svelte:head>
 
 <style>
