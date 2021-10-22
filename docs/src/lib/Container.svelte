@@ -17,13 +17,18 @@
         grid-column-start: 3;
     }
 
+    .container :global(.heading-large){
+        font-size: 70px;
+        font-weight: 700;
+        border-top: 1px solid var(--text-color);
+    }
+
     .container :global(h1) {
         color: var(--text-color);
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 400;
         justify-self: left;
-        font-size: 70px;
-        border-top: 1px solid var(--text-color);
+        font-size: 40px;
         border-bottom: 1px solid var(--text-color);
     }
 
@@ -40,6 +45,14 @@
         color: var(--text-color);
         text-transform: uppercase;
         font-size: 25px;
+        font-weight: 400;
+        letter-spacing: 5px;
+    }
+
+    .container :global(h4) {
+        color: var(--text-color);
+        text-transform: uppercase;
+        font-size: 20px;
         font-weight: 400;
         letter-spacing: 5px;
     }

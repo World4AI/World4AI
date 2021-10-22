@@ -1,4 +1,4 @@
-<h1>World4AI</h1>
+<h1 class="heading-large">World4AI</h1>
 <h2>Advance In AI Block By Block</h2>
 <img src="landing/boxes.svg" alt="">
 
