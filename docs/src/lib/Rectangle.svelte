@@ -20,4 +20,3 @@
 </script>
 
 <rect fill="var(--main-color-2)" x={x} y={$progress} width={width} height={height}/>
-
