@@ -7,6 +7,7 @@
 
 {#if name !== 'ROOT'}
     <span>{name}</span>
+    <hr>
 {/if}
 
 <ul>
@@ -42,8 +43,13 @@
         color: var(--text-color);
         display: inline-block;
         text-transform: uppercase;
-        border-bottom: 1px dotted rgba(0, 0, 0, .3);
-        margin: 10px 0;
+        padding: 10px 0;
+    }
+
+    hr {
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        height: 1px;
     }
 </style>
 
