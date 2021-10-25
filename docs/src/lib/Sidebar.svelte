@@ -18,8 +18,8 @@
 					link: '/blocks/reinforcement_learning/intuition/agent_and_environment'
 				},
 				{
-					name: 'Properties of Reinforcement Learning',
-					link: '/blocks/reinforcement_learning/intuition/properties'
+					name: 'Definition of Reinforcement Learning',
+					link: '/blocks/reinforcement_learning/intuition/definition'
 				},
 				{
 					name: 'Exploration vs Exploitation',
