@@ -12,14 +12,24 @@
     a {
         text-decoration: none;
         font-size: 15px;
-        color: #FFF;
+        color: var(--text-color);
     }
 
     .selected {
-        color: var(--main-color-1);
+        position: relative;
+    }
+
+    .selected::before {
+        position: absolute;
+        content: '';
+        height: 5px;
+        width: 5px;
+        top: 7px;
+        left: -20px;
+        background-color: var(--text-color);
     }
 
     a:hover {
-        color: var(--main-color-1);
+        color: #FFF;
     }
 </style>

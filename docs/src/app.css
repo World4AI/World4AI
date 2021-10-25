@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +5,16 @@
 }
 
 :root {
-    --text-color: #000;
-    --aside-color: #302F32;
+    --text-color: #dad9eb;
+    --background-color: hsl(257, 10%, 14%);
+    --aside-color: hsl(257, 10%, 13%);
     --main-color-1: #FF683C;
     --main-color-2: #4EB6D7;
     --gap: 20px;
 }
 
 body {
-    font-family: 'Montserrat', Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
+    background-color: var(--background-color);
+    overflow: hidden;
 }

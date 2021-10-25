@@ -39,10 +39,10 @@
     }
 
     span {
-        color: #FFF;
+        color: var(--text-color);
         display: inline-block;
         text-transform: uppercase;
-        border-bottom: 1px dotted rgba(255, 255, 255, .3);
+        border-bottom: 1px dotted rgba(0, 0, 0, .3);
         margin: 10px 0;
     }
 </style>

@@ -56,18 +56,14 @@
 </script>
 
 <div class="container">
-	<div class="top"></div>
     <Folder name="ROOT" links={root}/>
 </div>
 
 <style>
     .container {
+		margin-top: 150px;
+		margin-bottom: 20px;
         background-color: var(--aside-color);
-        min-height: 100vh;
 		padding: var(--gap);
     }
-
-	.top {
-		height: 5vh;
-	}
 </style>

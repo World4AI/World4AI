@@ -6,31 +6,35 @@
 </script>
 
 <div class="container">
-    <div class="left-container">
-        <Header></Header>
+    <Header></Header>
+    <div class="grid-container">
         <main>
             <Container>
                 <slot></slot>
             </Container>
-        </main> 
-    </div>
-    <div class="rigth-container">
-        <Sidebar></Sidebar>
+        </main>
+        <aside>
+            <Sidebar></Sidebar>
+        </aside>
     </div>
 </div>
     
 <style>
     .container {
-        display: grid;
-        grid-template-columns: 10fr 2fr;
-    }
-
-    .left-container {
         margin: var(--gap);
+    }
+    
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 10fr;
     }
 
     main {
-        grid-row-start: 3;
+        grid-column-start: 2;
     }
 
+    aside{
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
 </style>

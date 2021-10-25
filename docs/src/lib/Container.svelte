@@ -19,8 +19,6 @@
 
     .container :global(.heading-large){
         font-size: 70px;
-        font-weight: 700;
-        border-top: 1px solid var(--text-color);
     }
 
     .container :global(h1) {
@@ -28,15 +26,14 @@
         text-transform: uppercase;
         font-weight: 400;
         justify-self: left;
-        font-size: 40px;
-        border-bottom: 1px solid var(--text-color);
+        font-size: 50px;
     }
 
     .container :global(h2) {
         color: var(--text-color);
         grid-column-start: 3;
         text-transform: uppercase;
-        font-size: 30px;
+        font-size: 40px;
         font-weight: 400;
         letter-spacing: 5px;
     }
@@ -44,7 +41,7 @@
     .container :global(h3) {
         color: var(--text-color);
         text-transform: uppercase;
-        font-size: 25px;
+        font-size: 30px;
         font-weight: 400;
         letter-spacing: 5px;
     }
@@ -52,14 +49,15 @@
     .container :global(h4) {
         color: var(--text-color);
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 25px;
         font-weight: 400;
         letter-spacing: 5px;
     }
 
     .container :global(p) {
         line-height: 2;
-        font-size: 18px;
+        font-size: 20px;
+        color: var(--text-color);
     }
 
     /* style scrollbar */
@@ -67,16 +65,16 @@
         max-height: 80vh;
         overflow: auto;
         scrollbar-width: thin;
-        scrollbar-color: var(--aside-color) #EEE;
+        scrollbar-color: var(--aside-color);
     }
     .container::-webkit-scrollbar {
         width: 10px;
     }
     .container::-webkit-scrollbar-thumb {
-        background-color: var(--aside-color);
+        background-color: #FFF;
     }
     .container::-webkit-scrollbar-track {
-        background-color: #EEE;
+        background-color: #000;
     }
 
 
