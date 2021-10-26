@@ -1,3 +1,8 @@
+<script>
+    import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
+</script>
+
+
 <svelte:head>
     <title>World4AI | Reinforcement Learning Applications</title>
     <meta name="description" content="Reinforcement learning is used in many different applications, like games, finance, robotics, healcare and autonomous vehicles.">
@@ -15,6 +20,8 @@
 <p>
     Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve. A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.
 </p>
+
+<Grid />
 
 <p>
     In the above example the player has to move the circle from the bottom left corner to the upper left corner. This seems like a trivial task for a human being, but it gets nontrivial if you are not allowed to hardcode the solution. Instead you have to make your computer learn the goal of the game and the strategy to achieve the goal. That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible (as indicated by the arrows in the cells).
