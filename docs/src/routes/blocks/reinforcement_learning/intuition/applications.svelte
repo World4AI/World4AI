@@ -4,6 +4,7 @@
     import Go from '$lib/reinforcement_learning/intuition/applications/Go.svelte';
     import Strategy from '$lib/reinforcement_learning/intuition/applications/Strategy.svelte';
     import Finance from '$lib/reinforcement_learning/intuition/applications/Finance.svelte';
+    import Robot from '$lib/reinforcement_learning/intuition/applications/Robot.svelte';
 </script>
 
 
@@ -96,10 +97,14 @@
 
 <h3>Robotics</h3>
 
-<p>The field of robotics is vast. I could talk about robots on assembly lines, drones or bipedal robots. In all the above mentioned cases it is possible to apply reinforcement learning to learn the desired task for the robot.</p>
+<p>The field of robotics is vast. We could talk about robots on assembly lines, drones or bipedal robots. In all the above mentioned cases it is possible to apply reinforcement learning to learn the desired task for the robot.</p>
+
+<div class="flex-center">
+    <Robot />
+</div>
 
 <p>
-    For example the bipedal robot can be taught to walk through the means of reinforcement learning. Each good or bad step of the robot can be used as a learning experience. In fact that is partially already actively done but still remains an active research field. At the moment most successful bipedal robots, like those made by Boston Dynamics, are not actually trained through reinforcement learning, but are hardcoded to solve their task. Therefore these are great feats of pure engineering and not AI, but 10 years down the road and AI will probably replace a lot of hardcoded parts. 
+    For example a bipedal robot can be taught to walk on two legs through the means of reinforcement learning. Each good or bad step of the robot can be used as a learning experience. In fact that is partially already actively done but still remains an active research field. At the moment most successful bipedal robots, like those made by Boston Dynamics, are not actually trained through reinforcement learning, but are hardcoded to solve their task. Therefore these are great feats of pure engineering and not AI, but 10 years down the road and AI will probably replace a lot of hardcoded parts. 
 </p>
 
 <h3>Healthcare</h3>
