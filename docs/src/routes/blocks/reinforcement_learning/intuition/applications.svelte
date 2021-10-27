@@ -1,5 +1,6 @@
 <script>
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
+    import Pong from '$lib/reinforcement_learning/intuition/applications/Pong.svelte';
 </script>
 
 
@@ -30,15 +31,15 @@
 <h4>Atari 2600 Games</h4>
 
 <p>
-    Computer games have become a testing ground for reinforcement learning algorithms. Most new algorithms are tested on the Atari 2600 games in order to show how efficient the algorithms are. For a human it is not especially hard to learn the rules of the game (although it might require some time to master the game), but for computers it is an entirely different story. Due to the vast number of configurations the usual strategies that are used to solve the grid worlds break down. Usually good solutions require the use of neural networks. 
+    Computer games have become a testing ground for reinforcement learning algorithms. Most new algorithms are tested on the Atari 2600 games in order to show how efficient the algorithms are. For a human it is not especially hard to learn the rules of the game (although it might require some time to master the game), but for computers it is an entirely different story. Due to the vast number of possible pixel values on the screen the usual strategies that are used to solve the grid worlds break down. Good solutions require the use of neural networks. 
 </p>
 
 <p>
-    The most known atari games are probably pong and breakout. In breakout for example you steer the paddle at the bottom of the screen. The goal of the game is to prevent the ball from falling by moving the paddle in the path of the ball. The ball bounces off the paddle and if it touches one of the blocks at the top of the screen, the block disappears, the ball starts moving in the opposite direction and you get some points. The game ends when either the ball falls on the ground or when you have destroyed all the blocks.
+    The most known atari game is probably pong. In pong for example you steer a paddle at the right of the screen. The goal of the game is to prevent the ball from reaching the right border by moving the paddle into the path of the ball. The ball bounces off the paddle and if the ball to passes the paddle of the enemy, then we have earned ourselve a point. The enemy on the left can be controlled by a simple hardcoded AI or just a different player. In reinfocement learning a trained AI is responsible for the control of the right paddle.
 </p>
-
+<Pong />
 <p>
-    The computer receives the current frames of the game and has to decide how to act based just on the pixel values. There are of course versions of the game, where the computer receives the positions of the ball, the paddle and the boxes as coordinate values, but using that version would be essentially cheating. Looking at the pictures and behaving accordingly is not unlike how humans act. Therefore it is especially impressive that with the help of reinforcement learning it is possible to create computer programs that are able to beat human scores in all the Atari 2600 games while making decisions on the basis of the screenshots of the game.
+    The computer receives the current frames of the game and has to decide how to act based on the pixel values. There are of course versions of the game, where the computer receives the positions of the ball and the paddles as coordinate values, but using that version would be essentially cheating. Looking at the pictures and behaving accordingly is not unlike how humans act. Therefore it is especially impressive that with the help of reinforcement learning it is possible to create computer programs that are able to beat human scores in all the Atari 2600 games while making decisions on the basis of the screenshots of the game. 
 </p>
 
 <h4>Board Games</h4>
