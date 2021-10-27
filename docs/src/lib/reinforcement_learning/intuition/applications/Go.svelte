@@ -1,6 +1,6 @@
 <svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
     <g>
-     <g fill="none" stroke="var(--tint)">
+     <g fill="none" stroke-width="2" stroke="var(--tint)">
       <path d="m0.5 0.5v499"/>
       <path d="m28.222 0.5v499"/>
       <path d="m55.944 0.5v499"/>
