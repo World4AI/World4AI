@@ -5,6 +5,7 @@
     import Strategy from '$lib/reinforcement_learning/intuition/applications/Strategy.svelte';
     import Finance from '$lib/reinforcement_learning/intuition/applications/Finance.svelte';
     import Robot from '$lib/reinforcement_learning/intuition/applications/Robot.svelte';
+    import Healthcare from '$lib/reinforcement_learning/intuition/applications/Healthcare.svelte';
 </script>
 
 
@@ -115,13 +116,15 @@
 
 <p>
     Individual treatment plans for example, where drugs and treatments are adjusted quickly depending on the reaction of the patient could be developed. With each new patient the experience of the AI would increase. Unlike human doctors that have to go through medical studies, practice and have to eventually retire, the experience of AI could be centralized and made available to newer systems without loss of data. Thus the amount of mistakes and the cost of treatment should potentially decrease.
-</p> 
+</p>
+
+<div class="flex-center">
+    <Healthcare />
+</div>
 
 <p>
     The development of new drugs is another exciting possible application of reinforcement learning. The abundance of medical data should allow the AI to learn to accelerate the drug discovery phase while making the overall development process safer. 
 </p>
-
-<p>To my knowledge both applications are experimental and are not fully implemented yet, but research in that area has been increasing.</p>
 
 <h3>Autonomous Vehicles</h3>
 
