@@ -23,7 +23,9 @@
     Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve. A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.
 </p>
 
-<Grid />
+<div class="flex-center">
+    <Grid />
+</div>
 
 <p>
     In the above example the player has to move the circle from the bottom left corner to the upper left corner. This seems like a trivial task for a human being, but it gets nontrivial if you are not allowed to hardcode the solution. Instead you have to make your computer learn the goal of the game and the strategy to achieve the goal. That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible (as indicated by the arrows in the cells).
@@ -38,7 +40,11 @@
 <p>
     The most known atari game is probably pong. In pong for example you steer a paddle at the right of the screen. The goal of the game is to prevent the ball from reaching the right border by moving the paddle into the path of the ball. The ball bounces off the paddle and if the ball to passes the paddle of the enemy, then we have earned ourselve a point. The enemy on the left can be controlled by a simple hardcoded AI or just a different player. In reinfocement learning a trained AI is responsible for the control of the right paddle.
 </p>
-<Pong />
+
+<div class="flex-center">
+    <Pong />
+</div>
+
 <p>
     The computer receives the current frames of the game and has to decide how to act based on the pixel values. There are of course versions of the game, where the computer receives the positions of the ball and the paddles as coordinate values, but using that version would be essentially cheating. Looking at the pictures and behaving accordingly is not unlike how humans act. Therefore it is especially impressive that with the help of reinforcement learning it is possible to create computer programs that are able to beat human scores in all the Atari 2600 games while making decisions on the basis of the screenshots of the game. 
 </p>
@@ -53,7 +59,9 @@
     Even though all solutions were an unbelievable milestone for the AI community, the win of DeepMind with their AlphaGo system against the go world champion was most likely the most impressive and the hardest achievement in AI thus far. For a number of years the challenge of winning against the world champion was considered impossible. The number of legal board positions in the game of go is far greater than there are atoms in the observable universe. Iterating through all positions is therefore impossible. Nevertheless, not only did the algorithm win against the world champion Lee Sedol in the 4 of 5 games, but according to go experts AlphaGo showed creativity. In the second of the five games AlphaGo shocked the world with the now iconic move. This move has become known as <strong>Move 37</strong>.
 </p>
 
-<Go />
+<div class="flex-center">
+    <Go />
+</div>
 
 <h4>Modern Games</h4>
 
@@ -107,3 +115,10 @@
     Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing the current frontier for reinforcement learning. There are many car companies that invest in self-driving cars. Newer car companies like Tesla and Google’s Waymo and old German car manufacturers like Volkswagen all invest an enormous amount of time and money in the development of autonomous vehicles. Research in the area has been going on since at least the 80’s, with demonstrations by Daimler, but the behaviour of these vehicles in edge cases made their use often dangerous for everyday use. Since the DARPA Grand Challenge (2007) great leaps have been made and reinforcement learning played a huge role in that success story. It is probably only a matter of time until autonomous vehicles become fully legalized. The advantages are tremendous. Expected lower mortality rates due to traffic accidents, lower cost for taxi fares and more efficient logistics, as drivers won't have to sleep on overnight journeys.
 </p> 
 
+<style >
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
