@@ -2,6 +2,7 @@
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
     import Pong from '$lib/reinforcement_learning/intuition/applications/Pong.svelte';
     import Go from '$lib/reinforcement_learning/intuition/applications/Go.svelte';
+    import Strategy from '$lib/reinforcement_learning/intuition/applications/Strategy.svelte';
 </script>
 
 
@@ -69,6 +70,10 @@
     Compared to Atari games, modern games have become a lot more complex and even for human players there is a steep learning curve, especially if you wish to become a professional player. In spite of that OpenAI and DeepMind have beaten top players in two of the most famous esports games, Dota II and StarCraft II.
     StarCraft II for example is a so-called rts (real time strategy) game. In these types of games you have to collect resources, build workers and different types of attack vehicles, construct buildings, improve your technology, scout the area for opponents and to finally destroy the buildings and units of your opponents. Many of these decisions have tradeoffs and there is no single best strategy, the player has to adapt to the current situation.
 </p>
+
+<div class="flex-center">
+    <Strategy />
+</div>
 
 <p>
     The image above shows how an imagined rts game configuration might look like. The picture indicates how a player has to balance several decisions at the same time. What makes these types of games additionally hard is the so-called “fog of war”. The grey areas are not visible to the player, so that only a part of the map is observable. That creates an information imbalance and requires scouting the area to gain information.
