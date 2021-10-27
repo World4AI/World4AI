@@ -6,6 +6,7 @@
     import Finance from '$lib/reinforcement_learning/intuition/applications/Finance.svelte';
     import Robot from '$lib/reinforcement_learning/intuition/applications/Robot.svelte';
     import Healthcare from '$lib/reinforcement_learning/intuition/applications/Healthcare.svelte';
+    import AutonomousVehicles from '$lib/reinforcement_learning/intuition/applications/AutonomousVehicles.svelte';
 </script>
 
 
@@ -127,6 +128,10 @@
 </p>
 
 <h3>Autonomous Vehicles</h3>
+
+<div class="flex-center">
+    <AutonomousVehicles />
+</div>
 
 <p>
     Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing the current frontier for reinforcement learning. There are many car companies that invest in self-driving cars. Newer car companies like Tesla and Google’s Waymo and old German car manufacturers like Volkswagen all invest an enormous amount of time and money in the development of autonomous vehicles. Research in the area has been going on since at least the 80’s, with demonstrations by Daimler, but the behaviour of these vehicles in edge cases made their use often dangerous for everyday use. Since the DARPA Grand Challenge (2007) great leaps have been made and reinforcement learning played a huge role in that success story. It is probably only a matter of time until autonomous vehicles become fully legalized. The advantages are tremendous. Expected lower mortality rates due to traffic accidents, lower cost for taxi fares and more efficient logistics, as drivers won't have to sleep on overnight journeys.
