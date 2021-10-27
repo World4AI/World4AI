@@ -3,6 +3,7 @@
     import Pong from '$lib/reinforcement_learning/intuition/applications/Pong.svelte';
     import Go from '$lib/reinforcement_learning/intuition/applications/Go.svelte';
     import Strategy from '$lib/reinforcement_learning/intuition/applications/Strategy.svelte';
+    import Finance from '$lib/reinforcement_learning/intuition/applications/Finance.svelte';
 </script>
 
 
@@ -85,10 +86,13 @@
     Nowadays it seems that reinforcement learning is taking over the financial industry in every aspect imaginable. From valuing financial products to chatbots that communicate with prospective clients. 
 </p>
 
+<div class="flex-center">
+    <Finance />
+</div>
+
 <p>
     The most exciting part still seems to be portfolio management though. Imagine an artificial intelligence that decides what financial instrument to invest in and in what proportion. And the exact decisions could depend on the risk aversion of the client. There is an abundance of financial data (often free) going back sometimes a hundred of years. That data can be used to train a reinforcement learning AI to potentially perform better than humans over a long period of time. Even if the AI performs equally well to human portfolio managers, the banks could cut costs, as automated trading bots tend to be much cheaper than human portfolio managers. 
 </p>
-
 
 <h3>Robotics</h3>
 
