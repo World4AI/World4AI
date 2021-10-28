@@ -33,7 +33,10 @@
 </div>
 
 <p>
-    In the above example the player has to move the circle from the bottom left corner to the upper left corner. This seems like a trivial task for a human being, but it gets nontrivial if you are not allowed to hardcode the solution. Instead you have to make your computer learn the goal of the game and the strategy to achieve the goal. That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible (as indicated by the arrows in the cells).
+    In the above example the player has to move the circle from the top left corner to the goal (represented by a triangle) in bottom left corner, while avoiding the walls (represented by the three squares). This seems like a trivial task for a human being, but it gets nontrivial if you are not allowed to hardcode the solution. Instead you have to make your computer learn the goal of the game and the strategy to achieve the goal. 
+</p>
+<p>
+    That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible. In our example above the circle moves randomly and therefore it might take a while for the circle to get to the goal. In a few chapter we will implement our first algorithms and see how this simple task can be solved though reinforcement learning.
 </p>
 
 <h4>Atari 2600 Games</h4>
