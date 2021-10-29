@@ -12,10 +12,10 @@ class Environment {
         this.goal = this.coordinatesToStates(goal.c, goal.r)
         this.initialState = this.coordinatesToStates(player.c, player.r);
 
-        this.top = 0;
-        this.right = 1;
-        this.down = 2;
-        this.left = 3;
+        this.top = 3;
+        this.right = 0;
+        this.down = 1;
+        this.left = 2;
         this.actionSpace = [0, 1, 2, 3];
         this.observationSpace = [];
 
@@ -31,10 +31,10 @@ class Environment {
     }
 
     statesToCoordinates(s) {
-        let row = Math.floor(s / this.columns);
-        let col = s % this.columns;
+        let r = Math.floor(s / this.columns);
+        let c = s % this.columns;
 
-        return {row, col}
+        return {r, c}
     }
 
     createModel() {

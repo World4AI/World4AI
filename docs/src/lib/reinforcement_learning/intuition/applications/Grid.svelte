@@ -3,6 +3,10 @@
     import {Environment} from './environment.js'
     import {Agent} from './agent.js';
 
+    // TODO make the color derive from main css
+    let textColor = '#dad9eb'
+    let hightLightColor = '#FF683C'
+
     // grid parameters
     export let columns = 5;
     export let rows = 5;
@@ -35,13 +39,9 @@
         {
             r: 0,
             c: 0,
-            d: 0
+            d: 0,
+            col: 'white'
         },
-        {
-            r: 1,
-            c: 1,
-            d: 90
-        }
     ] */
 
     const env = new Environment(rows, columns, player, obstacles, goal);
@@ -51,12 +51,26 @@
     onMount(() => {
         const interval = setInterval(() => {
             let action = agent.act(observation);
-            observation = env.step(action);
-            let coordinates = env.statesToCoordinates(observation);
 
-            translateX = coordinates.col * colSize;
-            translateY = coordinates.row * rowSize;
-        }, 500);
+            let coordinates = env.statesToCoordinates(observation);
+            let col;
+            arrows = arrows.map((arrow) => {
+                if (coordinates.c === arrow.c && coordinates.r === arrow.r && action * 90 === arrow.d) {
+                    col = hightLightColor;
+                }
+                else {
+                    col = textColor;
+                }
+
+                return {... arrow, col}
+            })
+
+            observation = env.step(action);
+            coordinates = env.statesToCoordinates(observation);
+
+            translateX = coordinates.c * colSize;
+            translateY = coordinates.r * rowSize;
+        }, 1000);
 
         return () => clearInterval(interval);
     })
@@ -132,14 +146,16 @@ ${goal.c * colSize + goalPadding},${goal.r * rowSize + rowSize - goalPadding}`;
     </defs>
     {#each arrows as arrow}
         <!--push the arrows in the middle-->
-        <line x1={arrow.c * colSize + colSize/2} 
-        y1={arrow.r * rowSize + rowSize/2} 
-        x2={arrow.c * colSize + colSize - 20} 
-        y2={arrow.r * rowSize + rowSize/2}
-        transform="rotate({arrow.d}, {arrow.c * colSize + colSize/2}, {arrow.r * rowSize + rowSize/2})" 
-        stroke="var(--text-color)" 
-        stroke-width="1" 
-        marker-end="url(#arrowhead)" />
+        <line 
+            x1={arrow.c * colSize + colSize/2} 
+            y1={arrow.r * rowSize + rowSize/2} 
+            x2={arrow.c * colSize + colSize - 35} 
+            y2={arrow.r * rowSize + rowSize/2}
+            transform="rotate({arrow.d}, {arrow.c * colSize + colSize/2}, {arrow.r * rowSize + rowSize/2})" 
+            stroke="{arrow.col}"
+            stroke-width="1" 
+            marker-end="url(#arrowhead)" 
+        />
     {/each}
     
 </svg>
