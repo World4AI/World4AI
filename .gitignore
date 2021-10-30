@@ -9,3 +9,4 @@ dist-ssr
 build
 .svelte-kit
 /package
+testing

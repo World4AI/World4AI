@@ -4,9 +4,7 @@ class Agent {
         this.actionSpace = actionSpace;
     }
 
-    act(state) {
-        return Math.floor(Math.random() * this.actionSpace.length);
-    }
+    act(state) {}
 }
 
 export { Agent }

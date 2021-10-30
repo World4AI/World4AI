@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import {Environment} from './environment.js'
-    import {Agent} from './agent.js';
+    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
+    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
 
     // TODO make the color derive from main css
     let textColor = '#dad9eb'
@@ -44,18 +44,24 @@
         },
     ] */
 
-    const env = new Environment(rows, columns, player, obstacles, goal);
-    const agent = new Agent(env.observationSpace, env.actionSpace);
+    // map from action to the degrees of the arrow
+    let actionToDegreeMapping = {
+        0: 270,
+        1: 0,
+        2: 90,
+        3: 180
+    }
+
+    const env = new GridEnvironment(rows, columns, obstacles, goal);
+    const agent = new RandomAgent(env.observationSpace, env.actionSpace);
 
     let observation = env.reset()
     onMount(() => {
         const interval = setInterval(() => {
             let action = agent.act(observation);
-
-            let coordinates = env.statesToCoordinates(observation);
             let col;
             arrows = arrows.map((arrow) => {
-                if (coordinates.c === arrow.c && coordinates.r === arrow.r && action * 90 === arrow.d) {
+                if (observation.c === arrow.c && observation.r === arrow.r && actionToDegreeMapping[action] === arrow.d) {
                     col = hightLightColor;
                 }
                 else {
@@ -65,11 +71,12 @@
                 return {... arrow, col}
             })
 
-            observation = env.step(action);
-            coordinates = env.statesToCoordinates(observation);
+            let info = env.step(action);
+            observation = info.observation;
 
-            translateX = coordinates.c * colSize;
-            translateY = coordinates.r * rowSize;
+            translateX = observation.c * colSize;
+            translateY = observation.r * rowSize;
+
         }, 1000);
 
         return () => clearInterval(interval);
