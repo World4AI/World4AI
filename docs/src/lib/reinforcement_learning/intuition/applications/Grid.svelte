@@ -123,7 +123,7 @@ ${goal.c * colSize + goalPadding},${goal.r * rowSize + rowSize - goalPadding}`;
             <path d="m0 {row * rowSize} h{width}" />
         {/each}
     </g>
-    <g class="obstacles" fill="none" stroke="var(--text-color)">
+    <g class="obstacles" fill="var(--text-color)" stroke="black" stroke-width="3">
         {#each obstacles as obstacle }
             <rect 
                 x={obstacle.c * colSize + obstaclePadding} 
@@ -133,10 +133,10 @@ ${goal.c * colSize + goalPadding},${goal.r * rowSize + rowSize - goalPadding}`;
             </rect>
         {/each}
     </g>
-    <g id="player" stroke="var(--text-color)" transform="translate({translateX} {translateY})">
-        <circle id="player" {cx} {cy} {r} fill="none" stroke-width="1"/>
+    <g id="player" stroke="black" transform="translate({translateX} {translateY})">
+        <circle id="player" {cx} {cy} {r} fill="var(--text-color)" opacity="0.3" stroke-width="3"/>
     </g>
-    <g id="goal" fill="none" stroke="var(--text-color)">
+    <g id="goal" fill="var(--text-color)" stroke="black" stroke-width="3">
         <polygon {points}/>
     </g>
 
