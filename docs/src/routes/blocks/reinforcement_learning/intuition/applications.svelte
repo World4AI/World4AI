@@ -1,4 +1,5 @@
 <script>
+    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
     import Pong from '$lib/reinforcement_learning/intuition/applications/Pong.svelte';
     import Go from '$lib/reinforcement_learning/intuition/applications/Go.svelte';
@@ -7,6 +8,7 @@
     import Robot from '$lib/reinforcement_learning/intuition/applications/Robot.svelte';
     import Healthcare from '$lib/reinforcement_learning/intuition/applications/Healthcare.svelte';
     import AutonomousVehicles from '$lib/reinforcement_learning/intuition/applications/AutonomousVehicles.svelte';
+
 </script>
 
 
@@ -29,7 +31,7 @@
 </p>
 
 <div class="flex-center">
-    <Grid />
+    <Grid agentClass={RandomAgent}/>
 </div>
 
 <p>

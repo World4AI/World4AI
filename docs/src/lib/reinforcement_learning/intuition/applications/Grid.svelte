@@ -1,11 +1,14 @@
 <script>
     import { onMount } from 'svelte';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
-    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
+    
+    //the agent class that will interact with the environment
+    export let agentClass;
 
-    // TODO make the color derive from main css
-    let textColor = '#dad9eb'
-    let hightLightColor = '#FF683C'
+    // svg parameters
+    export let width = 500;
+    export let height = 500;
+    export let strokeWidth = 1;
 
     // grid parameters
     export let columns = 5;
@@ -53,7 +56,11 @@
     }
 
     const env = new GridEnvironment(rows, columns, obstacles, goal);
-    const agent = new RandomAgent(env.observationSpace, env.actionSpace);
+    const agent = new agentClass(env.getObservationSpace(), env.getActionSpace())
+
+    // TODO make the color derive from main css
+    let textColor = '#dad9eb'
+    let hightLightColor = '#FF683C'
 
     let observation = env.reset()
     onMount(() => {
@@ -84,11 +91,6 @@
 
     let translateX = 0;
     let translateY = 0;
-
-    // svg parameters
-    export let width = 500;
-    export let height = 500;
-    export let strokeWidth = 1;
 
     // calcualte cell size
     let colSize = width / columns;

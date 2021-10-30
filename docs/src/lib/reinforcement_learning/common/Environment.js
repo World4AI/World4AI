@@ -4,6 +4,14 @@ class Environment {
         this.observationSpace = observationSpace;
     }
 
+    getActionSpace() {
+        return [... this.actionSpace];
+    }
+
+    getObservationSpace() {
+        return [... this.observationSpace];
+    }
+
     reset(){}
 
     step(){}

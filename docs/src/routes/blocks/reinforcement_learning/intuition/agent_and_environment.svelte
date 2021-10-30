@@ -1,4 +1,5 @@
 <script>
+    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
     import AgentEnvironment from '$lib/reinforcement_learning/intuition/agent_and_environment/AgentEnvironment.svelte';
     import Robot from '$lib/reinforcement_learning/intuition/agent_and_environment/Robot.svelte';
@@ -70,7 +71,7 @@
 <p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components we will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>  
 
 <div class="flex-center">
-    <Grid />
+    <Grid agentClass={RandomAgent}/>
 </div>
 
 <p>The gridworld above is the same that we have seen in the previous section. We are going to use this simple game throughout the coming sections to get familiar with the basics of reinforcement learning.</p> 
@@ -84,7 +85,7 @@
 <p class="info">The agent is the code that makes the decisions. Do not mix up the agent with its physical / graphical representation in the environment.</p>
 
 <div class="flex-center">
-    <Grid {columns} {rows} {obstacles} {player} {goal} {arrows}/>
+    <Grid {columns} {rows} {obstacles} {player} {goal} {arrows} agentClass={RandomAgent}/>
 </div>
 
 <p>For example in the gridworld above the agent can decide to go north even when the circle is against a barrier or a wall in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change. The arrows above indicate what directions the agents can choose given a cell position. The colored arrows indicate the choice the agent made when it was in the previous cell. From time to time we can observe that the agent tries to move against a wall or a barrier, but the grid world does not react to that decision.</p>  

@@ -1,4 +1,5 @@
 <script>
+    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
 </script>
 
@@ -21,7 +22,7 @@
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p> 
 
 <div class="flex-center">
-    <Grid />
+    <Grid agentClass={RandomAgent}/>
 </div>
 
 <p>For example the agent is expected to move the circle from the starting cell position (top left corner) to the goal cell position (bottom left corner).</p>
