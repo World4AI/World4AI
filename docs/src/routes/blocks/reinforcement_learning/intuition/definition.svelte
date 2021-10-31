@@ -1,11 +1,15 @@
 <script>
     import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
+    import { DeterministicAgent } from '$lib/reinforcement_learning/common/DeterministicAgent';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
     import { gridMap } from '$lib/reinforcement_learning/common/maps';
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
 
     let env_1 = new GridEnvironment(gridMap);
     let agent_1 = new RandomAgent(env_1.getObservationSpace(), env_1.getActionSpace());
+
+    let env_2 = new GridEnvironment(gridMap);
+    let agent_2 = new DeterministicAgent(env_2.getObservationSpace(), env_2.getActionSpace());
 </script>
 
 <svelte:head>
@@ -32,7 +36,13 @@
 
 <p>For example the agent is expected to move the circle from the starting cell position (top left corner) to the goal cell position (bottom left corner).</p>
 
-<p>When we talk about learning, that means that the agent gets better at achieving that particular goal over time. It could start by moving in a random fashion and over time learn the best possible (meaning the shortest) route.</p> 
+<p>When we talk about learning, that means that the agent gets better at achieving that particular goal over time. It could start by moving in a random fashion and over time learn the best possible (meaning the shortest) route.</p>
+
+<div class="flex-center">
+    <Grid env={env_2} agent={agent_2}/>
+</div>
+
+<p>The agent above is a lot better at taking the shortest route between the starting point and the goal. Learning would basically mean transforming an agent from a random state to the one above.</p>
 
 <p class="info"><strong>Learning</strong> means that the agent gets better at achieving the goal of the environment over time.</p>
 
