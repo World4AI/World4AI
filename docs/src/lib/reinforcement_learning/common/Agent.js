@@ -5,6 +5,8 @@ class Agent {
     }
 
     act(state) {}
+
+    arrows() {}
 }
 
 export { Agent }

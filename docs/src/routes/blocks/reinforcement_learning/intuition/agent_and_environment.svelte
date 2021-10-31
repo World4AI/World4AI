@@ -1,61 +1,18 @@
 <script>
-    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
+    import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
+    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
+    import { gridMap } from '$lib/reinforcement_learning/common/maps';
+
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
     import AgentEnvironment from '$lib/reinforcement_learning/intuition/agent_and_environment/AgentEnvironment.svelte';
     import Robot from '$lib/reinforcement_learning/intuition/agent_and_environment/Robot.svelte';
 
-    // TODO make the color derive from main css
-    let textColor = '#dad9eb'
 
-    // grid parameters
-    let columns = 5;
-    let rows = 5;
-    let player = {
-        r: 0,
-        c: 0
-    }
-    let obstacles = [
-        {
-            r: 2,
-            c: 0 
-        },
-        {
-            r: 2,
-            c: 1 
-        },
-        {
-            r: 2,
-            c: 2 
-        },
-    ]
-    let goal = {
-        r: 4,
-        c: 0
-    };
-
-    let arrows = []
-    let degrees = [0, 90, 180, 270]
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < columns; c++) {
-            if (goal.r === r && goal.c === c) {
-                continue;
-            }
-            if (!obstacles.some(obstacle => (obstacle.r === r && obstacle.c === c)))
-            {
-                degrees.forEach(d => {
-                    arrows.push(
-                        {
-                            r: r,
-                            c: c,
-                            d: d,
-                            col: textColor
-
-                        }
-                    )
-                })
-            }
-        }
-    }
+    let env_1 = new GridEnvironment(gridMap);
+    let agent_1 = new RandomAgent(env_1.getObservationSpace(), env_1.getActionSpace());
+    
+    let env_2 = new GridEnvironment(gridMap);
+    let agent_2 = new RandomAgent(env_2.getObservationSpace(), env_2.getActionSpace());   
 
 </script>
 
@@ -71,7 +28,7 @@
 <p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components we will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>  
 
 <div class="flex-center">
-    <Grid agentClass={RandomAgent}/>
+    <Grid env={env_1} agent={agent_1} />
 </div>
 
 <p>The gridworld above is the same that we have seen in the previous section. We are going to use this simple game throughout the coming sections to get familiar with the basics of reinforcement learning.</p> 
@@ -85,10 +42,10 @@
 <p class="info">The agent is the code that makes the decisions. Do not mix up the agent with its physical / graphical representation in the environment.</p>
 
 <div class="flex-center">
-    <Grid {columns} {rows} {obstacles} {player} {goal} {arrows} agentClass={RandomAgent}/>
+    <Grid env={env_2} agent={agent_2} showArrows=true/>
 </div>
 
-<p>For example in the gridworld above the agent can decide to go north even when the circle is against a barrier or a wall in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change. The arrows above indicate what directions the agents can choose given a cell position. The colored arrows indicate the choice the agent made when it was in the previous cell. From time to time we can observe that the agent tries to move against a wall or a barrier, but the grid world does not react to that decision.</p>  
+<p>For example in the gridworld above the agent can decide to go north even when the circle is against a barrier or a wall in the northern direction. That decision is legitimate in many grid worlds, but the position of the circle will not change. The arrow indicates the choice the agent made when it was in the previous cell. From time to time we can observe that the agent tries to move against a wall or a barrier, but the grid world does not react to that decision.</p>  
 
 <p>The agent is the program that generates the decision and the decision of the agent is then relayed to the environment. The environment processes the decision, but that is not something that the agent can influence. In the simple grid-world game if the agent decides to go north the circle might actually move north or it could move in a totally different direction or not move at all.</p>
 

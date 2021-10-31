@@ -1,6 +1,11 @@
 <script>
-    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
+    import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
+    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
+    import { gridMap } from '$lib/reinforcement_learning/common/maps';
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
+
+    let env_1 = new GridEnvironment(gridMap);
+    let agent_1 = new RandomAgent(env_1.getObservationSpace(), env_1.getActionSpace());
 </script>
 
 <svelte:head>
@@ -22,7 +27,7 @@
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p> 
 
 <div class="flex-center">
-    <Grid agentClass={RandomAgent}/>
+    <Grid env={env_1} agent={agent_1}/>
 </div>
 
 <p>For example the agent is expected to move the circle from the starting cell position (top left corner) to the goal cell position (bottom left corner).</p>

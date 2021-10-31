@@ -8,6 +8,11 @@ class RandomAgent extends Agent {
     act(observation) {
         return Math.floor(Math.random() * this.actionSpace.length);
     }
+
+    arrows() {
+        let arrows = [];
+        
+    }
 }
 
 export { RandomAgent }

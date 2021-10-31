@@ -1,51 +1,41 @@
 <script>
     import { onMount } from 'svelte';
-    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
-    
-    //the agent class that will interact with the environment
-    export let agentClass;
+
+    export let agent;
+    export let env;
+    export let speed = 500;
+    export let showArrows = false;
+    export let arrows = []
 
     // svg parameters
     export let width = 500;
     export let height = 500;
     export let strokeWidth = 1;
 
-    // grid parameters
-    export let columns = 5;
-    export let rows = 5;
-    export let player = {
-        r: 0,
-        c: 0
-    }
-    export let obstacles = [
-        {
-            r: 2,
-            c: 0 
-        },
-        {
-            r: 2,
-            c: 1 
-        },
-        {
-            r: 2,
-            c: 2 
-        },
-    ]
-    export let goal = {
-        r: 4,
-        c: 0
-    };
+    // calcualte cell size
+    let colSize = 100;
+    let rowSize = 100;
 
-    export let arrows = []
+    let observation = env.reset();
+    let player = {... observation};
+    let cells = env.getCells();
+    let payload;
+    onMount(() => {
+        const interval = setInterval(() => {
+            if (payload) { 
+                if (payload.done) {
+                    observation = env.reset()
+                }
+            }
+            let action = agent.act(observation);
+            arrows = [{r: observation.r, c: observation.c, d: actionToDegreeMapping[action]}]
+            payload = env.step(action);
+            observation = payload.observation;
+            player = {... observation};
+        }, speed);
 
-/*     export let arrows = [
-        {
-            r: 0,
-            c: 0,
-            d: 0,
-            col: 'white'
-        },
-    ] */
+        return () => clearInterval(interval);
+    })
 
     // map from action to the degrees of the arrow
     let actionToDegreeMapping = {
@@ -55,116 +45,80 @@
         3: 180
     }
 
-    const env = new GridEnvironment(rows, columns, obstacles, goal);
-    const agent = new agentClass(env.getObservationSpace(), env.getActionSpace())
-
-    // TODO make the color derive from main css
-    let textColor = '#dad9eb'
-    let hightLightColor = '#FF683C'
-
-    let observation = env.reset()
-    onMount(() => {
-        const interval = setInterval(() => {
-            let action = agent.act(observation);
-            let col;
-            arrows = arrows.map((arrow) => {
-                if (observation.c === arrow.c && observation.r === arrow.r && actionToDegreeMapping[action] === arrow.d) {
-                    col = hightLightColor;
-                }
-                else {
-                    col = textColor;
-                }
-
-                return {... arrow, col}
-            })
-
-            let info = env.step(action);
-            observation = info.observation;
-
-            translateX = observation.c * colSize;
-            translateY = observation.r * rowSize;
-
-        }, 1000);
-
-        return () => clearInterval(interval);
-    })
-
-    let translateX = 0;
-    let translateY = 0;
-
-    // calcualte cell size
-    let colSize = width / columns;
-    let rowSize = height / rows;
-
-    //player parameters
-    let r = colSize * 0.5 * 0.5;
-    let cx = player.c * colSize + colSize / 2;
-    let cy = player.r * rowSize + rowSize / 2;
-
-    //goal parameters
+    //goal
     let goalPadding = 40;
-
-    // the triangle that is calculated based on the row and col location, while taking the padding into consideration
-    let points = `${goal.c * colSize + colSize/2},${goal.r * rowSize + goalPadding} \
-${goal.c * colSize + colSize - goalPadding},${goal.r * rowSize + rowSize - goalPadding} \
-${goal.c * colSize + goalPadding},${goal.r * rowSize + rowSize - goalPadding}`;
-
     // obstacles
     let obstaclePadding = 10;
 </script> 
 
 <svg {width} {height} version="1.1" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">
-    
+     <!-- Create the grid-->
+    {#each cells as cell}
+        <!-- cells -->
+        <g id="grid" fill="none" stroke="var(--text-color)" stroke-width={strokeWidth}>
+            <rect fill="none" x={cell.c * colSize} y={cell.r * rowSize} width={colSize} height={rowSize}/>
+        </g>
 
-    <!-- Create the grid-->
-    <g id="grid" fill="none" stroke="var(--text-color)" stroke-width={strokeWidth}>
-        {#each Array(columns+1) as _, col}
-            <path d="m{col * colSize} 0 v{height}" />
-        {/each}
-        {#each Array(rows+1) as _, row}
-            <path d="m0 {row * rowSize} h{width}" />
-        {/each}
-    </g>
-    <g class="obstacles" fill="var(--text-color)" stroke="black" stroke-width="3">
-        {#each obstacles as obstacle }
-            <rect 
-                x={obstacle.c * colSize + obstaclePadding} 
-                y={obstacle.r * rowSize + obstaclePadding} 
-                width={colSize - obstaclePadding * 2} 
-                height={rowSize - obstaclePadding * 2}>
-            </rect>
-        {/each}
-    </g>
-    <g id="player" stroke="black" transform="translate({translateX} {translateY})">
-        <circle id="player" {cx} {cy} {r} fill="var(--text-color)" opacity="0.3" stroke-width="3"/>
-    </g>
-    <g id="goal" fill="var(--text-color)" stroke="black" stroke-width="3">
-        <polygon {points}/>
-    </g>
+        <!-- blocks -->
+        <g fill="var(--text-color)" stroke="black" stroke-width="3">
+            {#if cell.type === "block"}
+                <rect 
+                    x={cell.c * colSize + obstaclePadding} 
+                    y={cell.r * rowSize + obstaclePadding} 
+                    width={colSize - obstaclePadding * 2} 
+                    height={rowSize - obstaclePadding * 2}>
+                </rect>
+            {/if}
+        </g>
 
-    <defs>
-        <marker id="arrowhead" 
-        markerWidth="10" 
-        markerHeight="7" 
-        refX="0" refY="3.5" 
-        orient="auto" 
-        fill="var(--text-color)"
-        >
-          <polygon points="0 0, 10 3.5, 0 7" />
-        </marker>
-    </defs>
-    {#each arrows as arrow}
-        <!--push the arrows in the middle-->
-        <line 
-            x1={arrow.c * colSize + colSize/2} 
-            y1={arrow.r * rowSize + rowSize/2} 
-            x2={arrow.c * colSize + colSize - 35} 
-            y2={arrow.r * rowSize + rowSize/2}
-            transform="rotate({arrow.d}, {arrow.c * colSize + colSize/2}, {arrow.r * rowSize + rowSize/2})" 
-            stroke="{arrow.col}"
-            stroke-width="1" 
-            marker-end="url(#arrowhead)" 
-        />
+        <!-- goal -->
+        <g fill="var(--text-color)" stroke="black" stroke-width="2">
+            {#if cell.type === "goal"}
+                <polygon points={`${cell.c * colSize + colSize/2},${cell.r * rowSize + goalPadding} \
+                ${cell.c * colSize + colSize - goalPadding},${cell.r * rowSize + rowSize - goalPadding} \
+                ${cell.c * colSize + goalPadding},${cell.r * rowSize + rowSize - goalPadding}`}/>
+            {/if}
+        </g>
     {/each}
-    
+
+    <!-- player -->
+    <g>
+        <circle cx={player.c * colSize + colSize / 2} 
+                cy={player.r * rowSize + rowSize / 2} 
+                r={colSize * 0.25} 
+                fill="var(--text-color)" 
+                opacity="0.8" 
+                stroke="black" 
+                stroke-width="3"
+        />
+    </g>
+   
+
+    {#if showArrows}
+        <defs>
+            <marker id="arrowhead" 
+            markerWidth="10" 
+            markerHeight="7" 
+            refX="0" refY="3.5" 
+            orient="auto" 
+            fill="black"
+            >
+            <polygon points="0 0, 10 3.5, 0 7" />
+            </marker>
+        </defs> -->
+        <g>
+        {#each arrows as arrow}
+            <line 
+                x1={arrow.c * colSize + colSize / 2} 
+                y1={arrow.r * rowSize + rowSize / 2} 
+                x2={arrow.c * colSize + colSize - 35} 
+                y2={arrow.r * rowSize + rowSize / 2}
+                transform="rotate({arrow.d}, {arrow.c * colSize + colSize/2}, {arrow.r * rowSize + rowSize/2})" 
+                stroke="black"
+                stroke-width="1" 
+                marker-end="url(#arrowhead)" 
+            />
+        {/each}
+        </g>
+    {/if} 
 </svg>

@@ -1,5 +1,8 @@
 <script>
-    import { RandomAgent} from '$lib/reinforcement_learning/common/RandomAgent';
+    import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
+    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
+    import { gridMap } from '$lib/reinforcement_learning/common/maps';
+    
     import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
     import Pong from '$lib/reinforcement_learning/intuition/applications/Pong.svelte';
     import Go from '$lib/reinforcement_learning/intuition/applications/Go.svelte';
@@ -9,6 +12,8 @@
     import Healthcare from '$lib/reinforcement_learning/intuition/applications/Healthcare.svelte';
     import AutonomousVehicles from '$lib/reinforcement_learning/intuition/applications/AutonomousVehicles.svelte';
 
+    let env = new GridEnvironment(gridMap);
+    let agent = new RandomAgent(env.getObservationSpace(), env.getActionSpace());    
 </script>
 
 
@@ -31,7 +36,7 @@
 </p>
 
 <div class="flex-center">
-    <Grid agentClass={RandomAgent}/>
+    <Grid {env} {agent}/>
 </div>
 
 <p>
