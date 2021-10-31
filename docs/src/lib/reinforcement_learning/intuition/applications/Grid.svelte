@@ -5,6 +5,7 @@
     export let env;
     export let speed = 500;
     export let showArrows = false;
+    export let isColoredReward = false;
     export let arrows = []
 
     // svg parameters
@@ -58,7 +59,12 @@
     {#each cells as cell}
         <!-- cells -->
         <g id="grid" fill="none" stroke="var(--text-color)" stroke-width={strokeWidth}>
-            <rect fill="none" x={cell.c * colSize} y={cell.r * rowSize} width={colSize} height={rowSize}/>
+            <rect fill={isColoredReward && cell.reward > 0 ? 'var(--main-color-2)' 
+            : isColoredReward && cell.reward < 0 ? 'var(--main-color-1' : 'none'} 
+                x={cell.c * colSize} 
+                y={cell.r * rowSize} 
+                width={colSize} 
+                height={rowSize}/>
         </g>
 
         <!-- blocks -->
