@@ -19,19 +19,21 @@
     let observation = env.reset();
     let player = {... observation};
     let cells = env.getCells();
-    let payload;
+    let payload = {};
     onMount(() => {
         const interval = setInterval(() => {
-            if (payload) { 
-                if (payload.done) {
-                    observation = env.reset()
+            if (payload.done) {
+                    observation = env.reset();
+                    payload.done = false;
+                    player = {... observation};
                 }
+            else {
+                let action = agent.act(observation);
+                arrows = [{r: observation.r, c: observation.c, d: actionToDegreeMapping[action]}]
+                payload = env.step(action);
+                observation = payload.observation;
+                player = {... observation};
             }
-            let action = agent.act(observation);
-            arrows = [{r: observation.r, c: observation.c, d: actionToDegreeMapping[action]}]
-            payload = env.step(action);
-            observation = payload.observation;
-            player = {... observation};
         }, speed);
 
         return () => clearInterval(interval);
