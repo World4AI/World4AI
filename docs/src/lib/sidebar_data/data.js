@@ -19,6 +19,10 @@ const rl = [
                 link: '/blocks/reinforcement_learning/intuition/definition'
             },
             {
+                name: 'States, Actions, Rewards',
+                link: '/blocks/reinforcement_learning/intuition/states_actions_rewards'
+            },
+            {
                 name: 'Exploration vs Exploitation',
                 link: '/blocks/reinforcement_learning/intuition/exploration_vs_exploitation'
             },
