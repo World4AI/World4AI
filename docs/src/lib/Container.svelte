@@ -11,6 +11,7 @@
         gap: var(--gap);
         justify-content: center;
         align-items: flex-start;
+        color: var(--text-color);
     }
 
     .container :global(*)  {
@@ -22,7 +23,6 @@
     }
 
     .container :global(h1) {
-        color: var(--text-color);
         text-transform: uppercase;
         font-weight: 400;
         justify-self: left;
@@ -30,7 +30,6 @@
     }
 
     .container :global(h2) {
-        color: var(--text-color);
         grid-column-start: 3;
         text-transform: uppercase;
         font-size: 40px;
@@ -39,7 +38,6 @@
     }
 
     .container :global(h3) {
-        color: var(--text-color);
         text-transform: uppercase;
         font-size: 30px;
         font-weight: 400;
@@ -47,7 +45,6 @@
     }
 
     .container :global(h4) {
-        color: var(--text-color);
         text-transform: uppercase;
         font-size: 25px;
         font-weight: 400;
@@ -57,7 +54,25 @@
     .container :global(p) {
         line-height: 2;
         font-size: 20px;
-        color: var(--text-color);
+    }
+
+    .container :global(.flex-center) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container :global(.info) {
+        position: relative;
+    }
+
+    .container :global(.info::before) {
+        content: url(/icons/info-outline.svg);
+        left: -70px;
+        top: 0px;
+        position: absolute;
+        height: 40px;
+        width: 40px;
     }
 
     /* style scrollbar */

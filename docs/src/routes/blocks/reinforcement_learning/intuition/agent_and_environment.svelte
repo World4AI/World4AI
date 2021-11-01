@@ -67,23 +67,3 @@
 <p>
     Before we move on to the next section let us clarify the visual notation we are going to use in the reinforcement learning block. The grid on the left is going to depict the environment. You can think about a grid world or about a chess/go board. The symbol on the right is going to represent the agent. Think about a chip that runs on the computer and produces the decisions that are then transmitted to the environment. Finally, the lines represent the interaction between the two components.  
 </p>
-
-<style>
-    .flex-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .info {
-        position: relative;
-    }
-
-    .info::before {
-        content: url(/icons/info-outline.svg);
-        left: -70px;
-        top: 0px;
-        position: absolute;
-        height: 40px;
-        width: 40px;
-    }
-</style>

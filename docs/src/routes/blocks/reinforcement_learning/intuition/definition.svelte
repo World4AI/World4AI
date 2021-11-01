@@ -103,23 +103,3 @@
 <p>
     [1] This definition is highly inspired by the book "Reinforcement Learning: An Introduction" by Richard S. Sutton and Andrew G. Barto.
 </p>
-
-<style>
-    .flex-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .info {
-        position: relative;
-    }
-
-    .info::before {
-        content: url(/icons/info-outline.svg);
-        left: -70px;
-        top: 0px;
-        position: absolute;
-        height: 40px;
-        width: 40px;
-    }
-</style>
