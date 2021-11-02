@@ -63,17 +63,10 @@
     }
     
     .container :global(.info) {
-        position: relative;
+        padding-left: 10px;
+        border-left: 3px solid var(--text-color);
     }
 
-    .container :global(.info::before) {
-        content: url(/icons/info-outline.svg);
-        left: -70px;
-        top: 0px;
-        position: absolute;
-        height: 40px;
-        width: 40px;
-    }
 
     /* style scrollbar */
     .container {
