@@ -31,6 +31,8 @@
 
 <p>The definition consists of three distinct parts: <strong>Learning</strong>, <strong>Trial and Error</strong> and <strong>Delayed Rewards</strong>. In order to understand the complete definition we will deconstruct the sentence and look at each part individually.</p> 
 
+<div class="separator"></div>
+
 <h3>Learning</h3>
 
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p> 
@@ -51,6 +53,8 @@
 
 <p class="info"><strong>Learning</strong> means that the agent gets better at achieving the goal of the environment over time.</p>
 
+<div class="separator"></div>
+
 <h3>Rewards</h3>
 
 <p>The question still remains how exactly does the agent know what the goal of the environment actually is? The environment with which the agent interacts gives feedback about the behaviour of the agent by giving out a reward after each single step that the agent takes.</p>
@@ -66,6 +70,8 @@
 <p>If the agent takes a random route to the triangle, then the sum of rewards is going to be very negative. If on the other hand like in the animation above the agent takes the direct route to the triangle, the sum of rewards is going to be larger (but still negative). The agent learns through the reward feedback that some sequences of actions are better than others. Generally speaking the agent needs to find the routes that produce high sum of rewards.</p>
 
 <p class="info">In reinforcement learning the agent learns to maximize <strong>rewards</strong>. The goal of the environment is implicitly contained in the rewards.</p>
+
+<div class="separator"></div>
 
 <h3>Trial and Error</h3>
 
@@ -84,6 +90,8 @@
 
 <p class="info">In the context of reinforcement learning, trial and error means trying out different sequences of decisions and comparing the resulting sum of rewards to learn optimal behaviour.</p>
 
+<div class="separator"></div>
+
 <h3>Delayed</h3>
 
 <p>In reinforcement learning the agent often needs to take dozens or even thousands of steps before a particular reward is achieved. In that case there has been a succession of many steps and the agent has to decide which step and in which proportion is responsible for the reward, so that the agent could select the decisions that lead to a good sequence of rewards more often.</p>
@@ -98,8 +106,12 @@
 
 <p class="info">In reinforcement learning rewards for an action are often delayed, which leads to the credit assignment problem.</p> 
 
+<div class="separator"></div>
+
 <h3>Notes</h3>
 
 <p>
     [1] This definition is highly inspired by the book "Reinforcement Learning: An Introduction" by Richard S. Sutton and Andrew G. Barto.
 </p>
+
+<div class="separator"></div>

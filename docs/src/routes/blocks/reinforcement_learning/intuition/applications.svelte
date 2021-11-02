@@ -27,6 +27,8 @@
 
 <p>It is entirely possible to introduce reinforcement learning using only formal definitions and math, but we will start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.</p>
 
+<div class="separator"></div>
+
 <h3>Games</h3>
 
 <h4>Grid Worlds</h4>
@@ -46,6 +48,8 @@
     That is exactly where reinforcement learning comes into play. By applying reinforcement learning algorithms it becomes possible to learn the optimal behaviour, where the circle arrives at the goal in as few steps as possible. In our example above the circle moves randomly and therefore it might take a while for the circle to get to the goal. In a few chapter we will implement our first algorithms and see how this simple task can be solved though reinforcement learning.
 </p>
 
+<div class="separator"></div>
+
 <h4>Atari 2600 Games</h4>
 
 <p>
@@ -64,6 +68,8 @@
     The computer receives the current frames of the game and has to decide how to act based on the pixel values. There are of course versions of the game, where the computer receives the positions of the ball and the paddles as coordinate values, but using that version would be essentially cheating. Looking at the pictures and behaving accordingly is not unlike how humans act. Therefore it is especially impressive that with the help of reinforcement learning it is possible to create computer programs that are able to beat human scores in all the Atari 2600 games while making decisions on the basis of the screenshots of the game. 
 </p>
 
+<div class="separator"></div>
+
 <h4>Board Games</h4>
 
 <p>
@@ -77,6 +83,8 @@
 <div class="flex-center">
     <Go />
 </div>
+
+<div class="separator"></div>
 
 <h4>Modern Games</h4>
 
@@ -93,6 +101,8 @@
     The image above shows how an imagined rts game configuration might look like. The picture indicates how a player has to balance several decisions at the same time. What makes these types of games additionally hard is the so-called “fog of war”. The grey areas are not visible to the player, so that only a part of the map is observable. That creates an information imbalance and requires scouting the area to gain information.
 </p>
 
+<div class="separator"></div>
+
 <h3>Finance</h3>
 
 <p>
@@ -107,6 +117,8 @@
     The most exciting part still seems to be portfolio management though. Imagine an artificial intelligence that decides what financial instrument to invest in and in what proportion. And the exact decisions could depend on the risk aversion of the client. There is an abundance of financial data (often free) going back sometimes a hundred of years. That data can be used to train a reinforcement learning AI to potentially perform better than humans over a long period of time. Even if the AI performs equally well to human portfolio managers, the banks could cut costs, as automated trading bots tend to be much cheaper than human portfolio managers. 
 </p>
 
+<div class="separator"></div>
+
 <h3>Robotics</h3>
 
 <p>The field of robotics is vast. We could talk about robots on assembly lines, drones or bipedal robots. In all the above mentioned cases it is possible to apply reinforcement learning to learn the desired task for the robot.</p>
@@ -119,6 +131,8 @@
     For example a bipedal robot can be taught to walk on two legs through the means of reinforcement learning. Each good or bad step of the robot can be used as a learning experience. In fact that is partially already actively done but still remains an active research field. At the moment most successful bipedal robots, like those made by Boston Dynamics, are not actually trained through reinforcement learning, but are hardcoded to solve their task. Therefore these are great feats of pure engineering and not AI, but 10 years down the road and AI will probably replace a lot of hardcoded parts. 
 </p>
 
+<div class="separator"></div>
+
 <h3>Healthcare</h3>
 
 <p>
@@ -129,6 +143,8 @@
     Individual treatment plans for example, where drugs and treatments are adjusted quickly depending on the reaction of the patient could be developed. With each new patient the experience of the AI would increase. Unlike human doctors that have to go through medical studies, practice and have to eventually retire, the experience of AI could be centralized and made available to newer systems without loss of data. Thus the amount of mistakes and the cost of treatment should potentially decrease.
 </p>
 
+<div class="separator"></div>
+
 <div class="flex-center">
     <Healthcare />
 </div>
@@ -136,6 +152,8 @@
 <p>
     The development of new drugs is another exciting possible application of reinforcement learning. The abundance of medical data should allow the AI to learn to accelerate the drug discovery phase while making the overall development process safer. 
 </p>
+
+<div class="separator"></div>
 
 <h3>Autonomous Vehicles</h3>
 
@@ -146,3 +164,4 @@
 <p>
     Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing the current frontier for reinforcement learning. There are many car companies that invest in self-driving cars. Newer car companies like Tesla and Google’s Waymo and old German car manufacturers like Volkswagen all invest an enormous amount of time and money in the development of autonomous vehicles. Research in the area has been going on since at least the 80’s, with demonstrations by Daimler, but the behaviour of these vehicles in edge cases made their use often dangerous for everyday use. Since the DARPA Grand Challenge (2007) great leaps have been made and reinforcement learning played a huge role in that success story. It is probably only a matter of time until autonomous vehicles become fully legalized. The advantages are tremendous. Expected lower mortality rates due to traffic accidents, lower cost for taxi fares and more efficient logistics, as drivers won't have to sleep on overnight journeys.
 </p> 
+<div class="separator"></div>

@@ -96,10 +96,3 @@
 <p class="info">In reinforcement learning each iteration of exchanging an action for a state and a reward is called a timestep.</p>
 
 <div class="separator"></div>
-
-<style>
-    .separator {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 10px;
-    }
-</style>

@@ -67,6 +67,11 @@
         border-left: 3px solid var(--text-color);
     }
 
+    .container :global(.separator) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+    }
+
 
     /* style scrollbar */
     .container {
