@@ -9,6 +9,7 @@
     export let showObservation = false;
     export let showAction = false;
     export let showReward = false;
+    export let showAllRewards = false;
     export let arrows = [];
 
     // svg parameters
@@ -94,6 +95,18 @@
                     width={colSize} 
                     height={rowSize}/>
             </g>
+
+            {#if cell.type !== "block"  && showAllRewards}
+                <text 
+                    x={5+cell.c * colSize} 
+                    y={20+ + cell.r * rowSize} 
+                    font-size="20px" 
+                    font-family="sans-serif" 
+                    fill="var(--text-color)" 
+                    stroke="none">
+                    {cell.reward}
+                </text>
+            {/if}
 
             <!-- blocks -->
             <g fill="var(--text-color)" stroke="black" stroke-width="3">

@@ -1,17 +1,19 @@
 import { Environment } from "$lib/reinforcement_learning/common/Environment";
 
 class GridEnvironment extends Environment {
-    constructor(map) {
+    constructor(map, randomize=0) {
         let actionSpace = [0, 1, 2, 3];
         let observationSpace = [];
         for(let r = 0; r < map.rows; r++) {
             for(let c = 0; c < map.columns; c++) {
                 observationSpace.push({r, c})
             }
-        }
+        } 
+
         super(actionSpace, observationSpace);
         this.map = JSON.parse(JSON.stringify(map));
         this.initObservation = {... map.player};
+        this.randomize = randomize;
     }
 
     getCells() {
@@ -30,6 +32,12 @@ class GridEnvironment extends Environment {
     model(action) {
         let r = this.map.player.r;
         let c = this.map.player.c;
+
+        //take random action
+        if(Math.random() < this.randomize){
+            let index = Math.floor(Math.random() * this.actionSpace.length);
+            action = this.actionSpace[index]    
+        }
         
         let player;
         //move but take care of grid boundaries
