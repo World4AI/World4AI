@@ -1,6 +1,6 @@
 <script>
     import { scaleLinear } from 'd3-scale';
-    import { draw, fade } from 'svelte/transition';
+    import { draw } from 'svelte/transition';
     import { onMount } from 'svelte'
 
     let visible = true;
@@ -171,9 +171,9 @@
 {/each}
 {#if visible}
     <g fill="none" stroke="var(--text-color)">
-        <path in:draw="{1000}" out:fade d={path}></path>
-        <path in:draw="{1000}" out:fade d={path2}></path>
-        <path in:draw="{1000}" out:fade d={path3}></path>
+        <path in:draw="{1000}" d={path}></path>
+        <path in:draw="{1000}" d={path2}></path>
+        <path in:draw="{1000}" d={path3}></path>
     </g>
 {/if}
 </svg>

@@ -1,5 +1,5 @@
 <script>
-    import { draw, fade } from 'svelte/transition';
+    import { draw } from 'svelte/transition';
     import {onMount} from 'svelte';
 
     let visible = true;
@@ -102,7 +102,7 @@
         <rect x="25.497" y="449.6" width="24.903" height="49.492" fill="none" stroke="#000" stroke-dasharray="1,3" stroke-linejoin="round"/>
         <path transform="matrix(-.096894 -.22992 .22992 -.096894 229.99 853.12)" d="m1688.9 1414.4-67.578-28.866 58.788-44.091z" fill="var(--text-color)" fill-rule="evenodd" stroke="none" />
         {#if visible}
-        <g out:fade="{{duration: 1000}}" id="directions" fill="none" stroke="var(--text-color)">
+        <g id="directions" fill="none" stroke="var(--text-color)">
             <path in:draw="{{duration}}" d="m312.42 361.11s-87.506-23.994-52.221-63.512c35.285-39.519 122.79 26.111 123.5-50.81 0.70571-76.92 48.693-14.114 49.398-60.69 0.70572-46.576 0.70572-74.098 0.70572-74.098" marker-end="url(#Arrow2Lend)" stroke-width="1.0016"/>
             <path in:draw="{{duration}}" d="m332.18 463.43 84.683-0.70569" marker-end="url(#marker1545)"/>
             <path in:draw="{{duration}}" d="m434.5 416.15s-57.161-45.164-88.917-21.171c-31.756 23.994-52.927 46.576-52.927 46.576" marker-end="url(#marker1605)"/>
