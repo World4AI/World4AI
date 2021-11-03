@@ -27,8 +27,8 @@ const rl = [
                 link: '/blocks/reinforcement_learning/intuition/exploration_vs_exploitation'
             },
             {
-                name: 'Agent and Environment Components',
-                link: '/blocks/reinforcement_learning/intuition/agent_and_environment_components'
+                name: 'Value, Policy, Model',
+                link: '/blocks/reinforcement_learning/intuition/value_policy_model'
             },
             {
                 name: 'Reinforcement Learning Terminology',
