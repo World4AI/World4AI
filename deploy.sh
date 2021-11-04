@@ -4,7 +4,7 @@
 set -e
 
 # navigate into the docs directory
-cd docs
+cd website
 
 # build
 npm run build
