@@ -23,15 +23,16 @@
 </svelte:head>
 
 <h1>Reinforcement Learning Applications</h1>
-<h2>What is reinforcement learning used for?</h2>
+<p><em>What is reinforcement learning used for?</em></p>
+<div class="separator"></div>
 
 <p>It is entirely possible to introduce reinforcement learning using only formal definitions and math, but we will start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.</p>
 
 <div class="separator"></div>
 
-<h3>Games</h3>
+<h2>Games</h2>
 
-<h4>Grid Worlds</h4>
+<h3>Grid Worlds</h3>
 
 <p>
     Most beginner reinforcement learning problems are grid world problems. They are easy enough to understand and do not require a lot of computational power to solve. A grid world is a rectangular-shaped game with a certain number of rows and columns, where an intersection of a row and a column is a so-called cell in the grid world. A gridworld is (usually) a simple game. You have some sort of a player that can move through the gridworld, some obstacles to prevent the player from entering a certain cell and a goal the player needs to achieve, which then terminates (or restarts) the game. But of course there are grid worlds that are substantially more complex. These can for example include powerups, enemies and many levels.
@@ -50,7 +51,7 @@
 
 <div class="separator"></div>
 
-<h4>Atari 2600 Games</h4>
+<h3>Atari 2600 Games</h3>
 
 <p>
     Computer games have become a testing ground for reinforcement learning algorithms. Most new algorithms are tested on the Atari 2600 games in order to show how efficient the algorithms are. For a human it is not especially hard to learn the rules of the game (although it might require some time to master the game), but for computers it is an entirely different story. Due to the vast number of possible pixel values on the screen the usual strategies that are used to solve the grid worlds break down. Good solutions require the use of neural networks. 
@@ -70,7 +71,7 @@
 
 <div class="separator"></div>
 
-<h4>Board Games</h4>
+<h3>Board Games</h3>
 
 <p>
     Board games, like backgammon, chess and go used to be the frontier for AI. There was an assumption that a computer would require creativity and imagination to beat a professional player at backgammon, chess and go. Essentially that meant that the computer needed to possess human characteristics in order to win against a professional player. Nevertheless in all three games professionals and even world champions were beaten by AI systems.
@@ -86,7 +87,7 @@
 
 <div class="separator"></div>
 
-<h4>Modern Games</h4>
+<h3>Modern Games</h3>
 
 <p>
     Compared to Atari games, modern games have become a lot more complex and even for human players there is a steep learning curve, especially if you wish to become a professional player. In spite of that OpenAI and DeepMind have beaten top players in two of the most famous esports games, Dota II and StarCraft II.
@@ -103,7 +104,7 @@
 
 <div class="separator"></div>
 
-<h3>Finance</h3>
+<h2>Finance</h2>
 
 <p>
     Nowadays it seems that reinforcement learning is taking over the financial industry in every aspect imaginable. From valuing financial products to chatbots that communicate with prospective clients. 
@@ -119,7 +120,7 @@
 
 <div class="separator"></div>
 
-<h3>Robotics</h3>
+<h2>Robotics</h2>
 
 <p>The field of robotics is vast. We could talk about robots on assembly lines, drones or bipedal robots. In all the above mentioned cases it is possible to apply reinforcement learning to learn the desired task for the robot.</p>
 
@@ -133,7 +134,7 @@
 
 <div class="separator"></div>
 
-<h3>Healthcare</h3>
+<h2>Healthcare</h2>
 
 <p>
     The possible advances in healthcare through the help of reinforcement learning are probably the ones that are of the greatest benefit to the general population. Several applications come to mind when I think about the intersection of healthcare and reinforcement learning.
@@ -155,7 +156,7 @@
 
 <div class="separator"></div>
 
-<h3>Autonomous Vehicles</h3>
+<h2>Autonomous Vehicles</h2>
 
 <div class="flex-center">
     <AutonomousVehicles />

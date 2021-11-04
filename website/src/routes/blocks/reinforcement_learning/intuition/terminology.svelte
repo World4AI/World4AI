@@ -1,6 +1,9 @@
 <h1>Reinforcement Learning Terminology</h1>
 
 <div class="separator"></div>
+<p><em>What terminology is usefull to understand reinforcement learning?</em></p>
+<div class="separator"></div>
+
 <p>In this chapter we are going to look at some terminology that is used throughout reinforcement learning and at how reinforcement learning algorithms can be classified based on the components the agent has.</p>
 
 <div class="separator"></div>
@@ -21,6 +24,6 @@
 <div class="separator"></div>
 <h2>Prediction vs Improvement vs Control</h2>
 
-<p>There are several tasks an agent might need to perform. We talk about the <strong>prediction</strong> task when we have a certain policy and the agent has to calculate the exact value policy for that policy. We talk about the <strong>improvement</strong> task when we want to improve a given policy. And we talk about the <strong>control</strong> task when the agent has to find the best possible policy. As you can imagine, prediction and improvement are necessary steps to solve the control problem.</p>
+<p>There are several tasks an agent might need to perform. We talk about the <strong>prediction</strong> task when we have a certain policy and the agent has to calculate the exact value function for that policy. We talk about the <strong>improvement</strong> task when we want to improve a given policy. And we talk about the <strong>control</strong> task when the agent has to find the best possible policy. As you can imagine, prediction and improvement are necessary steps to solve the control problem.</p>
 
 <div class="separator"></div>

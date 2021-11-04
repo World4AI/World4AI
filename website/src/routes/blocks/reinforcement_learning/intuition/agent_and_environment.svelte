@@ -22,8 +22,9 @@
 </svelte:head>
 
 <h1>Agent and Environment</h1>
+<p><em>What are the main components of reinforcement learning?</em></p>
 
-<h2>What are the main components of reinforcement learning?</h2>
+<div class="separator"></div>
 
 <p>All of reinforcement learning is based on two main components, the <strong>agent</strong> and the <strong>environment</strong>. To introduce both components we will follow the customary route taken in the reinforcement learning education and use a grid world example.</p>  
 

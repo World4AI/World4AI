@@ -23,8 +23,8 @@
 </svelte:head>
 
 <h1>Definition Of Reinforcement Learning</h1>
-<h2>What are the key characteristics of reinforcement learning?</h2>
-
+<p>What are the key characteristics of reinforcement learning?</p>
+<div class="separator"></div>
 <p>There are probably dozens of formal definitions of reinforcement learning. These definitions do not necessarily contradict each other, but rather explain something similar when we look a little deeper at what the definitions are trying to convey. In this section we are going to look at the one definition that should capture the essence of reinforcement learning in a very clear way.</p>
 
 <p class="info">Reinforcement Learning is Learning through Trial and Error and Delayed Rewards <sup>[1]</sup>.</p>
@@ -33,7 +33,7 @@
 
 <div class="separator"></div>
 
-<h3>Learning</h3>
+<h2>Learning</h2>
 
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p> 
 
@@ -55,7 +55,7 @@
 
 <div class="separator"></div>
 
-<h3>Rewards</h3>
+<h2>Rewards</h2>
 
 <p>The question still remains how exactly does the agent know what the goal of the environment actually is? The environment with which the agent interacts gives feedback about the behaviour of the agent by giving out a reward after each single step that the agent takes.</p>
 
@@ -73,7 +73,7 @@
 
 <div class="separator"></div>
 
-<h3>Trial and Error</h3>
+<h2>Trial and Error</h2>
 
 <p>The problem with rewards is that it is not clear from the very beginning what path produces the highest possible sum of rewards. It is therefore not clear which sequence of actions the agent needs to take. In reinforcement learning there is only the reward signal and even if the agent receives a positive sum of rewards it never knows if it could have done better. Unlike in supervised learning, there is no teacher/supervisor to tell the agent what the best behaviour is. So how can the agent figure out what sequence of actions produces the highest sum of rewards? The only way it can, by trial and error.</p>
 
@@ -92,7 +92,7 @@
 
 <div class="separator"></div>
 
-<h3>Delayed</h3>
+<h2>Delayed</h2>
 
 <p>In reinforcement learning the agent often needs to take dozens or even thousands of steps before a particular reward is achieved. In that case there has been a succession of many steps and the agent has to decide which step and in which proportion is responsible for the reward, so that the agent could select the decisions that lead to a good sequence of rewards more often.</p>
 
@@ -108,7 +108,7 @@
 
 <div class="separator"></div>
 
-<h3>Notes</h3>
+<h2>Notes</h2>
 
 <p>
     [1] This definition is highly inspired by the book "Reinforcement Learning: An Introduction" by Richard S. Sutton and Andrew G. Barto.
