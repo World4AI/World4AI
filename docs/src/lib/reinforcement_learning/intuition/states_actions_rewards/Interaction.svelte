@@ -51,30 +51,30 @@
         <path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"/>
         </marker>
     </defs>
-    <g stroke="none" fill="text-color">
-        <g id="environment" fill="none" stroke="var(--text-color)">
-        <rect x="20" y="182.96" width="120" height="120" opacity=".999" stroke-linejoin="round"/>
-        <rect x="30" y="192.96" width="100" height="100" opacity=".999" stroke-linejoin="round"/>
-        <g>
-        <path d="m40 192.96v100"/>
-        <path d="m50 192.96v100"/>
-        <path d="m60 192.96v100"/>
-        <path d="m70 192.96v100"/>
-        <path d="m80 192.96v100"/>
-        <path d="m90 192.96v100"/>
-        <path d="m100 192.96v100"/>
-        <path d="m110 192.96v100"/>
-        <path d="m120 192.96v100"/>
-        <path d="m30 202.96h100"/>
-        <path d="m30 212.96h100"/>
-        <path d="m30 222.96h100"/>
-        <path d="m30 232.96h100"/>
-        <path d="m30 242.96h100"/>
-        <path d="m30 252.96h100"/>
-        <path d="m30 262.96h100"/>
-        <path d="m30 272.96h100"/>
-        <path d="m30 282.96h100"/>
-        </g>
+    <g stroke-width="1.2" stroke="var(--text-color)" fill="none">
+        <g id="environment">
+            <rect x="20" y="182.96" width="120" height="120" />
+            <rect x="30" y="192.96" width="100" height="100"/>
+            <g>
+                <path d="m40 192.96v100"/>
+                <path d="m50 192.96v100"/>
+                <path d="m60 192.96v100"/>
+                <path d="m70 192.96v100"/>
+                <path d="m80 192.96v100"/>
+                <path d="m90 192.96v100"/>
+                <path d="m100 192.96v100"/>
+                <path d="m110 192.96v100"/>
+                <path d="m120 192.96v100"/>
+                <path d="m30 202.96h100"/>
+                <path d="m30 212.96h100"/>
+                <path d="m30 222.96h100"/>
+                <path d="m30 232.96h100"/>
+                <path d="m30 242.96h100"/>
+                <path d="m30 252.96h100"/>
+                <path d="m30 262.96h100"/>
+                <path d="m30 272.96h100"/>
+                <path d="m30 282.96h100"/>
+            </g>
         </g>
         <text id="agent-text" x="377.98828" y="480.05859" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="377.98828" y="480.05859" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Agent</tspan></text>
         <text id="environment-text" x="17.988281" y="40.058594" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="17.988281" y="40.058594" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Environment</tspan></text>

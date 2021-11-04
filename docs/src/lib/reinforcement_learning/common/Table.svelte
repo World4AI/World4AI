@@ -1,0 +1,40 @@
+<script>
+    export let header = [];
+    export let data = []
+</script>
+
+<table>
+    <thead>
+        <tr>
+            {#each header as entry}
+                <th>{entry}</th>
+            {/each}
+        </tr>
+    </thead>
+    <tbody>
+        {#each data as row}
+            <tr>
+                {#each row as cell}
+                    <td>{JSON.stringify(cell)}</td>
+                {/each}
+            </tr>
+        {/each}
+    </tbody>
+</table>
+
+<style>
+    table {
+        width: 100%;
+    }
+
+    th {
+        text-transform: uppercase;
+    }
+
+    td, th {
+        border: 1px double var(--text-color);
+        padding: 7px;
+        text-align: center;
+    }
+
+</style>
