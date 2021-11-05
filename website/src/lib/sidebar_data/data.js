@@ -54,4 +54,20 @@ const rl = [
     }
 ];
 
-export {rl}
+const programming = [
+    {
+        name: 'Motivation',
+        links: [
+            {
+                name: 'Introduction',
+                link: '/blocks/programming/motivation/introduction'
+            },
+            {
+                name: 'Python',
+                link: '/blocks/programming/motivation/python'
+            },
+        ]
+    },
+];
+
+export {rl, programming}
