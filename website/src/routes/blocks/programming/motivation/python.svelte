@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>World4AI | Programming | Python</title>
+    <meta name="description" content="Python is the most significant programming language when it comes to AI and machine learaning.">
+</svelte:head>
+
 <h1>Python</h1>
 <p><em>Why is Python our language of choice for artificial intelligence?</em></p>
 <div class="separator"></div>

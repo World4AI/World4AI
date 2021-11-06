@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>World4AI | Programming | Motivation</title>
+    <meta name="description" content="Artificial Intelligence requires fundamental programming skills. For that reason it makes sense to start learning about AI by learning how to program.">
+</svelte:head>
+
 <h1>Introduction</h1>
 <p><em>Why is programming important for artificial intelligence?</em></p>
 <div class="separator"></div>
