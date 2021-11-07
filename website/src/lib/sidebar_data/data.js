@@ -68,6 +68,19 @@ const programming = [
             },
         ]
     },
+    {
+        name: 'Python Fundamentals',
+        links: [
+            {
+                name: 'Introduction',
+                link: '/blocks/programming/python_fundamentals/introduction'
+            },
+            {
+                name: 'Setup',
+                link: '/blocks/programming/python_fundamentals/setup'
+            },
+        ]
+    },
 ];
 
 export {rl, programming}
