@@ -1,6 +1,6 @@
 <svelte:head>
     <title>World4AI | Programming | Python Setup</title>
-    <meta name="description" content="There are several ways to use Python. For absolute beginners Anaconda is a great choice.">
+    <meta name="description" content="There are several ways to use Python. For absolute beginners cloud programming is a great choice.">
 </svelte:head>
 
 <h1>Python setup</h1>
