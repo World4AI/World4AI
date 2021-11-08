@@ -4,6 +4,11 @@ import adapter from '@sveltejs/adapter-static';
 const config = {
 	kit: {
         target: '#svelte',
+        vite: {
+            optimizeDeps: {
+                include: ["highlight.js/lib/core"],
+            },
+        },
         paths: {
             base: '',
             assets: ''

@@ -79,6 +79,14 @@ const programming = [
                 name: 'Setup',
                 link: '/blocks/programming/python_fundamentals/setup'
             },
+            {
+                name: 'Hello World',
+                link: '/blocks/programming/python_fundamentals/hello_world'
+            },
+            {
+                name: 'Variables',
+                link: '/blocks/programming/python_fundamentals/variables'
+            },
         ]
     },
 ];
