@@ -10,6 +10,11 @@
   const pointersCode = ">>> sentence = 'Hello World'\n>>> sentence_2 = sentence\n>>> print(sentence_2)\nHello World\n>>> id(sentence)\n139657570418736\n>>> id(sentence_2)\n139657570418736"
 </script>
 
+<svelte:head>
+    <title>World4AI | Programming | Variables </title>
+    <meta name="description" content="In Python variables are used to access and modify data. Variables are pointers to the memory location of that data.">
+</svelte:head>
+
 <h1>Variables</h1>
 <p><em>What are variables and how are they used in Python?</em></p>
 <div class="separator"></div>

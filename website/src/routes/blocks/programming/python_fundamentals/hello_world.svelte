@@ -7,6 +7,10 @@
   const multiLineComment = '"""\nThis\nis\na\nmultiline\ncomment\n"""'
 </script>
 
+<svelte:head>
+    <title>World4AI | Programming | Hello World</title>
+    <meta name="description" content="To create a 'Hello World' program in Python we need to use the pring() function.">
+</svelte:head>
 
 <h1>Hello World</h1>
 <p><em>How do you output text to the console and how do you put comments in your code?</em></p>
