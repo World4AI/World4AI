@@ -87,7 +87,11 @@ const programming = [
                 name: 'Variables',
                 link: '/blocks/programming/python_fundamentals/variables'
             },
-        ]
+            {
+                name: 'Data Types',
+                link: '/blocks/programming/python_fundamentals/data_types'
+            },
+       ]
     },
 ];
 
