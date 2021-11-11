@@ -39,5 +39,5 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 <h2>Strong Typing </h2>
 <p>Python is classified as strongly-typed language. Essentially this means that operations accross incompatible types of data are not allowed to happen. For example you can add an integer to a floating point number, but adding a string to an integer is prohibited in Python.</p>
 <Code code={strongCode} />
-<p>If you try to add add a string to a number, Python will throw an error.</p>
+<p>If you try to add a string to a number, Python will throw an error.</p>
 <div class="separator"></div>
