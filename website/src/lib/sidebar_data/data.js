@@ -91,6 +91,10 @@ const programming = [
                 name: 'Data Types',
                 link: '/blocks/programming/python_fundamentals/data_types'
             },
+            {
+                name: 'Dynamic and Strong Typing',
+                link: '/blocks/programming/python_fundamentals/dynamic_strong_typing'
+            },
        ]
     },
 ];
