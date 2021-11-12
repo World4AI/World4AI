@@ -8,6 +8,12 @@
 >>> a = 5
 >>>`;
 </script>
+
+<svelte:head>
+    <title>World4AI | Programming | Operators</title>
+    <meta name="description" content="Python has built in operators. Operators act like functions, which take operands as input and create ouput.">
+</svelte:head>
+
 <h1> Operators in Python </h1>
 <p><em>What is an operator?</em></p>
 <div class="separator"></div>
