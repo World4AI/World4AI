@@ -95,6 +95,10 @@ const programming = [
                 name: 'Dynamic and Strong Typing',
                 link: '/blocks/programming/python_fundamentals/dynamic_strong_typing'
             },
+            {
+                name: 'Operators',
+                link: '/blocks/programming/python_fundamentals/operators'
+            },
        ]
     },
 ];
