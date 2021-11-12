@@ -101,6 +101,39 @@ const programming = [
             },
        ]
     },
+    {
+        name: 'Data Types',
+        links: [
+            {
+                name: 'Introduction',
+                link: '/blocks/programming/data_types/introduction'
+            },
+            {
+                name: 'Numeric',
+                link: '/blocks/programming/data_types/numeric'
+            },
+            {
+                name: 'String',
+                link: '/blocks/programming/data_types/string'
+            },
+            {
+                name: 'Boolean',
+                link: '/blocks/programming/data_types/boolean'
+            },
+            {
+                name: 'Tuple',
+                link: '/blocks/programming/data_types/tuple'
+            },
+            {
+                name: 'List',
+                link: '/blocks/programming/data_types/list'
+            },
+            {
+                name: 'Dictionary',
+                link: '/blocks/programming/data_types/dictionary'
+            },
+        ]
+    }
 ];
 
 export {rl, programming}
