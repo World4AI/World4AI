@@ -1,220 +1,202 @@
 <script>
     import {draw} from 'svelte/transition';
 </script>        
-<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
- <g fill="none" stroke="var(--text-color)">
-  <g transform="translate(20,-40)">
-   <g stroke-width="1px">
-    <path d="m160 220h20"/>
-    <path d="m200 220h20"/>
-    <path d="m240 220h20"/>
-    <path d="m280 220h20"/>
-    <path d="m160 220v20"/>
-    <path d="m160 260v20"/>
-    <path d="m160 300v20"/>
-    <path d="m160 340v20"/>
-    <path d="m300 220v20"/>
-    <path d="m300 260v20"/>
-    <path d="m300 300v20"/>
-    <path d="m300 340v20"/>
-    <path d="m160 360h20"/>
-    <path d="m200 360h20"/>
-    <path d="m240 360h20"/>
-    <path d="m280 360h20"/>
-    <path d="m180 230h20"/>
-    <path d="m220 230h20"/>
-    <path d="m260 230h20"/>
-    <path d="m290 240v20"/>
-    <path d="m290 280v20"/>
-    <path d="m290 320v20"/>
-    <path d="m280 350h-20"/>
-    <path d="m240 350h-20"/>
-    <path d="m200 350h-20"/>
-    <path d="m170 340v-20"/>
-    <path d="m170 300v-20"/>
-    <path d="m170 260v-20"/>
-    <path d="m200 240h20"/>
-    <path d="m240 240h20"/>
-    <path d="m280 260v20"/>
-    <path d="m280 300v20"/>
-    <path d="m240 340h20"/>
-    <path d="m200 340h20"/>
-    <path d="m180 320v-20"/>
-    <path d="m180 280v-20"/>
-   </g>
-   <path d="m200 260h60v60h-60z" stroke-dasharray="16, 4, 2, 4" stroke-width="2"/>
-  </g>
-  <g opacity=0.3 stroke-width="1px">
-   <path in:draw="{{duration:2000}}" d="m240 240h20v20h-20z"/>
-   <path in:draw="{{duration:2000}}" d="m185 325v25"/>
-   <path in:draw="{{duration:2000}}" d="m190 325v30"/>
-   <path in:draw="{{duration:2000}}" d="m195 325v35"/>
-   <path in:draw="{{duration:2000}}" d="m200 325v25"/>
-   <path in:draw="{{duration:2000}}" d="m205 325v35"/>
-   <path in:draw="{{duration:2000}}" d="m210 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m215 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m220 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m225 325v35"/>
-   <path in:draw="{{duration:2000}}" d="m230 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m235 325v35"/>
-   <path in:draw="{{duration:2000}}" d="m240 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m245 325v50"/>
-   <path in:draw="{{duration:2000}}" d="m250 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m255 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m260 325v50"/>
-   <path in:draw="{{duration:2000}}" d="m265 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m270 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m275 325v50"/>
-   <path in:draw="{{duration:2000}}" d="m280 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m285 325v50"/>
-   <path in:draw="{{duration:2000}}" d="m290 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m295 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m300 325v35"/>
-   <path in:draw="{{duration:2000}}" d="m305 325v40"/>
-   <path in:draw="{{duration:2000}}" d="m310 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m315 325v45"/>
-   <path in:draw="{{duration:2000}}" d="m325 315h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 310h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 305h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 295h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 300h30"/>
-   <path in:draw="{{duration:2000}}" d="m325 290h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 285h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 280h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 275h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 270h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 265h50"/>
-   <path in:draw="{{duration:2000}}" d="m325 260h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 255h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 250h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 245h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 240h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 235h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 230h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 225h30"/>
-   <path in:draw="{{duration:2000}}" d="m325 220h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 215h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 210h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 205h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 200h35"/>
-   <path in:draw="{{duration:2000}}" d="m325 195h40"/>
-   <path in:draw="{{duration:2000}}" d="m325 190h45"/>
-   <path in:draw="{{duration:2000}}" d="m325 185h50"/>
-   <path in:draw="{{duration:2000}}" d="m315 175v-35"/>
-   <path in:draw="{{duration:2000}}" d="m310 175v-30"/>
-   <path in:draw="{{duration:2000}}" d="m305 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m300 175v-35"/>
-   <path in:draw="{{duration:2000}}" d="m295 175v-45"/>
-   <path in:draw="{{duration:2000}}" d="m290 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m285 175v-45"/>
-   <path in:draw="{{duration:2000}}" d="m280 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m275 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m270 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m265 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m260 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m255 175v-45"/>
-   <path in:draw="{{duration:2000}}" d="m250 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m245 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m240 175v-45"/>
-   <path in:draw="{{duration:2000}}" d="m235 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m230 175v-35"/>
-   <path in:draw="{{duration:2000}}" d="m225 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m220 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m215 175v-50"/>
-   <path in:draw="{{duration:2000}}" d="m210 175v-35"/>
-   <path in:draw="{{duration:2000}}" d="m205 175v-45"/>
-   <path in:draw="{{duration:2000}}" d="m200 175v-35"/>
-   <path in:draw="{{duration:2000}}" d="m195 175v-55"/>
-   <path in:draw="{{duration:2000}}" d="m190 175v-40"/>
-   <path in:draw="{{duration:2000}}" d="m185 175v-25"/>
-   <path in:draw="{{duration:2000}}" d="m175 185h-35"/>
-   <path in:draw="{{duration:2000}}" d="m175 190h-30"/>
-   <path in:draw="{{duration:2000}}" d="m175 200h-45"/>
-   <path in:draw="{{duration:2000}}" d="m175 195h-35"/>
-   <path in:draw="{{duration:2000}}" d="m175 205h-50"/>
-   <path in:draw="{{duration:2000}}" d="m175 210h-50"/>
-   <path in:draw="{{duration:2000}}" d="m175 215h-45"/>
-   <path in:draw="{{duration:2000}}" d="m175 220h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 225h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 230h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 235h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 240h-50"/>
-   <path in:draw="{{duration:2000}}" d="m175 245h-45"/>
-   <path in:draw="{{duration:2000}}" d="m175 250h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 255h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 260h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 265h-50"/>
-   <path in:draw="{{duration:2000}}" d="m175 270h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 275h-60"/>
-   <path in:draw="{{duration:2000}}" d="m175 280h-50"/>
-   <path in:draw="{{duration:2000}}" d="m175 285h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 290h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 295h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 300h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 305h-40"/>
-   <path in:draw="{{duration:2000}}" d="m175 310h-55"/>
-   <path in:draw="{{duration:2000}}" d="m175 315h-45"/>
-   <path in:draw="{{duration:2000}}" d="m190 0v50h10v65"/>
-   <path in:draw="{{duration:2000}}" d="m200 0v45h10v75"/>
-   <path in:draw="{{duration:2000}}" d="m210 0v40h10v75"/>
-   <path in:draw="{{duration:2000}}" d="m220 0v35h10v75"/>
-   <path in:draw="{{duration:2000}}" d="m230 0v30h10v85"/>
-   <path in:draw="{{duration:2000}}" d="m240 0v25h10v95"/>
-   <path in:draw="{{duration:2000}}" d="m195 0v40"/>
-   <path in:draw="{{duration:2000}}" d="m205 0v25"/>
-   <path in:draw="{{duration:2000}}" d="m215 0v30"/>
-   <path in:draw="{{duration:2000}}" d="m225 0v25"/>
-   <path in:draw="{{duration:2000}}" d="m10 500v-145h170"/>
-   <path in:draw="{{duration:2000}}" d="m20 500v-135h150"/>
-   <path in:draw="{{duration:2000}}" d="m30 500v-125h125"/>
-   <path in:draw="{{duration:2000}}" d="m40 500v-115h145"/>
-   <path in:draw="{{duration:2000}}" d="m50 500v-105h150"/>
-   <path in:draw="{{duration:2000}}" d="m60 500v-95h155v-25"/>
-   <path in:draw="{{duration:2000}}" d="m70 500v-85h155v-25"/>
-   <path in:draw="{{duration:2000}}" d="m80 500v-75h155v-40"/>
-   <path in:draw="{{duration:2000}}" d="m10 0v110h10v65h135"/>
-   <path in:draw="{{duration:2000}}" d="m20 0v100h10v65h140"/>
-   <path in:draw="{{duration:2000}}" d="m30 0v90h10v65h140"/>
-   <path in:draw="{{duration:2000}}" d="m40 0v80h10v65h115"/>
-   <path in:draw="{{duration:2000}}" d="m80 0v70h40v40"/>
-   <path in:draw="{{duration:2000}}" d="m90 0v60h40v40"/>
-   <path in:draw="{{duration:2000}}" d="m70 0v80h40v40"/>
-   <path in:draw="{{duration:2000}}" d="m100 0v50h40v70"/>
-   <path in:draw="{{duration:2000}}" d="m110 0v40h40v80"/>
-   <path in:draw="{{duration:2000}}" d="m490 0v180h-100"/>
-   <path in:draw="{{duration:2000}}" d="m480 0v170h-90"/>
-   <path in:draw="{{duration:2000}}" d="m470 0v160h-110"/>
-   <path in:draw="{{duration:2000}}" d="m460 0v150h-60"/>
-   <path in:draw="{{duration:2000}}" d="m450 0v140h-100"/>
-   <path in:draw="{{duration:2000}}" d="m440 0v130h-110"/>
-   <path in:draw="{{duration:2000}}" d="m430 0v120h-100"/>
-   <path in:draw="{{duration:2000}}" d="m420 0v110h-50"/>
-   <path in:draw="{{duration:2000}}" d="m380 280v70h70v120h40"/>
-   <path in:draw="{{duration:2000}}" d="m390 280v60h70v120h30"/>
-   <path in:draw="{{duration:2000}}" d="m400 280v50h70v120h20"/>
-   <path in:draw="{{duration:2000}}" d="m410 280v40h70v120h10"/>
-   <path in:draw="{{duration:2000}}" d="m500 220h-100"/>
-   <path in:draw="{{duration:2000}}" d="m500 240h-80"/>
-   <path in:draw="{{duration:2000}}" d="m500 260h-100"/>
-   <path in:draw="{{duration:2000}}" d="m0 200h80v40h20"/>
-   <path in:draw="{{duration:2000}}" d="m0 210h70v40h40"/>
-   <path in:draw="{{duration:2000}}" d="m0 220h60v40h50"/>
-   <path in:draw="{{duration:2000}}" d="m0 230h50v40h50"/>
-   <path in:draw="{{duration:2000}}" d="m0 240h40v40h60"/>
-   <path in:draw="{{duration:2000}}" d="m0 300h90"/>
-   <path in:draw="{{duration:2000}}" d="m0 310h100"/>
-   <path in:draw="{{duration:2000}}" d="m0 320h120"/>
-   <path in:draw="{{duration:2000}}" d="m280 0v30h10v80"/>
-   <path in:draw="{{duration:2000}}" d="m290 0v20h10v100"/>
-   <path in:draw="{{duration:2000}}" d="m300 0v10h10v100"/>
-   <path in:draw="{{duration:2000}}" d="m390 0v20l-60 70"/>
-   <path in:draw="{{duration:2000}}" d="m400 0v30l-70 80"/>
-   <path in:draw="{{duration:2000}}" d="m240 500v-20h20v-80"/>
-   <path in:draw="{{duration:2000}}" d="m250 500v-10h20v-100"/>
-   <path in:draw="{{duration:2000}}" d="m280 500v-110"/>
-   <path in:draw="{{duration:2000}}" d="m300 500v-120"/>
-   <path in:draw="{{duration:2000}}" d="m350 500v-130h-20"/>
-   <path in:draw="{{duration:2000}}" d="m370 500v-140h-40"/>
-  </g>
+
+<svg width="500" height="500" version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <pattern id="pattern5306" patternTransform="matrix(4 0 0 4 50 50)" xlink:href="#Packedcircles"/>
+  <pattern id="Packedcircles" width="1" height="1.73205080756" patternTransform="translate(0) scale(5)" patternUnits="userSpaceOnUse">
+   <circle cy=".5" r=".5" fill="var(--text-color)"/>
+   <circle cx="1" cy=".5" r=".5" fill="var(--text-color)"/>
+   <circle cx=".5" cy="1.366" r=".5" fill="var(--text-color)"/>
+   <circle cx=".5" cy="-.36603" r=".5" fill="var(--text-color)"/>
+  </pattern>
+ </defs>
+ <g id="outer-lines" opacity=0.2 fill="none" stroke="var(--text-color)" stroke-width="1px">
+  <path in:draw="{{duration:2000}}" d="m165 0v100h5v35"/>
+  <path in:draw="{{duration:2000}}" d="m170 0v95h5v30"/>
+  <path in:draw="{{duration:2000}}" d="m175 0v90h5v30"/>
+  <path in:draw="{{duration:2000}}" d="m180 0v85h5v30"/>
+  <path in:draw="{{duration:2000}}" d="m185 0v80h5v50"/>
+  <path in:draw="{{duration:2000}}" d="m10 500v-160h130"/>
+  <path in:draw="{{duration:2000}}" d="m15 500v-155h135"/>
+  <path in:draw="{{duration:2000}}" d="m20 500v-150h135"/>
+  <path in:draw="{{duration:2000}}" d="m25 500v-145h135"/>
+  <path in:draw="{{duration:2000}}" d="m220 0v75h5v55"/>
+  <path in:draw="{{duration:2000}}" d="m225 0v70h5v65"/>
+  <path in:draw="{{duration:2000}}" d="m230 0v65h5v65"/>
+  <path in:draw="{{duration:2000}}" d="m215 0v65"/>
+  <path in:draw="{{duration:2000}}" d="m210 0v75h5v60"/>
+  <path in:draw="{{duration:2000}}" d="m235 0v55"/>
+  <path in:draw="{{duration:2000}}" d="m270 0v60h-10v70"/>
+  <path in:draw="{{duration:2000}}" d="m280 0v70h-10v60"/>
+  <path in:draw="{{duration:2000}}" d="m300 0v60h20v30l-20 30v10"/>
+  <path in:draw="{{duration:2000}}" d="m328 6v60h20v30l-20 30v10"/>
+  <path in:draw="{{duration:2000}}" d="m356 24v60h20v30l-20 30v10"/>
+  <path in:draw="{{duration:2000}}" d="m490 0v260h-110"/>
+  <path in:draw="{{duration:2000}}" d="m480 0v250h-110"/>
+  <path in:draw="{{duration:2000}}" d="m470 0v240h-80"/>
+  <path in:draw="{{duration:2000}}" d="m460 0v230h-80"/>
+  <path in:draw="{{duration:2000}}" d="m450 0v220h-60"/>
+  <path in:draw="{{duration:2000}}" d="m440 0v210h-60"/>
+  <path in:draw="{{duration:2000}}" d="m430 0v200h-50"/>
+  <path in:draw="{{duration:2000}}" d="m420 0v190h-50"/>
+  <path in:draw="{{duration:2000}}" d="m10 0v130h10v120h100"/>
+  <path in:draw="{{duration:2000}}" d="m20 0v120h10v120h100"/>
+  <path in:draw="{{duration:2000}}" d="m30 0v110h10v120h70"/>
+  <path in:draw="{{duration:2000}}" d="m40 0v100h10v120h70"/>
+  <path in:draw="{{duration:2000}}" d="m50 0v90h10v120h70"/>
+  <path in:draw="{{duration:2000}}" d="m60 0v80h10v120h50"/>
+  <path in:draw="{{duration:2000}}" d="m90 0v90h20v60l30 10"/>
+  <path in:draw="{{duration:2000}}" d="m110 0v70h20v60l20 10"/>
+  <path in:draw="{{duration:2000}}" d="m0 310h100"/>
+  <path in:draw="{{duration:2000}}" d="m0 300h120"/>
+  <path in:draw="{{duration:2000}}" d="m0 290h100"/>
+  <path in:draw="{{duration:2000}}" d="m0 280h120"/>
+  <path in:draw="{{duration:2000}}" d="m0 270h100"/>
+  <path in:draw="{{duration:2000}}" d="m370 290v80h80v60h40"/>
+  <path in:draw="{{duration:2000}}" d="m380 290v70h80v60h30"/>
+  <path in:draw="{{duration:2000}}" d="m370 280h20v70h80v60h20"/>
+  <path in:draw="{{duration:2000}}" d="m370 270h30v70h90"/>
+  <path in:draw="{{duration:2000}}" d="m70 500v-80h100v-30"/>
+  <path in:draw="{{duration:2000}}" d="m90 500v-60h100v-40"/>
+  <path in:draw="{{duration:2000}}" d="m110 500v-40h100v-50"/>
+  <path in:draw="{{duration:2000}}" d="m140 500v-30h90v-60"/>
+  <path in:draw="{{duration:2000}}" d="m250 410v80"/>
+  <path in:draw="{{duration:2000}}" d="m270 410v90"/>
+  <path in:draw="{{duration:2000}}" d="m290 410v90"/>
+  <path in:draw="{{duration:2000}}" d="m310 410v70h20v20"/>
+  <path in:draw="{{duration:2000}}" d="m330 400h20v60h20v30"/>
+  <path in:draw="{{duration:2000}}" d="m340 380h40v80h30v40"/>
+ </g>
+ <g>
+  <rect x="210" y="210" width="80" height="80" ry="8" fill="url(#pattern5306)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" stroke-width="5"/>
+  <rect x="226" y="226" width="48" height="48" ry="4" fill="var(--text-color)" stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1" stroke-width="2"/>
+  <rect x="242" y="242" width="16" height="16" ry="1.3333" fill-opacity=".99846"/>
+ </g>
+ <g id="fillers" fill="var(--text-color)" fill-opacity=".99846">
+  <rect x="220.67" y="203.33" width="2.2222" height="6.6667" ry="0"/>
+  <rect x="225.11" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="229.56" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="234" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="238.44" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="242.89" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="247.33" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="251.78" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="256.22" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="260.67" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="265.11" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="269.56" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="274" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="278.44" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="282.89" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="290" y="214.89" width="6.6667" height="2.2222"/>
+  <rect x="290" y="219.33" width="6.6667" height="2.2222"/>
+  <rect x="290" y="223.78" width="6.6667" height="2.2222"/>
+  <rect x="290" y="228.22" width="6.6667" height="2.2222"/>
+  <rect x="290" y="232.67" width="6.6667" height="2.2222"/>
+  <rect x="290" y="237.11" width="6.6667" height="2.2222"/>
+  <rect x="290" y="241.56" width="6.6667" height="2.2222"/>
+  <rect x="290" y="246" width="6.6667" height="2.2222"/>
+  <rect x="290" y="250.44" width="6.6667" height="2.2222"/>
+  <rect x="290" y="254.89" width="6.6667" height="2.2222"/>
+  <rect x="290" y="259.33" width="6.6667" height="2.2222"/>
+  <rect x="290" y="263.78" width="6.6667" height="2.2222"/>
+  <rect x="290" y="268.22" width="6.6667" height="2.2222"/>
+  <rect x="290" y="272.67" width="6.6667" height="2.2222"/>
+  <rect x="290" y="277.11" width="6.6667" height="2.2222"/>
+  <rect x="216.22" y="203.33" width="2.2222" height="6.6667"/>
+  <rect x="290" y="281.56" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="214.44" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="218.89" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="223.33" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="227.78" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="232.22" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="236.67" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="241.11" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="245.56" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="250" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="254.44" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="258.89" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="263.33" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="267.78" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="272.22" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="276.67" width="6.6667" height="2.2222"/>
+  <rect x="203.33" y="281.11" width="6.6667" height="2.2222"/>
+  <rect x="283.33" y="290" width="2.2222" height="6.6667"/>
+  <rect x="278.89" y="290" width="2.2222" height="6.6667"/>
+  <rect x="274.44" y="290" width="2.2222" height="6.6667"/>
+  <rect x="270" y="290" width="2.2222" height="6.6667"/>
+  <rect x="265.56" y="290" width="2.2222" height="6.6667"/>
+  <rect x="261.11" y="290" width="2.2222" height="6.6667"/>
+  <rect x="256.67" y="290" width="2.2222" height="6.6667"/>
+  <rect x="252.22" y="290" width="2.2222" height="6.6667"/>
+  <rect x="247.78" y="290" width="2.2222" height="6.6667"/>
+  <rect x="243.33" y="290" width="2.2222" height="6.6667"/>
+  <rect x="238.89" y="290" width="2.2222" height="6.6667"/>
+  <rect x="234.44" y="290" width="2.2222" height="6.6667"/>
+  <rect x="230" y="290" width="2.2222" height="6.6667"/>
+  <rect x="225.56" y="290" width="2.2222" height="6.6667"/>
+  <rect x="221.11" y="290" width="2.2222" height="6.6667"/>
+  <rect x="216.67" y="290" width="2.2222" height="6.6667"/>
+ </g>
+ <g id="inner-flow" fill="none" stroke="#000" stroke-dasharray="4, 2, 1, 2">
+  <path d="m258.89 245.56 4.4444-4.4444v-8.8889"/>
+  <path d="m250 241.11v-4.4444h4.4444v-8.8889"/>
+  <path d="m254.44 241.11 4.4444-4.4444v-8.8889"/>
+  <path d="m258.89 250h8.8889v-17.778"/>
+  <path d="m245.56 241.11v-8.8889h-4.4444l-4.4444-4.4444"/>
+  <path d="m241.11 245.56h-4.4444v-8.8889l-4.4444-4.4444"/>
+  <path d="m241.11 250h-8.8889l-4.4444-13.333"/>
+  <path d="m241.11 254.44h-8.8889l-4.4444 8.8889"/>
+  <path d="m245.56 258.89v4.4444h-8.8889l-4.4444 4.4444"/>
+  <path d="m250 258.89v13.333"/>
+  <path d="m254.44 258.89v4.4444h4.4444v8.8889"/>
+  <path d="m258.89 254.44h4.4444v8.8889h4.4444"/>
+ </g>
+ <g id="inner-lines"opacity=0.2 fill="none" stroke="var(--text-color)" stroke-width="1px">
+  <path in:draw="{{duration:2000, delay:2000}}" d="m164.86 159.87v10h10v10h20l10 10h20v10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m249.86 159.87h-5v15h-5v15l-10 10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m254.86 159.87v20h-10v15l-5 5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 169.87 10 10h10v10h25l15 15"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 184.87h10v10h30l10 10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 194.87 5 5 20 5h15l5 10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 219.87h30v5h15"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 229.87h45"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 234.87h35v5h10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 239.87 10 5h45"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 249.87h55"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 259.87h35l20-5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 269.87h40l15-5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 279.87h40l15-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 289.87h40l15-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m134.86 299.87h35l20-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m139.86 319.87 45-15 15-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m144.86 324.87 45-15 15-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m159.86 329.87 35-15 15-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m269.86 149.87v35h-10v15"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m274.86 149.87v40h-10v5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m284.86 149.87v45h-10v5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m334.86 159.87-40 35v10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m344.86 169.87-5 40h-40"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m354.86 169.87-5 45h-50"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m364.86 169.87-5 50h-60"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m359.86 224.87v10h-40v5h-20"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m364.86 224.87v20h-45v5h-20"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m364.86 259.87h-60"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m359.86 269.87h-55"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m359.86 279.87h-60"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m354.86 289.87h-55"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m344.86 339.87-5-25-50-15"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m334.86 339.87-5-20-40-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m204.86 349.87v-20h15v-25"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m219.86 349.87v-15h5v-25"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m229.86 349.87v-15h5v-25"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m234.86 349.87v-10h5v-30"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m249.86 349.87v-15h-5v-30"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m259.86 349.87v-25l-5-5v-15"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m264.86 349.87v-30l-5-5v-10"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m274.86 349.87v-30l-5-10v-5"/>
+  <path in:draw="{{duration:2000, delay:2000}}" d="m304.86 349.87-25-40v-5"/>
  </g>
 </svg>
