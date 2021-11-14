@@ -99,6 +99,10 @@ const programming = [
                 name: 'Operators',
                 link: '/blocks/programming/python_fundamentals/operators'
             },
+            {
+                name: 'Casting',
+                link: '/blocks/programming/python_fundamentals/casting'
+            },
        ]
     },
     {
