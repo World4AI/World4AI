@@ -44,13 +44,22 @@ const rl = [
                 link: '/blocks/reinforcement_learning/markov_decision_process/introduction'
             },
             {
-                name: 'Definition',
-                link: '/blocks/reinforcement_learning/markov_decision_process/definition'
+                name: 'MDP as Sequential Interaction',
+                link: '/blocks/reinforcement_learning/markov_decision_process/sequential_interaction'
             },
+            {
+                name: 'MDP as Stochastic Process',
+                link: '/blocks/reinforcement_learning/markov_decision_process/stochastic_process'
+            },			
+            {
+                name: 'MDP as Tuple',
+                link: '/blocks/reinforcement_learning/markov_decision_process/5_tuple'
+            },			
             {
                 name: 'Solution',
                 link: '/blocks/reinforcement_learning/markov_decision_process/solution'
-            },			]
+            },			
+        ]
     }
 ];
 
