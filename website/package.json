@@ -14,5 +14,8 @@
     "svelte-highlight": "^5.1.2",
     "svelte-sitemap": "^2.1.1"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "katex": "^0.15.1"
+  }
 }
