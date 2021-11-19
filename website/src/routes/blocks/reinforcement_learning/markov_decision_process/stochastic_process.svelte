@@ -71,7 +71,12 @@
 <p>If we used the Bernoulli process in reinforcement learning, our agent would drift from one state into the next state, without any agency and any rewards to guide his actions.</p>
 
 <h2>Markov Chain</h2>
+<p class='info'>A Markov chain is a stochastic process that has the Markov property.</p>
 <Mdp />
+<p>The above animation depicts a simple, two state, Markov chain. Unlike in the case of a Bernoulli process the next state is not independent of the current state. The probability of the next state depends on the current state. If the environment is in the 0's state the probability to remain is 20% and the probability to transition into the 1's state is 80%. If the environment is in the 1's state on the other hand, there is a 50/50 chance of either staying in the same state or transitioning into the 0's state.</p>
+<p>The Markov chain exhibits a so called Markov property. In simple words that means that the probability of transitioning into the next state is only dependent on the current state. The whole history of past states is irrelevant. This property is sometimes called <strong>memorylessness</strong>.</p>
+<p>Mathematically the Markov property can be depicted as follows.</p>
+<Latex latex={'Pr[S_{t+1} \\mid S_t] = Pr[S_{t+1} \\mid S_1, .... , S_t]'} />
 <h2>Markov Reward Process</h2>
 <h2>Markov Decision Process</h2>
 
