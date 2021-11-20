@@ -1,12 +1,15 @@
 <script>
 import { tweened } from 'svelte/motion';
 import { draw, fade } from 'svelte/transition';
+import Reward from './Reward.svelte';
 
+export let showRewards = false;
 let run = 0;
 let width = 500;
 let height = 200;
 let stateSize = 50;
-let padding = 20;
+let paddingLeftRight = 70;
+let paddingTopBottom = 0;
 let markerWidth = 6;
 let markerHeight = 3;
 let probFontSize = 12;
@@ -27,10 +30,10 @@ let mdp = () => {
 };
 
 //set the center of the boxes
-let yCenter = height / 2;
+let yCenter = height / 2 + paddingTopBottom;
 let xCenters = []; 
-xCenters.push(stateSize / 2 + padding);
-xCenters.push(width-stateSize / 2 - padding)
+xCenters.push(stateSize / 2 + paddingLeftRight);
+xCenters.push(width-stateSize / 2 - paddingLeftRight)
   
 //calculate the coordinates of the paths
 //these are the paths from one state to the next
@@ -118,6 +121,22 @@ let textCoordinates = [
   ]
 ]
 
+//parameters for rewards
+let rewards = [
+  {
+    x : 20,
+    y : height/2,
+    rotate: 0, 
+    rewardValue: 5
+  },
+  {
+    x: width - 20,
+    y: height / 2,
+    rotate: 180,
+    rewardValue: -1
+  }
+]
+
 //create an svg path from the points
 let coordinatesToLine = (coordinates) => {
  let path = `M${coordinates.map(coordinate => `${coordinate.x},${ coordinate.y}`).join('L')}` 
@@ -132,7 +151,6 @@ function resolveState(time) {
   })
 };
 
-
 function wait(time) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -146,9 +164,14 @@ async function runAnimations() {
   activeState = nextState;
   nextState = null;
   nextState = await resolveState(1000);
+  let nextReward = rewards[nextState].rewardValue; 
   await wait(2000);
-  process.unshift(nextState); 
-  if(process.length > 20) {
+  process.unshift({type: 'state', value: nextState}); 
+  if(showRewards){
+    process.unshift({type: 'reward', value: nextReward});
+  }
+  
+  while (process.length > 20){
       process.pop()
   }
   process = [... process];
@@ -167,8 +190,8 @@ $: run && runAnimations();
     </defs>
     <!--draw states -->
     {#each transitions as transition, i}
-      {#if i == activeState}
-        <rect transition:fade stroke="black" fill="var(--main-color-1)" opacity="0.2" x={xCenters[i] - stateSize / 2 - 5} y={yCenter - stateSize / 2 - 5} width={stateSize + 10} height={stateSize + 10} />
+      {#if i == nextState}
+        <rect transition:fade="{{duration: 1000}}" stroke="black" fill="var(--main-color-1)" opacity="0.2" x={xCenters[i] - stateSize / 2 - 5} y={yCenter - stateSize / 2 - 5} width={stateSize + 10} height={stateSize + 10} />
       {/if}
       <rect stroke="black" fill="var(--main-color-1)" x={xCenters[i]-stateSize/2} y={yCenter-stateSize/2} width={stateSize} height={stateSize} />
       <text stroke="none" fill="var(--background-color)" x={xCenters[i]} y={yCenter} dominant-baseline="middle" text-anchor="middle">
@@ -198,9 +221,14 @@ $: run && runAnimations();
         {/if}
       {/each}
     {/each}
-    {#each process as state, i}
-      <circle cx={width - i*35 - 20} cy={20} r={15} stroke="black" fill="var(--main-color-1)" />
-      <text dominant-baseline="middle" text-anchor="middle" x={width - i*35 - 20} y={20} fill="black">{state}</text>
+    {#each process as part, i}
+      <circle cx={width - i*35 - 20} cy={20} r={15} stroke="black" fill={part.type == 'state' ?  'var(--main-color-1)' : 'var(--text-color)'} />
+      <text dominant-baseline="middle" text-anchor="middle" x={width - i*35 - 20} y={20} fill="black">{part.value}</text>
     {/each}
+    {#if showRewards}
+    {#each rewards as reward, i}
+      <Reward cx={reward.x} cy={reward.y} degrees={reward.rotate} active={i==nextState ? true : false} rewardValue={reward.rewardValue} />
+    {/each}
+    {/if}
 </svg>
 
