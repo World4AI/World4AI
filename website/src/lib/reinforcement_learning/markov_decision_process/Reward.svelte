@@ -20,7 +20,7 @@
 </defs>
 <circle {cx} {cy} {r} stroke="black" fill="var(--text-color)" />
 {#if active}
-  <circle transition:fade="{{duration:1000}}" {cx} {cy} r={r+5} opacity=0.2 stroke="black" fill="var(--text-color)" />
+  <circle in:fade="{{duration:1000}}" {cx} {cy} r={r+5} opacity=0.2 stroke="black" fill="var(--text-color)" />
 {/if}
 <text dominant-baseline="middle" text-anchor="middle" x={cx} y={cy}>{rewardValue}</text>
 <g transform="rotate({degrees} {cx} {cy})">
