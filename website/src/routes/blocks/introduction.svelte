@@ -3,6 +3,7 @@
     import Rectangle from '$lib/Rectangle.svelte'
 
     let data = [
+        //W
         {
             x: 0.5,
             y: 0.5,
@@ -21,6 +22,7 @@
             width: 10,
             height: 50
         },
+        //O
         {
             x: 60.5,
             y: 40.5,
@@ -45,6 +47,7 @@
             width:40,
             height:10
         },
+        //R
         {
             x:120.5,
             y:30.5,
@@ -52,7 +55,7 @@
             height:20
         },
         {
-            x:160.5,
+            x:150.5,
             y:30.5,
             width:10,
             height:20
@@ -81,6 +84,7 @@
             width:40,
             height:10
         },
+        //L
         {
             x:180.5,
             y:.5,
@@ -93,6 +97,7 @@
             width:40,
             height:10
         },
+        //D
         {
             x:240.5,
             y:40.5,
@@ -123,6 +128,7 @@
             width:10,
             height:20
         },
+        //4
         {
             x:340.5,
             y:30.5,
@@ -147,6 +153,7 @@
             width:10,
             height:20
         },
+        // A
         {
             x:360.5,
             y:30.5,
@@ -183,6 +190,7 @@
             width:40,
             height:10
         },
+        //I
         {
             x:420.5,
             y:40.5,
