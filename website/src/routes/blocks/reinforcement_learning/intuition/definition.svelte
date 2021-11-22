@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
     import { DeterministicAgent } from '$lib/reinforcement_learning/common/DeterministicAgent';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
@@ -23,26 +24,21 @@
 </svelte:head>
 
 <h1>Definition Of Reinforcement Learning</h1>
-<p>What are the key characteristics of reinforcement learning?</p>
+<Question>What are the key characteristics of reinforcement learning?</Question>
 <div class="separator"></div>
+
 <p>There are probably dozens of formal definitions of reinforcement learning. These definitions do not necessarily contradict each other, but rather explain something similar when we look a little deeper at what the definitions are trying to convey. In this section we are going to look at the one definition that should capture the essence of reinforcement learning in a very clear way.</p>
-
 <p class="info">Reinforcement Learning is Learning through Trial and Error and Delayed Rewards <sup>[1]</sup>.</p>
-
 <p>The definition consists of three distinct parts: <strong>Learning</strong>, <strong>Trial and Error</strong> and <strong>Delayed Rewards</strong>. In order to understand the complete definition we will deconstruct the sentence and look at each part individually.</p> 
-
 <div class="separator"></div>
 
 <h2>Learning</h2>
-
 <p>Learning is probably the most obvious part of the definition. Usually in reinforcement learning when the agent starts to interact with the environment the agent does not know anything about that environment. The assumption in reinforcement learning that is always made is that the environment the agent interacts with contains some goal that the agent has to achieve.</p> 
-
 <div class="flex-center">
     <Grid env={env_1} agent={agent_1}/>
 </div>
 
 <p>For example the agent is expected to move the circle from the starting cell position (top left corner) to the goal cell position (bottom left corner).</p>
-
 <p>When we talk about learning, that means that the agent gets better at achieving that particular goal over time. It could start by moving in a random fashion and over time learn the best possible (meaning the shortest) route.</p>
 
 <div class="flex-center">

@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import {onMount} from 'svelte';
     import Latex from '$lib/Math.svelte';
     import Mdp from '$lib/reinforcement_learning/markov_decision_process/Mdp.svelte';
@@ -50,8 +51,9 @@
 </svelte:head>
 
 <h1>MDP as Stochastic Process</h1>
-<p><em>What is a stochastic process and what is a Markov property?</em></p>
+<Question>What is a stochastic process and what is a Markov property?</Question>
 <div class="separator"></div>
+
 <p>The name Markov decison process was not named out of thin air. It is categorized by three distinct parts. It is a stochastic <strong>process</strong>, it has the <strong>Markov</strong> property and it provides an interaction mechanism for the agent to make <strong>decisions</strong>.</p>
 <div class="separator"></div>
 <h2>Stochastic Process</h2>

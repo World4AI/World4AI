@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import Code from '$lib/Code.svelte';
     const dynamicCode = `
 >>> number = 10
@@ -29,7 +30,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 </svelte:head>
 
 <h1>Dynamic and Strong Typing</h1>
-<p><em>What is dynamic typing and what is strong typing?</em></p>
+<Question>What is dynamic typing and what is strong typing?</Question>
 <div class="separator"></div>
 <h2>Dynamic Typing</h2>
 <p>Python is classified as a dynamically-typed language. In a dynamically-typed language the programmer does not have to declare the type of a variable. The type is deduced during the run of the program. Additionally thy type that the variable points to can change during the execution of a program.</p>

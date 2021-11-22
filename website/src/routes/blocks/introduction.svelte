@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import Rectangle from '$lib/Rectangle.svelte'
 
     let data = [
@@ -209,7 +210,8 @@
 </svelte:head>
 
 <h1>Blocks</h1>
-<h2>How is World4AI(W4AI) organized?</h2>
+<Question>How is World4AI(W4AI) organized?</Question>
+<div class="separator"></div>
 <p>World4AI is organized into building blocks. Each block builds knowledge that is fundamental to modern artificial intelligence. But you don't need to be proficient in any of the sections to start the next one, therefore you do not need to learn the blocks in a stricly linear manner. You can learn the material that you require as you go along. The sections will generally link to relevant posts from previous sections if the need arises.</p>
 
 <svg  width="471" height="51" version="1.1" viewBox="0 0 471 51" xmlns="http://www.w3.org/2000/svg">

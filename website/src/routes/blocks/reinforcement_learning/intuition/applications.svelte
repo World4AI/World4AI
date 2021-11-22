@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question';
     import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
     import { gridMap } from '$lib/reinforcement_learning/common/maps';
@@ -23,7 +24,7 @@
 </svelte:head>
 
 <h1>Reinforcement Learning Applications</h1>
-<p><em>What is reinforcement learning used for?</em></p>
+<Question>What is reinforcement learning used for?</Question>
 <div class="separator"></div>
 
 <p>It is entirely possible to introduce reinforcement learning using only formal definitions and math, but we will start this journey by exploring what reinforcement learning can actually achieve rather than what it is and how you can apply it. The formalism will come soon enough.</p>

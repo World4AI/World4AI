@@ -1,13 +1,15 @@
 <script>
     import Foundation from '$lib/programming/fundamentals/introduction/Foundation.svelte';   
+    import Question from '$lib/Question.svelte';
 </script>
+
 <svelte:head>
     <title>World4AI | Programming | Python Fundamentals Introduction</title>
     <meta name="description" content="The Python fundamentals chapter focuses on beginner level topics like variables, operators, commenting and data types.">
 </svelte:head>
 
 <h1>Introduction</h1>
-<p><em>Who is this chapter for?</em></p>
+<Question>Who is this chapter for?</Question>
 <div class="separator"></div>
 <div class="flex-center">
     <Foundation />

@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import Code from '$lib/Code.svelte';
     import Math from '$lib/Math.svelte';
     const plusOperatorCode = `
@@ -92,8 +93,9 @@
 </script>
 
 <h1>Numeric Data Types</h1>
-<p><em>What arithmetic and assignment operations are possible with numeric data types?</em></p>
+<Question>What arithmetic and assignment operations are possible with numeric data types?</Question>
 <div class="separator"></div>
+
 <p>Any operations that are even remotely related to mathematics require the use of numeric data types. In machine learning each picture, sound, text and so on has to be transfered into a numeric data type, before we can apply any algorithms to the data. </p>
 <div class="separator"></div>
 <h2>Arithmetic Operators</h2>

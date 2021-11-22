@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import Math from '$lib/Math.svelte';
     import {draw} from 'svelte/transition';
     let timeStep = -1;
@@ -27,8 +28,9 @@
 </svelte:head>
 
 <h1>MDP as Sequential Interaction</h1>
-<p><em>How does interaction between the agent and the environment relate to the Markov decision process?</em></p>
+<Question>How does interaction between the agent and the environment relate to the Markov decision process?</Question>
 <div class="separator"></div>
+
 <p>In essence an MDP allows us to formalize the interaction loop between the agent and the environment, where the actions of the agent influence future states and rewards and the agent might have to decide to forego the current reward to get higher rewards in the future. The common assumption in reinforcement learning is the existence of an MDP at the core of each environment.</p>
 <p class="info">A Markov decision process (MDP) is a formal description of a sequential decision problem with uncertainty.</p>
 <p>The interaction is done sequentially, where the agent and the environment take turns to react to each other. Each iteration of actions, rewards and states happens in a period of time, called a time step, <Math latex={'t'} />. The time step is a discrete variable starting at 0 and increasing by 1 after each iteration. During the first time step the agent receives the initial state of the environment <Math latex={'S_0'} />  and reacts accordingly with the action <Math latex={'A_0'} />. The environment transitions into a new state <Math latex={'S_1'} />  and generates the reward <Math latex={'R_1'} />. The agent in turn reacts with the action <Math latex={'A_1'} /> and the interaction continues. The general notation of writing States, Actions and Rewards is <Math latex={'S_t, A_t, R_t'} />  where the subscript <Math latex={'t'} /> represents a particular time step.</p>

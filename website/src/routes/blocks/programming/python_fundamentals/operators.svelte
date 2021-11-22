@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import Code from '$lib/Code.svelte';
     const operationExample = `
 >>> 10 + 5
@@ -15,7 +16,7 @@
 </svelte:head>
 
 <h1> Operators in Python </h1>
-<p><em>What is an operator?</em></p>
+<Question>What is an operator?</Question>
 <div class="separator"></div>
 <h2>Definition</h2>
 <p>Operators are tokens / symbols that are predefined by Python. They act like atomic functions that take some input and generate some output. In fact true Python functions are essentialy just compositions of these atomic functions, where you stack operation after operation.</p>

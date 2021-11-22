@@ -1,7 +1,9 @@
-<h1>Reinforcement Learning Terminology</h1>
+<script>
+  import Question from '$lib/Question.svelte';
+</script>
 
-<div class="separator"></div>
-<p><em>What terminology is usefull to understand reinforcement learning?</em></p>
+<h1>Reinforcement Learning Terminology</h1>
+<Question>What terminology is usefull to understand reinforcement learning?</Question>
 <div class="separator"></div>
 
 <p>In this chapter we are going to look at some terminology that is used throughout reinforcement learning and at how reinforcement learning algorithms can be classified based on the components the agent has.</p>

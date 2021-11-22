@@ -1,4 +1,5 @@
 <script>
+    import Question from '$lib/Question.svelte';
     import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
     import { gridMap } from '$lib/reinforcement_learning/common/maps';
@@ -23,7 +24,7 @@
 </svelte:head>
 
 <h1>States, Actions, Rewards</h1>
-<p>How does interaction between the agent and the environment look in reinforcement learning?</p>
+<Question>How does interaction between the agent and the environment look in reinforcement learning?</Question>
 <div class="separator"></div>
 
 <h2>Interaction</h2>

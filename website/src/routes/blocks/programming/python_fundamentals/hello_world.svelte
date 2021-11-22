@@ -1,4 +1,5 @@
 <script>
+  import Question from '$lib/Question.svelte';
   import Code from '$lib/Code.svelte';
   const helloWorldCode = '>>> print("Hello World!") \nHello World!';
   const singleLineComment = "# This is a single line comment"
@@ -45,7 +46,7 @@ print(...)
 </svelte:head>
 
 <h1>Hello World</h1>
-<p><em>How do you output text to the console and how do you put comments in your code?</em></p>
+<Question>How do you output text to the console and how do you put comments in your code?</Question>
 <div class="separator"></div>
 
 <h2>The print() function</h2>

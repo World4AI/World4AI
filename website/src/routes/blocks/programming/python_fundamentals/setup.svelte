@@ -1,11 +1,13 @@
+<script>
+  import Question from '$lib/Question.svelte';
+</script>
 <svelte:head>
     <title>World4AI | Programming | Python Setup</title>
     <meta name="description" content="There are several ways to use Python. For absolute beginners cloud programming is a great choice. Over time beginners should try out different setups and figure out what suits them best.">
 </svelte:head>
 
 <h1>Python setup</h1>
-
-<p><em>How can you setup Python?</em></p>
+<Question>How can you setup Python?</Question>
 <div class="separator"></div>
 
 <p>There are probably a dozen ways to run Python. The setup process depends on whether you want to run Python locally or in the cloud. For a beginner it makes sense to create an online account with one of the cloud services. The process is usually hassle-free and the likelihood of giving up because of the setup process is relatively low compared to the local installation. Intermediate and advanced users on the other hand should be able to install and manage Python on many different systems. Especially when you intend to deploy your machine learning models on the web it is essential to know how to setup Python and the required packages on a Linux distribution.</p>

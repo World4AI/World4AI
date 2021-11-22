@@ -1,5 +1,6 @@
 <script>
     import Programming from '$lib/programming/motivation/introduction/Programming.svelte';
+    import Question from '$lib/Question.svelte';
 </script>
 <svelte:head>
     <title>World4AI | Programming | Motivation</title>
@@ -7,7 +8,7 @@
 </svelte:head>
 
 <h1>Introduction</h1>
-<p><em>Why is programming important for artificial intelligence?</em></p>
+<Question>Why is programming important for artificial intelligence?</Question>
 <div class="separator"></div>
 <div class="flex-center">
     <Programming />

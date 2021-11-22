@@ -1,5 +1,6 @@
 <script>
-    import Code from '$lib/Code.svelte';   
+  import Question from '$lib/Question.svelte';
+  import Code from '$lib/Code.svelte';   
   const stringCode = `
 >>> string_1 = "Hello World!"
 >>> string_2 = 'Hello World!'
@@ -125,7 +126,7 @@ const dictCode = `
 </svelte:head>
 
 <h1>Datatypes in Python</h1>
-<p><em>What data types are available in Python?</em> </p>
+<Question>What data types are available in Python?</Question>
 <div class="separator"></div>
 <h2>What is a data type?</h2>
 <p>In Python variables are used as a convenient label to reference the data, the variables are not the data itself. That data itself is represented by an object, which does not only hold the value of the data, but the type of the data. The data can be of different type, like a number or a string of text. Depending on the data type different options are available to work with and process the data. For example numbers can be added together, while strings can be concatenated.</p>

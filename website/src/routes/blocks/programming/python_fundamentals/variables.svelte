@@ -1,4 +1,5 @@
 <script>
+  import Question from '$lib/Question.svelte';
   import Pointers from '$lib/programming/fundamentals/variables/Pointers.svelte';
   import GarbageCollection from '$lib/programming/fundamentals/variables/GarbageCollection.svelte';
   import Code from '$lib/Code.svelte';
@@ -14,7 +15,7 @@
 </svelte:head>
 
 <h1>Variables</h1>
-<p><em>What are variables and how are they used in Python?</em></p>
+<Question>What are variables and how are they used in Python?</Question>
 <div class="separator"></div>
 <h2>What are variables?</h2>
 <p>In a programming language like Python we often deal with some data that has to be loaded, manipulated and output multiple times.</p>

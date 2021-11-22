@@ -1,6 +1,6 @@
 <script>
     import Code from '$lib/Code.svelte';
-
+    import Question from '$lib/Question.svelte';
     const implicitNumbersCode = `
 >>> a = 1
 >>> b = 2.5
@@ -51,7 +51,7 @@ ValueError: invalid literal for int() with base 10: 'sentence'
 </svelte:head>
 
 <h1>Casting</h1>
-<p><em>What is casting and why is it useful?</em></p>
+<Question>What is casting and why is it useful?</Question>
 <div class="separator"></div>
 <h2>Definition</h2>
 <p>Casting is the process of recreating data with a different data type. Sometimes casting is done implicitly, which means that Python does the casting without the explicit instruction of the programmer. Explicit casting on the other hand requires the programmer to indiciate which data and into what type has to be casted. Often the value remains the same, but sometimes there is some loss of information and the casted value is different from the original. </p>
