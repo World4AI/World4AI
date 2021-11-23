@@ -1,19 +1,26 @@
 <script>
     import { page } from '$app/stores';
     
-    $: path = $page.path
-    $: subPath =(() => {
-        return '/' + $page.path.split('/')[1]
-    })()
+    $: path =(() => {
+        let splitPath =  $page.path.split('/'); 
+        if (splitPath.length == 1) {
+          return '/';
+        } else if (splitPath.length == 2) {
+          return '/' + $page.path.split('/')[1];
+        } else {
+          return '/' + $page.path.split('/')[1] + '/' + $page.path.split('/')[2];
+        }
+    })();
+    
 </script>
 
 <header>
     <a href="/"><img class="logo" src="/logo/logo.svg" alt="World4AI Logo"></a>
     <nav>
         <ul class="nav">
-            <li><a class:selected={subPath === '/'} href="/">Home</a></li>
+            <li><a class:selected={path === '/'} href="/">Home</a></li>
             <li class="dropdown">
-                <a class:selected={subPath === '/blocks'} href="/blocks/introduction">Blocks</a>
+                <a class:selected={path.split('/')[1] === 'blocks'} href="/blocks/introduction">Blocks</a>
                 <div class="dropdown-content">
                     <ul>
                         <li><a class:selected={path === '/blocks/introduction'} href="/blocks/introduction">Introduction</a></li>
@@ -24,8 +31,8 @@
                     </ul>
                 </div>
             </li>
-            <li><a class:selected={subPath === '/about'} href="/about">About</a></li>
-            <li><a class:selected={subPath === '/sponsor'} href="/sponsor">Sponsor</a></li>
+            <li><a class:selected={path === '/about'} href="/about">About</a></li>
+            <li><a class:selected={path === '/sponsor'} href="/sponsor">Sponsor</a></li>
         </ul>
         <ul>
             <li>
