@@ -10,3 +10,5 @@ build
 .svelte-kit
 /package
 testing
+.*.swp
+.*.swo
