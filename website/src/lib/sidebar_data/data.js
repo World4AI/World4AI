@@ -65,52 +65,60 @@ const rl = [
 
 const programming = [
     {
-        name: 'Motivation',
+        name: 'Introduction',
         links: [
             {
-                name: 'Introduction',
-                link: '/blocks/programming/motivation/introduction'
+                name: 'Motivation',
+                link: '/blocks/programming/introduction/motivation'
             },
             {
                 name: 'Python',
-                link: '/blocks/programming/motivation/python'
+                link: '/blocks/programming/introduction/python'
+            },
+            {
+                name: 'Setup',
+                link: '/blocks/programming/introduction/setup'
             },
         ]
     },
     {
-        name: 'Python Fundamentals',
+        name: 'Fundamentals',
         links: [
             {
                 name: 'Introduction',
-                link: '/blocks/programming/python_fundamentals/introduction'
+                link: '/blocks/programming/fundamentals/introduction'
             },
             {
-                name: 'Setup',
-                link: '/blocks/programming/python_fundamentals/setup'
+                name: 'Getting Help',
+                link: '/blocks/programming/fundamentals/getting_help'
             },
             {
                 name: 'Hello World',
-                link: '/blocks/programming/python_fundamentals/hello_world'
+                link: '/blocks/programming/fundamentals/hello_world'
+            },
+            {
+                name: 'Commenting',
+                link: '/blocks/programming/fundamentals/commenting'
+            },
+            {
+                name: 'Objects',
+                link: '/blocks/programming/fundamentals/objects'
             },
             {
                 name: 'Variables',
-                link: '/blocks/programming/python_fundamentals/variables'
+                link: '/blocks/programming/fundamentals/variables'
             },
             {
                 name: 'Data Types',
-                link: '/blocks/programming/python_fundamentals/data_types'
+                link: '/blocks/programming/fundamentals/data_types'
             },
             {
-                name: 'Dynamic and Strong Typing',
-                link: '/blocks/programming/python_fundamentals/dynamic_strong_typing'
+                name: 'Garbage Collector',
+                link: '/blocks/programming/fundamentals/garbage_collector'
             },
             {
                 name: 'Operators',
-                link: '/blocks/programming/python_fundamentals/operators'
-            },
-            {
-                name: 'Casting',
-                link: '/blocks/programming/python_fundamentals/casting'
+                link: '/blocks/programming/fundamentals/operators'
             },
        ]
     },
@@ -146,6 +154,19 @@ const programming = [
                 link: '/blocks/programming/data_types/dictionary'
             },
         ]
+    },
+    {
+      name: 'Unfinished',
+      links : [
+            {
+                name: 'Casting',
+                link: '/blocks/programming/unfinished/casting'
+            },
+            {
+                name: 'Dynamic and Strong Typing',
+                link: '/blocks/programming/unfinished/dynamic_strong_typing'
+            },
+      ]
     }
 ];
 
