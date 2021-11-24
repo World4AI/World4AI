@@ -1,5 +1,5 @@
 <script>
-    import Question from '$lib/Question';
+    import Question from '$lib/Question.svelte';
     import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
     import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
     import { gridMap } from '$lib/reinforcement_learning/common/maps';
