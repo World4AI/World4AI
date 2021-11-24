@@ -9,9 +9,23 @@
 
 <style>
     .container {
-		margin-top: 150px;
-		margin-bottom: 20px;
-        background-color: var(--aside-color);
-		padding: var(--gap);
+  		margin-top: 150px;
+  		margin-bottom: 20px;
+          background-color: var(--aside-color);
+  		padding: var(--gap);
+      max-height: 70vh;
+      overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--aside-color);
+    }
+    /* style scrollbar */
+    .container::-webkit-scrollbar {
+        width: 10px;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background-color: #FFF;
+    }
+    .container::-webkit-scrollbar-track {
+        background-color: #000;
     }
 </style>
