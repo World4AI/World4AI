@@ -1,5 +1,5 @@
 <script>
-    import Folder from '$lib/sidebar_components/Folder.svelte';
+  import Folder from '$lib/sidebar_components/Folder.svelte';
 	export let root;
 </script>
 
@@ -11,7 +11,7 @@
     .container {
   		margin-top: 150px;
   		margin-bottom: 20px;
-          background-color: var(--aside-color);
+      background-color: var(--aside-color);
   		padding: var(--gap);
       max-height: 70vh;
       overflow: auto;
@@ -20,7 +20,7 @@
     }
     /* style scrollbar */
     .container::-webkit-scrollbar {
-        width: 10px;
+        width: 5px;
     }
     .container::-webkit-scrollbar-thumb {
         background-color: #FFF;
