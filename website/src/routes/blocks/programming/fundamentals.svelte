@@ -4,11 +4,11 @@
 </script>
 
 <svelte:head>
-    <title>World4AI | Programming | Python Fundamentals Introduction</title>
+    <title>World4AI | Programming | Python Fundamentals</title>
     <meta name="description" content="The Python fundamentals chapter focuses on beginner level topics like variables, operators, commenting and data types.">
 </svelte:head>
 
-<h1>Introduction</h1>
+<h1>Python Fundamentals</h1>
 <Question>Who is this chapter for?</Question>
 <div class="separator"></div>
 <div class="flex-center">

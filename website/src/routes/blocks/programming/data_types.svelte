@@ -7,7 +7,7 @@
     <meta name="description" content="It is essential to know what data types are best suited for what task.">
 </svelte:head>
 
-<h1>Introduction</h1>
+<h1>Python Data Types</h1>
 <Question>Why do you need to know the ins and outs of the different data types?</Question>
 <div class="separator"></div>
 

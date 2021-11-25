@@ -1,13 +1,17 @@
 <script>
     import Link from "$lib/sidebar_components/Link.svelte";
+    import { page } from '$app/stores';
 
     export let name;
+    export let link = '';
     export let links;
+
+    $: path = $page.path;
 </script>
 
 {#if name !== 'ROOT'}
-    <span>{name}</span>
-    <hr>
+  <span><a class:selected={path===link} href={link}>{name}</a></span>
+  <hr>
 {/if}
 
 <ul>
@@ -50,6 +54,24 @@
         border: none;
         background: rgba(255, 255, 255, 0.1);
         height: 1px;
+    }
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .selected {
+        position: relative;
+    }
+
+    .selected::before {
+        position: absolute;
+        content: '';
+        height: 5px;
+        width: 5px;
+        top: 7px;
+        left: -20px;
+        background-color: var(--text-color);
     }
 </style>
 

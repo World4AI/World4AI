@@ -7,7 +7,7 @@
     <meta name="description" content="Reinforcement learning deals with encouraging good behaviour. This is done with the help of rewards.">
 </svelte:head>
 
-<h1>Introduction</h1>
+<h1>Intuition</h1>
 <Question>What is reinforcement learning?</Question>
 <div class="separator"></div>
 

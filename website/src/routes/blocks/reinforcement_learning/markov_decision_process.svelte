@@ -7,7 +7,7 @@
     <meta name="description" content="In reinforcement learning the Markov decison process is the mathematical formalization of the agent environment interaction.">
 </svelte:head>
 
-<h1>Introduction</h1>
+<h1>Markov Decision Process</h1>
 <Question>Why do we need a Markov Decicion Process?</Question>
 <div class="separator"></div>
 

@@ -3,11 +3,11 @@
     import Question from '$lib/Question.svelte';
 </script>
 <svelte:head>
-    <title>World4AI | Programming | Motivation</title>
+    <title>World4AI | Programming | Introduction</title>
     <meta name="description" content="Artificial Intelligence requires fundamental programming skills. For that reason it makes sense to start learning about AI by learning how to program.">
 </svelte:head>
 
-<h1>Motivation</h1>
+<h1>Programming Introduction</h1>
 <Question>Why is programming important for artificial intelligence?</Question>
 <div class="separator"></div>
 <div class="flex-center">

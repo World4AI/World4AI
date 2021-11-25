@@ -24,10 +24,10 @@
                 <div class="dropdown-content">
                     <ul>
                         <li><a class:selected={path === '/blocks/introduction'} href="/blocks/introduction">Introduction</a></li>
-                        <li><a class:selected={path === '/blocks/programming'} href="/blocks/programming/introduction/motivation">Programming</a></li>
+                        <li><a class:selected={path === '/blocks/programming'} href="/blocks/programming/introduction">Programming</a></li>
                         <li><a class:selected={path === '/blocks/mathematics'} href="/blocks/mathematics">Mathematics</a></li>
                         <li><a class:selected={path === '/blocks/deep_learning'} href="/blocks/deep_learning">Deep Learning</a></li>
-                        <li><a class:selected={path === '/blocks/reinforcement_learning'} href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a></li>
+                        <li><a class:selected={path === '/blocks/reinforcement_learning'} href="/blocks/reinforcement_learning/intuition">Reinforcement Learning</a></li>
                     </ul>
                 </div>
             </li>

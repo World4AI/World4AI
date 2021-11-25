@@ -1,11 +1,8 @@
 const rl = [
     {
         name: 'Intuition',
+        link: '/blocks/reinforcement_learning/intuition',
         links: [
-            {
-                name: 'Introduction',
-                link: '/blocks/reinforcement_learning/intuition/introduction'
-            },
             {
                 name: 'Applications',
                 link: '/blocks/reinforcement_learning/intuition/applications'
@@ -38,11 +35,8 @@ const rl = [
     },
     {
         name: 'Markov Decision Process',
+        link: '/blocks/reinforcement_learning/markov_decision_process',
         links: [
-            {
-                name: 'Introduction',
-                link: '/blocks/reinforcement_learning/markov_decision_process/introduction'
-            },
             {
                 name: 'MDP as Sequential Interaction',
                 link: '/blocks/reinforcement_learning/markov_decision_process/sequential_interaction'
@@ -66,11 +60,8 @@ const rl = [
 const programming = [
     {
         name: 'Introduction',
+        link: '/blocks/programming/introduction',
         links: [
-            {
-                name: 'Motivation',
-                link: '/blocks/programming/introduction/motivation'
-            },
             {
                 name: 'Python',
                 link: '/blocks/programming/introduction/python'
@@ -83,11 +74,8 @@ const programming = [
     },
     {
         name: 'Fundamentals',
+        link: '/blocks/programming/fundamentals',
         links: [
-            {
-                name: 'Introduction',
-                link: '/blocks/programming/fundamentals/introduction'
-            },
             {
                 name: 'Getting Help',
                 link: '/blocks/programming/fundamentals/getting_help'
@@ -124,11 +112,8 @@ const programming = [
     },
     {
         name: 'Data Types',
+        link: '/blocks/programming/data_types',
         links: [
-            {
-                name: 'Introduction',
-                link: '/blocks/programming/data_types/introduction'
-            },
             {
                 name: 'Numeric',
                 link: '/blocks/programming/data_types/numeric'
@@ -157,6 +142,7 @@ const programming = [
     },
     {
       name: 'Unfinished',
+      link: '#',
       links : [
             {
                 name: 'Casting',
