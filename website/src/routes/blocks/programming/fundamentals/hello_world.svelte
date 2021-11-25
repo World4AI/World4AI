@@ -4,40 +4,6 @@
   const helloWorldCode = '>>> print("Hello World!") \nHello World!';
   const singleLineComment = "# This is a single line comment"
   const multiLineComment = '"""\nThis\nis\na\nmultiline\ncomment\n"""'
-  const helpCode = `
-Python 3.9.7 (default, Sep 16 2021, 13:09:58)
-[GCC 7.5.0] :: Anaconda, Inc. on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> help()
-
-Welcome to Python 3.9's help utility!
-
-If this is your first time using Python, you should definitely check out
-the tutorial on the Internet at https://docs.python.org/3.9/tutorial/.
-
-Enter the name of any module, keyword, or topic to get help on writing
-Python programs and using Python modules.  To quit this help utility and
-return to the interpreter, just type "quit".
-
-To get a list of available modules, keywords, symbols, or topics, type
-"modules", "keywords", "symbols", or "topics".  Each module also comes
-with a one-line summary of what it does; to list the modules whose name
-or summary contain a given string such as "spam", type "modules spam".
-
-help>`
-      const printHelpCode = `Help on built-in function print in module builtins:
-
-print(...)
-    print(value, ..., sep=' ', end='\\n', file=sys.stdout, flush=False)
-
-    Prints the values to a stream, or to sys.stdout by default.
-    Optional keyword arguments:
-    file:  a file-like object (stream); defaults to the current sys.stdout.
-    sep:   string inserted between values, default a space.
-    end:   string appended after the last value, default a newline.
-    flush: whether to forcibly flush the stream.
-(END)
-   `
 </script>
 
 <svelte:head>
@@ -60,12 +26,5 @@ print(...)
 <Code code={singleLineComment} />
 <p>Oftentimes you will need to comment out whole blocks of code or to write down a more involved description. For that purpose you can multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a commen multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a comment multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a commen multiline comments. These are initiated with three quotation marks " " " and ended with three quotation marks " " ". Anything between the quotation marks is regarded as a comment.</p>
 <Code code={multiLineComment} />
-<div class="separator"></div>
-<h2>The help() function</h2>
-<p>Python has a built-in help functionality. If you want to start the interactive session, type <code>help()</code> while using the Python interpreter.</p>
-<Code code={helpCode} />
-<p>Once the interactive session starts we can type the name of functions, modules etc to receive helpful information. If we type for example <code>print</code> in the command line, the interactive session returns the following text.</p>
-<Code code={printHelpCode} />
-<p>We will make use of the <code>help()</code> functionality throughout the lectures. Many custom libraries write documentations that <code>help()</code> can acess and we will learn how to do the same, once we start implementing our own functions and modules.</p>
 <div class="separator"></div>
 

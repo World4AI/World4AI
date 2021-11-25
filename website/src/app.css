@@ -23,3 +23,7 @@ body {
 .hljs {
     background: var(--aside-color) !important;
 }
+
+a {
+  color: var(--text-color);
+}
