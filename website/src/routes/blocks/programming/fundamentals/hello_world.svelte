@@ -1,9 +1,8 @@
 <script>
+  import {draw} from 'svelte/transition';
   import Question from '$lib/Question.svelte';
   import Code from '$lib/Code.svelte';
-  const helloWorldCode = '>>> print("Hello World!") \nHello World!';
-  const singleLineComment = "# This is a single line comment"
-  const multiLineComment = '"""\nThis\nis\na\nmultiline\ncomment\n"""'
+  import Repl from '$lib/Repl.svelte';
 </script>
 
 <svelte:head>
@@ -12,19 +11,37 @@
 </svelte:head>
 
 <h1>Hello World</h1>
-<Question>How do you output text to the console and how do you put comments in your code?</Question>
+<Question>How do you output text to the console?</Question>
 <div class="separator"></div>
 
-<h2>The print() function</h2>
-<p>In a programming language a function is piece of code that has to fulfill a certain task, it has to fulfill a function. How exaclty functions work will be covered in a later chapter. In this section we are going to look at a function that is built into Python. The <code>print()</code> function outputs the text that is defined between the brackets into the console.</p>
-<Code code={helloWorldCode} />
-<p>A "Hello World!" program like the one above is the customary first step in a programming language. It allows the student to be able to output text. A skill that is essential in all of programming. Go ahead and copy the code, modify it, play with it. This is a great way to test if your setup is working correctly.</p>
+<svg version="1.1" viewBox="0 0 270 140" xmlns="http://www.w3.org/2000/svg">
+<g stroke="var(--text-color)" fill="none">
+ <g id="letter-h"> 
+  <path in:draw="{{duration: 500, delay: 0}}" d="m10 10v120"/>
+  <path in:draw="{{duration: 500, delay: 0}}" d="m10 70h50"/>
+  <path in:draw="{{duration: 500, delay: 0}}" d="m60 10v120"/>
+ </g>
+ <g id="leter-e">
+  <path in:draw="{{duration: 500, delay: 0}}" d="m70 10v120"/>
+  <path in:draw="{{duration: 500, delay: 0}}" d="m70 10h40"/>
+  <path in:draw="{{duration: 500, delay: 0}}" d="m70 70h40"/>
+  <path in:draw="{{duration: 500, delay: 0}}" d="m70 130h40"/>
+ </g>
+ <g id="letter-l-1">
+  <path in:draw="{{duration: 500, delay: 0}}" d="m120 10v120h40" />
+ </g>
+ <g id="letter-l-2">
+  <path in:draw="{{duration: 500, delay: 0}}" d="m170 10v120h40" /> 
+ </g>
+ <g id="letter-o">
+  <path in:draw="{{duration: 500, delay: 0}}" d="m220 10v120h40v-120z" /> 
+ </g>
+</g>
+</svg>
+<h2>The very first program</h2>
+<p>In every programming language there is a notion of a so called <em>Hello World</em> program. The only task of the program is to output some text, usually "Hello World!".  The program is used to get the first feel for the language, to test if the setup is working and to learn how to output simple text to the terminal.</p>
+<p>In Python the code to output a simle "Hello World" text uses <code>print()</code>. The text we would like to output is set between the round brackets and the quotation marks indicate that we are working with a string of text.</p>
+<Code code={'print("Hello World!")'} />
+<Repl code={'Hello World!'} />
+<p>As expected the code producces a 'Hello World!' text. Go ahead and copy the code, modify it, play with it. This is a great way to test if your setup is working correctly.</p>
 <div class="separator"></div>
-<h2>Comments</h2>
-<p>Being able to comment your code is the second basic skill that you need to posess before you learn the syntax of Python. A comment is a piece of code that is not being interpreted by Python. It's only function is the documentation of the written code. It is a way of communicating the code either to your collegues or yourself in the future.</p>
-<p>If we want to comment only a single line of text, we use the hash/pound # symbol before the comment. The line below the comment is not going to be affected by the comment </p> 
-<Code code={singleLineComment} />
-<p>Oftentimes you will need to comment out whole blocks of code or to write down a more involved description. For that purpose you can multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a commen multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a comment multiline comments. These are initiated with three quotation marks """ and ended with three quotation marks """. Anything between the quotation marks is regarded as a commen multiline comments. These are initiated with three quotation marks " " " and ended with three quotation marks " " ". Anything between the quotation marks is regarded as a comment.</p>
-<Code code={multiLineComment} />
-<div class="separator"></div>
-
