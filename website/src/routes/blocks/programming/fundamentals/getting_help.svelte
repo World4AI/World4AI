@@ -1,7 +1,7 @@
 <script>
  import {fade} from 'svelte/transition';
  import Question from '$lib/Question.svelte';
- import Code from '$lib/Code.svelte';
+ import Repl from '$lib/Repl.svelte';
 </script>
 
 <svelte:head>
@@ -25,7 +25,7 @@
 <div class="separator"></div>
 <h2>Interactive Help</h2>
 <p>Python has a built-in help functionality. If you want to start the interactive session, type <code>help()</code> in the Python command line.</p>
-<Code code={
+<Repl code={
 `Python 3.9.7 (default, Sep 16 2021, 13:09:58)
 [GCC 7.5.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -49,7 +49,7 @@ help>`
 } />
 
 <p>Once the interactive session starts we can type the name of functions, modules etc to receive helpful information. If we type for example <code>print</code> in the command line, the interactive session returns the following text.</p>
-<Code code={
+<Repl code={
 `Help on built-in function print in module builtins:
 
 print(...)
