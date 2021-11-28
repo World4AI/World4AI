@@ -1,43 +1,91 @@
 <script>
+  export let width = 1000;
+  export let height = 150;
   export let type = 'Integer';
   export let value = 42;
   export let count = 1;
+  export let boxHeight = 30;
+  export let boxWidth = 150; 
+  export let boxMargin = 5;
+  export let variable = null;
+  export let variable2 = null;
+
+  const pyObjectData = [ 
+  {
+    x: 0,
+    y: boxHeight + boxMargin,
+    content: 'Type'
+  },  
+  {
+    x: boxWidth + boxMargin,
+    y: boxHeight + boxMargin,
+    content: type  
+  },  
+  {
+    x: 0,
+    y: (boxHeight + boxMargin)*2,
+    content: 'Value'
+  },  
+  {
+    x: boxWidth + boxMargin,
+    y: (boxHeight + boxMargin) * 2,
+    content: value  
+  },  
+  {
+    x: 0,
+    y: (boxHeight + boxMargin)*3,
+    content: 'Count'
+  },  
+  {
+    x: boxWidth + boxMargin,
+    y: (boxHeight + boxMargin) * 3,
+    content: count  
+  },  
+]
 </script>
 
-<table>
-  <thead>
-    <tr>
-      <th>PyObject</th>
-    <tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Type</td>
-      <td>{type}</td>
-    </tr>
-    <tr>
-      <td>Value</td>
-      <td>{value}</td>
-    </tr>
-    <tr>
-      <td>Count</td>
-      <td>{count}</td>
-    </tr>
-  </tbody>
-</table>
-
-<style>
-  table {
-   width: 280px;
-  }
-
-  th {
-   text-transform: uppercase;
-  }
-
-  td, th {
-   border: 1px solid var(--text-color);
-   padding: 5px;
-   text-align: center;
-  }
-</style>
+<svg {width} {height}>
+<g transform="translate(5, 5)">
+  <g fill="none" stroke-width=2 stroke="var(--text-color)">
+   <rect x=0 y=0 width={boxWidth*2 + boxMargin} height={boxHeight}></rect>  
+   <text stroke="none" 
+        fill="var(--text-color)"
+        x={boxWidth + boxMargin} 
+        y={boxHeight/2} 
+        dominant-baseline="middle" 
+        text-anchor="middle">PyObject</text>
+  </g>
+  
+  {#each pyObjectData as point} 
+   <g transform="translate({point.x} {point.y})" fill="none" stroke-width=2 stroke="var(--text-color)">
+    <rect x=0 y=0 width={boxWidth} height={boxHeight}></rect>  
+    <text stroke="none" 
+         fill="var(--text-color)"
+         x={boxWidth/2} 
+         y={boxHeight/2} 
+         dominant-baseline="middle" 
+         text-anchor="middle">{point.content}</text>
+   </g>
+  {/each}
+  {#if variable}
+    <rect fill="none" stroke="var(--text-color)" stroke-width=2 x=400 y={height/2 - boxHeight + boxMargin} width={boxWidth} height={boxHeight}> </rect>
+    <text stroke="none" 
+         fill="var(--text-color)"
+         x={400 + boxWidth/2} 
+         y={height/2 - boxHeight/2 + boxMargin} 
+         dominant-baseline="middle" 
+         text-anchor="middle">{variable}</text>
+    <path stroke="var(--text-color)" stroke-width=2 d="M {400} {height/2 - boxHeight/2 + boxMargin} h -90"  />    
+  {/if}
+  {#if variable2}
+    <rect fill="none" stroke="var(--text-color)" stroke-width=2 x=400 y={height/2 - boxHeight + boxMargin + 50} width={boxWidth} height={boxHeight}> </rect>
+    <text stroke="none" 
+         fill="var(--text-color)"
+         x={400 + boxWidth/2} 
+         y={height/2 - boxHeight/2 + boxMargin + 50} 
+         dominant-baseline="middle" 
+         text-anchor="middle">{variable2}</text>
+    <path stroke="var(--text-color)" stroke-width=2 d="M {400} {height/2 - boxHeight/2 + boxMargin + 50} h -90"  />    
+  {/if}
+</g>
+</svg>
