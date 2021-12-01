@@ -50,7 +50,33 @@ Goodbye World!`} />
 <p>The term <strong>variable</strong> starts to make a lot of sense once you realize how variables actually work. Variables are named for their ability to be assigned different values (PyObjects). Simply put, variables are <em>variable</em> (meaning flexible) in what they can contain. In the above example the <code>sentence</code> variable is first assigned the value "Hello World!" and then reassigned a value "Goodbye World!".</p>
 <div class="separator"></div>
 <h2>Variable Names</h2>
-<p>How you name your variables is ultimately up to you, but there is a "Pythonic" way to name variables. The variable names can contain any letters [a-z], [A-Z], any numbers [0-9] (although a variable name can not start with a number) and an underline _. In most cases it is advisable to use the "snake case" convention in Python. All letters have be lowercase, while individual words are separated by underlines. For example <em>this_is_a_variable</em> is a Pythonic way to name a variable, although you should probably select a more descriptive name.</p>
+<p>There are certain rules you should  follow when you name your variables. On the one side there are some strict rules that you absolutely have obey or your Python programm will not run. On the other side some variable naming convetions are considered more Pythonic than others, you should follow them unless you have a good reason not to.</p>
+<p>Variable names can contain any letters [a-z] or [A-Z], any numbers [0-9] and an underline _, but variable names can not start with a number.</p> 
+<Code code={`valid_variable_name = 10
+print(valid_variable_name`} />
+<Repl code={'10'} />
+<p>The above code works as expected. We use a valid variable name and print the value to the terminal.</p>
+<Code code={'1_variable = 2'} />
+<Repl code={'SyntaxError: invalid decimal literal'} />
+<p>A variable name that starts with a number is not valid Python syntax, therefore we get a syntax error.</p>
 <p>Additionally there are some reserved words in Python that can not be used as variable names. These words are core elements of the language and you will encounter them as we progress though this block of lectures. If you are curious you can input <code>help('keywords')</code> into the prompt or your text editor to display the reserved words.</p>
-<p class="info">Use camel case when naming the variables.</p>
+<Repl code={`>>> help('keywords')`} />
+<Repl code={`Here is a list of the Python keywords.  Enter any keyword to get more help.
+
+False               break               for                 not
+None                class               from                or
+True                continue            global              pass
+__peg_parser__      def                 if                  raise
+and                 del                 import              return
+as                  elif                in                  try
+assert              else                is                  while
+async               except              lambda              with
+await               finally             nonlocal            yield`} />
+<p>If you try and use one of the above keywords as a varaible name you will get a syntax error.</p>
+<p>There are several syntactically correct ways of naming your variables when the name consists of multiple words.</p>
+<ul> 
+  <li>Camel Case starts with a lower case letter and each word afterwards starts with an upper case letter. For example: thisIsCamelCase  </li>
+  <li>Snake Case consists only of lower letter words and each word is separated by an underscore. For esample: this_is_snake_case.</li>
+</ul>
+<p class="info">If possible use snake case for variables names.</p>
 <div class="separator"></div>
