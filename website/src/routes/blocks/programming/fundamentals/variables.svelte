@@ -1,30 +1,10 @@
 <script>
   import {fade} from 'svelte/transition';
-  import { onMount } from 'svelte';
   import Question from '$lib/Question.svelte';
   import Code from '$lib/Code.svelte';
   import Repl from '$lib/Repl.svelte';
   import PyObject from '$lib/PyObject.svelte';
-  let direction = 'east';
 
-  let offsetTop = 0;
-  let offsetBottom = 0;
-
-  onMount(() => {
-       let interval = setInterval(() => {
-          if(direction == 'east') {
-            direction = 'north';
-          } else if (direction == 'north'){
-            direction = 'west';
-          } else if (direction == 'west'){
-            direction = 'south';
-          } else if (direction == 'south'){
-            direction = 'east'; 
-          }
-        }, 1900);
-
-       return () => clearInterval(interval);
-  })
 </script>
 
 <svelte:head>
@@ -36,43 +16,28 @@
 <Question>What are variables and how are they used in Python?</Question>
 <div class="separator"></div>
 <div class="flex-center">
-<svg width="500" height="500" version="1.1" viewBox="0 0 132.29 132.29" xmlns="http://www.w3.org/2000/svg">
- <g id="variable" stroke-width=".26458">
-  <circle cx="66.146" cy="66.146" r="17.905" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="50.915756" y="68.460426" fill="var(--text-color)" font-family="sans-serif" font-size="6.35px" style="line-height:1.25" xml:space="preserve"><tspan x="50.915756" y="68.460426" fill="#000000" font-size="6.35px" stroke-width=".26458">VARIABLE</tspan></text>
+<svg width="500" height="200" version="1.1" viewBox="0 0 132.29 52.917" xmlns="http://www.w3.org/2000/svg">
+ <g in:fade="{{duration: 1000}}">
+  <g fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".67573">
+   <g fill="var(--text-color)">
+    <path d="m58.906 13.189 45.302-5.5562 18.198 4.3328-41.708 3.4103z" points="104.20716,7.6331293 122.40563,11.96593 80.697915,15.376241 58.905632,13.189379 " stroke="#000"/>
+    <path d="m104.21 7.6331v38.629l18.198-5.2519v-29.044z" points="104.20716,46.262295 122.40563,41.010416 122.40563,11.96593 104.20716,7.6331293 "/>
+    <path d="m58.906 13.189 45.302-5.5562v38.629l-45.302-6.7348z" points="104.20716,7.6331293 104.20716,46.262295 58.905632,39.527447 58.905632,13.189379 "/>
+   </g>
+  </g>
+  <rect x="6.6146" y="18.521" width="25.135" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
+  <path d="m33.073 25.135h23.812" fill="none" marker-end="url(#Arrow1Mend)" stroke="#fff" stroke-width=".21167"/>
  </g>
- <g fill="var(--text-color)" stroke="var(--text-color)" stroke-width=".52917">
-  {#if direction == 'east'}
-    <path in:fade="{{duration: 1000}}" id="east-direction" d="m87.313 66.146h26.458"/>
-  {:else if direction == 'south'}
-    <path in:fade="{{duration: 1000}}" id="south-direction" d="m66.146 87.313v26.458"/>
-  {:else if direction == 'west'}
-    <path in:fade="{{duration: 1000}}" id="west-direction" d="m44.979 66.146h-26.458"/>
-  {:else if direction =='north'}
-    <path in:fade="{{duration: 1000}}" id="north-direction" d="m66.146 44.979v-26.458"/>
-  {/if}
+ <g fill="none" stroke="#000" stroke-width=".26458px">
+  <path d="m9.2604 21.167v6.6146"/>
+  <path d="m11.906 21.167v7.9375"/>
+  <path d="m14.552 21.167v6.6146"/>
+  <path d="m17.198 21.167v7.9375"/>
+  <path d="m19.844 19.844v9.2604"/>
+  <path d="m22.49 21.167v7.9375"/>
+  <path d="m25.135 21.167v7.9375"/>
+  <path d="m27.781 21.167v6.6146"/>
  </g>
- {#if direction == 'east'}
- <g in:fade="{{duration: 1000}}" id="east-variable" stroke-width=".26458">
-  <rect x="116.42" y="59.531" width="13.229" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="119.57153" y="70.003464" font-family="sans-serif" font-size="10.583px" style="line-height:1.25" xml:space="preserve"><tspan x="119.57153" y="70.003464" stroke-width=".26458">1</tspan></text>
- </g>
- {:else if direction == 'north'}
- <g in:fade="{{duration: 1000}}" id="north-variable" stroke-width=".26458">
-  <rect x="59.531" y="2.6458" width="13.229" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="62.921234" y="13.187814" font-family="sans-serif" font-size="10.583px" style="line-height:1.25" xml:space="preserve"><tspan x="62.921234" y="13.187814" stroke-width=".26458">2</tspan></text>
- </g>
- {:else if direction == 'west'}
- <g in:fade="{{duration: 1000}}" id="west-variable" stroke-width=".26458">
-  <rect x="2.6458" y="59.531" width="13.229" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="6.0358181" y="70.073227" font-family="sans-serif" font-size="10.583px" style="line-height:1.25" xml:space="preserve"><tspan x="6.0358181" y="70.073227" stroke-width=".26458">3</tspan></text>
- </g>
- {:else if direction == 'south'}
- <g in:fade="{{duration: 1000}}" id="south-variable" stroke-width=".26458">
-  <rect x="59.531" y="116.42" width="13.229" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="62.799797" y="126.88372" font-family="sans-serif" font-size="10.583px" style="line-height:1.25" xml:space="preserve"><tspan x="62.799797" y="126.88372" stroke-width=".26458">4</tspan></text>
- </g>
- {/if}
 </svg>
 </div>
 
