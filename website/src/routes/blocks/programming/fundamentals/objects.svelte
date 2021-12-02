@@ -6,10 +6,6 @@
   import Code from '$lib/Code.svelte';
   import Repl from '$lib/Repl.svelte';
 
-  let width = 500;
-  let height = 200;
-  let radius = 50;
-  let size = 140
 </script>
 
 <h1>Objects</h1>
@@ -17,12 +13,16 @@
 <div class="separator"></div>
 
 <div class="flex-center">
-  <svg {width} {height} version="1.1" xmlns="http://www.w3.org/2000/svg">
-   <g in:fade="{{duration: 2000}}" stroke="var(--text-color)">
-    <rect fill="var(--main-color-1)" x={width / 2 - size/2} y={height/2 - size/2} width={size} height={size} />
-    <circle fill="var(--text-color)" cx={width/2} cy={height/2} r={radius}  stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-   </g>
-  </svg>
+
+<svg width="500" height="200" version="1.1" viewBox="0 0 132.29 52.917" xmlns="http://www.w3.org/2000/svg">
+  <g in:fade="{{duration: 1000}}" fill="#fff" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".67573">
+  <g fill="var(--text-color)">
+   <path d="m34.396 13.189 45.302-5.5562 18.198 4.3328-41.708 3.4103z" points="79.697365,7.6331293 97.895833,11.96593 56.188115,15.376241 34.395832,13.189379 " stroke="#000"/>
+   <path d="m79.697 7.6331v38.629l18.198-5.2519v-29.044z" points="79.697365,46.262295 97.895833,41.010416 97.895833,11.96593 79.697365,7.6331293 "/>
+   <path d="m34.396 13.189 45.302-5.5562v38.629l-45.302-6.7348z" points="79.697365,7.6331293 79.697365,46.262295 34.395832,39.527447 34.395832,13.189379 "/>
+  </g>
+ </g>
+</svg>
 </div>
 <p>It is not customary to start learning Python with the introduction of objects. But in Python this is almost unavoidable, because almost everything you encounter in Python is an object. For example each number and each piece of text are objects. And while we can teach Python without using the word object, we are still going to encounter objects from the very beginning. Therefore we might as well cover the very basics and the terminology and leave the more complex stuff for later, when the need arises.</p>
 <p class="info">Everything in Python is an object!</p>
