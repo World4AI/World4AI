@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   import Question from '$lib/Question.svelte';
   import Code from '$lib/Code.svelte';   
   import Repl from '$lib/Repl.svelte';
@@ -12,6 +13,28 @@
 <h1>Datatypes in Python</h1>
 <Question>What data types are available in Python?</Question>
 <div class="separator"></div>
+<div class="flex-center">
+<svg width="500" height="200" version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+ <g in:fade="{{duration: 1000}}" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917">
+  <g stroke-width="1">
+   <path d="m138.95 63.25 92.334-7.5499v64.3l-92.334-9.1514z"/>
+   <path d="m90.71 58.409v58.308l48.245-5.8683v-47.599z"/>
+   <path d="m90.71 116.72 100.29 14.91 40.289-11.627-92.334-9.1514z"/>
+   <path d="m90.71 58.409 100.29-12.301 40.289 9.5921-92.334 7.5499z"/>
+   <path d="m191 46.108v85.519l40.289-11.627v-64.3z"/>
+   <path d="m15.06 62.638 100.29-12.301v85.519l-100.29-14.91z"/>
+   <path d="m392.67 63.25 92.334-7.5499v64.3l-92.334-9.1514z"/>
+   <path d="m344.42 58.409v58.308l48.245-5.8683v-47.599z"/>
+   <path d="m344.42 116.72 100.29 14.91 40.289-11.627-92.334-9.1514z"/>
+   <path d="m344.42 58.409 100.29-12.301 40.289 9.5921-92.334 7.5499z"/>
+   <path d="m444.71 46.108v85.519l40.289-11.627v-64.3z"/>
+   <path d="m268.77 62.638 100.29-12.301v85.519l-100.29-14.91z"/>
+  </g>
+  <circle cx="164.4" cy="89.704" r="15" fill="var(--background-color)" fill-opacity=".99846" stroke="black"/>
+  <rect x="405" y="72" width="30" height="30" fill="var(--background-color)" fill-opacity=".99846" stroke="black"/>
+ </g>
+</svg>
+</div>
 <h2>What is a data type?</h2>
 <p>In Python variables are used as a convenient label to reference the data, the variables are not the data itself. That data itself is represented by an object, which does not only hold the value of the data, but the type of the data. The data can be of different type, like a number or a string of text. Depending on the data type different attributes and methods are available to work with and process the data. For example numbers can be added together, while strings can be concatenated.</p>
 <p class="info">The data type determines what properties the data posesses.</p>

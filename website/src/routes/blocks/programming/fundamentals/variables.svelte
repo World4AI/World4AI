@@ -16,28 +16,33 @@
 <Question>What are variables and how are they used in Python?</Question>
 <div class="separator"></div>
 <div class="flex-center">
-<svg width="500" height="200" version="1.1" viewBox="0 0 132.29 52.917" xmlns="http://www.w3.org/2000/svg">
- <g in:fade="{{duration: 1000}}">
-  <g fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".67573">
-   <g fill="var(--text-color)">
-    <path d="m58.906 13.189 45.302-5.5562 18.198 4.3328-41.708 3.4103z" points="104.20716,7.6331293 122.40563,11.96593 80.697915,15.376241 58.905632,13.189379 " stroke="#000"/>
-    <path d="m104.21 7.6331v38.629l18.198-5.2519v-29.044z" points="104.20716,46.262295 122.40563,41.010416 122.40563,11.96593 104.20716,7.6331293 "/>
-    <path d="m58.906 13.189 45.302-5.5562v38.629l-45.302-6.7348z" points="104.20716,7.6331293 104.20716,46.262295 58.905632,39.527447 58.905632,13.189379 "/>
-   </g>
+<svg width="500" height="200" version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Arrow1Mend" overflow="visible" orient="auto">
+   <path transform="rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" fill="var(--text-color)" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g in:fade="{{duration: 1000}}" fill="#fff" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3475">
+  <g fill="var(--text-color)">
+   <path d="m229.65 40.771 169.35-20.771 68.031 16.197-155.92 12.749z" points="399,20.000001 467.03109,36.197251 311.11568,48.945973 229.64988,40.770855 " stroke="#000"/>
+   <path d="m399 20v144.41l68.031-19.633v-108.58z" points="399,164.40691 467.03109,144.77388 467.03109,36.197251 399,20.000001 "/>
+   <path d="m229.65 40.771 169.35-20.771v144.41l-169.35-25.177z" points="399,20.000001 399,164.40691 229.64988,139.23011 229.64988,40.770855 "/>
   </g>
-  <rect x="6.6146" y="18.521" width="25.135" height="13.229" fill="var(--text-color)" fill-opacity=".99846" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".52917"/>
-  <path d="m33.073 25.135h23.812" fill="none" marker-end="url(#Arrow1Mend)" stroke="#fff" stroke-width=".21167"/>
  </g>
- <g fill="none" stroke="#000" stroke-width=".26458px">
-  <path d="m9.2604 21.167v6.6146"/>
-  <path d="m11.906 21.167v7.9375"/>
-  <path d="m14.552 21.167v6.6146"/>
-  <path d="m17.198 21.167v7.9375"/>
-  <path d="m19.844 19.844v9.2604"/>
-  <path d="m22.49 21.167v7.9375"/>
-  <path d="m25.135 21.167v7.9375"/>
-  <path d="m27.781 21.167v6.6146"/>
+ <g in:fade="{{duration: 1000}}" transform="translate(0,5)" stroke="#000">
+  <rect x="15" y="70" width="95" height="50" fill="var(--text-color)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <g transform="matrix(3.7795 0 0 3.7795 -10 -1.1375e-6)" fill="none" stroke-width=".26458px">
+   <path d="m9.2604 21.167v6.6146"/>
+   <path d="m11.906 21.167v7.9375"/>
+   <path d="m14.552 21.167v6.6146"/>
+   <path d="m17.198 21.167v7.9375"/>
+   <path d="m19.844 19.844v9.2604"/>
+   <path d="m22.49 21.167v7.9375"/>
+   <path d="m25.135 21.167v7.9375"/>
+   <path d="m27.781 21.167v6.6146"/>
+  </g>
  </g>
+ <path d="m120 100h100" fill="none" marker-end="url(#Arrow1Mend)" stroke="#fff" stroke-width="1px"/>
 </svg>
 </div>
 
