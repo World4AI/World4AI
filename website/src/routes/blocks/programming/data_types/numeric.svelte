@@ -3,6 +3,7 @@
     import Code from '$lib/Code.svelte';
     import Repl from '$lib/Repl.svelte'; 
     import Math from '$lib/Math.svelte';
+    import Operator from '$lib/Operator.svelte';
 </script>
 
 <h1>Numeric Data Types</h1>
@@ -16,7 +17,7 @@
 <p>Arithmetic operators are designed to handle the most atomic mathematical operations you could imagine, mostly we are talking about elementary school math.</p>
 
 <h4>Addition</h4>
-<p>The plus operator <span class="operator"><Math latex={'+'} /></span>  sums the two operands and returns the result.</p>
+<p>The plus operator <Operator><Math latex={'+'} /></Operator> sums the two operands and returns the result.</p>
 <Code code={
 `a = 1 + 1
 print(a)`
@@ -24,14 +25,14 @@ print(a)`
 <Repl code={'2'} />
 
 <h4>Subtraction</h4>
-<p>The minus operator <span class="operator"><Math latex={'-'} /></span> subtracts the second operand from the first operand and returns the result.</p>
+<p>The minus operator <Operator><Math latex={'-'} /></Operator> subtracts the second operand from the first operand and returns the result.</p>
 <Code code={
 `a = 10 - 5
 print(a)`} />
 <Repl code={'5'} />
 
 <h4>Multiplication</h4>
-<p>The multiplication operator <span class="operator"><Math latex={'*'} /></span> multiplies the two operands and returns the result.</p>
+<p>The multiplication operator <Operator><Math latex={'*'} /></Operator> multiplies the two operands and returns the result.</p>
 <Code code={
 `a = 2.3 * 5
 print(a)`
@@ -39,7 +40,7 @@ print(a)`
 <Repl code={'11.5'} />
 
 <h4>Division</h4>
-<p>The divison operator <span class="operator"><Math latex={'/'} /></span> divides the first operand by the second operand and returns the result.</p>
+<p>The divison operator <Operator><Math latex={'/'} /></Operator> divides the first operand by the second operand and returns the result.</p>
 <Code code={
 `a = 5 / 2
 print(a)`
@@ -47,21 +48,21 @@ print(a)`
 <Repl code={'2.5'} />
 
 <h4>Floor Division</h4>
-<p>The floor divison operator <span class="operator"><Math latex={'//'} /></span> divides the first operand by the second operand and cuts off the remainder of the dvision.</p>
+<p>The floor divison operator <Operator><Math latex={'//'} /></Operator> divides the first operand by the second operand and cuts off the remainder of the dvision.</p>
 <Code code={`a = 5 // 2
 print(a)`
 } />
 <Repl code={'2'} />
 
 <h4>Modulo</h4>
-<p>The modulo operator <span class="operator"><Math latex={'\\%'} /></span> is the counterpart to the floor division. It throws away the quotient and returns the remainder.</p>
+<p>The modulo operator <Operator><Math latex={'\\%'} /></Operator> is the counterpart to the floor division. It throws away the quotient and returns the remainder.</p>
 <Code code={`a = 5 % 2
 print(a)`
 } />
 <Repl code={'1'} />
 
 <h4>Exponentiation</h4>
-<p>The exponentiation operator <span class="operator"><Math latex={'**'} /></span> takes the left operand to the power of the right operand.</p>
+<p>The exponentiation operator <Operator><Math latex={'**'} /></Operator> takes the left operand to the power of the right operand.</p>
 <Code code={`a = 2 ** 3
 print(a)`
 } />
@@ -76,10 +77,10 @@ print(b)`
 } />
 <Repl code={'10'} />
 
-<p>In the code snippet above both variables are assigned the same object in memory using the assignement operator <span class="operator"><Math latex={'='} /></span>.</p>
+<p>In the code snippet above both variables are assigned the same object in memory using the assignement operator <Operator><Math latex={'='} /></Operator>.</p>
 
-<p>All other numeric assignment operators in Python are just shorthand notations. They combine arithmetic and assignment operators into one single operator. The <span class="operator">+=</span> operator for example combines addition and assignment. For example <span>a+=5</span> is the same operation as <span>a = a + 5. </span></p>
-<p>The same logic applies to the following operators: <span class="operator">-=</span>, <span class="operator">*=</span>, <span class="operator">/=</span>, <span class="operator">//=</span>, <span class="operator">%=</span>, <span class="operator">**=</span>.</p>
+  <p>All other numeric assignment operators in Python are just shorthand notations. They combine arithmetic and assignment operators into one single operator. The <Operator>+=</Operator> operator for example combines addition and assignment. For example <span>a+=5</span> is the same operation as <span>a = a + 5. </span></p>
+    <p>The same logic applies to the following operators: <Operator>-=</Operator>, <Operator>*=</Operator>, <Operator>/=</Operator>, <Operator>//=</Operator>, <Operator>%=</Operator>, <Operator>**=</Operator>.</p>
 <Code code={`
 a = 1
 a += 1
@@ -121,7 +122,7 @@ print(g)`
 <h3>Comparison Operators</h3>
 <p>Comparison operators allow us to compare two numbers. This operators allow us to answer questions like: "Is number a larger than number b?" or "Is number a equal to number b?". The result is always a boolean, a true or false value.</p>
 <h4>Equality and Inequality</h4>
-<p>Often we want to figure out if two numbers are equal or unequal. When we talk about equality we talk about equality of values and not equality of objects. As long as the objects contain the same values, they are considered to be equal. The equality operator <span class="operator"><Math latex={'=='} /></span> returns True if both objects contain the same value. For example the expression 5==5 returns True and 5==4 returns False. The inequality operator <span class="operator"><Math latex={'!='} /></span> does the exact opposite. The expression 1!=1 returns False and 1!=2 returns True.</p>
+<p>Often we want to figure out if two numbers are equal or unequal. When we talk about equality we talk about equality of values and not equality of objects. As long as the objects contain the same values, they are considered to be equal. The equality operator <Operator><Math latex={'=='} /></Operator> returns True if both objects contain the same value. For example the expression 5==5 returns True and 5==4 returns False. The inequality operator <Operator><Math latex={'!='} /></Operator> does the exact opposite. The expression 1!=1 returns False and 1!=2 returns True.</p>
 <Code code={`a = 5
 b = 5
 c = 4
@@ -131,8 +132,8 @@ print(a==c)
 <Repl code={`True
 False`} />
 <h4>Greater and Less</h4>
-<p>When we want to figure out which of the two numbers is larger or smaller, we use either the greater than operator <span class="operator"><Math latex={'>'} /></span> or smaller than operator <span class="operator"><Math latex={'<'} /></span>. For example 2 &lt; 1 would return False and 2 &gt; 1 would return True.</p>
-<p>Sometimes it is desirable to know if one of the numbers is larger or equal to the second number. In that case we use either <span class="operator"><Math latex={'>='} /></span> or <span class="operator"><Math latex={'<='} /></span>.</p>
+<p>When we want to figure out which of the two numbers is larger or smaller, we use either the greater than operator <Operator><Math latex={'>'} /></Operator> or smaller than operator <Operator><Math latex={'<'} /></Operator>. For example 2 &lt; 1 would return False and 2 &gt; 1 would return True.</p>
+  <p>Sometimes it is desirable to know if one of the numbers is larger or equal to the second number. In that case we use either <Operator><Math latex={'>='} /></Operator> or <Operator><Math latex={'<='} /></Operator>.</p>
 <Code code={`a = 2
 b = 1
 print(a > b)
@@ -143,13 +144,4 @@ False
 `} />
 <div class="separator"></div>
 
-<style>
-    .operator {
-        line-height: 1rem;
-        display: inline-block;
-        margin: 0;
-        padding: 2px 4px;
-        border: 1px solid var(--main-color-1);
-    }
-</style>
 
