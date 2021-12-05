@@ -104,6 +104,72 @@ print(text[::2])
 <div class="separator"></div>
 
 <h2>Formatting</h2>
+<p>Usually strings that need to be printed are not hardcoded, but come at least partially from outside variables. Those variables often need to be printed in the desired format using either the <code>format()</code> method or so called f-strings.</p>
+<h3>Format Method</h3>
+<p>The format method searches for placeholders marked by curly braces &#123; &#125; and replaces them with provided variables or values. For example '&#123; &#125; to apples'.format('yes') would result in 'yes to apples'.</p>
+<p>Similarly as shown in the example below we can utilize variables to replace placeholders.</p>
+<Code code={`text = 'I have {} apples'
+number = 10
+print(text)
+formatted_text = text.format(number)
+print(formatted_text)`}/>
+<Repl code={`I have {} apples 
+I have 10 apples`} />
+<p>As shown in the code below we can provide more than one placeholder to be replaced by variables.</p>
+<Code code={`
+fruits = 'apples'
+number = '10'
+sentence = 'I have {} {}'
+formatted_sentence = sentence.format(number, fruits)
+print(formatted_sentence)
+`} />
+<Repl code={`I have 10 apples`} />
+
+<p>The code snippet above utilizes so called positional arguments. That means that the first placeholder is replaced by the first variable and the second placeholder is replaced by the second variable. We can write the same code in a more explicit way by indicating which placeholder is going to be replaced by which variable. For example '&#123;0&#125; are &#123;1&#125;'.format('apples', 'awesome') would produce the string 'apples are awesome' while '&#123;1&#125; are &#123;0&#125;'.format('apples', 'awesome') would produce 'awesome are apples'.</p>
+<Code code={`fruits = 'apples'
+number = 10
+sentence_1 = 'I have {0} {1}'
+sentence_2 = 'I have {1} {0}'
+formatted_sentence_1 = sentence_1.format(number, fruits)
+formatted_sentence_2 = sentence_2.format(number, fruits)
+print(formatted_sentence_1)
+print(formatted_sentence_2)
+`} />
+<Repl code={`I have 10 apples
+I have apples 10
+`} />
+<p>Additionally we can use named placeholders. For example '&#123;fruits&#125;'.format(fruits='apples') would produce the string 'apples'.</p>
+<Code code={`sentence = 'I have {number} {fruits}'
+formatted_sentence = sentence.format(number=10, fruits='apples')
+print(formatted_sentence)
+`} />
+<Repl code={`I have 10 apples`} />
+<p>There are many options when it comes to formatting and it is almost impossible to remember them all. We are going to cover some basic example to get the feel for what is possible.</p>
+<p>The colon : indicates the start of formatting.</p>
+<Code code={`>>> '{:}'.format(1000) 
+'1000'`}/> 
+<p>The number after the colon shows the length of the string.</p>
+<Code code={`>>> '{:10}'.format(1000) 
+'      1000'`}/> 
+<p>The comma "," makes sure that the comma is used for a thousand separator.</p>
+<Code code={`>>> '{:,}'.format(1000) 
+'1,000'`}/> 
+<p>The "f" indicates that we are dealing with a floating point numbers.</p>
+<Code code={`>>> '{:f}'.format(1000) 
+'1000.000000'`}/> 
+<p>The number after the dot "." indicates the precision of a floating point number.</p>
+<Code code={`>>> '{:.2f}'.format(1000) 
+'1000.00'`}/> 
+<h3>f-strings</h3>
+<p>The f-strings are a newer method of dealing with string formatting. Essentially f-strings add some convenience when dealing with string literals. F-strings are initiated by the letter 'f' followed by a string. For example f'{10}' produces the string '10'.</p>
+<Code code={`
+number = 10
+fruits = 'apples'
+sentence = f'I have {number} {fruits}'
+print(sentence)
+`} />
+<Repl code={'I have 10 apples'} />
+<p>Essentially with f-strings the code gets cleaner, as we can avoid the trailing format() method.</p>
 <div class="separator"></div>
 <h2>Methods</h2>
 <Code code={`text = ''
