@@ -47,7 +47,7 @@ const rl = [
             },			
             {
                 name: 'MDP as Tuple',
-                link: '/blocks/reinforcement_learning/markov_decision_process/5_tuple'
+                link: '/blocks/reinforcement_learning/markov_decision_process/tuple'
             },			
             {
                 name: 'Solution',
