@@ -1,8 +1,12 @@
 <script>
     import { onMount } from 'svelte';
 
-    export let agent;
-    export let env;
+    export let agent = null;
+    export let env = null;
+    let actionSpace = env.getActionSpace();
+    //if true, then the player and the blocks are not showed
+    export let showGridOnly = false;
+
     export let speed = 500;
     export let showArrows = false;
     export let isColoredReward = false;
@@ -11,6 +15,10 @@
     export let showReward = false;
     export let showAllRewards = false;
     export let arrows = [];
+
+
+    export let showStateSpace = false;
+    export let showActionSpace = false;
 
     // svg parameters
     export let width = 500;
@@ -32,30 +40,33 @@
     let reward = null;
     let cells = env.getCells();
     let payload = {};
-    onMount(() => {
-        if(showObservation || showAction || showReward) {
-            translateGrid = 150;
-        }
-        const interval = setInterval(() => {
-            if (payload.done) {
-                    observation = env.reset();
-                    payload.done = false;
-                    player = {... observation};
-                    action = null;
-                    reward = null;
-                }
-            else {
-                action = agent.act(observation);
-                arrows = [{r: observation.r, c: observation.c, d: actionToDegreeMapping[action]}]
-                payload = env.step(action);
-                observation = payload.observation;
-                reward = payload.reward;
-                player = {... observation};
-            }
-        }, speed);
-
-        return () => clearInterval(interval);
-    })
+    
+    if (agent) { 
+      onMount(() => {
+          if(showObservation || showAction || showReward) {
+              translateGrid = 150;
+          }
+          const interval = setInterval(() => {
+              if (payload.done) {
+                      observation = env.reset();
+                      payload.done = false;
+                      player = {... observation};
+                      action = null;
+                      reward = null;
+                  }
+              else {
+                  action = agent.act(observation);
+                  arrows = [{r: observation.r, c: observation.c, d: actionToDegreeMapping[action]}]
+                  payload = env.step(action);
+                  observation = payload.observation;
+                  reward = payload.reward;
+                  player = {... observation};
+              }
+          }, speed);
+  
+          return () => clearInterval(interval);
+      })
+    }
 
     // map from action to the degrees of the arrow
     let actionToDegreeMapping = {
@@ -96,6 +107,28 @@
                     height={rowSize}/>
             </g>
 
+            {#if showStateSpace}
+              <!-- draw all possible states -->
+              <text dominant-baseline="middle" 
+                    text-anchor="middle" 
+                    font-size="20px"
+                    fill="var(--text-color)" 
+                    x={cell.c * colSize + colSize/2} 
+                    y={cell.r * rowSize + rowSize/2}>
+                    ({cell.r}, {cell.c})</text>
+            {/if}
+
+            {#if showActionSpace}
+              <!-- draw all possible states -->
+              <text dominant-baseline="middle" 
+                    text-anchor="middle" 
+                    font-size="20px"
+                    fill="var(--text-color)" 
+                    x={cell.c * colSize + colSize/2} 
+                    y={cell.r * rowSize + rowSize/2}>
+                    [{actionSpace}]</text>
+            {/if}
+
             {#if cell.type !== "block"  && showAllRewards}
                 <text 
                     x={5+cell.c * colSize} 
@@ -107,7 +140,8 @@
                     {cell.reward}
                 </text>
             {/if}
-
+            
+            {#if !showGridOnly}
             <!-- blocks -->
             <g fill="var(--text-color)" stroke="black" stroke-width="3">
                 {#if cell.type === "block"}
@@ -128,9 +162,11 @@
                     ${cell.c * colSize + goalPadding},${cell.r * rowSize + rowSize - goalPadding}`}/>
                 {/if}
             </g>
+            {/if}
         {/each}
 
         <!-- player -->
+        {#if !showGridOnly}
         <g>
             <circle cx={player.c * colSize + colSize / 2} 
                     cy={player.r * rowSize + rowSize / 2} 
@@ -141,6 +177,7 @@
                     stroke-width="3"
             />
         </g>
+        {/if}
     
 
         {#if showArrows}

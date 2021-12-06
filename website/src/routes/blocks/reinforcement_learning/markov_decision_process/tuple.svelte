@@ -1,6 +1,12 @@
 <script>
   import Question from '$lib/Question.svelte';
   import Math from '$lib/Math.svelte';
+  import Grid from '$lib/reinforcement_learning/grid_world/Grid.svelte';
+  import { GridEnvironment } from '$lib/reinforcement_learning/grid_world/GridEnvironment';
+  import { gridMap } from '$lib/reinforcement_learning/grid_world/maps';
+
+  let env_1 = new GridEnvironment(gridMap);
+  let env_2 = new GridEnvironment(gridMap);
 </script>
 
 <h1>MDP as Tuple</h1>
@@ -10,10 +16,20 @@
 <div class="separator"></div>
 
 <h2><Math latex={'\\mathcal{S}'} />: States</h2>
+<p>In a Markov decision process <Math latex={'\\mathcal{S}'} /> is the state space, that contains all possible states of the environment.</p>
+<div class='flex-center'>
+  <Grid env={env_1} showGridOnly={true} showStateSpace={true}/>
+</div>
+<p>In the example above for example we are dealing with a 5X5 grid world, where each state is represented by a row and column tuple: (row, column). Alltogether there are exactly 25 possible states, therefore our state space looks as follows: <Math latex={'\\mathcal{S}=[(0,0), (0, 1), (0, 2), ... , (4, 4)]'} />.</p>
 <p class="info"><Math latex={'\\mathcal{S}'} /> is the set of all legal states.</p>
 <div class="separator"></div>
 
 <h2><Math latex={'\\mathcal{A}'} />: Actions</h2>
+<p>In a Markov decision process <Math latex={'\\mathcal{A}'} /> is the action space, that contains all possible actions of the environment.</p>
+<div class='flex-center'>
+  <Grid env={env_2} showGridOnly={true} showActionSpace={true}/>
+</div>
+<p>In this simple grid world the agent has the option to move into four different directions: north, east, south and west. The same actions are represented in the environment by four different numbers: 0, 1, 2, 3. For that reason the action space in that particular grid world is <Math latex={'\\mathcal{A}=[0, 1, 2, 3]'} />. Even if in some states it is not possible to move into a particular direction, the state space is usually kept consistent across the whole state space.</p>
 <p class="info"><Math latex={'\\mathcal{A}'} /> is the set of all legal actions.</p>
 <div class="separator"></div>
 
