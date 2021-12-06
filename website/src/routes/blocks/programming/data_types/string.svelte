@@ -171,19 +171,89 @@ print(sentence)
 <Repl code={'I have 10 apples'} />
 <p>Essentially with f-strings the code gets cleaner, as we can avoid the trailing format() method.</p>
 <div class="separator"></div>
+
 <h2>Methods</h2>
-<Code code={`text = ''
-dir(text)`} />
+<p>String methods provide additional useful functionalities. As strings are not mutable all those methods take the original text as input and return a new PyObject, while the original string ramains unchanged.</p>
+
 <h3>Capitalize</h3>
+<p>The capitalize() method returns a string, where the first letter of the input string is made uppercase.</p>
+<Repl code={`>>> 'hello'.capitalize()
+'Hello'
+`} />
+
 <h3>Count</h3>
+<p>The count() method returns an integer, which indicates how many times a certain substring is found within the input string.</p>
+<Code code={`>>> 'hello'.count('h')
+1
+>>> 'hello'.count('l')
+2
+>>> 'hello'.count('a')
+0
+>>> 'hello'.count('lo')
+1
+`} />
+
 <h3>Find</h3>
-<h3>Index</h3>
+<p>The find() method searches for a substring and returns the index of the first occurence of that substring. If the substring is not found, find() returns -1.</p>
+<Code code={`>>> 'hello'.find('l')
+2
+>>> 'hello'.find('a')
+-1
+`} />
+
 <h3>Join</h3>
+<p>Join is a convenient method to concatenate strings within a sequence. The string whose join() method is called is added between the sequence of strings.</p>
+<Code code={`>>> '-'.join('abc')
+'a-b-c'
+>>> '*'.join(['a', 'b', 'c'])
+'a*b*c'
+>>> '*'.join(['ab', 'bc', 'cd'])
+'ab*bc*cd'
+`} />
+
 <h3>Lower</h3>
-<h3>Partition</h3>
+<p>The lower() method makes each single letter lowercase.</p>
+<Code code={`>>> 'HELLO'.lower()
+'hello'
+`} />
+
 <h3>Replace</h3>
+<p>The replace(a, b) method looks for a substring a and replaces that substing with substing b.</p>
+<Code code={`>>> 'hello'.replace('h', 'b')
+'bello'
+>>> 'hello'.replace('l', 's')
+'hesso'
+>>> 'hello'.replace('ll', 'sa')
+'hesao'
+`} />
+
 <h3>Strip</h3>
+<p>The strip() method removes whitespace to the left and the right of the string.</p>
+<Code code={`>>> '   hello   '.strip()
+'hello'
+`} />
+
 <h3>Split</h3>
+<p>The split() method splits a string into individual components and puts them into a list. The "sep" argument is used to determine the substring that is used for separation. The standard argument is the empty string ' '.</p>
+<Code code={`
+>>> 'hello world'.split()
+['hello', 'world']
+>>> 'hello-world'.split(sep='-')
+['hello', 'world']
+`} />
+
 <h3>Title</h3>
+<p>The title() method makes the first letter of each individual word uppercase.</p>       
+<Code code={`>>> 'hello world'.capitalize()
+'Hello world'
+>>> 'hello world'.title()
+'Hello World'
+`} />
+
 <h3>Upper</h3>
+<p>The upper() method makes each individual letter uppercase.</p>
+<Code code={`>>> 'hello world'.upper()
+'HELLO WORLD'
+`} />
 <div class="separator"></div>
+       
