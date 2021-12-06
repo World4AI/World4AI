@@ -9,6 +9,11 @@
   let env_2 = new GridEnvironment(gridMap);
 </script>
 
+<svelte:head>
+    <title>World4AI | Reinforcement Learning | MDP As Tuple</title>
+    <meta name="description" content="A Markov decision process is a tuple that contains the state space, the action space, the transition probabilities matrix, the reward function and the discount factor gamma.">
+</svelte:head>
+
 <h1>MDP as Tuple</h1>
 <div class="separator"></div>
 <p>The most formal definition of a Markov decison process deals with the individual components of the MDP. A Markov decision process can be defined as a tuple <Math latex={"(\\mathcal{S, A}, P, R, \\gamma)"} />, where each individual component of that tuple is a required component of a valid MDP. The definition of each component is going to be important in many subsequent sections, because those definitions are the basis of most mathematical proofs in reinforcement learning.</p> 
