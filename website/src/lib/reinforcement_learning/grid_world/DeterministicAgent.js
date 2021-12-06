@@ -1,4 +1,4 @@
-import { Agent } from "$lib/reinforcement_learning/common/Agent";
+import { Agent } from "$lib/reinforcement_learning/grid_world/Agent";
 
 class DeterministicAgent extends Agent {
     constructor(observationSpace, actionSpace) {

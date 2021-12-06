@@ -1,11 +1,11 @@
 <script>
     import Question from '$lib/Question.svelte';
-    import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
-    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
-    import { gridMap } from '$lib/reinforcement_learning/common/maps';
+    import { RandomAgent } from '$lib/reinforcement_learning/grid_world/RandomAgent';
+    import { GridEnvironment } from '$lib/reinforcement_learning/grid_world/GridEnvironment';
+    import { gridMap } from '$lib/reinforcement_learning/grid_world/maps';
 
     import Interaction from '$lib/reinforcement_learning/intuition/states_actions_rewards/Interaction.svelte';
-    import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
+    import Grid from '$lib/reinforcement_learning/grid_world/Grid.svelte';
 
     let env_1 = new GridEnvironment(gridMap);
     let agent_1 = new RandomAgent(env_1.getObservationSpace(), env_1.getActionSpace());   

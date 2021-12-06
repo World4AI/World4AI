@@ -2,7 +2,7 @@
     import Question from '$lib/Question.svelte';
     import Interaction from '$lib/reinforcement_learning/intuition/states_actions_rewards/Interaction.svelte';
     import Component from '$lib/reinforcement_learning/intuition/value_policy_model/Component.svelte';
-    import Table from '$lib/reinforcement_learning/common/Table.svelte';
+    import Table from '$lib/reinforcement_learning/grid_world/Table.svelte';
 
     const modelHeader = ['State', 'Action 0', 'Action 1'];
     const modelData =  [

@@ -1,4 +1,4 @@
-import { Environment } from "$lib/reinforcement_learning/common/Environment";
+import { Environment } from "$lib/reinforcement_learning/grid_world/Environment";
 
 class GridEnvironment extends Environment {
     constructor(map, randomize=0) {

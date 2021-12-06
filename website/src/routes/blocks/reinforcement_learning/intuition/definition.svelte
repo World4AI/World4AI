@@ -1,10 +1,10 @@
 <script>
     import Question from '$lib/Question.svelte';
-    import { RandomAgent } from '$lib/reinforcement_learning/common/RandomAgent';
-    import { DeterministicAgent } from '$lib/reinforcement_learning/common/DeterministicAgent';
-    import { GridEnvironment } from '$lib/reinforcement_learning/common/GridEnvironment';
-    import { gridMap } from '$lib/reinforcement_learning/common/maps';
-    import Grid from '$lib/reinforcement_learning/intuition/applications/Grid.svelte';
+    import { RandomAgent } from '$lib/reinforcement_learning/grid_world/RandomAgent';
+    import { DeterministicAgent } from '$lib/reinforcement_learning/grid_world/DeterministicAgent';
+    import { GridEnvironment } from '$lib/reinforcement_learning/grid_world/GridEnvironment';
+    import { gridMap } from '$lib/reinforcement_learning/grid_world/maps';
+    import Grid from '$lib/reinforcement_learning/grid_world/Grid.svelte';
     import Sequence from '$lib/reinforcement_learning/intuition/definition/Sequence.svelte';
     import CreditAssignment from '$lib/reinforcement_learning/intuition/definition/CreditAssignment.svelte';
 
