@@ -150,7 +150,7 @@
                 markerHeight="7" 
                 refX="0" refY="3.5" 
                 orient="auto" 
-                fill="black"
+                fill="var(--main-color-1)"
                 >
                 <polygon points="0 0, 10 3.5, 0 7" />
                 </marker>
@@ -163,7 +163,7 @@
                     x2={arrow.c * colSize + colSize - 35} 
                     y2={arrow.r * rowSize + rowSize / 2}
                     transform="rotate({arrow.d}, {arrow.c * colSize + colSize/2}, {arrow.r * rowSize + rowSize/2})" 
-                    stroke="black"
+                    stroke="var(--main-color-1)"
                     stroke-width="1" 
                     marker-end="url(#arrowhead)" 
                 />
