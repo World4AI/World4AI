@@ -1,13 +1,14 @@
 <script>
     import katex from 'katex';
-    let math = (latex) => {
-        let html = katex.renderToString(latex, {
+    export let latex;
+    const math = (formula) => {
+        let html = katex.renderToString(formula, {
             throwOnError: false
         });
         return html;
     }
-
-    export let latex;
+    
+    $: result = math(latex)
 </script>
 
-{@html math(latex)}
+<span>{@html result}</span>
