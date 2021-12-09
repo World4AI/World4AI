@@ -72,6 +72,11 @@
   ]  
 </script>
 
+<svelte:head>
+    <title>World4AI | Reinforcement Learning | MDP Solution</title>
+    <meta name="description" content="A Markov decision process is considered to be solved once the agent found the optimal policy and the optimal value function.">
+</svelte:head>
+
 <h1>MDP Solution</h1>
 <Question>What does it mean for the agent to solve the MDP?</Question>
 <div class="separator"></div>
