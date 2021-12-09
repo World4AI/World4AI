@@ -127,26 +127,26 @@
 <div class="separator"></div>
 
 <h2>Value Functions</h2>
+<p>In reinforcement learning we often deal with stochastic environments and with stochastic policies. That stochasticity produces different returns <Math latex={'G_t'} /> even when the starting state <Math latex={'S_t'} /> and the policy <Math latex={String.raw`\pi`} /> remain the same. But how then can we measure how good it is for the agent to use a certain policy, if the generated returns are not consistent? By calculating the expected value of returns <Math latex={'G_t'} />. This is exactly what value functions are useful for.</p>
 <p>Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs.</p>
+<p>The state-value function is the expected return from the state <Math latex={String.raw`s`} /> onward when the agent follows the policy <Math latex={String.raw`\pi`} />.</p> 
 <p><em>State-Value Function:</em> <Math latex={String.raw`v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]`} /></p>
+<p>The action-value function is the expected return from the state <Math latex={`s`} /> onward when the agent follows the policy <Math latex={String.raw`\pi`} /> after first taking the action <Math latex={`a`} /> at timestep <Math latex={'t'} />.</p>  
 <p><em>Action-Value Function:</em> <Math latex={String.raw`q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]`} /></p>
-<p>The state-value function expresses the expected return when following a particular policy <Math latex={String.raw`\pi`} /> given the state <Math latex={String.raw`s`} />. The action-value function expresses the expected return given the state <Math latex={`s`} /> while taking the action <Math latex={`a`} /> in the current step and following the policy <Math latex={String.raw`\pi`} /> afterwards.</p>  
 <div class="separator"></div>
 
 <h2>Optimality</h2>
 <p>At the beginning of the chapter we asked ourselves what it means for an agent to solve a Markov decision process. The solution of the MDP means that the agent has learned an optimal policy function.</p> 
 <p class="info">To solve the MDP is to find the optimal policy.</p>
-<p>Optimality implies that there is a way to compare different policies and to determine which of the policies is better. Policies are evaluated in terms of their value functions</p>
+<p>Optimality implies that there is a way to compare different policies and to determine which of the policies is better. In a Markov decision process value functions are used as a metric of the goodness of a policy. The policy  <Math latex={String.raw`\pi`} /> is said to be better than the policy <Math latex={String.raw`\pi’`} /> if and only if the value function of <Math latex={String.raw`\pi`} /> is larger or equal to the value function of policy <Math latex={String.raw`\pi’`} /> for all states in the state set S.</p> 
 <p><Math latex={String.raw`\pi \geq \pi’` } /> if and only if <Math latex={String.raw`v_{\pi}(s) \geq v_{\pi'}(s)` } /> for all <Math latex={String.raw`s \in \mathcal{S}`} /> </p>
-<p>In finite MDPs value functions are used as a metric of the goodness of a policy. The policy  <Math latex={String.raw`\pi`} /> is said to be better than the policy <Math latex={String.raw`\pi’`} /> if and only if the value function of <Math latex={String.raw`\pi`} /> is larger or equal to the value function of policy <Math latex={String.raw`\pi’`} /> for all states in the state set S.</p> 
-<p>The optimal policy <Math latex={String.raw`\pi_*`} /> is defined as:</p>
+<p>The optimal policy <Math latex={String.raw`\pi_*`} /> is the policy that is better (or at least not worse) than any other policy.</p>   
 <p><Math latex={String.raw`\pi_* \geq \pi`} /> for all <Math latex={String.raw`\pi` } /></p>
-<p>The optimal policy is the policy that is better (or at least not worse) than any other policy.</p>   
+<p>The state-value function and the action-value function that are based on the optimal policy are called optimal state-value and optimal action-value function respectively.</p> 
 <p>The optimal state-value funtion:</p>
 <p><Math latex={String.raw`v_*(s) = \max_{\pi} v_{\pi}(s)`} /> for all states <Math latex={String.raw`s \in \mathcal{S}`} /></p>
 <p>The optimal action-value function:</p>
 <p><Math latex={String.raw`q_*(s, a) = \max_{\pi} q_{\pi}(s, a)`} /> for all states <Math latex={String.raw`s \in \mathcal{S}` }/> and all actions <Math latex={String.raw`a \in \mathcal{A}`} /> </p>
-<p>The state-value function and the action-value function that are based on the optimal policy are called optimal state-value and optimal action-value function respectively.</p> 
 <p class="info">There might be several optimal policies, but there is always only one optimal value function.</p>
 <div class="separator"></div>
 
@@ -160,7 +160,7 @@
       \end{aligned}
 `} />
 
-<p>By using the properties of returns <Math latex={`G_t`} /> where each return can be expressed in terms of future returns <Math latex={String.raw`G_t = r_{t+1} + \gamma G_{t+1}`} /> we can arrive at recursive equations, where a value of a state can be defined in terms of values of the next state.</p> 
+<p>By using those properties we can arrive at recursive equations of value functions, where a value of a state can be expressed in terms of future state values.</p> 
 <p>Bellman equation for the state-value function</p>
 <Math latex={String.raw`
 
@@ -179,6 +179,7 @@
       \end{aligned}
 `} />
 <p>Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work.</p> 
+<p>Using the same recursive relationsships we can redefine optimal value functions.</p>
 <p>Bellman Optimality Equation for the state-value function:</p>
 <Math latex={String.raw`
       \begin{aligned}
@@ -188,7 +189,7 @@
       & = \max_{a} \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a]
       \end{aligned}
 `} />
-<p>Bellman Optimality Equation for the state-value function:</p>
+<p>Bellman Optimality Equation for the action-value function:</p>
 <Math latex={String.raw`
       \begin{aligned}
       q_*(s, a) & = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\
