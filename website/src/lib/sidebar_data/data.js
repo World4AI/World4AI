@@ -140,20 +140,6 @@ const programming = [
             },
         ]
     },
-    {
-      name: 'Unfinished',
-      link: '#',
-      links : [
-            {
-                name: 'Casting',
-                link: '/blocks/programming/unfinished/casting'
-            },
-            {
-                name: 'Dynamic and Strong Typing',
-                link: '/blocks/programming/unfinished/dynamic_strong_typing'
-            },
-      ]
-    }
 ];
 
 export {rl, programming}
