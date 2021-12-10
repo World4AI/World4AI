@@ -5,6 +5,14 @@
   import Math from "$lib/Math.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Programming | Tuple Datatype</title>
+  <meta
+    name="description"
+    content="Python provides a tuple data type. A tuple is an immutable data type that is useful to save ordered sequences."
+  />
+</svelte:head>
+
 <h1>Tuple</h1>
 <Question>What operators are available for tuples?</Question>
 <div class="separator" />
