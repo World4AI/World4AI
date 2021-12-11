@@ -54,6 +54,24 @@ const rl = [
                 link: '/blocks/reinforcement_learning/markov_decision_process/solution'
             },			
         ]
+    },
+    {
+        name: 'Dynamic Programming',
+        link: '/blocks/reinforcement_learning/dynamic_programming',
+        links: [
+            {
+                name: 'Policy Iteration',
+                link: '/blocks/reinforcement_learning/dynamic_programming/policy_iteration'
+            },
+            {
+                name: 'Value Iteration',
+                link: '/blocks/reinforcement_learning/dynamic_programming/value_iteration'
+            },			
+            {
+                name: 'Generalized Policy Iteration',
+                link: '/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration'
+            },			
+        ]
     }
 ];
 
