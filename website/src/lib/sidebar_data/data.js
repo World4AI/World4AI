@@ -138,6 +138,14 @@ const programming = [
                 name: 'Dictionary',
                 link: '/blocks/programming/data_types/dictionary'
             },
+            {
+                name: 'Casting',
+                link: '/blocks/programming/data_types/casting'
+            },
+            {
+                name: 'Dynamic and Strong Typing',
+                link: '/blocks/programming/data_types/dynamic_strong_typing'
+            },
         ]
     },
 ];
