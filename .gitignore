@@ -12,3 +12,6 @@ build
 testing
 .*.swp
 .*.swo
+venv
+__pycache__
+.ipynb_checkpoints
