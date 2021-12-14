@@ -9,6 +9,14 @@
   import AlgorithmIf from "$lib/algorithm/AlgorithmIf.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Policy Iteration Algorithm</title>
+  <meta
+    name="description"
+    content="Policy iteration is an iterative (dynamic programming) algorithm. The algorithm alternates between policy evaluation and policy improvement to arrive at the optimal policy and value functions"
+  />
+</svelte:head>
+
 <h1>Policy Iteration</h1>
 <Question
   >How can we use policy iteration to find optimal policy and value functions?</Question
