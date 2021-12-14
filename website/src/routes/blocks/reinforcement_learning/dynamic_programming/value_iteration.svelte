@@ -8,6 +8,14 @@
   import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Value Iteration Algorithm</title>
+  <meta
+    name="description"
+    content="Value iteration is an iterative (dynamic programming) algorithm. The algorithm alternates between (truncated) policy evaluation and policy improvement to arrive at the optimal policy and value functions"
+  />
+</svelte:head>
+
 <h1>Value Iteration</h1>
 <Question
   >How can we use value iteration to find optimal value and policy function?</Question
@@ -78,7 +86,7 @@
   </AlgorithmState>
 
   <AlgorithmState>
-    <Math latex={String.raw`V(s)`} /> and <Math
+    Initialize: <Math latex={String.raw`V(s)`} /> and <Math
       latex={String.raw`V_{old}(s)`}
     />, for all <Math latex={String.raw`s  \in \mathcal{S}`} /> with zeros
   </AlgorithmState>
@@ -119,7 +127,8 @@
     <Math latex={String.raw`\mu(s)`} />
   </AlgorithmState>
 </Algorithm>
-<Code code={`def value_iteration(obs_space, action_space, model, theta, gamma):
+<Code
+  code={`def value_iteration(obs_space, action_space, model, theta, gamma):
     # initialize value function with zeros
     value_function = [0 for _ in obs_space]
     policy = {}
@@ -149,5 +158,6 @@
     
         # break condition
         if max_delta < theta:
-            return value_function, policy`} />
+            return value_function, policy`}
+/>
 <div class="separator" />
