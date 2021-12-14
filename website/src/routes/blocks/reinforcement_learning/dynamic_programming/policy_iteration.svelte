@@ -3,7 +3,6 @@
   import Math from "$lib/Math.svelte";
   import Code from "$lib/Code.svelte";
   import Algorithm from "$lib/algorithm/Algorithm.svelte";
-  import AlgorithmName from "$lib/algorithm/AlgorithmName.svelte";
   import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
   import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
   import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
@@ -47,8 +46,7 @@
 <Math
   latex={String.raw`v_{k+1}(s) \doteq \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{k}(s')]`}
 />
-<Algorithm>
-  <AlgorithmName>Iterative Policy Evaluation</AlgorithmName>
+<Algorithm algoName={"Iterative Policy Iteration"}>
   <AlgorithmState>
     Input: policy <Math latex={String.raw`\mu`} />, model <Math
       latex={String.raw`p`}
