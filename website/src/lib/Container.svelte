@@ -30,7 +30,6 @@
   }
 
   .container :global(h2) {
-    grid-column-start: 3;
     text-transform: uppercase;
     font-size: 40px;
     font-weight: 400;
@@ -87,5 +86,63 @@
   }
   .container::-webkit-scrollbar-track {
     background-color: #000;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      max-height: 85vh;
+      margin-top: 10px;
+      grid-template-columns: 6fr;
+      grid-template-rows: auto;
+      justify-content: center;
+      align-items: flex-start;
+      color: var(--text-color);
+    }
+
+    .container :global(*) {
+      grid-column-start: 1;
+    }
+
+    .container :global(.heading-large) {
+      font-size: 45px;
+    }
+
+    .container :global(h1) {
+      text-transform: uppercase;
+      font-weight: 400;
+      justify-self: left;
+      font-size: 35px;
+    }
+
+    .container :global(h2) {
+      text-transform: uppercase;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: 3px;
+    }
+
+    .container :global(h3) {
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 3px;
+    }
+
+    .container :global(h4) {
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 5px;
+    }
+
+    .container :global(p) {
+      line-height: 2;
+      font-size: 15px;
+    }
+
+    .container :global(svg) {
+      width: 300px;
+      height: 300px;
+    }
   }
 </style>

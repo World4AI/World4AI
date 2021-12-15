@@ -4,6 +4,15 @@
   import "svelte-highlight/src/styles/nord.css";
 
   export let code;
-</script> 
+</script>
 
-<Highlight language="{python}" code="{code}" />
+<div>
+  <Highlight language={python} {code} />
+</div>
+
+<style>
+  div {
+    overflow: auto;
+    max-width: 90%;
+  }
+</style>
