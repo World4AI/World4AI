@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>World4AI | About</title>
+    <meta name="description" content="World4AI is used as a personalized plattform to learn and advance in AI. Additionally the website can be used by others to also learn Python, AI and machine learning.">
+</svelte:head>
+
 <h1>About</h1>
 <h2>What is World4AI?</h2>
 <p>World4AI is my answer to the question “How can I get to an intermediary level in AI/Machine Learning?”.</p>
