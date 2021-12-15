@@ -8,7 +8,7 @@ cd website
 
 # build
 npm run build
-npx svelte-sitemap --domain https://www.world4ai.org 
+npx svelte-sitemap --domain https://www.world4ai.org --trailing-slashes 
 
 # navigate into the build output directory
 cd build
