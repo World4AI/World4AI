@@ -166,6 +166,24 @@ const programming = [
             },
         ]
     },
+    {
+        name: 'Functions',
+        link: '/blocks/programming/functions',
+        links: [
+            {
+                name: 'Basic Usage',
+                link: '/blocks/programming/functions/basic_usage'
+            },
+            {
+                name: 'Arguments',
+                link: '/blocks/programming/functions/arguments'
+            },
+            {
+                name: 'Scope',
+                link: '/blocks/programming/functions/scope'
+            },
+        ]
+    },
 ];
 
 export {rl, programming}
