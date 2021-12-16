@@ -175,8 +175,8 @@ const programming = [
                 link: '/blocks/programming/functions/basic_usage'
             },
             {
-                name: 'Arguments',
-                link: '/blocks/programming/functions/arguments'
+                name: 'Inputs and Outputs',
+                link: '/blocks/programming/functions/inputs_outputs'
             },
             {
                 name: 'Scope',
