@@ -72,6 +72,20 @@ const rl = [
                 link: '/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration'
             },			
         ]
+    },
+    {
+        name: 'Exploration Exploitation',
+        link: '/blocks/reinforcement_learning/exploration_exploitation_tradeoff',
+        links: [
+            {
+                name: 'Bandits',
+                link: '/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits'
+            },
+            {
+                name: 'Epsilon-Greedy',
+                link: '/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy'
+            },			
+        ]
     }
 ];
 
