@@ -1,3 +1,7 @@
+<script>
+  import Question from "$lib/Question.svelte";
+</script>
+
 <svelte:head>
   <title>World4AI | Reinforcement Learning | Dynamic Programming</title>
   <meta
@@ -7,6 +11,10 @@
 </svelte:head>
 
 <h1>Dynamic Programming</h1>
+<Question
+  >Are dynamic programming algorithms learning or planning algorithms?</Question
+>
+<div class="separator" />
 <p>
   The algorithms that we are going to cover in this section are not those that
   are commonly used to solve reinforcement learning tasks. In fact there is no
@@ -18,3 +26,4 @@
   knowledge gained by studying DP algorithms is transferable to reinforcement
   learning.
 </p>
+<div class="separator" />
