@@ -192,10 +192,6 @@ const programming = [
                 name: 'Inputs and Outputs',
                 link: '/blocks/programming/functions/inputs_outputs'
             },
-            {
-                name: 'Scope',
-                link: '/blocks/programming/functions/scope'
-            },
         ]
     },
 ];
