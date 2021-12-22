@@ -86,6 +86,20 @@ const rl = [
                 link: '/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy'
             },			
         ]
+    },
+    {
+        name: 'Tabular RL',
+        link: '/blocks/reinforcement_learning/tabular_reinforcement_learning',
+        links: [
+            {
+                name: 'Monte Carlo',
+                link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo'
+            },
+            {
+                name: 'Temporal Difference',
+                link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference'
+            },			
+        ]
     }
 ];
 
