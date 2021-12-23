@@ -9,6 +9,14 @@
   import Code from "$lib/Code.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Monte Carlo</title>
+  <meta
+    name="description"
+    content="Monte carlo methods sample full trajectories using random sampling. The collected sequences of states, actions and rewards are used to estimate the optimal value and policy functions."
+  />
+</svelte:head>
+
 <h1>Monte Carlo Methods</h1>
 <Question
   >How can we use monte carlo methods to solve tabular reinforcement learning

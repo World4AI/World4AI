@@ -2,6 +2,11 @@
   import Question from "$lib/Question.svelte";
 </script>
 
+<svelte:head>
+    <title>World4AI | Reinforcement Learning | Tabular Reinforcement Learning</title>
+    <meta name="description" content="Tabular reinforcement learning deals with finding optimal value functions and policies for finite markov decision processes.">
+</svelte:head>
+
 <h1>Tabular Reinforcement Learning</h1>
 <Question>What is tabular reinforcement learning?</Question>
 <div class="separator" />
