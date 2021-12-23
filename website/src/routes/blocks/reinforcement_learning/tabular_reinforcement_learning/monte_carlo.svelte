@@ -6,6 +6,7 @@
   import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
   import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
   import AlgorithmIf from "$lib/algorithm/AlgorithmIf.svelte";
+  import Code from "$lib/Code.svelte";
 </script>
 
 <h1>Monte Carlo Methods</h1>
@@ -20,7 +21,6 @@
   If we look at any definition of Monte Carlo methods, there is a high chance
   that the definition contains random sampling.
 </p>
-
 <p class="info">
   Monte Carlo methods are a broad class of computational algorithms that rely on
   repeated random sampling to obtain numerical results.
@@ -47,8 +47,8 @@
   The Monte Carlo algorithm will follow general policy iteration. We alternate
   between policy evaluation and policy improvement to find the optimal policy.
 </p>
-<h3>Policy Estimation</h3>
 
+<h3>Policy Estimation</h3>
 <h4>Theory</h4>
 <p>
   Policy estimation deals with finding the true value function of a given policy
@@ -57,7 +57,6 @@
   follows the policy <Math latex={String.raw`\pi`} />.
 </p>
 <Math latex={String.raw`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`} />
-
 <p>
   A natural way to estimate the expected value of a random variable is to get
   samples from a distribution and to use the average as an estimate. In
@@ -66,7 +65,6 @@
   generating trajectories over and over again and building averages over the returns
   of the trajectories.
 </p>
-
 <p>
   Generally there are two methods to calculate the averages. Each time the agent
   faces a state during an episode is called a visit. In the “First Visit” Monte
@@ -78,7 +76,6 @@
   this section, but the algorithms can be easily adjusted to account for the
   “Every Visit” method.
 </p>
-
 <p>
   To make the calculations of the averages computationally efficient we are
   going to use the incremental implementation that we already used for n-armed
@@ -110,7 +107,6 @@
     />.
   </li>
 </ul>
-
 <Algorithm algoName={"Monte Carlo Prediction: First Visit"}>
   <AlgorithmState
     >Input: environment <Math latex={`env`} />, policy <Math
@@ -181,7 +177,39 @@
 </Algorithm>
 
 <h4>Implementation</h4>
-<p>Coming soon ....</p>
+<Code
+  code={`
+def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
+    # v as value function
+    v = np.zeros(len(obs_space))
+    
+    for episode in trange(num_episodes):
+        done, obs = False, env.reset()
+        obs_trajectory = []
+        reward_trajectory = []
+
+        #1: interaction with the environment to generate a trajectory
+        while not done:
+            action = policy(obs)
+            next_obs, reward, done, _ = env.step(action)
+            obs_trajectory.append(obs)
+            reward_trajectory.append(reward)
+            obs = next_obs
+            
+        #2: calculate value function of the policy
+        visited = np.zeros(len(obs_space), dtype=np.bool_)
+        discount_rates = np.array([gamma**i for i in range(len(obs_trajectory))])
+        for t, obs in enumerate(obs_trajectory):
+            if visited[obs]:
+                continue
+            visited[obs] = True
+            rewards = np.array(reward_trajectory, dtype=np.float32)
+            target = np.sum(rewards * discount_rates[:len(rewards)])
+            v[obs] = v[obs] + alpha * (target - v[obs])
+    
+    return v
+  `}
+/>
 
 <h3>Policy Improvement And Control</h3>
 <h4>Theory</h4>
@@ -330,7 +358,57 @@
 </Algorithm>
 
 <h4>Implementation</h4>
-<p>Coming Soon ...</p>
+<Code
+  code={`
+def mc_control(env, obs_space, action_space, num_episodes, alpha, gamma, epsilon):
+    
+    # Initialization phase
+    #------------------------------------------------------------------------------
+    # v as value function
+    q = np.zeros(shape=(len(obs_space), len(action_space)))
+    # epsilon greedy policy
+    def policy(obs):
+        if np.random.rand() < epsilon:
+            action = env.action_space.sample()
+        else:
+            action = q[obs].argmax()
+        return action
+        
+    # Learning phase
+    #------------------------------------------------------------------------------
+    for episode in trange(num_episodes):
+        done, obs = False, env.reset()
+        obs_trajectory = []
+        action_trajectory = []
+        reward_trajectory = []
+
+        #1: interaction with the environment to generate a trajectory
+        while not done:
+            action = policy(obs)
+            next_obs, reward, done, _ = env.step(action)
+            action_trajectory.append(action)
+            obs_trajectory.append(obs)
+            reward_trajectory.append(reward)
+            obs = next_obs
+            
+        #2: calculate action value function 
+        visited = np.zeros(len(obs_space), dtype=np.bool_)
+        discount_rates = np.array([gamma**i for i in range(len(obs_trajectory))])
+        for t, (obs, action) in enumerate(zip(obs_trajectory, action_trajectory)):
+            if visited[obs]:
+                continue
+            visited[obs] = True
+            rewards = np.array(reward_trajectory, dtype=np.float32)
+            target = np.sum(rewards * discount_rates[:len(rewards)])
+            q[obs][action] = q[obs][action] + alpha * (target - q[obs][action])
+    
+    # greedy policy
+    policy_mapping = np.argmax(q, axis=1)
+    policy = lambda x: policy_mapping[x]
+
+    return policy, q
+  `}
+/>
 <div class="separator" />
 <h2>Sources</h2>
 <div class="separator" />
