@@ -8,6 +8,14 @@
   import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Temporal Difference (TD) Learning</title>
+  <meta
+    name="description"
+    content="Temporal Difference methods use bootstrapping for reinforcement learning prediction and control tasks."
+  />
+</svelte:head>
+
 <h1>Temporal Difference Learning</h1>
 <Question
   >How can we use temporal-difference learning to solve tabular reinforcement
