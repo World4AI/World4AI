@@ -1,5 +1,6 @@
 <script>
   import Question from "$lib/Question.svelte";
+  import Code from "$lib/Code.svelte";
   import Math from "$lib/Math.svelte";
   import Algorithm from "$lib/algorithm/Algorithm.svelte";
   import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
@@ -139,7 +140,25 @@
   >
 </Algorithm>
 <h4>Implementation</h4>
-<p>Coming soon...</p>
+<Code
+  code={`
+def td_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
+    # v as value function
+    v = np.zeros(len(obs_space))
+    
+    for episode in trange(num_episodes):
+        # reset variables
+        done, obs = False, env.reset()
+        
+        while not done:
+            action = policy(obs)
+            next_obs, reward, done, _ = env.step(action)
+            v[obs] = v[obs] + alpha * (reward + gamma * v[next_obs] - v[obs])
+            obs = next_obs
+            
+    return v
+  `}
+/>
 
 <h3>Temporal Difference Control</h3>
 <p>
@@ -207,6 +226,40 @@
     >Output: value function <Math latex={String.raw`V(s)`} /></AlgorithmState
   >
 </Algorithm>
+<Code
+  code={`
+def sarsa(env, obs_space, action_space, num_episodes, alpha, gamma, epsilon):
+    # q as action value function
+    q = np.zeros(shape=(len(obs_space), len(action_space)))
+                 
+    # epsilon greedy policy
+    def policy(obs):
+        if np.random.rand() < epsilon:
+            action = env.action_space.sample()
+        else:
+            action = q[obs].argmax()
+        return action
+    
+    for episode in trange(num_episodes):
+        # reset variables
+        done, obs = False, env.reset()
+        action = policy(obs)
+        
+        while not done:
+            next_obs, reward, done, _ = env.step(action)
+            next_action = policy(next_obs)
+            
+            q[obs][action] = q[obs][action] + alpha * (reward + gamma * q[next_obs][next_action] * (not done) - q[obs][action])
+            obs, action = next_obs, next_action
+    
+    # greedy policy
+    policy_mapping = np.argmax(q, axis=1)
+    policy = lambda x: policy_mapping[x]
+        
+    return policy, q
+  `}
+/>
+
 <h4>Q-Learning</h4>
 
 <p>
@@ -264,3 +317,36 @@
     >Output: value function <Math latex={String.raw`V(s)`} /></AlgorithmState
   >
 </Algorithm>
+<Code
+  code={`
+def q_learning(env, obs_space, action_space, num_episodes, alpha, gamma, epsilon):
+    # q as action value function
+    q = np.zeros(shape=(len(obs_space), len(action_space)))
+                 
+    # epsilon greedy policy
+    def policy(obs):
+        if np.random.rand() < epsilon:
+            action = env.action_space.sample()
+        else:
+            action = q[obs].argmax()
+        return action
+    
+    for episode in trange(num_episodes):
+        # reset variables
+        done, obs = False, env.reset()
+        
+        while not done:
+            action = policy(obs)
+            next_obs, reward, done, _ = env.step(action)
+            next_action = policy(next_obs)
+            
+            q[obs][action] = q[obs][action] + alpha * (reward + gamma * q[next_obs].max() * (not done) - q[obs][action])
+            obs = next_obs
+    
+    # greedy policy
+    policy_mapping = np.argmax(q, axis=1)
+    policy = lambda x: policy_mapping[x]
+        
+    return policy, q
+  `}
+/>
