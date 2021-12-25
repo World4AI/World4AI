@@ -1,7 +1,7 @@
 <script>
   import Question from "$lib/Question.svelte";
   import Code from "$lib/Code.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
   import Algorithm from "$lib/algorithm/Algorithm.svelte";
   import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
   import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
@@ -40,25 +40,24 @@
   Value Iteration is essentially the Bellman optimality equation, transformed
   from equation to an update step.
 </p>
-<Math
-  latex={String.raw`
+<Latex
+  >{String.raw`
     \begin{aligned}
     v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
     & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
     \end{aligned}
-  `}
-/>
+  `}</Latex
+>
 
 <p>
   Although the update step looks like a single step it actually combines
   truncated (one step) policy evaluation and policy improvement in a single
   step.
 </p>
-
-<Math
-  latex={String.raw`q_{k+1}(s, a) = \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]`}
-/>
-<Math latex={String.raw`v_{k+1}(s) = \max_a q_{k+1}(s, a)`} />
+<Latex
+  >{String.raw`q_{k+1}(s, a) = \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]`}</Latex
+>
+<Latex>{String.raw`v_{k+1}(s) = \max_a q_{k+1}(s, a)`}</Latex>
 
 <p>
   In the first step the action-value function is calculated based on the old
@@ -70,61 +69,62 @@
 <p>
   The combination of both is the value iteration algorithm. The iterative
   process continues until the difference between the old and the new state-value
-  function is smaller than some parameter theta <Math
-    latex={String.raw`\theta`}
-  />. As the final step the optimal policy can be deduced using the argmax over
+  function is smaller than some parameter theta <Latex
+    >{String.raw`\theta`}</Latex
+  >. As the final step the optimal policy can be deduced using the argmax over
   the optimal action-value function.
 </p>
 <Algorithm algoName={"Value Iteration"}>
   <AlgorithmState>
-    Input: model <Math latex={String.raw`p`} />, state set <Math
-      latex={String.raw`\mathcal{S}`}
-    />, action set <Math latex="{String.raw`\mathcal{A}`}," /> stop criterion <Math
-      latex={String.raw`\theta`}
-    />
-    , discount factor <Math latex={String.raw`\gamma`} />
+    Input: model <Latex>p</Latex>, state set <Latex
+      >{String.raw`\mathcal{S}`}</Latex
+    >
+    , action set <Latex>{String.raw`\mathcal{A}`}</Latex> stop criterion <Latex
+      >{String.raw`\theta`}</Latex
+    >
+    , discount factor <Latex>{String.raw`\gamma`}</Latex>
   </AlgorithmState>
 
   <AlgorithmState>
-    Initialize: <Math latex={String.raw`V(s)`} /> and <Math
-      latex={String.raw`V_{old}(s)`}
-    />, for all <Math latex={String.raw`s  \in \mathcal{S}`} /> with zeros
+    Initialize: <Latex>V(s)</Latex> and <Latex>{String.raw`V_{old}(s)`}</Latex>,
+    for all <Latex>{String.raw`s \in \mathcal{S}`}</Latex> with zeros
   </AlgorithmState>
   <AlgorithmRepeat>
-    <span slot="condition"><Math latex={String.raw`\Delta < \theta`} /> </span>
-    <AlgorithmState
-      ><Math latex={String.raw`\Delta\leftarrow 0`} /></AlgorithmState
+    <Latex slot="condition">{String.raw`\Delta < \theta`}</Latex>
+    <AlgorithmState>
+      <Latex>{String.raw`\Delta\leftarrow 0`}</Latex></AlgorithmState
     >
     <AlgorithmState
-      ><Math latex={String.raw`V_{old}(s) = V(s)`} />
+      ><Latex>{String.raw`V_{old}(s) = V(s)`}</Latex>
     </AlgorithmState>
     <AlgorithmForAll>
-      <Math slot="condition" latex={String.raw`s \in \mathcal{S}`} />
+      <Latex slot="condition">{String.raw`s \in \mathcal{S}`}</Latex>
       <AlgorithmForAll>
-        <Math slot="condition" latex={String.raw`a \in \mathcal{A}`} />
+        <Latex slot="condition">{String.raw`a \in \mathcal{A}`}</Latex>
         <AlgorithmState
-          ><Math
-            latex={String.raw`Q(s, a) \leftarrow \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]`}
-          /></AlgorithmState
-        >
+          ><Latex
+            >{String.raw`Q(s, a) \leftarrow \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]`}</Latex
+          >
+        </AlgorithmState>
       </AlgorithmForAll>
       <AlgorithmState>
-        <Math latex={String.raw`V(s) \leftarrow \max_a Q(s, a)`} />
+        <Latex>{String.raw`V(s) \leftarrow \max_a Q(s, a)`}</Latex>
       </AlgorithmState>
       <AlgorithmState>
-        <Math
-          latex={String.raw`\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)`}
-        />
+        <Latex
+          >{String.raw`\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)`}</Latex
+        >
       </AlgorithmState>
     </AlgorithmForAll>
   </AlgorithmRepeat>
   <AlgorithmState>
-    <Math latex={String.raw`\mu(s) = \arg\max_a Q(s, a)`} />
+    <Latex>{String.raw`\mu(s) = \arg\max_a Q(s, a)`}</Latex>
   </AlgorithmState>
   <AlgorithmState>
     Output: value function
-    <Math latex={String.raw`V(s)`} /> and policy
-    <Math latex={String.raw`\mu(s)`} />
+    <Latex>V(s)</Latex>
+    and policy
+    <Latex>{String.raw`\mu(s)`}</Latex>
   </AlgorithmState>
 </Algorithm>
 <Code

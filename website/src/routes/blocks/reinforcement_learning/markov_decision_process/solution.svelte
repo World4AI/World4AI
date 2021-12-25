@@ -1,7 +1,7 @@
 <script>
-  import Question from '$lib/Question.svelte';
-  import Math from '$lib/Math.svelte';
-  import Trajectory from '$lib/Trajectory.svelte';
+  import Question from "$lib/Question.svelte";
+  import Latex from "$lib/Latex.svelte";
+  import Trajectory from "$lib/Trajectory.svelte";
   let trajectory = [
     {
       type: "R",
@@ -33,9 +33,9 @@
     },
     {
       type: "R",
-      subscript: '8',
+      subscript: "8",
     },
-  ]  
+  ];
   let trajectoryNumbers = [
     {
       type: "-1",
@@ -67,138 +67,315 @@
     },
     {
       type: "10",
-      subscript: '8',
+      subscript: "8",
     },
-  ]  
+  ];
 </script>
 
 <svelte:head>
-    <title>World4AI | Reinforcement Learning | MDP Solution</title>
-    <meta name="description" content="A Markov decision process is considered to be solved once the agent found the optimal policy and the optimal value function.">
+  <title>World4AI | Reinforcement Learning | MDP Solution</title>
+  <meta
+    name="description"
+    content="A Markov decision process is considered to be solved once the agent found the optimal policy and the optimal value function."
+  />
 </svelte:head>
 
 <h1>MDP Solution</h1>
 <Question>What does it mean for the agent to solve the MDP?</Question>
-<div class="separator"></div>
+<div class="separator" />
 
-<p>Once a particular MDP has been defined the next logical step would be to solve that MDP. In this chapter we are going to discuss what it actually means to solve the MDP.</p>
-<div class="separator"></div>
+<p>
+  Once a particular MDP has been defined the next logical step would be to solve
+  that MDP. In this chapter we are going to discuss what it actually means to
+  solve the MDP.
+</p>
+<div class="separator" />
 
 <h2>Return</h2>
-<p>In order to simplify notation and to introduce new necessary definitions we will first introduce the notion of a return <Math latex={'G'} />. A return is simply the sum of rewards starting from some timestep <Math latex={'t+1'} /> and going either to some terminal state <Math latex={'T'} /> (episodic tasks) or to infinity (continuing tasks). The letter <Math latex={'G'} /> stands for <em>Goal</em>, because the goal of the environment is encoded in the rewards.</p> 
-<p>In episodic tasks the return is the sum of rewards in a single episode from time step <Math latex={'t'} /> to the terminal time step <Math latex={'T'} />.</p>
-<Math latex={String.raw`G_t = R_{t+1} + R_{t+2} + … + R_T`} />
-<p>In continuing tasks the return is the sum of rewards starting at time step t and going to possibly infinity.</p>
-<Math latex={String.raw`G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}`} />
-<p>In order to calculate the return of an episode we have to play through the sequence of states, actions and rewards all the way through from the initial state to the terminal state. This sequence of states, actions and rewards of an episode is called a <em>trajectory</em>.</p> 
+<p>
+  In order to simplify notation and to introduce new necessary definitions we
+  will first introduce the notion of a return <Latex>G</Latex>. A return is
+  simply the sum of rewards starting from some timestep <Latex>t+1</Latex> and going
+  either to some terminal state <Latex>T</Latex> (episodic tasks) or to infinity
+  (continuing tasks). The letter <Latex>G</Latex> stands for
+  <em>Goal</em>, because the goal of the environment is encoded in the rewards.
+</p>
+<p>
+  In episodic tasks the return is the sum of rewards in a single episode from
+  time step <Latex>t</Latex> to the terminal time step <Latex>T</Latex>.
+</p>
+<Latex>{String.raw`G_t = R_{t+1} + R_{t+2} + … + R_T`}</Latex>
+<p>
+  In continuing tasks the return is the sum of rewards starting at time step t
+  and going to possibly infinity.
+</p>
+<Latex
+  >{String.raw`G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}`}</Latex
+>
+<p>
+  In order to calculate the return of an episode we have to play through the
+  sequence of states, actions and rewards all the way through from the initial
+  state to the terminal state. This sequence of states, actions and rewards of
+  an episode is called a <em>trajectory</em>.
+</p>
 <Trajectory />
-<p>The calculation of the return <Math latex={'G_t'} /> only requires the knowledge of rewards from a trajectory. In the example below the episode goes from timestep <Math latex={'0'} /> until the terminal timestep <Math latex={'T = 8'} />. For each timestep taken the agent receives a negative reward of -1 and a reward of +10 when the agent reaches the terminal state <Math latex={'S_T'} />.</p>
+<p>
+  The calculation of the return <Latex>G_t</Latex> only requires the knowledge of
+  rewards from a trajectory. In the example below the episode goes from timestep
+  <Latex>0</Latex> until the terminal timestep <Latex>T = 8</Latex>. For each
+  timestep taken the agent receives a negative reward of -1 and a reward of +10
+  when the agent reaches the terminal state <Latex>S_T</Latex>.
+</p>
 <Trajectory {trajectory} />
 <Trajectory trajectory={trajectoryNumbers} />
-<p>Based on that trajectory the undiscounted returns from the perspective of time step 0, 1, and 2 look as follows.</p>
-<Math latex={String.raw`
+<p>
+  Based on that trajectory the undiscounted returns from the perspective of time
+  step 0, 1, and 2 look as follows.
+</p>
+<Latex
+  >{String.raw`
 \begin{aligned}
    G_0 & = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
    & = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 3
 \end{aligned}
-`} />
-<Math latex={String.raw`
+`}</Latex
+>
+<Latex
+  >{String.raw`
 \begin{aligned}
    G_1 & = R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
    & = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 4
 \end{aligned}
-`} />
-<Math latex={String.raw`
+`}</Latex
+>
+<Latex
+  >{String.raw`
 \begin{aligned}
    G_2 & = R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
    & = (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 5
 \end{aligned}
-`} />
+`}</Latex
+>
 
-<p>To avoid an infinite return (in continuing tasks), future rewards  are discounted by <Math latex={String.raw`\gamma`} />. Episodic tasks use discounting to emphasize the time value of rewards.</p> 
-<Math latex={String.raw`G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}`}  />
-<p>Looking at the same example from above the return <Math latex={String.raw`G_0`} /> looks as follows when we assume a gamma <Math latex={String.raw`\gamma`} /> of 0.9.</p>
-<Math latex={String.raw`
+<p>
+  To avoid an infinite return (in continuing tasks), future rewards are
+  discounted by <Latex>{String.raw`\gamma`}</Latex>. Episodic tasks use
+  discounting to emphasize the time value of rewards.
+</p>
+<Latex
+  >{String.raw`G_t = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + …  = \sum_{k=0}^\infty{\gamma^k{R_{k+t+1}}}`}</Latex
+>
+<p>
+  Looking at the same example from above the return <Latex
+    >{String.raw`G_0`}</Latex
+  >
+  looks as follows when we assume a gamma <Latex>{String.raw`\gamma`}</Latex>
+  of 0.9.
+</p>
+<Latex
+  >{String.raw`
    \begin{aligned} 
    G_0 & = R_1 + 0.9R_2 + 0.9^2 R_3 + 0.9^3 R_4 + 0.9^4 R_5 + 0.9^5 R_6 + 0.9^6 R_7 + 0.9^7 R_8 \\
    &= -1 + 0.9 * (-1) + 0.9^2 * (-1) + 0.9^3 * (-1) + 0.9^4 * (-1) + 0.9^5 * (-1) + 0.9^6 * (-1) + 0.9^7 * 10 \\ 
    \end{aligned}
-`} />
-<div class="separator"></div>
+`}</Latex
+>
+<div class="separator" />
 
 <h2>Policy</h2>
-<p>If a policy is <em>deterministic</em> we define a policy as a mapping from state <Math latex={`s`} /> to action <Math latex={'a'} />. In that case the notation that we use for policy is <Math latex={String.raw`\mu(s)`} />. To generate an action <Math latex={'A_t'} /> at timestep <Math latex={'t'} /> we input the state <Math latex={'S_t'} /> into the policy function:  <Math latex={String.raw`A_t = \mu(S_t)`} />.</p>
-<p>If a policy is <em>stochastic</em> we define a policy as a mapping from a state <Math latex={'s'} /> to a probability of an action <Math latex={'a'} /> and the mathematical notation is <Math latex={String.raw`\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]`} />. This notation can also be applied in a deterministic case. For a deterministic policy <Math latex={String.raw`\pi{(a \mid s) = 1}`} /> for for the selected action and <Math latex={String.raw`\pi{(a \mid s) = 0}`} /> for the rest of the legal actions. To generate an action we consider <Math latex={String.raw`\pi{(. \mid S_t)}`} /> to be the distribution of actions given states, where actions are draws from a policy distribution <Math latex={String.raw`A_t \sim \pi{(. \mid S_t)}` } />.</p>
-<div class="separator"></div>
+<p>
+  If a policy is <em>deterministic</em> we define a policy as a mapping from
+  state <Latex>s</Latex> to action <Latex>a</Latex>. In that case the notation
+  that we use for policy is <Latex>{String.raw`\mu(s)`}</Latex>. To generate an
+  action <Latex>A_t</Latex> at timestep <Latex>t</Latex> we input the state
+  <Latex>S_t</Latex> into the policy function: <Latex
+    >{String.raw`A_t = \mu(S_t)`}</Latex
+  >.
+</p>
+<p>
+  If a policy is <em>stochastic</em> we define a policy as a mapping from a
+  state <Latex>s</Latex> to a probability of an action <Latex>a</Latex> and the mathematical
+  notation is <Latex
+    >{String.raw`\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]`}</Latex
+  >
+  . This notation can also be applied in a deterministic case. For a deterministic
+  policy <Latex>{String.raw`\pi{(a \mid s) = 1}`}</Latex> for for the selected action
+  and <Latex>{String.raw`\pi{(a \mid s) = 0}`}</Latex> for the rest of the legal
+  actions. To generate an action we consider <Latex
+    >{String.raw`\pi{(. \mid S_t)}`}</Latex
+  >
+  to be the distribution of actions given states, where actions are draws from a
+  policy distribution <Latex>{String.raw`A_t \sim \pi{(. \mid S_t)}`}</Latex>.
+</p>
+<div class="separator" />
 
 <h2>Value Functions</h2>
-<p>In reinforcement learning we often deal with stochastic environments and with stochastic policies. That stochasticity produces different returns <Math latex={'G_t'} /> even when the starting state <Math latex={'S_t'} /> and the policy <Math latex={String.raw`\pi`} /> remain the same. But how then can we measure how good it is for the agent to use a certain policy, if the generated returns are not consistent? By calculating the expected value of returns <Math latex={'G_t'} />. This is exactly what value functions are useful for.</p>
-<p>Value functions map states or state-action pairs to “goodness” values, where goodness is expressed as the expected sum of rewards. Higher values mean more favorable states or state-action pairs.</p>
-<p>The state-value function is the expected return from the state <Math latex={String.raw`s`} /> onward when the agent follows the policy <Math latex={String.raw`\pi`} />.</p> 
-<p><em>State-Value Function:</em> <Math latex={String.raw`v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]`} /></p>
-<p>The action-value function is the expected return from the state <Math latex={`s`} /> onward when the agent follows the policy <Math latex={String.raw`\pi`} /> after first taking the action <Math latex={`a`} /> at timestep <Math latex={'t'} />.</p>  
-<p><em>Action-Value Function:</em> <Math latex={String.raw`q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]`} /></p>
-<div class="separator"></div>
+<p>
+  In reinforcement learning we often deal with stochastic environments and with
+  stochastic policies. That stochasticity produces different returns <Latex
+    >G_t</Latex
+  >
+  even when the starting state <Latex>S_t</Latex> and the policy <Latex
+    >{String.raw`\pi`}</Latex
+  >
+  remain the same. But how then can we measure how good it is for the agent to use
+  a certain policy, if the generated returns are not consistent? By calculating the
+  expected value of returns <Latex>G_t</Latex>. This is exactly what value
+  functions are useful for.
+</p>
+<p>
+  Value functions map states or state-action pairs to “goodness” values, where
+  goodness is expressed as the expected sum of rewards. Higher values mean more
+  favorable states or state-action pairs.
+</p>
+<p>
+  The state-value function is the expected return from the state <Latex>s</Latex
+  >
+  onward when the agent follows the policy <Latex>{String.raw`\pi`}</Latex>.
+</p>
+<p>
+  <em>State-Value Function:</em>
+  <Latex>{String.raw`v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]`}</Latex>
+</p>
+<p>
+  The action-value function is the expected return from the state <Latex
+    >s</Latex
+  >
+  onward when the agent follows the policy <Latex>{String.raw`\pi`}</Latex> after
+  first taking the action <Latex>a</Latex> at timestep <Latex>t</Latex>.
+</p>
+<p>
+  <em>Action-Value Function:</em>
+  <Latex
+    >{String.raw`q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]`}</Latex
+  >
+</p>
+<div class="separator" />
 
 <h2>Optimality</h2>
-<p>At the beginning of the chapter we asked ourselves what it means for an agent to solve a Markov decision process. The solution of the MDP means that the agent has learned an optimal policy function.</p> 
+<p>
+  At the beginning of the chapter we asked ourselves what it means for an agent
+  to solve a Markov decision process. The solution of the MDP means that the
+  agent has learned an optimal policy function.
+</p>
 <p class="info">To solve the MDP is to find the optimal policy.</p>
-<p>Optimality implies that there is a way to compare different policies and to determine which of the policies is better. In a Markov decision process value functions are used as a metric of the goodness of a policy. The policy  <Math latex={String.raw`\pi`} /> is said to be better than the policy <Math latex={String.raw`\pi’`} /> if and only if the value function of <Math latex={String.raw`\pi`} /> is larger or equal to the value function of policy <Math latex={String.raw`\pi’`} /> for all states in the state set S.</p> 
-<p><Math latex={String.raw`\pi \geq \pi’` } /> if and only if <Math latex={String.raw`v_{\pi}(s) \geq v_{\pi'}(s)` } /> for all <Math latex={String.raw`s \in \mathcal{S}`} /> </p>
-<p>The optimal policy <Math latex={String.raw`\pi_*`} /> is the policy that is better (or at least not worse) than any other policy.</p>   
-<p><Math latex={String.raw`\pi_* \geq \pi`} /> for all <Math latex={String.raw`\pi` } /></p>
-<p>The state-value function and the action-value function that are based on the optimal policy are called optimal state-value and optimal action-value function respectively.</p> 
+<p>
+  Optimality implies that there is a way to compare different policies and to
+  determine which of the policies is better. In a Markov decision process value
+  functions are used as a metric of the goodness of a policy. The policy <Latex
+    >{String.raw`\pi`}</Latex
+  >
+  is said to be better than the policy <Latex>{String.raw`\pi`}</Latex> if and only
+  if the value function of <Latex>{String.raw`\pi`}</Latex> is larger or equal to
+  the value function of policy <Latex>{String.raw`\pi'`}</Latex> for all states in
+  the state set S.
+</p>
+<p>
+  <Latex>{String.raw`\pi \geq \pi’`}</Latex>
+  if and only if <Latex>{String.raw`v_{\pi}(s) \geq v_{\pi'}(s)`}</Latex>
+  for all <Latex>{String.raw`s \in \mathcal{S}`}</Latex>
+</p>
+<p>
+  The optimal policy <Latex>{String.raw`\pi_*`}</Latex> is the policy that is better
+  (or at least not worse) than any other policy.
+</p>
+<p>
+  <Latex>{String.raw`\pi_* \geq \pi`}</Latex> for all <Latex
+    >{String.raw`\pi`}</Latex
+  >
+</p>
+<p>
+  The state-value function and the action-value function that are based on the
+  optimal policy are called optimal state-value and optimal action-value
+  function respectively.
+</p>
 <p>The optimal state-value funtion:</p>
-<p><Math latex={String.raw`v_*(s) = \max_{\pi} v_{\pi}(s)`} /> for all states <Math latex={String.raw`s \in \mathcal{S}`} /></p>
+<p>
+  <Latex>{String.raw`v_*(s) = \max_{\pi} v_{\pi}(s)`}</Latex> for all states <Latex
+    >{String.raw`s \in \mathcal{S}`}</Latex
+  >
+</p>
 <p>The optimal action-value function:</p>
-<p><Math latex={String.raw`q_*(s, a) = \max_{\pi} q_{\pi}(s, a)`} /> for all states <Math latex={String.raw`s \in \mathcal{S}` }/> and all actions <Math latex={String.raw`a \in \mathcal{A}`} /> </p>
-<p class="info">There might be several optimal policies, but there is always only one optimal value function.</p>
-<div class="separator"></div>
+<p>
+  <Latex>{String.raw`q_*(s, a) = \max_{\pi} q_{\pi}(s, a)`}</Latex> for all states
+  <Latex>{String.raw`s \in \mathcal{S}`}</Latex> and all actions <Latex
+    >{String.raw`a \in \mathcal{A}`}</Latex
+  >
+</p>
+<p class="info">
+  There might be several optimal policies, but there is always only one optimal
+  value function.
+</p>
+<div class="separator" />
 
 <h2>Bellman Equations</h2>
-<p>An important property of returns is that they can be expressed in terms of future returns.</p>
-<Math latex={String.raw`
+<p>
+  An important property of returns is that they can be expressed in terms of
+  future returns.
+</p>
+<Latex
+  >{String.raw`
       \begin{aligned}
       G_t & = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
       & = R_{t+1} + \gamma{(R_{t+2} + \gamma{R_{t+3}} + ...)} \\
       & = R_{t+1} + \gamma{G_{t+1}}
-      \end{aligned}
-`} />
+      \end{aligned}`}
+</Latex>
 
-<p>By using those properties we can arrive at recursive equations of value functions, where a value of a state can be expressed in terms of future state values.</p> 
+<p>
+  By using those properties we can arrive at recursive equations of value
+  functions, where a value of a state can be expressed in terms of future state
+  values.
+</p>
 <p>Bellman equation for the state-value function</p>
-<Math latex={String.raw`
-
+<Latex
+  >{String.raw`
       \begin{aligned}
       v_{\pi}(s) & = \mathbb{E_{\pi}}[G_t \mid S_t = s] \\
       & = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
       & = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s]
       \end{aligned}
-`} />
+  `}</Latex
+>
 <p>Bellman equation for the action-value function</p>
-<Math latex={String.raw`
+<Latex
+  >{String.raw`
       \begin{aligned}
       q_{\pi}(s, a) & = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
       & = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
       & = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t = a]
       \end{aligned}
-`} />
-<p>Equations of the above form are called Bellman equations, named after the mathematician Richard E. Bellman. At the very first glance it might not seem like the equations add additional benefit to the definition of value functions, but the recursive relationships is what makes many of the reinforcement learning algorithms work.</p> 
-<p>Using the same recursive relationsships we can redefine optimal value functions.</p>
+  `}</Latex
+>
+<p>
+  Equations of the above form are called Bellman equations, named after the
+  mathematician Richard E. Bellman. At the very first glance it might not seem
+  like the equations add additional benefit to the definition of value
+  functions, but the recursive relationships is what makes many of the
+  reinforcement learning algorithms work.
+</p>
+<p>
+  Using the same recursive relationsships we can redefine optimal value
+  functions.
+</p>
 <p>Bellman Optimality Equation for the state-value function:</p>
-<Math latex={String.raw`
+<Latex
+  >{String.raw`
       \begin{aligned}
       v_*(s) & = \max_{a} q_{{\pi}_*}(s, a) \\
       & = \max_{a} \mathbb{E_{\pi_{*}}}[G_t \mid S_t = s, A_t = a] \\
       & = \max_{a} \mathbb{E_{\pi_{*}}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
       & = \max_{a} \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a]
       \end{aligned}
-`} />
+  `}</Latex
+>
 <p>Bellman Optimality Equation for the action-value function:</p>
-<Math latex={String.raw`
+<Latex
+  >{String.raw`
       \begin{aligned}
       q_*(s, a) & = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\
       & = \mathbb{E}[R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}, a') \mid S_t = s, A_t = a]
       \end{aligned}
-`} />
-<div class="separator"></div>
+  `}</Latex
+>
+<div class="separator" />

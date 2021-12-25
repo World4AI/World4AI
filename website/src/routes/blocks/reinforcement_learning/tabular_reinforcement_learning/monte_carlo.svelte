@@ -1,6 +1,6 @@
 <script>
   import Question from "$lib/Question.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
   import Algorithm from "$lib/algorithm/Algorithm.svelte";
   import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
   import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
@@ -60,16 +60,16 @@
 <h4>Theory</h4>
 <p>
   Policy estimation deals with finding the true value function of a given policy
-  <Math latex={String.raw`\pi`} />. Mathematically speaking we are looking for
+  <Latex>{String.raw`\pi`}</Latex>. Mathematically speaking we are looking for
   the expected sum of discounted rewards (also called returns) when the agent
-  follows the policy <Math latex={String.raw`\pi`} />.
+  follows the policy <Latex>{String.raw`\pi`}</Latex>.
 </p>
-<Math latex={String.raw`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`} />
+<Latex>{String.raw`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`}</Latex>
 <p>
   A natural way to estimate the expected value of a random variable is to get
   samples from a distribution and to use the average as an estimate. In
   reinforcement learning the agent can estimate the expected value of returns
-  for a policy <Math latex={String.raw`\pi`} /> by interacting with the environment,
+  for a policy <Latex>{String.raw`\pi`}</Latex> by interacting with the environment,
   generating trajectories over and over again and building averages over the returns
   of the trajectories.
 </p>
@@ -89,77 +89,77 @@
   going to use the incremental implementation that we already used for n-armed
   bandits.
 </p>
-<Math
-  latex={String.raw`NewEstimate \leftarrow OldEstimate + StepSize*[Target - OldEstimate]`}
-/>
+<Latex
+  >{String.raw`NewEstimate \leftarrow OldEstimate + StepSize*[Target - OldEstimate]`}</Latex
+>
 
 <h4>Algorithm</h4>
 <p>The algorithm is divided into two steps.</p>
 <ul>
   <li>
-    The agent generates a trajectory using the policy <Math
-      latex={String.raw`\pi`}
-    />.
+    The agent generates a trajectory using the policy <Latex
+      >{String.raw`\pi`}</Latex
+    >.
   </li>
   <li>
-    The agent improves the estimation for the state value function <Math
-      latex={String.raw`V(s)`}
-    />. For that purpose the agent loops over the previously generated
-    trajectory and for each experience tuple it determines if it deals with a
-    first visit to that state <Math latex={`s`} />. If it does it calculates the
-    discounted sum of rewards from that point on to the terminal state <Math
-      latex={String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}
-    />. Finally the agent performs an update step by using the incremental
-    average calculation <Math
-      latex={String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}
-    />.
+    The agent improves the estimation for the state value function <Latex
+      >V(s)</Latex
+    >. For that purpose the agent loops over the previously generated trajectory
+    and for each experience tuple it determines if it deals with a first visit
+    to that state <Latex>s</Latex>. If it does it calculates the discounted sum
+    of rewards from that point on to the terminal state <Latex
+      >{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex
+    >. Finally the agent performs an update step by using the incremental
+    average calculation <Latex
+      >{String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}</Latex
+    >.
   </li>
 </ul>
 <Algorithm algoName={"Monte Carlo Prediction: First Visit"}>
   <AlgorithmState
-    >Input: environment <Math latex={`env`} />, policy <Math
-      latex={String.raw`\mu`}
-    />, state set <Math latex={String.raw`\mathcal{S}`} />, number of episodes <Math
-      latex={String.raw`N`}
-    /> , learning rate <Math latex={String.raw`\alpha`} />, discount factor <Math
-      latex={String.raw`\gamma`}
-    /></AlgorithmState
+    >Input: environment <Latex>env</Latex>, policy <Latex
+      >{String.raw`\mu`}</Latex
+    >, state set <Latex>{String.raw`\mathcal{S}`}</Latex>, number of episodes <Latex
+      >N</Latex
+    >, learning rate <Latex>{String.raw`\alpha`}</Latex>, discount factor <Latex
+      >{String.raw`\gamma`}</Latex
+    ></AlgorithmState
   >
   <AlgorithmState
-    >Initialize: <Math latex={String.raw`V(s)`} /> for all <Math
-      latex={String.raw`s \in \mathcal{S}`}
-    />
+    >Initialize: <Latex>V(s)</Latex> for all <Latex
+      >{String.raw`s \in \mathcal{S}`}</Latex
+    >
     with zeros</AlgorithmState
   >
   <AlgorithmForAll>
-    <span slot="condition">episodes <Math latex={String.raw`\in N`} /></span>
+    <span slot="condition">episodes <Latex>{String.raw`\in N`}</Latex></span>
     <AlgorithmState>(1) INTERACTION WITH THE ENVIRONMENT</AlgorithmState>
     <AlgorithmState>create trajectory as empty list [...]</AlgorithmState>
     <AlgorithmRepeat>
       <span slot="condition">state is terminal</span>
       <AlgorithmState
-        >Generate a new action <Math latex={String.raw`a = \mu(s_t)`} />
+        >Generate a new action <Latex>{String.raw`a = \mu(s_t)`}</Latex>
       </AlgorithmState>
       <AlgorithmState
-        >Generate a new state and reward <Math
-          latex={String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}
-        /></AlgorithmState
+        >Generate a new state and reward <Latex
+          >{String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}</Latex
+        ></AlgorithmState
       >
       <AlgorithmState
-        >Push the tuple <Math latex={String.raw`(s_t, r_{t+1})`} /> into the trajectory
+        >Push the tuple <Latex>{String.raw`(s_t, r_{t+1})`}</Latex> into the trajectory
         list.
       </AlgorithmState>
     </AlgorithmRepeat>
     <AlgorithmState>(2) ESTIMATION OF THE VALUE FUNCTION</AlgorithmState>
     <AlgorithmState
-      >Create Visited(s) = False for all <Math
-        latex={String.raw`s \in \mathcal{S}`}
-      /></AlgorithmState
+      >Create Visited(s) = False for all <Latex
+        >{String.raw`s \in \mathcal{S}`}</Latex
+      ></AlgorithmState
     >
     <AlgorithmForAll>
       <span slot="condition">tuples in trajectory list</span>
       <AlgorithmState
-        ><Math latex={String.raw`s \leftarrow`} /> state from tuple
+        ><Latex>{String.raw`s \leftarrow`}</Latex> state from tuple
       </AlgorithmState>
       <AlgorithmIf>
         <span slot="condition">Visited(s) is True</span>
@@ -169,15 +169,12 @@
         <span slot="condition">Visited(s) is False</span>
         <AlgorithmState>Visited(s) = True</AlgorithmState>
       </AlgorithmIf>
+      <AlgorithmState>
+        <Latex>{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex>
+      </AlgorithmState>
       <AlgorithmState
-        ><Math
-          latex={String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}
-        /></AlgorithmState
-      >
-      <AlgorithmState
-        ><Math
-          latex={String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}
-        /></AlgorithmState
+        ><Latex>{String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}</Latex
+        ></AlgorithmState
       >
     </AlgorithmForAll>
   </AlgorithmForAll>
@@ -225,35 +222,35 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
   The value iteration algorithm that we applied in the dynamic programming
   section used the following update step.
 </p>
-<Math
-  latex={String.raw`
+<Latex
+  >{String.raw`
     \begin{aligned}
     v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
     & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
     \end{aligned}
-  `}
-/>
+  `}</Latex
+>
 <p>
   This exact update step is not going to work with Monte Carlo methods, because
   that would require the full knowledge of the model. We would have to know the
-  transition probabilities from state <Math latex={String.raw`s`} /> to state <Math
-    latex={String.raw`s'`}
-  /> and the corresponding reward <Math latex={String.raw`r`} />.
+  transition probabilities from state <Latex>s</Latex> to state <Latex>s'</Latex
+  >
+  and the corresponding reward <Latex>r</Latex>.
 </p>
 
 <p>
   If we look closely at the above expression, we should notice that we can
   rewrite the update rule in terms of an action-value function.
 </p>
-<Math
-  latex={String.raw`
+<Latex
+  >{String.raw`
     \begin{aligned}
     v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
     & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')] \\
     & = \max_a q_k(s, a) \\
     \end{aligned}
-  `}
-/>
+  `}</Latex
+>
 <p>
   With those rewrites we do not require the knowledge of the model, but it
   becomes obvious that the key is to estimate the action-value function and not
@@ -268,12 +265,12 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
   the MDP though. If our policy is fully deterministic and thus avoids some
   state-action pairs by design, then we can not compute a good estimate for
   certain state-action pairs and thus might not arrive at the optimal policy.
-  The solution is to use an <Math latex={String.raw`\epsilon`} />-greedy policy,
-  meaning that with a probability of <Math latex={String.raw`\epsilon`} /> we take
-  a random action and with probability of <Math
-    latex={String.raw`1-\epsilon`}
-  /> we take the greedy action. That way we are guaranteed that all state-action
-  pairs are going to be visited.
+  The solution is to use an <Latex>{String.raw`\epsilon`}</Latex>-greedy policy,
+  meaning that with a probability of <Latex>{String.raw`\epsilon`}</Latex> we take
+  a random action and with probability of <Latex>{String.raw`1-\epsilon`}</Latex
+  >
+  we take the greedy action. That way we are guaranteed that all state-action pairs
+  are going to be visited.
 </p>
 <p>
   Before we move on to the implementation of the Monte Carlo control algorithm
@@ -292,55 +289,61 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
 <h4>Algorithm</h4>
 <Algorithm algoName={"Monte Carlo Control: First Visit"}>
   <AlgorithmState
-    >Input: environment <Math latex={`env`} />, state set <Math
-      latex={String.raw`\mathcal{S}`}
-    />, action set <Math latex={String.raw`\mathcal{A}`} />, number of episodes <Math
-      latex={String.raw`N`}
-    /> , learning rate <Math latex={String.raw`\alpha`} />, discount factor <Math
-      latex={String.raw`\gamma`}
-    />, epsilon <Math latex={String.raw`\epsilon`} /></AlgorithmState
+    >Input: environment <Latex>env</Latex>, state set <Latex
+      >{String.raw`\mathcal{S}`}</Latex
+    >
+    , action set <Latex>{String.raw`\mathcal{A}`}</Latex>, number of episodes <Latex
+      >N</Latex
+    >, learning rate <Latex>{String.raw`\alpha`}</Latex>, discount factor <Latex
+      >{String.raw`\gamma`}</Latex
+    >
+    , epsilon <Latex>{String.raw`\epsilon`}</Latex></AlgorithmState
   >
   <AlgorithmState
-    >Initialize: <Math latex={String.raw`Q(s, a)`} /> for all <Math
-      latex={String.raw`s \in \mathcal{S}`}
-    /> and <Math latex={String.raw`a \in \mathcal{A}`} />
-    with zeros, policy <Math latex={String.raw`\mu(a \mid s)`} /> for all <Math
-      latex={String.raw`a \in \mathcal{A}`}
-    /> where <Math latex={String.raw`\mu`} /> is <Math
-      latex={String.raw`\epsilon`}
-    />-greedy</AlgorithmState
+    >Initialize: <Latex>Q(s,a)</Latex> for all <Latex
+      >{String.raw`s \in \mathcal{S}`}</Latex
+    >
+    and <Latex>{String.raw`a \in \mathcal{A}`}</Latex>
+    with zeros, policy <Latex>{String.raw`\mu(a \mid s)`}</Latex> for all <Latex
+      >{String.raw`a \in \mathcal{A}`}</Latex
+    >
+    where <Latex>{String.raw`\mu`}</Latex> is <Latex
+      >{String.raw`\epsilon`}</Latex
+    >
+    -greedy</AlgorithmState
   >
   <AlgorithmForAll>
-    <span slot="condition">episodes <Math latex={String.raw`\in N`} /></span>
+    <span slot="condition">episodes <Latex>{String.raw`\in N`}</Latex></span>
     <AlgorithmState>(1) INTERACTION WITH THE ENVIRONMENT</AlgorithmState>
     <AlgorithmState>create trajectory as empty list [...]</AlgorithmState>
     <AlgorithmRepeat>
       <span slot="condition">state is terminal</span>
       <AlgorithmState
-        >Generate a new action <Math latex={String.raw`a = \mu(s_t)`} />
+        >Generate a new action <Latex>{String.raw`a = \mu(s_t)`}</Latex>
       </AlgorithmState>
       <AlgorithmState
-        >Generate a new state and reward <Math
-          latex={String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}
-        /></AlgorithmState
-      >
+        >Generate a new state and reward <Latex
+          >{String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}</Latex
+        >
+      </AlgorithmState>
       <AlgorithmState
-        >Push the tuple <Math latex={String.raw`(s_t, a_t, r_{t+1})`} /> into the
+        >Push the tuple <Latex>{String.raw`(s_t, a_t, r_{t+1})`}</Latex> into the
         trajectory list.
       </AlgorithmState>
     </AlgorithmRepeat>
     <AlgorithmState>(2) ESTIMATION OF THE VALUE FUNCTION</AlgorithmState>
     <AlgorithmState
-      >Create Visited(s) = False for all <Math
-        latex={String.raw`s \in \mathcal{S}`}
-      /></AlgorithmState
-    >
+      >Create Visited(s) = False for all <Latex
+        >{String.raw`s \in \mathcal{S}`}</Latex
+      >
+    </AlgorithmState>
     <AlgorithmForAll>
       <span slot="condition">tuples in trajectory list</span>
       <AlgorithmState
-        ><Math latex={String.raw`s \leftarrow`} /> state and <Math
-          latex={String.raw`a \leftarrow`}
-        /> action from tuple
+        ><Latex>{String.raw`s \leftarrow`}</Latex> state and <Latex
+          >{String.raw`a \leftarrow`}</Latex
+        >
+        action from tuple
       </AlgorithmState>
       <AlgorithmIf>
         <span slot="condition">Visited(s) is True</span>
@@ -351,15 +354,13 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
         <AlgorithmState>Visited(s) = True</AlgorithmState>
       </AlgorithmIf>
       <AlgorithmState
-        ><Math
-          latex={String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}
-        /></AlgorithmState
-      >
+        ><Latex>{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex>
+      </AlgorithmState>
       <AlgorithmState
-        ><Math
-          latex={String.raw`Q(s, a) = Q(s, a) + \alpha [G_{t:T} - Q(s, a)]`}
-        /></AlgorithmState
-      >
+        ><Latex
+          >{String.raw`Q(s, a) = Q(s, a) + \alpha [G_{t:T} - Q(s, a)]`}</Latex
+        >
+      </AlgorithmState>
     </AlgorithmForAll>
   </AlgorithmForAll>
   <AlgorithmState>Output: value function V(s)</AlgorithmState>
