@@ -1,6 +1,6 @@
 <script>
   import Question from "$lib/Question.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
   import Operator from "$lib/Operator.svelte";
   import Repl from "$lib/Repl.svelte";
 </script>
@@ -20,8 +20,8 @@
 <h2>Operators</h2>
 <h3>Comparisons</h3>
 <p>
-  When comparison operators <Operator><Math latex={`==`} /></Operator> and <Operator
-    ><Math latex={`!=`} /></Operator
+  When comparison operators <Operator><Latex>==</Latex></Operator> and <Operator
+    ><Latex>!=</Latex></Operator
   > are applied to dictionaries Python checks if both lists have the same same key
   values pairs.
 </p>

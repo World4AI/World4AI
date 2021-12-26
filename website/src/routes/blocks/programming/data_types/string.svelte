@@ -3,7 +3,7 @@
   import Code from "$lib/Code.svelte";
   import Repl from "$lib/Repl.svelte";
   import Operator from "$lib/Operator.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
 </script>
 
 <svelte:head>
@@ -29,9 +29,9 @@
 <h3>Concatenation (Addition)</h3>
 <p>
   Similar to numbers we can use addition operators like <Operator
-    ><Math latex={"+"} /></Operator
-  > or <Operator><Math latex={"+="} /></Operator> with strings. These operations
-  concatenate strings. For example 'a'+'b'+'c' would generate 'abc'.
+    ><Latex>+</Latex></Operator
+  > or <Operator><Latex>+=</Latex></Operator> with strings. These operations concatenate
+  strings. For example 'a'+'b'+'c' would generate 'abc'.
 </p>
 <p />
 <Code
@@ -46,8 +46,8 @@ print(result)`}
 <h3>Repetition (Multiplication)</h3>
 <p>
   It is also possible to repeat the same string several times using
-  multiplication operators like <Operator><Math latex={"*"} /></Operator> or <Operator
-    ><Math latex={"*="} /></Operator
+  multiplication operators like <Operator><Latex>*</Latex></Operator> or <Operator
+    ><Latex>*=</Latex></Operator
   >. For exmple 3 * 'a' would produce 'aaa'.
 </p>
 <Code
@@ -70,10 +70,10 @@ print(text)
 <p>
   The same comparison operators that work with numbers also work with strings.
   But what does it mean to apply operators like <Operator
-    ><Math latex={">"} /></Operator
+    ><Latex>{">"}</Latex></Operator
   >
-  <Operator><Math latex={"<"} /></Operator>
-  <Operator><Math latex={"="} /></Operator> to strings?
+  <Operator><Latex>{"<"}</Latex></Operator>
+  <Operator><Latex>=</Latex></Operator> to strings?
 </p>
 <p>
   When Python compares two characters like 'a' and 'b', Python actually compares
@@ -95,7 +95,7 @@ True
 `}
 />
 <p>
-  The code point for 'a' is 97 and the code point for 'b' is 98, therefore 'b' >
+  The code point for 'a' is 97 and the code point for 'b' is 98, therefore 'b' {">"}
   'a' results in True.
 </p>
 <p>

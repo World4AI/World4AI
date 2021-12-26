@@ -2,7 +2,7 @@
   import Question from "$lib/Question.svelte";
   import Code from "$lib/Code.svelte";
   import Repl from "$lib/Repl.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
   import Operator from "$lib/Operator.svelte";
 </script>
 
@@ -36,8 +36,8 @@
 
 <h4>Addition</h4>
 <p>
-  The plus operator <Operator><Math latex={"+"} /></Operator> sums the two operands
-  and returns the result.
+  The plus operator <Operator><Latex>+</Latex></Operator> sums the two operands and
+  returns the result.
 </p>
 <Code
   code={`a = 1 + 1
@@ -47,8 +47,8 @@ print(a)`}
 
 <h4>Subtraction</h4>
 <p>
-  The minus operator <Operator><Math latex={"-"} /></Operator> subtracts the second
-  operand from the first operand and returns the result.
+  The minus operator <Operator><Latex>-</Latex></Operator> subtracts the second operand
+  from the first operand and returns the result.
 </p>
 <Code
   code={`a = 10 - 5
@@ -58,8 +58,8 @@ print(a)`}
 
 <h4>Multiplication</h4>
 <p>
-  The multiplication operator <Operator><Math latex={"*"} /></Operator> multiplies
-  the two operands and returns the result.
+  The multiplication operator <Operator><Latex>*</Latex></Operator> multiplies the
+  two operands and returns the result.
 </p>
 <Code
   code={`a = 2.3 * 5
@@ -69,8 +69,8 @@ print(a)`}
 
 <h4>Division</h4>
 <p>
-  The divison operator <Operator><Math latex={"/"} /></Operator> divides the first
-  operand by the second operand and returns the result.
+  The divison operator <Operator><Latex>/</Latex></Operator> divides the first operand
+  by the second operand and returns the result.
 </p>
 <Code
   code={`a = 5 / 2
@@ -80,8 +80,8 @@ print(a)`}
 
 <h4>Floor Division</h4>
 <p>
-  The floor divison operator <Operator><Math latex={"//"} /></Operator> divides the
-  first operand by the second operand and cuts off the remainder of the dvision.
+  The floor divison operator <Operator><Latex>//</Latex></Operator> divides the first
+  operand by the second operand and cuts off the remainder of the dvision.
 </p>
 <Code
   code={`a = 5 // 2
@@ -91,7 +91,7 @@ print(a)`}
 
 <h4>Modulo</h4>
 <p>
-  The modulo operator <Operator><Math latex={"\\%"} /></Operator> is the counterpart
+  The modulo operator <Operator><Latex>{"\\%"}</Latex></Operator> is the counterpart
   to the floor division. It throws away the quotient and returns the remainder.
 </p>
 <Code
@@ -102,8 +102,8 @@ print(a)`}
 
 <h4>Exponentiation</h4>
 <p>
-  The exponentiation operator <Operator><Math latex={"**"} /></Operator> takes the
-  left operand to the power of the right operand.
+  The exponentiation operator <Operator><Latex>**</Latex></Operator> takes the left
+  operand to the power of the right operand.
 </p>
 <Code
   code={`a = 2 ** 3
@@ -125,8 +125,7 @@ print(b)`}
 
 <p>
   In the code snippet above both variables are assigned the same object in
-  memory using the assignement operator <Operator><Math latex={"="} /></Operator
-  >.
+  memory using the assignement operator <Operator><Latex>=</Latex></Operator>.
 </p>
 
 <p>
@@ -196,10 +195,10 @@ print(g)`}
   Often we want to figure out if two numbers are equal or unequal. When we talk
   about equality we talk about equality of values and not equality of objects.
   As long as the objects contain the same values, they are considered to be
-  equal. The equality operator <Operator><Math latex={"=="} /></Operator> returns
-  True if both objects contain the same value. For example the expression 5==5 returns
+  equal. The equality operator <Operator><Latex>==</Latex></Operator> returns True
+  if both objects contain the same value. For example the expression 5==5 returns
   True and 5==4 returns False. The inequality operator <Operator
-    ><Math latex={"!="} /></Operator
+    ><Latex>!=</Latex></Operator
   > does the exact opposite. The expression 1!=1 returns False and 1!=2 returns True.
 </p>
 <Code
@@ -217,15 +216,15 @@ False`}
 <h4>Greater and Less</h4>
 <p>
   When we want to figure out which of the two numbers is larger or smaller, we
-  use either the greater than operator <Operator><Math latex={">"} /></Operator>
-  or smaller than operator <Operator><Math latex={"<"} /></Operator>. For
+  use either the greater than operator <Operator><Latex>{">"}</Latex></Operator>
+  or smaller than operator <Operator><Latex>{"<"}</Latex></Operator>. For
   example 2 &lt; 1 would return False and 2 &gt; 1 would return True.
 </p>
 <p>
   Sometimes it is desirable to know if one of the numbers is larger or equal to
   the second number. In that case we use either <Operator
-    ><Math latex={">="} /></Operator
-  > or <Operator><Math latex={"<="} /></Operator>.
+    ><Latex>{">="}</Latex></Operator
+  > or <Operator><Latex>{"<="}</Latex></Operator>.
 </p>
 <Code
   code={`a = 2

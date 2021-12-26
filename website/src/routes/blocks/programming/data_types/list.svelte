@@ -1,7 +1,7 @@
 <script>
   import Question from "$lib/Question.svelte";
   import Operator from "$lib/Operator.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
   import Repl from "$lib/Repl.svelte";
 </script>
 
@@ -38,8 +38,8 @@
 <h3>Concatenation (Addition)</h3>
 <p>
   Just as with strings and tuples the addition operators <Operator
-    ><Math latex={"+"} /></Operator
-  > and <Operator><Math latex={"+="} /></Operator> concatenate lists.
+    ><Latex>+</Latex></Operator
+  > and <Operator><Latex>+=</Latex></Operator> concatenate lists.
 </p>
 <Repl
   code={`>>> [1, 2, 3] + [4, 5]
@@ -47,8 +47,8 @@
 />
 <h3>Repetition (Multiplication)</h3>
 <p>
-  The multiplication operators <Operator><Math latex={"*"} /></Operator> and <Operator
-    ><Math latex={"*="} /></Operator
+  The multiplication operators <Operator><Latex>*</Latex></Operator> and <Operator
+    ><Latex>*=</Latex></Operator
   > repeat the same list several times.
 </p>
 <Repl
@@ -57,8 +57,8 @@
 />
 <h3>Comparisons</h3>
 <p>
-  The comparison operators like <Operator><Math latex={"="} /></Operator> or <Operator
-    ><Math latex={">"} /></Operator
+  The comparison operators like <Operator><Latex>=</Latex></Operator> or <Operator
+    ><Latex>{">"}</Latex></Operator
   >compare individual elements of the list. If all the elements are equal then
   both lists are considered equal. Otherwise the difference is determined based
   on the first unequal element in the lists.

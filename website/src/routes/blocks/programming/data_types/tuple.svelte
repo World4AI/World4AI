@@ -2,7 +2,7 @@
   import Question from "$lib/Question.svelte";
   import Operator from "$lib/Operator.svelte";
   import Repl from "$lib/Repl.svelte";
-  import Math from "$lib/Math.svelte";
+  import Latex from "$lib/Latex.svelte";
 </script>
 
 <svelte:head>
@@ -25,8 +25,8 @@
 </p>
 <h3>Concatenation (addition)</h3>
 <p>
-  The addition operators <Operator><Math latex={"+"} /></Operator> and <Operator
-    ><Math latex={"+="} /></Operator
+  The addition operators <Operator><Latex>+</Latex></Operator> and <Operator
+    ><Latex>+=</Latex></Operator
   > can be used to concatenate two tuples.
 </p>
 <Repl
@@ -36,8 +36,8 @@
 />
 <h3>Repitition (multiplication)</h3>
 <p>
-  The multiplication operators <Operator><Math latex={"*"} /></Operator> and <Operator
-    ><Math latex={"*="} /></Operator
+  The multiplication operators <Operator><Latex>*</Latex></Operator> and <Operator
+    ><Latex>*=</Latex></Operator
   > repeat the same tuple several times.
 </p>
 <Repl
@@ -47,8 +47,8 @@
 />
 <h3>Comparisons</h3>
 <p>
-  Comparison operators like <Operator><Math latex={"=="} /></Operator> or <Operator
-    ><Math latex={">"} /></Operator
+  Comparison operators like <Operator><Latex>==</Latex></Operator> or <Operator
+    ><Latex>{">"}</Latex></Operator
   > can be applied to tuples. Each individual element is compared piece by piece
   until the first unequal element. If the tuple is larger or lower is determined
   solely by the first unequel element.
@@ -97,7 +97,7 @@ True`}
 <h3>Multiple Assignments</h3>
 <p>
   We can assign values to several variables at the same time using the
-  assignment operator <Operator><Math latex={"="} /></Operator>.
+  assignment operator <Operator><Latex>=</Latex></Operator>.
 </p>
 <Repl
   code={`>>> a, b, c = 0, 1, 2
