@@ -67,7 +67,7 @@
             <li>
               <a
                 class:selected={path === "/blocks/reinforcement_learning"}
-                href="/blocks/reinforcement_learning/intuition"
+                href="/blocks/reinforcement_learning/introduction"
                 >Reinforcement Learning</a
               >
             </li>

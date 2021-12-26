@@ -1,15 +1,27 @@
 <script>
-  import Question from '$lib/Question.svelte';
+  import Question from "$lib/Question.svelte";
 </script>
 
 <svelte:head>
-    <title>World4AI | Reinforcement Learning | Intuition | Introduction</title>
-    <meta name="description" content="Reinforcement learning deals with encouraging good behaviour. This is done with the help of rewards.">
+  <title>World4AI | Reinforcement Learning | Intuition</title>
+  <meta
+    name="description"
+    content="Reinforcement learning can be taught in a an intuitive way. World4AI teaches reinforcement learning by first giving an overview in an intuitive way and then diving into proofs and solutions."
+  />
 </svelte:head>
 
 <h1>Intuition</h1>
-<Question>What is reinforcement learning?</Question>
-<div class="separator"></div>
+<Question>How can we start learning reinforcement learning?</Question>
+<div class="separator" />
 
-<p>A reasonable way to think about reinforcement learning is to think about animals or even children whom you would like to teach good behaviour and discourage from bad behaviour. The way you would go about it would probably involve some reward in case the animal (let’s say a dog)  behaves the way you desire and punishment if it doesn’t. If you would like to teach the dog to sit down when you blow a whistle, then blow the whistle until the dog sits down. When it does, give it a treat. If you keep doing that the dog should learn sooner or later to sit down at the sound of the whistle. The process would most likely take time and require a lot of patience, but animals are quite good at learning the right behaviour when it comes to acquiring food.</p>
-<p>In a later chapter we are going to introduce a more formal definition of reinforcement learning, but keep the above metaphor in mind. This intuition will guide you quite nicely in your journey through reinforcement learning.</p>
+<p>
+  A big chunk of machine learning is mathematics and reinforcement learning is
+  no exception. Often we can lose track of what we are actually trying to solve
+  and lose ourselves in the definitions and mathematics. This chapter is inteded
+  to give an intuitive introduction into the topic of reinforcement learning
+  without any rigourous proofs. The intention of the chapter is to elicit
+  excitement and passion and to show that under all those calculations lie
+  simple but powerful ideas. Still all the knowledge learned in this chapter is
+  going to be useful for when we start dealing with math and programming.
+</p>
+<div class="separator" />

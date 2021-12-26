@@ -1,5 +1,11 @@
 const rl = [
     {
+      name: 'Introduction',
+      link: '/blocks/reinforcement_learning/introduction', 
+      links: [
+      ]
+    },
+    {
         name: 'Intuition',
         link: '/blocks/reinforcement_learning/intuition',
         links: [
