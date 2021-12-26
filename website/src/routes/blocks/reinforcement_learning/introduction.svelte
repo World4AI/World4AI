@@ -38,95 +38,81 @@
   comes to acquiring food.
 </p>
 <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-  <g stroke="#000">
-    <g id="maze" fill="var(--text-color)">
-      <rect x="15" y="15" width="10" height="55" />
-      <rect x="35" y="70" width="90" height="10" />
-      <rect x="15" y="85" width="10" height="60" />
-      <rect x="15" y="155" width="105" height="10" />
-      <rect x="15" y="175" width="75" height="10" />
-      <rect x="55" y="185" width="10" height="10" />
-      <rect x="25" y="15" width="55" height="10" />
-      <rect x="35" y="35" width="75" height="10" />
-      <rect x="65" y="45" width="10" height="15" />
-      <rect x="90" y="5" width="10" height="20" />
-      <rect x="100" y="15" width="65" height="10" />
-      <rect x="100" y="165" width="10" height="30" />
-      <rect x="35" y="90" width="215" height="10" />
-      <rect x="55" y="100" width="10" height="45" />
-      <rect x="35" y="115" width="10" height="40" />
-      <rect x="75" y="110" width="10" height="45" />
-      <rect x="175" y="5" width="10" height="75" />
-      <rect x="120" y="35" width="55" height="10" />
-      <rect x="45" y="55" width="10" height="15" />
-      <rect x="85" y="45" width="10" height="15" />
-      <rect x="135" y="45" width="10" height="35" />
-      <rect x="145" y="70" width="20" height="10" />
-      <rect x="155" y="55" width="10" height="15" />
-      <rect x="95" y="100" width="10" height="45" />
-      <rect x="195" y="15" width="10" height="75" />
-      <rect x="215" y="15" width="60" height="10" />
-      <rect x="215" y="35" width="10" height="45" />
-      <rect x="120" y="110" width="10" height="75" />
-      <rect x="140" y="100" width="10" height="65" />
-      <rect x="140" y="175" width="100" height="10" />
-      <rect x="160" y="135" width="10" height="40" />
-      <rect x="160" y="110" width="85" height="10" />
-      <rect x="180" y="120" width="10" height="45" />
-      <rect x="200" y="120" width="10" height="55" />
-      <rect x="220" y="120" width="10" height="45" />
-      <rect x="235" y="25" width="10" height="45" />
-      <rect x="245" y="5" width="10" height="10" />
-      <rect x="245" y="110" width="10" height="55" />
-      <rect x="255" y="160" width="10" height="35" />
-      <rect x="275" y="15" width="10" height="85" />
-      <rect x="255" y="35" width="20" height="10" />
-      <rect x="255" y="45" width="10" height="25" />
-      <rect x="265" y="80" width="10" height="70" />
-      <rect x="275" y="140" width="50" height="10" />
-      <rect x="285" y="120" width="40" height="10" />
-      <rect x="275" y="100" width="95" height="10" />
-      <rect x="295" y="5" width="10" height="85" />
-      <rect x="315" y="15" width="10" height="85" />
-      <rect x="335" y="5" width="10" height="55" />
-      <rect x="335" y="70" width="50" height="10" />
-      <rect x="355" y="15" width="10" height="55" />
-      <rect x="375" y="5" width="10" height="55" />
-      <rect x="355" y="90" width="10" height="10" />
-      <rect x="335" y="80" width="10" height="10" />
-      <rect x="275" y="150" width="10" height="35" />
-      <rect x="295" y="185" width="20" height="10" />
-      <rect x="295" y="160" width="10" height="25" />
-      <rect x="305" y="160" width="35" height="10" />
-      <rect x="340" y="150" width="10" height="35" />
-      <rect x="360" y="160" width="10" height="15" />
-      <rect x="360" y="175" width="35" height="10" />
-      <rect x="315" y="180" width="15" height="15" />
-      <rect x="325" y="130" width="60" height="10" />
-      <rect x="360" y="150" width="25" height="10" />
-      <rect x="335" y="110" width="10" height="10" />
-      <rect x="355" y="120" width="10" height="10" />
-      <rect x="375" y="115" width="10" height="15" />
-      <rect x="380" y="95" width="15" height="10" />
+  <g fill="none" stroke="#000" stroke-linecap="square">
+    <g id="lines" stroke-width="0.2px" stroke="var(--text-color)">
+      <path d="m0 10v190h390" />
+      <path d="m400 190v-190h-390" />
+      <g>
+        <path d="m15 70v-55" />
+        <path d="m15 15h65" />
+        <path d="m90 0v25" />
+        <path d="m90 25h75" />
+        <path d="m15 85v60" />
+        <path d="m60 200v-25" />
+        <path d="m15 175h75" />
+        <path d="m35 35h75" />
+        <path d="m70 35v25" />
+        <path d="m90 35v25" />
+        <path d="m50 55v25" />
+        <path d="m35 80h90" />
+        <path d="m185 0v80" />
+        <path d="m185 40h-65" />
+        <path d="m140 40v40" />
+        <path d="m140 80h25" />
+        <path d="m165 80v-30" />
+        <path d="m35 95h215" />
+        <path d="m200 95v-80" />
+        <path d="m15 160h115" />
+        <path d="m130 110v75" />
+        <path d="m105 160v40" />
+        <path d="m100 95v55" />
+        <path d="m80 160v-55" />
+        <path d="m60 95v55" />
+        <path d="m40 160v-55" />
+        <path d="m145 95v70" />
+        <path d="m140 185h100" />
+        <path d="m160 110h95v50h10v40" />
+        <path d="m205 185v-75" />
+        <path d="m225 110v65" />
+        <path d="m185 110v65" />
+        <path d="m165 185v-65" />
+        <path d="m220 95v-60" />
+        <path d="m215 15h70v85h85" />
+        <path d="m250 15v-15" />
+        <path d="m240 15v60" />
+        <path d="m255 70v-35h30" />
+        <path d="m300 85v-85" />
+        <path d="m315 15v85" />
+        <path d="m335 0v60" />
+        <path d="m355 15v55" />
+        <path d="m335 70h50" />
+        <path d="m375 0v60" />
+        <path d="m335 70v20" />
+        <path d="m400 95h-20" />
+        <path d="m355 100v-10" />
+        <path d="m400 185h-35v-35h20" />
+        <path d="m385 115v25h-60v-10h-40v-10" />
+        <path d="m360 140v-20" />
+        <path d="m340 115v25" />
+        <path d="m265 80v70h60" />
+        <path d="m280 150v35" />
+        <path d="m295 200v-40h45v-10" />
+        <path d="m340 170h-35v30" />
+        <path d="m350 160v40" />
+      </g>
     </g>
-    <g id="borders" fill="none" stroke="var(--text-color)">
-      <path d="m5 5v190h380" stroke-width="1px" />
-      <path d="m395 195v-190h-380" />
-    </g>
-    <path
-      id="path-good"
-      stroke="var(--main-color-2)"
-      d="m10 10h75v20h30v35h15v20h60v-75h20v75h50v70h10v35h20v-35h45v-10h20v45h35v5"
-      fill="none"
-      stroke-dasharray="4,2,1,2"
-      stroke-dashoffset={offset}
-    />
     <path
       id="path-bad"
       stroke="var(--main-color-1)"
-      d="m10 15v155h85v20h-25"
-      fill="none"
-      stroke-dasharray="4,2,1,2"
+      d="m5 10v160h90v10h-30v15h35v-30h-90v-15h15v-50h25v55h20v-55h20v55h25v-55h20v90h-10v-25h-15v30h30v-25h15v-70h105v55h15v40h10v-40h45v-10h25v50h40"
+      stroke-dasharray="4, 2, 1, 2"
+      stroke-dashoffset={offset}
+    />
+    <path
+      id="path-good"
+      stroke="var(--main-color-2)"
+      d="m10 10h75v20h30v40h15v15h65v-75h15v15h20v60h30v-30h15v55h120v35h-35v45h35"
+      stroke-dasharray="4, 2, 1, 2"
       stroke-dashoffset={offset}
     />
   </g>
