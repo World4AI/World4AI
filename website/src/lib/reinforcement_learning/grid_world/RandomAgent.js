@@ -11,7 +11,6 @@ class RandomAgent extends Agent {
 
     arrows() {
         let arrows = [];
-        
     }
 }
 
