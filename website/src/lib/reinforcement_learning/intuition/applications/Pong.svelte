@@ -1,8 +1,6 @@
 <script>
   import { onMount } from "svelte";
 
-  export let width = 300;
-  export let height = 300;
   // TODO
   // Find a way to figure out global css colors
   export let color = "#dad9eb";
@@ -12,6 +10,8 @@
   let ballSize = 20;
 
   let canvas;
+  $: width = 200;
+  let height = 300;
 
   let ballX;
   let ballY;
@@ -26,6 +26,11 @@
 
   let ballVelX;
   let ballVelY;
+
+  function canvasAction(node) {
+    width = node.parentNode.clientWidth;
+    reset();
+  }
 
   function reset() {
     ballOffset = ballSize / 2;
@@ -90,7 +95,6 @@
     }
   }
 
-  reset();
   onMount(() => {
     const ctx = canvas.getContext("2d");
     let frame = requestAnimationFrame(loop);
@@ -116,8 +120,9 @@
   });
 </script>
 
-<canvas bind:this={canvas} {width} {height}> The game of Pong </canvas>
+<canvas use:canvasAction bind:this={canvas} {width} {height}>
+  The game of Pong
+</canvas>
 
 <style>
 </style>
-
