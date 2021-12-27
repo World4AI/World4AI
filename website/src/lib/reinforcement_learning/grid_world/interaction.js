@@ -1,7 +1,6 @@
 import { onMount } from "svelte";
 
 function interact(agent, env, fps=5){
-
   let observation;
   let action;
   let reward;
