@@ -1,6 +1,6 @@
 import { onMount } from "svelte";
 
-function interact(agent, env){
+function interact(agent, env, fps=5){
 
   let observation;
   let action;
@@ -9,7 +9,6 @@ function interact(agent, env){
   //vars for fps calculation
   let then;
   let now;
-  const fps = 5;
   const fpsInterval = 1000/fps;
 
   function reset() {

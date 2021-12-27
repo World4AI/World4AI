@@ -17,6 +17,7 @@ class GridEnvironment extends Environment {
 
         this.cells = writable(this.getCells());
         this.player = writable(this.getPlayer());
+        this.action = writable(null);
     }
 
     getCells() {
@@ -29,10 +30,15 @@ class GridEnvironment extends Environment {
 
     reset(){
         this.map.player = {... this.initObservation};
+        //reset stores
+        this.cells.set(this.getCells());
+        this.player.set(this.getPlayer());
+        this.action.set(null);
         return {... this.map.player}      
     }
 
     step(action){
+        this.action.set(action);
         return this.model(action)
     }
  

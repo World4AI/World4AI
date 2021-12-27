@@ -61,6 +61,12 @@
     align-items: center;
   }
 
+  .container :global(.flex-space) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   .container :global(.info) {
     padding-left: 10px;
     border-left: 3px solid var(--text-color);
