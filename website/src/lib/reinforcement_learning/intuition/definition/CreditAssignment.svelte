@@ -1,58 +1,101 @@
 <script>
-    import { onMount } from 'svelte';
-    let offset = 0;
+  import { draw } from "svelte/transition";
+  let width = 400;
+  let height = 120;
+  let sequence = [
+    { d: 0, r: "negative" },
+    { d: 90, r: "negative" },
+    { d: 180, r: "negative" },
+    { d: 270, r: "negative" },
+    { d: 270, r: "negative" },
+    { d: 0, r: "negative" },
+    { d: 0, r: "negative" },
+    { d: 90, r: "negative" },
+    { d: 180, r: "negative" },
+    { d: 0, r: "positive" },
+  ];
+  let margin = 0.5;
+  let gap = 15;
+  let boxSize = width / sequence.length - gap;
 
-    onMount(() => {
-        let interval = setInterval(() => {
-            offset += 20;
-        }, 1000);
-
-        return () => clearInterval(interval);
-    })
+  let activeIdx = 0;
 </script>
 
-<svg width="400" height="100" version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+<svg
+  version="1.1"
+  viewBox="0 0 {width} {height}"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  {#each sequence as { }, i}
+    {#if i === activeIdx}
+      {#each sequence as { }, k}
+        {#if k <= i}
+          <line
+            in:draw={{ duration: 400 }}
+            x1={margin + i * (boxSize + gap) + boxSize / 2}
+            y1={margin + boxSize / 2}
+            x2={margin + k * (boxSize + gap) + boxSize / 2}
+            y2={height - boxSize}
+            stroke="var(--text-color)"
+            stroke-width="0.1"
+            stroke-dasharray="8,2,1,2"
+          />
+        {/if}
+      {/each}
+    {/if}
+  {/each}
+  {#each sequence as { d, r }, i}
+    <rect
+      on:click={() => {
+        activeIdx = i;
+      }}
+      class="clickable"
+      fill={r === "negative" ? "var(--main-color-1)" : "var(--main-color-2)"}
+      stroke="black"
+      x={margin + i * (boxSize + gap)}
+      y={margin}
+      width={boxSize}
+      height={boxSize}
+    />
     <defs>
-     <marker id="TriangleOutM" overflow="visible" orient="auto">
-      <path transform="scale(.4)"  d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"/>
-     </marker>
+      <marker
+        id="arrowhead"
+        markerWidth="10"
+        markerHeight="6"
+        refX="0"
+        refY="3"
+        orient="auto"
+        fill="var(--text-color)"
+      >
+        <polygon points="0 0, 10 3, 0 6" />
+      </marker>
     </defs>
-    <g stroke="#000">
-     <g id="rewards" stroke-linejoin="round">
-      <g fill="#ff683c">
-       <rect x="2.6028" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="42.807" y="4.2908" width="34.795" height="34.795"/>
-       <rect x="82.807" y="4.2908" width="34.795" height="34.795"/>
-       <rect x="122.81" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="162.81" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="202.6" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="242.6" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="282.81" y="4.0861" width="34.795" height="34.795"/>
-       <rect x="322.6" y="4.0861" width="34.795" height="34.795"/>
-      </g>
-      <rect x="362.6" y="4.0861" width="34.795" height="34.795" fill="#4eb6d7"/>
-     </g>
-     <path d="m45.603 83.301 24.999 0.27196" fill="none" marker-end="url(#TriangleOutM)" stroke-width="1px"/>
-     <g id="actions" stroke="var(--text-color)" fill="none" stroke-width="1px">
-      <path d="m17.602 68.573v25" marker-end="url(#TriangleOutM)"/>
-      <path d="m45.603 83.301 24.999 0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m87.602 83.573 24.999 0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m122.6 83.573 24.999 0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m177.6 68.573v25" marker-end="url(#TriangleOutM)"/>
-      <path d="m217.6 68.573v25" marker-end="url(#TriangleOutM)"/>
-      <path d="m275.44 84.086-24.999-0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m312.6 84.086-24.999-0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m352.6 84.086-24.999-0.27196" marker-end="url(#TriangleOutM)"/>
-      <path d="m382.6 68.573v25" marker-end="url(#TriangleOutM)"/>
-     </g>
-     <path d="m57.602 64.086" fill="none"/>
-     <g id="credit-assignment" stroke-dashoffset={offset} fill="none" stroke="var(--text-color)" stroke-dasharray="8, 2, 1, 2">
-      <path d="m17.602 44.086v20.027"/>
-      <path d="m52.635 44.127-31.217 20.929"/>
-      <path d="m57.602 44.086v35"/>
-      <path d="m107.6 44.086v35"/>
-      <path d="m102.6 44.086-35 35"/>
-      <path d="m92.602 44.086-70 25"/>
-     </g>
-    </g>
-   </svg>
+    <!-- Circles conaining the action -->
+    <circle
+      fill="var(--background-color)"
+      stroke={i <= activeIdx ? "var(--text-color)" : "black"}
+      cx={margin + i * (boxSize + gap) + boxSize / 2}
+      cy={height - boxSize}
+      r={boxSize / 2}
+    />
+    <!-- Arrows indicating the actions -->
+    <line
+      x1={margin + i * (boxSize + gap)}
+      y1={height - boxSize}
+      x2={margin + i * (boxSize + gap) + boxSize - 5}
+      y2={height - boxSize}
+      transform="rotate({d}, {margin +
+        i * (boxSize + gap) +
+        boxSize / 2}, {height - boxSize})"
+      stroke="var(--text-color)"
+      stroke-width="0.5"
+      marker-end="url(#arrowhead)"
+    />
+  {/each}
+</svg>
+
+<style>
+  .clickable {
+    cursor: pointer;
+  }
+</style>
