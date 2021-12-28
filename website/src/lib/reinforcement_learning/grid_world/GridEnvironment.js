@@ -2,7 +2,7 @@ import { Environment } from "$lib/reinforcement_learning/grid_world/Environment"
 import { writable } from 'svelte/store';
 
 class GridEnvironment extends Environment {
-    constructor(map) {
+    constructor(map, random=false) {
         let actionSpace = [0, 1, 2, 3];
         let observationSpace = [];
         for(let r = 0; r < map.rows; r++) {
@@ -12,6 +12,7 @@ class GridEnvironment extends Environment {
         } 
 
         super(actionSpace, observationSpace);
+        this.random = random;
         this.map = JSON.parse(JSON.stringify(map));
         this.initObservation = {... map.player};
 
@@ -34,6 +35,13 @@ class GridEnvironment extends Environment {
     }
 
     step(action){
+        //if environment is stochastic
+        if(this.random){
+          if(Math.random() < 0.5){
+              let index = Math.floor(Math.random() * this.actionSpace.length);
+              action = this.actionSpace[index]    
+          }
+        }
         return this.model(action)
     }
  
