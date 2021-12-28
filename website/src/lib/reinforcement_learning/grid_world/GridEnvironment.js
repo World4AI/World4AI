@@ -15,9 +15,7 @@ class GridEnvironment extends Environment {
         this.map = JSON.parse(JSON.stringify(map));
         this.initObservation = {... map.player};
 
-        this.cells = writable(this.getCells());
-        this.player = writable(this.getPlayer());
-        this.action = writable(null);
+        this.cellsStore = writable(this.getCells());
     }
 
     getCells() {
@@ -30,15 +28,12 @@ class GridEnvironment extends Environment {
 
     reset(){
         this.map.player = {... this.initObservation};
-        //reset stores
-        this.cells.set(this.getCells());
-        this.player.set(this.getPlayer());
-        this.action.set(null);
+        //reset store
+        this.cellsStore.set(this.getCells());
         return {... this.map.player}      
     }
 
     step(action){
-        this.action.set(action);
         return this.model(action)
     }
  
@@ -85,8 +80,7 @@ class GridEnvironment extends Environment {
         let done = cell.type === "goal" ? true : false;
         let payload = {observation: {...player}, reward, done};
 
-        this.cells.set(this.getCells());
-        this.player.set(this.getPlayer());
+        this.cellsStore.set(this.getCells());
         return payload;
     }     
     

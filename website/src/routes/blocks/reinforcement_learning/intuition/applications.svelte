@@ -1,13 +1,13 @@
 <script>
   import Question from "$lib/Question.svelte";
-  import { interact } from "$lib/reinforcement_learning/grid_world/interaction";
+  import { Interaction } from "$lib/reinforcement_learning/grid_world/Interaction";
   import { RandomAgent } from "$lib/reinforcement_learning/grid_world/RandomAgent";
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
   import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
   import Grid from "$lib/reinforcement_learning/grid_world/Grid.svelte";
   let env = new GridEnvironment(gridMap);
   let agent = new RandomAgent(env.getObservationSpace(), env.getActionSpace());
-  interact(agent, env);
+  let interaction = new Interaction(agent, env);
 
   import Pong from "$lib/reinforcement_learning/intuition/applications/Pong.svelte";
   import Go from "$lib/reinforcement_learning/intuition/applications/Go.svelte";
@@ -17,8 +17,8 @@
   import Healthcare from "$lib/reinforcement_learning/intuition/applications/Healthcare.svelte";
   import AutonomousVehicles from "$lib/reinforcement_learning/intuition/applications/AutonomousVehicles.svelte";
 
-  const cellsStore = env.cells;
-  const playerStore = env.player;
+  const cellsStore = env.cellsStore;
+  const playerStore = interaction.observationStore;
 
   $: cells = $cellsStore;
   $: player = $playerStore;

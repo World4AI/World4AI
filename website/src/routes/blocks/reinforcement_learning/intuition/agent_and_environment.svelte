@@ -3,13 +3,13 @@
   import { RandomAgent } from "$lib/reinforcement_learning/grid_world/RandomAgent";
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
   import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
-  import { interact } from "$lib/reinforcement_learning/grid_world/interaction";
+  import { Interaction } from "$lib/reinforcement_learning/grid_world/Interaction";
   let env = new GridEnvironment(gridMap);
   let agent = new RandomAgent(env.getObservationSpace(), env.getActionSpace());
-  interact(agent, env, 2);
-  const cellsStore = env.cells;
-  const playerStore = env.player;
-  const actionStore = env.action;
+  let interaction = new Interaction(agent, env, 2);
+  const cellsStore = env.cellsStore;
+  const playerStore = interaction.observationStore;
+  const actionStore = interaction.actionStore;
 
   $: cells = $cellsStore;
   $: player = $playerStore;

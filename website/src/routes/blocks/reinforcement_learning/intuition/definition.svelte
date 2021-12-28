@@ -4,7 +4,7 @@
   import { DeterministicAgent } from "$lib/reinforcement_learning/grid_world/DeterministicAgent";
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
   import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
-  import { interact } from "$lib/reinforcement_learning/grid_world/interaction";
+  import { Interaction } from "$lib/reinforcement_learning/grid_world/Interaction";
   import Grid from "$lib/reinforcement_learning/grid_world/Grid.svelte";
   import Sequence from "$lib/reinforcement_learning/intuition/definition/Sequence.svelte";
   import CreditAssignment from "$lib/reinforcement_learning/intuition/definition/CreditAssignment.svelte";
@@ -14,10 +14,10 @@
     env_1.getObservationSpace(),
     env_1.getActionSpace()
   );
-  interact(agent_1, env_1, 3);
+  let randomInteraction = new Interaction(agent_1, env_1, 3);
 
-  const randomCellsStore = env_1.cells;
-  const randomPlayerStore = env_1.player;
+  const randomCellsStore = env_1.cellsStore;
+  const randomPlayerStore = randomInteraction.observationStore;
 
   $: randomCells = $randomCellsStore;
   $: randomPlayer = $randomPlayerStore;
@@ -27,9 +27,9 @@
     env_2.getObservationSpace(),
     env_2.getActionSpace()
   );
-  interact(agent_2, env_2, 3);
-  const deterministicCellsStore = env_2.cells;
-  const deterministicPlayerStore = env_2.player;
+  let deterministicInteraction = new Interaction(agent_2, env_2, 3);
+  const deterministicCellsStore = env_2.cellsStore;
+  const deterministicPlayerStore = deterministicInteraction.observationStore;
 
   $: deterministicCells = $deterministicCellsStore;
   $: deterministicPlayer = $deterministicPlayerStore;

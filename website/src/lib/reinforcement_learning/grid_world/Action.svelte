@@ -27,37 +27,71 @@
   let y2 = size / 2;
 </script>
 
-<svg width={size} height={size}>
-  <circle
-    cx={size / 2}
-    cy={size / 2}
-    r={size / 2 - 5}
-    fill="none"
-    stroke="var(--text-color)"
-  />
-  <defs>
-    <marker
-      id="arrowhead"
-      markerWidth="10"
-      markerHeight="7"
-      refX="0"
-      refY="3.5"
-      orient="auto"
-      fill="var(--text-color)"
-    >
-      <polygon points="0 0, 10 3.5, 0 7" />
-    </marker>
-  </defs>
-  {#if action !== null}
-    <line
-      {x1}
-      {y1}
-      {x2}
-      {y2}
-      transform="rotate({$rotation}, {size / 2}, {size / 2})"
+<div class="container">
+  <svg width={size} height={size}>
+    <circle
+      cx={size / 2}
+      cy={size / 2}
+      r={size / 2 - 5}
+      fill="none"
       stroke="var(--text-color)"
-      stroke-width="2"
-      marker-end="url(#arrowhead)"
     />
-  {/if}
-</svg>
+    <defs>
+      <marker
+        id="arrowhead"
+        markerWidth="10"
+        markerHeight="7"
+        refX="0"
+        refY="3.5"
+        orient="auto"
+        fill="var(--text-color)"
+      >
+        <polygon points="0 0, 10 3.5, 0 7" />
+      </marker>
+    </defs>
+    {#if action !== null}
+      <line
+        {x1}
+        {y1}
+        {x2}
+        {y2}
+        transform="rotate({$rotation}, {size / 2}, {size / 2})"
+        stroke="var(--text-color)"
+        stroke-width="2"
+        marker-end="url(#arrowhead)"
+      />
+    {/if}
+  </svg>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{action}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  table {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  th {
+    text-transform: uppercase;
+  }
+
+  td,
+  th {
+    border: 1px double var(--text-color);
+    padding: 7px;
+    text-align: center;
+  }
+</style>
