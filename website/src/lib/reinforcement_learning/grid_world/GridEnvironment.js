@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 
 class GridEnvironment extends Environment {
     constructor(map, random=false) {
-        let actionSpace = [0, 1, 2, 3];
+        let actionSpace = Object.values(map.actions);
         let observationSpace = [];
         for(let r = 0; r < map.rows; r++) {
             for(let c = 0; c < map.columns; c++) {
