@@ -1,4 +1,5 @@
-<span class="highlight"><slot></slot></span>
+<strong><span class="highlight"><slot /></span></strong>
+
 <style>
   .highlight {
     display: inline-block;

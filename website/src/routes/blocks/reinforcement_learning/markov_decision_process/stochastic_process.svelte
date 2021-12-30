@@ -1,4 +1,5 @@
 <script>
+  import Highlight from "$lib/Highlight.svelte";
   import Question from "$lib/Question.svelte";
   import { onMount } from "svelte";
   import Latex from "$lib/Latex.svelte";
@@ -48,22 +49,29 @@
   <title>World4AI | Reinforcement Learning | MDP Stochastic Process</title>
   <meta
     name="description"
-    content="A Markov decision process is a stochastic process that has the Markov property and provides an interaction mechanism for the agent in form of a decision."
+    content="A Markov decision process is a stochastic process that has the Markov property and provides a mechanism for the agent to make decisions."
   />
 </svelte:head>
 
 <h1>MDP as Stochastic Process</h1>
-<Question>What is a stochastic process and what is a Markov property?</Question>
+<Question
+  >What is a stochastic process, what is the Markov property and how are they
+  related to the MDP?</Question
+>
 <div class="separator" />
 
 <p>
-  The name Markov decison process was not named out of thin air. It is
-  categorized by three distinct parts. It is a stochastic <strong
-    >process</strong
-  >, it has the <strong>Markov</strong> property and it provides an interaction
-  mechanism for the agent to make <strong>decisions</strong>.
+  The name Markov decison process was not created out of thin air. It is
+  categorized by three distinct parts. It is a
+  <Highlight>stochastic process</Highlight>, it has the <Highlight
+    >Markov</Highlight
+  >
+  property and it provides a mechanism for the agent to make
+  <Highlight>decisions</Highlight>. In the following sections we will unpack and
+  discuss the three parts.
 </p>
 <div class="separator" />
+
 <h2>Stochastic Process</h2>
 <p class="info">
   A stochastic process is defined as a sequence of random variables.
