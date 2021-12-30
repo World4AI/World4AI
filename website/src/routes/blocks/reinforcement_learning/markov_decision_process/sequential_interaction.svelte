@@ -32,18 +32,16 @@
 
 <h1>MDP as Sequential Interaction</h1>
 <Question
-  >How does interaction between the agent and the environment relate to the
+  >How does the interaction between the agent and the environment relate to the
   Markov decision process?</Question
 >
 <div class="separator" />
 
 <p>
-  In essence an MDP allows us to formalize the interaction loop between the
-  agent and the environment, where the actions of the agent influence future
-  states and rewards and the agent might have to decide to forego the current
-  reward to get higher rewards in the future. The common assumption in
-  reinforcement learning is the existence of an MDP at the core of each
-  environment.
+  In essence a Markov decision process (MDP) allows us to formalize the
+  sequential interaction loop between the agent and the environment. The common
+  assumption in reinforcement learning is the existence of a MDP at the core of
+  each environment.
 </p>
 <p class="info">
   A Markov decision process (MDP) is a formal description of a sequential
@@ -52,9 +50,10 @@
 <p>
   The interaction is done sequentially, where the agent and the environment take
   turns to react to each other. Each iteration of actions, rewards and states
-  happens in a period of time, called a time step, <Latex>t</Latex> The time step
-  is a discrete variable starting at 0 and increasing by 1 after each iteration.
-  During the first time step the agent receives the initial state of the environment
+  happens in a period of time, called a time step, <Latex>t</Latex>. The time
+  step is a discrete variable starting at 0 and increasing by 1 after each
+  iteration. During the first time step the agent receives the initial state of
+  the environment
   <Latex>S_0</Latex> and reacts accordingly with the action <Latex>A_0</Latex>
   . The environment transitions into a new state <Latex>S_1</Latex> and generates
   the reward <Latex>R_1</Latex>. The agent in turn reacts with the action <Latex
@@ -66,7 +65,7 @@
   >
   represents a particular time step.
 </p>
-
+<div class="separator" />
 <div class="flex-center">
   <svg
     width="500"
@@ -156,44 +155,50 @@
       <path d="m424.67 276.3v26.667" />
       <path d="m438 276.3v13.333h13.333v13.333" />
     </g>
+    <g
+      stroke="var(--text-color)"
+      fill="var(--text-color)"
+      font-family="sans-serif"
+    >
+      <text
+        id="agent-text"
+        x="367.98828"
+        y="480.05859"
+        font-size="40px"
+        style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25"
+        xml:space="preserve"
+        ><tspan
+          x="367.98828"
+          y="480.05859"
+          font-family="sans-serif"
+          font-size="40px"
+          style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"
+          >Agent</tspan
+        ></text
+      >
+      <text
+        id="environment-text"
+        x="17.988281"
+        y="40.058594"
+        font-size="40px"
+        style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25"
+        xml:space="preserve"
+        ><tspan
+          x="17.988281"
+          y="40.058594"
+          font-family="sans-serif"
+          font-size="40px"
+          style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"
+          >Environment</tspan
+        ></text
+      ></g
+    >
     {#if timeStep >= 0}
       <g
         stroke="var(--text-color)"
         fill="var(--text-color)"
         font-family="sans-serif"
       >
-        <text
-          id="agent-text"
-          x="367.98828"
-          y="480.05859"
-          font-size="40px"
-          style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25"
-          xml:space="preserve"
-          ><tspan
-            x="367.98828"
-            y="480.05859"
-            font-family="sans-serif"
-            font-size="40px"
-            style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"
-            >Agent</tspan
-          ></text
-        >
-        <text
-          id="environment-text"
-          x="17.988281"
-          y="40.058594"
-          font-size="40px"
-          style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25"
-          xml:space="preserve"
-          ><tspan
-            x="17.988281"
-            y="40.058594"
-            font-family="sans-serif"
-            font-size="40px"
-            style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal"
-            >Environment</tspan
-          ></text
-        >
         <g stroke-width=".76208">
           <text
             id="state-text"
@@ -373,8 +378,8 @@
   >
 </div>
 <p>
-  The interactive example above shows how each timestep triggers a new state, a
-  new reward and eventually a new action.
+  Use the interactive example above to get a better feel for the sequential
+  interaction between the agetn and the environment.
 </p>
 <div class="separator" />
 
