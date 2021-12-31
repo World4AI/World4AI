@@ -1,4 +1,18 @@
-<div class="container">
+<script>
+  import { page } from "$app/stores";
+  let container;
+
+  function scrollTop() {
+    if (container) {
+      container.scrollTop = 0;
+    }
+  }
+  // scroll to the top position when the page changes
+  $: path = $page.path;
+  $: path && scrollTop();
+</script>
+
+<div bind:this={container} class="container">
   <slot />
 </div>
 
