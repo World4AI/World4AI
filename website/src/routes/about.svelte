@@ -6,7 +6,7 @@
 <h1>About</h1>
 <h2>What is World4AI?</h2>
 <p>World4AI is my answer to the question “How can I get to an intermediary level in AI/Machine Learning?”.</p>
-<p>The main purpose of Wordl4AI is for me to have a personal platform/blog that I can utilize to learn AI. The attempts that I made so far to teach myself Machine Learning were not especially successful, but there are several reasons why I think that a blog might give me the necessary push to pass the beginner level in AI.
+<p>The main purpose of World4AI is for me to have a personal platform/blog that I can utilize to learn AI. The attempts that I made so far to teach myself Machine Learning were not especially successful, but there are several reasons why I think that a blog might give me the necessary push to pass the beginner level in AI.
 </p>
 
 <h3>Improvement Over Time</h3>
