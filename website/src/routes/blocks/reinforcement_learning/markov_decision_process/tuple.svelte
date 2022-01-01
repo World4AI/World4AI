@@ -5,12 +5,11 @@
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
   import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
 
-  let env_1 = new GridEnvironment(gridMap);
-  let env_2 = new GridEnvironment(gridMap);
-  let env_3 = new GridEnvironment(gridMap);
-  let adjustedGridMap = JSON.parse(JSON.stringify(gridMap));
-  adjustedGridMap.player.r = 3;
-  let env_4 = new GridEnvironment(adjustedGridMap);
+  let env = new GridEnvironment(gridMap);
+  let cellsStore = env.cellsStore;
+  $: cells = $cellsStore;
+
+  import Action from "$lib/reinforcement_learning/grid_world/Action.svelte";
 </script>
 
 <svelte:head>
@@ -26,6 +25,7 @@
   >How can you define a Markov decision process in a mathematical manner?</Question
 >
 <div class="separator" />
+
 <p>
   The most formal definition of a Markov decison process deals with the
   individual components of the MDP. A Markov decision process can be defined as
@@ -33,62 +33,71 @@
   each individual component of that tuple is a required component of a valid
   MDP. The definition of each component is going to be important in many
   subsequent sections, because those definitions are the basis of most
-  mathematical proofs in reinforcement learning.
-</p>
-<p>
-  In the following sections we will take a look at each of the contents of the
-  tuple individually.
+  mathematical proofs in reinforcement learning, therefore in the following
+  sections we will take a look at each of the contents of the tuple
+  individually.
 </p>
 <div class="separator" />
 
-<h2><Latex>{String.raw`\mathcal{S}`}</Latex>: States</h2>
+<h2><Latex>{String.raw`\mathcal{S}`}</Latex>: State Space</h2>
 <p>
   In a Markov decision process <Latex>{String.raw`\mathcal{S}`}</Latex> is the state
-  space, that contains all possible states of the environment.
+  space: the set that contains all possible states of the environment.
 </p>
 <div class="flex-center">
-  <Grid env={env_1} showGridOnly={true} showStateSpace={true} />
+  <Grid {cells} showOnlyGrid={true} />
 </div>
 <p>
   In the example above for example we are dealing with a 5X5 grid world, where
-  each state is represented by a row and column tuple: (row, column).
+  each state can be represented by a row and column tuple: (row, column).
   Alltogether there are exactly 25 possible states, therefore our state space
   looks as follows: <Latex
     >{String.raw`\mathcal{S}=[(0,0), (0, 1), (0, 2), ... , (4, 4)]`}</Latex
   >
-  .
+  . In practice the states of a grid world are often represented by a single number
+  <Latex>{String.raw`\mathcal{S}=[0, 1, 2, ... ,24]`}</Latex>. Both
+  representations are equivalent, because the representaion is sufficient to
+  uniquely identify the state that the agent faces.
 </p>
+<p />
 <p class="info">
   <Latex>{String.raw`\mathcal{S}`}</Latex> is the set of all legal states.
 </p>
 <div class="separator" />
 
-<h2><Latex>{String.raw`\mathcal{A}`}</Latex>: Actions</h2>
+<h2><Latex>{String.raw`\mathcal{A}`}</Latex>: Action Space</h2>
 <p>
   In a Markov decision process <Latex>{String.raw`\mathcal{A}`}</Latex> is the action
   space, that contains all possible actions of the environment.
 </p>
-<div class="flex-center">
-  <Grid env={env_2} showGridOnly={true} showActionSpace={true} />
+<div class="flex-space">
+  <Action action={0} />
+  <Action action={1} />
+  <Action action={2} />
+  <Action action={3} />
 </div>
 <p>
-  In this simple grid world the agent has the option to move into four different
-  directions: north, east, south and west. The same actions are represented in
-  the environment by four different numbers: 0, 1, 2, 3. For that reason the
-  action space in that particular grid world is <Latex
-    >{String.raw`\mathcal{A}=[0, 1, 2, 3]`}</Latex
+  In the simple grid world environment the agent has the option to move into
+  four different directions: north, east, south and west. The same actions are
+  represented in the environment by four different numbers: 0, 1, 2 and 3. For
+  that reason the action space in that particular grid world is <Latex
+    or
+    a
+    barrier>{String.raw`\mathcal{A}=[0, 1, 2, 3]`}</Latex
   >
-  . Even if in some states it is not possible to move into a particular direction,
-  the state space is usually kept consistent across the whole state space.
+  . Even if in some states it is not possible to move into a particular direction
+  (when the agent faces a wall or a barrier), the state space is usually kept consistent
+  across the whole state space and the agent is expected to learn that a particulare
+  action is not useful in that particular state.
 </p>
 <p class="info">
   <Latex>{String.raw`\mathcal{A}`}</Latex> is the set of all legal actions.
 </p>
 <div class="separator" />
 
-<h2><Latex>P</Latex>: Transitions</h2>
+<h2><Latex>P</Latex>: Transition Probability Function</h2>
 <p>
-  Each Markov decision process possesses a transition probabilities function <Latex
+  Each Markov decision process has a transition probabilities function <Latex
     >P</Latex
   >
   that provides a probability for the next state <Latex>s'</Latex> given the current
@@ -98,9 +107,6 @@
 <Latex
   >{String.raw`P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a], \forall s, s' \in \mathcal{S}, a \in \mathcal{A}`}</Latex
 >
-<div class="flex-center">
-  <Grid env={env_3} />
-</div>
 <p>
   Let us assume that the environment is in the initial state and the agent
   decides to move to the east, therefore <Latex>s=(0,0), a=1</Latex>. Let us
@@ -114,13 +120,13 @@
   initial position. Alltogether the transition probabilities given the initial state
   and the action to move east look as follows.
 </p>
-<Latex>{String.raw`P((0,1) \mid (0,0), 1) = 1/3`}</Latex>
-<Latex>{String.raw`P((0,0) \mid (0,0), 1) = 1/3`}</Latex>
-<Latex>{String.raw`P((1,0) \mid (0,0), 1) = 1/3`}</Latex>
-<p class="info"><Latex>P</Latex> is the transition model.</p>
+<Latex>{String.raw`P(S_{t+1}=(0,1) \mid S_t=(0,0), A_t=1) = 33.33\%`}</Latex>
+<Latex>{String.raw`P(S_{t+1}=(0,0) \mid S_t=(0,0), A_t=1) = 33.33\%`}</Latex>
+<Latex>{String.raw`P(S_{t+1}=(1,0) \mid S_t=(0,0), A_t=1) = 33.33\%`}</Latex>
+<p class="info"><Latex>P</Latex> is the transition probability function.</p>
 <div class="separator" />
 
-<h2><Latex>r</Latex>: Rewards</h2>
+<h2><Latex>r</Latex>: Reward Function</h2>
 <p>
   The reward function calculates the expected value of the reward given state <Latex
     >s</Latex
@@ -129,11 +135,8 @@
   can be written as follows.
 </p>
 <Latex
-  >{String.raw`r(s,a) \doteq \mathbb{E}[R_{t+1} \mid S_{t}=s,A_{t}=a]`}</Latex
+  >{String.raw`R(s,a) \doteq \mathbb{E}[R_{t+1} \mid S_{t}=s,A_{t}=a]`}</Latex
 >
-<div class="flex-center">
-  <Grid env={env_4} isColoredReward={true} />
-</div>
 <p>
   In the example above the state of the environment is <Latex>(3, 0)</Latex>
   . The agent selects the action 2 to move south and to hopefully receive a positive
@@ -146,12 +149,12 @@
   -0.33.
 </p>
 <Latex
-  >{String.raw`r((3, 0),2) = \mathbb{E}[R_{t+1} \mid S_{t}=(3,0),A_{t}=2] = 0.33 * (-1) + 0.33 * (-1) + 0.33 * (+1) = -0.33 `}</Latex
+  >{String.raw`R((3, 0),2) = \mathbb{E}[R_{t+1} \mid S_{t}=(3,0),A_{t}=2] = 0.33 * (-1) + 0.33 * (-1) + 0.33 * (+1) = -0.33 `}</Latex
 >
-<p class="info"><Latex>r</Latex> is the reward model.</p>
+<p class="info"><Latex>R</Latex> is the reward function.</p>
 <div class="separator" />
 
-<h2>Gamma: Discounts</h2>
+<h2>Gamma: Discount Factor</h2>
 <p>
   Consider the following example. You can get 1000$ now or 1000$ in 10 years.
   What would you choose? The answer is hopefully 1000$ now. The reason every
@@ -244,7 +247,7 @@
   The discount factor keeps approaching 0, which makes the value of rewards in
   the far future almost 0. That prevents an infinite sum of rewards.
 </p>
-<p class="info">
+<p>
   Gamma <Latex>{String.raw`\gamma`}</Latex> is defined as a part of an MDP, but in
   practice it is treated as a hyperparameter of the agent. Theoretically gamma should
   be obvious from the environment. In practice there is no clear indiciation regarding

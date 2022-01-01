@@ -22,6 +22,7 @@
   // component parameters
   export let showColoredReward = false;
   export let showColoredValues = false;
+  export let showOnlyGrid = false;
 
   //additional input
   export let policy = null;
@@ -77,35 +78,37 @@
         />
       {/if}
 
-      <!-- blocks -->
-      {#if cell.type === "block"}
-        <rect
-          fill="var(--text-color)"
-          stroke="black"
-          stroke-width="3"
-          x={cell.c * colSize + obstaclePadding}
-          y={cell.r * rowSize + obstaclePadding}
-          width={colSize - obstaclePadding * 2}
-          height={rowSize - obstaclePadding * 2}
-        />
-      {/if}
+      {#if !showOnlyGrid}
+        <!-- blocks -->
+        {#if cell.type === "block"}
+          <rect
+            fill="var(--text-color)"
+            stroke="black"
+            stroke-width="3"
+            x={cell.c * colSize + obstaclePadding}
+            y={cell.r * rowSize + obstaclePadding}
+            width={colSize - obstaclePadding * 2}
+            height={rowSize - obstaclePadding * 2}
+          />
+        {/if}
 
-      <!-- goal -->
-      {#if cell.type === "goal"}
-        <polygon
-          fill="var(--text-color)"
-          stroke="black"
-          stroke-width="2"
-          points={`${cell.c * colSize + colSize / 2},${
-            cell.r * rowSize + goalPadding
-          } \
+        <!-- goal -->
+        {#if cell.type === "goal"}
+          <polygon
+            fill="var(--text-color)"
+            stroke="black"
+            stroke-width="2"
+            points={`${cell.c * colSize + colSize / 2},${
+              cell.r * rowSize + goalPadding
+            } \
                     ${cell.c * colSize + colSize - goalPadding},${
-            cell.r * rowSize + rowSize - goalPadding
-          } \
+              cell.r * rowSize + rowSize - goalPadding
+            } \
                     ${cell.c * colSize + goalPadding},${
-            cell.r * rowSize + rowSize - goalPadding
-          }`}
-        />
+              cell.r * rowSize + rowSize - goalPadding
+            }`}
+          />
+        {/if}
       {/if}
     {/each}
 
