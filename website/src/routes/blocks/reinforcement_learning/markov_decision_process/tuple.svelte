@@ -10,6 +10,7 @@
   $: cells = $cellsStore;
 
   import Action from "$lib/reinforcement_learning/grid_world/Action.svelte";
+  import Transition from "./_tuple.svelte/Transition.svelte";
 </script>
 
 <svelte:head>
@@ -108,6 +109,13 @@
   >{String.raw`P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a], \forall s, s' \in \mathcal{S}, a \in \mathcal{A}`}</Latex
 >
 <p class="info"><Latex>P</Latex> is the transition probability function.</p>
+<Transition />
+<p>
+  The above graph shows how the distribution of the next states, depending on
+  the current state and the action might look like for an environment with 4
+  possible states and 2 possible actions. Pick the current state-action pair and
+  observe how the distribution of the next states changes.
+</p>
 <div class="separator" />
 
 <h2><Latex>r</Latex>: Reward Function</h2>
