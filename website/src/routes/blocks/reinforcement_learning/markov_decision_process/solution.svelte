@@ -91,6 +91,49 @@
 </p>
 <div class="separator" />
 
+<h2>Gamma: Discount Factor</h2>
+<p>
+  Gamma <Latex>{String.raw`\gamma`}</Latex>
+  (also called discount factor) is a value between 0 and 1 (usually between 0.9 and
+  0.99) that is used to reduce the value of future rewards, because future rewards
+  are considered of less value to the agent than present rewards.
+</p>
+<p class="info">
+  <Latex>{String.raw`\gamma`}</Latex> (gamma) is the discount factor, where <Latex
+    >{String.raw`0 \leq \gamma \leq 1`}</Latex
+  >
+  .
+</p>
+<p>
+  Let us consider the following example to convince ourselves that future
+  rewards are indeed of less value than present rewards. If we have to choose
+  between getting 1000$ now and getting 1000$ in 10 years, we should definetely
+  choose the 1000$ in the present. The money could be invested in a 10 year risk
+  free bond, so that at the end of the 10 year period the investor gets back an
+  amout that is larger than 1000$. In reinforcement learning this concept called <em
+    >"time value of money"</em
+  > is extended to all other types of rewards.
+</p>
+
+<p>
+  In reinforcement learning we use the geometric series to calculate the current
+  value of a future reward.
+</p>
+<Latex>S = 1 + \gamma + \gamma^2 + \gamma^3 + \gamma^4 + ...</Latex>
+<p>
+  Therefore the value of a reward from the perspective of the timestep <Latex
+    >t</Latex
+  > that is going to be received in the future at timestep
+  <Latex>t+k</Latex> is: <Latex>{String.raw`\gamma^{k-1} * R_{t+k}`}</Latex>.
+  For example the value of a reward received at timestep <Latex>t+1</Latex> is <Latex
+    >{String.raw`\gamma^0 * R_{t+1}`}</Latex
+  >, the value of a reward received at timestep <Latex>t+2</Latex> is <Latex
+    >{String.raw`\gamma^1 * R_{t+2}`}</Latex
+  >, the value of a reward received at timestep <Latex>t+3</Latex> is <Latex
+    >{String.raw`\gamma^2 * R_{t+3}`}</Latex
+  > and so on and so forth.
+</p>
+<div class="separator" />
 <h2>Return</h2>
 <p>
   In order to simplify notation and to introduce new necessary definitions we
