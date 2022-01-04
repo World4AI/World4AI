@@ -4,3 +4,32 @@
 
 [World4AI](https://world4ai.org) is an educational resource for artificial intelligence. The website is still in a very early stage and will definetely change over the next weeks, months and years. 
 
+
+## Used Librarries
+
+* [Svelte](https://svelte.dev/)
+* [SvelteKit](https://kit.svelte.dev/)
+
+## Roadmap 2022
+
+- [ ] Python Block
+    - [ ] Control Flow
+    - [ ] OOP
+    - [ ] Numpy
+- [ ] Mathematics Block
+    - [ ] Create Course Outline for next years (2023-2024)
+- [ ] Deep Learning Section
+    - [ ] Create Course Outline for next years (2023-2024)
+- [ ] Reinforcement Learning Block
+    - [ ] DQN
+    - [ ] Double DQN
+    - [ ] DUelling DQN
+    - [ ] Rainbow
+    - [ ] Policy Gradient and Reinforce
+    - [ ] A2C and A3C
+    - [ ] TRPO
+    - [ ] PPO
+    - [ ] DDPG
+    - [ ] TD3
+    - [ ] Soft Actor-Critic
+    - [ ] MCTC
