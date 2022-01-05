@@ -8,7 +8,7 @@
     }
   }
   // scroll to the top position when the page changes
-  $: path = $page.path;
+  $: path = $page.url.pathname;
   $: path && scrollTop();
 </script>
 

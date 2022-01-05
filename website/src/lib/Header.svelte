@@ -2,13 +2,14 @@
   import { page } from "$app/stores";
 
   $: path = (() => {
-    let splitPath = $page.path.split("/");
+    let pathname = $page.url.pathname;
+    let splitPath = pathname.split("/");
     if (splitPath.length == 1) {
       return "/";
     } else if (splitPath.length == 2) {
-      return "/" + $page.path.split("/")[1];
+      return "/" + pathname.split("/")[1];
     } else {
-      return "/" + $page.path.split("/")[1] + "/" + $page.path.split("/")[2];
+      return "/" + pathname.split("/")[1] + "/" + pathname.split("/")[2];
     }
   })();
 
