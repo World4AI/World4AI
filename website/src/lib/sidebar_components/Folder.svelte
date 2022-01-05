@@ -6,7 +6,7 @@
   export let link = "";
   export let links;
 
-  $: path = $page.path;
+  $: path = $page.url.pathname;
 </script>
 
 {#if name !== "ROOT"}

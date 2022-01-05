@@ -1,35 +1,36 @@
 <script>
-    import { page } from '$app/stores';
-    export let name;
-    export let link;
+  import { page } from "$app/stores";
+  export let name;
+  export let link;
 
-    $: path = $page.path;
+  $: path = $page.url.pathname;
 </script>
 
-<a class:selected={path===link} href={link}>{name}</a>
-    
+<a class:selected={path === link} href={link}>{name}</a>
+
 <style>
-    a {
-        text-decoration: none;
-        font-size: 15px;
-        color: var(--text-color);
-    }
+  a {
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--text-color);
+  }
 
-    .selected {
-        position: relative;
-    }
+  .selected {
+    position: relative;
+  }
 
-    .selected::before {
-        position: absolute;
-        content: '';
-        height: 5px;
-        width: 5px;
-        top: 7px;
-        left: -20px;
-        background-color: var(--text-color);
-    }
+  .selected::before {
+    position: absolute;
+    content: "";
+    height: 5px;
+    width: 5px;
+    top: 7px;
+    left: -20px;
+    background-color: var(--text-color);
+  }
 
-    a:hover {
-        color: #FFF;
-    }
+  a:hover {
+    color: #fff;
+  }
 </style>
+
