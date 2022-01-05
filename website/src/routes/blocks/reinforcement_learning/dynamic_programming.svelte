@@ -333,6 +333,80 @@ F(5) & = F(4) + F(3) \\
    v_{\pi}(s) = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(s') \mid S_t=s] \\
 `}</Latex
 >
+<div class="container">
+  <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="TriangleOutL" overflow="visible" orient="auto">
+        <path
+          transform="scale(.8)"
+          d="m5.77 0-8.65 5v-10l8.65 5z"
+          fill="context-stroke"
+          fill-rule="evenodd"
+          stroke="context-stroke"
+          stroke-width="1pt"
+        />
+      </marker>
+    </defs>
+    <g
+      stroke="black"
+      fill="var(--text-color)"
+      stroke-linecap="round"
+      stroke-width="1.2267"
+    >
+      <rect x="200" y="20" width="100" height="60" />
+      <rect x="200" y="420" width="100" height="60" />
+      <rect x="380" y="220" width="100" height="60" />
+      <rect x="20" y="220" width="100" height="60" />
+    </g>
+    <g fill="var(--background-color)" font-family="sans-serif" font-size="40px">
+      <text
+        x="210.95703"
+        y="62.539062"
+        style="line-height:1.25"
+        xml:space="preserve"
+        ><tspan x="210.95703" y="62.539062">v(0)</tspan></text
+      >
+      <text
+        x="210.95703"
+        y="462.53906"
+        style="line-height:1.25"
+        xml:space="preserve"
+        ><tspan x="210.95703" y="462.53906">v(2)</tspan></text
+      >
+      <text
+        x="390.95703"
+        y="262.53906"
+        style="line-height:1.25"
+        xml:space="preserve"
+        ><tspan x="390.95703" y="262.53906">v(1)</tspan></text
+      >
+      <text
+        x="30.957031"
+        y="262.53906"
+        style="line-height:1.25"
+        xml:space="preserve"
+        ><tspan x="30.957031" y="262.53906">v(3)</tspan></text
+      >
+    </g>
+    <g fill="none" stroke="var(--text-color)" stroke-width="1px">
+      <path d="m250 100 180 100" marker-end="url(#TriangleOutL)" />
+      <path d="m430 300-180 100" marker-end="url(#TriangleOutL)" />
+      <path d="m270 400 180-100" marker-end="url(#TriangleOutL)" />
+      <path d="m70 200 170-110" marker-end="url(#TriangleOutL)" />
+      <path d="m220 90-170 110" marker-end="url(#TriangleOutL)" />
+      <path d="m450 200-180-100" marker-end="url(#TriangleOutL)" />
+      <path d="m310 30h30v40h-30" marker-end="url(#TriangleOutL)" />
+      <path d="m130 230h30v40h-30" marker-end="url(#TriangleOutL)" />
+    </g>
+  </svg>
+</div>
+<p>
+  The subproblems in Bellman equations can be infinitely more comples than those
+  in the Fibonacci sequence. The reason for that is the complexity of
+  interconnections between the subproblems. In the drawing for example the value
+  of state 0 depends on the value of state 1 and the value of state 1 depends on
+  the value of state 0. At the same time value of state 0 depends on itself.
+</p>
 <p>
   The dynamic programming algorithms that we are going to cover in this section
   are not those that are commonly used to solve reinforcement learning tasks. In
@@ -345,3 +419,10 @@ F(5) & = F(4) + F(3) \\
   to reinforcement learning.
 </p>
 <div class="separator" />
+
+<style>
+  .container {
+    margin: 0 auto;
+    width: 400px;
+  }
+</style>
