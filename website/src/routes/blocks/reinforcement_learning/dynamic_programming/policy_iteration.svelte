@@ -2,11 +2,24 @@
   import Question from "$lib/Question.svelte";
   import Latex from "$lib/Latex.svelte";
   import Code from "$lib/Code.svelte";
-  import Algorithm from "$lib/algorithm/Algorithm.svelte";
-  import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
-  import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
-  import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
-  import AlgorithmIf from "$lib/algorithm/AlgorithmIf.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+
+  import Grid from "$lib/reinforcement_learning/grid_world/Grid.svelte";
+  import { PolicyIteration } from "$lib/reinforcement_learning/grid_world/PolicyIteration";
+  import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
+  import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
+
+  let env = new GridEnvironment(gridMap);
+  let policyIteration = new PolicyIteration(
+    env.observationSpace,
+    env.actionSpace,
+    env.getModel(),
+    0.001,
+    0.99
+  );
+
+  const cellsStore = env.cellsStore;
+  $: cells = $cellsStore;
 </script>
 
 <svelte:head>
@@ -23,20 +36,21 @@
 >
 <div class="separator" />
 <p>
-  In reinforcement learning iterative algorithms usually consist of two basic
-  steps: policy evaluation and policy improvement. Policy evaluation has the
-  function to measure the performance of a given policy <Latex
-    >{String.raw`\pi`}</Latex
-  >
-  by estimating the corresponding value function <Latex>{String.raw`\pi`}</Latex
+  Dynamic programming algorithms that are designed to solve a Markov decision
+  process are iterative algorithms, which consist of two basic steps: policy
+  evaluation and policy improvement. The purpose of policy evaluation is to
+  measure the performance of a given policy <Latex>{String.raw`\pi`}</Latex>
+  by estimating the corresponding value function <Latex
+    >{String.raw`v_{\pi}(s)`}</Latex
   >
   . Policy improvement on the other hand generates a new policy, that is better (or
-  at least equal) than the previous policy. Repeating both steps generates optimal
-  policy function <Latex>{String.raw`\pi_*`}</Latex> and value function <Latex
-    >{String.raw`v_*`}</Latex
-  >.
+  at least not worse) than the previous policy. The output of policy evaluation is
+  used as an input into policy improvement and vice versa. The iterative process
+  of evaluation and improvement produces value and policy functions that converge
+  towards the optimal policy function <Latex>{String.raw`\pi_*`}</Latex> and optimal
+  value function <Latex>{String.raw`v_*`}</Latex> over time. The policy iteration
+  algorithm that is covered in this section is one such iterative algorithm.
 </p>
-<p>Policy Iteration is one such iterative algorithm.</p>
 <div class="separator" />
 
 <h2>Policy Evaluation</h2>
@@ -49,91 +63,99 @@
 <Latex
   >{String.raw`
     \begin{aligned}
-    v_{\pi}(s) & \doteq \mathbb{E}_{\pi}[G_t \mid S_t = s] \\
-    & = \mathbb{E}_{\pi}[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
-    & = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s] \\
+   v_{\pi}(s)  & = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(s') \mid S_t=s] \\
+& = \sum_a \pi(a \mid s)  R(a, s) + \gamma \sum_a \pi(a \mid s) \sum_{s'} P(s' \mid s, a)v_{\pi}(s')
+\end{aligned}
+`}</Latex
+>
+<p>
+  Often it is more convenient to use the joint probability of simultaneously
+  getting the reward <Latex>r</Latex> and the next state <Latex>s'</Latex> given
+  current state <Latex>s</Latex> and action <Latex>a</Latex>. This joint
+  probability function is depicted as <Latex>p(s', r \mid s, a)</Latex>. This
+  notation is more compact and is likely to make the transition from theory to
+  practice easier.
+</p>
+<Latex
+  >{String.raw`
+    \begin{aligned}
+    v_{\pi}(s) & = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s] \\
+    & = \sum_a \pi(a \mid s)  R(a, s) + \gamma \sum_a \pi(a \mid s) \sum_{s'} P(s' \mid s, a)v_{\pi}(s') \\
     & = \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]
     \end{aligned}
   `}</Latex
 >
 <p>
-  When we have a deterministic policy <Latex>{String.raw`\mu`}</Latex> the expression
-  becomes easier to work with.
+  If we look closely at the Bellman equation, we can observe that the equation
+  basically consists of two sides. The left side and the right side.
 </p>
 <Latex
-  >{String.raw`v_{\mu}(s) \doteq \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma v_{\pi}(s')]`}</Latex
+  >{String.raw`\underbrace{v_{\pi}(s)}_{\text{left side}} = \underbrace{\sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]}_{\text{right side}}`}</Latex
 >
 <p>
-  When we start the policy evaluation algorithm, the first step is to generate a
-  value function that can be used to improve. The initial values are set either
-  randomly or to zero. When we start to use the above equation we will not
-  surprisingly discover that the random/zero value (the left side of the above
-  equation) and the expected value of the reward plus value for the next state
-  (the right side of the above equation) will diverge quite a lot. The goal of
-  the policy evaluation algorithm is to make the left side of the equation and
-  the right side of the equation be exactly equal. That is done in an iterative
-  process where at each step the difference between both sides is reduced. In
-  practice we do not expect the difference between the two to go all the way
-  down to zero. Instead we define a threshold value. For example a threshold
-  value of 0.0001 indicates that we can interrupt the iterative process as soon
-  as for all of the states the difference between the left and the right side of
-  the equation is below the value.
+  The left side is the function that returns the value of a state <Latex
+    >s</Latex
+  >, it is the mapping from states to values. The left side is essentially the
+  function we are trying to find. The right side is the definition of the value
+  function, that is based on the expectation of the returns and is expressed
+  using the Bellman equation.
 </p>
-<Latex
-  >{String.raw`v_{k+1}(s) \doteq \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma v_{k}(s')]`}</Latex
->
 <p>
-  At each iteration step <Latex>k+1</Latex> the left side of the equation is updated
-  by using the state values from the previous iteration and the model of the Markov
-  decision process. At this point it should become apparent why the Bellman equation
+  When we initialize the policy evaluation algorithm, the first step is to
+  generate a value function that is used as a benchmark that needs to be
+  constantly improved in the interative process. The initial values are set
+  either randomly or to zero. When we start to use the above equation we will
+  not surprisingly discover that the random/zero value (the left side of the
+  above equation) and the expected value of the reward plus value for the next
+  state (the right side of the above equation) will diverge quite a lot. The
+  goal of the policy evaluation algorithm is to make the left side of the
+  equation and the right side of the equation to be exactly equal. That is done
+  in an iterative process where at each step the difference between both sides
+  is reduced. In practice we do not expect the difference between the two to go
+  all the way down to zero. Instead we define a threshold value. For example a
+  threshold value of 0.0001 indicates that we can interrupt the iterative
+  process as soon as for all the states <Latex
+    >{String.raw`s \in \mathcal{S}`}</Latex
+  > the difference between the left and the right side of the equation is below the
+  threshold value.
+</p>
+<p>
+  The policy estimation algorithm is relatively straightforward. All we need to
+  do is to turn the definition of the of the Bellman equation into the update
+  rule.
+</p>
+<Highlight>
+  <Latex
+    >{String.raw`V_{k+1}(s) = \sum_a \pi(a \mid s) \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{k}(s')]`}</Latex
+  >
+</Highlight>
+<p>
+  Above we use <Latex>V(s)</Latex> instead of
+  <Latex>v(s)</Latex>. This notational difference is to show that <Latex
+    >v(s)</Latex
+  > is the true value function of a policy <Latex>\pi</Latex>, while <Latex
+    >V(s)</Latex
+  > is it's estimate. At each iteration step <Latex>k+1</Latex> the left side of
+  the equation (the esimate of the value function) is replaced by the right hand
+  of the equation. At this point it should become apparent why the Bellman equation
   is useful. Only the reward from the next time step is required to improve the approximation,
   because all subsequent rewards are already condensed into the value function from
   the next time step. That allows the algorithm to use the model to look only one
   step into the future for the reward and use the approximated value function for
-  the next time step. By repeating the update step over and over again the rewards
+  the next time step. By repeating the update rule over and over again the rewards
   are getting embedded into the value function and the approximation gets better
   and better.
 </p>
-<Algorithm algoName={"Iterative Policy Evaluation"}>
-  <AlgorithmState>
-    Input: policy <Latex>{String.raw`\mu`}</Latex>, model <Latex
-      >{String.raw`p`}</Latex
-    >
-    , state set <Latex>{String.raw`\mathcal{S}`}</Latex>, stop criterion <Latex
-      >{String.raw`\theta`}</Latex
-    >
-    , discount factor <Latex>{String.raw`\gamma`}</Latex>
-  </AlgorithmState>
-  <AlgorithmState>
-    Initialize: <Latex>V(s)</Latex> and <Latex>{String.raw`V_{old}(s)`}</Latex> for
-    all <Latex>{String.raw`s \in \mathcal{S}`}</Latex> with zeros
-  </AlgorithmState>
-  <AlgorithmRepeat>
-    <Latex slot="condition">{String.raw`\Delta < \theta`}</Latex>
-    <AlgorithmState>
-      <Latex>{String.raw`\Delta \leftarrow 0`}</Latex>
-    </AlgorithmState>
-    <Latex
-      >{String.raw`V_{old}(s) = V(s)\hspace{0.1cm} for\hspace{0.1cm} all \hspace{0.1cm} s \in \mathcal{S}`}</Latex
-    >
-    <AlgorithmForAll>
-      <Latex slot="condition">{String.raw`s \in \mathcal{S}`}</Latex>
-      <AlgorithmState>
-        <Latex
-          >{String.raw`V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma V_{old}(s')]`}</Latex
-        >
-      </AlgorithmState>
-      <AlgorithmState>
-        <Latex
-          >{String.raw`\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)`}</Latex
-        >
-      </AlgorithmState>
-    </AlgorithmForAll>
-  </AlgorithmRepeat>
-  <AlgorithmState
-    >Output: value function <Latex>{String.raw`V(s)`}</Latex></AlgorithmState
-  >
-</Algorithm>
+<p class="info">
+  The process of using past estimates to improve current estimates is called
+  <strong>bootstrapping</strong>. Bootstrapping is used heavily through
+  reinforcement learning and can generally be used without the full knowledge of
+  the model of the environment.
+</p>
+<p>
+  Below you can find the Python implementation of the policy evaluation
+  algorithm.
+</p>
 <Code
   code={`def policy_evaluation(obs_space, model, policy, theta, gamma):
     # initialize value function with zeros
@@ -159,48 +181,53 @@
     
     return value_function`}
 />
+<div class="flex-center">
+  <Grid {cells} />
+</div>
 <div class="separator" />
 
 <h2>Policy Improvement</h2>
 <p>
-  Let us assume that the agent follows a policy <Latex
+  The goal of policy improvement is to create a new and improved policy using
+  the value function <Latex>{String.raw`V(s)`}</Latex> from the previous policy evaluation
+  step.
+</p>
+<p>
+  Let us assume for simplicity that the agent follows a deterministic policy <Latex
     >{String.raw`\mu(s)`}</Latex
-  >. But in the current state <Latex>s</Latex> the agent contemplates to pick the
-  action <Latex>a</Latex> that goes against the policy,
+  >, but in the current state <Latex>s</Latex> the agent contemplates to pick the
+  action <Latex>a</Latex> that contradicts the policy, therefore
   <Latex>{String.raw`a \neq \mu(s)`}</Latex>. After that action the agent will
   stick to the old policy <Latex>{String.raw`\mu(s)`}</Latex> and follow it until
-  the terminal state <Latex>T</Latex>. The value of using the action <Latex
-    >a</Latex
-  > at state <Latex>s</Latex> and then following the policy <Latex
-    >{String.raw`\mu(s)`}</Latex
-  > is essentially the definition of the action-value function, which plays a key
-  role in the policy improvement step.
+  the terminal state <Latex>T</Latex>. We can measure the value of using the
+  action <Latex>a</Latex> at state <Latex>s</Latex> and then following the policy
+  <Latex>{String.raw`\mu(s)`}</Latex> using the action-value function.
 </p>
 <Latex
   >{String.raw`q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]`}</Latex
 >
 <p>
-  What if the agent compares <Latex>{String.raw`v_{\mu}(s)`}</Latex> and <Latex
-    >{String.raw`q_{\mu}(s, a)`}</Latex
-  >
-  and finds out that taking some action <Latex>a</Latex> and then following
+  What if the agent compares the estimates <Latex
+    >{String.raw`V_{\mu}(s)`}</Latex
+  > and <Latex>{String.raw`Q_{\mu}(s, a)`}</Latex>
+  and determines that taking some action <Latex>a</Latex> and then following
   <Latex>\mu</Latex> is of higher value than strictly following <Latex
     >{String.raw`\mu`}</Latex
-  >
-  ? Does that imply that the agent should change the policy and always follow the
-  state <Latex>a</Latex> when facing the state <Latex>s</Latex>? It turns out
-  that according to the policy improvement theorem this is exactly the case.
+  >, showing that
+  <Latex>{String.raw`Q_{\mu}(s, a) > V_{\mu}(s)`}</Latex>? Does that imply that
+  the agent should change the policy and always take the action <Latex>a</Latex>
+  when facing the state <Latex>s</Latex>? Does the short term gain from the new
+  action <Latex>a</Latex> justifies changing the policy? It turns out that this is
+  exactly the case.
 </p>
 <p>
-  In the policy improvement step for at least one of the states we have to find
-  an action that would create a higher value. If we find such an action we
-  create a new policy
-  <Latex>{String.raw`\mu'`}</Latex> that always takes the new action
-  <Latex>a</Latex> at state <Latex>s</Latex>. In practice for each of the states
-  the agent chooses a so called greedy action, which means that the agent
-  chooses the action that maximizes the short term gain.
+  In the policy improvement step the we create a new policy <Latex
+    >{String.raw`\mu'`}</Latex
+  > where the agent chooses the greedy action at each state <Latex
+    >{String.raw`s \in \mathcal{S}`}</Latex
+  >.
 </p>
-<Latex>{String.raw`\mu'(s) = \arg\max_a q_{\mu}(s, a)`}</Latex>
+<Latex>{String.raw`\mu'(s) = \arg\max_a Q_{\mu}(s, a)`}</Latex>
 <Code
   code={`def policy_improvement(obs_space, action_space, model, value_function, policy, gamma):
     new_policy = policy.copy()
@@ -227,81 +254,6 @@
   policy and the old policy are exactly the same we have reached the optimal
   policy.
 </p>
-<Algorithm algoName={"Policy Iteration"}>
-  <AlgorithmState>
-    Input: policy <Latex>{String.raw`\mu`}</Latex>, model <Latex>p</Latex>,
-    state set <Latex>{String.raw`\mathcal{S}`}</Latex>, action set <Latex
-      >{String.raw`\mathcal{A}`}</Latex
-    >
-    stop criterion <Latex>{String.raw`\theta`}</Latex>, discount factor <Latex
-      >{String.raw`\gamma`}</Latex
-    >
-  </AlgorithmState>
-  <AlgorithmState>
-    Initialize: <Latex>V(s)</Latex> and <Latex>{String.raw`V_{old}(s)`}</Latex>
-    for all <Latex>{String.raw`s \in \mathcal{S}`}</Latex> with zeros, <Latex
-      >{String.raw`\mu(s) \in \mathcal{A}(s)`}</Latex
-    > randomly
-  </AlgorithmState>
-  <AlgorithmRepeat>
-    <span slot="condition">policy stable</span>
-    <br />
-    <!--Policy Evaluation -->
-    <AlgorithmState><span>1: Policy Evaluation</span></AlgorithmState>
-    <AlgorithmRepeat>
-      <Latex slot="condition">{String.raw`\Delta < \theta `}</Latex>
-      <AlgorithmState>
-        <Latex>{String.raw`\Delta \leftarrow 0`}</Latex>
-      </AlgorithmState>
-      <Latex
-        >{String.raw`V_{old}(s) = V(s)\hspace{0.1cm} for\hspace{0.1cm} all \hspace{0.1cm} s \in \mathcal{S}`}</Latex
-      >
-      <AlgorithmForAll>
-        <Latex slot="condition">{String.raw`s \in \mathcal{S}`}</Latex>
-        <AlgorithmState>
-          <Latex
-            >{String.raw`V(s) \leftarrow \sum_{s', r}p(s', r \mid s, \mu(s))[r + \gamma V_{old}(s')]`}</Latex
-          >
-        </AlgorithmState>
-        <AlgorithmState>
-          <Latex
-            >{String.raw`\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)`}</Latex
-          >
-        </AlgorithmState>
-      </AlgorithmForAll>
-    </AlgorithmRepeat>
-    <br />
-    <!--Policy Improvement -->
-    <AlgorithmState>2: Policy Improvement</AlgorithmState>
-    <AlgorithmState
-      >policy-stable <Latex>{String.raw`\leftarrow`}</Latex> true</AlgorithmState
-    >
-    <AlgorithmForAll>
-      <Latex slot="condition">{String.raw`s \in \mathcal{S}`}</Latex>
-      <AlgorithmState
-        ><span>old-action</span>
-        <Latex>{String.raw`\leftarrow \mu(s)`}</Latex>
-      </AlgorithmState>
-      <Latex
-        >{String.raw`\mu(s) \leftarrow \arg\max_a \sum_{s', r}p(s', r \mid s, a)[r + \gamma V(s')]`}</Latex
-      >
-      <AlgorithmIf>
-        <span slot="condition"
-          >old-action <Latex>{String.raw`\neq \mu(s)`}</Latex></span
-        >
-        <AlgorithmState
-          >policy-stable <Latex>{String.raw`\leftarrow`}</Latex> false</AlgorithmState
-        >
-      </AlgorithmIf>
-    </AlgorithmForAll>
-    <br />
-  </AlgorithmRepeat>
-  <AlgorithmState
-    >Output: policy function <Latex>{String.raw`\mu(s)`}</Latex>, value function <Latex
-      >V(s)</Latex
-    ></AlgorithmState
-  >
-</Algorithm>
 
 <Code
   code={`def policy_iteration(obs_space, action_space, model, policy, theta, gamma):

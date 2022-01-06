@@ -13,6 +13,7 @@ class GridEnvironment extends Environment {
 
         super(actionSpace, observationSpace);
         this.random = random;
+        this.randomness = 0.5;
         this.map = JSON.parse(JSON.stringify(map));
         this.initObservation = {... map.player};
 
@@ -37,7 +38,7 @@ class GridEnvironment extends Environment {
     step(action){
         //if environment is stochastic
         if(this.random){
-          if(Math.random() < 0.5){
+          if(Math.random() < this.randomness){
               let index = Math.floor(Math.random() * this.actionSpace.length);
               action = this.actionSpace[index]    
           }
@@ -51,39 +52,71 @@ class GridEnvironment extends Environment {
       return action
     }
 
-    modelBoundaties(action){
+    getModel(){
+      let P = {}; 
+      for (let row = 0; row < this.map.rows; row++) {
+        P[row] = {};
+        for (let column = 0; column < this.map.columns; column++){
+          P[row][column] = {};  
+          for (let actionIndex = 0; actionIndex < this.actionSpace.length; actionIndex++) {
+            P[row][column][actionIndex] = [];
+            for (let direction = 0; direction < this.actionSpace.length; direction++) { 
+              let probability;
+              if (direction === actionIndex) {
+                probability = this.randomness;
+              } else {
+                probability = (1 - this.randomness) / (this.actionSpace.length - 1);
+              }
+              let cell;
+              let observation = {r: row, c: column};
+              let reward = 0;
+              cell = this.findCell(observation);
+              if (cell.type != "goal"){
+                observation = this.modelBoundaries(direction, {r: row, c: column});
+                cell = this.findCell(observation);
+                reward = cell.reward;
+              }
+              let done = cell.type === "goal" ? true : false;
+              P[row][column][actionIndex].push({probability, observation, reward, done}); 
+            }
+          }
+        }
+      }
+      return P;
+    }
+
+    modelBoundaries(action, observation){
         let player;
         //move but take care of grid boundaries
         switch(action) {
             case this.map.actions.north:
-                player = {r: Math.max(0, this.map.player.r-1), c: this.map.player.c};
+                player = {r: Math.max(0, observation.r-1), c: observation.c};
                 break;
             case this.map.actions.east:
-                player = {r: this.map.player.r, c: Math.min(this.map.columns-1, this.map.player.c+1)};
+                player = {r: observation.r, c: Math.min(this.map.columns-1, observation.c+1)};
                 break;
             case this.map.actions.south:
-                player = {r: Math.min(this.map.rows-1, this.map.player.r+1), c: this.map.player.c};
+                player = {r: Math.min(this.map.rows-1, observation.r+1), c: observation.c};
                 break;
             case this.map.actions.west:
-                player = {r: this.map.player.r, c: Math.max(0, this.map.player.c-1)};
+                player = {r: observation.r, c: Math.max(0, observation.c-1)};
                 break;
+        }
+        //move back if you landed on the block
+        let cell;
+        cell = this.findCell(player);
+        if (cell.type === "block") {
+            player = {r: observation.r, c: observation.c};
         }
         return player;
     }
 
     model(action) {
-        let player = this.modelBoundaties(action);
-
-        //move back if you landed on the block
-        let cell;
-        cell = this.findCell(player);
-        if (cell.type === "block") {
-            player = {r: this.map.player.r, c: this.map.player.c};
-        }
+        let player = this.modelBoundaries(action, this.map.player);
         this.map.player = player;
 
         //calculate state, reward, done and return the payload
-        cell = this.findCell(player);
+        let cell = this.findCell(player);
         let reward =  cell.reward;
         let done = cell.type === "goal" ? true : false;
         let payload = {observation: {...player}, reward, done};
