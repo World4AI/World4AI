@@ -2,10 +2,7 @@
   import Question from "$lib/Question.svelte";
   import Code from "$lib/Code.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Algorithm from "$lib/algorithm/Algorithm.svelte";
-  import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
-  import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
-  import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
+  import Highlight from "$lib/Highlight.svelte";
 </script>
 
 <svelte:head>
@@ -18,115 +15,81 @@
 
 <h1>Value Iteration</h1>
 <Question
-  >How can we use value iteration to find optimal value and policy function?</Question
+  >How can we use value iteration to find optimal value and policy functions?</Question
 >
 <div class="separator" />
 
 <p>
-  When we consider policy iteration again, we remember that there are two
+  When we consider policy iteration again, we should remember that there are two
   distinct steps, policy evaluation and policy improvement. The policy
   improvement step is a single step, where the new policy is derived by acting
   greedily. The policy evaluation on the other hand is a longer iterative
-  process.
+  process. It turns out that it is not necessary to wait for the policy
+  evaluation algorithm to finish converging to the true value function. In fact
+  the value iteration algorithm works with only one single policy evaluation
+  step.
 </p>
-
 <p>
-  It turns out that it is not necessary to wait for the policy evaluation
-  algorithm to finish. The value iteration algorithm works with only one step of
-  policy evaluation.
+  The main goal of value iteration is to find the optimal value function <Latex
+    >v_*(s)</Latex
+  >, that can be used to derive the optimal policy. The optimal value function
+  can be expressed as a Bellman equation that looks as follows.
 </p>
-
+<Latex>
+  {String.raw`
+\begin{aligned}
+  v_*(s) & = \max_a q_*(s, a) \\
+  & = \max_a \mathbb{E}_{\pi}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\ 
+  & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_*(s')]
+\end{aligned}
+`}
+</Latex>
 <p>
-  Value Iteration is essentially the Bellman optimality equation, transformed
-  from equation to an update step.
+  The value iteration is essentially the Bellman optimality equation, that has
+  been transformed to an iterative algorithm.
+</p>
+<Highlight>
+  <Latex
+    >{String.raw`
+      v_{k+1}(s) \doteq \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
+  `}</Latex
+  >
+</Highlight>
+<p>
+  Although the update step looks like a single step at first glance, it actually
+  combines truncated (one step) policy evaluation and policy improvement in a
+  single step.
 </p>
 <Latex
   >{String.raw`
-    \begin{aligned}
-    v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
-    & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
-    \end{aligned}
-  `}</Latex
->
-
-<p>
-  Although the update step looks like a single step it actually combines
-  truncated (one step) policy evaluation and policy improvement in a single
-  step.
-</p>
-<Latex
-  >{String.raw`q_{k+1}(s, a) = \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]`}</Latex
->
-<Latex>{String.raw`v_{k+1}(s) = \max_a q_{k+1}(s, a)`}</Latex>
+  \begin{aligned}
+    \text{(1: Policy Evaluation) } & q_{k+1}(s, a) = \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')] \\
+    \text{(2: Policy Improvement) }& v_{k+1}(s) = \max_a q_{k+1}(s, a)
+  \end{aligned}
+`}
+</Latex>
+<Latex>{String.raw``}</Latex>
 
 <p>
   In the first step the action-value function is calculated based on the old
-  state-value function and the model of the MDP. In the second step a max over
-  the action-value function is taken in order to generate the new state-value
-  function. That implicitly generates a new policy as a value function is always
-  calculated for a particular policy.
+  state-value function and the model of the Markov decision process. In the
+  second step a max over the action-value function is taken in order to generate
+  the new state-value function. That implicitly generates a new policy as a
+  value function is always calculated for a particular policy.
 </p>
 <p>
-  The combination of both is the value iteration algorithm. The iterative
+  The combination of both steps is the value iteration algorithm. The iterative
   process continues until the difference between the old and the new state-value
   function is smaller than some parameter theta <Latex
     >{String.raw`\theta`}</Latex
-  >. As the final step the optimal policy can be deduced using the argmax over
-  the optimal action-value function.
+  >. As the final step the optimal policy can be deduced by always selecting the
+  greedy action.
 </p>
-<Algorithm algoName={"Value Iteration"}>
-  <AlgorithmState>
-    Input: model <Latex>p</Latex>, state set <Latex
-      >{String.raw`\mathcal{S}`}</Latex
-    >
-    , action set <Latex>{String.raw`\mathcal{A}`}</Latex> stop criterion <Latex
-      >{String.raw`\theta`}</Latex
-    >
-    , discount factor <Latex>{String.raw`\gamma`}</Latex>
-  </AlgorithmState>
-
-  <AlgorithmState>
-    Initialize: <Latex>V(s)</Latex> and <Latex>{String.raw`V_{old}(s)`}</Latex>,
-    for all <Latex>{String.raw`s \in \mathcal{S}`}</Latex> with zeros
-  </AlgorithmState>
-  <AlgorithmRepeat>
-    <Latex slot="condition">{String.raw`\Delta < \theta`}</Latex>
-    <AlgorithmState>
-      <Latex>{String.raw`\Delta\leftarrow 0`}</Latex></AlgorithmState
-    >
-    <AlgorithmState
-      ><Latex>{String.raw`V_{old}(s) = V(s)`}</Latex>
-    </AlgorithmState>
-    <AlgorithmForAll>
-      <Latex slot="condition">{String.raw`s \in \mathcal{S}`}</Latex>
-      <AlgorithmForAll>
-        <Latex slot="condition">{String.raw`a \in \mathcal{A}`}</Latex>
-        <AlgorithmState
-          ><Latex
-            >{String.raw`Q(s, a) \leftarrow \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{old}(s')]`}</Latex
-          >
-        </AlgorithmState>
-      </AlgorithmForAll>
-      <AlgorithmState>
-        <Latex>{String.raw`V(s) \leftarrow \max_a Q(s, a)`}</Latex>
-      </AlgorithmState>
-      <AlgorithmState>
-        <Latex
-          >{String.raw`\Delta \leftarrow \max(\Delta,|V_{old}(s) - V(s)|)`}</Latex
-        >
-      </AlgorithmState>
-    </AlgorithmForAll>
-  </AlgorithmRepeat>
-  <AlgorithmState>
-    <Latex>{String.raw`\mu(s) = \arg\max_a Q(s, a)`}</Latex>
-  </AlgorithmState>
-  <AlgorithmState>
-    Output: value function
-    <Latex>V(s)</Latex>
-    and policy
-    <Latex>{String.raw`\mu(s)`}</Latex>
-  </AlgorithmState>
-</Algorithm>
+<p>
+  Below is the Python implementation of the value iteration algorithm. Compared
+  to policy iteration the implementation is more compact, because policy
+  evaluation and policy improvement can be implemented in a single function.
+</p>
 <Code
   code={`def value_iteration(obs_space, action_space, model, theta, gamma):
     # initialize value function with zeros
