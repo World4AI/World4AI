@@ -38,29 +38,13 @@
   $: corridorCells = $corridorCellsStore;
   $: corridorPlayer = $corridorPlayerStore;
 
-  let optimalPolicy = [
-    { r: 0, c: 0, a: 2 },
-    { r: 0, c: 1, a: 2 },
-    { r: 0, c: 2, a: 2 },
-    { r: 0, c: 3, a: 2 },
-    { r: 0, c: 4, a: 2 },
-    { r: 1, c: 0, a: 1 },
-    { r: 1, c: 1, a: 1 },
-    { r: 1, c: 2, a: 1 },
-    { r: 1, c: 3, a: 2 },
-    { r: 1, c: 4, a: 2 },
-    { r: 2, c: 3, a: 2 },
-    { r: 2, c: 4, a: 2 },
-    { r: 3, c: 0, a: 2 },
-    { r: 3, c: 1, a: 3 },
-    { r: 3, c: 2, a: 3 },
-    { r: 3, c: 3, a: 3 },
-    { r: 3, c: 4, a: 2 },
-    { r: 4, c: 1, a: 3 },
-    { r: 4, c: 2, a: 3 },
-    { r: 4, c: 3, a: 3 },
-    { r: 4, c: 4, a: 3 },
-  ];
+  let optimalPolicy = {
+    0: { 0: 2, 1: 2, 2: 2, 3: 2, 4: 2 },
+    1: { 0: 1, 1: 1, 2: 1, 3: 2, 4: 2 },
+    2: { 0: 0, 1: 0, 2: 0, 3: 2, 4: 2 },
+    3: { 0: 2, 1: 3, 2: 3, 3: 3, 4: 2 },
+    4: { 0: 0, 1: 3, 2: 3, 3: 3, 4: 3 },
+  };
 
   const modelHeader = ["State", "Action 0", "Action 1"];
   const modelData = [

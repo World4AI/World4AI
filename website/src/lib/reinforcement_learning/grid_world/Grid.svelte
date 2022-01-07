@@ -26,13 +26,16 @@
 
   //additional input
   export let policy = null;
-  export let value = null;
+  export let valueFunction = null;
   let actionToDegreeMapping = {
     0: 270,
     1: 0,
     2: 90,
     3: 180,
   };
+
+  const round = (n, decimals = 0) =>
+    Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);
 </script>
 
 <svg
@@ -109,6 +112,47 @@
             }`}
           />
         {/if}
+
+        {#if valueFunction && cell.type != "goal" && cell.type != "block"}
+          <text
+            fill="var(--text-color)"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            x={cell.c * colSize + colSize / 2}
+            y={cell.r * rowSize + rowSize / 2}
+            >{round(valueFunction[cell.r][cell.c], 4)}</text
+          >
+        {/if}
+        {#if policy && cell.type != "goal" && cell.type != "block"}
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="0"
+              refY="3.5"
+              orient="auto"
+              fill="var(--main-color-1)"
+            >
+              <polygon points="0 0, 10 3.5, 0 7" />
+            </marker>
+          </defs>
+          <g>
+            <line
+              x1={cell.c * colSize + colSize / 2}
+              y1={cell.r * rowSize + rowSize / 2}
+              x2={cell.c * colSize + colSize - 38}
+              y2={cell.r * rowSize + rowSize / 2}
+              transform="rotate({actionToDegreeMapping[
+                policy[cell.r][cell.c]
+              ]}, {cell.c * colSize + colSize / 2}, {cell.r * rowSize +
+                rowSize / 2})"
+              stroke="var(--main-color-1)"
+              stroke-width="1"
+              marker-end="url(#arrowhead)"
+            />
+          </g>
+        {/if}
       {/if}
     {/each}
 
@@ -123,38 +167,6 @@
         stroke="black"
         stroke-width="3"
       />
-    {/if}
-
-    {#if policy}
-      <defs>
-        <marker
-          id="arrowhead"
-          markerWidth="10"
-          markerHeight="7"
-          refX="0"
-          refY="3.5"
-          orient="auto"
-          fill="var(--main-color-1)"
-        >
-          <polygon points="0 0, 10 3.5, 0 7" />
-        </marker>
-      </defs>
-      <g>
-        {#each policy as arrow}
-          <line
-            x1={arrow.c * colSize + colSize / 2}
-            y1={arrow.r * rowSize + rowSize / 2}
-            x2={arrow.c * colSize + colSize - 38}
-            y2={arrow.r * rowSize + rowSize / 2}
-            transform="rotate({actionToDegreeMapping[arrow.a]}, {arrow.c *
-              colSize +
-              colSize / 2}, {arrow.r * rowSize + rowSize / 2})"
-            stroke="var(--main-color-1)"
-            stroke-width="1"
-            marker-end="url(#arrowhead)"
-          />
-        {/each}
-      </g>
     {/if}
   </g>
 </svg>

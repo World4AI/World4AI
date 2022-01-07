@@ -75,6 +75,11 @@
     align-items: center;
   }
 
+  .container :global(.flex-vertical) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .container :global(.flex-space) {
     display: flex;
     justify-content: space-around;

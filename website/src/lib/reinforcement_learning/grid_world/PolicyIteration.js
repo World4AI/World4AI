@@ -1,3 +1,5 @@
+import { writable } from 'svelte/store';
+
 class PolicyIteration{
   constructor(observationSpace, actionSpace, model, theta, gamma) {
     this.observationSpace = observationSpace;
@@ -25,8 +27,8 @@ class PolicyIteration{
       this.valueFunction[obs.r][obs.c] = 0;
     });
 
-    this.policyEvaluation();
-    console.log(this.valueFunction);
+    this.policyStore = writable(this.policy);
+    this.valueStore = writable(this.valueFunction);
   }
 
   policyEvaluation() {
@@ -37,6 +39,7 @@ class PolicyIteration{
 
   policyEvaluationStep() {
     let oldValueFunction = JSON.parse(JSON.stringify(this.valueFunction));
+    let newValueFunction = JSON.parse(JSON.stringify(this.valueFunction));
     this.maxDelta = 0;
     
     this.observationSpace.forEach((obs) => {
@@ -54,12 +57,14 @@ class PolicyIteration{
         }
         v += prob*(reward + this.gamma * oldValueFunction[nextObs.r][nextObs.c] * done);
       });
-      this.valueFunction[obs.r][obs.c] = v;
+      newValueFunction[obs.r][obs.c] = v;
       let delta = Math.abs(v - oldValueFunction[obs.r][obs.c]); 
       if(delta > this.maxDelta){
         this.maxDelta= delta;
       }
     });
+    this.valueFunction = newValueFunction;
+    this.valueStore.set(this.valueFunction);
   }
 
   randomChoice(arr) {
@@ -94,6 +99,18 @@ class PolicyIteration{
       newPolicy[obs.r][obs.c] = argmax;
     });
     return newPolicy;
+  }
+  
+  policyIteration() {
+    while(true) {
+      this.policyEvaluation();
+      let newPolicy = this.policyImprovement();
+      if (JSON.stringify(newPolicy) ==JSON.stringify(this.policy)) {
+        break;
+      }
+      this.policy = newPolicy;
+      this.policyStore.set(this.policy);
+    }
   }
 }
 

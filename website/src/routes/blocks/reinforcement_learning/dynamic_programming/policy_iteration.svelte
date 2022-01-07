@@ -3,23 +3,45 @@
   import Latex from "$lib/Latex.svelte";
   import Code from "$lib/Code.svelte";
   import Highlight from "$lib/Highlight.svelte";
-
   import Grid from "$lib/reinforcement_learning/grid_world/Grid.svelte";
+  import Button from "$lib/Button.svelte";
   import { PolicyIteration } from "$lib/reinforcement_learning/grid_world/PolicyIteration";
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
   import { gridMap } from "$lib/reinforcement_learning/grid_world/maps";
 
-  let env = new GridEnvironment(gridMap);
+  let env = new GridEnvironment(gridMap, true);
   let policyIteration = new PolicyIteration(
     env.observationSpace,
     env.actionSpace,
     env.getModel(),
-    0.001,
+    0.00001,
     0.99
   );
 
   const cellsStore = env.cellsStore;
   $: cells = $cellsStore;
+
+  const valueStore = policyIteration.valueStore;
+  const policyStore = policyIteration.policyStore;
+  $: valueFunction = $valueStore;
+  $: policy = $policyStore;
+
+  let showPolicy = true;
+  function switchDisplay() {
+    showPolicy = !showPolicy;
+  }
+
+  function policyEvaluationStep() {
+    policyIteration.policyEvaluationStep();
+  }
+
+  function policyEvaluation() {
+    policyIteration.policyEvaluation();
+  }
+
+  function executePolicyIteration() {
+    policyIteration.policyIteration();
+  }
 </script>
 
 <svelte:head>
@@ -181,9 +203,39 @@
     
     return value_function`}
 />
-<div class="flex-center">
-  <Grid {cells} />
+<p>
+  Once again below we deal with a simple grid world where the task is to arrive
+  at the bottom left corner starting from the top left corner. The environment
+  transitions with 50% probability into the desired direction (unless there is
+  some barrier) and with 50% chance the environment takes a randomm action. The
+  playground below allows you to calculate the value function for a randomly
+  initialized deterministic policy, using the policy evaluation algorithm. You
+  can switch between the display of the policy and the value function. Start by
+  taking one step of the algorithm at the time and observe how the value
+  function propagates and the difference between steps keeps decreasing. Finally
+  you can run the full policy evaluation algorithm, where the iterative process
+  keeps going until the difference betwenn the left and the right side of the
+  Bellman equation is less than 0.00001.
+</p>
+<div class="flex-space">
+  <Grid
+    {cells}
+    valueFunction={!showPolicy ? valueFunction : null}
+    policy={showPolicy ? policy : null}
+  />
+  <div class="flex-vertical">
+    <Button
+      value={showPolicy ? "Swith To Value Function" : "Swith To Policy"}
+      on:click={switchDisplay}
+    />
+    <Button
+      value={"1 Step Policy Evaluation"}
+      on:click={policyEvaluationStep}
+    />
+    <Button value={"Full Policy Evaluation"} on:click={policyEvaluation} />
+  </div>
 </div>
+
 <div class="separator" />
 
 <h2>Policy Improvement</h2>
@@ -227,7 +279,10 @@
     >{String.raw`s \in \mathcal{S}`}</Latex
   >.
 </p>
-<Latex>{String.raw`\mu'(s) = \arg\max_a Q_{\mu}(s, a)`}</Latex>
+<Highlight>
+  <Latex>{String.raw`\mu'(s) = \arg\max_a Q_{\mu}(s, a)`}</Latex>
+</Highlight>
+<p>Below you can find a Python example of the policy improvement step.</p>
 <Code
   code={`def policy_improvement(obs_space, action_space, model, value_function, policy, gamma):
     new_policy = policy.copy()
@@ -266,6 +321,25 @@
         
         policy = new_policy`}
 />
+<p>
+  Below is a playground from the same gridworld, that demonstrates the policy
+  iteration algorithm. The algorithm finds the optimal policy and corresponding
+  optimal value function, once you click on the <em>"policy iteration"</em> button.
+</p>
+<div class="flex-space">
+  <Grid
+    {cells}
+    valueFunction={!showPolicy ? valueFunction : null}
+    policy={showPolicy ? policy : null}
+  />
+  <div class="flex-vertical">
+    <Button
+      value={showPolicy ? "Swith To Value Function" : "Swith To Policy"}
+      on:click={switchDisplay}
+    />
+    <Button value={"Policy Iteration"} on:click={executePolicyIteration} />
+  </div>
+</div>
 <div class="separator" />
 <h2>Tutorial</h2>
 <p>

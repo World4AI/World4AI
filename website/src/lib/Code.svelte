@@ -6,13 +6,4 @@
   export let code;
 </script>
 
-<div>
-  <Highlight language={python} {code} />
-</div>
-
-<style>
-  div {
-    overflow: auto;
-    max-width: 90%;
-  }
-</style>
+<Highlight language={python} {code} langtag />

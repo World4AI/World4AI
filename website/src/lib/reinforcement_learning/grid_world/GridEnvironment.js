@@ -63,15 +63,15 @@ class GridEnvironment extends Environment {
             for (let direction = 0; direction < this.actionSpace.length; direction++) { 
               let probability;
               if (direction === actionIndex) {
-                probability = this.randomness;
+                probability = this.randomness + (1- this.randomness) / this.actionSpace.length;
               } else {
-                probability = (1 - this.randomness) / (this.actionSpace.length - 1);
+                probability = (1 - this.randomness) / this.actionSpace.length;
               }
               let cell;
               let observation = {r: row, c: column};
               let reward = 0;
               cell = this.findCell(observation);
-              if (cell.type != "goal"){
+              if (cell.type != "goal" && cell.type != "block"){
                 observation = this.modelBoundaries(direction, {r: row, c: column});
                 cell = this.findCell(observation);
                 reward = cell.reward;
