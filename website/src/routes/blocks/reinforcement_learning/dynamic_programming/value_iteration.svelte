@@ -68,7 +68,6 @@
   \end{aligned}
 `}
 </Latex>
-<Latex>{String.raw``}</Latex>
 
 <p>
   In the first step the action-value function is calculated based on the old
