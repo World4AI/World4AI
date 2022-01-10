@@ -1,12 +1,74 @@
 <script>
   import Question from "$lib/Question.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Algorithm from "$lib/algorithm/Algorithm.svelte";
-  import AlgorithmState from "$lib/algorithm/AlgorithmState.svelte";
-  import AlgorithmForAll from "$lib/algorithm/AlgorithmForAll.svelte";
-  import AlgorithmRepeat from "$lib/algorithm/AlgorithmRepeat.svelte";
-  import AlgorithmIf from "$lib/algorithm/AlgorithmIf.svelte";
   import Code from "$lib/Code.svelte";
+  import RandomSampling from "./_monte_carlo/RandomSampling.svelte";
+  import Trajectory from "$lib/Trajectory.svelte";
+  import Table from "$lib/Table.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+
+  let header = ["S", "V(s)"];
+  let data = [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ];
+
+  let qHeader = ["", "A_0", "A_1"];
+  let qData = [
+    ["S_0", "0", "0"],
+    ["S_1", "0", "0"],
+    ["S_2", "0", "0"],
+    ["S_3", "0", "0"],
+  ];
+
+  let trajectory = [
+    {
+      type: "S",
+      subscript: 0,
+    },
+    {
+      type: "A",
+      subscript: 0,
+    },
+    {
+      type: "R",
+      subscript: 1,
+    },
+    {
+      type: "S",
+      subscript: 1,
+    },
+    {
+      type: "A",
+      subscript: 1,
+    },
+    {
+      type: "R",
+      subscript: 2,
+    },
+    {
+      type: "S",
+      subscript: 2,
+    },
+    {
+      type: "A",
+      subscript: 2,
+    },
+    {
+      type: "R",
+      subscript: 3,
+    },
+    {
+      type: "...",
+      subscript: ".",
+    },
+    {
+      type: "S",
+      subscript: "T",
+    },
+  ];
 </script>
 
 <svelte:head>
@@ -19,12 +81,11 @@
 
 <h1>Monte Carlo Methods</h1>
 <Question
-  >How can we use monte carlo methods to solve tabular reinforcement learning
-  problesm?</Question
+  >How can we use Monte Carlo methods to solve tabular reinforcement learning
+  problems?</Question
 >
 <div class="separator" />
 
-<h2>Motivation</h2>
 <p>
   If we look at any definition of Monte Carlo methods, there is a high chance
   that the definition contains random sampling.
@@ -33,31 +94,37 @@
   Monte Carlo methods are a broad class of computational algorithms that rely on
   repeated random sampling to obtain numerical results.
 </p>
+<RandomSampling />
+<p>
+  The chart above generates 100 random paths, that develop over a period of 100
+  timesteps. In the first timestep all paths start out with a value of 0. At
+  each timestep a random value between -0.5 and 0.5 is added to the value,
+  therefore the expected value of the process is 0. Yet when we look at the
+  chart there is quite a distribution of values at the end of the 100 period
+  run. The average of 100 paths on the other hand is going to be relatively
+  close to the expected value of 0. This is what the <strong
+    >"Law of Large Numbers"</strong
+  > is all about. If we take samples from a distribution and calculate the average,
+  that average is going to converge to the true expected value. The more samples
+  we have, the closer the average is going to be to the expected value.
+</p>
 <p>
   When we apply Monte Carlo methods to reinforcement learning we sample episode
   paths, also called trajectories. The agent interacts with the environment and
-  collects experience tuples that consist of states, actions and rewards.
+  collects experience tuples that consist of states, actions and rewards. Monte
+  Carlo methods require the full trajectory from the starting state <Latex
+    >S_0</Latex
+  > to the terminal state <Latex>S_T</Latex> before an estimate can be improved,
+  which means that Monte Carlo methods only work with episodic tasks.
 </p>
+<Trajectory {trajectory} />
 <p>
-  Monte Carlo methods are similar in spirit to bandit methods. The state-value
-  and action-value functions can be estimated by taking the sampled trajectories
-  and building averages. Unlike in bandits though, Monte Carlo methods are able
-  to deal with environments where several non terminal states exist.
+  The Monte Carlo algorithm uses general policy iteration. We alternate between
+  policy evaluation and policy improvement to find the optimal policy.
 </p>
-<p>
-  Estimations can only be made once the trajectory is complete when the episode
-  finishes, which means that Monte Carlo methods only work for episodic tasks.
-</p>
+
 <div class="separator" />
-
-<h2>Generalized Policy Iteration</h2>
-<p>
-  The Monte Carlo algorithm will follow general policy iteration. We alternate
-  between policy evaluation and policy improvement to find the optimal policy.
-</p>
-
-<h3>Policy Estimation</h3>
-<h4>Theory</h4>
+<h2>Policy Evaluation</h2>
 <p>
   Policy estimation deals with finding the true value function of a given policy
   <Latex>{String.raw`\pi`}</Latex>. Mathematically speaking we are looking for
@@ -66,24 +133,400 @@
 </p>
 <Latex>{String.raw`v_\pi(s) = \mathbb{E}[G_t \mid S_t = s]`}</Latex>
 <p>
-  A natural way to estimate the expected value of a random variable is to get
-  samples from a distribution and to use the average as an estimate. In
-  reinforcement learning the agent can estimate the expected value of returns
-  for a policy <Latex>{String.raw`\pi`}</Latex> by interacting with the environment,
+  Using Monte Carlo we can estimate the expected value of a random variable by
+  getting samples from a distribution and using the average of the drawn
+  variables as the estimate of the expected value. Due to the <strong
+    >"Law of Large Numbers"</strong
+  >
+  the average is going to approach the true expected value and the estimate is going
+  to get more and more precise as we increase the number of samples. In reinforcement
+  learning the trajectory and the corresponding return <Latex>G_t</Latex> are random
+  variables. Therefore the agent can estimate the expected value of returns for a
+  given policy <Latex>{String.raw`\pi`}</Latex> by interacting with the environment,
   generating trajectories over and over again and building averages over the returns
   of the trajectories.
 </p>
 <p>
-  Generally there are two methods to calculate the averages. Each time the agent
-  faces a state during an episode is called a visit. In the “First Visit” Monte
-  Carlo method only the return from the first visit to that state until the end
-  of the episode is calculated. If the state is visited several times during an
-  episode, the additional visits are not considered in the calculation. While in
-  the “Every Visit” method each visit is counted. The “First Visit” method is
-  more popular and generally more straightforward and is going to be covered in
-  this section, but the algorithms can be easily adjusted to account for the
-  “Every Visit” method.
+  When the agent interacts with the environment, one single path out of all
+  possible paths is generated by the Markov decision process. The more
+  trajectories we generate the more exact our estimates of the value functions
+  become. Those trajectories that are rare for a particular policy <Latex
+    >\pi</Latex
+  > will be drawn rarely. Trajectories with a higher likelihood will be drawn more
+  often. Therefore the average of the return <Latex>G_t</Latex> will converge more
+  and more to the true expected value.
 </p>
+<div class="svg-container">
+  <svg version="1.1" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#000">
+      <g id="path" fill="none" stroke-width="1px">
+        <path d="m250 15 125 70" />
+        <path d="m120 85-55 70" />
+        <path d="m375 85-60 70" />
+        <path d="m375 85 60 70" />
+        <path d="m65 155-35 65" />
+        <path d="m65 155 30 65" />
+        <path d="m190 155 30 65" />
+        <path d="m315 160-35 60" />
+        <path d="m320 155 25 65" />
+        <path d="m435 160-30 60" />
+        <path d="m440 160 30 60" />
+        <path d="m30 220-15 75" />
+        <path d="m35 220 15 75" />
+        <path d="m90 220-10 75" />
+        <path d="m95 220 15 75" />
+        <path d="m155 220-15 75" />
+        <g id="path-taken" stroke-width="2px" stroke="var(--text-color)">
+          <path d="m245 15-125 70" />
+          <path d="m120 85 70 70" />
+          <path d="m185 155-30 65" />
+          <path d="m160 220 15 75" />
+        </g>
+        <path d="m220 220-20 75" />
+        <path d="m220 220 15 75" />
+        <path d="m280 220-15 75" />
+        <path d="m285 220 10 75" />
+        <path d="m345 220-20 75" />
+        <path d="m345 220 15 75" />
+        <path d="m405 220-15 75" />
+        <path d="m410 220 10 75" />
+        <path d="m470 220-20 75" />
+        <path d="m469 220 15 75" />
+      </g>
+      <g fill="black" id="actions" stroke-linecap="round" stroke-width=".91257">
+        <ellipse
+          id="left-action"
+          cx="121.66"
+          cy="84.25"
+          rx="7.6669"
+          ry="7.6669"
+        />
+        <ellipse
+          id="right-action"
+          cx="376.44"
+          cy="85.708"
+          rx="7.6669"
+          ry="7.6669"
+        />
+        <ellipse cx="32.354" cy="218.87" rx="7.6669" ry="7.6669" />
+        <ellipse cx="94.653" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="156.95" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="219.25" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="281.55" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="343.85" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="406.15" cy="218.45" rx="7.6669" ry="7.6669" />
+        <ellipse cx="468.44" cy="218.45" rx="7.6669" ry="7.6669" />
+      </g>
+      <g
+        id="states"
+        fill="var(--text-color)"
+        stroke-linecap="round"
+        stroke-width=".91257"
+      >
+        <ellipse
+          id="top-state"
+          cx="246.41"
+          cy="15.744"
+          rx="11.381"
+          ry="11.381"
+        />
+        <ellipse
+          id="mid-state"
+          cx="316.51"
+          cy="156.82"
+          rx="11.381"
+          ry="11.381"
+        />
+        <ellipse
+          id="right-state"
+          cx="437.6"
+          cy="156.82"
+          rx="11.381"
+          ry="11.381"
+        />
+        <ellipse cx="17.421" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="48.406" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="79.391" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="110.38" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse
+          id="left-state"
+          cx="65.272"
+          cy="156.82"
+          rx="11.381"
+          ry="11.381"
+        />
+        <ellipse cx="187.77" cy="156.82" rx="11.381" ry="11.381" />
+        <ellipse cx="141.36" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="172.35" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="203.33" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="234.32" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="265.3" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="296.29" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="327.27" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="358.26" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="389.24" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="420.23" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="451.21" cy="292.75" rx="11.381" ry="11.381" />
+        <ellipse cx="482.2" cy="292.75" rx="11.381" ry="11.381" />
+      </g>
+    </g>
+  </svg>
+</div>
+<p>
+  There are two methods to calculate the average of the return <Latex>G_t</Latex
+  >. Each time the agent faces a state <Latex>s</Latex> during an episode is called
+  a visit. In the <em>first-visit</em> Monte Carlo method only the return from
+  the first visit to that state until the end of the episode is calculated. If
+  the state is visited several times during an episode, the additional visits
+  are not considered in the calculation. While in the <em>every-visit</em> method
+  each visit is counted. The first-visit is generally more straightforward and is
+  going to be covered in this section, but the algorithm can be easily adjusted to
+  account for the every-visit method.
+</p>
+
+<p>
+  Below we can see a stylized example of a trajectory and the application of the
+  first-visit Monte Carlo estimation. The agent encounters the state 0 two
+  times, but the value function is updated only once using the five rewards that
+  follow from state 0 onwards. Similarly the state 1 is encountered 2 times and
+  the value function is updated using the four rewards that were achieved after
+  the agent encountered the state. The state 2 is only encountered once and only
+  the single reward that follows is used to update the value function. State 3
+  is a terminal state, which means that no rewards can be achieved after state 3
+  and therefore the value is 0.
+</p>
+<div class="svg-container-2">
+  <svg version="1.1" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+    <circle
+      cx="30.183"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="21.2463"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="21.2463" y="60.233784" stroke-width=".70284">0</tspan></text
+    >
+    <circle
+      cx="117.56"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="108.62096"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="108.62096" y="60.233784" stroke-width=".70284">1</tspan></text
+    >
+    <circle
+      cx="204.93"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="195.99562"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="195.99562" y="60.233784" stroke-width=".70284">0</tspan></text
+    >
+    <circle
+      cx="292.31"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="283.3703"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="283.3703" y="60.233784" stroke-width=".70284">1</tspan></text
+    >
+    <circle
+      cx="379.68"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="370.74496"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="370.74496" y="60.233784" stroke-width=".70284">2</tspan></text
+    >
+    <circle
+      cx="477.06"
+      cy="50"
+      r="18.933"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.8934"
+    />
+    <text
+      x="468.11963"
+      y="60.233784"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="28.114px"
+      stroke-width=".70284"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="468.11963" y="60.233784" stroke-width=".70284">3</tspan></text
+    >
+    <g fill="none" stroke="var(--text-color)">
+      <g stroke-width="1px">
+        <path d="m50 50h40" />
+        <path d="m140 50h40" />
+        <path d="m230 50h40" />
+      </g>
+      <path d="m315 50h40" stroke-width="1.1547px" />
+      <path d="m405 50h40" stroke-width="1.1547px" />
+    </g>
+    <rect
+      x="55"
+      y="63.75"
+      width="30"
+      height="22.5"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.0607"
+    />
+    <text
+      x="61.784096"
+      y="82.837921"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="21.503px"
+      stroke-width=".53758"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="61.784096" y="82.837921" stroke-width=".53758">R</tspan></text
+    >
+    <rect
+      x="145"
+      y="63.75"
+      width="30"
+      height="22.5"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.0607"
+    />
+    <text
+      x="151.7841"
+      y="82.837914"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="21.503px"
+      stroke-width=".53758"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="151.7841" y="82.837914" stroke-width=".53758">R</tspan></text
+    >
+    <rect
+      x="235"
+      y="63.75"
+      width="30"
+      height="22.5"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.0607"
+    />
+    <text
+      x="241.78409"
+      y="82.837921"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="21.503px"
+      stroke-width=".53758"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="241.78409" y="82.837921" stroke-width=".53758">R</tspan></text
+    >
+    <rect
+      x="321"
+      y="63.75"
+      width="30"
+      height="22.5"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.0607"
+    />
+    <text
+      x="327.78412"
+      y="82.837921"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="21.503px"
+      stroke-width=".53758"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="327.78412" y="82.837921" stroke-width=".53758">R</tspan></text
+    >
+    <rect
+      x="410"
+      y="63.75"
+      width="30"
+      height="22.5"
+      fill="var(--text-color)"
+      stroke="#000"
+      stroke-width="1.0607"
+    />
+    <text
+      x="416.78412"
+      y="82.837921"
+      fill="#000000"
+      font-family="sans-serif"
+      font-size="21.503px"
+      stroke-width=".53758"
+      style="line-height:1.25"
+      xml:space="preserve"
+      ><tspan x="416.78412" y="82.837921" stroke-width=".53758">R</tspan></text
+    >
+    <g id="range" fill="none" stroke="var(--text-color)" stroke-width="0.5px">
+      <rect x="5" y="5" width="450" height="110" />
+      <rect x="90" y="10" width="360" height="100" />
+      <rect x="355" y="15" width="90" height="90" />
+    </g>
+  </svg>
+</div>
 <p>
   To make the calculations of the averages computationally efficient we are
   going to use the incremental implementation that we already used for n-armed
@@ -92,96 +535,27 @@
 <Latex
   >{String.raw`NewEstimate \leftarrow OldEstimate + StepSize*[Target - OldEstimate]`}</Latex
 >
+<p>
+  Practically the calculation of the estimates of the value function is done
+  using a table that maps states to state values. The table is usually
+  initialized using 0's. For a Markov decision process with 4 states (0-3) the
+  table would look as below.
+</p>
+<Table {header} {data} />
+<p>
+  The agent would interact with the environment and collect a full trajectory.
+  At the end of the collection phase the agent goes through the whole state
+  space and updates the estimation of values using the below update rule.
+</p>
 
-<h4>Algorithm</h4>
-<p>The algorithm is divided into two steps.</p>
-<ul>
-  <li>
-    The agent generates a trajectory using the policy <Latex
-      >{String.raw`\pi`}</Latex
-    >.
-  </li>
-  <li>
-    The agent improves the estimation for the state value function <Latex
-      >V(s)</Latex
-    >. For that purpose the agent loops over the previously generated trajectory
-    and for each experience tuple it determines if it deals with a first visit
-    to that state <Latex>s</Latex>. If it does it calculates the discounted sum
-    of rewards from that point on to the terminal state <Latex
-      >{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex
-    >. Finally the agent performs an update step by using the incremental
-    average calculation <Latex
-      >{String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}</Latex
-    >.
-  </li>
-</ul>
-<Algorithm algoName={"Monte Carlo Prediction: First Visit"}>
-  <AlgorithmState
-    >Input: environment <Latex>env</Latex>, policy <Latex
-      >{String.raw`\mu`}</Latex
-    >, state set <Latex>{String.raw`\mathcal{S}`}</Latex>, number of episodes <Latex
-      >N</Latex
-    >, learning rate <Latex>{String.raw`\alpha`}</Latex>, discount factor <Latex
-      >{String.raw`\gamma`}</Latex
-    ></AlgorithmState
-  >
-  <AlgorithmState
-    >Initialize: <Latex>V(s)</Latex> for all <Latex
-      >{String.raw`s \in \mathcal{S}`}</Latex
-    >
-    with zeros</AlgorithmState
-  >
-  <AlgorithmForAll>
-    <span slot="condition">episodes <Latex>{String.raw`\in N`}</Latex></span>
-    <AlgorithmState>(1) INTERACTION WITH THE ENVIRONMENT</AlgorithmState>
-    <AlgorithmState>create trajectory as empty list [...]</AlgorithmState>
-    <AlgorithmRepeat>
-      <span slot="condition">state is terminal</span>
-      <AlgorithmState
-        >Generate a new action <Latex>{String.raw`a = \mu(s_t)`}</Latex>
-      </AlgorithmState>
-      <AlgorithmState
-        >Generate a new state and reward <Latex
-          >{String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}</Latex
-        ></AlgorithmState
-      >
-      <AlgorithmState
-        >Push the tuple <Latex>{String.raw`(s_t, r_{t+1})`}</Latex> into the trajectory
-        list.
-      </AlgorithmState>
-    </AlgorithmRepeat>
-    <AlgorithmState>(2) ESTIMATION OF THE VALUE FUNCTION</AlgorithmState>
-    <AlgorithmState
-      >Create Visited(s) = False for all <Latex
-        >{String.raw`s \in \mathcal{S}`}</Latex
-      ></AlgorithmState
-    >
-    <AlgorithmForAll>
-      <span slot="condition">tuples in trajectory list</span>
-      <AlgorithmState
-        ><Latex>{String.raw`s \leftarrow`}</Latex> state from tuple
-      </AlgorithmState>
-      <AlgorithmIf>
-        <span slot="condition">Visited(s) is True</span>
-        <AlgorithmState>Skip and go to next tuple</AlgorithmState>
-      </AlgorithmIf>
-      <AlgorithmIf>
-        <span slot="condition">Visited(s) is False</span>
-        <AlgorithmState>Visited(s) = True</AlgorithmState>
-      </AlgorithmIf>
-      <AlgorithmState>
-        <Latex>{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex>
-      </AlgorithmState>
-      <AlgorithmState
-        ><Latex>{String.raw`V(s) = V(s) + \alpha [G_{t:T} - V(s)]`}</Latex
-        ></AlgorithmState
-      >
-    </AlgorithmForAll>
-  </AlgorithmForAll>
-  <AlgorithmState>Output: value function V(s)</AlgorithmState>
-</Algorithm>
-
-<h4>Implementation</h4>
+<Highlight>
+  <Latex>{String.raw`V_{k+1} (s)= V_k (s)+ \alpha [G_t - V_k(s)]`}</Latex>
+</Highlight>
+<Latex>{String.raw`\text{where }G_t = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex>
+<p>
+  A Python implementation of the monte carlo prediction algorithm could look the
+  following way.
+</p>
 <Code
   code={`
 def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
@@ -215,57 +589,41 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
     return v
   `}
 />
-
-<h3>Policy Improvement And Control</h3>
-<h4>Theory</h4>
+<h2>Policy Improvement And Control</h2>
 <p>
-  The value iteration algorithm that we applied in the dynamic programming
-  section used the following update step.
+  When we use value or policy iteration, we need to periodically improve the
+  policy by to taking the greedy action using the action value function as the
+  basis.
 </p>
-<Latex
-  >{String.raw`
-    \begin{aligned}
-    v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
-    & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')]
-    \end{aligned}
+<Highlight>
+  <Latex
+    >{String.raw`
+    \mu_{k+1}(s) = \arg\max_a Q_{k+1}(s, a) 
   `}</Latex
->
-<p>
-  This exact update step is not going to work with Monte Carlo methods, because
-  that would require the full knowledge of the model. We would have to know the
-  transition probabilities from state <Latex>s</Latex> to state <Latex>s'</Latex
   >
-  and the corresponding reward <Latex>r</Latex>.
-</p>
-
+</Highlight>
 <p>
-  If we look closely at the above expression, we should notice that we can
-  rewrite the update rule in terms of an action-value function.
+  As we do not have access to the model of the Markov decision process, we can
+  not calculate the Q-values directly, but have to use Monte Carlo to calulate
+  averages that can be used as estimates of Q-values.
 </p>
-<Latex
-  >{String.raw`
-    \begin{aligned}
-    v_{k+1}(s) & \doteq \max_a \mathbb{E}[R_{t+1} + \gamma v_k (S_{t+1}) \mid S_t = s, A_t = a] \\
-    & = \max_a \sum_{s', r} p(s', r \mid s, a) [r + \gamma v_k (s')] \\
-    & = \max_a q_k(s, a) \\
-    \end{aligned}
-  `}</Latex
->
+<Table header={qHeader} data={qData} />
 <p>
-  With those rewrites we do not require the knowledge of the model, but it
-  becomes obvious that the key is to estimate the action-value function and not
-  the state-value function. Having an estimate of an action-value function
-  allows the agent to select better actions by acting greedily and to gradually
-  improve the policy towards the optimal policy. To estimate the action-value
-  function we will still generate episodes and compute averages, but the
-  averages are not going to be for a state, but for a state-action pair.
+  We utilize a Q-table and initialize all Q-values with 0. The agent interacts
+  with the environment and collects a trajectory. At the end of the episode all
+  Q-values are updated using the following update rule.
 </p>
+<Highlight>
+  <Latex
+    >{String.raw`Q_{k+1} (s, a)= Q_k (s, a)+ \alpha [G_t - Q_k(s, a)]`}</Latex
+  >
+</Highlight>
 <p>
   There is still one problem that we face without the knowledge of the model of
   the MDP though. If our policy is fully deterministic and thus avoids some
-  state-action pairs by design, then we can not compute a good estimate for
-  certain state-action pairs and thus might not arrive at the optimal policy.
-  The solution is to use an <Latex>{String.raw`\epsilon`}</Latex>-greedy policy,
+  state-action pairs by design, we can not compute a good estimate for certain
+  state-action pairs and thus might not arrive at the optimal policy. The
+  solution is to use an <Latex>{String.raw`\epsilon`}</Latex>-greedy policy,
   meaning that with a probability of <Latex>{String.raw`\epsilon`}</Latex> we take
   a random action and with probability of <Latex>{String.raw`1-\epsilon`}</Latex
   >
@@ -273,100 +631,9 @@ def mc_prediction(env, policy, obs_space, num_episodes, alpha, gamma):
   are going to be visited.
 </p>
 <p>
-  Before we move on to the implementation of the Monte Carlo control algorithm
-  it is important to discuss the difference between on-policy and off-policy
-  methods. Once the need arises to explore the environment we could ask
-  ourselves, “Do we need to improve the same policy that is used to generate
-  actions or can we learn the optimal policy while using the data that was
-  produced by a different policy?”. To frame the question differently “Is it
-  possible to learn the optimal policy while only selecting random actions?”.
-  That depends on the design of the algorithm. On-policy methods improve the
-  same policy that is also used to generate the actions, while off-policy
-  methods improve a policy that is not the one that is used to generate the
-  trajectories. The algorithm that is covered below is an on-policy algorithm.
+  Below you can find a Python implementation of the Monte Carlo control
+  algorithm.
 </p>
-
-<h4>Algorithm</h4>
-<Algorithm algoName={"Monte Carlo Control: First Visit"}>
-  <AlgorithmState
-    >Input: environment <Latex>env</Latex>, state set <Latex
-      >{String.raw`\mathcal{S}`}</Latex
-    >
-    , action set <Latex>{String.raw`\mathcal{A}`}</Latex>, number of episodes <Latex
-      >N</Latex
-    >, learning rate <Latex>{String.raw`\alpha`}</Latex>, discount factor <Latex
-      >{String.raw`\gamma`}</Latex
-    >
-    , epsilon <Latex>{String.raw`\epsilon`}</Latex></AlgorithmState
-  >
-  <AlgorithmState
-    >Initialize: <Latex>Q(s,a)</Latex> for all <Latex
-      >{String.raw`s \in \mathcal{S}`}</Latex
-    >
-    and <Latex>{String.raw`a \in \mathcal{A}`}</Latex>
-    with zeros, policy <Latex>{String.raw`\mu(a \mid s)`}</Latex> for all <Latex
-      >{String.raw`a \in \mathcal{A}`}</Latex
-    >
-    where <Latex>{String.raw`\mu`}</Latex> is <Latex
-      >{String.raw`\epsilon`}</Latex
-    >
-    -greedy</AlgorithmState
-  >
-  <AlgorithmForAll>
-    <span slot="condition">episodes <Latex>{String.raw`\in N`}</Latex></span>
-    <AlgorithmState>(1) INTERACTION WITH THE ENVIRONMENT</AlgorithmState>
-    <AlgorithmState>create trajectory as empty list [...]</AlgorithmState>
-    <AlgorithmRepeat>
-      <span slot="condition">state is terminal</span>
-      <AlgorithmState
-        >Generate a new action <Latex>{String.raw`a = \mu(s_t)`}</Latex>
-      </AlgorithmState>
-      <AlgorithmState
-        >Generate a new state and reward <Latex
-          >{String.raw`s_{t+1}, r_{t+1}=env(s_t, a_t)`}</Latex
-        >
-      </AlgorithmState>
-      <AlgorithmState
-        >Push the tuple <Latex>{String.raw`(s_t, a_t, r_{t+1})`}</Latex> into the
-        trajectory list.
-      </AlgorithmState>
-    </AlgorithmRepeat>
-    <AlgorithmState>(2) ESTIMATION OF THE VALUE FUNCTION</AlgorithmState>
-    <AlgorithmState
-      >Create Visited(s) = False for all <Latex
-        >{String.raw`s \in \mathcal{S}`}</Latex
-      >
-    </AlgorithmState>
-    <AlgorithmForAll>
-      <span slot="condition">tuples in trajectory list</span>
-      <AlgorithmState
-        ><Latex>{String.raw`s \leftarrow`}</Latex> state and <Latex
-          >{String.raw`a \leftarrow`}</Latex
-        >
-        action from tuple
-      </AlgorithmState>
-      <AlgorithmIf>
-        <span slot="condition">Visited(s) is True</span>
-        <AlgorithmState>Skip and go to next tuple</AlgorithmState>
-      </AlgorithmIf>
-      <AlgorithmIf>
-        <span slot="condition">Visited(s) is False</span>
-        <AlgorithmState>Visited(s) = True</AlgorithmState>
-      </AlgorithmIf>
-      <AlgorithmState
-        ><Latex>{String.raw`G_{t:T} = \sum_{k=t}^T \gamma^{k-t}R_t`}</Latex>
-      </AlgorithmState>
-      <AlgorithmState
-        ><Latex
-          >{String.raw`Q(s, a) = Q(s, a) + \alpha [G_{t:T} - Q(s, a)]`}</Latex
-        >
-      </AlgorithmState>
-    </AlgorithmForAll>
-  </AlgorithmForAll>
-  <AlgorithmState>Output: value function V(s)</AlgorithmState>
-</Algorithm>
-
-<h4>Implementation</h4>
 <Code
   code={`
 def mc_control(env, obs_space, action_space, num_episodes, alpha, gamma, epsilon):
@@ -419,5 +686,12 @@ def mc_control(env, obs_space, action_space, num_episodes, alpha, gamma, epsilon
   `}
 />
 <div class="separator" />
-<h2>Sources</h2>
-<div class="separator" />
+
+<style>
+  .svg-container {
+    max-width: 450px;
+  }
+  .svg-container-2 {
+    max-width: 600px;
+  }
+</style>

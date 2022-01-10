@@ -66,6 +66,19 @@
   Q-values, but the policy improvement steps remain similar.
 </p>
 <p>
+  Before we move on to the discussion of tabular reinforcement learning
+  algorithms it is important to discuss the difference between on-policy and
+  off-policy methods. We could ask ourselves: “Do we need to improve the same
+  policy that is used to generate actions or can we learn the optimal policy
+  while using the data that was produced by a different policy?”. To frame the
+  question differently “Is it possible to learn the optimal policy while only
+  selecting random actions?”. That depends on the design of the algorithm.
+  On-policy methods improve the same policy that is also used to generate the
+  actions, while off-policy methods improve a policy that is not the one that is
+  used to generate the trajectories. We will encounter and implement both types
+  of algorithms.
+</p>
+<p>
   The current state of the art reinforcement learning rarely deals with tabular
   methods any more, but it is still more convenient to start the exploration of
   reinforcement learning techniques with those, as the general ideas are
