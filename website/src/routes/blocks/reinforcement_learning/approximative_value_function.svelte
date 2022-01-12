@@ -31,8 +31,8 @@
   ];
 </script>
 
-<h1>Approximative Reinforcement Learning</h1>
-<Question>Why is approximative reinforcement learning useful?</Question>
+<h1>Approximative Value Function</h1>
+<Question>Why are approximative value functions useful?</Question>
 <div class="separator" />
 
 <p>
@@ -43,8 +43,9 @@
 
 <p>
   The number of rows and columns in the Q-Table was finite. This allowed us to
-  loop over all state-action pairs. Given enough iterations we were guaranteed
-  to arrive at the optimal solution.
+  loop over all state-action pairs and apply Monte Carlo or temporal difference
+  learning. Given enough iterations we were guaranteed to arrive at the optimal
+  solution.
 </p>
 <p>
   Most interesting reinforcement learning problems do not have such nice

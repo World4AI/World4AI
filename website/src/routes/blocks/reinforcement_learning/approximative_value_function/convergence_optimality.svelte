@@ -49,8 +49,7 @@
 
 <h1>Convergence and Optimality</h1>
 <Question
-  >What do we mean when we talk about convergence or optimality in approximative
-  reinforcement learning?</Question
+  >What do we mean when we talk about convergence and optimality?</Question
 >
 <div class="separator" />
 <p>

@@ -108,20 +108,24 @@ const rl = [
         ]
     },
     {
-        name: 'Approximative RL',
-        link: '/blocks/reinforcement_learning/approximative_reinforcement_learning',
+        name: 'Approximative Value Function',
+        link: '/blocks/reinforcement_learning/approximative_value_function',
         links: [
             {
+                name: 'State and Value Representation',
+                link: '/blocks/reinforcement_learning/approximative_value_function/state_value_representation'
+            },
+            {
                 name: 'Approximation with Oracle',
-                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/approximation_with_oracle'
+                link: '/blocks/reinforcement_learning/approximative_value_function/approximation_with_oracle'
             },
             {
                 name: 'Approximation without Oracle',
-                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/approximation_without_oracle'
+                link: '/blocks/reinforcement_learning/approximative_value_function/approximation_without_oracle'
             },			
             {
                 name: 'Convergence and Optimality',
-                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/convergence_optimality'
+                link: '/blocks/reinforcement_learning/approximative_value_function/convergence_optimality'
             },			
         ]
     }
