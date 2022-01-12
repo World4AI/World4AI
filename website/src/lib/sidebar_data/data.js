@@ -106,6 +106,24 @@ const rl = [
                 link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference'
             },			
         ]
+    },
+    {
+        name: 'Approximative RL',
+        link: '/blocks/reinforcement_learning/approximative_reinforcement_learning',
+        links: [
+            {
+                name: 'Approximation with Oracle',
+                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/approximation_with_oracle'
+            },
+            {
+                name: 'Approximation without Oracle',
+                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/approximation_without_oracle'
+            },			
+            {
+                name: 'Convergence and Optimality',
+                link: '/blocks/reinforcement_learning/approximative_reinforcement_learning/convergence_optimality'
+            },			
+        ]
     }
 ];
 

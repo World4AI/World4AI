@@ -1,0 +1,270 @@
+<script>
+  import Question from "$lib/Question.svelte";
+  import Latex from "$lib/Latex.svelte";
+  import Table from "$lib/Table.svelte";
+
+  let header = ["State", "Value"];
+  let data = [
+    [0, 1],
+    [1, 2],
+    [2, 1.5],
+    [3, 3],
+  ];
+</script>
+
+<h1>Approximation with an Oracle</h1>
+<Question
+  >How can we find a good value function approximation, when an oracle tells us
+  the values of the true value function?</Question
+>
+<div class="separator" />
+
+<h2>State Representation</h2>
+<p>
+  So far for finite MDPs each state was represented by a single number. This
+  number was used as an address in the state-value or action-value lookup table.
+</p>
+<Table {header} {data} />
+<p>
+  In the example above to get the the state-value for state 3 for a certain
+  policy \pi the agent looked at the value in the lookup table to receive the
+  value of 3.
+</p>
+<p>
+  For complex MDPs that approach is not sustainable, as for most interesting
+  problems the number of states is larger than the number of atoms in the
+  observable universe. Therefore a state is represented by a so-called feature
+  vector. Each number in the vector gives some information about the state. The
+  whole vector is the representation of the state. In many cases the
+  representation is only partial, therefore in approximative methods we are
+  going to use the word observation instead of state to show the possible
+  limitations of state representations.
+</p>
+<Latex>{String.raw`\mathbf{x} \doteq (x_1(s), x_2(s), ... , x_d(s))^T`}</Latex>
+<p>
+  In the Cart Pole environment the feature vector consists of cart position,
+  cart velocity, pole angle and angular velocity.
+</p>
+<Latex
+  >{String.raw`\mathbf{x} \doteq (CartPosition, CartVelocity, PoleAngle, AngularVelocity)^T`}</Latex
+>
+<h2>Value Representation</h2>
+<p>
+  The feature vector <Latex>{String.raw`\mathbf{x}`}</Latex> is used as an input
+  into the approximative value function and the output is a single state-value or
+  action-value number.
+</p>
+<p>
+  In order for the value function to transform the feature vector into the
+  single number representation an additional vector, called weight vector,
+  <Latex>{String.raw`\mathbf{w} \in \mathbb{R}^n`}</Latex> is needed. How exactly
+  the weights are used in the calculation depends on the type of the function.
+</p>
+<p>There are many different types of function approximators:</p>
+<ul>
+  <li>Linear Function Approximators</li>
+  <li>Neural Networks</li>
+  <li>Decision Trees</li>
+  <li>...</li>
+</ul>
+
+<p>
+  Depending on the function approximators the weight vector might play a
+  different role in the calculation of the value function, but the general way
+  to write down function approximators is as follows.
+</p>
+<Latex>{String.raw`\hat{v}(s, \mathbf{w})`}</Latex>
+<Latex>{String.raw`\hat{q}(s, a, \mathbf{w})`}</Latex>
+<p>
+  Where the "^" above the function (read as hat) shows that the function is an
+  approximation and the weight vector <Latex>{String.raw`\mathbf{w} `}</Latex> shows
+  that the calculation of state or action values requires that vector.
+</p>
+<p>
+  At the moment of writing most modern reinforcement learning function
+  approximators are neural networks. Linear function approximators are
+  especially useful to introduce the topic of function approximators, as those
+  are easiest to grasp and show some useful mathematical properties.
+</p>
+
+<p>
+  In linear function approximators each of the features is “weighted” by the
+  corresponding weight. The individual weighted features are summed up to
+  produce the value.
+</p>
+<Latex
+  >{String.raw`\hat{v}(s, \mathbf{w}) \doteq \mathbf{w}^T\mathbf{x}(s) \doteq \sum_{i=1}^d w_i x_i(s)`}</Latex
+>
+
+<p>
+  Let us again look at the Cart Pole environment to clarify the linear function
+  approximation. Below is one of the possible initial values for the feature
+  vector.
+</p>
+<Latex
+  >{String.raw`\mathbf{x} = [0.04371849, -0.04789172, -0.03998533, -0.01820894]`}</Latex
+>
+<p>
+  In order to calculate the approximate state value for a particular <Latex
+    >\pi</Latex
+  > for the above state the following equation has to be calculated.
+</p>
+<Latex
+  >{String.raw`\hat{v}(s, \mathbf{w}) = w_1 * 0.04371849 + w_2 * (-0.04789172) + w_3 * (-0.03998533) + w_4 * (-0.01820894)`}</Latex
+>
+
+<p>
+  The same four weights are used for the calculation of the state value for all
+  possible feature vectors.
+</p>
+
+<p>
+  Neural networks are non-linear function approximators, where each neuron in
+  itself is a non-linear function. The calculation for each neuron is similar to
+  that of the linear function, but the result of the weighted sum is used as an
+  input to a non-linear function f().
+</p>
+<Latex
+  >{String.raw`\hat{v}(s, \mathbf{w}) \doteq f(\mathbf{w}^T\mathbf{x}(s)) \doteq f(\sum_{i=1}^d w_i x_i(s))`}</Latex
+>
+
+<h2>Generalized Policy Iteration</h2>
+
+<p>
+  Similar to dynamic programming the general idea when using approximative
+  functions is to switch between policy evaluation and policy improvement.
+</p>
+
+<p>
+  In the policy evaluation step we are going to look for a function <Latex
+    >{String.raw`\hat{v} `}</Latex
+  > that is as close as possible to the true value function <Latex
+    >{String.raw`v_{\pi}`}</Latex
+  >.
+</p>
+
+<p>
+  In the policy improvement step we are going to utilize <Latex
+    >{String.raw`\hat{q} `}</Latex
+  > in order to act greedily and improve our policy.
+</p>
+<Latex>{String.raw`\hat{v}(s, \mathbf{w}) \approx v_{\pi}(s)`}</Latex>
+<Latex>{String.raw`\hat{q}(s, a, \mathbf{w}) \approx q_{\pi}(s, a)`}</Latex>
+<h3>Policy Evaluation</h3>
+<p>
+  Let us as always assume that we have some policy pi and are interested in the
+  true value function of that particular policy. Finding the true value function
+  is out of the question, so we have to deal with an approximation.
+</p>
+<Latex>{String.raw`\hat{v}(s, \mathbf{w}) \approx v_{\pi}(s)`}</Latex>
+
+<p>
+  Generally it might be sufficient for us to find an approximative value
+  function that is just good enough. In this chapter we are going to discuss
+  what constitutes a “good” approximation and how we can find the weight vector
+  <Latex>{String.raw`\mathbf{w}`}</Latex> for that “good” approximation .
+</p>
+
+<p>
+  To build the theory that is going to be used throughout the rest of the book
+  it is convenient to start the discussion by assuming that we are in a
+  supervised learning setting and that there is an oracle who tells us what the
+  true state-value <Latex>{String.raw`v_{\pi}(s) `}</Latex> for the given policy
+  <Latex>\pi</Latex> and state <Latex>s</Latex> is. Later the discussion can be extended
+  to reinforcement learning settings where the agent interacts with the environment.
+</p>
+<p>
+  In supervised learning the goal is to find a weight vector w that produces a
+  function that fits the training data as close as possible. That means that we
+  want weights that reduce the difference between the true state-value and our
+  approximation as much as possible. In reinforcement learning Mean Squared
+  Error (MSE) is used to define the difference between the true value function
+  and the approximate value function.
+</p>
+<Latex
+  >{String.raw`MSE \doteq \mathbb{E_{\pi}}[(v_{\pi} - \hat{v}(s, \mathbf{w}))^2]`}</Latex
+>
+
+<p>
+  If we find the weight vector <Latex>{String.raw`\mathbf{w} `}</Latex> that minimizes
+  the above expression, then we found an approximation that is as close as possible
+  to the true value function given by the oracle.
+</p>
+
+<p>
+  The common approach to find such a vector is to use stochastic gradient
+  descent. Stochastic gradient descent in a setting with an oracle would work as
+  follows. The agent interacts with the environment using the policy <Latex
+    >\pi</Latex
+  >. For each of the observations the agent calculates the approximate value and
+  compares the difference between the approximate value and the true value given
+  by the oracle using the mean squared error. In the next step the agent
+  calculates the gradients of MSE with respect to the weights of the value
+  function. Using the gradient the agent reduces the MSE by adjusting the weight
+  vector <Latex>{String.raw`\mathbf{w}.`}</Latex> Stochastic gradient descent means
+  that the update of the weights is done at each single step.
+</p>
+<p>The update rule for the weight vector is as follows.</p>
+<Latex
+  >{String.raw`
+ \begin {aligned}
+   w_{t+1} & \doteq w_t - \frac{1}{2}\alpha\nabla[v_{\pi}(S_t) - \hat{v}(S_t,\mathbf{w}_t)]^2 \\
+   & = w_t + \alpha[v_{\pi}(S_t) - \hat{v}(S_t, \mathbf{w}_t)]\nabla\hat{v}(S_t, \mathbf{w}_t)
+ \end {aligned}
+  `}</Latex
+>
+
+<p>
+  The gradient <Latex>{String.raw`\nabla\hat{v}(S_t, \mathbf{w}_t)`}</Latex> is a
+  vector that contains partial derivations of the approximative value function with
+  respect to individual weights. We reduce the weights into the direction of the
+  gradient.
+</p>
+<Latex
+  >{String.raw`\nabla \hat{v}(s, \mathbf{w}) \doteq (\frac{\partial f(\mathbf{w})}{\partial w_1}, \frac{\partial f(\mathbf{w})}{\partial w_2}, ... , \frac{\partial f(\mathbf{w})}{\partial w_d})^T`}</Latex
+>
+
+<p>
+  Linear functions and neural networks are differentiable, decision Trees are
+  not differentiable functions. That means that for linear functions (and neural
+  networks) it is easy to determine how to adjust the weight vector <Latex
+    >{String.raw`\mathbf{w}`}</Latex
+  >. From now on we are primarily going to focus on neural networks. To discuss
+  some of the theoretical properties we will return to linear methods during the
+  next few chapters.
+</p>
+
+<h3>Policy Improvement</h3>
+<p>
+  Policy improvement with function approximators utilizes the action-value
+  function instead of a state-value function.
+</p>
+<Latex>{String.raw`\hat{q}(s, a, \mathbf{w}) \approx q_{\pi}(s, a)`}</Latex>
+
+<p>
+  Once again we assume to have an oracle that provides the true action-value for
+  a policy <Latex>\pi</Latex>, given the state and the action. At each time step
+  the agent selects an action using <Latex>\epsilon</Latex>-greedy. Using the
+  information from the oracle and the approximate estimation, the agent adjusts
+  the weights of the function to get as close as possible to the true
+  action-value function.
+</p>
+<Latex
+  >{String.raw`
+\begin {aligned}
+    w_{t+1} & \doteq w_t - \frac{1}{2}\alpha\nabla[q_{\pi}(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]^2 \\
+    & = w_t + \alpha[q_{\pi}(S_t, A_t) - \hat{q}(S_t, A_t, \mathbf{w}_t)]\nabla\hat{q}(S_t, A_t, \mathbf{w}_t)
+\end {aligned}
+  `}</Latex
+>
+
+<h3>Limitations</h3>
+<p>
+  Pure value methods that use action-value functions to determine the policy are
+  still limited to discrete actions spaces. To determine the action the agent
+  needs to take the max over available options and that gets problematic with
+  continuous action spaces. In case of a high number of possible actions it
+  might take a long time to calculate the max and the performance would suffer.
+  For now it is sufficient to know that there are other approximation methods
+  that can deal with these sorts of problems.
+</p>
