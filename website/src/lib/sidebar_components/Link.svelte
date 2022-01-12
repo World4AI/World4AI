@@ -10,6 +10,7 @@
 
 <style>
   a {
+    display: inline-block;
     text-decoration: none;
     font-size: 15px;
     color: var(--text-color);
@@ -33,4 +34,3 @@
     color: #fff;
   }
 </style>
-
