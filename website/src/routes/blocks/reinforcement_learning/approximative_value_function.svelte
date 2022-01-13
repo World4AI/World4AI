@@ -1,6 +1,7 @@
 <script>
   import Question from "$lib/Question.svelte";
   import Table from "$lib/Table.svelte";
+  import CartPole from "$lib/reinforcement_learning/CartPole.svelte";
 
   let discreteHeader = ["State", "Action 1", "Action 2"];
   let discreteData = [
@@ -31,6 +32,15 @@
   ];
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Value Function Approximation</title
+  >
+  <meta
+    name="description"
+    content="When the state space is too large or continuous, it gets impossible to represent a value function as a table. In that case the agent needs to use an approximate value function."
+  />
+</svelte:head>
+
 <h1>Approximative Value Function</h1>
 <Question>Why are approximative value functions useful?</Question>
 <div class="separator" />
@@ -40,7 +50,6 @@
   decision processes.
 </p>
 <Table header={discreteHeader} data={discreteData} />
-
 <p>
   The number of rows and columns in the Q-Table was finite. This allowed us to
   loop over all state-action pairs and apply Monte Carlo or temporal difference
@@ -52,21 +61,21 @@
   properties. In case state or action sets are infinite or extremely large it
   becomes impossible to store the value function as a table.
 </p>
-
 <Table header={discreteInfiniteHeader} data={discreteInfiniteData} />
 <p>
   The above table shows action-values for 1,000,000,000 discrete states. Even if
   we possessed a computer which could efficiently store a high amount of states,
-  we still need to loop over all these states and thus convergence would be
-  extremely slow.
+  we still need to loop over all these states to improve the estimation and thus
+  convergence would be extremely slow.
 </p>
 <p>
-  Q-Tables become almost impossible when the agent has to deal with continuous
-  variables. When the agent encounters a continuous observation it is extremely
-  unlikely that the same exact value will be seen again. Yet the agent will need
-  to learn how to deal with future unseen observations. We expect from the agent
-  to find a policy that is “good” across many different observations. The key
-  word that we are looking for is generalization.
+  Representing a value function in Q-tables become almost impossible when the
+  agent has to deal with continuous variables. When the agent encounters a
+  continuous observation it is extremely unlikely that the same exact value will
+  be seen again. Yet the agent will need to learn how to deal with future unseen
+  observations. We expect from the agent to find a policy that is “good” across
+  many different observations. The key word that we are looking for is
+  generalization.
 </p>
 <Table header={continuousHeader} data={continuousData} />
 <p>
@@ -81,25 +90,31 @@
   states that were already encountered.
 </p>
 <p>
-  In the case when the state/action sets are extremely large and/or continous,
-  lookup tables for each state-action pair become impossible. As the number of
-  states and/or actions is possibly infinite, the function has to generalize and
-  we can assume that it is impossible to create a function that generates
-  optimal values for each state-action pair. Thus it becomes necessary to create
+  In the following sections we are going to deal with Markov decision processes
+  that have a large or continuous state space, but a small discrete number of
+  actions. Due to the unlimited number of states it becomes necessary to create
   value functions that are not exact, but approximative, meaning that the value
   function does not return the true value of a policy but a value that is
   hopefully close enough. Finding the optimal policy and value function is often
-  not possible, but the general idea is to find a policy that still performs in
-  a way that generates a relatively high expected sum of rewards.
+  not possible, but generalally we will attempt to find a policy that still
+  performs in a way that generates a relatively high expected sum of rewards.
 </p>
 <p>
-  We can look at it this way. Humans most definitely don’t have optimal policies
-  for complex tasks they have to perform. If they did, then chess for example
-  would be extremely boring and would not have survived for many hundred years.
-  Still you can appreciate the complexity of the game and the extremely high
-  level of professional players. We are going to have similar expectations for
-  our agents. Even though we will not be able to find optimal value functions
-  for some of the environments we are going to generate extremely impressive
-  results.
+  In the cart pole environment below the task is to balance the pole and not to
+  move too far away from the center of the screen. At each timestep the agent
+  can either move left or right and gets a reward of +1. If the angle of the
+  pole is too large or the cart goes offscreen the game ends. The agent can
+  observe the car position, the cart velocity, the angle of the pole and the
+  angular velocity. Each of the variables is continuous and it is therefore
+  becomes necessary to approximate the value function.
+</p>
+<CartPole />
+<p>
+  Before we move on to the next section, we should mention the limitation of
+  approximative value based methods. Value based approximative methods are able
+  to deal with a continuous state space, but not continuous actions. Yet as you
+  can imagine many of the tasks a robot for example would need to perform
+  require continuous actions. In later chapters we will discuss how we can deal
+  with these limitations.
 </p>
 <div class="separator" />

@@ -139,14 +139,3 @@
 \end {aligned}
   `}</Latex
 >
-
-<h3>Limitations</h3>
-<p>
-  Pure value methods that use action-value functions to determine the policy are
-  still limited to discrete actions spaces. To determine the action the agent
-  needs to take the max over available options and that gets problematic with
-  continuous action spaces. In case of a high number of possible actions it
-  might take a long time to calculate the max and the performance would suffer.
-  For now it is sufficient to know that there are other approximation methods
-  that can deal with these sorts of problems.
-</p>
