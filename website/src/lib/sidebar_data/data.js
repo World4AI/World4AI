@@ -116,13 +116,9 @@ const rl = [
                 link: '/blocks/reinforcement_learning/approximative_value_function/state_value_representation'
             },
             {
-                name: 'Approximation with Oracle',
-                link: '/blocks/reinforcement_learning/approximative_value_function/approximation_with_oracle'
+                name: 'Evaluation and Improvement',
+                link: '/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement'
             },
-            {
-                name: 'Approximation without Oracle',
-                link: '/blocks/reinforcement_learning/approximative_value_function/approximation_without_oracle'
-            },			
             {
                 name: 'Convergence and Optimality',
                 link: '/blocks/reinforcement_learning/approximative_value_function/convergence_optimality'
