@@ -13,8 +13,8 @@
     content="Similar to tabular reinforcement learning, with approximative value based reinforcement learning the agent has to utilize evaluation and improvement."
   />
 </svelte:head>
-<h1>Evaluation and Improvement</h1>
 
+<h1>Evaluation and Improvement</h1>
 <Question
   >How does generalized policy iteration work with approximative value
   functions?</Question
