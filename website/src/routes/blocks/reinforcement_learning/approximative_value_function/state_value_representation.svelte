@@ -1,6 +1,8 @@
 <script>
+  import Question from "$lib/Question.svelte";
   import Table from "$lib/Table.svelte";
   import Latex from "$lib/Latex.svelte";
+  import NeuralNetwork from "$lib/NeuralNetwork.svelte";
 
   let header = ["State", "Value"];
   let data = [
@@ -11,48 +13,86 @@
   ];
 </script>
 
+<svelte:head>
+  <title
+    >World4AI | Reinforcement Learning | State and Value Representation</title
+  >
+  <meta
+    name="description"
+    content="When using approximative value functions, the state is represented by a feature vector and the value function takes that vector as an input and produces a state or action value."
+  />
+</svelte:head>
+
+<h1>State and Value Representation</h1>
+<Question
+  >How can we represent states and value functions in environment with
+  continuous state space?</Question
+>
+<div class="separator" />
 <h2>State Representation</h2>
 <p>
-  So far for finite MDPs each state was represented by a single number. This
-  number was used as an address in the state-value or action-value lookup table.
+  So far each state was represented by a single number. This number was used as
+  an address in the state-value or action-value lookup table.
 </p>
 <Table {header} {data} />
 <p>
-  In the example above to get the the state-value for state 3 for a certain
-  policy \pi the agent looked at the value in the lookup table to receive the
-  value of 3.
+  For complex Markov decision processes that approach is not sustainable,
+  because for most interesting problems the number of states is either larger
+  than the number of atoms in the observable universe or states are continuous.
+  In those cases the state is represented by a so-called feature vector. Each
+  number in the vector gives some information about the state, while the whole
+  feature vector is the representation of the state. In many cases the
+  representation is going to be only partial and depict an observation (and not
+  a state) in a partially observable Markov decision process.
 </p>
 <p>
-  For complex MDPs that approach is not sustainable, as for most interesting
-  problems the number of states is larger than the number of atoms in the
-  observable universe. Therefore a state is represented by a so-called feature
-  vector. Each number in the vector gives some information about the state. The
-  whole vector is the representation of the state. In many cases the
-  representation is only partial, therefore in approximative methods we are
-  going to use the word observation instead of state to show the possible
-  limitations of state representations.
+  We write the feature vector as a column vector consisting of <Latex>n</Latex> features.
 </p>
-<Latex>{String.raw`\mathbf{x} \doteq (x_1(s), x_2(s), ... , x_d(s))^T`}</Latex>
+<Latex
+  >{String.raw`
+\mathbf{x} \doteq 
+\begin{bmatrix}
+  x_1 \\
+  x_2 \\ 
+  x_3 \\
+  \cdots \\
+  x_n 
+\end{bmatrix}
+  `}</Latex
+>
 <p>
   In the Cart Pole environment the feature vector consists of cart position,
   cart velocity, pole angle and angular velocity.
 </p>
 <Latex
-  >{String.raw`\mathbf{x} \doteq (CartPosition, CartVelocity, PoleAngle, AngularVelocity)^T`}</Latex
+  >{String.raw`
+\mathbf{x} = 
+\begin{bmatrix}
+  \text{Cart Position} \\
+  \text{Cart Velocity} \\ 
+  \text{Pole Angle} \\
+  \text{Angular Velocity} \\
+\end{bmatrix}
+  `}</Latex
 >
-<h2>Value Representation</h2>
+<h2>Value Function Representation</h2>
 <p>
   The feature vector <Latex>{String.raw`\mathbf{x}`}</Latex> is used as an input
-  into the approximative value function and the output is a single state-value or
-  action-value number.
+  for the value function and the output is a single state-value or action-value number.
+  The value function transforms the feature vector using an additional vector, called
+  the weight vector <Latex>{String.raw`\mathbf{w} \in \mathbb{R}^n`}</Latex>.
+  How exactly the weights are used in the calculation depends on the type of the
+  function, but the general notation for function approximators is
+  <Latex>{String.raw`\hat{v}(s, \mathbf{w})`}</Latex> for state-value functions and
+  <Latex>{String.raw`\hat{q}(s, a, \mathbf{w})`}</Latex> for action-value functions.
+  Where the "^" above the function (read as hat) shows that the function is an approximation
+  and the weight vector <Latex>{String.raw`\mathbf{w} `}</Latex> shows that the calculation
+  of state or action values requires that vector.
 </p>
 <p>
-  In order for the value function to transform the feature vector into the
-  single number representation an additional vector, called weight vector,
-  <Latex>{String.raw`\mathbf{w} \in \mathbb{R}^n`}</Latex> is needed. How exactly
-  the weights are used in the calculation depends on the type of the function.
+  There are many different types of function approximators that can be used to
+  estimate the value of a state:
 </p>
-<p>There are many different types of function approximators:</p>
 <ul>
   <li>Linear Function Approximators</li>
   <li>Neural Networks</li>
@@ -61,61 +101,42 @@
 </ul>
 
 <p>
-  Depending on the function approximators the weight vector might play a
-  different role in the calculation of the value function, but the general way
-  to write down function approximators is as follows.
-</p>
-<Latex>{String.raw`\hat{v}(s, \mathbf{w})`}</Latex>
-<Latex>{String.raw`\hat{q}(s, a, \mathbf{w})`}</Latex>
-<p>
-  Where the "^" above the function (read as hat) shows that the function is an
-  approximation and the weight vector <Latex>{String.raw`\mathbf{w} `}</Latex> shows
-  that the calculation of state or action values requires that vector.
-</p>
-<p>
   At the moment of writing most modern reinforcement learning function
   approximators are neural networks. Linear function approximators are
   especially useful to introduce the topic of function approximators, as those
-  are easiest to grasp and show some useful mathematical properties.
+  are easiest to grasp and show some useful mathematical properties. We will
+  start with linear approximators to clarify notation and the general
+  functionality of approximative value functions, but mostly focus on neural
+  networks in future chapters.
 </p>
 
 <p>
-  In linear function approximators each of the features is “weighted” by the
-  corresponding weight. The individual weighted features are summed up to
-  produce the value.
+  Linear function approximators essentially calcualte the dot product between
+  the feature vector and the weight vector to produce the value of the state.
 </p>
 <Latex
-  >{String.raw`\hat{v}(s, \mathbf{w}) \doteq \mathbf{w}^T\mathbf{x}(s) \doteq \sum_{i=1}^d w_i x_i(s)`}</Latex
+  >{String.raw`\hat{v}(s, \mathbf{w}) \doteq \mathbf{w} \cdot \mathbf{x} =  \mathbf{w}^T\mathbf{x} = w_1x_1 + w_2x_2 + \cdots + w_nx_n`}</Latex
 >
+<p>
+  Neural networks on the other hand take the vector <Latex
+    >{String.raw`\mathbf{x}`}</Latex
+  > as the input and apply several linear transformations and non-linear activation
+  functions in succession until a single state or action value is produced.
+</p>
+<NeuralNetwork />
 
 <p>
-  Let us again look at the Cart Pole environment to clarify the linear function
-  approximation. Below is one of the possible initial values for the feature
-  vector.
+  The challenge of reinforcement learning is to find the correct weight vector <Latex
+    >{String.raw`\mathbf{w}`}</Latex
+  > which generates values that are as close as possible to the true values <Latex
+    >v(s)</Latex
+  > for the policy <Latex>\pi</Latex>.
 </p>
-<Latex
-  >{String.raw`\mathbf{x} = [0.04371849, -0.04789172, -0.03998533, -0.01820894]`}</Latex
->
-<p>
-  In order to calculate the approximate state value for a particular <Latex
-    >\pi</Latex
-  > for the above state the following equation has to be calculated.
-</p>
-<Latex
-  >{String.raw`\hat{v}(s, \mathbf{w}) = w_1 * 0.04371849 + w_2 * (-0.04789172) + w_3 * (-0.03998533) + w_4 * (-0.01820894)`}</Latex
->
+<div class="separator" />
 
-<p>
-  The same four weights are used for the calculation of the state value for all
-  possible feature vectors.
-</p>
-
-<p>
-  Neural networks are non-linear function approximators, where each neuron in
-  itself is a non-linear function. The calculation for each neuron is similar to
-  that of the linear function, but the result of the weighted sum is used as an
-  input to a non-linear function f().
-</p>
-<Latex
-  >{String.raw`\hat{v}(s, \mathbf{w}) \doteq f(\mathbf{w}^T\mathbf{x}(s)) \doteq f(\sum_{i=1}^d w_i x_i(s))`}</Latex
->
+<style>
+  li {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+</style>
