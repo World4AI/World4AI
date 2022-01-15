@@ -10,10 +10,11 @@
 * [Svelte](https://svelte.dev/)
 * [SvelteKit](https://kit.svelte.dev/)
 
-## Roadmap 2022
+## Roadmap 2022 and beyond
 
 - [ ] Python Block
     - [ ] Control Flow
+    - [ ] Loops 
     - [ ] OOP
     - [ ] Numpy
 - [ ] Mathematics Block
@@ -23,7 +24,8 @@
 - [ ] Reinforcement Learning Block
     - [ ] DQN
     - [ ] Double DQN
-    - [ ] DUelling DQN
+    - [ ] Duelling DQN
+    - [ ] Prioritized Experiece Replay
     - [ ] Rainbow
     - [ ] Policy Gradient and Reinforce
     - [ ] A2C and A3C
@@ -32,4 +34,7 @@
     - [ ] DDPG
     - [ ] TD3
     - [ ] Soft Actor-Critic
-    - [ ] MCTC
+    - [ ] Monte Carlo Tree Search MCTS
+    - [ ] AlphaGo
+    - [ ] AlphaGo Zero
+    - [ ] MuZero
