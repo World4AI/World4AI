@@ -124,6 +124,28 @@ const rl = [
                 link: '/blocks/reinforcement_learning/approximative_value_function/convergence_optimality'
             },			
         ]
+    },
+    {
+        name: 'Value Based Deep Reinforcement Learning',
+        link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning',
+        links: [
+            {
+                name: 'DQN',
+                link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn'
+            },
+            {
+                name: 'Double DQN',
+                link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn'
+            },
+            {
+                name: 'Duelling DQN',
+                link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn'
+            },			
+            {
+                name: 'Prioritized Experience Replay',
+                link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay'
+            },			
+        ]
     }
 ];
 
