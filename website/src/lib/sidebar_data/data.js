@@ -105,6 +105,10 @@ const rl = [
                 name: 'Temporal Difference',
                 link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference'
             },			
+            {
+                name: 'Bias-Variance Tradeoff',
+                link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff'
+            },			
         ]
     },
     {
