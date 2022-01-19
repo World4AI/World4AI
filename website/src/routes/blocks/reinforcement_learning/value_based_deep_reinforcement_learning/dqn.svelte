@@ -7,6 +7,14 @@
   import MovingTarget from "./_dqn/MovingTarget.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | DQN</title>
+  <meta
+    name="description"
+    content="The deep Q-network (DQN) is considered to be one of the seminal works in deep reinforcement learning. The agent was able to achieve human level control in many Atari games and even outperformed professional players."
+  />
+</svelte:head>
+
 <h1>Deep Q-Network (DQN)</h1>
 <Question
   >How is a deep Q-network structured and what are the benefits?</Question
