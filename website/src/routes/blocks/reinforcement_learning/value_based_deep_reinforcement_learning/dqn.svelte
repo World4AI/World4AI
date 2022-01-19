@@ -3,7 +3,8 @@
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
   import Latex from "$lib/Latex.svelte";
   import CartPole from "$lib/reinforcement_learning/CartPole.svelte";
-  import MemoryBuffer from "./_dqn.svelte/MemoryBuffer.svelte";
+  import MemoryBuffer from "./_dqn/MemoryBuffer.svelte";
+  import MovingTarget from "./_dqn/MovingTarget.svelte";
 </script>
 
 <h1>Deep Q-Network (DQN)</h1>
@@ -173,9 +174,8 @@
   the whole batch to apply batch gradient descent. Using experience replay the
   mean squared error can be defined as follows.
 </p>
-
 <Latex
-  >{String.raw`MSE \doteq \mathbb{E}_{(s, a, r, s', d) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \theta) - Q(s, a, \theta))^2]`}</Latex
+  >{String.raw`MSE \doteq \mathbb{E}_{(s, a, r, s', d) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \mathbf{w}) - Q(s, a, \mathbf{w}))^2]`}</Latex
 >
 <p>
   We provide the interactive example of the experience replay below. We suggest
@@ -193,12 +193,63 @@
   hardware you might need to reduce the memory size. Especially for simpler
   tasks a memory size between 10,000 and 100,000 is usually sufficient.
 </p>
+<div class="separator" />
 
-<div class="separator" />
 <h2>Frozen Target Network</h2>
+<p>
+  The second problem that the agent faces is the correlation between the action
+  values <Latex>{String.raw`Q(s, a, \mathbf{w}`})</Latex> and the target values
+  <Latex>{String.raw`r + \gamma \max_{a'} Q(s', a', \mathbf{w})`}</Latex>,
+  because the same action-value function is used for the target value and the
+  current action value.
+</p>
+<p>
+  Below we see an interactive game to explain the problem in a more intuitive
+  manner. The blue circle represents our estimate we are trying to improve. The
+  red circle is our target. When you take a step our estimate moves into the
+  direction of the target. This is the whole point of gradient descent, you want
+  to minimized the distance between the estimte and the target. Because the
+  estimate and the bootstrapped value share the same weights of the neural
+  network the weights of the target change as well, which forces the target to
+  move. A great analogy that is often used in the literature is a dog chasing
+  it's own tail. Catching up seems imporssible, which can have a destabilizing
+  effect on the neural network.
+</p>
+<MovingTarget />
+<p>
+  In order to mitigate the destabilization the researchers at DeepMind used a
+  neural network with frozen weights <Latex>{String.raw`w^-`}</Latex> for the calculation
+  of the target value. This weights are held constant for a period of time and only
+  periodically are the weights copied from the action value function <Latex
+    >{String.raw`Q(s, a, \mathbf{w})`}</Latex
+  > to the neural network used for the calculation of the target <Latex
+    >{String.raw`Q(s', a', \mathbf{w}^-)`}</Latex
+  >. In the original paper the update frequency is 10,000 steps for Atari games,
+  but for simpler environments the frequency is usually much shorter.
+</p>
+<p>
+  Below if a similar interactive example using a frozen target network. The
+  estimate moves into the direction of the target for 3 steps. In those three
+  steps the weights of the target network are held constant. After the three
+  steps the weights are copied from the blue estimate into the red target.
+</p>
+<MovingTarget frozen={true} />
 <div class="separator" />
-<h2>Loss Function</h2>
+
+<h2>Mean Squared Error</h2>
+<p>
+  The final mean squared error calculation of the DQN is defined below. The
+  optimization is done by drawing a batch of experiences from the memory buffer <Latex
+    >{String.raw`(s, a, r, s', t) \sim U(D)`}</Latex
+  > using the uniform distribution. The estimated action value function and the action
+  value function used for bootstrapping use the same architecture, but the bootstrapped
+  calculation utilizes frozen weights <Latex>w^-</Latex>.
+</p>
+<Latex
+  >{String.raw`MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \mathbf{w}^-) - Q(s, a, \mathbf{w}))^2]`}</Latex
+>
 <div class="separator" />
+
 <h2>Atari</h2>
 <h3>Architecture</h3>
 <h3>Preprocessing</h3>

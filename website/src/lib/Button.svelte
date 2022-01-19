@@ -1,8 +1,9 @@
 <script>
   export let value = "Button";
+  export let disabled = false;
 </script>
 
-<button on:click>{value}</button>
+<button class:disabled {disabled} on:click>{value}</button>
 
 <style>
   button {
@@ -19,5 +20,11 @@
 
   button:hover {
     color: var(--main-color-1);
+  }
+
+  .disabled {
+    color: var(--main-color-1);
+    border-color: var(--main-color);
+    cursor: wait;
   }
 </style>
