@@ -1,6 +1,7 @@
 <script>
   export let header = [];
   export let data = [];
+  export let idxHighlight = null;
 </script>
 
 <table>
@@ -12,8 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    {#each data as row}
-      <tr>
+    {#each data as row, idx}
+      <tr class:highlighted={idx === idxHighlight}>
         {#each row as cell}
           <td>{cell}</td>
         {/each}
@@ -39,5 +40,9 @@
   }
   td {
     font-style: italic;
+  }
+
+  .highlighted {
+    color: var(--main-color-1);
   }
 </style>

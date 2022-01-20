@@ -109,6 +109,10 @@ const rl = [
                 name: 'Bias-Variance Tradeoff',
                 link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff'
             },			
+            {
+                name: 'Double Q-Learning',
+                link: '/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning'
+            },			
         ]
     },
     {
