@@ -72,6 +72,14 @@
   drawSpecifiedSamples();
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Double Q-learning</title>
+  <meta
+    name="description"
+    content="Some reinforcement learning algorithms suffer from the overestimation bias. Double Q-learning is a technique that reduces the bias by introducing double estimators for the action value function."
+  />
+</svelte:head>
+
 <h1>Double Q-Learning</h1>
 <Question
   >What is overestimation bias and how can double Q-learning help?</Question
