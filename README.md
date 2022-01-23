@@ -22,8 +22,8 @@
 - [ ] Deep Learning Section
     - [ ] Create Course Outline for next years (2023-2024)
 - [ ] Reinforcement Learning Block
-    - [ ] DQN
-    - [ ] Double DQN
+    - [x] DQN
+    - [x] Double DQN
     - [ ] Duelling DQN
     - [ ] Prioritized Experiece Replay
     - [ ] Rainbow
