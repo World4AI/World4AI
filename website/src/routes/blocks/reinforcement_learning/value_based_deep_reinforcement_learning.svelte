@@ -2,10 +2,10 @@
   import Question from "$lib/Question.svelte";
 
   let timeline = [
-    { time: 2015, content: "DQN" },
-    { time: 2016, content: "DDQN" },
-    { time: 2015, content: "Prioritized DDQN" },
-    { time: 2016, content: "Duelling DDQN" },
+    { time: "2013, 2015", content: "DQN" },
+    { time: 2016, content: "Double DQN" },
+    { time: 2016, content: "Duelling DQN" },
+    { time: 2015, content: "Prioritized Experience Replay" },
     { time: 2016, content: "AC3" },
     { time: 2017, content: "Distributional DQN" },
     { time: 2017, content: "Noisy DQN" },
@@ -37,8 +37,8 @@
   difference learning algorithms the first choice for many problemns. This
   trajectory started with the development of the deep Q-network (DQN) by
   DeepMind. Since then each new iteration of the algorithm provided a new
-  separate improvement, a piece of the puzzle. All of those pieces were
-  eventually combined by DeepMind into the so called Rainbow algorithm.
+  improvement, a piece of the puzzle. All of those pieces were eventually
+  combined by DeepMind into the so called Rainbow algorithm.
 </p>
 <div class="timeline">
   {#each timeline as paper, idx}
@@ -61,6 +61,21 @@
   improvement separately until we are able to implement a fully featured Rainbow
   algorithm.
 </p>
+<p>
+  Before we move on to the discussions and implementations of the individual
+  algorithms let us shortly discuss the approach that we are going to take in
+  the subsequent chapters. Some of the discussed algorithms built upon the
+  previous findings. For example the duelling DQN used the double DQN and not
+  the original vanilla DQN as the basis for improvement. In research this
+  approach is desirable, as you need to show that your contributions are able to
+  improve the current state of the art implementation. We are going to cover
+  each of the sections independently. Only the original DQN is going to serve as
+  the basis for each of the the improvements. In our opinion this makes
+  didactically more sense, as we only need to focus on one piece of the puzzle.
+  The combination of the different improvements is going to be implemented in
+  the final chapter of this section, the Rainbow algorithm.
+</p>
+<div class="separator" />
 
 <style>
   .timeline {
