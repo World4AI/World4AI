@@ -11,6 +11,21 @@
     [2, 1.5],
     [3, 3],
   ];
+
+  let config = {
+    parameters: {
+      0: { layer: 0, type: "input", count: 4, annotation: "Input" },
+      1: { layer: 1, type: "fc", count: 7, input: [0] },
+      2: { layer: 2, type: "fc", count: 5, input: [1] },
+      3: {
+        layer: 3,
+        input: [2],
+        type: "fc",
+        count: 1,
+        annotation: "Q(s, a)",
+      },
+    },
+  };
 </script>
 
 <svelte:head>
@@ -123,7 +138,7 @@
   > as the input and apply several linear transformations and non-linear activation
   functions in succession until a single state or action value is produced.
 </p>
-<NeuralNetwork />
+<NeuralNetwork {config} />
 
 <p>
   The challenge of reinforcement learning is to find the correct weight vector <Latex

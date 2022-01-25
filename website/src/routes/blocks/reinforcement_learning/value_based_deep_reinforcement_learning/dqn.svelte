@@ -5,6 +5,35 @@
   import CartPole from "$lib/reinforcement_learning/CartPole.svelte";
   import MemoryBuffer from "./_dqn/MemoryBuffer.svelte";
   import MovingTarget from "./_dqn/MovingTarget.svelte";
+
+  let configOrig = {
+    parameters: {
+      0: { layer: 0, type: "input", count: 5, annotation: "Input" },
+      1: { layer: 1, type: "fc", count: 7, input: [0] },
+      2: { layer: 2, type: "fc", count: 5, input: [1] },
+      3: {
+        layer: 3,
+        input: [2],
+        type: "fc",
+        count: 1,
+        annotation: "Q(s, a)",
+      },
+    },
+  };
+  let configDQN = {
+    parameters: {
+      0: { layer: 0, type: "input", count: 4, annotation: "Input" },
+      1: { layer: 1, type: "fc", count: 7, input: [0] },
+      2: { layer: 2, type: "fc", count: 5, input: [1] },
+      3: {
+        layer: 3,
+        input: [2],
+        type: "fc",
+        count: 2,
+        annotation: "Q(s, a)",
+      },
+    },
+  };
 </script>
 
 <svelte:head>
@@ -85,7 +114,7 @@
   output layer is a single neuron that represents the action value of the state
   action combination.
 </p>
-<NeuralNetwork layers={[5, 10, 10, 1]} />
+<NeuralNetwork config={configOrig} />
 <p>
   The architecture above is theoretically sound, but has a significant practical
   drawback. In order to improve the policy the agent needs to act greedy with
@@ -102,7 +131,7 @@
   The below architecture on the other hand is the one that is similar in spirit
   to the solution that DeepMind ended up using for DQN.
 </p>
-<NeuralNetwork layers={[4, 10, 10, 2]} />
+<NeuralNetwork config={configDQN} />
 <p>
   The input of the neural network consists only of the state representation<Latex
     >{String.raw`\mathbf{x}`}</Latex
