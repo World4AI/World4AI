@@ -1,11 +1,20 @@
 <script>
   import Button from "$lib/Button.svelte";
+  export let prioritized = false;
   let width = 700;
   let height = 250;
 
   let timeStep = 5;
   let bufferMaxLen = 15;
   let batchLen = 3;
+  let priorityLen = 3;
+
+  let maxPriority = 0;
+  let priority = [0, 0, 0, 0, 0, 0];
+  if (prioritized) {
+    maxPriority = 20;
+    priority = [1, 1, 2, 4, 3, 5];
+  }
 
   let buffer = [5, 4, 3, 2, 1, 0];
   let batch = [2, 1, 4];
@@ -17,18 +26,28 @@
   let bufferLeftStart = (width - (boxSize + gap) * bufferMaxLen) / 2;
   let batchLeftStart = (width - (boxSize + gap) * batchLen) / 2;
   let y = height - boxSize - yGap;
+  let containerY = height - boxSize - priorityLen * maxPriority - yGap;
   let yBatch = boxSize;
 
   function handleClick() {
     timeStep += 1;
     if (buffer.length >= bufferMaxLen) {
       buffer.pop();
+      priority.pop();
     }
     buffer = [timeStep, ...buffer];
+    let importance = maxPriority;
+    priority = [importance, ...priority];
 
     batch = [];
     while (true) {
-      let index = Math.floor(Math.random() * buffer.length);
+      let index;
+      index = Math.floor(Math.random() * buffer.length);
+      if (prioritized && priority[index] < 3) {
+        continue;
+      } else {
+      }
+
       if (batch.indexOf(index) === -1) {
         batch.push(index);
       }
@@ -36,6 +55,10 @@
         break;
       }
     }
+    batch.forEach((idx) => {
+      let reducePriority = Math.floor(Math.random() * buffer.length);
+      priority[idx] = Math.max(priority[idx] - reducePriority, 0);
+    });
   }
 </script>
 
@@ -45,9 +68,9 @@
     fill="none"
     stroke="var(--text-color)"
     x={bufferLeftStart - containerGap}
-    y={y - containerGap}
+    y={containerY - containerGap}
     width={bufferMaxLen * (boxSize + gap) + containerGap}
-    height={boxSize + containerGap * 2}
+    height={boxSize + priorityLen * maxPriority + containerGap * 2}
   />
   <!-- LINES -->
   {#each batch as experience, idx}
@@ -57,7 +80,7 @@
       x1={batchLeftStart + boxSize / 2 + idx * (boxSize + gap)}
       y1={yBatch + boxSize}
       x2={bufferLeftStart + boxSize / 2 + experience * (boxSize + gap)}
-      y2={y}
+      y2={y - priority[experience] * priorityLen}
     />
   {/each}
   <!-- BATCH -->
@@ -108,9 +131,9 @@
       stroke="black"
       fill="var(--main-color-1)"
       x={bufferLeftStart + idx * (boxSize + gap)}
-      {y}
+      y={y - priority[idx] * priorityLen}
       width={boxSize}
-      height={boxSize}
+      height={boxSize + priority[idx] * priorityLen}
     />
     <text
       stroke="none"
