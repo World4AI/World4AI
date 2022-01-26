@@ -24,8 +24,8 @@
 - [ ] Reinforcement Learning Block
     - [x] DQN
     - [x] Double DQN
-    - [ ] Duelling DQN
-    - [ ] Prioritized Experiece Replay
+    - [x] Duelling DQN
+    - [x] Prioritized Experiece Replay
     - [ ] Rainbow
     - [ ] Policy Gradient and Reinforce
     - [ ] A2C and A3C
