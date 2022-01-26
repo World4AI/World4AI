@@ -13,7 +13,7 @@
   let priority = [0, 0, 0, 0, 0, 0];
   if (prioritized) {
     maxPriority = 20;
-    priority = [1, 1, 2, 4, 3, 5];
+    priority = [20, 16, 16, 10, 8, 8];
   }
 
   let buffer = [5, 4, 3, 2, 1, 0];
