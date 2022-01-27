@@ -262,6 +262,20 @@ const programming = [
             },
         ]
     },
+    {
+        name: 'Control Flow',
+        link: '/blocks/programming/control_flow',
+        links: [
+            {
+                name: 'Conditions',
+                link: '/blocks/programming/control_flow/conditions'
+            },
+            {
+                name: 'Loops',
+                link: '/blocks/programming/control_flow/loops'
+            },
+        ]
+    },
 ];
 
 export {rl, programming}
