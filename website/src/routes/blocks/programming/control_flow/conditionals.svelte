@@ -52,7 +52,7 @@
 <p>
   Conditionals are the programming tools that are used for that purpose.
   Conditionals evaluate boolean variables and allow or disallow the program to
-  access certain part of the code based on the value of a the boolean. Python
+  access certain part of the code based on the value of the boolean. Python
   provides the following conditionals: <Highlight>if</Highlight>, <Highlight
     >elif</Highlight
   > and <Highlight>else</Highlight> statements.
