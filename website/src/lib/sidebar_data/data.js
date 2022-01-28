@@ -267,8 +267,8 @@ const programming = [
         link: '/blocks/programming/control_flow',
         links: [
             {
-                name: 'Conditions',
-                link: '/blocks/programming/control_flow/conditions'
+                name: 'Conditionals',
+                link: '/blocks/programming/control_flow/conditionals'
             },
             {
                 name: 'Loops',
