@@ -13,8 +13,8 @@
 ## Roadmap 2022 and beyond
 
 - [ ] Python Block
-    - [ ] Control Flow
-    - [ ] Loops 
+    - [x] Control Flow
+    - [x] Loops 
     - [ ] OOP
     - [ ] Numpy
 - [ ] Mathematics Block
