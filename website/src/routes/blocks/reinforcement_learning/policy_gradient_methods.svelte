@@ -2,46 +2,51 @@
   import Question from "$lib/Question.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Policy Gradient Methods</title>
+  <meta
+    name="description"
+    content="Policy gradient methods allow us to estimate and improve the policy directly without the need for a value function. Policy gradient methods are usually more stable than value based methods, but show hight variance."
+  />
+</svelte:head>
+
 <h1>Policy Gradient Methods</h1>
-<Question>What are policy gradient methods?</Question>
+<Question>What are policy gradient methods and why do we need them?</Question>
 <div class="separator" />
 
 <p>
-  The methods we have considered so far were focused on estimating the value
-  functions of a policy. The policy of the agent was determined implicitly by
-  evaluating state-action pairs. In this chapter we are going to introduce
-  methods that will allow us to learn the policy directly without using value
-  functions.
+  The methods we have considered so far were designed to estimate the value
+  function of a policy. The policy of the agent was determined implicitly by
+  evaluating state-action pairs and taking the actions with the highest action
+  value. In this chapter we are going to study methods that will allow us to
+  learn the policy directly without using value functions. There are several
+  reasons why we would prefer policy based methods over value based methods.
+  Below is a subset of those reasons.
 </p>
 <p>
-  Before we move to the derivation of the policy gradient, let us discuss why it
-  might be a good idea to use policy gradient methods. Below is a list of points
-  that are often mentioned in the reinforcement learning literature and online
-  lectures.
-</p>
-<p>
-  Sometimes it is easier to estimate the policy directly, instead of estimating
-  the action value function.
-</p>
-<p>
-  Q-Learning does not easily allow the use of continuous action spaces, because
-  of the max operation to determine the best action. In policy gradient methods
-  we can sample an action from a continuous distribution.
+  Q-learning does not easily work with a large numer of actions or with
+  continuous action spaces, because of the max operation that is required to
+  determine the best action. If the action space is large or continuous the
+  maximization operation becomes very involved and the algorithm becomes very
+  inefficient. In policy gradient methods we sample an action from a probability
+  distribution, thereby removing the need for a maximization operation.
 </p>
 <p>
   It is easy to implement a stochastic policy with policy gradient methods. This
   avoids the need for an additional exploration strategy, as we can randomly
-  sample from the distribution. Through learning better actions are going to be
-  assigned higher probabilities while bad actions will be unlikely.
+  sample from the distribution and thereby explore the environment. Through
+  gradient descent better actions are going to be assigned higher probabilities
+  while bad actions will become unlikely.
 </p>
 <p>
-  Policy gradient methods have better convergence properties. When in Q-Learning
-  the action which constitutes the greedy action changes due to gradient
-  descent, the change in the shape of the value function is abrupt and might
-  destabilize training. In policy gradient methods the change of the probability
+  In Q-learning the action which constitutes the greedy action might change due
+  to gradient descent. The change of the policy might be very abrupt and might
+  thus destabilize training. In policy gradient methods we apply gradient
+  descent to the policy directly, therefore the change of the probability
   distribution of actions is relatively smooth.
 </p>
 <p>
-  Policy gradient methods have high variance, but improvements can be made to
-  decrease the variance.
+  The big disadvantage of policy gradient methods is the high variance, but
+  adjustments to the naive implementation can be made to decrease the variance.
 </p>
+<div class="separator" />
