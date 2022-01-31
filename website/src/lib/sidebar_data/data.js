@@ -154,6 +154,28 @@ const rl = [
                 link: '/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay'
             },			
         ]
+    },
+    {
+        name: 'Policy Gradient Methods',
+        link: '/blocks/reinforcement_learning/policy_gradient_methods',
+        links: [
+            {
+                name: 'Policy Gradient Intuition',
+                link: '/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition'
+            },
+            {
+                name: 'Policy Gradient Derivation',
+                link: '/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation'
+            },
+            {
+                name: 'REINFORCE',
+                link: '/blocks/reinforcement_learning/policy_gradient_methods/reinforce'
+            },
+            {
+                name: 'Baseline',
+                link: '/blocks/reinforcement_learning/policy_gradient_methods/baseline'
+            },			
+        ]
     }
 ];
 
