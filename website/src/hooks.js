@@ -21,12 +21,14 @@ const minification_options = {
 	removeEmptyElements: true
 };
 
-export async function handle({ request, resolve }) {
-  const response = await resolve(request);
+export async function handle({ event, resolve }) {
+  const response = await resolve(event);
 
-  if (prerendering && response.headers['content-type'] === 'text/html') {
+  if (prerendering && response.headers.get('content-type').startsWith('text/html')) {
     response.body = minify(response.body, minification_options);
   }
 
   return response;
 }
+
+
