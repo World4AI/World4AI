@@ -175,11 +175,9 @@
   }
 
   let tree;
-  let mounted = false;
-  onMount(() => {
+  $: if (policy) {
     tree = buildTree();
-    mounted = true;
-  });
+  }
 
   // data for tables
   let modelHeader = [
@@ -314,9 +312,7 @@
   we can not influence.
 </p>
 <!-- Show model tree -->
-{#if mounted}
-  <MDPTree root={tree} {active} />
-{/if}
+<MDPTree root={tree} {active} />
 <label>
   {state1ProbLeft}
   <input type="range" bind:value={state1ProbLeft} min="0" max="100" />
