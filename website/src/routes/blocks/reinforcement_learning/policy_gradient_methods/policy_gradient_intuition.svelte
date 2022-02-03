@@ -2,7 +2,7 @@
   import Question from "$lib/Question.svelte";
   import Table from "$lib/Table.svelte";
   import MDPTree from "$lib/reinforcement_learning/MDPTree.svelte";
-  import Highlight from "$lib/Highlight.svelte";
+  import { onMount } from "svelte";
 
   //Grid configuration
   let gridWidth = 350;
@@ -22,19 +22,24 @@
   // tree configuration
   let startState = 1;
   let maxLevels = 5;
+  //the acvive path of the tree
+  let active = null;
 
-  let policy = {
+  let state1ProbLeft = 50;
+  let state2ProbLeft = 50;
+
+  $: policy = {
     0: [
       { action: 0, probability: 0.5 },
       { action: 1, probability: 0.5 },
     ],
     1: [
-      { action: 0, probability: 0.5 },
-      { action: 1, probability: 0.5 },
+      { action: 0, probability: state1ProbLeft / 100 },
+      { action: 1, probability: (100 - state1ProbLeft) / 100 },
     ],
     2: [
-      { action: 0, probability: 0.5 },
-      { action: 1, probability: 0.5 },
+      { action: 0, probability: state2ProbLeft / 100 },
+      { action: 1, probability: (100 - state2ProbLeft) / 100 },
     ],
     3: [
       { action: 0, probability: 0.5 },
@@ -76,80 +81,104 @@
   };
 
   // build the markov decision model in a tree structure using recursion
-  let startTree = {
-    level: 1,
-    type: "state",
-    value: startState,
-    prevValue: null,
-    children: [],
-  };
-  //the array will contain all possible paths
-  let pathsProbs = [];
-  let pathsRewards = [];
-  function createTree(maxLevel, node, pathProb, pathReward) {
-    if (node.level >= maxLevel) {
-      pathsProbs.push(pathProb);
-      pathsRewards.push(pathReward);
-      return;
-    }
-    let childNode = {};
-    if (node.type === "state") {
-      let actions = policy[node.value];
-      actions.forEach((action) => {
-        childNode = {
-          level: node.level + 1,
-          type: "action",
-          value: action.action,
-          prevValue: node.value,
-          probability: action.probability,
-          children: [],
-        };
-        node.children.push(childNode);
-        let newProbPath = [...pathProb];
-        newProbPath.push(action.probability);
-        createTree(maxLevel, childNode, newProbPath, pathReward);
-      });
-    } else if (node.type === "action") {
-      let nextStates = model[node.prevValue][node.value];
-      nextStates.forEach((nextState) => {
-        childNode = {
-          level: node.level + 1,
-          type: "state",
-          reward: rewards[nextState.nextState],
-          value: nextState.nextState,
-          prevValue: node.value,
-          probability: nextState.probability,
-          children: [],
-        };
-        node.children.push(childNode);
-        let newPathProb = [...pathProb];
-        let newPathReward = [...pathReward];
-        newPathProb.push(nextState.probability);
-        newPathReward.push(rewards[nextState.nextState]);
-        if (!nextState.terminal) {
-          createTree(maxLevel, childNode, newPathProb, newPathReward);
-        } else {
-          pathsProbs.push(newPathProb);
-          pathsRewards.push(newPathReward);
+  function buildTree() {
+    let startTree = {
+      level: 1,
+      type: "state",
+      value: startState,
+      allRewards: [],
+      allProbabilities: [],
+      prevExpectation: 1,
+      children: [],
+    };
+    // the variable is used to determine which path a node belongs two
+    // for example the top most node is part of all paths
+    let pathNum = 0;
+    let productReducer = (prev, current) => prev * current;
+    let sumReducer = (prev, current) => prev + current;
+    function createTree(maxLevel, node) {
+      if (node.level >= maxLevel || node.terminal) {
+        // remember the path number
+        pathNum += 1;
+        if (!node.paths) {
+          node.paths = [];
         }
+        node.paths.push(pathNum);
+
+        //calcualate the expectation contribution of the path
+        let pathProb = node.allProbabilities.reduce(productReducer, 1);
+        let pathReturn = node.allRewards.reduce(sumReducer, 0);
+        node.expectation = pathProb * pathReturn;
+
+        return [pathNum];
+      }
+      let pathsNumbers = [];
+      let expectation = 0;
+      let childNode = {};
+      if (node.type === "state") {
+        let actions = policy[node.value];
+        actions.forEach((action) => {
+          childNode = {
+            level: node.level + 1,
+            type: "action",
+            value: action.action,
+            prevValue: node.value,
+            allRewards: [...node.allRewards],
+            allProbabilities: [...node.allProbabilities, action.probability],
+            probability: action.probability,
+            marked: false,
+            children: [],
+          };
+          node.children.push(childNode);
+          let path = createTree(maxLevel, childNode);
+          expectation += childNode.expectation;
+          path.flat().forEach((num) => {
+            pathsNumbers.push(num);
+          });
+        });
+      } else if (node.type === "action") {
+        let nextStates = model[node.prevValue][node.value];
+        nextStates.forEach((nextState) => {
+          childNode = {
+            level: node.level + 1,
+            type: "state",
+            reward: rewards[nextState.nextState],
+            value: nextState.nextState,
+            prevValue: node.value,
+            allRewards: [...node.allRewards, rewards[nextState.nextState]],
+            allProbabilities: [...node.allProbabilities, nextState.probability],
+            probability: nextState.probability,
+            terminal: nextState.terminal,
+            marked: false,
+            children: [],
+          };
+          node.children.push(childNode);
+          let path = createTree(maxLevel, childNode);
+          expectation += childNode.expectation;
+          path.flat().forEach((num) => {
+            pathsNumbers.push(num);
+          });
+        });
+      }
+
+      if (!node.paths) {
+        node.paths = [];
+      }
+      pathsNumbers.forEach((num) => {
+        node.paths.push(num);
       });
+      node.expectation = expectation;
+      return pathsNumbers;
     }
+    createTree(maxLevels, startTree);
+    return startTree;
   }
 
-  createTree(maxLevels, startTree, [], []);
-  let tree = startTree;
-  const prodReducer = (prev, current) => prev * current;
-  const sumReducer = (prev, current) => prev + current;
-  let prodProbabilities = pathsProbs.map((path) => {
-    return path.reduce(prodReducer, 1);
-  });
-
-  let sumRewards = pathsRewards.map((path) => {
-    return path.reduce(sumReducer, 0);
-  });
-
-  let pathExpectations = prodProbabilities.map((prob, idx) => {
-    return prob * sumRewards[idx];
+  let tree;
+  let mounted = false;
+  onMount(() => {
+    tree = buildTree();
+    mounted = true;
   });
 
   // data for tables
@@ -271,46 +300,39 @@
   with the corresponding rewards. The smaller cirlces are the possible actions,
   where the left circles represent the movement to the left and vice versa.
   Below the large state circles is a little map that indicates the location of
-  the agent.
+  the agent. The two components that you should notice are the red and blue
+  numbers. The red numbers are the probabilities to take a certain action in a
+  state. These are the numbers we actually have control over and would like to
+  optimize. The blue numbers are the expectated returns. The expected return
+  under the top node is the overall expected return from the starting state. All
+  the other blue values are the corresponding contributions to the expected
+  return. Essentially each individual blue number is the sum of the blue numbers
+  below and the expected values at the bottom are the expectations for that
+  particular path, that we can calculate if we multiply the probability of the
+  path with the sum of rewards in that path. The white numbers outside the
+  circles are the probabilities to transition into the next state. These numbers
+  we can not influence.
 </p>
 <!-- Show model tree -->
-<MDPTree root={tree} />
+{#if mounted}
+  <MDPTree root={tree} {active} />
+{/if}
+<label>
+  {state1ProbLeft}
+  <input type="range" bind:value={state1ProbLeft} min="0" max="100" />
+</label>
+<label>
+  {state2ProbLeft}
+  <input type="range" bind:value={state2ProbLeft} min="0" max="100" />
+</label>
 <p>
-  The right path is the only one that produces a positive sum of rewards,
-  therefore our job is to find an algorithm that maximizes the likelihood of
-  traversing that path.
+  The goal of reinforcement learning is to maximize the expected return, we have
+  therefore to maximize the upper blue value in the drawing above.
 </p>
-
-{#each pathsProbs as pathProb, pathIdx}
-  <p class="path path-highlight">
-    Path Nr {pathIdx + 1}:
-    <Highlight>
-      {#each pathProb as prob, itemIdx}
-        ({prob})
-        {#if itemIdx < pathProb.length - 1}
-          *
-        {/if}
-      {/each}
-      * (
-      {#each pathsRewards[pathIdx] as reward, itemIdx}
-        ({reward})
-        {#if itemIdx < pathsRewards[pathIdx].length - 1}
-          +
-        {/if}
-      {/each}
-      ) = {pathExpectations[pathIdx].toFixed(2)}
-    </Highlight>
-  </p>
-{/each}
 <div class="separator" />
 
 <style>
   svg {
     max-width: 700px;
-  }
-
-  .path.path-highlight {
-    line-height: 1;
-    font-size: 20px;
   }
 </style>
