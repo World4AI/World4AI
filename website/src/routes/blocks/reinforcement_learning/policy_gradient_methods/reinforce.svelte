@@ -3,6 +3,14 @@
   import Latex from "$lib/Latex.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | REINFORCE Algorithm</title>
+  <meta
+    name="description"
+    content="REINFORCE is one of the basic implementations of the policy gradient algorithms developed by Ronald J. Williams."
+  />
+</svelte:head>
+
 <h1>REINFORCE</h1>
 <Question
   >What improvement does the REINFORCE algorithm introduce and how can we
@@ -32,14 +40,17 @@
 
 <p>
   The policy gradient is calculated by multiplying the gradient of the log
-  probability of an action <Latex>A_t</Latex> given the state <Latex>S_t</Latex>
-  with the return from the whole trajectory <Latex>\sum_t^H R_t</Latex>. The
-  return of the trajectory can be decomposed into two distinct parts. The return
-  that was already realized and can not be changed <Latex
+  probability of an action with the return from the whole trajectory <Latex
+    >R(\tau)</Latex
+  >. But that does not make a lot of sense, because the action at timepoint <Latex
+    >t</Latex
+  > can not any impact any of the rewards that were made before. We are going to
+  decompose the return of the trajectory into two distinct parts. The return that
+  was already realized and can not be changed <Latex
     >{String.raw`\sum_{(k = 0)}^{t} R_k`}</Latex
   >
-  and the return that is still to be earned and is going to be generated from the
-  next step onward <Latex>{String.raw`\sum_{k=t+1}^{H} R_k`}</Latex>.
+  and the return that is is going to be earned in the future
+  <Latex>{String.raw`\sum_{k=t+1}^{H} R_k`}</Latex>.
 </p>
 <Latex
   >{String.raw`
@@ -51,8 +62,8 @@
 >
 <p>
   There is no need to multiply the log probability of an action with the past
-  return. The action has no impact on the past. It turns out that ignoring past
-  returns reduces the variance.
+  return. Just as with real life the action has no impact on the past. It turns
+  out that ignoring past returns reduces the variance.
 </p>
 <div class="separator" />
 
@@ -67,9 +78,14 @@
 >
 <p>
   The second adjustment to the policy gradient algorithm that we are going to
-  make is the introduction of discounting. Discounting that we have already seen
-  with dynamic programming and q-learning accounts for the time value of
-  rewards. Additionally discounting reduces variance in policy gradients
-  methods.
+  make is to introduce discounting. Discounting accounts for the time value of
+  rewards and additionally reduces the variance in policy gradients methods.
+</p>
+<div class="separator" />
+
+<h2>REINFORCE</h2>
+<p>
+  The temporal decomposition and the introduction of discounting leads to an
+  algorithm which is often called REINFORCE.
 </p>
 <div class="separator" />
