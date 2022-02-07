@@ -176,7 +176,21 @@ const rl = [
                 link: '/blocks/reinforcement_learning/policy_gradient_methods/baseline'
             },			
         ]
-    }
+    },
+    {
+        name: 'Actor Critic Methods',
+        link: '/blocks/reinforcement_learning/actor_critic_methods',
+        links: [
+            {
+                name: 'A3C and A2C',
+                link: '/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c'
+            },
+            {
+                name: 'Generalized Advantage Estimation (GAE)',
+                link: '/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation'
+            },
+        ]
+    },
 ];
 
 const programming = [
