@@ -312,6 +312,20 @@ const programming = [
             },
         ]
     },
+    {
+        name: 'Object Oriented Programming (OOP)',
+        link: '/blocks/programming/object_oriented_programming',
+        links: [
+            {
+                name: 'Classes and Objects',
+                link: '/blocks/programming/object_oriented_programming/classes_objects'
+            },
+            {
+                name: 'The Four Pillars of OOP',
+                link: '/blocks/programming/object_oriented_programming/four_pillars'
+            },
+        ]
+    },
 ];
 
 export {rl, programming}
