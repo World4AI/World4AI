@@ -16,19 +16,29 @@
     - [x] Control Flow
     - [x] Loops 
     - [ ] OOP
-    - [ ] Numpy
 - [ ] Mathematics Block
-    - [ ] Create Course Outline for next years (2023-2024)
+    - [ ] Linear Algebra
+    - [ ] Numpy
+    - [ ] Calculus
+    - [ ] Probability and Statistics
 - [ ] Deep Learning Section
-    - [ ] Create Course Outline for next years (2023-2024)
+    - [ ] Perceptron
+    - [ ] Logistic Regression
+    - [ ] Multilayer Neural Network 
+    - [ ] Backpropagation and Gradient Descent
+    - [ ] Optimization like SGD, RMSProp and ADAM 
+    - [ ] Convolutional Neural Network 
+    - [ ] Recurrent Neural Network 
+    - [ ] Transformer and Attention 
+    - [ ] Generative Models 
 - [ ] Reinforcement Learning Block
     - [x] DQN
     - [x] Double DQN
     - [x] Duelling DQN
     - [x] Prioritized Experiece Replay
     - [ ] Rainbow
-    - [ ] Policy Gradient and Reinforce
-    - [ ] A2C and A3C
+    - [x] Policy Gradient and Reinforce
+    - [x] A2C and A3C
     - [ ] TRPO
     - [ ] PPO
     - [ ] DDPG
