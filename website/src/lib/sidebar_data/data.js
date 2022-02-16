@@ -191,6 +191,20 @@ const rl = [
             },
         ]
     },
+    {
+        name: 'Trust Region Methods',
+        link: '/blocks/reinforcement_learning/trust_region_methods',
+        links: [
+            {
+                name: 'Trust Region Policy Optimization (TRPO)',
+                link: '/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization'
+            },
+            {
+                name: 'Proximal Policy Optimization (PPO)',
+                link: '/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization'
+            },
+        ]
+    },
 ];
 
 const programming = [
