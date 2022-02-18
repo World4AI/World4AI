@@ -8,19 +8,14 @@
   >What are trust region methods and what problems are they trying to solve?</Question
 >
 <div class="separator" />
-<p class="info">
-  At the moment the section on trust region methods is largely based on the Deep
-  RL Bootcamp lecture 5 by John Schulman. In future the section is going to
-  incorporate more information from other sources to make the topics more
-  accessible.
-</p>
 <p>
-  There are two major problems that policy gradient methods display which trust
-  region methods attempt to solve.
+  Trust region methods like TRPO and PPO were invented to solve problems that
+  vanilla policy gradient methods and actor critic methods exhibit. Usually two
+  major problems are discussed.
 </p>
 <p>
   The gradient of the policy tells us the direction in which we should change
-  the weichts of our policy. On the other hand the gradient does not tell us
+  the weights of our policy. On the other hand the gradient does not tell us
   what step size we should take. When the gradient descent algorithm takes a
   relatively large step we can end with a bad performing policy. In
   reinforcement learning the data that is used for policy improvement is
@@ -37,15 +32,14 @@
 </p>
 <Latex
   >{String.raw`
-    \nabla_{\theta} J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}}\Big[\sum_t^H \nabla_{\theta} \log \pi_{\theta} R(\tau)\Big]
+    \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}}\Big[\nabla_{\theta} \log \pi_{\theta} A_{\theta}\Big]
   `}</Latex
 >
 <p>
   When we look at the definition of the gradient in the equation above, we
   realize that the reason for our inability to use old experiences is the need
-  to calculate the expectation based on parameters <Latex>\theta</Latex>: <Latex
-    >{String.raw`\tau \sim \pi_{\theta}`}</Latex
-  >. Each time we take a gradient descent step we create a new policy with new
+  to calculate the expectation based on parameters <Latex>\theta</Latex>. Each
+  time we take a gradient descent step we create a new policy with new
   parameters while the old experiences were collected with the old parameters.
   The trust region methods that we are going to cover will be able to utilize
   experiences several times and thus increase sample efficiency.
