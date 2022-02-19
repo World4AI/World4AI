@@ -3,6 +3,16 @@
   import Latex from "$lib/Latex.svelte";
 </script>
 
+<svelte:head>
+  <title
+    >World4AI | Reinforcement Learning | Trust Region Policy Optimization</title
+  >
+  <meta
+    name="description"
+    content="Trust Region Policy Optimization (TRPO) is one of the most efficient reinforcement learning algorithms. The main idea is to define a surrogate loss function, which allows to use trajectories sampled from an old policy."
+  />
+</svelte:head>
+
 <h1>Trust Region Policy Optimization (TRPO)</h1>
 <Question
   >How does TRPO solve the problems that are inherent to policy gradient

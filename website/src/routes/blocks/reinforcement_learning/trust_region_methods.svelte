@@ -3,6 +3,14 @@
   import Latex from "$lib/Latex.svelte";
 </script>
 
+<svelte:head>
+  <title>World4AI | Reinforcement Learning | Trust Region Methods</title>
+  <meta
+    name="description"
+    content="Trust Region Methods attempt to solve problems that are common to common policy gradient methods: sample inefficiency and a high chance of performance collapse"
+  />
+</svelte:head>
+
 <h1>Trust Region Methods</h1>
 <Question
   >What are trust region methods and what problems are they trying to solve?</Question
