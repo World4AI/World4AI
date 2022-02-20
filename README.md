@@ -15,12 +15,15 @@
 - [ ] Python Block
     - [x] Control Flow
     - [x] Loops 
-    - [ ] OOP
+    - [x] OOP
+
 - [ ] Mathematics Block
     - [ ] Linear Algebra
     - [ ] Numpy
     - [ ] Calculus
     - [ ] Probability and Statistics
+    - [ ] Information Theory
+
 - [ ] Deep Learning Section
     - [ ] Perceptron
     - [ ] Logistic Regression
@@ -31,6 +34,8 @@
     - [ ] Recurrent Neural Network 
     - [ ] Transformer and Attention 
     - [ ] Generative Models 
+    - [ ] Graph Neural Networks
+
 - [ ] Reinforcement Learning Block
     - [x] DQN
     - [x] Double DQN
@@ -39,8 +44,8 @@
     - [ ] Rainbow
     - [x] Policy Gradient and Reinforce
     - [x] A2C and A3C
-    - [ ] TRPO
-    - [ ] PPO
+    - [x]  TRPO
+    - [x] PPO
     - [ ] DDPG
     - [ ] TD3
     - [ ] Soft Actor-Critic
