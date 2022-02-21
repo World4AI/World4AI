@@ -56,7 +56,7 @@
             <li>
               <a
                 class:selected={path === "/blocks/mathematics"}
-                href="/blocks/mathematics">Mathematics</a
+                href="/blocks/mathematics/introduction">Mathematics</a
               >
             </li>
             <li>
