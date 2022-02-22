@@ -371,6 +371,22 @@ const mathematics = [
         name: 'Information Theory',
         link: '/blocks/mathematics/information_theory',
         links: [
+          {
+            name: 'Information',
+            link: '/blocks/mathematics/information_theory/information'
+          },
+          {
+            name: 'Entropy',
+            link: '/blocks/mathematics/information_theory/entropy'
+          },
+          {
+            name: 'Cross Entropy',
+            link: '/blocks/mathematics/information_theory/cross_entropy'
+          },
+          {
+            name: 'KL Divergence',
+            link: '/blocks/mathematics/information_theory/kl_divergence'
+          },
         ]
     },
 ];
