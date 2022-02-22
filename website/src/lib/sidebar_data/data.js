@@ -351,25 +351,25 @@ const mathematics = [
     },
     {
         name: 'Linear Algebra',
-        link: '/blocks/mathematics/linear_algebra/',
+        link: '/blocks/mathematics/linear_algebra',
         links: [
         ]
     },
     {
         name: 'Calculus',
-        link: '/blocks/mathematics/calculus/',
+        link: '/blocks/mathematics/calculus',
         links: [
         ]
     },
     {
         name: 'Probability Theory',
-        link: '/blocks/mathematics/probability_theory/',
+        link: '/blocks/mathematics/probability_theory',
         links: [
         ]
     },
     {
         name: 'Information Theory',
-        link: '/blocks/mathematics/information_theory/',
+        link: '/blocks/mathematics/information_theory',
         links: [
         ]
     },
