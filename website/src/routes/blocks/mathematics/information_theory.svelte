@@ -10,6 +10,7 @@
   />
 </svelte:head>
 
+<p class="info">Work in progress!</p>
 <h1>Information Theory</h1>
 <Question
   >What is information theory and why is it relevant to artificial intelligence?</Question
