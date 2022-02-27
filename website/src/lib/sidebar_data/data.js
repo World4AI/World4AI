@@ -391,4 +391,12 @@ const mathematics = [
     },
 ];
 
-export {rl, programming, mathematics}
+const dl = [
+    {
+        name: 'Introduction',
+        link: '/blocks/deep_learning/introduction',
+        links: [
+        ]
+    },
+]
+export {rl, dl, programming, mathematics}

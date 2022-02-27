@@ -62,7 +62,7 @@
             <li>
               <a
                 class:selected={path === "/blocks/deep_learning"}
-                href="/blocks/deep_learning">Deep Learning</a
+                href="/blocks/deep_learning/introduction">Deep Learning</a
               >
             </li>
             <li>
