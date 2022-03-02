@@ -1,12 +1,13 @@
 <script>
   import Question from "$lib/Question.svelte";
+  import Highlight from "$lib/Highlight.svelte";
 </script>
 
 <svelte:head>
   <title>World4AI | Mathematics | Introduction</title>
   <meta
     name="description"
-    content="Artificial Intelligence requires fundamental mathematical skills, like linear algebra, calculus and probability theory. "
+    content="Artificial Intelligence requires fundamental mathematical skills, like linear algebra, calculus and probability theory."
   />
 </svelte:head>
 
@@ -122,5 +123,26 @@
     stroke-width="1px"
   />
 </svg>
-
+<p>
+  The question whether we need to learn mathematics in order to understand
+  artificial intelligence seems strange, because for the most part <Highlight
+    >artificial intelligence is mathematics</Highlight
+  >. If we take deep learning for example, the training of a neural network
+  consists of matrix multiptlications, non linear activation functions, gradient
+  descent and so on. Admittedly, at this point in time we can get away without
+  an in-depth knowledge of mathematics by utilizing one of the deep learning
+  frameworks and we could still produce good results. If you are an absolute
+  beginner, then this approach is not necessarily bad. You can gather some
+  practical experience and feel a sense of accoplishment. But the farther you
+  progress, the more you will realize that a good grasp of mathematical methods
+  is a prerequisite to become proficient in the field of artificial
+  intelligence. The good part is that you can learn mathematics and machine
+  learning in parallel. That way you have a way to relate abstract mathematical
+  ideas to practical ai applications. For example if you study deep learning,
+  linear algebra makes a lot more sense. If on the other hand you study
+  reinforcement learning, Markov chains will become more relevant. You can
+  choose for yourself if you want to dive deep into the mathematics or if you
+  would prefer to take a look at deep learning and return for the relevant
+  topics once the need arises.
+</p>
 <div class="separator" />
