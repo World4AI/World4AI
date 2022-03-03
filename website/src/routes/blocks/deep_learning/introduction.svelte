@@ -1,2 +1,2 @@
-<h1>Deep Leanring</h1>
+<h1>Deep Learning</h1>
 <div class="separator" />
