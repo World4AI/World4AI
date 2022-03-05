@@ -7,146 +7,250 @@
   viewBox="0 0 500 500"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <defs>
-    <marker id="DotL" overflow="visible" orient="auto">
-      <path
-        transform="scale(.8) translate(7.4 1)"
-        d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-        fill="var(--text-color)"
-        fill-rule="evenodd"
-        stroke="context-stroke"
-        stroke-width="1pt"
-      />
-    </marker>
-  </defs>
-  <g stroke="var(--text-color)">
-    <g fill="none" stroke-width="1px">
-      <path d="m150 150h150v90h40v40h40v-40" />
-      <path d="m350 330h-45v115h45" />
-      <path d="m355 95v60h10v90" />
+  <g stroke="var(--text-color)" stroke-width="0.2px">
+    <g fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25 375 150-300" />
+      <path d="m25 425 150-350" />
+      <path d="m25 475 150-400" />
     </g>
-    <circle
-      cx="355"
-      cy="95"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="365"
-      cy="245"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m370 90v60h10v90" fill="none" stroke-width="1px" />
-    <circle
-      cx="370"
-      cy="90"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="380"
-      cy="240"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m385 85v60h10v90" fill="none" stroke-width="1px" />
-    <circle
-      cx="385"
-      cy="85"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="395"
-      cy="235"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m400 80v60h10v90" fill="none" stroke-width="1px" />
-    <circle
-      cx="400"
-      cy="80"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="410"
-      cy="230"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m350 330-20 30v50l20 35" fill="none" stroke-width="1px" />
-    <circle
-      cx="350"
-      cy="330"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="350"
-      cy="445"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m365 330-20 30v50l20 35" fill="none" stroke-width="1px" />
-    <circle
-      cx="365"
-      cy="330"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="365"
-      cy="445"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <path d="m380 330-20 30v50l20 35" fill="none" stroke-width="1px" />
-    <circle
-      cx="380"
-      cy="330"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <circle
-      cx="380"
-      cy="445"
-      r="5.9793"
-      fill="var(--text-color)"
-      stroke-width=".51036"
-    />
-    <g fill="none" stroke-width="1px">
-      <path
-        d="m320 470v-450h30v30h30v-30h50v40h40v40h-20v70h20v80h-30v110h-20v70h-20v40z"
-        marker-mid="url(#DotL)"
-      />
-      <path
-        d="m270 30h-80v30h-30v-30h-50v50h-20v-20h-50v30h-20v50h40v20h30v30h-60v40h30v40h-40v50h10v20h20v-20h20v30h-50v50h30v80h90v-50h40v-20h30v50h50v-120h-40v-110h40v-80h-60v-50h70z"
-        marker-mid="url(#DotL)"
-      />
-      <path d="m130 150v70h20v60" />
-      <path d="m150 150v50h20v80" />
+    <g transform="translate(0,50)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25 375 150-300" />
+      <path d="m25 425 150-350" />
+      <path d="m25-25 150 100" />
     </g>
-    <g fill="var(--text-color)" stroke-width=".51036">
-      <circle cx="130" cy="150" r="5.9793" />
-      <circle cx="150" cy="150" r="5.9793" />
-      <circle cx="150" cy="280" r="5.9793" />
-      <circle cx="170" cy="285" r="5.9793" />
+    <g transform="translate(0,100)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25 375 150-300" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(0,150)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(0,200)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(0,250)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25-225 150 300" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(0,300)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25-275 150 350" />
+      <path d="m25-225 150 300" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(0,350)" fill="none">
+      <path d="m25 25 150 50" />
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25-325 150 400" />
+      <path d="m25-275 150 350" />
+      <path d="m25-225 150 300" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+    </g>
+    <g transform="translate(150)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25 375 150-300" />
+      <path d="m25 425 150-350" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,50)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25 375 150-300" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,100)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25 325 150-250" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,150)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25 275 150-200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,200)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25 225 150-150" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,250)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25 175 150-100" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,300)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25 125 150-50" />
+      <path d="m25-225 150 300" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25 125 150-50" />
+    </g>
+    <g transform="translate(150,350)" fill="none">
+      <path d="m25 75h150" />
+      <path d="m25-225 150 300" />
+      <path d="m25-175 150 250" />
+      <path d="m25-125 150 200" />
+      <path d="m25-75 150 150" />
+      <path d="m25-25 150 100" />
+      <path d="m25 25 150 50" />
+      <path d="m25-275 150 350" />
+    </g>
+    <g fill="none">
+      <path d="m325 75 150 160" />
+      <path d="m325 125 150 110" />
+      <path d="m325 175 150 60" />
+      <path d="m325 225 150 10" />
+      <path d="m325 275 150-40" />
+      <path d="m325 325 150-90" />
+      <path d="m325 375 150-140" />
+      <path d="m325 425 150-190" />
+    </g>
+    <g transform="translate(0,50)" fill="none">
+      <path d="m325 75 150 160" />
+      <path d="m325 125 150 110" />
+      <path d="m325 175 150 60" />
+      <path d="m325 225 150 10" />
+      <path d="m325 275 150-40" />
+      <path d="m325 325 150-90" />
+      <path d="m325 375 150-140" />
+      <path d="m325 25 150 210" />
+    </g>
+    <g
+      stroke="black"
+      transform="translate(-40)"
+      fill="var(--main-color-1)"
+      stroke-width="1"
+    >
+      <rect x="350" y="60" width="30" height="30" />
+      <rect x="350" y="110" width="30" height="30" />
+      <rect x="350" y="160" width="30" height="30" />
+      <rect x="350" y="210" width="30" height="30" />
+      <rect x="350" y="260" width="30" height="30" />
+      <rect x="350" y="310" width="30" height="30" />
+      <rect x="350" y="360" width="30" height="30" />
+      <rect x="350" y="410" width="30" height="30" />
+    </g>
+    <g stroke="black" fill="var(--main-color-1)" stroke-width="1">
+      <rect x="160" y="60" width="30" height="30" />
+      <rect x="160" y="110" width="30" height="30" />
+      <rect x="160" y="160" width="30" height="30" />
+      <rect x="160" y="210" width="30" height="30" />
+      <rect x="160" y="260" width="30" height="30" />
+      <rect x="160" y="310" width="30" height="30" />
+      <rect x="160" y="360" width="30" height="30" />
+      <rect x="160" y="410" width="30" height="30" />
+    </g>
+    <g stroke="black" fill="var(--main-color-1)" stroke-width="1">
+      <rect x="10" y="10" width="30" height="30" />
+      <rect x="10" y="60" width="30" height="30" />
+      <rect x="10" y="110" width="30" height="30" />
+      <rect x="10" y="160" width="30" height="30" />
+      <rect x="10" y="210" width="30" height="30" />
+      <rect x="10" y="260" width="30" height="30" />
+      <rect x="10" y="310" width="30" height="30" />
+      <rect x="10" y="360" width="30" height="30" />
+      <rect x="10" y="410" width="30" height="30" />
+      <rect x="10" y="460" width="30" height="30" />
+    </g>
+    <g stroke="black" fill="var(--main-color-1)" stroke-width="1">
+      <rect x="460" y="220" width="30" height="30" />
+      <rect x="460" y="270" width="30" height="30" />
     </g>
   </g>
 </svg>
-<div class="separator" />
