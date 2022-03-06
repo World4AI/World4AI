@@ -1,3 +1,11 @@
+<svelte:head>
+  <title>World4AI | Deep Learning | Introduction</title>
+  <meta
+    name="description"
+    content="Deep learning is the main contributer of the recent success of machine learning."
+  />
+</svelte:head>
+
 <h1>Deep Learning</h1>
 <div class="separator" />
 
@@ -254,3 +262,13 @@
     </g>
   </g>
 </svg>
+<p>
+  In the last decade we drastically improved our ability to classify images, to
+  generate text and to play video games with the help of machine learning. Deep
+  learning was the main factor that drove those developments. In this block we
+  are going to take a deep dive into artificial neural networks. We will study
+  the very first neurons that were developed in the 50's, the progress towards
+  neural networks and the backpropagation algorithm and the modern deep
+  learning, that has started in 2010's and is still going strong.
+</p>
+<div class="separator" />
