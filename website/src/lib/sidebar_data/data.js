@@ -398,5 +398,11 @@ const dl = [
         links: [
         ]
     },
+    {
+        name: 'Linear Regression',
+        link: '/blocks/deep_learning/linear_regression',
+        links: [
+        ]
+    },
 ]
 export {rl, dl, programming, mathematics}
