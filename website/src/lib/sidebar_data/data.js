@@ -396,11 +396,21 @@ const dl = [
         name: 'Introduction',
         link: '/blocks/deep_learning/introduction',
         links: [
+          {
+            name: 'History',
+            link: '/blocks/deep_learning/introduction/history'
+          }
         ]
     },
     {
         name: 'Linear Regression',
         link: '/blocks/deep_learning/linear_regression',
+        links: [
+        ]
+    },
+    {
+        name: 'Perceptron',
+        link: '/blocks/deep_learning/perceptron',
         links: [
         ]
     },
