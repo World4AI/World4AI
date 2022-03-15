@@ -414,5 +414,23 @@ const dl = [
         links: [
         ]
     },
+    {
+        name: 'Logistic Regression',
+        link: '/blocks/deep_learning/logistic_regression',
+        links: [
+        ]
+    },
+    {
+        name: 'Neural Network',
+        link: '/blocks/deep_learning/neural_network',
+        links: [
+        ]
+    },
+    {
+        name: 'Backpropagation',
+        link: '/blocks/deep_learning/backpropagation',
+        links: [
+        ]
+    },
 ]
 export {rl, dl, programming, mathematics}
