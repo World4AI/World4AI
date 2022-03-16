@@ -432,5 +432,17 @@ const dl = [
         links: [
         ]
     },
+    {
+        name: 'Convolutional Neural Networks',
+        link: '/blocks/deep_learning/convolutional_neural_networks',
+        links: [
+        ]
+    },
+    {
+        name: 'Recurrent Neural Networks',
+        link: '/blocks/deep_learning/recurrent_neural_networks',
+        links: [
+        ]
+    },
 ]
 export {rl, dl, programming, mathematics}
