@@ -444,5 +444,17 @@ const dl = [
         links: [
         ]
     },
+    {
+        name: 'Generative Models',
+        link: '/blocks/deep_learning/generative_models',
+        links: [
+        ]
+    },
+    {
+        name: 'Attention',
+        link: '/blocks/deep_learning/attention',
+        links: [
+        ]
+    },
 ]
 export {rl, dl, programming, mathematics}
