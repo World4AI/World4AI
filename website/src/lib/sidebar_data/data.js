@@ -456,5 +456,11 @@ const dl = [
         links: [
         ]
     },
+    {
+        name: 'Graph Neural Networks',
+        link: '/blocks/deep_learning/graph_neural_networks',
+        links: [
+        ]
+    },
 ]
 export {rl, dl, programming, mathematics}
