@@ -25,7 +25,9 @@
     - [ ] Information Theory
 
 - [ ] Deep Learning Section
+    - [ ] Deep Learning History 
     - [ ] Perceptron
+    - [ ] Linear Regression Transformer and Attention
     - [ ] Logistic Regression
     - [ ] Multilayer Neural Network 
     - [ ] Backpropagation and Gradient Descent
