@@ -448,6 +448,22 @@ const dl = [
         name: 'Generative Models',
         link: '/blocks/deep_learning/generative_models',
         links: [
+          {
+            name: 'Autoencoders',
+            link: '/blocks/deep_learning/generative_models/autoencoders',
+          },
+          {
+            name: 'Variational Autoencoders',
+            link: '/blocks/deep_learning/generative_models/variational_autoencoders',
+          },
+          {
+            name: 'Generative Adversarial Networks',
+            link: '/blocks/deep_learning/generative_models/generative_adversarial_networks',
+          },
+          {
+            name: 'Diffusion Models',
+            link: '/blocks/deep_learning/generative_models/diffusion_models',
+          },
         ]
     },
     {
