@@ -442,6 +442,14 @@ const dl = [
         name: 'Recurrent Neural Networks',
         link: '/blocks/deep_learning/recurrent_neural_networks',
         links: [
+          {
+            name: 'Long Short-Term Memory',
+            link: '/blocks/deep_learning/recurrent_neural_networks/long_short_term_memory',
+          },
+          {
+            name: 'Gated Recurrent Units',
+            link: '/blocks/deep_learning/recurrent_neural_networks/gated_recurrent_units',
+          },
         ]
     },
     {
