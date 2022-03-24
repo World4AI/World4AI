@@ -436,6 +436,30 @@ const dl = [
         name: 'Convolutional Neural Networks',
         link: '/blocks/deep_learning/convolutional_neural_networks',
         links: [
+          {
+            name: 'LeNet',
+            link: '/blocks/deep_learning/convolutional_neural_networks/lenet',
+          },
+          {
+            name: 'AlexNet',
+            link: '/blocks/deep_learning/convolutional_neural_networks/alexnet',
+          },
+          {
+            name: 'VGG',
+            link: '/blocks/deep_learning/convolutional_neural_networks/vgg',
+          },
+          {
+            name: 'GoogleNet',
+            link: '/blocks/deep_learning/convolutional_neural_networks/googlenet',
+          },
+          {
+            name: 'ResNet',
+            link: '/blocks/deep_learning/convolutional_neural_networks/resnet',
+          },
+          {
+            name: 'EfficientNet',
+            link: '/blocks/deep_learning/convolutional_neural_networks/efficientnet',
+          },
         ]
     },
     {
