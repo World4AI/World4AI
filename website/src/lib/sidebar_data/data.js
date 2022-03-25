@@ -501,7 +501,19 @@ const dl = [
     {
         name: 'Attention',
         link: '/blocks/deep_learning/attention',
-        links: [
+        links: [ 
+          {
+            name: 'Transformer',
+            link: '/blocks/deep_learning/attention/transformer',
+          },
+          {
+            name: 'BERT',
+            link: '/blocks/deep_learning/attention/bert',
+          },
+          {
+            name: 'GPT',
+            link: '/blocks/deep_learning/attention/gpt',
+          },
         ]
     },
     {
