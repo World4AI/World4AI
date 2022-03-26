@@ -430,6 +430,10 @@ const dl = [
         name: 'Backpropagation',
         link: '/blocks/deep_learning/backpropagation',
         links: [
+          {
+            name: 'Autodiff',
+            link: '/blocks/deep_learning/backpropagation/autodiff',
+          }
         ]
     },
     {
