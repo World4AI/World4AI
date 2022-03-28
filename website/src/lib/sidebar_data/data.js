@@ -397,6 +397,10 @@ const dl = [
         link: '/blocks/deep_learning/introduction',
         links: [
           {
+            name: 'Definition',
+            link: '/blocks/deep_learning/introduction/definition'
+          },
+          {
             name: 'History',
             link: '/blocks/deep_learning/introduction/history'
           },
