@@ -515,6 +515,10 @@ const dl = [
         link: '/blocks/deep_learning/attention',
         links: [ 
           {
+            name: 'RNNs with Attention',
+            link: '/blocks/deep_learning/attention/rnn_attention',
+          },
+          {
             name: 'Transformer',
             link: '/blocks/deep_learning/attention/transformer',
           },
