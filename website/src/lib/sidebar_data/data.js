@@ -445,6 +445,28 @@ const dl = [
         ]
     },
     {
+        name: 'Optimizers',
+        link: '/blocks/deep_learning/optimizers',
+        links: [
+          {
+            name: 'SGD',
+            link: '/blocks/deep_learning/optimizers/sgd',
+          },
+          {
+            name: 'Momentum',
+            link: '/blocks/deep_learning/optimizers/momentum',
+          },
+          {
+            name: 'RMSProp',
+            link: '/blocks/deep_learning/optimizers/rmsprop',
+          },
+          {
+            name: 'Adam',
+            link: '/blocks/deep_learning/optimizers/adam',
+          },
+        ]
+    },
+    {
         name: 'Convolutional Neural Networks',
         link: '/blocks/deep_learning/convolutional_neural_networks',
         links: [
