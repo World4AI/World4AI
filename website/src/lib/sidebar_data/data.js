@@ -467,6 +467,18 @@ const dl = [
         ]
     },
     {
+        name: 'Regularization',
+        link: '/blocks/deep_learning/regularization',
+        links: [
+        ]
+    },
+    {
+        name: 'Vanishing and Exploding Gradients',
+        link: '/blocks/deep_learning/vanishing_exploding_gradients',
+        links: [
+        ]
+    },
+    {
         name: 'Convolutional Neural Networks',
         link: '/blocks/deep_learning/convolutional_neural_networks',
         links: [
