@@ -397,6 +397,10 @@ const dl = [
         link: '/blocks/deep_learning/introduction',
         links: [
           {
+            name: 'Intuition',
+            link: '/blocks/deep_learning/introduction/intuition'
+          },
+          {
             name: 'Definition',
             link: '/blocks/deep_learning/introduction/definition'
           },
@@ -407,18 +411,16 @@ const dl = [
           {
             name: 'Applications',
             link: '/blocks/deep_learning/introduction/applications'
+          },
+          {
+            name: 'Frameworks',
+            link: '/blocks/deep_learning/introduction/frameworks'
           }
         ]
     },
     {
         name: 'Linear Regression',
         link: '/blocks/deep_learning/linear_regression',
-        links: [
-        ]
-    },
-    {
-        name: 'Perceptron',
-        link: '/blocks/deep_learning/perceptron',
         links: [
         ]
     },
@@ -435,6 +437,12 @@ const dl = [
         ]
     },
     {
+        name: 'Loss Functions',
+        link: '/blocks/deep_learning/loss_functions',
+        links: [
+        ]
+    },
+    {
         name: 'Backpropagation',
         link: '/blocks/deep_learning/backpropagation',
         links: [
@@ -442,6 +450,18 @@ const dl = [
             name: 'Autodiff',
             link: '/blocks/deep_learning/backpropagation/autodiff',
           }
+        ]
+    },
+    {
+        name: 'Vanishing and Exploding Gradients',
+        link: '/blocks/deep_learning/vanishing_exploding_gradients',
+        links: [
+        ]
+    },
+    {
+        name: 'Activations',
+        link: '/blocks/deep_learning/activations',
+        links: [
         ]
     },
     {
@@ -473,9 +493,25 @@ const dl = [
         ]
     },
     {
-        name: 'Vanishing and Exploding Gradients',
-        link: '/blocks/deep_learning/vanishing_exploding_gradients',
+        name: 'Initialization and Normalization',
+        link: '/blocks/deep_learning/initialization_normalization',
         links: [
+          {
+            name: 'Input Normalization',
+            link: '/blocks/deep_learning/initialization_normalization/input_normalization',
+          },
+          {
+            name: 'Weight Initialization',
+            link: '/blocks/deep_learning/initialization_normalization/weight_initialization',
+          },
+          {
+            name: 'Batch Normalization',
+            link: '/blocks/deep_learning/initialization_normalization/batch_normalization',
+          },
+          {
+            name: 'Layer Normalization',
+            link: '/blocks/deep_learning/initialization_normalization/layer_normalization',
+          },
         ]
     },
     {
@@ -506,6 +542,12 @@ const dl = [
             name: 'EfficientNet',
             link: '/blocks/deep_learning/convolutional_neural_networks/efficientnet',
           },
+        ]
+    },
+    {
+        name: 'Word Embeddings',
+        link: '/blocks/deep_learning/word_embeddings',
+        links: [
         ]
     },
     {
