@@ -397,23 +397,23 @@ const dl = [
         link: '/blocks/deep_learning/introduction',
         links: [
           {
-            name: 'Intuition',
-            link: '/blocks/deep_learning/introduction/intuition'
+            name: 'Machine Learning',
+            link: '/blocks/deep_learning/introduction/machine_learning'
           },
           {
-            name: 'Definition',
-            link: '/blocks/deep_learning/introduction/definition'
+            name: 'Deep Learning',
+            link: '/blocks/deep_learning/introduction/deep_learning'
           },
           {
-            name: 'History',
+            name: 'History Of Deep Learning',
             link: '/blocks/deep_learning/introduction/history'
           },
           {
-            name: 'Applications',
+            name: 'Deep Learning Applications',
             link: '/blocks/deep_learning/introduction/applications'
           },
           {
-            name: 'Frameworks',
+            name: 'Deep Learning Frameworks',
             link: '/blocks/deep_learning/introduction/frameworks'
           }
         ]
