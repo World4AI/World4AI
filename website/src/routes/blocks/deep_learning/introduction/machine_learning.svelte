@@ -113,6 +113,14 @@
   }
 </script>
 
+<svelte:head>
+  <title>World4AI | Deep Learning | Machine Learning</title>
+  <meta
+    name="description"
+    content="Machine learning is a programming paradigm, where the logic of a program is learned from data."
+  />
+</svelte:head>
+
 <h1>Machine Learning</h1>
 <Question>What is machine learning?</Question>
 <div class="separator" />
@@ -538,6 +546,19 @@
   designing computer functions. In classical programming the programmer
   hardcodes the logic of that function. In machine learning the programmer
   chooses the algorithm and the parameters that are used to learn the function.
+</p>
+
+<p>
+  One final question that we should ask ourselves before we move on to the next
+  chapter is: when do we use machine learning and when do we use classical
+  programming? Machine learning is usually used when the complexity of the
+  program would get out of hand if we implemented the logic manually. A program
+  that is able to recognize digits is almost impossible to implement by hand.
+  How would you for example implement a program that is able to differentiate
+  between an 8 and a 9? This is an especially hard problem when the location of
+  the numbers is scattered and not centered in the middle of an image. The same
+  problem can be solved relatively straightforward using neural networks,
+  provided we have the necessary data.
 </p>
 <div class="separator" />
 
