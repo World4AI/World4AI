@@ -86,14 +86,14 @@
     await x1ML.set(60 + y);
     await x2ML.set(60 - y);
     await xTranslateML.set(340);
-    showImprovement = true;
+    if (step !== 3) {
+      showImprovement = true;
+    }
     if (step === 1) {
       learned1 = true;
     }
     if (step === 2) {
       learned2 = true;
-    }
-    if (step === 3) {
       learned3 = true;
     }
     await inputOpacityML.set(0);
@@ -134,6 +134,130 @@
   learned from data.
 </p>
 
+<p>
+  Let us use a stylized geometric example to demonstrate how classical
+  programming paradigms differ from machine learning programming. Let us assume
+  we are assigned a task to transform a triangle into a rectangle of same
+  height.
+</p>
+
+<svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="var(--text-color)">
+    <path d="m30.784 21.587 24.216 48.404h-48.433z" />
+    <rect x="345.98" y="20.98" width="49.02" height="49.02" />
+    <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+  </g>
+</svg>
+
+<p>
+  In classical programming the programmer could for example notice, that both
+  shapes are polygons. The input (the triangle) has 3 connected points while the
+  output (the rectangle) has 4 connected points. To complete the transformation
+  from the triangle to the rectangle, we would need to add an additional point
+  at the tip of the triangle and to pull the two points apart.
+</p>
+<svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="marker2143" overflow="visible" orient="auto">
+      <path
+        transform="scale(.4) translate(7.4 1)"
+        d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
+        fill="var(--main-color-1)"
+        fill-rule="evenodd"
+        stroke="var(--text-color-1)"
+        stroke-width="1pt"
+      />
+    </marker>
+    <marker id="DotM" overflow="visible" orient="auto">
+      <path
+        transform="scale(.4) translate(7.4 1)"
+        d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
+        fill="var(--main-color-1)"
+        fill-rule="evenodd"
+        stroke="var(--main-color-1)"
+        stroke-width="1pt"
+      />
+    </marker>
+  </defs>
+  <g fill="none" stroke="var(--text-color)">
+    <path
+      d="m30.784 21.587 24.216 48.404h-48.433z"
+      marker-end="url(#marker2143)"
+      marker-mid="url(#DotM)"
+      marker-start="url(#marker2143)"
+      stroke-width=".96837"
+    />
+    <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+    <path
+      d="m345 20h50v49.991l-50 0.008767z"
+      marker-end="url(#marker2143)"
+      marker-mid="url(#DotM)"
+      marker-start="url(#marker2143)"
+      stroke-width=".96837"
+    />
+  </g>
+</svg>
+
+<p>
+  After planning the logic of the program, he implements it in a programming
+  language. In our example we represent the logic of the program using the
+  following "programming board". The difference between different
+  implementations lies in the activated (white) blocks of the board. Different
+  activations would mean different logic. The below board exempliefies a logic
+  that is suited to fully transform a triangle into a rectangle.
+</p>
+<svg
+  version="1.1"
+  viewBox="0 0 110 90"
+  width="200px"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g transform="translate(-144.75,-10.25)" stroke="var(--text-color)">
+    <rect x="149" y="12.5" width="102" height="85" fill="none" />
+    <rect x="153.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="170.25" y="16.75" width="8.5" height="8.5" fill="none" />
+    <rect x="187.25" y="16.75" width="8.5" height="8.5" fill="none" />
+    <rect x="204.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="221.25" y="16.75" width="8.5" height="8.5" fill="none" />
+    <rect x="238.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="153.25" y="33.75" width="8.5" height="8.5" fill="none" />
+    <rect x="170.25" y="33.75" width="8.5" height="8.5" fill="none" />
+    <rect x="187.25" y="33.75" width="8.5" height="8.5" fill="#fff" />
+    <g fill="none">
+      <rect x="204.25" y="33.75" width="8.5" height="8.5" />
+      <rect x="221.25" y="33.75" width="8.5" height="8.5" />
+      <rect x="238.25" y="33.75" width="8.5" height="8.5" />
+      <rect x="153.25" y="50.75" width="8.5" height="8.5" />
+    </g>
+    <rect x="170.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
+    <g fill="none">
+      <rect x="187.25" y="50.75" width="8.5" height="8.5" />
+      <rect x="204.25" y="50.75" width="8.5" height="8.5" />
+      <rect x="221.25" y="50.75" width="8.5" height="8.5" />
+    </g>
+    <rect x="238.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="153.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="170.25" y="67.75" width="8.5" height="8.5" fill="none" />
+    <rect x="187.25" y="67.75" width="8.5" height="8.5" fill="none" />
+    <rect x="204.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+    <g fill="none">
+      <rect x="221.25" y="67.75" width="8.5" height="8.5" />
+      <rect x="238.25" y="67.75" width="8.5" height="8.5" />
+      <rect x="153.25" y="84.75" width="8.5" height="8.5" />
+      <rect x="170.25" y="84.75" width="8.5" height="8.5" />
+    </g>
+    <rect x="187.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="204.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
+    <rect x="221.25" y="84.75" width="8.5" height="8.5" fill="none" />
+    <rect x="238.25" y="84.75" width="8.5" height="8.5" fill="none" />
+  </g>
+</svg>
+
+<p>
+  The interactive example below shows the functionality of a program, where the
+  logic is hardcoded by the developer. The "logic board" is fixed and is suited
+  to transform a triangle into a rectangle.
+</p>
 <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
   <g stroke="var(--text-color)">
     <g id="logic">
@@ -195,6 +319,125 @@
   value="RUN"
 />
 
+<p>
+  In machine learning on the other hand the role of a developer is not to find
+  the logic that can transform triangles into squares, but to design a program
+  that can learn the logic which can transform triangles into squares.
+</p>
+
+<p>
+  For that purpose the developer has access to a dataset that shows how for each
+  of the inputs a corresponding output should look like.
+</p>
+
+<svg
+  version="1.1"
+  viewBox="0 0 315 150"
+  width="500"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g fill="none" stroke="var(--text-color)">
+    <path d="m30.784 5 24.216 48.404h-48.433z" stroke-width=".96837" />
+    <rect
+      x="5.9804"
+      y="95"
+      width="49.02"
+      height="49.02"
+      stroke-width=".98039"
+    />
+    <path
+      d="m30 60v30"
+      stroke-dasharray="2.19089, 4.38178"
+      stroke-width="1.0954"
+    />
+    <g transform="translate(15.181)">
+      <path d="m100 55-24.216-48.404h48.433z" stroke-width=".96837" />
+      <rect
+        x="75.98"
+        y="95"
+        width="49.02"
+        height="49.02"
+        stroke-width=".98039"
+      />
+      <path
+        d="m100 60v30"
+        stroke-dasharray="2.19089, 4.38178"
+        stroke-width="1.0954"
+      />
+    </g>
+    <g transform="translate(29.724)">
+      <path d="m146.6 29.216 48.404-24.216v48.433z" stroke-width=".96837" />
+      <rect
+        x="145.98"
+        y="95"
+        width="49.02"
+        height="49.02"
+        stroke-width=".98039"
+      />
+      <path
+        d="m170 60v30"
+        stroke-dasharray="2.19089, 4.38178"
+        stroke-width="1.0954"
+      />
+    </g>
+    <g transform="translate(45)">
+      <path d="m263.4 29.216-48.404 24.216v-48.433z" stroke-width=".96837" />
+      <rect
+        x="215.98"
+        y="95"
+        width="49.02"
+        height="49.02"
+        stroke-width=".98039"
+      />
+      <path
+        d="m240 60v30"
+        stroke-dasharray="2.19089, 4.38178"
+        stroke-width="1.0954"
+      />
+    </g>
+  </g>
+</svg>
+
+<p>
+  The inintial logic of the program is going to be very far off from the correct
+  logic. The programmer feeds the program with data and the algorithm measures
+  the magnitude of the error. For example if the program produces a triangle
+  (input = output) the logic is very far from the desired one. A trapezoid on
+  the other hand is closer to a rectangle. The measure of the error is
+  eventually used to automatically adjust the logic of the program to improve
+  the performance. How the process exactly works depends on the algorithm, but
+  the idea is that each iteration of data input, error measurement and logic
+  adjustment leads to better and better performance until our goal is withing
+  some boundary.
+</p>
+<svg
+  version="1.1"
+  viewBox="0 0 120 60"
+  width="200"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g fill="none" stroke="var(--text-color)" stroke-width=".96837">
+    <path d="m27.96 6.0969 24.216 48.404h-48.433z" />
+    <path d="m82.177 6.0969h20l14.216 48.404h-48.433z" />
+  </g>
+  <g
+    fill="none"
+    stroke="var(--main-color-1)"
+    stroke-dasharray="1.96079, 3.92157"
+    stroke-width=".98039"
+  >
+    <rect x="3.382" y="5.4902" width="49.02" height="49.02" />
+    <rect x="67.598" y="5.4902" width="49.02" height="49.02" />
+  </g>
+</svg>
+<p>
+  Below is an interactive example where the machine learning process is shown.
+  It takes the algorithm three iterations to learn the desired logic. At first
+  the difference between the square and the produced output is relatively large,
+  but the error is used to improve the logic of the program. In the third
+  iteration the program produces the desired results (after that the example is
+  reset).
+</p>
 <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
   <g stroke="var(--text-color)">
     <g id="logic">
@@ -285,6 +528,17 @@
   </g>
 </svg>
 <Button on:click={handleMLProgramming} disabled={disabledML} value="RUN" />
+
+<p>
+  The general intuition about machine learning that you should keep in mind is
+  as follows.
+</p>
+<p class="info">
+  In classical programming and machine learning we try to solve a problem, by
+  designing computer functions. In classical programming the programmer
+  hardcodes the logic of that function. In machine learning the programmer
+  chooses the algorithm and the parameters that are used to learn the function.
+</p>
 <div class="separator" />
 
 <h2>Notes</h2>
