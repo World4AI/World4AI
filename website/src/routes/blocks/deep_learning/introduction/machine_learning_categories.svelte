@@ -1,20 +1,35 @@
 <script>
   import Question from "$lib/Question.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Table from "$lib/Table.svelte";
+
+  let header = ["Location", "Size", "Price"];
+  let data = [
+    ["London", "100", 1_000_000],
+    ["Berlin", "30", 80_000_000],
+    ["...", "...", "..."],
+  ];
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Machine Learning Categories</title>
+  <meta
+    name="description"
+    content="Machine learning can be divided into different categories: supervised learning, unsupervised learning, self-supervised learning, semi-supervised learning and reinforcement learning."
+  />
+</svelte:head>
 
 <h1>Categories of Machine Learning</h1>
 <Question>What are the common categories of machine learning?</Question>
 <div class="separator" />
 
 <p>
-  Machine learning is commonly divided into specific categories, which usually
-  depend on the amount of human supervision that needs to be contained in the
-  data in order for the algorithm to work.
+  Machine learning is commonly divided into specific categories. The
+  categorization usually depends on the amount of human supervision that is
+  required for the algorithm to work.
 </p>
 
 <h2>Supervised Learning</h2>
-
 <p>
   As the name supervised learning suggests, there is a human supervisor who
   labels the input data with the correct output that a machine learning
@@ -22,22 +37,27 @@
     >features</Highlight
   >, while the outputs are called <Highlight>labels</Highlight>.
 </p>
-
 <p>
   Let us for example assume that we want to estimate the price of a house based
   on the location and the size of the house. In that case the location and the
   size are the features, while the price is the label.
 </p>
-
+<Table {header} {data} />
 <p>
   The two common tasks that we try to solve with supervised learning are
-  regression and classification. In a classification task there are a finite
-  number of classes that the machine learning algorithm needs to determine based
-  on the labels. The usual example that is brought up in the machine learning
-  literature are spam filters. Based on the header and content of the email the
-  algorithm dised whether the email is ham or spam. In a regression task on the
-  other hand the algorithm produces a continuous number. Predicting the price of
-  the house is a regression task.
+  <Highlight>regression</Highlight> and <Highlight>classification</Highlight>.
+</p>
+<p>
+  In a classification task there is a finite number of classes that the machine
+  learning algorithm needs to determine based on the labels. The usual example
+  that is brought up in the machine learning literature is a spam filter. Based
+  on the header and content of the email the algorithm needs to decide whether
+  the email is ham or spam.
+</p>
+<p>
+  In a regression task on the other hand the algorithm produces a continuous
+  number. Predicting the price of the house based on labels is a regression
+  task.
 </p>
 <div class="separator" />
 
