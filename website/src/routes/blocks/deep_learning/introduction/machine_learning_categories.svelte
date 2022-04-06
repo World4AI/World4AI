@@ -54,11 +54,217 @@
   on the header and content of the email the algorithm needs to decide whether
   the email is ham or spam.
 </p>
+<svg version="1.1" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="var(--text-color)">
+    <g id="ham">
+      <rect
+        x="425"
+        y="15"
+        width="60"
+        height="40"
+        fill="#b8a0cd"
+        fill-opacity=".054902"
+        stroke-width=".6536"
+      />
+      <path d="m425 15 30 20 30-20" fill="none" stroke-width=".66667px" />
+    </g>
+    <g id="filter">
+      <rect
+        x="160"
+        y="45"
+        width="120"
+        height="120"
+        fill="#b8a0cd"
+        fill-opacity=".054902"
+        stroke-width=".98039"
+      />
+      <g fill="none" stroke-width="1px">
+        <path d="m165 45v120" />
+        <path d="m170 45v120" />
+        <path d="m175 45v120" />
+        <path d="m180 45v120" />
+        <path d="m185 45v120" />
+        <path d="m190 45v120" />
+        <path d="m195 45v120" />
+        <path d="m200 45v120" />
+        <path d="m205 45v120" />
+        <path d="m210 45v120" />
+        <path d="m215 45v120" />
+        <path d="m220 45v120" />
+        <path d="m225 45v120" />
+        <path d="m230 45v120" />
+        <path d="m235 45v120" />
+        <path d="m240 45v120" />
+        <path d="m245 45v120" />
+        <path d="m250 45v120" />
+        <path d="m255 45v120" />
+        <path d="m260 45v120" />
+        <path d="m265 45v120" />
+        <path d="m265 45v120" />
+        <path d="m270 45v120" />
+        <path d="m275 45v120" />
+        <path d="m160 50h120" />
+        <path d="m160 55h120" />
+        <path d="m160 60h120" />
+        <path d="m160 65h120" />
+        <path d="m160 70h120" />
+        <path d="m160 75h120" />
+        <path d="m160 80h120" />
+        <path d="m160 85h120" />
+        <path d="m160 90h120" />
+        <path d="m160 95h120" />
+        <path d="m160 100h120" />
+        <path d="m160 105h120" />
+        <path d="m160 110h120" />
+        <path d="m160 115h120" />
+        <path d="m160 120h120" />
+        <path d="m160 125h120" />
+        <path d="m160 130h120" />
+        <path d="m160 135h120" />
+        <path d="m160 140h120" />
+        <path d="m160 145h120" />
+        <path d="m160 150h120" />
+        <path d="m160 155h120" />
+        <path d="m160 160h120" />
+      </g>
+    </g>
+    <g id="spam">
+      <rect
+        x="433"
+        y="169.5"
+        width="40"
+        height="46.495"
+        ry="5.1661"
+        fill="#b8a0cd"
+        fill-opacity=".054902"
+        stroke-width=".99654"
+      />
+      <g fill="none" stroke-width=".91333px">
+        <path d="m441 173.5v36.495" />
+        <path d="m453 173.5v36.495" />
+        <path d="m465 173.5v36.495" />
+      </g>
+      <rect
+        x="433"
+        y="165.5"
+        width="40"
+        height="4"
+        ry="0"
+        fill="#b8a0cd"
+        fill-opacity=".054902"
+        stroke-width=".78431"
+      />
+      <path d="m449 165.5v-4h8v4" fill="none" stroke-width=".8px" />
+    </g>
+    <g fill="none" stroke-dasharray="4,8">
+      <path d="m70 105h80" />
+      <path stroke="var(--main-color-2)" d="m285 100 135-62" />
+      <path stroke="var(--main-color-1)" d="m285 115 140 77" />
+    </g>
+    <g id="mail">
+      <rect
+        x="9.3548"
+        y="78.71"
+        width="49.57"
+        height="71.29"
+        ry="1.371"
+        fill="#b8a0cd"
+        fill-opacity=".054902"
+        stroke-width=".44832"
+      />
+      <g fill="none">
+        <g stroke-width=".47896px">
+          <path d="m13.28 85h41.832" />
+          <path d="m13.28 90h41.832" />
+          <path d="m13.28 95h41.832" />
+        </g>
+        <g stroke-width=".47832px">
+          <path d="m13.28 100h41.72" />
+          <path d="m13.28 105h41.72" />
+          <path d="m13.28 110h41.72" />
+          <path d="m13.28 115h41.72" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
 <p>
   In a regression task on the other hand the algorithm produces a continuous
-  number. Predicting the price of the house based on labels is a regression
-  task.
+  number. Predicting the price of the house based on the features of the house
+  is a regression task.
 </p>
+<svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="m110 50h275"
+    fill="none"
+    stroke="var(--text-color)"
+    stroke-dasharray="4, 8"
+  />
+  <g fill="none" stroke="var(--text-color)">
+    <path d="m35.535 85h38.93v-42.823h-38.93z" stroke-width=".7786px" />
+    <path
+      d="m31.642 46.07 23.358-31.144 23.358 31.144"
+      stroke-width=".7786px"
+    />
+    <g stroke-width="1px">
+      <path d="m50 83v-15h10v15z" />
+      <path d="m40 50h5v5h-5z" />
+      <path d="m70 50v5h-5v-5z" />
+      <path d="m50 30h10v5h-10z" />
+      <path d="m30 46 25-35 25 35" />
+    </g>
+  </g>
+  <g fill="none" stroke="var(--text-color)">
+    <path d="m16.624 175h81.753v-42.823h-81.753z" stroke-width="1.1283px" />
+    <g stroke-width="1px">
+      <path d="m50 173v-20s0-5 5-5 5 5 5 5v20z" />
+      <path d="m20 135h5v5h-5z" />
+      <path d="m30 135h5v5h-5z" />
+      <path d="m30 145h5v5h-5z" />
+      <path d="m20 145h5v5h-5z" />
+      <path d="m20 155h5v5h-5z" />
+      <path d="m30 155h5v5h-5z" />
+      <path d="m85 145h5v5h-5z" />
+      <path d="m75 145h5v5h-5z" />
+      <path d="m75 155h5v5h-5z" />
+      <path d="m85 155h5v5h-5z" />
+      <path d="m5 130h105l-5-20h-95z" />
+      <path d="m20 115v10h10v-10z" />
+      <path d="m100 120v5h-20v-5z" />
+    </g>
+  </g>
+  <path
+    d="m110 150h270"
+    fill="none"
+    stroke="var(--text-color)"
+    stroke-dasharray="3.96347, 7.92694"
+    stroke-width=".99087"
+  />
+  <text
+    x="384.08905"
+    y="155.58189"
+    fill="var(--text-color)"
+    font-family="sans-serif"
+    font-size="19.997px"
+    stroke-width=".49992"
+    style="line-height:1.25"
+    xml:space="preserve"
+    ><tspan x="384.08905" y="155.58189" stroke-width=".49992">1,000,000$</tspan
+    ></text
+  >
+  <text
+    x="403.52597"
+    y="55.515846"
+    fill="var(--text-color)"
+    font-family="sans-serif"
+    font-size="19.997px"
+    stroke-width=".49992"
+    style="line-height:1.25"
+    xml:space="preserve"
+    ><tspan x="403.52597" y="55.515846" stroke-width=".49992">200,000$</tspan
+    ></text
+  >
+</svg>
 <div class="separator" />
 
 <h2>Unsupervised Learning</h2>

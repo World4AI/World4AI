@@ -401,7 +401,7 @@ const dl = [
             link: '/blocks/deep_learning/introduction/machine_learning'
           },
           {
-            name: 'Categoris of Machine Learning',
+            name: 'Categories of Machine Learning',
             link: '/blocks/deep_learning/introduction/machine_learning_categories'
           },
           {
