@@ -2,27 +2,45 @@
   import Question from "$lib/Question.svelte";
 </script>
 
-<h1>Deep Learning History</h1>
+<h1>The History of Deep Learning</h1>
 <Question>What is the history of deep learning?</Question>
 <div class="separator" />
 
-<h2>McCulloch-Pitts Neuron 1943</h2>
-<h2>Perceptron 1957</h2>
-<h2>ADALINE 1960</h2>
-<h2>Alexey Ivakhnenko</h2>
-<h2>Minsky and Papert publish "Perceptrons" 1969 XOR</h2>
-<h2>Neocognitron by Kunihiko Fukushima</h2>
-<h2>Hopfield Network</h2>
-<h2>Boltzman Machine</h2>
-<h2>Restricted Boltzman Machine</h2>
-<h2>Rumelhard and Hinton 1986 Rediscovery of Backpropagationy</h2>
-<h2>CNN 1989</h2>
-<h2>Universal Approximation Theorem</h2>
-<h2>Vanishing Gradient and LSTM</h2>
-<h2>Deep Belief Network</h2>
-<h2>ImageNet</h2>
-<h2>GPU and AlexNet</h2>
-<h2>GAN</h2>
-<h2>AlphaGo</h2>
-<h2>Transformer</h2>
-<h2>Turing Award</h2>
+<p>
+  In this chapter we will attempt to cover the history of deep learning. In all
+  likelihood we will fail at covering all the aspects that lead to the
+  development of modern deep learning.
+</p>
+
+<h2>First Wave: Birth of Artificial Neural Networks</h2>
+<h3>McCulloch-Pitts Neuron 1943</h3>
+<div class="separator" />
+
+<h3>Perceptron 1957</h3>
+<div class="separator" />
+
+<h3>"Perceptrons" by Minsky and Papert 1969</h3>
+<div class="separator" />
+
+<h2>Second Wave: Neural Networks in the Golden Age of Expert Systems</h2>
+
+<h3>Hopfield Network</h3>
+<h3>Boltzman Machine</h3>
+<h3>Restricted Boltzman Machine</h3>
+<h3>Backpropagation 1986</h3>
+<p>Rumelhard and Hinton</p>
+
+<h3>Convolutional Neural Networks 1989</h3>
+<p>Neocognitron by Kunihiko Fukushima</p>
+
+<h3>Universal Approximation Theorem</h3>
+<h3>Vanishing Gradient and LSTM</h3>
+<h3>Deep Belief Network</h3>
+
+<h2>Third Wave: Modern Deep Learning</h2>
+<h3>ImageNet</h3>
+<h3>GPU and AlexNet</h3>
+<h3>GAN</h3>
+<h3>AlphaGo</h3>
+<h3>Transformer</h3>
+<h3>Turing Award</h3>
