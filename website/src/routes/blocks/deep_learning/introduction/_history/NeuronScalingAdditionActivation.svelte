@@ -14,7 +14,7 @@
 
   let weight1 = 1;
   let weight2 = 1;
-  let bias = 0;
+  let theta = 0;
 
   function increaseWeight1() {
     if (weight1 < 9) {
@@ -36,14 +36,14 @@
       weight2 -= 1;
     }
   }
-  function increaseBias() {
-    if (bias < 9) {
-      bias += 1;
+  function increaseTheta() {
+    if (theta < 9) {
+      theta += 1;
     }
   }
-  function decreaseBias() {
-    if (bias > -9) {
-      bias -= 1;
+  function decreaseTheta() {
+    if (theta > -9) {
+      theta -= 1;
     }
   }
 </script>
@@ -183,7 +183,7 @@
       <path
         id="output-signal"
         d="m440 126.87h50"
-        stroke-width={weight1 + weight2 >= bias ? 1 : 0}
+        stroke-width={weight1 + weight2 >= theta ? 1 : 0}
         stroke-dashoffset={offset}
         stroke="var(--main-color-2)"
       />
@@ -198,17 +198,18 @@
     stroke-width=".77791"
     style="line-height:1.25"
     xml:space="preserve"
-    ><tspan x="395.89294" y="84.000404" stroke-width=".77791">b</tspan></text
+    ><tspan x="395.89294" y="84.000404" stroke-width=".77791">θ</tspan></text
   >
   <text
-    id="bias"
+    id="theta"
     x="378.72977"
     y="136.95309"
     fill="var(--text-color)"
     font-family="sans-serif"
     font-size="40px"
     style="line-height:1.25"
-    xml:space="preserve"><tspan x="378.72977" y="136.95309">{bias}</tspan></text
+    xml:space="preserve"
+    ><tspan x="378.72977" y="136.95309">{theta}</tspan></text
   >
   <g
     transform="matrix(.54961 0 0 .54961 -44.842 49.707)"
@@ -299,9 +300,9 @@
       fill="var(--main-color-1)"
     />
     <path d="m189 140v10" marker-end="url(#marker81625)" stroke-width="1px" />
-    <g id="button_increase_bias">
+    <g id="button_increase_theta">
       <rect
-        on:click={increaseBias}
+        on:click={increaseTheta}
         class="svg-button"
         x="380"
         y="160"
@@ -315,9 +316,9 @@
         stroke-width="1px"
       />
     </g>
-    <g id="button_decrease_bias">
+    <g id="button_decrease_theta">
       <rect
-        on:click={decreaseBias}
+        on:click={decreaseTheta}
         class="svg-button"
         x="410"
         y="160"

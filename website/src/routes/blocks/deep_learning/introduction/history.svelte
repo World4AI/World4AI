@@ -132,19 +132,22 @@
   A final component that we are missing is the ability of being active based on
   the accumulated input strength. For that McCulloch and Pitts used a simple
   step function. If the weighted sum of the inputs is above a threshold <Latex
-    >b</Latex
-  > (b stands for bias term) the output is 1, else the output is 0. A function that
-  takes the weighted sum as input and determines the activation status of a neuron
-  is commonly refered to as the <Highlight>activation function</Highlight>.
+    >\theta</Latex
+  > the output is 1, else the output is 0. A function that takes the weighted sum
+  as input and determines the activation status of a neuron is commonly refered to
+  as the <Highlight>activation function</Highlight>.
 </p>
 <p>
-  Below is a step function with a bias of 0. You can move the slider to observe
-  how the shape of the step function changes due to a different bias.
+  Below is a step function with a <Latex>\theta</Latex> of 0. You can move the slider
+  to observe how the shape of the step function changes due to a different <Latex
+    >\theta</Latex
+  >.
 </p>
 <StepFunction />
 <p>
-  The last interactive example allows you to vary two weights and a bias term.
-  The output is always either 0 or 1.
+  The last interactive example allows you to vary two weights <Latex
+    >\theta</Latex
+  >. The output is always either 0 or 1.
 </p>
 <NeuronScalingAdditionActivation />
 <p>
