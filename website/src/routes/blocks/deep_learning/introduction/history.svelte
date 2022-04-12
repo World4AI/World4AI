@@ -7,6 +7,39 @@
   import NeuronScalingAdditionActivation from "./_history/NeuronScalingAdditionActivation.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Scatterplot from "$lib/Scatterplot.svelte";
+
+  const data = [
+    [
+      { x: 10, y: 12.04 },
+      { x: 8, y: 6.95 },
+      { x: 2, y: 9.58 },
+      { x: 9, y: 8.81 },
+      { x: 4, y: 8.33 },
+      { x: 7, y: 9.96 },
+      { x: 6, y: 7.24 },
+      { x: 4, y: 4.26 },
+      { x: 5, y: 12.84 },
+      { x: 2, y: 4.82 },
+      { x: 1, y: 5.68 },
+      { x: 9, y: 9.9 },
+      { x: 7, y: 8.2 },
+      { x: 6, y: 7.3 },
+    ],
+    [
+      { x: 10, y: 2.04 },
+      { x: 18, y: 6.95 },
+      { x: 13, y: 7.58 },
+      { x: 19, y: 2.81 },
+      { x: 11, y: 6.33 },
+      { x: 14, y: 4.96 },
+      { x: 16, y: 7.24 },
+      { x: 14, y: 4.26 },
+      { x: 12, y: 6.84 },
+      { x: 17, y: 4.82 },
+      { x: 15, y: 5.68 },
+    ],
+  ];
 </script>
 
 <h1>The History of Deep Learning</h1>
@@ -125,6 +158,42 @@
 <div class="separator" />
 
 <h3>Perceptron 1957</h3>
+<p>
+  McCulloch and Pitts provided an architecture for artificial neural networks
+  that is still used today. Yet they did not provide a way for a neuron to
+  learn.
+</p>
+<p class="info">
+  Learning in machine learning means changing weights <Latex>W</Latex> and the bias
+  <Latex>b</Latex>, such that the neuron gets better and better at a particular
+  task.
+</p>
+<p>
+  The perceptron developed by Frank Rosenblatt<sup>2</sup> builds upon the idea of
+  McCulloch and Pitts and adds a learning rule, that allows us to use an artificial
+  neuron in classification tasks.
+</p>
+<p>
+  Imagine we have a labeled dataset with two features and two possible classes,
+  as indicated in the scatterplot below.
+</p>
+<Scatterplot {data} />
+<p>
+  It is a relatively easy task for a human being to separate the colored circles
+  into the two categories. All we have to do is to draw a line that perfectly
+  separates the two groups.
+</p>
+<Scatterplot {data} x1Line="0" y1Line="0" x2Line="22" y2Line="15" />
+<p>
+  The perceptron algorithm is designed to find such a line in an automated way.
+  In machine learning lingo we also call such a line a <Highlight
+    >decision boundary</Highlight
+  >. This is due to the fact that the line allows us to make decisions regarding
+  the categories of a data point based on the features. Imagine for example we
+  encounter a new data point without a label where feature nr. 1 and feature nr.
+  2 both correspond to 12. The data point would lie above the decision boundary
+  and would therefore be classified as an "orange" class.
+</p>
 <div class="separator" />
 
 <h3>"Perceptrons" by Minsky and Papert 1969</h3>
@@ -154,4 +223,26 @@
 <h3>Transformer</h3>
 <h3>Turing Award</h3>
 
+<div class="separator" />
 <h2>Notes</h2>
+<div class="notes">
+  <p>
+    [1] Warren S. McCulloch and Walter Pitts. A logical calculus of the ideas
+    immanent in nervous activity. Bulletin of mathematical biophysics, vol. 5
+    (1943), pp. 115–133.
+  </p>
+  <p>
+    [2] Rosenblatt F. The Perceptron: A probabilistic model for information
+    storage and organization in the brain. Psychological Review Vol. 65, No. 6,
+    1958.
+  </p>
+</div>
+
+<style>
+  .notes p {
+    line-height: 1.2;
+    font-size: 15px;
+    opacity: 80%;
+    margin-bottom: 5px;
+  }
+</style>
