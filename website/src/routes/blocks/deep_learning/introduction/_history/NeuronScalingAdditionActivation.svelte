@@ -138,7 +138,7 @@
       x="247.59177"
       y="139.4109"
       style="line-height:1.25"
-      xml:space="preserve"><tspan x="247.59177" y="139.4109">+</tspan></text
+      xml:space="preserve"><tspan x="253" y="139.4109">+</tspan></text
     >
   </g>
   <rect
