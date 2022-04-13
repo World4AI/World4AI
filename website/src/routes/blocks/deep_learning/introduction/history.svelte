@@ -357,31 +357,55 @@
   xLabel="OR Output"
   yLabel="AND Output"
 />
+<div class="separator" />
 
+<h2>First AI Winter</h2>
+<p>
+  It is not easy to pin down the exact date of the beginning and the end of the
+  first AI winter. Generally the book by Minsky and Papert is considered to have
+  initiated the decline of research in the field of artificial neural networks.
+  Even thogh it was known at the time, that multilayer perceptrons are able to
+  solve the xor problem, the general disillusionment and underdelivery of
+  artificial intelligence reduced the funding dramatically. Roughly speaking the
+  winter held from the beginning of 1970's to the beginning fo 1980's.
+</p>
 <div class="separator" />
 
 <h2>Second Wave: Neural Networks in the Golden Age of Expert Systems</h2>
+<p>
+  The second wave of artificial intelligence research that started in the early
+  1980's was more favourable towards symbolic artificial intelligence. Symbolic
+  AI lead to so called expert systems, where experts input their domain
+  knowledge into the program, in the hope of being able to solve intelligence
+  though logic and symbols.
+</p>
+<p>
+  Nevertheless there were some brave souls who despite all the criticism of
+  neural networks were able to endure and innovate. The groundbreaking research
+  that was done in the second wave of artificial intelligence enabled the
+  success and recognition that would only come in the third wave of AI.
+</p>
 
-<h3>Hopfield Network</h3>
-<h3>Boltzman Machine</h3>
-<h3>Restricted Boltzman Machine</h3>
-<h3>Backpropagation 1986</h3>
+<h3>Backpropagation</h3>
 <p>Rumelhard and Hinton</p>
+
+<h3>Recurrent Neural Networks</h3>
+<p>Hopfield Network</p>
+<p>Vanishing Gradient and LSTM</p>
 
 <h3>Convolutional Neural Networks 1989</h3>
 <p>Neocognitron by Kunihiko Fukushima</p>
 
-<h3>Universal Approximation Theorem</h3>
-<h3>Vanishing Gradient and LSTM</h3>
-<h3>Deep Belief Network</h3>
+<h3>NeurIPS</h3>
 
-<h2>Third Wave: Modern Deep Learning</h2>
+<h2>Third Wave: Modern Deep Learning 2012</h2>
+<p>Algorithms, Data and Compute</p>
 <h3>ImageNet</h3>
 <h3>GPU and AlexNet</h3>
-<h3>GAN</h3>
-<h3>AlphaGo</h3>
-<h3>Transformer</h3>
 <h3>Turing Award</h3>
+
+<h2>The future is now</h2>
+<p>And the rest is history</p>
 
 <div class="separator" />
 <h2>Notes</h2>
