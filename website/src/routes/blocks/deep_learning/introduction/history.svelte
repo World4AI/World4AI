@@ -9,6 +9,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Scatterplot from "$lib/Scatterplot.svelte";
   import Table from "$lib/Table.svelte";
+  import { onMount } from "svelte";
 
   const data = [
     [
@@ -114,6 +115,34 @@
       { x: 1, y: 0 },
     ],
   ];
+
+  // create circular data
+  let circularData = [[], []];
+  let radius = [5, 10];
+  let centerX = 10;
+  let centerY = 10;
+  for (let i = 0; i < radius.length; i++) {
+    for (let point = 0; point < 200; point++) {
+      let angle = 2 * Math.PI * Math.random();
+      let r = radius[i];
+      let x = r * Math.cos(angle) + centerX;
+      let y = r * Math.sin(angle) + centerY;
+      circularData[i].push({ x, y });
+    }
+  }
+
+  let offsetForward = 0;
+  let offsetBackward = 0;
+
+  onMount(() => {
+    let interval = setInterval(() => {
+      offsetForward += 20;
+      offsetBackward -= 20;
+    }, 300);
+    return () => {
+      clearInterval(interval);
+    };
+  });
 </script>
 
 <h1>The History of Deep Learning</h1>
@@ -387,7 +416,110 @@
 </p>
 
 <h3>Backpropagation</h3>
-<p>Rumelhard and Hinton</p>
+<p>
+  While the perceptron learning algorithm allowed to separate data linearly, the
+  algorithm breaks apart when faced with nonlinear data like the one displayed
+  below.
+</p>
+<Scatterplot
+  data={circularData}
+  minX={0}
+  maxX={20}
+  minY={0}
+  maxY={20}
+  numTicks={5}
+/>
+<p>
+  For a relatively long time it was not clear how we could train neural networks
+  when the data displays nonlinearity and the network has hidden layers. In 1986
+  Rumelhart, Hinton and Williams published a paper that described the
+  backpropagation algorithm<sup>4</sup>. The procedure combined gradient
+  descent, the chain rule and efficient computation to form what has become the
+  backbone of modern deep learning. The algorithm is said to have been developed
+  many times before 1986, yet the 1986 paper has popularized the procedure.
+</p>
+<p>
+  The backpropagation algorithm will be covered in a dedicated section, but let
+  us shortly cover the meaning of the name "backpropagation". This should give
+  you some intuition regarding the workings of the algorithm. Essentially modern
+  machine learning consists of two steps: <Highlight>feedforward</Highlight> and
+  <Highlight>backpropagation</Highlight>.
+</p>
+
+<p>
+  So far we have only considered the feedforward step. During this step each
+  neuron processes its corresponding inputs and its outputs are fed into the
+  next layer. Data flows forward from layer to layer until final outputs are
+  generated.
+</p>
+<svg version="1.1" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="var(--text-color)">
+    <g
+      id="connections"
+      stroke="var(--main-color-2)"
+      stroke-dashoffset={offsetForward}
+      stroke-dasharray="4, 8"
+    >
+      <path d="m65 35h95" />
+      <path d="m65 50 95 100" />
+      <path d="m65 150 95-100" />
+      <path d="m65 165h95" />
+      <path d="m190 35h95" />
+      <path d="m190 50 95 100" />
+      <path d="m190 150 95-100" />
+      <path d="m190 165h95" />
+    </g>
+    <g id="neurons">
+      <rect x="35" y="20" width="30" height="30" />
+      <rect x="35" y="150" width="30" height="30" />
+      <rect x="160" y="20" width="30" height="30" />
+      <rect x="160" y="150" width="30" height="30" />
+      <rect x="285" y="20" width="30" height="30" />
+      <rect x="285" y="150" width="30" height="30" />
+    </g>
+  </g>
+</svg>
+<p>
+  Once the neural network produces outputs, they can be compared to the actual
+  true values. For example you can compare the predicted house price with the
+  actual house price in your training dataset. This allows the neural network to
+  compute the error between the prediction and the ground truth. This error is
+  in turn is propagated backwards layer after layer. Each weight (and bias) is
+  adjusted proportionally to the contribution of that the weight to the overall
+  error.
+</p>
+<svg version="1.1" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="var(--text-color)">
+    <g
+      id="connections"
+      stroke="var(--main-color-1)"
+      stroke-dashoffset={offsetBackward}
+      stroke-dasharray="4, 8"
+    >
+      <path d="m65 35h95" />
+      <path d="m65 50 95 100" />
+      <path d="m65 150 95-100" />
+      <path d="m65 165h95" />
+      <path d="m190 35h95" />
+      <path d="m190 50 95 100" />
+      <path d="m190 150 95-100" />
+      <path d="m190 165h95" />
+    </g>
+    <g id="neurons">
+      <rect x="35" y="20" width="30" height="30" />
+      <rect x="35" y="150" width="30" height="30" />
+      <rect x="160" y="20" width="30" height="30" />
+      <rect x="160" y="150" width="30" height="30" />
+      <rect x="285" y="20" width="30" height="30" />
+      <rect x="285" y="150" width="30" height="30" />
+    </g>
+  </g>
+</svg>
+<p>
+  The invention of the backpropagation algorithm was the crucial discovery that
+  gave us the means to train neural networks with billions of parameters.
+</p>
+<div class="separator" />
 
 <h3>Recurrent Neural Networks</h3>
 <p>Hopfield Network</p>
@@ -423,6 +555,10 @@
   <p>
     [3] Minsky M. and Papert S. A. Perceptrons: An Introduction to Computational
     Geometry. MIT Press. 1969
+  </p>
+  <p>
+    [4] Rumelhart D and Hinton G and Williams R. Learning representations by
+    back-propagating errors. (1986a) Nature. 323 (6088): 533–536
   </p>
 </div>
 
