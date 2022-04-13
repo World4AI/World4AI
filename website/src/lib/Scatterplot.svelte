@@ -16,18 +16,34 @@
   export let x2Line = 0;
   export let y2Line = 0;
 
+  export let minX = 0;
+  export let maxX = 1;
+  export let minY = 0;
+  export let maxY = 1;
+
+  export let numTicks = 2;
+
+  function createTicks(min, max) {
+    let ticks = [];
+
+    for (let i = 0; i < numTicks; i++) {
+      ticks.push(min + Math.floor((max - min) / (numTicks - 1)) * i);
+    }
+    return ticks;
+  }
+
   const padding = { top: 20, right: 40, bottom: 40, left: 40 };
 
   $: xScale = scaleLinear()
-    .domain([0, 20])
+    .domain([minX, maxX])
     .range([padding.left, width - padding.right]);
 
   $: yScale = scaleLinear()
-    .domain([0, 15])
+    .domain([minY, maxY])
     .range([height - padding.bottom, padding.top]);
 
-  $: xTicks = [0, 4, 8, 12, 16, 20];
-  $: yTicks = [0, 3, 6, 9, 12, 15];
+  $: xTicks = createTicks(minX, maxX);
+  $: yTicks = createTicks(minY, maxY);
 </script>
 
 <svg viewBox="0 0 {width} {height}">
@@ -58,8 +74,10 @@
   />
 
   <!-- Add labels -->
-  <text class="label" x={xScale(10)} y={height - padding.bottom + 35}
-    >{xLabel}</text
+  <text
+    class="label"
+    x={xScale((maxX - minX) / 2)}
+    y={height - padding.bottom + 35}>{xLabel}</text
   >
 
   <text class="label" transform="rotate(-90)" x={-height / 2} y={15}

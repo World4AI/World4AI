@@ -8,6 +8,7 @@
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Scatterplot from "$lib/Scatterplot.svelte";
+  import Table from "$lib/Table.svelte";
 
   const data = [
     [
@@ -38,6 +39,79 @@
       { x: 12, y: 6.84 },
       { x: 17, y: 4.82 },
       { x: 15, y: 5.68 },
+    ],
+  ];
+
+  let andTableData = [
+    [0, 0, 0],
+    [0, 1, 0],
+    [1, 0, 0],
+    [1, 1, 1],
+  ];
+
+  let andTableHeader = ["Input 1", "Input 2", "Output"];
+
+  let orTableData = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ];
+
+  let orTableHeader = ["Input 1", "Input 2", "Output"];
+
+  let xorTableData = [
+    [0, 0, 0],
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 0],
+  ];
+
+  let xorTableHeader = ["Input 1", "Input 2", "Output"];
+
+  let mlpTableData = [
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 1],
+    [1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 0],
+  ];
+  let mlpTableHeader = ["Input 1", "Input 2", "OR Output", "AND Output", "XOR"];
+
+  const orData = [
+    [{ x: 0, y: 0 }],
+    [
+      { x: 0, y: 1 },
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+    ],
+  ];
+  const andData = [
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 1 },
+      { x: 1, y: 0 },
+    ],
+    [{ x: 1, y: 1 }],
+  ];
+
+  const xorData = [
+    [
+      { x: 1, y: 1 },
+      { x: 0, y: 0 },
+    ],
+    [
+      { x: 0, y: 1 },
+      { x: 1, y: 0 },
+    ],
+  ];
+  const mlpData = [
+    [
+      { x: 0, y: 0 },
+      { x: 1, y: 1 },
+    ],
+    [
+      { x: 1, y: 0 },
+      { x: 1, y: 0 },
     ],
   ];
 </script>
@@ -180,13 +254,23 @@
   Imagine we have a labeled dataset with two features and two possible classes,
   as indicated in the scatterplot below.
 </p>
-<Scatterplot {data} />
+<Scatterplot {data} minX={0} maxX={20} minY={0} maxY={15} />
 <p>
   It is a relatively easy task for a human being to separate the colored circles
   into the two categories. All we have to do is to draw a line that perfectly
   separates the two groups.
 </p>
-<Scatterplot {data} x1Line="0" y1Line="0" x2Line="22" y2Line="15" />
+<Scatterplot
+  {data}
+  minX={0}
+  maxX={20}
+  minY={0}
+  maxY={15}
+  x1Line={0}
+  y1Line={0}
+  x2Line={22}
+  y2Line={15}
+/>
 <p>
   The perceptron algorithm is designed to find such a line in an automated way.
   In machine learning lingo we also call such a line a <Highlight
@@ -199,8 +283,81 @@
 </p>
 <div class="separator" />
 
-<h3>"Perceptrons" by Minsky and Papert 1969</h3>
-<p>Logic gates</p>
+<h3>"Perceptrons" 1969</h3>
+<p>
+  The McCulloch and Pitts neuron can be used to simulate logical gates, that are
+  commonly used in comuter architectures. The idea was that these logical gates
+  can be used as buidling block to simulate a human brain.
+</p>
+
+<p>
+  The <Highlight>or</Highlight> gate produces an output of 1 if either input 1 <Highlight
+    >or</Highlight
+  >
+  input 2 amount to 1.
+</p>
+<Table data={orTableData} header={orTableHeader} />
+<p>
+  We can use the perceptron algorithm to draw a decision boundary between the
+  two classes.
+</p>
+<Scatterplot
+  data={orData}
+  xLabel="Input 1"
+  yLabel="Input 2"
+  x1Line={0}
+  y1Line={0.8}
+  x2Line={0.9}
+  y2Line={0}
+/>
+<p>
+  The <Highlight>and</Highlight> gate on the other hand produces an output of 1 when
+  input 1 <Highlight>and</Highlight>
+  input 2 amount to 1 respectively.
+</p>
+<p>The decision boundary is easily implemented.</p>
+<Table data={andTableData} header={andTableHeader} />
+
+<Scatterplot
+  data={andData}
+  xLabel="Input 1"
+  yLabel="Input 2"
+  x1Line={0.2}
+  y1Line={1}
+  x2Line={1}
+  y2Line={0.2}
+/>
+<p>
+  Marvin Minsky and Seymour Papert published a book named "Perceptrons"<sup
+    >3</sup
+  >
+  in the year 1969. In that book they showed that a single perceptron is not able
+  to simulate a so called <Highlight>xor</Highlight> gate. The xor gate (exclusive
+  or) outputs 1 only when one and only one of the inputs are active.
+</p>
+<Table data={xorTableData} header={xorTableHeader} />
+<p>
+  If you try to separate the data by drawing a single line, you will come to the
+  conclusion, that it is impossible.
+</p>
+<Scatterplot data={xorData} xLabel="Input 1" yLabel="Input 2" />
+<p>
+  Yet you can separate the data by using a hidden layer. Essentially you combine
+  the output from the or gate with the output from the and gate and use those
+  outputs in the neuron of the next layer as an input.
+</p>
+<Table data={mlpTableData} header={mlpTableHeader} />
+<p>That makes the separable with a single line.</p>
+<Scatterplot
+  x1Line={0.2}
+  y1Line={0}
+  x2Line={1}
+  y2Line={0.5}
+  data={mlpData}
+  xLabel="OR Output"
+  yLabel="AND Output"
+/>
+
 <div class="separator" />
 
 <h2>Second Wave: Neural Networks in the Golden Age of Expert Systems</h2>
@@ -238,6 +395,10 @@
     [2] Rosenblatt F. The Perceptron: A probabilistic model for information
     storage and organization in the brain. Psychological Review Vol. 65, No. 6,
     1958.
+  </p>
+  <p>
+    [3] Minsky M. and Papert S. A. Perceptrons: An Introduction to Computational
+    Geometry. MIT Press. 1969
   </p>
 </div>
 
