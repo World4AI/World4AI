@@ -155,7 +155,7 @@
 <div class="separator" />
 
 <h2>First Wave: Birth of Artificial Neural Networks</h2>
-<h3>McCulloch-Pitts Neuron 1943</h3>
+<h3>McCulloch-Pitts Neuron</h3>
 <p>
   The first artificial neuron was developed by Warren McCulloch and Walter Pitts<sup
     >1</sup
@@ -252,7 +252,7 @@
 </p>
 <div class="separator" />
 
-<h3>Perceptron 1957</h3>
+<h3>Perceptron</h3>
 <p>
   McCulloch and Pitts provided an architecture for artificial neural networks
   that is still used today. Yet they did not provide a way for a neuron to
@@ -301,7 +301,7 @@
 </p>
 <div class="separator" />
 
-<h3>"Perceptrons" 1969</h3>
+<h3>"Perceptrons"</h3>
 <p>
   The McCulloch and Pitts neuron can be used to simulate logical gates, that are
   commonly used in comuter architectures. The idea was that these logical gates
@@ -333,9 +333,8 @@
   input 1 <Highlight>and</Highlight>
   input 2 amount to 1 respectively.
 </p>
-<p>The decision boundary is easily implemented.</p>
 <Table data={andTableData} header={andTableHeader} />
-
+<p>The decision boundary is easily implemented.</p>
 <Scatterplot
   data={andData}
   xLabel="Input 1"
@@ -365,7 +364,7 @@
   outputs in the neuron of the next layer as an input.
 </p>
 <Table data={mlpTableData} header={mlpTableHeader} />
-<p>That makes the separable with a single line.</p>
+<p>That makes the data separable with a single line.</p>
 <Scatterplot
   x1Line={0.2}
   y1Line={0}
