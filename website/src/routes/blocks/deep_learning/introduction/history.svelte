@@ -12,6 +12,7 @@
   import Rnn from "./_history/Rnn.svelte";
   import Scatterplot from "$lib/Scatterplot.svelte";
   import Table from "$lib/Table.svelte";
+  import Relu from "./_history/Relu.svelte";
 
   const data = [
     [
@@ -133,6 +134,14 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | History</title>
+  <meta
+    name="description"
+    content="The history of deep learning is characterized by waves of high investment and so called AI winters."
+  />
+</svelte:head>
 
 <h1>The History of Deep Learning</h1>
 <Question>What is the history of deep learning?</Question>
@@ -479,7 +488,7 @@
   matters.
 </p>
 
-<h3>Convolutional Neural Networks 1989</h3>
+<h3>Convolutional Neural Networks</h3>
 <p>
   The area of computer vision also made great leaps during the second wave. The
   most prominent architecture that was developed during that time are the
@@ -509,18 +518,66 @@
 
 <h2>Second AI Winter</h2>
 <p>
-  The second AI winter started in the mid 1990's and ended in the year 2012.
+  The expert systems failed to deliver the promised results, which lead to the
+  second AI winter. The winter started in the mid 1990's and ended in the year
+  2012.
 </p>
 <div class="separator" />
 
-<h2>Third Wave: Modern Deep Learning 2012</h2>
-<p>Algorithms, Data and Compute</p>
-<h3>ImageNet</h3>
-<h3>GPU and AlexNet</h3>
+<h2>Third Wave: Modern Deep Learning</h2>
+<p>
+  In hindsight we can say that deep neural networks required at least three
+  components to become successful: algorithmic improvements, large amounts of
+  data and computational power.
+</p>
+<h3>Algorithms: ReLU</h3>
+<p>
+  Many algorithmic advances were made that allowed researchers to improve the
+  performance of neural networks, therefore we can only scratch the surface in
+  this chapter. The one that seems trivial on the surface, but is actually one
+  of the most significant innovations in deep leaning was the introduction of
+  the rectified linar unit (ReLU) as an activation function<sup>10,11</sup>.
+</p>
+<p>
+  This activation function returns 0 when <Latex
+    >{String.raw`\mathbf{xw}+b\leq{0}`}</Latex
+  > and <Latex>{String.raw`\mathbf{xw}+b`}</Latex> otherwise. In other words, the
+  activation function retains positive signals, while the function does not become
+  active for negative signals.
+</p>
+<Relu />
+
+<p>
+  Why this type of function is advantageous will be discussed in a dedicated
+  section. For know it is sufficient to know, that the backpropagation algorithm
+  works extremely well with the ReLU activation function.
+</p>
+
+<h3>Data: ImageNet</h3>
+<p>
+  While most researchers focused on the algorithmic side of the deep learning
+  revolution, in the year 2006 Fei-Fei Li began working on collecting images for
+  a dataset suitable for large scale vision tasks. That dataset, that is still
+  used extensively today became known as ImageNet<sup>12</sup>.
+</p>
+
+<h3>Computation: GPU</h3>
+<p>
+  Graphics processing units (GPU) were developed independently for the use in
+  computer games. In a way it was a happy accident that the same technology that
+  powers the gaming industry is compatible with deep learning. Compared to a CPU
+  a graphics card posesses tousands of cores, which enables extreme parallel
+  computations.
+</p>
+
+<h3>AlexNet</h3>
+<p>coming soon ...</p>
+
 <h3>Turing Award</h3>
+<p>coming soon ...</p>
 
 <h2>The future is now</h2>
-<p>And the rest is history</p>
+<p>coming soon ...</p>
 
 <div class="separator" />
 <h2>Notes</h2>
@@ -565,6 +622,21 @@
   <p>
     [9] LeCun Y. et. al. Backpropagation applied to handwritten zip code
     recognition. 1989. Neural Computation, 1(4):541-551,
+  </p>
+  <p>
+    [10] Nair V. and Hinton G. Rectified Linear Units Improve Restricted
+    Boltzmann Machines. 2010. 27th International Conference on International
+    Conference on Machine Learning, ICML'10, USA: Omnipress, pp. 807–814
+  </p>
+  <p>
+    [11] Glorot X and Bordes A. and Bengio Y. Deep sparse rectifier neural
+    networks. 2011. International Conference on Artificial Intelligence and
+    Statistics.
+  </p>
+  <p>
+    [12] Deng J. and Dong W. and Socher R. and Li L.-J and Li K. and Fei-Fei L.
+    2009. ImageNet: A Large-Scale Hierarchical Image Database. IEEE Computer
+    Vision and Pattern Recognition (CVPR).
   </p>
 </div>
 
