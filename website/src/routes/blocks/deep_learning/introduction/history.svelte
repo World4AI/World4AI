@@ -7,9 +7,11 @@
   import NeuronScalingAdditionActivation from "./_history/NeuronScalingAdditionActivation.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import ForwardBackward from "./_history/ForwardBackward.svelte";
+  import Cnn from "./_history/Cnn.svelte";
+  import Rnn from "./_history/Rnn.svelte";
   import Scatterplot from "$lib/Scatterplot.svelte";
   import Table from "$lib/Table.svelte";
-  import { onMount } from "svelte";
 
   const data = [
     [
@@ -130,19 +132,6 @@
       circularData[i].push({ x, y });
     }
   }
-
-  let offsetForward = 0;
-  let offsetBackward = 0;
-
-  onMount(() => {
-    let interval = setInterval(() => {
-      offsetForward += 20;
-      offsetBackward -= 20;
-    }, 300);
-    return () => {
-      clearInterval(interval);
-    };
-  });
 </script>
 
 <h1>The History of Deep Learning</h1>
@@ -452,33 +441,7 @@
   next layer. Data flows forward from layer to layer until final outputs are
   generated.
 </p>
-<svg version="1.1" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="var(--text-color)">
-    <g
-      id="connections"
-      stroke="var(--main-color-2)"
-      stroke-dashoffset={offsetForward}
-      stroke-dasharray="4, 8"
-    >
-      <path d="m65 35h95" />
-      <path d="m65 50 95 100" />
-      <path d="m65 150 95-100" />
-      <path d="m65 165h95" />
-      <path d="m190 35h95" />
-      <path d="m190 50 95 100" />
-      <path d="m190 150 95-100" />
-      <path d="m190 165h95" />
-    </g>
-    <g id="neurons">
-      <rect x="35" y="20" width="30" height="30" />
-      <rect x="35" y="150" width="30" height="30" />
-      <rect x="160" y="20" width="30" height="30" />
-      <rect x="160" y="150" width="30" height="30" />
-      <rect x="285" y="20" width="30" height="30" />
-      <rect x="285" y="150" width="30" height="30" />
-    </g>
-  </g>
-</svg>
+<ForwardBackward type="forward" />
 <p>
   Once the neural network produces outputs, they can be compared to the actual
   true values. For example you can compare the predicted house price with the
@@ -488,33 +451,7 @@
   adjusted proportionally to the contribution of that the weight to the overall
   error.
 </p>
-<svg version="1.1" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="var(--text-color)">
-    <g
-      id="connections"
-      stroke="var(--main-color-1)"
-      stroke-dashoffset={offsetBackward}
-      stroke-dasharray="4, 8"
-    >
-      <path d="m65 35h95" />
-      <path d="m65 50 95 100" />
-      <path d="m65 150 95-100" />
-      <path d="m65 165h95" />
-      <path d="m190 35h95" />
-      <path d="m190 50 95 100" />
-      <path d="m190 150 95-100" />
-      <path d="m190 165h95" />
-    </g>
-    <g id="neurons">
-      <rect x="35" y="20" width="30" height="30" />
-      <rect x="35" y="150" width="30" height="30" />
-      <rect x="160" y="20" width="30" height="30" />
-      <rect x="160" y="150" width="30" height="30" />
-      <rect x="285" y="20" width="30" height="30" />
-      <rect x="285" y="150" width="30" height="30" />
-    </g>
-  </g>
-</svg>
+<ForwardBackward type="backward" />
 <p>
   The invention of the backpropagation algorithm was the crucial discovery that
   gave us the means to train neural networks with billions of parameters.
@@ -522,13 +459,60 @@
 <div class="separator" />
 
 <h3>Recurrent Neural Networks</h3>
-<p>Hopfield Network</p>
-<p>Vanishing Gradient and LSTM</p>
+<p>
+  The second wave additionally provided us with a lot of research into the field
+  of recurrent neural networks like the Hopfield network<sup>5</sup> and LSTM<sup
+    >6</sup
+  >.
+</p>
+<p>
+  Unlike classical feedforward neural networks, recurrent neural nets (RNN) have
+  self reference. That means that when we deal with sequential data like text or
+  stock prices the output that is produced for the previous part in the sequence
+  (e.g. first word of the sentence) is used as an additional input for the next
+  part of the sequence (e.g. second word in the sentence).
+</p>
+<Rnn />
+<p>
+  For example when we input the second word in the sentence into the neuron, we
+  additionally use the output of the first word from the same neuron. This
+  architecture allows us to deal with information where the order of the data
+  matters.
+</p>
 
 <h3>Convolutional Neural Networks 1989</h3>
-<p>Neocognitron by Kunihiko Fukushima</p>
+<p>
+  The area of computer vision also made great leaps during the second wave. The
+  most prominent architecture that was developed during that time are the
+  convolutional neural networks (CNN). The development of CNNs is essentially a
+  culmination of research that started with research into the visual cortex of
+  cats<sup>7</sup>, lead to the development of the first convolutional
+  architecture by Kunihiko Fukushima, called neocognitron<sup>8</sup> and
+  eventually lead to the incorporation of backpropagation into the CNN
+  architecture by Yann LeCun<sup>9</sup>.
+</p>
+<Cnn />
+<p>
+  In a convolutional neural network we have a sliding window of neurons, that
+  focuses on one area of a picure at a time. This architecture allows to
+  preserve the two dimensional structure that is important to visual tasks. Even
+  today convolutional neural networks produce state of the art results in
+  computer vision.
+</p>
 
 <h3>NeurIPS</h3>
+<p>
+  Last but not least, in the year 1986 the conference and workshop on neural
+  information processing systems (NeurIPS) was proposed. NeurIPS is a yearly
+  machine learning conference that is still held to this day.
+</p>
+<div class="separator" />
+
+<h2>Second AI Winter</h2>
+<p>
+  The second AI winter started in the mid 1990's and ended in the year 2012.
+</p>
+<div class="separator" />
 
 <h2>Third Wave: Modern Deep Learning 2012</h2>
 <p>Algorithms, Data and Compute</p>
@@ -559,6 +543,29 @@
   <p>
     [4] Rumelhart D and Hinton G and Williams R. Learning representations by
     back-propagating errors. (1986a) Nature. 323 (6088): 533–536
+  </p>
+  <p>
+    [5] Hopfield, J. Neural networks and physical systems with emergent
+    collective computational abilities. (1982) Proceedings of the National
+    Academy of Sciences. 79 (8): 2554–2558
+  </p>
+  <p>
+    [6] Hochreiter S. and Schmidhuber J. Long short-term memory. 1997. Neural
+    Computation. 9 (8): 1735–1780.
+  </p>
+  <p>
+    [7] Hubel D. H. and Wiesel T. N. Receptive fields of single neurones in the
+    cat's striate cortex. 1959. The Journal of Physiology. 124 (3): 574–591
+  </p>
+  <p />
+  <p>
+    [8] Fukushima K. Neocognitron: A self-organizing neural network model for a
+    mechanism of pattern recognition unaffected by shift in position. 1980.
+    Biological Cybernetics. 36 (4): 193–202
+  </p>
+  <p>
+    [9] LeCun Y. et. al. Backpropagation applied to handwritten zip code
+    recognition. 1989. Neural Computation, 1(4):541-551,
   </p>
 </div>
 
