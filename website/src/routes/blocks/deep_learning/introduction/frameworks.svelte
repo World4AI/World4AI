@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | History</title>
+  <title>World4AI | Deep Learning | Frameworks</title>
   <meta
     name="description"
     content="Deep learning frameworks are necessary for an efficient workflow. At the moment TensorFlow, PyTorch and JAX dominate the market."
