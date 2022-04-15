@@ -423,7 +423,15 @@ const dl = [
           {
             name: 'Deep Learning Frameworks',
             link: '/blocks/deep_learning/introduction/frameworks'
-          }
+          },
+          {
+            name: 'Computational Resources',
+            link: '/blocks/deep_learning/introduction/computational_resources'
+          },
+          {
+            name: 'Education',
+            link: '/blocks/deep_learning/introduction/education'
+          },
         ]
     },
     {
