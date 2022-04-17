@@ -32,7 +32,7 @@
     return ticks;
   }
 
-  const padding = { top: 20, right: 40, bottom: 40, left: 40 };
+  const padding = { top: 20, right: 40, bottom: 40, left: 80 };
 
   $: xScale = scaleLinear()
     .domain([minX, maxX])
@@ -50,7 +50,7 @@
   <g class="axis y-axis">
     {#each yTicks as tick}
       <g class="tick tick-{tick}" transform="translate(0, {yScale(tick)})">
-        <line x1={padding.left} x2={xScale(22)} />
+        <line x1={padding.left} x2={xScale(maxX)} />
         <text x={padding.left - 8} y="+4">{tick}</text>
       </g>
     {/each}
@@ -59,7 +59,7 @@
   <g class="axis x-axis">
     {#each xTicks as tick}
       <g class="tick" transform="translate({xScale(tick)},0)">
-        <line y1={yScale(0)} y2={yScale(15)} />
+        <line y1={yScale(minY)} y2={yScale(maxY)} />
         <text y={height - padding.bottom + 16}>{tick}</text>
       </g>
     {/each}

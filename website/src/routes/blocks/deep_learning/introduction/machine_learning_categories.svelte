@@ -2,12 +2,41 @@
   import Question from "$lib/Question.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Table from "$lib/Table.svelte";
+  import Scatterplot from "$lib/Scatterplot.svelte";
 
   let header = ["Location", "Size", "Price"];
   let data = [
     ["London", "100", 1_000_000],
     ["Berlin", "30", 80_000_000],
     ["...", "...", "..."],
+  ];
+
+  //data for unsupervised learning scatterplot
+  let unsupervisedData = [
+    [
+      { x: 10, y: 15000 },
+      { x: 20, y: 35000 },
+      { x: 20, y: 25000 },
+      { x: 25, y: 35000 },
+      { x: 45, y: 50000 },
+      { x: 15, y: 20000 },
+      { x: 22, y: 25000 },
+      { x: 33, y: 23000 },
+      { x: 40, y: 37000 },
+      { x: 27, y: 40000 },
+    ],
+    [
+      { x: 110, y: 250000 },
+      { x: 100, y: 235000 },
+      { x: 90, y: 200000 },
+      { x: 120, y: 700000 },
+      { x: 135, y: 1000000 },
+      { x: 140, y: 800000 },
+      { x: 122, y: 325000 },
+      { x: 133, y: 723000 },
+      { x: 140, y: 457000 },
+      { x: 127, y: 440000 },
+    ],
   ];
 </script>
 
@@ -276,6 +305,20 @@
   the same cluster, while different houses should be in vastly different
   clusters.
 </p>
+<p>
+  In the below example we divide the houses into two categories based on size
+  and price.
+</p>
+<Scatterplot
+  data={unsupervisedData}
+  minX={10}
+  maxX={150}
+  minY={10000}
+  maxY={1000000}
+  numTicks={5}
+  xLabel={"Size"}
+  yLabel={"Price"}
+/>
 <div class="separator" />
 
 <h2>Semi-supervised Learning</h2>
@@ -294,6 +337,31 @@
   is not determined by a human supervisor, but is derived directly from the
   features.
 </p>
+<p>Let look for example at the sentence below.</p>
+<div class="sentence">
+  <span class="word">What</span>
+  <span class="word">is</span>
+  <span class="word">your</span>
+  <span class="word">name</span>
+</div>
+<p>
+  We could design a natural language processing task by masking a part of the
+  sentence.
+</p>
+<div class="sentence">
+  <span class="word">What</span>
+  <span class="word">is</span>
+  <span class="word">your</span>
+  <span class="word">...</span>
+</div>
+<p>
+  The algorithm needs to learn to predict the masked word. We feed the model
+  with millions of such examples and the better the model gets at this task, the
+  more the model gets knowledgeble about the english language. That knowledge
+  can eventually be used in supervised leanring tasks, where you do not posess
+  millions of examples. This pretraining process facilitates the learning of
+  other language tasks.
+</p>
 <div class="separator" />
 
 <h2>Reinforcement Learning</h2>
@@ -303,3 +371,12 @@
   have dedicated a whole block to reinforcement learning.
 </p>
 <div class="separator" />
+
+<style>
+  .word {
+    font-size: 26px;
+    border: 1px solid var(--text-color);
+    margin-right: 10px;
+    padding: 0 5px;
+  }
+</style>
