@@ -397,16 +397,16 @@ const dl = [
         link: '/blocks/deep_learning/introduction',
         links: [
           {
-            name: 'Machine Learning',
-            link: '/blocks/deep_learning/introduction/machine_learning'
+            name: 'Definition of Machine Learning',
+            link: '/blocks/deep_learning/introduction/machine_learning_definition'
           },
           {
             name: 'Categories of Machine Learning',
             link: '/blocks/deep_learning/introduction/machine_learning_categories'
           },
           {
-            name: 'Deep Learning',
-            link: '/blocks/deep_learning/introduction/deep_learning'
+            name: 'Definition of Deep Learning',
+            link: '/blocks/deep_learning/introduction/deep_learning_definition'
           },
           {
             name: 'History Of Deep Learning',
@@ -425,11 +425,11 @@ const dl = [
             link: '/blocks/deep_learning/introduction/frameworks'
           },
           {
-            name: 'GPU Resources',
+            name: 'Deep Learning GPU Resources',
             link: '/blocks/deep_learning/introduction/gpu_resources'
           },
           {
-            name: 'Education',
+            name: 'Deep Learning Education',
             link: '/blocks/deep_learning/introduction/education'
           },
         ]
