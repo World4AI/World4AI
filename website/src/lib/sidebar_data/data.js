@@ -438,6 +438,22 @@ const dl = [
         name: 'Linear Regression',
         link: '/blocks/deep_learning/linear_regression',
         links: [
+          {
+            name: 'Linear Model',
+            link:'/blocks/deep_learning/linear_regression/linear_model', 
+          },
+          {
+            name: 'Loss Function',
+            link:'/blocks/deep_learning/linear_regression/loss_function', 
+          },
+          {
+            name: 'Gradient Descent',
+            link:'/blocks/deep_learning/linear_regression/gradient_descent', 
+          },
+          {
+            name: 'Limitations',
+            link:'/blocks/deep_learning/linear_regression/limitations', 
+          },
         ]
     },
     {
