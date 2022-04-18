@@ -20,6 +20,7 @@
   export let maxX = 1;
   export let minY = 0;
   export let maxY = 1;
+  export let radius = 5;
 
   export let numTicks = 2;
 
@@ -76,7 +77,7 @@
   <!-- Add labels -->
   <text
     class="label"
-    x={xScale((maxX - minX) / 2)}
+    x={xScale((maxX - minX) / 2 + minX)}
     y={height - padding.bottom + 35}>{xLabel}</text
   >
 
@@ -91,7 +92,7 @@
         fill={colors[idx]}
         cx={xScale(point.x)}
         cy={yScale(point.y)}
-        r="5"
+        r={radius}
       />
     {/each}
   {/each}
