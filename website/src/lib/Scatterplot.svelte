@@ -83,7 +83,6 @@
 
     <!-- add rectangles -->
     {#each rectangles as rect}
-      {console.log(yScale(rect.height))}
       <rect
         x={xScale(rect.x)}
         y={yScale(rect.y)}
