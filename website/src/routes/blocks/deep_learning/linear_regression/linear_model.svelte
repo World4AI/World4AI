@@ -21,17 +21,17 @@
     nonlinearData[0].push({ x, y });
   }
 
-  let x1Line = -100;
-  let y1Line;
-  let x2Line = 100;
-  let y2Line;
+  let lines = [{ x1: -100, y1: 0, x2: 100, y2: 0 }];
 
   let estimatedBias = -200;
   let estimatedWeight = -100;
 
   function calculatePoints(estimatedBias, estimatedWeight) {
-    y1Line = estimatedBias + estimatedWeight * x1Line;
-    y2Line = estimatedBias + estimatedWeight * x2Line;
+    let y1 = estimatedBias + estimatedWeight * lines[0].x1;
+    let y2 = estimatedBias + estimatedWeight * lines[0].x2;
+    lines[0].y1 = y1;
+    lines[0].y2 = y2;
+    lines = lines;
   }
 
   $: calculatePoints(estimatedBias, estimatedWeight);
@@ -126,10 +126,7 @@
   maxY={500}
   numTicks={11}
   radius={3}
-  {x1Line}
-  {y1Line}
-  {x2Line}
-  {y2Line}
+  {lines}
 />
 <p>The weight <Latex>w</Latex> is: {estimatedWeight}</p>
 <Slider bind:value={estimatedWeight} min={-200} max={200} />

@@ -293,10 +293,7 @@
   maxX={20}
   minY={0}
   maxY={15}
-  x1Line={0}
-  y1Line={0}
-  x2Line={22}
-  y2Line={15}
+  lines={[{ x1: 0, y1: 0, x2: 22, y2: 15 }]}
 />
 <p>
   The perceptron algorithm is designed to find such a line in an automated way.
@@ -332,10 +329,7 @@
   data={orData}
   xLabel="Input 1"
   yLabel="Input 2"
-  x1Line={0}
-  y1Line={0.8}
-  x2Line={0.9}
-  y2Line={0}
+  lines={[{ x1: 0, y1: 0.8, x2: 0.9, y2: 0 }]}
 />
 <p>
   The <Highlight>and</Highlight> gate on the other hand produces an output of 1 when
@@ -348,10 +342,7 @@
   data={andData}
   xLabel="Input 1"
   yLabel="Input 2"
-  x1Line={0.2}
-  y1Line={1}
-  x2Line={1}
-  y2Line={0.2}
+  lines={[{ x1: 0.2, y1: 1, x2: 1, y2: 0.2 }]}
 />
 <p>
   Marvin Minsky and Seymour Papert published a book named "Perceptrons"<sup
@@ -375,10 +366,7 @@
 <Table data={mlpTableData} header={mlpTableHeader} />
 <p>That makes the data separable with a single line.</p>
 <Scatterplot
-  x1Line={0.2}
-  y1Line={0}
-  x2Line={1}
-  y2Line={0.5}
+  lines={[{ x1: 0.2, y1: 0, x2: 1, y2: 0.5 }]}
   data={mlpData}
   xLabel="OR Output"
   yLabel="AND Output"

@@ -11,10 +11,8 @@
   export let xLabel = "Feature 1";
   export let yLabel = "Feature 2";
 
-  export let x1Line = 0;
-  export let y1Line = 0;
-  export let x2Line = 0;
-  export let y2Line = 0;
+  export let lines = [];
+  console.log(lines);
 
   export let minX = 0;
   export let maxX = 1;
@@ -67,12 +65,14 @@
   </g>
 
   <!-- add line to the scatterplot -->
-  <line
-    x1={xScale(x1Line)}
-    y1={yScale(y1Line)}
-    x2={xScale(x2Line)}
-    y2={yScale(y2Line)}
-  />
+  {#each lines as line}
+    <line
+      x1={xScale(line.x1)}
+      y1={yScale(line.y1)}
+      x2={xScale(line.x2)}
+      y2={yScale(line.y2)}
+    />
+  {/each}
 
   <!-- Add labels -->
   <text
