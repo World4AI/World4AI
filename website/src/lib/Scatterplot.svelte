@@ -12,7 +12,7 @@
   export let yLabel = "Feature 2";
 
   export let lines = [];
-  console.log(lines);
+  export let rectangles = [];
 
   export let minX = 0;
   export let maxX = 1;
@@ -40,6 +40,10 @@
   $: yScale = scaleLinear()
     .domain([minY, maxY])
     .range([height - padding.bottom, padding.top]);
+
+  $: heightScale = scaleLinear()
+    .domain([minY, maxY])
+    .range([padding.top, height - padding.bottom]);
 
   $: xTicks = createTicks(minX, maxX);
   $: yTicks = createTicks(minY, maxY);
@@ -74,6 +78,16 @@
     />
   {/each}
 
+  <!-- add rectangles -->
+  {#each rectangles as rect}
+    {console.log(yScale(rect.height))}
+    <rect
+      x={xScale(rect.x)}
+      y={yScale(rect.y)}
+      width={xScale(rect.width) - padding.left}
+      height={heightScale(rect.height) - padding.top}
+    />
+  {/each}
   <!-- Add labels -->
   <text
     class="label"
@@ -101,6 +115,12 @@
 <style>
   circle {
     stroke: rgba(0, 0, 0, 0.5);
+  }
+
+  rect {
+    stroke: var(--text-color);
+    fill: none;
+    stroke-dasharray: 2 4;
   }
 
   .tick line {
