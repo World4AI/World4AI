@@ -219,10 +219,72 @@
   to take steps for a certain amount of iterations. We will discuss the topic
   more throughout this book.
 </p>
+
+<p>
+  Before we move on to the part where we discuss how we can apply this algorithm
+  to linear regression, let us discuss how we can deal with functions that have
+  more than one variable, for example <Latex
+    >{String.raw`f(x_1, x_2) = x_1^2 + x_2^2`}</Latex
+  >. The approach is actually very similar. Insdead of calculating the
+  derivative with respect to <Latex>x</Latex>
+  <Latex>{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex> we need to calculate
+  the partial derivatives with respect to all variables, in our case
+  <Latex>{String.raw`\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_1}f`}</Latex>
+  and <Latex>{String.raw`\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_2}f`}</Latex>.
+  For convenience we put the partial derivatives and the variables into their
+  corresponding vectors.
+</p>
+<Latex>
+  {String.raw`
+\large
+\mathbf{x} = 
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+  `}
+</Latex>
+<Latex>
+  {String.raw`
+\large
+\mathbf{\nabla} = 
+\begin{bmatrix}
+\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_1}f \\
+\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_2}f
+\end{bmatrix}
+  `}
+</Latex>
+<p>
+  The gradient descent algorithm looks almost the same, but for the substitution
+  for vectors.
+</p>
+<Latex
+  >{String.raw`\large \mathbf{x}_{t+1} \coloneqq \mathbf{x}_t - \alpha \mathbf{\nabla} `}</Latex
+>
+<p>
+  The vector that is represented by nabla <Latex>\nabla</Latex> is called the <Highlight
+    >gradient</Highlight
+  >, giving its name to the gradient descent (or ascent) algorithm.
+</p>
 <div class="separator" />
 
 <h2>Gradient Descent From Data</h2>
-<p>Batch, Stochastic, Minibatch, Epoch</p>
+<p>
+  When we deal with linear regression (or machine learning in general), we are
+  confronted with a slightly different problem. We do not try to find a minimum
+  of a given function directly, rather we try to find parameters (weights and
+  bias) for a linear function that best approximates the function that generated
+  the data. In machine learning that process is also called data or curve
+  fitting, because we search for a curve/function that best fits the data that
+  we use in our training process. For that purpose we use gradient descent to
+  minimize a loss function (the mean squared error in our case). We do not know
+  how the real data generating function looks like, but we hope that by
+  minimizing the loss function we can generate a relatively good approximation.
+</p>
+<h3>Batch Gradient Descent</h3>
+<h3>Stochastic Gradient Descent</h3>
+<h3>Mini-Batch Gradient Descent</h3>
+<div class="separator" />
 
 <style>
   input,
