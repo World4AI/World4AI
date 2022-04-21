@@ -96,6 +96,14 @@
   }
 </script>
 
+<svelte:head>
+  <title>World4AI | Deep Learning | Linear Regression Gradient Descent</title>
+  <meta
+    name="description"
+    content="Gradient descent is the algorithm that is most commonly used to find the optimal weights and biases in linear regression."
+  />
+</svelte:head>
+
 <h1>Gradient Descent</h1>
 <Question
   >How can we learn the optimal weights and biases in linear regression?</Question
