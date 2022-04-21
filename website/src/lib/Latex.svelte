@@ -10,10 +10,13 @@
 </script>
 
 <span class="placeholder" use:generateLatex><slot /></span>
-<span>{@html html}</span>
+<span class="result">{@html html}</span>
 
 <style>
   .placeholder {
     display: none;
+  }
+  .result {
+    white-space: nowrap;
   }
 </style>
