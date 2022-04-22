@@ -75,10 +75,11 @@
           </ul>
         </div>
       </li>
-      <li><a class:selected={path === "/about"} href="/about">About</a></li>
+      <li><a class:selected={path === "/books"} href="/books">Books</a></li>
       <li>
         <a class:selected={path === "/sponsor"} href="/sponsor">Sponsor</a>
       </li>
+      <li><a class:selected={path === "/about"} href="/about">About</a></li>
     </ul>
     <ul class="external-links">
       <li>
