@@ -1,9 +1,9 @@
 <script>
-  import "../../../app.css";
+  import "../app.css";
   import Container from "$lib/Container.svelte";
   import Header from "$lib/Header.svelte";
   import Sidebar from "$lib/Sidebar.svelte";
-  import { programming } from "$lib/sidebar_data/data.js";
+  import { dl } from "$lib/sidebar_data/data.js";
 
   let isVisible = false;
   function toggleAside() {
@@ -21,7 +21,7 @@
     </main>
     <div on:click={toggleAside} class="aside-toggle" />
     <aside class:visible={isVisible}>
-      <Sidebar root={programming} />
+      <Sidebar root={dl} />
     </aside>
   </div>
 </div>
