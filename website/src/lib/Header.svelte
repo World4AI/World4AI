@@ -49,12 +49,6 @@
             </li>
             <li>
               <a
-                class:selected={path === "/blocks/programming"}
-                href="/blocks/programming/introduction">Programming</a
-              >
-            </li>
-            <li>
-              <a
                 class:selected={path === "/blocks/mathematics"}
                 href="/blocks/mathematics/introduction">Mathematics</a
               >
