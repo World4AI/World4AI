@@ -451,8 +451,8 @@ const dl = [
             link:'/blocks/deep_learning/linear_regression/gradient_descent', 
           },
           {
-            name: 'Limitations',
-            link:'/blocks/deep_learning/linear_regression/limitations', 
+            name: 'Linear Neuron',
+            link:'/blocks/deep_learning/linear_regression/linear_neuron', 
           },
         ]
     },
