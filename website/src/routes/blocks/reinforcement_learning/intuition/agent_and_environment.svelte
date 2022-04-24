@@ -42,9 +42,7 @@
   use a grid world example.
 </p>
 
-<div class="flex-center">
-  <Grid {cells} {player} />
-</div>
+<Grid {cells} {player} />
 
 <p>
   The gridworld above is the same that we have seen in the previous section. We
@@ -79,10 +77,8 @@
   The agent is the code that makes the decisions. Do not mix up the agent with
   its physical / graphical representation in the environment.
 </p>
-<div class="flex-space">
-  <Grid {cells} {player} />
-  <Action {action} />
-</div>
+<Grid {cells} {player} />
+<Action {action} />
 
 <p>
   For example in the gridworld above the agent can decide to go north even when
@@ -112,9 +108,7 @@
 
 <p class="info">Anything outside of the agent is the environment.</p>
 
-<div class="flex-center">
-  <Robot />
-</div>
+<Robot />
 <p>
   A different common example that is often used to make the distinction between
   the agent and the environment is that of a robot that interacts with the real
@@ -139,9 +133,7 @@
   hard we try, we can not stop our heart though our will.
 </p>
 
-<div class="flex-center">
-  <AgentEnvironment />
-</div>
+<AgentEnvironment />
 
 <p>
   Before we move on to the next section let us clarify the visual notation we

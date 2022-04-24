@@ -45,9 +45,7 @@
   In a Markov decision process <Latex>{String.raw`\mathcal{S}`}</Latex> is the state
   space: the set that contains all possible states of the environment.
 </p>
-<div class="flex-center">
-  <Grid {cells} showOnlyGrid={true} />
-</div>
+<Grid {cells} showOnlyGrid={true} />
 <p>
   In the example above for example we are dealing with a 5X5 grid world, where
   each state can be represented by a row and column tuple: (row, column).
@@ -71,12 +69,10 @@
   In a Markov decision process <Latex>{String.raw`\mathcal{A}`}</Latex> is the action
   space, that contains all possible actions of the environment.
 </p>
-<div class="flex-space">
-  <Action action={0} />
-  <Action action={1} />
-  <Action action={2} />
-  <Action action={3} />
-</div>
+<Action action={0} />
+<Action action={1} />
+<Action action={2} />
+<Action action={3} />
 <p>
   In the simple grid world environment the agent has the option to move into
   four different directions: north, east, south and west. The same actions are

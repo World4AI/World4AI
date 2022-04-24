@@ -59,9 +59,7 @@
   grid worlds that are substantially more complex. These can for example include
   powerups, enemies and many levels.
 </p>
-<div class="flex-center">
-  <Grid {cells} {player} />
-</div>
+<Grid {cells} {player} />
 <p>
   In the above example the player has to move the circle from the top left
   corner to the goal (represented by a triangle) in bottom left corner, while
@@ -141,9 +139,7 @@
   games AlphaGo shocked the world with the now iconic move. This move has become
   known as <strong>Move 37</strong>.
 </p>
-<div class="flex-center">
-  <Go />
-</div>
+<Go />
 <div class="separator" />
 
 <h3>Modern Games</h3>
@@ -159,9 +155,7 @@
   and units of your opponents. Many of these decisions have tradeoffs and there
   is no single best strategy, the player has to adapt to the current situation.
 </p>
-<div class="flex-center">
-  <Strategy />
-</div>
+<Strategy />
 <p>
   The image above shows how an imagined rts game configuration might look like.
   The picture indicates how a player has to balance several decisions at the
@@ -178,9 +172,7 @@
   industry in every aspect imaginable. From valuing financial products to
   chatbots that communicate with prospective clients.
 </p>
-<div class="flex-center">
-  <Finance />
-</div>
+<Finance />
 <p>
   The most exciting part still seems to be portfolio management though. Imagine
   an artificial intelligence that decides what financial instrument to invest in
@@ -200,9 +192,7 @@
   drones or bipedal robots. In all the above mentioned cases it is possible to
   apply reinforcement learning to learn the desired task for the robot.
 </p>
-<div class="flex-center">
-  <Robot />
-</div>
+<Robot />
 <p>
   For example a bipedal robot can be taught to walk on two legs through the
   means of reinforcement learning. Each good or bad step of the robot can be
@@ -231,9 +221,7 @@
   available to newer systems without loss of data. Thus the amount of mistakes
   and the cost of treatment should potentially decrease.
 </p>
-<div class="flex-center">
-  <Healthcare />
-</div>
+<Healthcare />
 <p>
   The development of new drugs is another exciting possible application of
   reinforcement learning. The abundance of medical data should allow the AI to
@@ -243,9 +231,7 @@
 <div class="separator" />
 
 <h2>Autonomous Vehicles</h2>
-<div class="flex-center">
-  <AutonomousVehicles />
-</div>
+<AutonomousVehicles />
 <p>
   Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing
   the current frontier for reinforcement learning. There are many car companies

@@ -1,4 +1,5 @@
 <script>
+  import SvgContainer from "$lib/SvgContainer.svelte";
   import { scaleLinear } from "d3-scale";
   let gamma = 0.95;
   let maxX = 100;
@@ -34,38 +35,40 @@
   $: path = `M${points.map((p) => `${xScale(p.x)},${yScale(p.y)}`).join("L")}`;
 </script>
 
-<div class="svg-container">
-  <svg viewBox="0 0 {width} {height}">
-    <!-- y axis -->
-    <g class="axis y-axis" transform="translate(0, {padding.top})">
-      {#each yTicks as tick}
-        <g
-          class="tick tick-{tick}"
-          transform="translate(0, {yScale(tick) - padding.bottom})"
-        >
-          <line x2="100%" />
-          <text y="-4">{tick}</text>
-        </g>
-      {/each}
-    </g>
+<SvgContainer maxWidth={"500px"}>
+  <div class="svg-container">
+    <svg viewBox="0 0 {width} {height}">
+      <!-- y axis -->
+      <g class="axis y-axis" transform="translate(0, {padding.top})">
+        {#each yTicks as tick}
+          <g
+            class="tick tick-{tick}"
+            transform="translate(0, {yScale(tick) - padding.bottom})"
+          >
+            <line x2="100%" />
+            <text y="-4">{tick}</text>
+          </g>
+        {/each}
+      </g>
 
-    <!-- x axis -->
-    <g class="axis x-axis">
-      {#each xTicks as tick}
-        <g
-          class="tick tick-{tick}"
-          transform="translate({xScale(tick)},{height})"
-        >
-          <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
-          <text y="-2">{tick}</text>
-        </g>
-      {/each}
-    </g>
+      <!-- x axis -->
+      <g class="axis x-axis">
+        {#each xTicks as tick}
+          <g
+            class="tick tick-{tick}"
+            transform="translate({xScale(tick)},{height})"
+          >
+            <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
+            <text y="-2">{tick}</text>
+          </g>
+        {/each}
+      </g>
 
-    <!-- data -->
-    <path class="path-line" d={path} />
-  </svg>
-</div>
+      <!-- data -->
+      <path class="path-line" d={path} />
+    </svg>
+  </div>
+</SvgContainer>
 <form>
   <div>
     <label for="gamma">Gamma:</label>
@@ -78,13 +81,6 @@
 </form>
 
 <style>
-  .svg-container {
-    max-width: 800px;
-  }
-  svg {
-    width: 100%;
-  }
-
   .tick {
     font-size: 15px;
     font-weight: 200;

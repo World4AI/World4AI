@@ -59,7 +59,7 @@
   ];
 </script>
 
-<svg {width} {height}>
+<svg viewBox="0 0 {width} {height}">
   {#each trajectory as element, i}
     <rect
       x={leftOffset + i * size + i * distance}

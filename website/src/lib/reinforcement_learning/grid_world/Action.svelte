@@ -1,6 +1,7 @@
 <script>
   import { tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
+  import SvgContainer from "$lib/SvgContainer.svelte";
 
   const rotation = tweened(0, {
     duration: 200,
@@ -28,40 +29,42 @@
 </script>
 
 <div class="container">
-  <svg width={size} height={size}>
-    <circle
-      cx={size / 2}
-      cy={size / 2}
-      r={size / 2 - 5}
-      fill="none"
-      stroke="var(--text-color)"
-    />
-    <defs>
-      <marker
-        id="arrowhead"
-        markerWidth="10"
-        markerHeight="7"
-        refX="0"
-        refY="3.5"
-        orient="auto"
-        fill="var(--text-color)"
-      >
-        <polygon points="0 0, 10 3.5, 0 7" />
-      </marker>
-    </defs>
-    {#if action !== null}
-      <line
-        {x1}
-        {y1}
-        {x2}
-        {y2}
-        transform="rotate({$rotation}, {size / 2}, {size / 2})"
+  <SvgContainer maxWidth={size}>
+    <svg>
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={size / 2 - 5}
+        fill="none"
         stroke="var(--text-color)"
-        stroke-width="2"
-        marker-end="url(#arrowhead)"
       />
-    {/if}
-  </svg>
+      <defs>
+        <marker
+          id="arrowhead"
+          markerWidth="10"
+          markerHeight="7"
+          refX="0"
+          refY="3.5"
+          orient="auto"
+          fill="var(--text-color)"
+        >
+          <polygon points="0 0, 10 3.5, 0 7" />
+        </marker>
+      </defs>
+      {#if action !== null}
+        <line
+          {x1}
+          {y1}
+          {x2}
+          {y2}
+          transform="rotate({$rotation}, {size / 2}, {size / 2})"
+          stroke="var(--text-color)"
+          stroke-width="2"
+          marker-end="url(#arrowhead)"
+        />
+      {/if}
+    </svg>
+  </SvgContainer>
 
   <table>
     <thead>

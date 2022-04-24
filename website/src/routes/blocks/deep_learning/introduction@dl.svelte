@@ -1,6 +1,7 @@
 <script>
   import Question from "$lib/Question.svelte";
   import { draw } from "svelte/transition";
+  import SvgContainer from "$lib/SvgContainer.svelte";
 </script>
 
 <svelte:head>
@@ -15,13 +16,8 @@
 <Question>What will we study in this block?</Question>
 <div class="separator" />
 
-<div class="flex-center">
-  <svg
-    version="1.1"
-    width="500px"
-    viewBox="0 0 500 500"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+<SvgContainer maxWidth={"500px"}>
+  <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
     <g
       id="connections"
       fill="none"
@@ -246,7 +242,7 @@
       </g>
     </g>
   </svg>
-</div>
+</SvgContainer>
 <p>
   In the last decade we drastically improved our ability to classify images, to
   generate text and to play video games with the help of machine learning.

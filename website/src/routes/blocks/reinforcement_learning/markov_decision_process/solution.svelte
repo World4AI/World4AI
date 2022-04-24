@@ -140,26 +140,20 @@
 </p>
 <Latex
   >{String.raw`
-\begin{aligned}
-   G_0 & = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
-   & = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 3
-\end{aligned}
+   G_0  = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 3
 `}</Latex
 >
 <Latex
   >{String.raw`
-\begin{aligned}
-   G_1 & = R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
-   & = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 4
-\end{aligned}
+   G_1 = R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 4
 `}</Latex
 >
 <Latex
   >{String.raw`
-\begin{aligned}
-   G_2 & = R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
-   & = (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 5
-\end{aligned}
+   G_2 = R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 5
 `}</Latex
 >
 <div class="separator" />
@@ -174,8 +168,7 @@
 <p class="info">
   <Latex>{String.raw`\gamma`}</Latex> (gamma) is the discount factor, where <Latex
     >{String.raw`0 \leq \gamma \leq 1`}</Latex
-  >
-  .
+  >.
 </p>
 <p>
   Let us consider the following example to convince ourselves that future

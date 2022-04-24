@@ -84,7 +84,6 @@
     [
       ["Channel", "Yannic Kilcher"],
       ["Level", "Advanced"],
-      ["Link", "https://www.youtube.com/c/YannicKilcher"],
       [
         "Description",
         "Yannics channel has two important segments that are relevant to your machine learning journey. He has a weekly segement called 'ML News' where he discusses the newest develompents in the machine learning space. The second segment are his paper discussions, where he takes a state of the art deep learning paper apart and explains the concept at a granular level.",
@@ -93,7 +92,6 @@
     [
       ["Channel", "Machine Learning Street Talk"],
       ["Level", "Advanced"],
-      ["Link", "https://www.youtube.com/c/MachineLearningStreetTalk"],
       [
         "Description",
         "This podcast invites AI experts to discuss either their life work or individual papers. The discussions are not easy to grasp, when you are a beginner.",

@@ -60,9 +60,7 @@
   environment generate a new batch of data and send it back to the agent again.
 </p>
 
-<div class="flex-center">
-  <Interaction />
-</div>
+<Interaction />
 
 <p>
   The interaction cycle starts with the the agent receiving the current state of
@@ -81,7 +79,6 @@
   <strong>actions</strong>
   and <strong>rewards</strong>.
 </p>
-
 <div class="separator" />
 
 <h2>State</h2>
@@ -96,10 +93,8 @@
   The state is the representation of the current condition of the environment.
 </p>
 
-<div class="flex-space">
-  <Grid {cells} {player} />
-  <State state={player} />
-</div>
+<Grid {cells} {player} />
+<State state={player} />
 
 <p>
   In our simple gridworld example all the agent needs to know to make the
@@ -122,71 +117,54 @@
 <div class="separator" />
 
 <h2>Action</h2>
-
 <p>
   The action is the behaviour the agent chooses based on the state of the
   environment (or sometimes randomly). Like the state the action can be a
   scalar, a vector, a matrix or a tensor of discrete or continuous values.
 </p>
-
 <p class="info">
   The action is the representation of the decision of the agent.
 </p>
-
-<div class="flex-space">
-  <Grid {cells} {player} />
-  <Action {action} />
-</div>
-
+<Grid {cells} {player} />
+<Action {action} />
 <p>
   In the above gridworld example the agent can move north, east, south and west.
   Each action is encoded by a discrete scalar value, where north equals 0, east
   equals 1, south equals 2 and west equals 3.
 </p>
-
 <div class="separator" />
 
 <h2>Reward</h2>
-
 <p>
   The reward is what the agent receives from the environment for an action. It
   is the value that the environment uses to reinforce a behaviour to solve an
   environment and it is the value that the agent uses to improve it's behaviour.
 </p>
-
 <p>
   Unlike the action or the state the reward has to be a scalar, one single
   number, it is not possible for the reward to be a vector, matrix or tensor. As
   expected larger numbers represent larger or better rewards so that the reward
   of 1 is higher than the reward of -1.
 </p>
-
 <p class="info">
   The reward is the scalar signal to reinforce certain behaviour of the agent.
 </p>
-
-<div class="flex-space">
-  <Grid {cells} {player} />
-  <Reward {reward} />
-</div>
-
+<Grid {cells} {player} />
+<Reward {reward} />
 <p>
   In this gridworld example the agent receives a reward of -1 for each step
   taken with the exception of reaching the triangle, where the agent receives a
   reward of +1.
 </p>
-
 <div class="separator" />
-<h2>Timestep</h2>
 
+<h2>Timestep</h2>
 <p>
   Reinforcement learning works in discrete timesteps. Each iteration where the
   environment and the agent each have sent their data constitutes a timestep.
 </p>
-
 <p class="info">
   In reinforcement learning each iteration of exchanging an action for a state
   and a reward is called a timestep.
 </p>
-
 <div class="separator" />

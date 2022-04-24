@@ -2,6 +2,7 @@
   import Question from "$lib/Question.svelte";
   import Latex from "$lib/Latex.svelte";
   import { draw } from "svelte/transition";
+  import SvgContainer from "$lib/SvgContainer.svelte";
   let timeStep = -1;
   let agentTimeStep = -1;
   let visible = false;
@@ -66,14 +67,8 @@
   represents a particular time step.
 </p>
 <div class="separator" />
-<div class="flex-center">
-  <svg
-    width="500"
-    height="500"
-    version="1.1"
-    viewBox="0 0 500 500"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+<SvgContainer maxWidth={"500px"}>
+  <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <marker
         id="TriangleOutL"
@@ -371,7 +366,7 @@
       {/if}
     {/if}
   </svg>
-</div>
+</SvgContainer>
 <div class="flex-center">
   <button {disabled} class:disabled on:click|preventDefault={handleClick}
     >Step</button

@@ -76,9 +76,7 @@
   reinforcement learning that is always made is that the environment the agent
   interacts with contains some goal that the agent has to achieve.
 </p>
-<div class="flex-center">
-  <Grid cells={randomCells} player={randomPlayer} />
-</div>
+<Grid cells={randomCells} player={randomPlayer} />
 
 <p>
   For example the agent is expected to move the circle from the starting cell
@@ -90,9 +88,7 @@
   fashion and over time learn the best possible (meaning the shortest) route.
 </p>
 
-<div class="flex-center">
-  <Grid cells={deterministicCells} player={deterministicPlayer} />
-</div>
+<Grid cells={deterministicCells} player={deterministicPlayer} />
 
 <p>
   The agent above is a lot better at taking the shortest route between the
@@ -123,13 +119,11 @@
   other case.
 </p>
 
-<div class="flex-center">
-  <Grid
-    cells={deterministicCells}
-    player={deterministicPlayer}
-    showColoredReward={true}
-  />
-</div>
+<Grid
+  cells={deterministicCells}
+  player={deterministicPlayer}
+  showColoredReward={true}
+/>
 
 <p>
   The above animation shows color-coded rewards. The red grid cells give a

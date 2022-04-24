@@ -164,10 +164,5 @@
       line-height: 2;
       font-size: 15px;
     }
-
-    .container :global(svg) {
-      width: 300px;
-      height: 300px;
-    }
   }
 </style>

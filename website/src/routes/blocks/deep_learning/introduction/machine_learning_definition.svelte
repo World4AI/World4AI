@@ -3,6 +3,7 @@
   import { draw } from "svelte/transition";
   import Question from "$lib/Question.svelte";
   import Button from "$lib/Button.svelte";
+  import SvgContainer from "$lib/SvgContainer.svelte";
 
   let disabledNormal = false;
   const xTranslateNormal = tweened(0, {
@@ -214,52 +215,54 @@
   activations would mean different logic. The below board exempliefies a logic
   that is suited to fully transform a triangle into a rectangle.
 </p>
-<svg
-  version="1.1"
-  viewBox="0 0 110 90"
-  width="200px"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g transform="translate(-144.75,-10.25)" stroke="var(--text-color)">
-    <rect x="149" y="12.5" width="102" height="85" fill="none" />
-    <rect x="153.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="170.25" y="16.75" width="8.5" height="8.5" fill="none" />
-    <rect x="187.25" y="16.75" width="8.5" height="8.5" fill="none" />
-    <rect x="204.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="221.25" y="16.75" width="8.5" height="8.5" fill="none" />
-    <rect x="238.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="153.25" y="33.75" width="8.5" height="8.5" fill="none" />
-    <rect x="170.25" y="33.75" width="8.5" height="8.5" fill="none" />
-    <rect x="187.25" y="33.75" width="8.5" height="8.5" fill="#fff" />
-    <g fill="none">
-      <rect x="204.25" y="33.75" width="8.5" height="8.5" />
-      <rect x="221.25" y="33.75" width="8.5" height="8.5" />
-      <rect x="238.25" y="33.75" width="8.5" height="8.5" />
-      <rect x="153.25" y="50.75" width="8.5" height="8.5" />
+<SvgContainer maxWidth={"200px"}>
+  <svg
+    version="1.1"
+    viewBox="0 0 110 90"
+    width="200px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g transform="translate(-144.75,-10.25)" stroke="var(--text-color)">
+      <rect x="149" y="12.5" width="102" height="85" fill="none" />
+      <rect x="153.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="170.25" y="16.75" width="8.5" height="8.5" fill="none" />
+      <rect x="187.25" y="16.75" width="8.5" height="8.5" fill="none" />
+      <rect x="204.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="221.25" y="16.75" width="8.5" height="8.5" fill="none" />
+      <rect x="238.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="153.25" y="33.75" width="8.5" height="8.5" fill="none" />
+      <rect x="170.25" y="33.75" width="8.5" height="8.5" fill="none" />
+      <rect x="187.25" y="33.75" width="8.5" height="8.5" fill="#fff" />
+      <g fill="none">
+        <rect x="204.25" y="33.75" width="8.5" height="8.5" />
+        <rect x="221.25" y="33.75" width="8.5" height="8.5" />
+        <rect x="238.25" y="33.75" width="8.5" height="8.5" />
+        <rect x="153.25" y="50.75" width="8.5" height="8.5" />
+      </g>
+      <rect x="170.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
+      <g fill="none">
+        <rect x="187.25" y="50.75" width="8.5" height="8.5" />
+        <rect x="204.25" y="50.75" width="8.5" height="8.5" />
+        <rect x="221.25" y="50.75" width="8.5" height="8.5" />
+      </g>
+      <rect x="238.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="153.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="170.25" y="67.75" width="8.5" height="8.5" fill="none" />
+      <rect x="187.25" y="67.75" width="8.5" height="8.5" fill="none" />
+      <rect x="204.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+      <g fill="none">
+        <rect x="221.25" y="67.75" width="8.5" height="8.5" />
+        <rect x="238.25" y="67.75" width="8.5" height="8.5" />
+        <rect x="153.25" y="84.75" width="8.5" height="8.5" />
+        <rect x="170.25" y="84.75" width="8.5" height="8.5" />
+      </g>
+      <rect x="187.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="204.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
+      <rect x="221.25" y="84.75" width="8.5" height="8.5" fill="none" />
+      <rect x="238.25" y="84.75" width="8.5" height="8.5" fill="none" />
     </g>
-    <rect x="170.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
-    <g fill="none">
-      <rect x="187.25" y="50.75" width="8.5" height="8.5" />
-      <rect x="204.25" y="50.75" width="8.5" height="8.5" />
-      <rect x="221.25" y="50.75" width="8.5" height="8.5" />
-    </g>
-    <rect x="238.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="153.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="170.25" y="67.75" width="8.5" height="8.5" fill="none" />
-    <rect x="187.25" y="67.75" width="8.5" height="8.5" fill="none" />
-    <rect x="204.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
-    <g fill="none">
-      <rect x="221.25" y="67.75" width="8.5" height="8.5" />
-      <rect x="238.25" y="67.75" width="8.5" height="8.5" />
-      <rect x="153.25" y="84.75" width="8.5" height="8.5" />
-      <rect x="170.25" y="84.75" width="8.5" height="8.5" />
-    </g>
-    <rect x="187.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="204.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
-    <rect x="221.25" y="84.75" width="8.5" height="8.5" fill="none" />
-    <rect x="238.25" y="84.75" width="8.5" height="8.5" fill="none" />
-  </g>
-</svg>
+  </svg>
+</SvgContainer>
 
 <p>
   The interactive example below shows the functionality of a program, where the
@@ -338,73 +341,70 @@
   of the inputs a corresponding output should look like.
 </p>
 
-<svg
-  version="1.1"
-  viewBox="0 0 315 150"
-  width="500"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g fill="none" stroke="var(--text-color)">
-    <path d="m30.784 5 24.216 48.404h-48.433z" stroke-width=".96837" />
-    <rect
-      x="5.9804"
-      y="95"
-      width="49.02"
-      height="49.02"
-      stroke-width=".98039"
-    />
-    <path
-      d="m30 60v30"
-      stroke-dasharray="2.19089, 4.38178"
-      stroke-width="1.0954"
-    />
-    <g transform="translate(15.181)">
-      <path d="m100 55-24.216-48.404h48.433z" stroke-width=".96837" />
+<SvgContainer maxWidth="500px">
+  <svg version="1.1" viewBox="0 0 315 150" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="var(--text-color)">
+      <path d="m30.784 5 24.216 48.404h-48.433z" stroke-width=".96837" />
       <rect
-        x="75.98"
+        x="5.9804"
         y="95"
         width="49.02"
         height="49.02"
         stroke-width=".98039"
       />
       <path
-        d="m100 60v30"
+        d="m30 60v30"
         stroke-dasharray="2.19089, 4.38178"
         stroke-width="1.0954"
       />
+      <g transform="translate(15.181)">
+        <path d="m100 55-24.216-48.404h48.433z" stroke-width=".96837" />
+        <rect
+          x="75.98"
+          y="95"
+          width="49.02"
+          height="49.02"
+          stroke-width=".98039"
+        />
+        <path
+          d="m100 60v30"
+          stroke-dasharray="2.19089, 4.38178"
+          stroke-width="1.0954"
+        />
+      </g>
+      <g transform="translate(29.724)">
+        <path d="m146.6 29.216 48.404-24.216v48.433z" stroke-width=".96837" />
+        <rect
+          x="145.98"
+          y="95"
+          width="49.02"
+          height="49.02"
+          stroke-width=".98039"
+        />
+        <path
+          d="m170 60v30"
+          stroke-dasharray="2.19089, 4.38178"
+          stroke-width="1.0954"
+        />
+      </g>
+      <g transform="translate(45)">
+        <path d="m263.4 29.216-48.404 24.216v-48.433z" stroke-width=".96837" />
+        <rect
+          x="215.98"
+          y="95"
+          width="49.02"
+          height="49.02"
+          stroke-width=".98039"
+        />
+        <path
+          d="m240 60v30"
+          stroke-dasharray="2.19089, 4.38178"
+          stroke-width="1.0954"
+        />
+      </g>
     </g>
-    <g transform="translate(29.724)">
-      <path d="m146.6 29.216 48.404-24.216v48.433z" stroke-width=".96837" />
-      <rect
-        x="145.98"
-        y="95"
-        width="49.02"
-        height="49.02"
-        stroke-width=".98039"
-      />
-      <path
-        d="m170 60v30"
-        stroke-dasharray="2.19089, 4.38178"
-        stroke-width="1.0954"
-      />
-    </g>
-    <g transform="translate(45)">
-      <path d="m263.4 29.216-48.404 24.216v-48.433z" stroke-width=".96837" />
-      <rect
-        x="215.98"
-        y="95"
-        width="49.02"
-        height="49.02"
-        stroke-width=".98039"
-      />
-      <path
-        d="m240 60v30"
-        stroke-dasharray="2.19089, 4.38178"
-        stroke-width="1.0954"
-      />
-    </g>
-  </g>
-</svg>
+  </svg>
+</SvgContainer>
 
 <p>
   The inintial logic of the program is going to be very far off from the correct
@@ -418,26 +418,29 @@
   adjustment leads to better and better performance until our goal is withing
   some boundary.
 </p>
-<svg
-  version="1.1"
-  viewBox="0 0 120 60"
-  width="200"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g fill="none" stroke="var(--text-color)" stroke-width=".96837">
-    <path d="m27.96 6.0969 24.216 48.404h-48.433z" />
-    <path d="m82.177 6.0969h20l14.216 48.404h-48.433z" />
-  </g>
-  <g
-    fill="none"
-    stroke="var(--main-color-1)"
-    stroke-dasharray="1.96079, 3.92157"
-    stroke-width=".98039"
+
+<SvgContainer maxWidth={"500px"}>
+  <svg
+    version="1.1"
+    viewBox="0 0 120 60"
+    width="200"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="3.382" y="5.4902" width="49.02" height="49.02" />
-    <rect x="67.598" y="5.4902" width="49.02" height="49.02" />
-  </g>
-</svg>
+    <g fill="none" stroke="var(--text-color)" stroke-width=".96837">
+      <path d="m27.96 6.0969 24.216 48.404h-48.433z" />
+      <path d="m82.177 6.0969h20l14.216 48.404h-48.433z" />
+    </g>
+    <g
+      fill="none"
+      stroke="var(--main-color-1)"
+      stroke-dasharray="1.96079, 3.92157"
+      stroke-width=".98039"
+    >
+      <rect x="3.382" y="5.4902" width="49.02" height="49.02" />
+      <rect x="67.598" y="5.4902" width="49.02" height="49.02" />
+    </g>
+  </svg>
+</SvgContainer>
 <p>
   Below is an interactive example where the machine learning process is shown.
   It takes the algorithm three iterations to learn the desired logic. At first

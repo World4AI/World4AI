@@ -103,9 +103,7 @@
 >
 <div class="separator" />
 
-<div class="flex-center">
-  <Interaction />
-</div>
+<Interaction />
 <p>
   The agent and the environment provide data (state, action, reward) to each
   other through the interaction process. That data is calculated using the
@@ -117,39 +115,27 @@
   and the
   <strong>model</strong>.
 </p>
-
 <p class="info">
   The environment has one component called model, while the agent might have a
   value function, a policy and a model as components.
 </p>
-
 <p>
   These components are basically functions: they take inputs and generate
   outputs. Oftentimes the word mapping is used in that context. A function that
   takes x as input and outputs y is said to map x to y. (See interactive example
   below).
 </p>
-<div class="flex-center">
-  <Function />
-</div>
+<Function />
 <p>
   To simplify some of the explanations additionally to the grid world we are
   going to use a one dimensional grid world with three cells, the agent has the
   option to either move left or right and the goal is to reach the triangle in
   the right end of the corridor.
 </p>
-<div class="flex-center">
-  <Grid
-    height={100}
-    width={300}
-    player={corridorPlayer}
-    cells={corridorCells}
-  />
-</div>
+<Grid height={100} width={300} player={corridorPlayer} cells={corridorCells} />
 <div class="separator" />
 
 <h2>Model of the Environment</h2>
-
 <p>
   The model (sometimes called the dynamics) is the only component of the
   environment, yet that component fulfills two tasks. The first task is to
@@ -158,26 +144,15 @@
   state is called transitioning (into the next state). The second task is to
   calculate the reward based on the current state and the action.
 </p>
-
 <p class="info">
   The model consists of the transition function and the reward function.
 </p>
-
 <p>
   How exactly the model looks depends on the environment. Sometimes a simple
   table is all that is required.
 </p>
-<div class="flex-center">
-  <Table header={modelHeader} data={modelData} />
-</div>
-<div class="flex-center">
-  <Grid
-    height={100}
-    width={300}
-    player={corridorPlayer}
-    cells={corridorCells}
-  />
-</div>
+<Table header={modelHeader} data={modelData} />
+<Grid height={100} width={300} player={corridorPlayer} cells={corridorCells} />
 <p>
   For a gridworld with 3 possible states and 2 possible actions a table with 3
   rows and 2 columns could be used to represent the model. The inner cells at
@@ -210,7 +185,6 @@
 <div class="separator" />
 
 <h2>Components of the Agent</h2>
-
 <p>
   The agent has up to three main components. The policy function, the value
   function and a model. Generally only the policy is actually required for the
@@ -219,19 +193,15 @@
   function is often considered to be a necessary component of a successful
   agent.
 </p>
-
 <div class="separator" />
 
 <h3>Policy</h3>
-
 <p>
   The first component is the policy. The policy calculates the action directly
   based the current state of the environment.
 </p>
 
-<div class="flex-center">
-  <Function inputs={["S1", "S2", "S3"]} outputs={["A1", "A2", "A3"]} />
-</div>
+<Function inputs={["S1", "S2", "S3"]} outputs={["A1", "A2", "A3"]} />
 <p class="info">The policy of the agent maps states to actions.</p>
 <p>
   For very simple environments the policy function might also be a table that
@@ -240,17 +210,8 @@
   table like the one above, as the number of states is extremely high. In that
   case other solutions like neural networks are used.
 </p>
-<div class="flex-center">
-  <Grid
-    height={100}
-    width={300}
-    player={corridorPlayer}
-    cells={corridorCells}
-  />
-</div>
-<div class="flex-center">
-  <Table header={policyHeader} data={policyData} />
-</div>
+<Grid height={100} width={300} player={corridorPlayer} cells={corridorCells} />
+<Table header={policyHeader} data={policyData} />
 
 <p>
   In the corridor example above the optimal policy is to always move right
@@ -260,13 +221,10 @@
   The policy of the 5x5 grid world we used so far would also be contained in a
   mapping table, where the corresponding optimal policy might look as follows.
 </p>
-<div class="flex-center">
-  <Grid {player} {cells} policy={optimalPolicy} />
-</div>
+<Grid {player} {cells} policy={optimalPolicy} />
 <div class="separator" />
 
 <h3>Value Function</h3>
-
 <p>
   The second component of the agent is the so-called value function. The value
   function gets a state as an input and generates a single scalar value. The
@@ -276,10 +234,7 @@
   value, the better the state. With the help of the value function the agent
   tries to locate and move towards better and better states.
 </p>
-
-<div class="flex-center">
-  <Function inputs={["S1", "S2", "S3"]} outputs={[0, 1, 2]} />
-</div>
+<Function inputs={["S1", "S2", "S3"]} outputs={[0, 1, 2]} />
 <p class="info">The value function of the agent maps states to values.</p>
 
 <p>
@@ -287,17 +242,8 @@
   calculated with the help of a table or in more complex environments using a
   neural network.
 </p>
-<div class="flex-center">
-  <Grid
-    height={100}
-    width={300}
-    player={corridorPlayer}
-    cells={corridorCells}
-  />
-</div>
-<div class="flex-center">
-  <Table header={valueHeader} data={valueData} />
-</div>
+<Grid height={100} width={300} player={corridorPlayer} cells={corridorCells} />
+<Table header={valueHeader} data={valueData} />
 <p>
   The grid world example below shows color coded values in the grid world
   environment. The orange value in the top left corner is the farthers away from
@@ -308,13 +254,10 @@
   current state and look for states with more "blueish" values and move into
   that direction to arrive at the goal.
 </p>
-<div class="flex-center">
-  <Grid {player} {cells} showColoredValues={true} />
-</div>
+<Grid {player} {cells} showColoredValues={true} />
 <div class="separator" />
 
 <h3>Model</h3>
-
 <p>
   The third and last component is the model. The model of the environment is
   something that the agent generally has no access to, but the agent can
@@ -327,10 +270,8 @@
   some reason costly. Additionally the model can connect to the policy in
   generate better actions.
 </p>
-
 <p class="info">
   The model of the agent is an approximation of the true model of the
   environment.
 </p>
-
 <div class="separator" />

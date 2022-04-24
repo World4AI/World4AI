@@ -1,4 +1,5 @@
 <script>
+  import SvgContainer from "$lib/SvgContainer.svelte";
   import { draw } from "svelte/transition";
   export let inputs = ["X1", "X2", "X3"];
   export let outputs = ["Y1", "Y2", "Y3"];
@@ -16,7 +17,7 @@
   let height = size * inputs.length + gap * (inputs.length - 1) + yMargin * 2;
 </script>
 
-<div class="container">
+<SvgContainer maxWidth={"500px"}>
   <svg viewBox="0 0 {width} {height}">
     <text fill="var(--text-color)" x={0} y={25}>{inputName}</text>
     <text fill="var(--text-color)" x={width - 80} y={25}>{outputName}</text>
@@ -74,12 +75,9 @@
       >
     {/each}
   </svg>
-</div>
+</SvgContainer>
 
 <style>
-  .container {
-    min-width: 300px;
-  }
   .clickable {
     cursor: pointer;
   }

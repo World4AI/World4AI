@@ -16,7 +16,9 @@
   .placeholder {
     display: none;
   }
-  .result {
-    white-space: nowrap;
+  @media (min-width: 768px) {
+    .result {
+      white-space: nowrap;
+    }
   }
 </style>
