@@ -28,7 +28,13 @@
     let ticks = [];
 
     for (let i = 0; i < numTicks; i++) {
-      ticks.push(min + Math.floor((max - min) / (numTicks - 1)) * i);
+      let result = min + ((max - min) / (numTicks - 1)) * i;
+
+      // show only fractions if you don't deal with integers
+      if (Math.floor(result) < result) {
+        result = result.toFixed(2);
+      }
+      ticks.push(result);
     }
     return ticks;
   }
