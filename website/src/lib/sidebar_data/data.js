@@ -476,6 +476,10 @@ const dl = [
               name: 'Gradient Descent',
               link: '/blocks/deep_learning/logistic_regression/gradient_descent',
           },
+          {
+              name: 'Non-Liner Neuron',
+              link: '/blocks/deep_learning/logistic_regression/non_linear_neuron',
+          },
         ]
     },
     {
