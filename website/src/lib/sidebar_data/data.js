@@ -464,6 +464,18 @@ const dl = [
         name: 'Logistic Regression',
         link: '/blocks/deep_learning/logistic_regression',
         links: [
+          {
+              name: 'Sigmoid Activation',
+              link: '/blocks/deep_learning/logistic_regression/sigmoid_activation',
+          },
+          {
+              name: 'Loss Function',
+              link: '/blocks/deep_learning/logistic_regression/loss_function',
+          },
+          {
+              name: 'Gradient Descent',
+              link: '/blocks/deep_learning/logistic_regression/gradient_descent',
+          },
         ]
     },
     {
