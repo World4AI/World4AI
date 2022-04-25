@@ -8,6 +8,9 @@ const config = {
                 include: ["highlight.js", "highlight.js/lib/core"],
             },
         },
+        prerender: {
+          default: true
+        },
         paths: {
             base: '',
             assets: ''
