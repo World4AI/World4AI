@@ -482,22 +482,20 @@ const dl = [
         name: 'Neural Network',
         link: '/blocks/deep_learning/neural_network',
         links: [
+          {
+            name: 'Backpropagation',
+            link:  '/blocks/deep_learning/neural_network/backpropagation'
+          },
+          {
+            name: 'Automatic Differentiation',
+            link:  '/blocks/deep_learning/neural_network/autodiff'
+          },
         ]
     },
     {
         name: 'Loss Functions',
         link: '/blocks/deep_learning/loss_functions',
         links: [
-        ]
-    },
-    {
-        name: 'Backpropagation',
-        link: '/blocks/deep_learning/backpropagation',
-        links: [
-          {
-            name: 'Autodiff',
-            link: '/blocks/deep_learning/backpropagation/autodiff',
-          }
         ]
     },
     {
