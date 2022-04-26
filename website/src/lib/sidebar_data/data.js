@@ -342,55 +342,6 @@ const programming = [
     },
 ];
 
-const mathematics = [
-    {
-        name: 'Introduction',
-        link: '/blocks/mathematics/introduction',
-        links: [
-        ]
-    },
-    {
-        name: 'Linear Algebra',
-        link: '/blocks/mathematics/linear_algebra',
-        links: [
-        ]
-    },
-    {
-        name: 'Calculus',
-        link: '/blocks/mathematics/calculus',
-        links: [
-        ]
-    },
-    {
-        name: 'Probability Theory',
-        link: '/blocks/mathematics/probability_theory',
-        links: [
-        ]
-    },
-    {
-        name: 'Information Theory',
-        link: '/blocks/mathematics/information_theory',
-        links: [
-          {
-            name: 'Information',
-            link: '/blocks/mathematics/information_theory/information'
-          },
-          {
-            name: 'Entropy',
-            link: '/blocks/mathematics/information_theory/entropy'
-          },
-          {
-            name: 'Cross Entropy',
-            link: '/blocks/mathematics/information_theory/cross_entropy'
-          },
-          {
-            name: 'KL Divergence',
-            link: '/blocks/mathematics/information_theory/kl_divergence'
-          },
-        ]
-    },
-];
-
 const dl = [
     {
         name: 'Introduction',
@@ -693,4 +644,4 @@ const dl = [
         ]
     },
 ]
-export {rl, dl, programming, mathematics}
+export {rl, dl, programming}
