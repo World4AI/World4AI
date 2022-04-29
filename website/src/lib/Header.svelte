@@ -169,6 +169,7 @@
     left: 0;
     top: 0;
     right: 0;
+    z-index: 999;
   }
   .flex-container {
     height: 100px;
