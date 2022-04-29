@@ -5,25 +5,17 @@
 }
 
 :root {
-    --text-color: #dad9eb;
-    --background-color: hsl(257, 10%, 14%);
+    --text-color: hsl(260, 5%, 20%);
+    --background-color: #FFFFFF;
     --aside-color: hsl(257, 10%, 13%);
     --tint: hsl(257, 10%, 5%);
     --main-color-1: #FF683C;
     --main-color-2: #4EB6D7;
-    --gap: 20px;
+    --main-color-3: #FAE49E;
+    --main-color-4: #E7F1F2;
 }
 
 body {
     font-family: Helvetica, sans-serif;
-    background-color: var(--background-color);
-    overflow: hidden;
-}
-
-.hljs {
-    background: var(--aside-color) !important;
-}
-
-a {
-  color: var(--text-color);
+    background-color: var(--background-color); 
 }

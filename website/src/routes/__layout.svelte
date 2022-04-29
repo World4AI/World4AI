@@ -1,20 +1,11 @@
 <script>
-    import '../app.css';
-    import Header from '$lib/Header.svelte'
-    import Container from '$lib/Container.svelte'
+  import "../app.css";
+  import Header from "$lib/Header.svelte";
 </script>
 
 <div class="container">
-    <Header />
-    <main>
-        <Container>
-            <slot></slot>
-        </Container>
-    </main>
+  <Header />
+  <main>
+    <slot />
+  </main>
 </div>
-
-<style>
-    .container {
-        margin: var(--gap);
-    }
-</style>
