@@ -22,7 +22,7 @@
 
 <style>
   .hero-message {
-    margin-top: 70px;
+    margin-top: 170px;
     display: flex;
     flex-direction: column;
     align-items: center;

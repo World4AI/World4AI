@@ -165,7 +165,10 @@
 
   header {
     background-color: var(--text-color);
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
   }
   .flex-container {
     height: 100px;
