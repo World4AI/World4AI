@@ -46,6 +46,7 @@
         <nav>
           <ul class="nav">
             <li><a class:selected={path === "/"} href="/">Home</a></li>
+            <!--
             <li class="dropdown">
               <a
                 class:selected={path.split("/")[1] === "blocks"}
@@ -85,6 +86,7 @@
             <li>
               <a class:selected={path === "/about"} href="/about">About</a>
             </li>
+            -->
           </ul>
         </nav>
         <div class="social-links">
@@ -106,7 +108,7 @@
               /></svg
             >
           </a>
-          <a href="#">
+          <a href="https://twitter.com" target="_blank">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
