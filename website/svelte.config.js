@@ -1,26 +1,10 @@
-/** @type {import('@sveltejs/kit').Config} */
+import adapter from '@sveltejs/adapter-auto';
 
-import adapter from '@sveltejs/adapter-static';
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-        vite: {
-            optimizeDeps: {
-                include: ["highlight.js", "highlight.js/lib/core"],
-            },
-        },
-        prerender: {
-          default: true
-        },
-        paths: {
-            base: '',
-            assets: ''
-        },      
-        adapter: adapter({
-            pages: 'build',  // path to public directory
-            assets: 'build',  // path to public directory
-            fallback: null
-        })
-    }
+		adapter: adapter()
+	}
 };
 
 export default config;
