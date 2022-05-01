@@ -3,37 +3,28 @@
   export let root;
 </script>
 
-<div class="container">
+<aside class="mx-3">
   <Folder name="ROOT" links={root} />
-</div>
+</aside>
 
 <style>
-  .container {
-    margin-top: 150px;
-    margin-bottom: 20px;
-    background-color: var(--aside-color);
-    padding: var(--gap);
+  aside {
+    width: 250px;
+    background-color: var(--main-color-4);
+    padding: 20px;
     max-height: 70vh;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--aside-color);
+    scrollbar-color: var(--text-color);
   }
   /* style scrollbar */
-  .container::-webkit-scrollbar {
+  aside::-webkit-scrollbar {
     width: 5px;
   }
-  .container::-webkit-scrollbar-thumb {
-    background-color: #fff;
+  aside::-webkit-scrollbar-thumb {
+    background-color: var(--text-color);
   }
-  .container::-webkit-scrollbar-track {
-    background-color: #000;
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      margin-top: 5vh;
-      max-height: 90vh;
-      width: 90vw;
-    }
+  aside::-webkit-scrollbar-track {
+    background-color: var(--background-color);
   }
 </style>

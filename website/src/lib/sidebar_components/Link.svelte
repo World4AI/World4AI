@@ -29,8 +29,4 @@
     left: -20px;
     background-color: var(--text-color);
   }
-
-  a:hover {
-    color: #fff;
-  }
 </style>
