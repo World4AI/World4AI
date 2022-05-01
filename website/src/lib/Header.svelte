@@ -1,6 +1,5 @@
 <script>
   import { page } from "$app/stores";
-  import Container from "./Container.svelte";
 
   $: path = (() => {
     let pathname = $page.url.pathname;
@@ -22,7 +21,7 @@
 </script>
 
 <header>
-  <Container>
+  <div class="mx-3">
     <div class="flex-container">
       <div class="clip-logo">
         <a href="/"
@@ -46,7 +45,7 @@
         <nav>
           <ul class="nav">
             <li><a class:selected={path === "/"} href="/">Home</a></li>
-            <!--
+
             <li class="dropdown">
               <a
                 class:selected={path.split("/")[1] === "blocks"}
@@ -60,6 +59,7 @@
                       href="/blocks/introduction">Introduction</a
                     >
                   </li>
+                  <!--
                   <li>
                     <a
                       class:selected={path === "/blocks/deep_learning"}
@@ -73,6 +73,7 @@
                       >Reinforcement Learning</a
                     >
                   </li>
+                  -->
                 </ul>
               </div>
             </li>
@@ -86,7 +87,6 @@
             <li>
               <a class:selected={path === "/about"} href="/about">About</a>
             </li>
-            -->
           </ul>
         </nav>
         <div class="social-links">
@@ -150,7 +150,7 @@
         </div>
       </div>
     </div>
-  </Container>
+  </div>
 </header>
 
 <style>
@@ -226,8 +226,7 @@
     position: absolute;
     width: 15px;
     height: 1px;
-    color: white;
-    background: white;
+    background: var(--background-color);
     top: 50%;
     z-index: 1;
   }
@@ -299,7 +298,7 @@
       position: absolute;
       right: 100%;
       top: 100px;
-      background: var(--aside-color);
+      background: var(--text-color);
       flex-direction: column;
       transition: all 0.5s;
     }
