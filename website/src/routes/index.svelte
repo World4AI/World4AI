@@ -1,7 +1,3 @@
-<script>
-  import Container from "$lib/Container.svelte";
-</script>
-
 <svelte:head>
   <title>World4AI | A Place To Learn AI</title>
   <meta
@@ -10,14 +6,12 @@
   />
 </svelte:head>
 
-<Container>
-  <div class="hero-message">
-    <div class="border-container">
-      <h1>World4AI</h1>
-    </div>
-    <h2>A place to learn AI</h2>
+<div class="hero-message">
+  <div class="border-container">
+    <h1>World4AI</h1>
   </div>
-</Container>
+  <h2>A place to learn AI</h2>
+</div>
 <div class="drawing-container">
   <div class="cards-container">
     <div class="card">
@@ -157,9 +151,10 @@
 
   h1 {
     font-size: 90px;
-    font-weight: normal;
+    font-weight: 400;
     position: relative;
     letter-spacing: 7px;
+    margin-bottom: 0;
   }
 
   h1::before,
@@ -183,9 +178,10 @@
   h2 {
     margin-top: 10px;
     font-style: italic;
-    font-weight: normal;
-    font-size: 45px;
+    font-weight: 200;
+    font-size: 40px;
     letter-spacing: 3px;
+    text-transform: uppercase;
   }
 
   .drawing-container {
@@ -222,7 +218,7 @@
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 15px;
     }
 
     .card {
