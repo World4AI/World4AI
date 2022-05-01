@@ -53,17 +53,13 @@
 
   hr {
     border: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
     height: 1px;
   }
 
   a {
     text-decoration: none;
     color: var(--text-color);
-  }
-
-  a:hover {
-    color: #fff;
   }
 
   .selected {

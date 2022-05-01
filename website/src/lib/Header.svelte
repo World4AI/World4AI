@@ -59,13 +59,13 @@
                       href="/blocks/introduction">Introduction</a
                     >
                   </li>
-                  <!--
                   <li>
                     <a
                       class:selected={path === "/blocks/deep_learning"}
                       href="/blocks/deep_learning/introduction">Deep Learning</a
                     >
                   </li>
+                  <!--
                   <li>
                     <a
                       class:selected={path === "/blocks/reinforcement_learning"}
@@ -271,8 +271,9 @@
 
   .dropdown-content li {
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-left: 30px;
+    width: 100%;
   }
 
   .dropdown:hover .dropdown-content {
