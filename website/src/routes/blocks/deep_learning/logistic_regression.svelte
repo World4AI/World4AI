@@ -1,5 +1,5 @@
 <script>
-  import Question from "$lib/Question.svelte";
+  import Container from "$lib/Container.svelte";
 </script>
 
 <svelte:head>
@@ -10,16 +10,16 @@
   />
 </svelte:head>
 
-<h1>Logistic Regression</h1>
-<Question>What is logistic regression useful for?</Question>
-<div class="separator" />
-
-<p>
-  Linear regression can be regarded as the basis for logistic regression. Unlike
-  the name suggests though, logistic regression is commonly used for
-  classification and not regression tasks. More than that, we will discover that
-  logistic regression should actually be regarded as a non-linear neuron. The
-  study of logistic regression should therefore provide us with the building
-  blocks that will eventually allow us to construct neural networks.
-</p>
-<div class="separator" />
+<Container>
+  <h1>Logistic Regression</h1>
+  <div class="separator" />
+  <p>
+    Linear regression can be regarded as the basis for logistic regression.
+    Unlike the name suggests though, logistic regression is commonly used for
+    classification and not regression tasks. More than that, we will discover
+    that logistic regression should actually be regarded as a non-linear neuron.
+    The study of logistic regression should therefore provide us with the
+    building blocks that will eventually allow us to construct neural networks.
+  </p>
+  <div class="separator" />
+</Container>
