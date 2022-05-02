@@ -27,4 +27,13 @@
   aside::-webkit-scrollbar-track {
     background-color: var(--background-color);
   }
+
+  @media (max-width: 1000px) {
+    aside::-webkit-scrollbar-thumb {
+      background-color: var(--main-color-1);
+    }
+    aside {
+      scrollbar-color: var(--main-color-1);
+    }
+  }
 </style>
