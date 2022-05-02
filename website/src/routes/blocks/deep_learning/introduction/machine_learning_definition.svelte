@@ -3,6 +3,7 @@
   import { draw } from "svelte/transition";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
+  import Button from "$lib/Button.svelte";
 
   let disabledNormal = false;
   const xTranslateNormal = tweened(0, {
@@ -325,13 +326,11 @@
     </g>
   </svg>
 
-  <!--
-<Button
-  on:click={handleNormalProgramming}
-  disabled={disabledNormal}
-  value="RUN"
-/>
--->
+  <Button
+    on:click={handleNormalProgramming}
+    disabled={disabledNormal}
+    value="RUN"
+  />
 
   <p>
     In machine learning on the other hand the role of a developer is not to find
@@ -544,9 +543,7 @@
       {/if}
     </g>
   </svg>
-  <!--
-<Button on:click={handleMLProgramming} disabled={disabledML} value="RUN" />
--->
+  <Button on:click={handleMLProgramming} disabled={disabledML} value="RUN" />
 
   <p>
     The general intuition about machine learning that you should keep in mind is

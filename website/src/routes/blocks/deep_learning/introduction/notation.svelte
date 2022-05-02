@@ -1,7 +1,8 @@
 <script>
-  import Question from "$lib/Question.svelte";
+  import Container from "$lib/Container.svelte";
 </script>
 
-<h1>Notation</h1>
-<Question>What are the notational conventions in this book?</Question>
-<div class="separator" />
+<Container>
+  <h1>Notation</h1>
+  <div class="separator" />
+</Container>

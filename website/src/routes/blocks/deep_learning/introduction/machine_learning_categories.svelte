@@ -48,10 +48,9 @@
   />
 </svelte:head>
 
-<h1>Categories of Machine Learning</h1>
-<div class="separator" />
-
 <Container>
+  <h1>Categories of Machine Learning</h1>
+  <div class="separator" />
   <p>
     Machine learning is commonly divided into specific categories. The
     categorization usually depends on the amount of human supervision that is

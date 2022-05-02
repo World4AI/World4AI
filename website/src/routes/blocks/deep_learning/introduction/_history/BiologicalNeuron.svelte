@@ -94,7 +94,7 @@
   />
   <g
     id="protection"
-    fill="var(--text-color)"
+    fill="var(--main-color-4)"
     stroke="black"
     stroke-linecap="round"
   >
@@ -184,8 +184,15 @@
     />
   </g>
   <g id="body-core">
-    <circle id="big-circle" cx="166.96" cy="142.56" r="15.859" fill="#fff" />
-    <g stroke="black" fill="none" stroke-linecap="round">
+    <circle
+      id="big-circle"
+      cx="166.96"
+      cy="142.56"
+      r="15.859"
+      stroke="black"
+      fill="none"
+    />
+    <g stroke="var(--text-color)" fill="none" stroke-linecap="round">
       <circle cx={168.4 + x1} cy={136.37 + y1} r="5.3235" />
       <circle cx={159.44 + x2} cy={136.58 + y2} r="1.1036" />
       <circle cx={176.74 + x3} cy={146.7 + y3} r="2.5521" />

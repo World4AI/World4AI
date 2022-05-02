@@ -1,5 +1,5 @@
 <script>
-  import Question from "$lib/Question.svelte";
+  import Container from "$lib/Container.svelte";
   import Table from "$lib/Table.svelte";
 
   let books = [
@@ -108,69 +108,70 @@
   />
 </svelte:head>
 
-<h1>Education in Deep Learning</h1>
-<Question>How do you study and stay up to date with deep learning?</Question>
-<div class="separator" />
-<p>
-  It usually requires more than one single resource to understand a topic. You
-  should explore different books, videos, blog posts and research papers to get
-  the full picture. Once you grasp the basics of deep learning, you will still
-  need to find a way to keep up to date with the newest research and this might
-  not be the easiest task. Below we attempt to list the most relevant literature
-  for beginners and hints on ways you can stay informed regarding the newest
-  developments.
-</p>
-<div class="separator" />
+<Container>
+  <h1>Education in Deep Learning</h1>
+  <div class="separator" />
+  <p>
+    It usually requires more than one single resource to understand a topic. You
+    should explore different books, videos, blog posts and research papers to
+    get the full picture. Once you grasp the basics of deep learning, you will
+    still need to find a way to keep up to date with the newest research and
+    this might not be the easiest task. Below we attempt to list the most
+    relevant literature for beginners and hints on ways you can stay informed
+    regarding the newest developments.
+  </p>
+  <div class="separator" />
 
-<h2>Books</h2>
-{#each books as book}
-  <Table data={book} />
-{/each}
-<div class="separator" />
+  <h2>Books</h2>
+  {#each books as book}
+    <Table data={book} />
+  {/each}
+  <div class="separator" />
 
-<h2>Online Courses</h2>
-{#each courses as course}
-  <Table data={course} />
-{/each}
-<div class="separator" />
+  <h2>Online Courses</h2>
+  {#each courses as course}
+    <Table data={course} />
+  {/each}
+  <div class="separator" />
 
-<h2>YouTube Channels</h2>
+  <h2>YouTube Channels</h2>
 
-{#each channels as channel}
-  <Table data={channel} />
-{/each}
-<div class="separator" />
+  {#each channels as channel}
+    <Table data={channel} />
+  {/each}
+  <div class="separator" />
 
-<h2>Deep Learning Practice</h2>
-<p>
-  You can not learn deep learning without applying the algorithms with a deep
-  learning framework yourself. Learning the theory is not going to be
-  sufficient. If you have the data and an idea, then go for it and upload your
-  project to GitHub. A popular alternative is to compete in machine learning
-  challenges. The most popular plattform that host competitions is <a
-    href="https://www.kaggle.com"
-    target="_blank">Kaggle</a
-  >. There you can take part in discussions, upload datasets, create notebooks
-  and take part in competitions. The plattform has a ranking system in the four
-  mentioned categories and allows you to grow in the ranks and gain reputation
-  and titles. Additionally many of the challenges give out monetary prices.
-  Kaggle is essentially a social network, so if you want to get addicted to one,
-  kaggle is a good choice for machine learning practicioners.
-</p>
-<div class="separator" />
+  <h2>Deep Learning Practice</h2>
+  <p>
+    You can not learn deep learning without applying the algorithms with a deep
+    learning framework yourself. Learning the theory is not going to be
+    sufficient. If you have the data and an idea, then go for it and upload your
+    project to GitHub. A popular alternative is to compete in machine learning
+    challenges. The most popular plattform that host competitions is <a
+      href="https://www.kaggle.com"
+      target="_blank">Kaggle</a
+    >. There you can take part in discussions, upload datasets, create notebooks
+    and take part in competitions. The plattform has a ranking system in the
+    four mentioned categories and allows you to grow in the ranks and gain
+    reputation and titles. Additionally many of the challenges give out monetary
+    prices. Kaggle is essentially a social network, so if you want to get
+    addicted to one, kaggle is a good choice for machine learning practicioners.
+  </p>
+  <div class="separator" />
 
-<h2>Keeping Up With Research</h2>
-<p>
-  When you come from the outside of the deep learning research community, you do
-  not have access to a network that you can utilize to find the most relevant
-  research papers you should focus on. Fortunately you have access to twitter
-  and can therefore follow companies that focus on deep learning research,
-  established researchers and book authors to get access to your own individual
-  network. Many of those sources will share interesting articles, tutorials,
-  videos and the newest research. It will take some time to find which sources
-  are the most reliable, but the benefits are enormous. We suggest that you
-  create an account especially for the purpose of participating in the deep
-  learning community and avoid other types of content. Otherwise you will
-  experience the "dark side" of twitter.
-</p>
-<div class="separator" />
+  <h2>Keeping Up With Research</h2>
+  <p>
+    When you come from the outside of the deep learning research community, you
+    do not have access to a network that you can utilize to find the most
+    relevant research papers you should focus on. Fortunately you have access to
+    twitter and can therefore follow companies that focus on deep learning
+    research, established researchers and book authors to get access to your own
+    individual network. Many of those sources will share interesting articles,
+    tutorials, videos and the newest research. It will take some time to find
+    which sources are the most reliable, but the benefits are enormous. We
+    suggest that you create an account especially for the purpose of
+    participating in the deep learning community and avoid other types of
+    content. Otherwise you will experience the "dark side" of twitter.
+  </p>
+  <div class="separator" />
+</Container>
