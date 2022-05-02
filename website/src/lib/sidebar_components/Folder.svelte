@@ -11,7 +11,6 @@
 
 {#if name !== "ROOT"}
   <span><a class:selected={path === link} href={link}>{name}</a></span>
-  <hr />
 {/if}
 
 <ul>
@@ -44,17 +43,10 @@
   }
 
   span {
-    color: var(--text-color);
     display: inline-block;
     text-transform: uppercase;
     padding: 10px 0;
     font-size: 15px;
-  }
-
-  hr {
-    border: none;
-    background: rgba(0, 0, 0, 0.1);
-    height: 1px;
   }
 
   a {

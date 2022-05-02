@@ -51,6 +51,7 @@
   }
 
   .sidebar-container {
+    z-index: 1;
     position: fixed;
     top: 250px;
     left: 0px;

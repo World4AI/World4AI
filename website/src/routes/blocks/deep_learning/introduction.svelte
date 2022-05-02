@@ -22,7 +22,7 @@
         id="connections"
         fill="none"
         stroke="var(--text-color)"
-        stroke-width="0.3px"
+        stroke-width="0.6px"
       >
         <g id="level1connections">
           <path in:draw={{ duration: 1000 }} d="m25 125 150 50" />
@@ -326,7 +326,7 @@
       </g>
       <g
         id="nodes"
-        fill="var(--background-color)"
+        fill="var(--main-color-1)"
         stroke="var(--text-color)"
         stroke-width="2"
       >
