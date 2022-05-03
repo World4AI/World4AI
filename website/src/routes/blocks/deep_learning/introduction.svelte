@@ -15,7 +15,7 @@
 <h1>Deep Learning</h1>
 <div class="separator" />
 
-<Container>
+<div class="test">
   <SvgContainer maxWidth={"500px"}>
     <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
       <g
@@ -369,6 +369,10 @@
       </g>
     </svg>
   </SvgContainer>
+</div>
+
+<Container>
+  <div class="separator" />
   <p>
     In the last decade we drastically improved our ability to classify images,
     to generate text and to play video games with the help of machine learning.
@@ -388,3 +392,9 @@
   </p>
   <div class="separator" />
 </Container>
+
+<style>
+  .test {
+    background-color: var(--main-color-4);
+  }
+</style>
