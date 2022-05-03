@@ -37,6 +37,7 @@
         <div class="line mid" />
         <div class="line bot" />
       </div>
+
       <div
         class="links"
         class:show-nav={isHamburgerClicked}
@@ -155,11 +156,11 @@
 
 <style>
   .clip-logo {
-    clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
-    margin-left: -30px;
+    clip-path: polygon(35% 0, 100% 0, 65% 100%, 0 100%);
     background: var(--background-color);
     height: 100%;
-    width: 100px;
+    width: 80px;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,8 +172,9 @@
     left: 0;
     top: 0;
     right: 0;
-    z-index: 999;
+    z-index: 2;
   }
+
   .flex-container {
     height: 100px;
     display: flex;
@@ -182,6 +184,17 @@
 
   .links {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .social-links {
+    margin-left: 80px;
+    display: flex;
+  }
+
+  .social-links a {
+    margin-left: 10px;
   }
 
   .logo {
@@ -284,19 +297,11 @@
     display: none;
   }
 
-  .social-links {
-    margin-left: 80px;
-  }
-
-  .social-links a {
-    margin-left: 10px;
-  }
-
   @media (max-width: 1000px) {
     .links {
       padding-top: 50px;
       z-index: 999;
-      position: absolute;
+      position: fixed;
       right: 100%;
       top: 100px;
       background: var(--text-color);
