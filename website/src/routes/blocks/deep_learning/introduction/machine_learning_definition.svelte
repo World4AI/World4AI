@@ -3,7 +3,13 @@
   import { draw } from "svelte/transition";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
+  import Footer from "$lib/Footer.svelte";
   import Button from "$lib/Button.svelte";
+  import InternalLink from "$lib/InternalLink.svelte";
+
+  let notes = [
+    "This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papyers, only the general sentiment regarding that definition.",
+  ];
 
   let disabledNormal = false;
   const xTranslateNormal = tweened(0, {
@@ -131,7 +137,8 @@
   </p>
   <p class="info">
     "Machine learining is the field of study that gives computers the ability to
-    learn without being explicitly programmed<sup>[1]</sup>".
+    learn without being explicitly programmed
+    <InternalLink type="note" id={1} />".
   </p>
 
   <p>
@@ -569,24 +576,8 @@
     an image. The same problem can be solved relatively straightforward using
     neural networks, provided we have the necessary data.
   </p>
-  <div class="separator" />
-
-  <h2>Notes</h2>
-  <div class="notes">
-    <p>
-      [1] This definition is supposedly based on Samuel, A.L (1959), Some
-      studies in machine learning using the game of checkers, IBM Journal of
-      research and development, 2(2), 210-229. The exact quote is not contained
-      in that paper, only the general sentiment regarding that definition.
-    </p>
-  </div>
-  <div class="separator" />
 </Container>
 
-<style>
-  .notes p {
-    line-height: 1;
-    font-size: 15px;
-    opacity: 80%;
-  }
-</style>
+<Container>
+  <Footer {notes} />
+</Container>
