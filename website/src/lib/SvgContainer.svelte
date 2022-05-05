@@ -9,6 +9,9 @@
 </div>
 
 <style>
+  .container {
+    width: 100%;
+  }
   .svg-container {
     margin: 0 auto;
   }

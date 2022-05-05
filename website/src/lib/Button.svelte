@@ -8,18 +8,21 @@
 <style>
   button {
     outline: none;
-    border: 1px solid var(--main-color-1);
+    border: 1px solid var(--text-color);
     width: fit-content;
-    background-color: var(--background-color);
+    height: fit-content;
+    background-color: var(--main-color-3);
     color: var(--text-color);
     font-size: 20px;
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 600;
   }
 
   button:hover {
-    color: var(--main-color-1);
+    transform: scale(1.02);
   }
 
   .disabled {
