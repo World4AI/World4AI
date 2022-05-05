@@ -7,8 +7,21 @@
   import Button from "$lib/Button.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
 
+  import TraditionalParadigm from "./_ml_definition/TraditionalParadigm.svelte";
+
   let notes = [
-    "This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papyers, only the general sentiment regarding that definition.",
+    "This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papers, only the general sentiment regarding that definition.",
+  ];
+
+  let references = [
+    {
+      title: "Some Studies in Machine Learning Using the Game of Checkers",
+      author: "Samuel A.L",
+      journal: "IBM Journal of Research and Development",
+      volume: 44,
+      pages: "206-226",
+      year: 1959,
+    },
   ];
 
   let disabledNormal = false;
@@ -132,24 +145,48 @@
   <h1>Machine Learning</h1>
   <div class="separator" />
   <p>
-    The term <strong>Machine Learning</strong> is usually attributed to Arthur Samuel,
-    who defined it as follows.
+    When books and lectures discuss the origin of machine learning, the name
+    Arthur Lee Samuel is surely to come up. Arthur Samuel was one of the
+    pioneers in the area of artificial intelligence, who is most known for his
+    computer checkers program<InternalLink type={"reference"} id={1} />. He is
+    also the person who coined the term
+    <strong>Machine Learning</strong>
+    and is responsible for its' most famous definition:
   </p>
   <p class="info">
-    "Machine learining is the field of study that gives computers the ability to
+    "Machine learning is the field of study that gives computers the ability to
     learn without being explicitly programmed
     <InternalLink type="note" id={1} />".
   </p>
-
   <p>
-    We will use a slightly more programming oriented definition of machine
-    learning.
+    While the above definition is commonly used, it is not the one that we find
+    most useful. Throughout this block we will rely on a programming oriented
+    definition of machine learning.
   </p>
   <p class="info">
-    Machine learning is a programming paradigm, where the logic of a program is
-    learned from data.
+    Machine learning is a programming paradigm where the logic of a program is
+    automatically learned from data.
   </p>
 
+  <h2>Programming Paradigms</h2>
+  <p>
+    While the term programming can be defined in a very broad way, for our
+    purposes we will narrow it down to <span class="info"
+      >writing functions in a programming language to solve a particular task.
+    </span>
+  </p>
+  <p>
+    When the programmer uses the traditional programming paradigm to solve the
+    problem, he would take the following steps. He would study the problem,
+    write the first draft of the function and check if the output of the
+    function corresponds to his expectations. The programmer would then keep
+    improving the code of the function until the results are satisfactory.
+  </p>
+  <TraditionalParadigm />
+
+  <p>The machine learning approach</p>
+
+  <h2>Example</h2>
   <p>
     Let us use a stylized geometric example to demonstrate how classical
     programming paradigms differ from machine learning programming. Let us
@@ -232,40 +269,100 @@
     >
       <g transform="translate(-144.75,-10.25)" stroke="var(--text-color)">
         <rect x="149" y="12.5" width="102" height="85" fill="none" />
-        <rect x="153.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="153.25"
+          y="16.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <rect x="170.25" y="16.75" width="8.5" height="8.5" fill="none" />
         <rect x="187.25" y="16.75" width="8.5" height="8.5" fill="none" />
-        <rect x="204.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="204.25"
+          y="16.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <rect x="221.25" y="16.75" width="8.5" height="8.5" fill="none" />
-        <rect x="238.25" y="16.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="238.25"
+          y="16.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <rect x="153.25" y="33.75" width="8.5" height="8.5" fill="none" />
         <rect x="170.25" y="33.75" width="8.5" height="8.5" fill="none" />
-        <rect x="187.25" y="33.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="187.25"
+          y="33.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <g fill="none">
           <rect x="204.25" y="33.75" width="8.5" height="8.5" />
           <rect x="221.25" y="33.75" width="8.5" height="8.5" />
           <rect x="238.25" y="33.75" width="8.5" height="8.5" />
           <rect x="153.25" y="50.75" width="8.5" height="8.5" />
         </g>
-        <rect x="170.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="170.25"
+          y="50.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <g fill="none">
           <rect x="187.25" y="50.75" width="8.5" height="8.5" />
           <rect x="204.25" y="50.75" width="8.5" height="8.5" />
           <rect x="221.25" y="50.75" width="8.5" height="8.5" />
         </g>
-        <rect x="238.25" y="50.75" width="8.5" height="8.5" fill="#fff" />
-        <rect x="153.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="238.25"
+          y="50.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
+        <rect
+          x="153.25"
+          y="67.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <rect x="170.25" y="67.75" width="8.5" height="8.5" fill="none" />
         <rect x="187.25" y="67.75" width="8.5" height="8.5" fill="none" />
-        <rect x="204.25" y="67.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="204.25"
+          y="67.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <g fill="none">
           <rect x="221.25" y="67.75" width="8.5" height="8.5" />
           <rect x="238.25" y="67.75" width="8.5" height="8.5" />
           <rect x="153.25" y="84.75" width="8.5" height="8.5" />
           <rect x="170.25" y="84.75" width="8.5" height="8.5" />
         </g>
-        <rect x="187.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
-        <rect x="204.25" y="84.75" width="8.5" height="8.5" fill="#fff" />
+        <rect
+          x="187.25"
+          y="84.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
+        <rect
+          x="204.25"
+          y="84.75"
+          width="8.5"
+          height="8.5"
+          fill="var(--main-color-3)"
+        />
         <rect x="221.25" y="84.75" width="8.5" height="8.5" fill="none" />
         <rect x="238.25" y="84.75" width="8.5" height="8.5" fill="none" />
       </g>
@@ -579,5 +676,5 @@
 </Container>
 
 <Container>
-  <Footer {notes} />
+  <Footer {notes} {references} />
 </Container>
