@@ -3,27 +3,30 @@
   import { draw } from "svelte/transition";
   import Button from "$lib/Button.svelte";
 
-  let showCodeInput = false;
-  let showFunctionInput = false;
-  let showFunctionOutput = false;
-  let showFeedback = false;
+  let showCodeInput = true;
+  let showFunctionInput = true;
+  let showFunctionOutput = true;
+  let showFeedback = true;
+  let disabled = false;
 
   function runSimulation() {
+    disabled = true;
     // input code
-    showCodeInput = true;
+    showCodeInput = false;
     // input to function
-    showFunctionInput = true;
+    showFunctionInput = false;
     // output from function
-    showFunctionOutput = true;
+    showFunctionOutput = false;
     // output feedback
-    showFeedback = true;
+    showFeedback = false;
 
     setTimeout(() => {
-      showCodeInput = false;
-      showFunctionInput = false;
-      showFunctionOutput = false;
-      showFeedback = false;
-    }, 3000);
+      showCodeInput = true;
+      showFunctionInput = true;
+      showFunctionOutput = true;
+      showFeedback = true;
+      disabled = false;
+    }, 1000);
   }
 </script>
 
@@ -121,17 +124,17 @@
         {#if showFunctionInput}
           <g id="function-inputs" fill="none">
             <path
-              in:draw={{ duration: 500, delay: 500 }}
+              in:draw={{ duration: 500, delay: 1000 }}
               d="m8 214h70"
               marker-start="url(#DotM)"
             />
             <path
-              in:draw={{ duration: 500, delay: 500 }}
+              in:draw={{ duration: 500, delay: 1000 }}
               d="m8 234h70"
               marker-start="url(#DotM)"
             />
             <path
-              in:draw={{ duration: 500, delay: 500 }}
+              in:draw={{ duration: 500, delay: 1000 }}
               d="m8 254h70"
               marker-start="url(#DotM)"
             />
@@ -169,7 +172,7 @@
         </g>
         {#if showFunctionOutput}
           <path
-            in:draw={{ duration: 500, delay: 1000 }}
+            in:draw={{ duration: 500, delay: 1500 }}
             id="output"
             d="m201 234h122"
             fill="none"
@@ -178,7 +181,7 @@
         {/if}
         {#if showFeedback}
           <path
-            in:draw={{ duration: 500, delay: 1500 }}
+            in:draw={{ duration: 500, delay: 2500 }}
             id="feedback"
             d="m323 225v-211h-145"
             fill="none"
@@ -186,7 +189,47 @@
           />
         {/if}
       </g>
+      <g fill="#000000">
+        <text
+          x="10.456777"
+          y="281.07825"
+          style="line-height:1.25"
+          xml:space="preserve"
+          ><tspan x="10.456777" y="281.07825">2. Inputs</tspan></text
+        >
+        <text
+          x="220.04919"
+          y="281.07825"
+          style="line-height:1.25"
+          xml:space="preserve"
+          ><tspan x="220.04919" y="281.07825">3. Outputs</tspan></text
+        >
+        <text
+          x="220.04919"
+          y="101.23457"
+          style="line-height:1.25"
+          xml:space="preserve"
+          ><tspan x="220.04919" y="101.23457">4. Evaluate</tspan><tspan
+            x="220.04919"
+            y="126.4732"
+            >and
+          </tspan><tspan x="220.04919" y="151.71182">Improve</tspan></text
+        >
+        <text
+          x="40.55479"
+          y="28.234875"
+          style="line-height:1.25"
+          xml:space="preserve"
+          ><tspan x="40.55479" y="28.234875">1. Code</tspan></text
+        >
+      </g>
     </svg>
   </SvgContainer>
-  <Button value="Simulate Process" on:click={runSimulation} />
+  <Button value="Simulate Process" {disabled} on:click={runSimulation} />
 </div>
+
+<style>
+  text {
+    font-size: 15px;
+  }
+</style>
