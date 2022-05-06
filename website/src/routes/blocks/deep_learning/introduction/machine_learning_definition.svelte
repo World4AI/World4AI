@@ -46,15 +46,9 @@
     delay: 500,
   });
 
-  const processOpacityNormal = tweened(1, {
-    duration: 400,
-  });
-
   async function handleNormalProgramming() {
     disabledNormal = true;
     await xTranslateNormal.set(175);
-    await processOpacityNormal.set(0);
-    await processOpacityNormal.set(1);
     await x1Normal.set(80);
     await x2Normal.set(40);
     await xTranslateNormal.set(340);
@@ -70,9 +64,19 @@
   let showImprovement = false;
   let step = 0;
   let maxSteps = 3;
-  let learned1 = false;
-  let learned2 = false;
-  let learned3 = false;
+
+  let weight1Adjustment = tweened(0, {
+    duration: 400,
+  });
+  let weight2Adjustment = tweened(0, {
+    duration: 400,
+  });
+  let weight3Adjustment = tweened(0, {
+    duration: 400,
+  });
+  let weight4Adjustment = tweened(0, {
+    duration: 400,
+  });
 
   const xTranslateML = tweened(0, {
     duration: 400,
@@ -108,18 +112,16 @@
     await x1ML.set(60 + y);
     await x2ML.set(60 - y);
     await xTranslateML.set(340);
+
     if (step !== 3) {
       showImprovement = true;
+      await weight1Adjustment.set((step + 1) * -10);
+      await weight2Adjustment.set((step + 1) * 7);
+      await weight3Adjustment.set((step + 1) * -5);
+      await weight4Adjustment.set((step + 1) * 10);
     }
-    if (step === 1) {
-      learned1 = true;
-    }
-    if (step === 2) {
-      learned2 = true;
-      learned3 = true;
-    }
+
     await inputOpacityML.set(0);
-    showImprovement = false;
     x1ML.set(60);
     x2ML.set(60);
     await xTranslateML.set(0);
@@ -127,11 +129,13 @@
 
     if (step === 3) {
       step = 0;
-      learned1 = false;
-      learned2 = false;
-      learned3 = false;
+      await weight1Adjustment.set(0);
+      await weight2Adjustment.set(0);
+      await weight3Adjustment.set(0);
+      await weight4Adjustment.set(0);
     }
     disabledML = false;
+    showImprovement = false;
   }
 </script>
 
@@ -209,15 +213,20 @@
     assume we are assigned a task to transform a triangle into a rectangle of
     same height.
   </p>
+</Container>
 
-  <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" stroke="var(--text-color)">
-      <path d="m30.784 21.587 24.216 48.404h-48.433z" />
-      <rect x="345.98" y="20.98" width="49.02" height="49.02" />
-      <path d="m60 45.49h275" stroke-dasharray="2, 2" />
-    </g>
-  </svg>
-
+<div class="background-yellow">
+  <SvgContainer maxWidth={"900px"}>
+    <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="var(--text-color)">
+        <path d="m30.784 21.587 24.216 48.404h-48.433z" />
+        <rect x="345.98" y="20.98" width="49.02" height="49.02" />
+        <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+      </g>
+    </svg>
+  </SvgContainer>
+</div>
+<Container>
   <p>
     In classical programming the programmer could for example notice, that both
     shapes are polygons. The input (the triangle) has 3 connected points while
@@ -226,241 +235,129 @@
     additional point at the tip of the triangle and to pull the two points
     apart.
   </p>
-  <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="marker2143" overflow="visible" orient="auto">
-        <path
-          transform="scale(.4) translate(7.4 1)"
-          d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-          fill="var(--main-color-1)"
-          fill-rule="evenodd"
-          stroke="var(--text-color-1)"
-          stroke-width="1pt"
-        />
-      </marker>
-      <marker id="DotM" overflow="visible" orient="auto">
-        <path
-          transform="scale(.4) translate(7.4 1)"
-          d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-          fill="var(--main-color-1)"
-          fill-rule="evenodd"
-          stroke="var(--main-color-1)"
-          stroke-width="1pt"
-        />
-      </marker>
-    </defs>
-    <g fill="none" stroke="var(--text-color)">
-      <path
-        d="m30.784 21.587 24.216 48.404h-48.433z"
-        marker-end="url(#marker2143)"
-        marker-mid="url(#DotM)"
-        marker-start="url(#marker2143)"
-        stroke-width=".96837"
-      />
-      <path d="m60 45.49h275" stroke-dasharray="2, 2" />
-      <path
-        d="m345 20h50v49.991l-50 0.008767z"
-        marker-end="url(#marker2143)"
-        marker-mid="url(#DotM)"
-        marker-start="url(#marker2143)"
-        stroke-width=".96837"
-      />
-    </g>
-  </svg>
+</Container>
 
-  <p>
-    After planning the logic of the program, he implements it in a programming
-    language. In our example we represent the logic of the program using the
-    following "programming board". The difference between different
-    implementations lies in the activated (white) blocks of the board. Different
-    activations would mean different logic. The below board exempliefies a logic
-    that is suited to fully transform a triangle into a rectangle.
-  </p>
-  <SvgContainer maxWidth={"200px"}>
-    <svg
-      version="1.1"
-      viewBox="0 0 110 90"
-      width="200px"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g transform="translate(-144.75,-10.25)" stroke="var(--text-color)">
-        <rect x="149" y="12.5" width="102" height="85" fill="none" />
-        <rect
-          x="153.25"
-          y="16.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
+<div class="background-blue">
+  <SvgContainer maxWidth={"900px"}>
+    <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="marker2143" overflow="visible" orient="auto">
+          <path
+            transform="scale(.4) translate(7.4 1)"
+            d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
+            fill="var(--main-color-1)"
+            fill-rule="evenodd"
+            stroke="context-stroke"
+            stroke-width="1pt"
+          />
+        </marker>
+      </defs>
+      <g fill="none" stroke="#000">
+        <path
+          d="m30.784 21.587 24.216 48.404h-48.433z"
+          marker-end="url(#marker2143)"
+          marker-mid="url(#marker2143)"
+          marker-start="url(#marker2143)"
+          stroke-width=".96837"
         />
-        <rect x="170.25" y="16.75" width="8.5" height="8.5" fill="none" />
-        <rect x="187.25" y="16.75" width="8.5" height="8.5" fill="none" />
-        <rect
-          x="204.25"
-          y="16.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
+        <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+        <path
+          d="m345 20h50v49.991l-50 0.008767z"
+          marker-end="url(#marker2143)"
+          marker-mid="url(#marker2143)"
+          marker-start="url(#marker2143)"
+          stroke-width=".96837"
         />
-        <rect x="221.25" y="16.75" width="8.5" height="8.5" fill="none" />
-        <rect
-          x="238.25"
-          y="16.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <rect x="153.25" y="33.75" width="8.5" height="8.5" fill="none" />
-        <rect x="170.25" y="33.75" width="8.5" height="8.5" fill="none" />
-        <rect
-          x="187.25"
-          y="33.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <g fill="none">
-          <rect x="204.25" y="33.75" width="8.5" height="8.5" />
-          <rect x="221.25" y="33.75" width="8.5" height="8.5" />
-          <rect x="238.25" y="33.75" width="8.5" height="8.5" />
-          <rect x="153.25" y="50.75" width="8.5" height="8.5" />
-        </g>
-        <rect
-          x="170.25"
-          y="50.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <g fill="none">
-          <rect x="187.25" y="50.75" width="8.5" height="8.5" />
-          <rect x="204.25" y="50.75" width="8.5" height="8.5" />
-          <rect x="221.25" y="50.75" width="8.5" height="8.5" />
-        </g>
-        <rect
-          x="238.25"
-          y="50.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <rect
-          x="153.25"
-          y="67.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <rect x="170.25" y="67.75" width="8.5" height="8.5" fill="none" />
-        <rect x="187.25" y="67.75" width="8.5" height="8.5" fill="none" />
-        <rect
-          x="204.25"
-          y="67.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <g fill="none">
-          <rect x="221.25" y="67.75" width="8.5" height="8.5" />
-          <rect x="238.25" y="67.75" width="8.5" height="8.5" />
-          <rect x="153.25" y="84.75" width="8.5" height="8.5" />
-          <rect x="170.25" y="84.75" width="8.5" height="8.5" />
-        </g>
-        <rect
-          x="187.25"
-          y="84.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <rect
-          x="204.25"
-          y="84.75"
-          width="8.5"
-          height="8.5"
-          fill="var(--main-color-3)"
-        />
-        <rect x="221.25" y="84.75" width="8.5" height="8.5" fill="none" />
-        <rect x="238.25" y="84.75" width="8.5" height="8.5" fill="none" />
       </g>
     </svg>
   </SvgContainer>
+</div>
 
+<Container>
   <p>
-    The interactive example below shows the functionality of a program, where
-    the logic is hardcoded by the developer. The "logic board" is fixed and is
-    suited to transform a triangle into a rectangle.
+    The developer would then would use a traditional programming language like
+    JavaSript, C or Python and hardcode the logic that creates the additional
+    poligon and pull the poligons apart. The program could for example look as
+    shown in the interactive example below.
   </p>
-  <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="var(--text-color)">
-      <g id="logic">
-        <g opacity={$processOpacityNormal} fill="#fff">
-          <rect x="153.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="105" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="139" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="173.01" width="8.4993" height="8.5008" />
-        </g>
-        <g fill="none">
-          <rect x="149" y="100.75" width="101.99" height="85.008" />
-          <rect x="170.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="105" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="122" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="122" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="139" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="156" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="156" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="173.01" width="8.4993" height="8.5008" />
-        </g>
-      </g>
-      <rect
-        id="transformer"
-        x="150"
-        y="19.992"
-        width="99.992"
-        height="75.007"
-        fill="none"
-      />
-      <g
-        opacity={$inputOpacityNormal}
-        transform="translate({$xTranslateNormal}, 0)"
-      >
-        <polygon fill="none" points="1,{$x1Normal} 1,{$x2Normal} 51,40 51,80" />
-      </g>
-    </g>
-  </svg>
 
+  <SvgContainer maxWidth={"800px"}>
+    <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="marker2143" overflow="visible" orient="auto">
+          <path
+            transform="scale(.4) translate(7.4 1)"
+            d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
+            fill="var(--main-color-1)"
+            fill-rule="evenodd"
+            stroke="context-stroke"
+            stroke-width="1pt"
+          />
+        </marker>
+      </defs>
+      <g stroke="var(--text-color)">
+        <rect
+          id="transformer"
+          x="150"
+          y="19.992"
+          width="99.992"
+          height="75.007"
+          fill="none"
+        />
+        <g
+          opacity={$inputOpacityNormal}
+          transform="translate({$xTranslateNormal}, 0)"
+        >
+          <polygon
+            transform="translate(3, 0)"
+            fill="none"
+            marker-end="url(#marker2143)"
+            marker-mid="url(#marker2143)"
+            marker-start="url(#marker2143)"
+            points="0,{$x1Normal} 0,{$x2Normal} 51,40 51,80"
+          />
+        </g>
+      </g>
+    </svg>
+  </SvgContainer>
   <Button
     on:click={handleNormalProgramming}
     disabled={disabledNormal}
-    value="RUN"
+    value="Simulate Process"
   />
 
   <p>
     In machine learning on the other hand the role of a developer is not to find
     the logic that can transform triangles into squares, but to design a program
-    that can learn the logic which can transform triangles into squares.
+    that can learn the logic which can transform triangles into squares. In
+    machine learning this logic is represented by so called <Hightlight
+      >weights</Hightlight
+    >. Each of the weights is a simply a number that is used in the function
+    internally to process the inputs (the triangle in our case) in order to
+    generate the output of the function. Learning then means in our case:
+    "adjusting the weights to get better and better at producing rectangles".
+    How exactly the processing and learning works is going to be covered in the
+    next lectures.
   </p>
-
+  <p>
+    Below for example we have four different weights that we will utilize in
+    order to solve the task of turning triangles into rectangles.
+  </p>
+  <SvgContainer maxWidth={"250px"}>
+    <svg version="1.1" viewBox="0 0 100 85" xmlns="http://www.w3.org/2000/svg">
+      <g id="weights" fill="none" stroke="#000">
+        <rect x="5" y="5" width="15" height="75" fill="var(--main-color-1)" />
+        <rect x="30" y="40" width="15" height="40" fill="var(--main-color-2)" />
+        <rect x="55" y="25" width="15" height="55" fill="var(--main-color-3)" />
+        <rect x="80" y="55" width="15" height="25" fill="var(--main-color-4)" />
+      </g>
+    </svg>
+  </SvgContainer>
   <p>
     For that purpose the developer has access to a dataset that shows how for
-    each of the inputs a corresponding output should look like.
+    each of the inputs a corresponding output should look like. The error
+    between the output from the function and the expected output is used to
+    calculate how the weights need to be adjusted to get better results.
   </p>
 
   <SvgContainer maxWidth="500px">
@@ -537,11 +434,11 @@
     measures the magnitude of the error. For example if the program produces a
     triangle (input = output) the logic is very far from the desired one. A
     trapezoid on the other hand is closer to a rectangle. The measure of the
-    error is eventually used to automatically adjust the logic of the program to
-    improve the performance. How the process exactly works depends on the
+    error is eventually used to automatically adjust the weights of the program
+    to improve the performance. How the process exactly works depends on the
     algorithm, but the idea is that each iteration of data input, error
-    measurement and logic adjustment leads to better and better performance
-    until our goal is withing some boundary.
+    measurement and weight adjustment leads to better and better performance
+    until the error is less than some value.
   </p>
 
   <SvgContainer maxWidth={"500px"}>
@@ -570,66 +467,41 @@
     Below is an interactive example where the machine learning process is shown.
     It takes the algorithm three iterations to learn the desired logic. At first
     the difference between the square and the produced output is relatively
-    large, but the error is used to improve the logic of the program. In the
+    large, but the error is used to adjust the weights of the function. In the
     third iteration the program produces the desired results (after that the
     example is reset).
   </p>
   <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
     <g stroke="var(--text-color)">
-      <g id="logic">
-        <g opacity={$processOpacityML} fill="#fff">
-          <rect
-            x="153.25"
-            y="105"
-            width="8.4993"
-            height="8.5008"
-            fill={learned1 === true ? "var(--main-color-2)" : "none"}
-          />
-          <rect
-            x="204.25"
-            y="105"
-            width="8.4993"
-            height="8.5008"
-            fill={learned2 === true ? "var(--main-color-2)" : "none"}
-          />
-          <rect x="238.24" y="105" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="139" width="8.4993" height="8.5008" />
-          <rect
-            x="153.25"
-            y="156"
-            width="8.4993"
-            height="8.5008"
-            fill={learned3 === true ? "var(--main-color-2)" : "none"}
-          />
-          <rect x="204.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="173.01" width="8.4993" height="8.5008" />
-        </g>
-        <g fill="none">
-          <rect x="149" y="100.75" width="101.99" height="85.008" />
-          <rect x="170.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="105" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="105" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="122" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="122" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="122" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="204.25" y="139" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="139" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="156" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="156" width="8.4993" height="8.5008" />
-          <rect x="153.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="170.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="187.25" y="156" width="8.4993" height="8.5008" />
-          <rect x="221.24" y="173.01" width="8.4993" height="8.5008" />
-          <rect x="238.24" y="173.01" width="8.4993" height="8.5008" />
-        </g>
+      <g id="weights" stroke="var(--text-color)">
+        <rect
+          x="155"
+          y={115 - $weight1Adjustment}
+          width="15"
+          height={75 + $weight1Adjustment}
+          fill="var(--main-color-1)"
+        />
+        <rect
+          x="180"
+          y={150 - $weight2Adjustment}
+          width="15"
+          height={40 + $weight2Adjustment}
+          fill="var(--main-color-2)"
+        />
+        <rect
+          x="205"
+          y={135 - $weight3Adjustment}
+          width="15"
+          height={55 + $weight3Adjustment}
+          fill="var(--main-color-3)"
+        />
+        <rect
+          x="230"
+          y={165 - $weight4Adjustment}
+          width="15"
+          height={25 + $weight4Adjustment}
+          fill="var(--main-color-4)"
+        />
       </g>
       <rect
         id="transformer"
@@ -694,3 +566,15 @@
 <Container>
   <Footer {notes} {references} />
 </Container>
+
+<style>
+  .background-yellow {
+    background-color: var(--main-color-3);
+    margin: 15px 0;
+  }
+
+  .background-blue {
+    background-color: var(--main-color-4);
+    margin: 15px 0;
+  }
+</style>
