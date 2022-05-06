@@ -3,30 +3,30 @@
   import { draw } from "svelte/transition";
   import Button from "$lib/Button.svelte";
 
-  let showCodeInput = false;
-  let showFunctionInput = false;
-  let showFunctionOutput = false;
-  let showFeedback = false;
+  let showCodeInput = true;
+  let showFunctionInput = true;
+  let showFunctionOutput = true;
+  let showFeedback = true;
   let disabled = false;
 
   function runSimulation() {
     disabled = true;
     // input code
-    showCodeInput = true;
+    showCodeInput = false;
     // input to function
-    showFunctionInput = true;
+    showFunctionInput = false;
     // output from function
-    showFunctionOutput = true;
+    showFunctionOutput = false;
     // output feedback
-    showFeedback = true;
+    showFeedback = false;
 
     setTimeout(() => {
-      showCodeInput = false;
-      showFunctionInput = false;
-      showFunctionOutput = false;
-      showFeedback = false;
+      showCodeInput = true;
+      showFunctionInput = true;
+      showFunctionOutput = true;
+      showFeedback = true;
       disabled = false;
-    }, 5000);
+    }, 1000);
   }
 </script>
 
@@ -189,7 +189,7 @@
           />
         {/if}
       </g>
-      <g fill="#000000" font-size="20.191px">
+      <g fill="#000000">
         <text
           x="10.456777"
           y="281.07825"

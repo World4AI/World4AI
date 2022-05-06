@@ -6,8 +6,10 @@
   import Footer from "$lib/Footer.svelte";
   import Button from "$lib/Button.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import Hightlight from "$lib/Highlight.svelte";
 
   import TraditionalParadigm from "./_ml_definition/TraditionalParadigm.svelte";
+  import MlParadigm from "./_ml_definition/MlParadigm.svelte";
 
   let notes = [
     "This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papers, only the general sentiment regarding that definition.",
@@ -176,15 +178,29 @@
     </span>
   </p>
   <p>
-    When the programmer uses the traditional programming paradigm to solve the
-    problem, he would take the following steps. He would study the problem,
-    write the first draft of the function and check if the output of the
-    function corresponds to his expectations. The programmer would then keep
-    improving the code of the function until the results are satisfactory.
+    When the programmer uses the traditional programming paradigm to solve a
+    problem, he usually takes the following steps. He studies the problem,
+    writes the first draft of the code and runs the function. If the output of
+    the function corresponds to the expectations of the programmer for a
+    particular set of inputs his job is done. If not, the programmer keeps
+    improving the code of the function until the outputs of the function are
+    satisfactory.
   </p>
   <TraditionalParadigm />
 
-  <p>The machine learning approach</p>
+  <p>
+    The machine learning approach is different in several aspects. While the
+    programmer still needs to write some parts of the function explicitly, many
+    parts of the logic of the function are adjusted in an automatic procedure.
+    The function requires a set of inputs and the corresponding (correct)
+    outputs for those inputs in order to be able to learn. The function takes
+    those inputs in, uses so called
+    <Hightlight>weights</Hightlight> to transform the inputs into the outputs and
+    compares the expected outputs to those produced by the function. Using the differences
+    between the actual and the produced outputs the weights are adjusted automatically
+    to improve the outputs of the function.
+  </p>
+  <MlParadigm />
 
   <h2>Example</h2>
   <p>
