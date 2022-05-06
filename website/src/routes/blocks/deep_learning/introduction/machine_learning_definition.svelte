@@ -170,25 +170,28 @@
     definition of machine learning.
   </p>
   <p class="info">
-    Machine learning is a programming paradigm where the logic of a program is
-    automatically learned from data.
+    Machine learning is a programming paradigm where the solution to a problem
+    is automatically learned from data.
   </p>
 
   <h2>Programming Paradigms</h2>
   <p>
     While the term programming can be defined in a very broad way, for our
     purposes we will narrow it down to <span class="info"
-      >writing functions in a programming language to solve a particular task.
-    </span>
+      >writing/coding functions to solve a particular task
+    </span>. Building a spam filter is the task we will discuss in this chapter.
   </p>
   <p>
-    When the programmer uses the traditional programming paradigm to solve a
-    problem, he usually takes the following steps. He studies the problem,
-    writes the first draft of the code and runs the function. If the output of
-    the function corresponds to the expectations of the programmer for a
-    particular set of inputs his job is done. If not, the programmer keeps
-    improving the code of the function until the outputs of the function are
-    satisfactory.
+    When the programmer uses a traditional programming paradigm (e.g. procedural
+    programming) to solve a problem, he usually takes the following steps. He
+    will most likely first study the problem and look at the inputs of the
+    function. He could for example recognize that the words money, rich and
+    quick are common in spam emails and write the first draft of the the
+    function. If the output of the function corresponds to the expectations of
+    the programmer his job is done. If not, the programmer keeps improving the
+    code of the function until the outputs of the function are satisfactory. For
+    example the programmer might be satisfied, once he is able to classify spam
+    emails with an accuracy of 90%.
   </p>
   <TraditionalParadigm />
 
@@ -197,18 +200,27 @@
     programmer still needs to write some parts of the function explicitly, many
     parts of the logic of the function are adjusted in an automatic procedure.
     The function requires a set of inputs and the corresponding (correct)
-    outputs for those inputs in order to be able to learn. The function takes
-    those inputs in, uses so called
+    outputs for those inputs in order to be able to learn. The programmer
+    basically needs a dataset with the corresponding flags that show if the text
+    (input) corresponds to a spam email (output). The function takes those
+    inputs in, uses so called
     <Hightlight>weights</Hightlight> to transform the inputs into the outputs and
     compares the expected outputs to those produced by the function. Using the differences
-    between the actual and the produced outputs the weights are adjusted automatically
-    to improve the outputs of the function.
+    between the actual outputs (spam or not) and the produced outputs the weights
+    are adjusted automatically to improve the outputs of the function.
+  </p>
+  <p class="info">
+    If you have trouble understanding the weights of a function, just imagine
+    that those weights somehow correspond to the logic of the function, but
+    instead of hardcoding the logic, in machine learning the weights can be
+    changed/learned. The adjustment of those weights is what we refer to as
+    learning.
   </p>
   <MlParadigm />
 
   <h2>Example</h2>
   <p>
-    Let us use a stylized geometric example to demonstrate how classical
+    Let us use a stylized geometric example to further demonstrate how classical
     programming paradigms differ from machine learning programming. Let us
     assume we are assigned a task to transform a triangle into a rectangle of
     same height.
@@ -231,9 +243,9 @@
     In classical programming the programmer could for example notice, that both
     shapes are polygons. The input (the triangle) has 3 connected points while
     the output (the rectangle) has 4 connected points. To complete the
-    transformation from the triangle to the rectangle, we would need to add an
-    additional point at the tip of the triangle and to pull the two points
-    apart.
+    transformation from the triangle to the rectangle, the programmer would need
+    to add an additional point at the tip of the triangle and to pull the two
+    points apart.
   </p>
 </Container>
 
@@ -275,9 +287,9 @@
 
 <Container>
   <p>
-    The developer would then would use a traditional programming language like
+    The developer would then use a traditional programming language like
     JavaSript, C or Python and hardcode the logic that creates the additional
-    poligon and pull the poligons apart. The program could for example look as
+    polygon and pull the polygons apart. The program could for example look as
     shown in the interactive example below.
   </p>
 
@@ -332,12 +344,12 @@
     that can learn the logic which can transform triangles into squares. In
     machine learning this logic is represented by so called <Hightlight
       >weights</Hightlight
-    >. Each of the weights is a simply a number that is used in the function
+    >. Each of the weights is simply a number that is used in the function
     internally to process the inputs (the triangle in our case) in order to
     generate the output of the function. Learning then means in our case:
     "adjusting the weights to get better and better at producing rectangles".
-    How exactly the processing and learning works is going to be covered in the
-    next lectures.
+    How exactly the transforming with weights and learning looks like is going
+    to be covered in the next lectures.
   </p>
   <p>
     Below for example we have four different weights that we will utilize in
@@ -355,9 +367,7 @@
   </SvgContainer>
   <p>
     For that purpose the developer has access to a dataset that shows how for
-    each of the inputs a corresponding output should look like. The error
-    between the output from the function and the expected output is used to
-    calculate how the weights need to be adjusted to get better results.
+    each of the inputs a corresponding output should look like.
   </p>
 
   <SvgContainer maxWidth="500px">
@@ -429,16 +439,16 @@
   </SvgContainer>
 
   <p>
-    The inintial logic of the program is going to be very far off from the
-    correct logic. The programmer feeds the program with data and the algorithm
-    measures the magnitude of the error. For example if the program produces a
-    triangle (input = output) the logic is very far from the desired one. A
-    trapezoid on the other hand is closer to a rectangle. The measure of the
-    error is eventually used to automatically adjust the weights of the program
-    to improve the performance. How the process exactly works depends on the
-    algorithm, but the idea is that each iteration of data input, error
-    measurement and weight adjustment leads to better and better performance
-    until the error is less than some value.
+    The inintial logic (first set of weights) of the program is going to be very
+    far off from the correct logic. The programmer feeds the program with data
+    and the algorithm measures the magnitude of the error. For example if the
+    program produces a triangle (input equals output) the logic is very far from
+    the desired one. A trapezoid on the other hand is closer to a rectangle. The
+    measure of the error is eventually used to automatically adjust the weights
+    of the program to improve the performance. How the process exactly works
+    depends on the algorithm, but the idea is that each iteration of data input,
+    error measurement and weight adjustment leads to better and better
+    performance until the error is less than some threshold.
   </p>
 
   <SvgContainer maxWidth={"500px"}>
@@ -535,18 +545,21 @@
       {/if}
     </g>
   </svg>
-  <Button on:click={handleMLProgramming} disabled={disabledML} value="RUN" />
+  <Button
+    on:click={handleMLProgramming}
+    disabled={disabledML}
+    value="Simulate Process"
+  />
 
   <p>
     The general intuition about machine learning that you should keep in mind is
     as follows.
   </p>
   <p class="info">
-    In classical programming and machine learning we try to solve a problem, by
-    designing computer functions. In classical programming the programmer
-    hardcodes the logic of that function. In machine learning the programmer
-    chooses the algorithm and the parameters that are used to learn the
-    function.
+    In classical programming and machine learning we try to solve a problem by
+    using computer functions. In classical programming the programmer hardcodes
+    the logic of that function. In machine learning the programmer chooses the
+    algorithm and the parameters that are used to learn the function.
   </p>
 
   <p>
