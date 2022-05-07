@@ -77,10 +77,15 @@
 
 <SvgContainer maxWidth="{config.maxWidth}px">
   <svg viewBox="0 0 {config.width} {config.height}">
+    <!-- draw axis -->
     <g class="axis y-axis">
       {#each config.yTicks as tick}
         <g class="tick tick-{tick}" transform="translate(0, {yScale(tick)})">
-          <line x1={config.padding.left} x2={xScale(config.maxX)} />
+          <line
+            class:zero={tick === 0}
+            x1={config.padding.left}
+            x2={xScale(config.maxX)}
+          />
           <text x={config.padding.left - 8} y="+4">{tick}</text>
         </g>
       {/each}
@@ -89,7 +94,11 @@
     <g class="axis x-axis">
       {#each config.xTicks as tick}
         <g class="tick" transform="translate({xScale(tick)},0)">
-          <line y1={yScale(config.minY)} y2={yScale(config.maxY)} />
+          <line
+            class:zero={tick === 0}
+            y1={yScale(config.minY)}
+            y2={yScale(config.maxY)}
+          />
           <text y={config.height - config.padding.bottom + 16}>{tick}</text>
         </g>
       {/each}
@@ -139,13 +148,19 @@
   }
   .tick line {
     stroke: var(--text-color);
-    stroke-dasharray: 4 8;
+    stroke-dasharray: 2 2;
     opacity: 0.4;
   }
 
   line {
     stroke: var(--text-color);
     opacity: 0.4;
+  }
+
+  line.zero {
+    stroke-dasharray: none;
+    opacity: 1;
+    stroke-width: 2px;
   }
 
   text {
