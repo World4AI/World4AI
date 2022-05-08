@@ -3,6 +3,8 @@
   import Table from "$lib/Table.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
+  import Neuron from "./_dl_definition/Neuron.svelte";
+  import NeuralNetwork from "./_dl_definition/NeuralNetwork.svelte";
 
   const header = ["Location", "Size", "Price"];
 
@@ -198,144 +200,34 @@
   <p>
     If deep learning is a subset of machine learning, we need to ask ourselves
     the following question. What makes a machine learning algorithm a deep
-    learning algorithm? The use of <Highlight>neural networks</Highlight>, a <Highlight
+    learning algorithm?
+  </p>
+  <p class="info">
+    <Highlight>Neural networks</Highlight>, a <Highlight
       >"deep" architecture</Highlight
-    > and <Highlight>representation learning</Highlight>.
+    > and <Highlight>representation learning</Highlight> are all traits of deep learning.
   </p>
   <div class="separator" />
 
   <h2>Neural Networks</h2>
   <p>
-    Deep learning is exclusively concerened with artificial neural networks.
-    Machine learning algorithms that do not utilize neural networks can
-    therefore not qualify as deep learning.
-  </p>
-  <p>
-    You have probably encountered the word neuron before. Most likely in
-    connection with the structure of our brain. Even though artificial neurons
-    that are used in machine learning are inspired by their biological
-    counterparts, we can not claim that artificial neurons mimic biology. For
-    once humanity is not fully aware of the exact behaviour of the brain.
-    Additionally we know that some components of biological neurons work
-    different than those that we employ in machine learning. For the time being
-    we will focus solely on artificial neurons. Should the need arise to cover
-    neuroscience research, we will do so.
+    Deep learning is exclusively based on artificial neural networks. Machine
+    learning algorithms that do not utilize neural networks can therefore not
+    qualify as deep learning.
   </p>
 
   <p>
-    In machine learning a neuron is just a computational unit. This unit
-    receives some inputs (e.g features of a house), transforms the input using
-    it's internal function and returns a single outut (e.g. the price of the
-    house).
+    In machine learning an artificial neuron is just a computational unit. This
+    unit receives some inputs (e.g features of a house), transforms the input
+    using its' model into the output (e.g. the price of the house) and returns
+    the calculated output.
   </p>
-  <p class="info">A neuron is a computational unit.</p>
-
-  <svg version="1.1" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="DotS" overflow="visible" orient="auto">
-        <path
-          transform="scale(.2) translate(7.4 1)"
-          d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-          fill="context-stroke"
-          fill-rule="evenodd"
-          stroke="context-stroke"
-          stroke-width="1pt"
-        />
-      </marker>
-    </defs>
-    <g fill="none" stroke="var(--text-color)">
-      <rect x="170" y="10" width="160" height="160" />
-      <path id="output" d="m340 90h150" stroke-width="1.0742px" />
-      <rect x="230" y="70" width="40" height="40" ry="5" />
-      <g id="inputs">
-        <path d="m10 30h150" stroke-width="1.0742px" />
-        <path d="m10 150h150" stroke-width="1.0742px" />
-        <path d="m10.967 69.994h149.03" stroke-width="1.0627px" />
-        <path d="m10.967 109.99h149.03" stroke-width="1.0627px" />
-      </g>
-      <g stroke-width="1px">
-        <path d="m235 70v-10" marker-end="url(#DotS)" />
-        <path d="m245 70v-10" marker-end="url(#DotS)" />
-        <path d="m255 70v-10" marker-end="url(#DotS)" />
-        <path d="m265 70v-10" marker-end="url(#DotS)" />
-        <path d="m270 75h10" marker-end="url(#DotS)" />
-        <path d="m270 85h10" marker-end="url(#DotS)" />
-        <path d="m270 95h10" marker-end="url(#DotS)" />
-        <path d="m270 105h10" marker-end="url(#DotS)" />
-        <path d="m265 110v10" marker-end="url(#DotS)" />
-        <path d="m255 110v10" marker-end="url(#DotS)" />
-        <path d="m245 110v10" marker-end="url(#DotS)" />
-        <path d="m235 110v10" marker-end="url(#DotS)" />
-        <path d="m230 105h-10" marker-end="url(#DotS)" />
-        <path d="m230 95h-10" marker-end="url(#DotS)" />
-        <path d="m230 85h-10" marker-end="url(#DotS)" />
-        <path d="m230 75h-10" marker-end="url(#DotS)" />
-      </g>
-      <g>
-        <circle cx="235" cy="75" r="2.095" />
-        <circle cx="265" cy="75" r="2.095" />
-        <circle cx="235" cy="104.91" r="2.095" />
-        <circle cx="265" cy="104.91" r="2.095" />
-      </g>
-      <g stroke-width="1px">
-        <path d="m250 85h15" />
-        <path d="m250 90h15" />
-        <path d="m250 95h15" />
-        <path d="m235 100h10" />
-        <path d="m235 97.5h10" />
-        <path d="m235 95h10" />
-      </g>
-      <g>
-        <rect x="250" y="100" width="10" height="5" />
-        <rect x="240" y="72.322" width="20" height="5" />
-        <rect x="186.8" y="24.97" width="26.401" height="10.059" />
-        <g>
-          <path d="m190 20v5" />
-          <path d="m195 20v5" />
-          <path d="m200 20v5" />
-          <path d="m205 20v5" />
-          <path d="m210 20v5" />
-          <path d="m210 35v5" />
-          <path d="m205 35v5" />
-          <path d="m200 35v5" />
-          <path d="m195 35v5" />
-          <path d="m190 35v5" />
-        </g>
-        <rect x="305" y="145" width="15" height="15" />
-      </g>
-      <g stroke-width="1px">
-        <path d="m310 140v5" />
-        <path d="m315 140v5" />
-        <path d="m300 150h5" />
-        <path d="m300 155h5" />
-        <path d="m310 165v-5" />
-        <path d="m315 165v-5" />
-        <path d="m325 150h-5" />
-        <path d="m325 155h-5" />
-      </g>
-      <g>
-        <circle cx="307.37" cy="28.58" r="5" />
-        <circle cx="307.37" cy="28.58" r="8.1345" />
-        <circle cx="214.83" cy="144.44" r="5" />
-        <circle cx="214.83" cy="144.44" r="8.1345" />
-      </g>
-      <g id="computation" stroke-width="1px">
-        <path d="m220 35h15v20" />
-        <path d="m220 30h20v25" />
-        <path d="m220 25h25v30" />
-        <path d="m295 30h-30v25" />
-        <path d="m305 40v45h-20" />
-        <path d="m215 130v-20h10" />
-        <path d="m310 135v-30h-20" />
-        <path d="m315 135v-35h-25" />
-      </g>
-    </g>
-  </svg>
+  <Neuron />
   <p>
     The function that transforms features into labels is learned from data. In
-    that sense a neuron is not different from any other machine learning system.
-    This function (as we will see in a future section) is extremely simple. For
-    the most part it involves addition and multiplication. Why then would we use
+    that sense a neuron is not different from any other machine learning
+    algorithm. In fact the model of the neuron is extremely simple. For the most
+    part it involves addition and multiplication. Why then would we use
     artificial neurons to build systems that should be capable of image
     recognition, text generation and other fairly complex tasks? We have the
     ability to stack neurons and thus creating a network of artificial neurons.
@@ -345,333 +237,24 @@
     output of one neuron is used as the input of the next neuron.
   </p>
 
-  <svg version="1.1" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="DotS" overflow="visible" orient="auto">
-        <path
-          transform="matrix(.2 0 0 .2 1.48 .2)"
-          d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-          fill="context-stroke"
-          fill-rule="evenodd"
-          stroke="context-stroke"
-          stroke-width="1pt"
-        />
-      </marker>
-    </defs>
-    <g fill="none" stroke="var(--text-color)">
-      <g>
-        <path d="m8.3172 19.438h62.083" stroke-width=".55536px" />
-        <path d="m8.3172 96.938h62.083" stroke-width=".55536px" />
-        <path d="m8.7174 45.267h61.683" stroke-width=".54944px" />
-        <path d="m8.7174 71.101h61.683" stroke-width=".54944px" />
-      </g>
-      <rect
-        x="79.896"
-        y="6.5209"
-        width="103.33"
-        height="103.33"
-        stroke-width=".64583"
-      />
-      <rect
-        x="118.65"
-        y="45.271"
-        width="25.833"
-        height="25.833"
-        ry="3.2292"
-        stroke-width=".64583"
-      />
-      <g stroke-width=".64583px">
-        <path d="m121.88 45.271v-6.4583" marker-end="url(#DotS)" />
-        <path d="m128.33 45.271v-6.4583" marker-end="url(#DotS)" />
-        <path d="m134.79 45.271v-6.4583" marker-end="url(#DotS)" />
-        <path d="m141.25 45.271v-6.4583" marker-end="url(#DotS)" />
-        <path d="m144.48 48.5h6.4583" marker-end="url(#DotS)" />
-        <path d="m144.48 54.958h6.4583" marker-end="url(#DotS)" />
-        <path d="m144.48 61.417h6.4583" marker-end="url(#DotS)" />
-        <path d="m144.48 67.875h6.4583" marker-end="url(#DotS)" />
-        <path d="m141.25 71.104v6.4583" marker-end="url(#DotS)" />
-        <path d="m134.79 71.104v6.4583" marker-end="url(#DotS)" />
-        <path d="m128.33 71.104v6.4583" marker-end="url(#DotS)" />
-        <path d="m121.88 71.104v6.4583" marker-end="url(#DotS)" />
-        <path d="m118.65 67.875h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.65 61.417h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.65 54.958h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.65 48.5h-6.4583" marker-end="url(#DotS)" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="121.88" cy="48.5" r="1.353" />
-        <circle cx="141.25" cy="48.5" r="1.353" />
-        <circle cx="121.88" cy="67.818" r="1.353" />
-        <circle cx="141.25" cy="67.819" r="1.353" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m131.56 54.958h9.6875" />
-        <path d="m131.56 58.188h9.6875" />
-        <path d="m131.56 61.417h9.6875" />
-        <path d="m121.88 64.646h6.4583" />
-        <path d="m121.88 63.031h6.4583" />
-        <path d="m121.88 61.417h6.4583" />
-      </g>
-      <g stroke-width=".64583">
-        <rect x="131.56" y="64.646" width="6.4583" height="3.2292" />
-        <rect x="125.1" y="46.771" width="12.917" height="3.2292" />
-        <rect x="90.745" y="16.189" width="17.051" height="6.4965" />
-        <g>
-          <path d="m92.812 12.979v3.2292" />
-          <path d="m96.042 12.979v3.2292" />
-          <path d="m99.271 12.979v3.2292" />
-          <path d="m102.5 12.979v3.2292" />
-          <path d="m105.73 12.979v3.2292" />
-          <path d="m105.73 22.667v3.2292" />
-          <path d="m102.5 22.667v3.2292" />
-          <path d="m99.271 22.667v3.2292" />
-          <path d="m96.042 22.667v3.2292" />
-          <path d="m92.812 22.667v3.2292" />
-        </g>
-        <rect x="167.08" y="93.708" width="9.6875" height="9.6875" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m170.31 90.479v3.2292" />
-        <path d="m173.54 90.479v3.2292" />
-        <path d="m163.85 96.938h3.2292" />
-        <path d="m163.85 100.17h3.2292" />
-        <path d="m170.31 106.63v-3.2292" />
-        <path d="m173.54 106.63v-3.2292" />
-        <path d="m180 96.938h-3.2292" />
-        <path d="m180 100.17h-3.2292" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="168.62" cy="18.52" r="3.2292" />
-        <circle cx="168.62" cy="18.52" r="5.2535" />
-        <circle cx="108.85" cy="93.346" r="3.2292" />
-        <circle cx="108.85" cy="93.346" r="5.2535" />
-      </g>
-      <g>
-        <g stroke-width=".64583px">
-          <path d="m112.19 22.667h9.6875v12.917" />
-          <path d="m112.19 19.438h12.917v16.146" />
-          <path d="m112.19 16.208h16.146v19.375" />
-          <path d="m160.62 19.438h-19.375v16.146" />
-          <path d="m167.08 25.896v29.062h-12.917" />
-          <path d="m108.96 84.021v-12.917h6.4583" />
-          <path d="m170.31 87.25v-19.375h-12.917" />
-          <path d="m173.54 87.25v-22.604h-16.146" />
-        </g>
-        <path d="m7.9167 154.48h62.083" stroke-width=".55536px" />
-        <path d="m7.9167 231.98h62.083" stroke-width=".55536px" />
-        <path d="m8.3169 180.31h61.683" stroke-width=".54944px" />
-        <path d="m8.3169 206.14h61.683" stroke-width=".54944px" />
-      </g>
-      <rect
-        x="79.271"
-        y="141.56"
-        width="103.33"
-        height="103.33"
-        stroke-width=".64583"
-      />
-      <rect
-        x="118.02"
-        y="180.31"
-        width="25.833"
-        height="25.833"
-        ry="3.2292"
-        stroke-width=".64583"
-      />
-      <g stroke-width=".64583px">
-        <path d="m121.25 180.31v-6.4583" marker-end="url(#DotS)" />
-        <path d="m127.71 180.31v-6.4583" marker-end="url(#DotS)" />
-        <path d="m134.17 180.31v-6.4583" marker-end="url(#DotS)" />
-        <path d="m140.62 180.31v-6.4583" marker-end="url(#DotS)" />
-        <path d="m143.85 183.54h6.4583" marker-end="url(#DotS)" />
-        <path d="m143.85 190h6.4583" marker-end="url(#DotS)" />
-        <path d="m143.85 196.46h6.4583" marker-end="url(#DotS)" />
-        <path d="m143.85 202.92h6.4583" marker-end="url(#DotS)" />
-        <path d="m140.62 206.15v6.4583" marker-end="url(#DotS)" />
-        <path d="m134.17 206.15v6.4583" marker-end="url(#DotS)" />
-        <path d="m127.71 206.15v6.4583" marker-end="url(#DotS)" />
-        <path d="m121.25 206.15v6.4583" marker-end="url(#DotS)" />
-        <path d="m118.02 202.92h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.02 196.46h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.02 190h-6.4583" marker-end="url(#DotS)" />
-        <path d="m118.02 183.54h-6.4583" marker-end="url(#DotS)" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="121.25" cy="183.54" r="1.353" />
-        <circle cx="140.63" cy="183.54" r="1.353" />
-        <circle cx="121.25" cy="202.86" r="1.353" />
-        <circle cx="140.63" cy="202.86" r="1.353" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m130.94 190h9.6875" />
-        <path d="m130.94 193.23h9.6875" />
-        <path d="m130.94 196.46h9.6875" />
-        <path d="m121.25 199.69h6.4583" />
-        <path d="m121.25 198.07h6.4583" />
-        <path d="m121.25 196.46h6.4583" />
-      </g>
-      <g stroke-width=".64583">
-        <rect x="130.94" y="199.69" width="6.4583" height="3.2292" />
-        <rect x="124.48" y="181.81" width="12.917" height="3.2292" />
-        <rect x="90.12" y="151.23" width="17.051" height="6.4965" />
-        <g>
-          <path d="m92.188 148.02v3.2292" />
-          <path d="m95.417 148.02v3.2292" />
-          <path d="m98.646 148.02v3.2292" />
-          <path d="m101.88 148.02v3.2292" />
-          <path d="m105.1 148.02v3.2292" />
-          <path d="m105.1 157.71v3.2292" />
-          <path d="m101.88 157.71v3.2292" />
-          <path d="m98.646 157.71v3.2292" />
-          <path d="m95.417 157.71v3.2292" />
-          <path d="m92.188 157.71v3.2292" />
-        </g>
-        <rect x="166.46" y="228.75" width="9.6875" height="9.6875" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m169.69 225.52v3.2292" />
-        <path d="m172.92 225.52v3.2292" />
-        <path d="m163.23 231.98h3.2292" />
-        <path d="m163.23 235.21h3.2292" />
-        <path d="m169.69 241.67v-3.2292" />
-        <path d="m172.92 241.67v-3.2292" />
-        <path d="m179.38 231.98h-3.2292" />
-        <path d="m179.38 235.21h-3.2292" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="167.99" cy="153.56" r="3.2292" />
-        <circle cx="167.99" cy="153.56" r="5.2535" />
-        <circle cx="108.22" cy="228.39" r="3.2292" />
-        <circle cx="108.22" cy="228.39" r="5.2535" />
-      </g>
-      <g>
-        <g stroke-width=".64583px">
-          <path d="m111.56 157.71h9.6875v12.917" />
-          <path d="m111.56 154.48h12.917v16.146" />
-          <path d="m111.56 151.25h16.146v19.375" />
-          <path d="m160 154.48h-19.375v16.146" />
-          <path d="m166.46 160.94v29.062h-12.917" />
-          <path d="m108.33 219.06v-12.917h6.4583" />
-          <path d="m169.69 222.29v-19.375h-12.917" />
-          <path d="m172.92 222.29v-22.604h-16.146" />
-        </g>
-        <path d="m416.15 125h68.854" stroke-width=".58486px" />
-      </g>
-      <rect
-        x="306.35"
-        y="73.333"
-        width="103.33"
-        height="103.33"
-        stroke-width=".64583"
-      />
-      <rect
-        x="345.1"
-        y="112.08"
-        width="25.833"
-        height="25.833"
-        ry="3.2292"
-        stroke-width=".64583"
-      />
-      <g stroke-width=".64583px">
-        <path d="m348.33 112.08v-6.4583" marker-end="url(#DotS)" />
-        <path d="m354.79 112.08v-6.4583" marker-end="url(#DotS)" />
-        <path d="m361.25 112.08v-6.4583" marker-end="url(#DotS)" />
-        <path d="m367.71 112.08v-6.4583" marker-end="url(#DotS)" />
-        <path d="m370.94 115.31h6.4583" marker-end="url(#DotS)" />
-        <path d="m370.94 121.77h6.4583" marker-end="url(#DotS)" />
-        <path d="m370.94 128.23h6.4583" marker-end="url(#DotS)" />
-        <path d="m370.94 134.69h6.4583" marker-end="url(#DotS)" />
-        <path d="m367.71 137.92v6.4583" marker-end="url(#DotS)" />
-        <path d="m361.25 137.92v6.4583" marker-end="url(#DotS)" />
-        <path d="m354.79 137.92v6.4583" marker-end="url(#DotS)" />
-        <path d="m348.33 137.92v6.4583" marker-end="url(#DotS)" />
-        <path d="m345.1 134.69h-6.4583" marker-end="url(#DotS)" />
-        <path d="m345.1 128.23h-6.4583" marker-end="url(#DotS)" />
-        <path d="m345.1 121.77h-6.4583" marker-end="url(#DotS)" />
-        <path d="m345.1 115.31h-6.4583" marker-end="url(#DotS)" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="348.33" cy="115.31" r="1.353" />
-        <circle cx="367.71" cy="115.31" r="1.353" />
-        <circle cx="348.33" cy="134.63" r="1.353" />
-        <circle cx="367.71" cy="134.63" r="1.353" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m358.02 121.77h9.6875" />
-        <path d="m358.02 125h9.6875" />
-        <path d="m358.02 128.23h9.6875" />
-        <path d="m348.33 131.46h6.4583" />
-        <path d="m348.33 129.84h6.4583" />
-        <path d="m348.33 128.23h6.4583" />
-      </g>
-      <g stroke-width=".64583">
-        <rect x="358.02" y="131.46" width="6.4583" height="3.2292" />
-        <rect x="351.56" y="113.58" width="12.917" height="3.2292" />
-        <rect x="317.2" y="83.002" width="17.051" height="6.4965" />
-        <g>
-          <path d="m319.27 79.792v3.2292" />
-          <path d="m322.5 79.792v3.2292" />
-          <path d="m325.73 79.792v3.2292" />
-          <path d="m328.96 79.792v3.2292" />
-          <path d="m332.19 79.792v3.2292" />
-          <path d="m332.19 89.479v3.2292" />
-          <path d="m328.96 89.479v3.2292" />
-          <path d="m325.73 89.479v3.2292" />
-          <path d="m322.5 89.479v3.2292" />
-          <path d="m319.27 89.479v3.2292" />
-        </g>
-        <rect x="393.54" y="160.52" width="9.6875" height="9.6875" />
-      </g>
-      <g stroke-width=".64583px">
-        <path d="m396.77 157.29v3.2292" />
-        <path d="m400 157.29v3.2292" />
-        <path d="m390.31 163.75h3.2292" />
-        <path d="m390.31 166.98h3.2292" />
-        <path d="m396.77 173.44v-3.2292" />
-        <path d="m400 173.44v-3.2292" />
-        <path d="m406.46 163.75h-3.2292" />
-        <path d="m406.46 166.98h-3.2292" />
-      </g>
-      <g stroke-width=".64583">
-        <circle cx="395.07" cy="85.333" r="3.2292" />
-        <circle cx="395.07" cy="85.333" r="5.2535" />
-        <circle cx="335.31" cy="160.16" r="3.2292" />
-        <circle cx="335.31" cy="160.16" r="5.2535" />
-      </g>
-      <g>
-        <g stroke-width=".64583px">
-          <path d="m338.65 89.479h9.6875v12.917" />
-          <path d="m338.65 86.25h12.917v16.146" />
-          <path d="m338.65 83.021h16.146v19.375" />
-          <path d="m387.08 86.25h-19.375v16.146" />
-          <path d="m393.54 92.708v29.063h-12.917" />
-          <path d="m335.42 150.83v-12.917h6.4583" />
-          <path d="m396.77 154.06v-19.375h-12.917" />
-          <path d="m400 154.06v-22.604h-16.146" />
-        </g>
-        <path d="m188.02 90h105v15h10" stroke-width="1px" />
-        <path d="m188.02 170h105v-15h10" stroke-width="1px" />
-      </g>
-    </g>
-  </svg>
+  <NeuralNetwork />
 
   <p>
     We must not forget that each neuron learns a different function. This allows
     each of the neurons to learn a solution to a different subproblem. This
-    approach is called <Highlight>divide and conquer</Highlight>. The whole
-    complex task is divided into solvable small chunks and the solution to those
-    chunks simultaneously constitutes the solution of the larger task. And the
-    beaty of neural networks is their ability to use the divide and conquer
-    strategy automatically. We therefore do not need to define the subproblems
-    manually.
+    approach is called <Highlight>divide and conquer</Highlight>. The whole task
+    is divided into solvable small chunks and the solution to those chunks
+    simultaneously constitutes the solution of the larger task. The beaty of
+    neural networks lies in their ability to use "divide and conquer"
+    automatically, without being told what the subproblems are.
   </p>
-
   <p>
     The traditional neural networks are structured in a layered architecture.
-    Each neuron takes the outputs from all neurons in the previous layer as its
-    inputs. Similarly the single output of each neuron is used as an input in
+    Each neuron takes the outputs from all neurons in the previous layer as its'
+    inputs. Similarly the single output of each neuron is used as an input for
     each neuron of the next layer. Yet even though the input for each of the
     neurons in the same layer are the same, the outputs are different, because
-    each neuron uses a different function internally. This type of a network is
+    each neuron uses a different model internally. This type of a network is
     called a <Highlight>fully connected</Highlight> neural network.
   </p>
 
@@ -907,8 +490,10 @@
   <p>
     The very first layer in a neural network is called <Highlight
       >input layer</Highlight
-    >. The last layer is called <Highlight>output layer</Highlight>. The
-    intermediary layers are called <Highlight>hidden layers</Highlight>.
+    >. The input layer does involve any calculations. It is exclusively used as
+    the input to the neurons in the next layer. The last layer is called <Highlight
+      >output layer</Highlight
+    >. The intermediary layers are called <Highlight>hidden layers</Highlight>.
   </p>
   <div class="separator" />
 
@@ -918,7 +503,7 @@
     neural network to consist of at least two hidden layers. Most modern neural
     networks have vastly more layers. Historically it was extremely hard to
     train deep neural networks and more hidden layers did not improve the
-    performance of a neural network. On the contrary more layers usually
+    performance of a neural network. On the contrary, more layers usually
     decreased the performance, because the learning algorithm broke apart once
     the distance that information needs to travel between neurons increased
     beyond a certain threshhold. The success of deep neural networks is a
@@ -937,9 +522,9 @@
 
   <p>
     Let us imagine a regression task, where we try to predict the price of a
-    house based on the location and the size. While the location seems to have
-    an impact on the price of a house, the representation of the location is
-    relatively cryptic, even for us humans.
+    house based on the location and the size features. While the location seems
+    to have an impact on the price of a house, the representation of the
+    location is relatively cryptic, even for us humans.
   </p>
   <Table {header} {data} />
   <p>
@@ -947,7 +532,7 @@
     far from the city center the house lies. Larger distance implies a lower
     price. From those considerations the expert might decide to classify the
     coordinates into several categories that are useful for a machine learning
-    algorithm, which might lead to a better prediction quality.
+    algorithm, which should lead to a better prediction quality.
   </p>
   <Table header={header2} data={data2} />
 
@@ -956,17 +541,17 @@
     engineering. Due to its hierarchical (layered) nature, deep neural networks
     are able to learn useful representations (features) of input variables on
     their own. We can for example imagine that the first layers are responsible
-    for learning those representations (e.g. location to city center), while the
-    latter layers are responsible for the calculation of labels (e.g. price).
+    for learning those representations (e.g. city center), while the latter
+    layers are responsible for the calculation of labels (e.g. price).
   </p>
 
   <div class="separator" />
 
   <h2>Usecase for Deep Learning</h2>
   <p>
-    Deep learning seems to have overtaken other machine learning methods in
-    almost all domains. Computer vision, speach recognition and many more rely
-    on deep learning, but there are some prerequisites that need to be met if we
+    Deep learning has overtaken other machine learning methods in almost all
+    domains. Computer vision, speach recognition and many more tasks require
+    deep learning, but there are some prerequisites that need to be met if we
     want to apply deep learning.
   </p>
   <p>
@@ -975,16 +560,18 @@
     images and text translation systems are usually trained on all of Wikipedia.
   </p>
   <p>
-    This amount of data that needs to be incorporated into the training process
-    requires the use of modern graphics cards used in parallel, which are
-    extremely costly. Moreover the electricity bill will cost you a small (or
+    This amount of data needs to be incorporated into the training process,
+    which in turn requires the use of modern graphics cards, which can be
+    extremely costly. Moreover the electricity bill will cost you a small (or a
     big) fortune, because these algorithms are usually trained for several days
     at a time.
   </p>
   <p>
     The good news is, that we can utilize smaller datasets to learn how deep
     learning works. We might not produce state of the art results, but the
-    knowledge should be transferable.
+    knowledge should be transferable. Additionally we will discuss free/cheap
+    computational resources in a different chapter, which will allows us to
+    train decent models even without having access to a local graphics card.
   </p>
   <div class="separator" />
 </Container>
