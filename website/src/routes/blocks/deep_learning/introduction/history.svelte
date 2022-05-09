@@ -12,6 +12,7 @@
   import Cnn from "./_history/Cnn.svelte";
   import Rnn from "./_history/Rnn.svelte";
   import Scatterplot from "$lib/Scatterplot.svelte";
+  import Plot from "$lib/Plot.svelte";
   import Table from "$lib/Table.svelte";
   import Relu from "./_history/Relu.svelte";
 
@@ -328,9 +329,8 @@
 
   <h3>Perceptron</h3>
   <p>
-    McCulloch and Pitts provided an architecture for artificial neural networks
-    that is still used today. Yet they did not provide a way for a neuron to
-    learn.
+    McCulloch and Pitts provided an architecture for an artificial neuron that
+    is still used today. Yet they did not provide a way for a neuron to learn.
   </p>
   <p class="info">
     Learning in machine learning means changing weights <Latex>w</Latex> and the
@@ -347,19 +347,40 @@
     Imagine we have a labeled dataset with two features and two possible
     classes, as indicated in the scatterplot below.
   </p>
-  <Scatterplot {data} minX={0} maxX={20} minY={0} maxY={15} />
+  <Plot
+    pointsData={data}
+    config={{
+      minX: 0,
+      maxX: 20,
+      minY: 0,
+      maxY: 15,
+      xLabel: "Feature 1",
+      yLabel: "Feature 2",
+      xTicks: [0, 5, 10, 15, 20],
+      yTicks: [0, 5, 10, 15],
+    }}
+  />
   <p>
     It is a relatively easy task for a human being to separate the colored
     circles into the two categories. All we have to do is to draw a line that
     perfectly separates the two groups.
   </p>
-  <Scatterplot
-    {data}
-    minX={0}
-    maxX={20}
-    minY={0}
-    maxY={15}
-    lines={[{ x1: 0, y1: 0, x2: 22, y2: 15 }]}
+  <Plot
+    pointsData={data}
+    pathsData={[
+      { x: 0, y: 0 },
+      { x: 20, y: 15 },
+    ]}
+    config={{
+      minX: 0,
+      maxX: 20,
+      minY: 0,
+      maxY: 15,
+      xLabel: "Feature 1",
+      yLabel: "Feature 2",
+      xTicks: [0, 5, 10, 15, 20],
+      yTicks: [0, 5, 10, 15],
+    }}
   />
   <p>
     The perceptron algorithm is designed to find such a line in an automated
@@ -368,7 +389,7 @@
     >. This is due to the fact that the line allows us to make decisions
     regarding the categories of a data point based on the features. Imagine for
     example we encounter a new data point without a label where feature nr. 1
-    and feature nr. 2 both correspond to 12. The data point would lie above the
+    and feature nr. 2 both correspond to 15. The data point would lie above the
     decision boundary and would therefore be classified as an "orange" class.
   </p>
   <div class="separator" />
