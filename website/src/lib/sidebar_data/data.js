@@ -448,6 +448,7 @@ const dl = [
           },
         ]
     },
+  /*
     {
         name: 'Loss Functions',
         link: '/blocks/deep_learning/loss_functions',
@@ -644,5 +645,6 @@ const dl = [
         links: [
         ]
     },
+    */
 ]
 export {dl}
