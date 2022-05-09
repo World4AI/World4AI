@@ -148,3 +148,24 @@ p {
 .warning {
   background-color: var(--main-color-3);
 }
+
+/* colored containers */
+.red {
+  background-color: var(--main-color-1);
+}
+
+.blue {
+  background-color: var(--main-color-2);
+}
+
+.light-blue {
+  background-color: var(--main-color-4);
+}
+
+.yellow {
+  background-color: var(--main-color-3);
+}
+
+.black {
+  background-color: var(--text-color);
+}

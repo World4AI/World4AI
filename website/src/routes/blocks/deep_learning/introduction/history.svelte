@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import SvgContainer from "$lib/SvgContainer.svelte";
   import BiologicalNeuron from "./_history/BiologicalNeuron.svelte";
   import StepFunction from "./_history/StepFunction.svelte";
   import NeuronScaling from "./_history/NeuronScaling.svelte";
@@ -143,9 +144,9 @@
   />
 </svelte:head>
 
+<h1>The History of Deep Learning</h1>
+<div class="separator" />
 <Container>
-  <h1>The History of Deep Learning</h1>
-  <div class="separator" />
   <p>
     In this chapter we will attempt to cover the history of deep learning. In
     all likelihood we will fail at covering all the aspects that lead to the
@@ -179,8 +180,9 @@
     the axon (the long tail of the neuron) to the connected neurons. In that
     case we also say that the neuron is active.
   </p>
-
-  <BiologicalNeuron />
+  <SvgContainer maxWidth={"800px"}>
+    <BiologicalNeuron />
+  </SvgContainer>
   <p>
     Let us assume for a second that we are in the position of McCulloch and
     Pitts and would like to emulate the above described behaviour. What would be
@@ -189,15 +191,21 @@
   <p>
     For once the neuron needs the ability to receive inputs and those inputs
     need to somehow vary in strength. As we are dealing with a mathematical
-    simulation, the inputs can be only numbers. In the examples below we will
-    assume that all the inputs amount to 1 in order to make the illustrations
-    more intuitive. The strength of the signal can be changed with the help of a
-    scaling factor, called weight. We therefore adjust the strength of the input
-    by multiplying the input <Latex>X</Latex> with a corresponding weight <Latex
-      >W</Latex
-    >. If the weight is above 1, the input signal is amplified, if the input is
-    between 0 and 1 the input signal is dampened. Additionally the strength of
-    the signal can be reversed by multiplying the signal with a negative number.
+    model, the inputs can be only numbers. In the examples below we will assume
+    that all the inputs amount to 1 in order to make the illustrations more
+    intuitive, but generally speaking the inputs can assume any numerical form.
+    The strength of the signal can be changed with the help of a scaling factor,
+    called weight. We can adjust the strength of the input by multiplying the
+    input <Latex>x</Latex> with a corresponding weight <Latex>w</Latex>. If the
+    weight is above 1, the input signal is amplified, if the input is between 0
+    and 1 the input signal is dampened. The strength of the signal can also be
+    reversed by multiplying the signal with a negative number.
+  </p>
+  <p class="info">
+    Inside the artificial neuron the strenght of the input <Latex>x</Latex> is adjusted
+    through the weight <Latex>w</Latex> by multiplying the input by the weight: <Latex
+      >x*w</Latex
+    >.
   </p>
   <p>
     Below is a simple interactive example that allows you to vary the weight and
@@ -206,57 +214,115 @@
     The stroke width of the signal output depends on the size of the weight.
   </p>
   <!--Input weighing svg -->
-  <NeuronScaling />
+  <SvgContainer maxWidth={"700px"}>
+    <NeuronScaling />
+  </SvgContainer>
   <p>
     In the next step we need to figure out the behaviour of the neuron when we
     deal with multiple inputs. Similar to the biological neuron, the input
-    signals are accumulated. In the the mathematical model of McCulloch and
-    Pitts the weighted inputs are summed up.
+    signals are accumulated. In the mathematical model of McCulloch and Pitts
+    the weighted inputs are simply summed up.
   </p>
   <p>
-    Multiplying each input <Latex>X_i</Latex> by a corresponding weight <Latex
-      >W_i</Latex
-    > and building a sum out of these produces is called a <Highlight
+    Multiplying each input <Latex>x_i</Latex> by a corresponding weight <Latex
+      >w_i</Latex
+    > and calculating the sum out of these products is called a <Highlight
       >weighted sum</Highlight
-    >. Mathematically we can express this idea as <Highlight
-      ><Latex>{String.raw`\sum_i X_iW_i`}</Latex></Highlight
-    >.
+    >. Mathematically we can express this idea as
+    <Latex>{String.raw`\sum_i x_iw_i`}</Latex>, where <Latex>i</Latex> is the index
+    of the input.
   </p>
   <p>
     In the interactive example below, you can vary the weights of two inputs and
     observe how the weighted signals are accumulated.
   </p>
   <!-- this animation demonstrates signal addition in McCulloch Pitts -->
-  <NeuronScalingAddition />
+  <SvgContainer maxWidth={"700px"}>
+    <NeuronScalingAddition />
+  </SvgContainer>
 
   <p>
-    A final component that we are missing is the ability of being active based
-    on the accumulated input strength. For that McCulloch and Pitts used a
-    simple step function. If the weighted sum of the inputs is above a threshold <Latex
-      >\theta</Latex
-    > the output is 1, else the output is 0. A function that takes the weighted sum
-    as input and determines the activation status of a neuron is commonly refered
-    to as the <Highlight>activation function</Highlight>.
+    A final component that our artificial neuron is missing is the ability to
+    become active based on the accumulated input strength. For that McCulloch
+    and Pitts used a simple step function. If the weighted sum of the inputs is
+    above a threshold <Latex>\theta</Latex> the output is 1, else the output is 0.
   </p>
+  <Latex
+    >{String.raw`
+      f(\mathbf{w}) = 
+      \left\{ 
+      \begin{array}{rcl}
+      0 & for & \sum_i x_i w_i \leq \theta \\ 
+      1 & for & \sum_i x_i w_i > \theta \\
+      \end{array}
+      \right.
+    `}</Latex
+  >
+  <p class="info">
+    A function that takes the weighted sum as input and determines the
+    activation status of a neuron is commonly refered to as the <Highlight
+      >activation function</Highlight
+    >.
+  </p>
+
   <p>
     Below is a step function with a <Latex>\theta</Latex> of 0. You can move the
     slider to observe how the shape of the step function changes due to a different
     <Latex>\theta</Latex>.
   </p>
-  <StepFunction />
+  <SvgContainer maxWidth={"700px"}>
+    <StepFunction />
+  </SvgContainer>
+
   <p>
     The last interactive example allows you to vary two weights <Latex
       >\theta</Latex
     >. The output is always either 0 or 1.
   </p>
-  <NeuronScalingAdditionActivation />
+
+  <SvgContainer maxWidth={"700px"}>
+    <NeuronScalingAdditionActivation />
+  </SvgContainer>
+
+  <p>
+    In practice we replace the threshold <Latex>\theta</Latex> by a so called bias.
+    Let us assume for example that the weighted sum corresponds to the threshold.
+  </p>
+  <Latex>\sum_ix_i w_i = \theta</Latex>
+  <p>We can bring <Latex>\theta</Latex> to the other side of the equation.</p>
+  <Latex>\sum_ix_i w_i - \theta = 0</Latex>
+  <p>
+    And define the negative <Latex>\theta</Latex> as the bias <Latex>b</Latex>.
+  </p>
+  <Latex>b = -\theta \\</Latex>
+  <Latex>\sum_ix_i w_i + b = 0 \\</Latex>
+  <p>Which leads to the following equation for the threshold function.</p>
+  <Latex
+    >{String.raw`
+      f(\mathbf{w}, b) = 
+      \left\{ 
+      \begin{array}{rcl}
+      0 & for & \sum_i x_i w_i + b \leq 0 \\ 
+      1 & for & \sum_i x_i w_i + b > 0 \\
+      \end{array}
+      \right.
+    `}</Latex
+  >
+  <p>
+    It might seem like all we do is to reformulate the equation, but the idea is
+    actually really powerful. We do not assume to know the bias <Latex>b</Latex
+    >. Just as the weights <Latex>w_i</Latex> in the equation, the bias is a learnable
+    parameter. When we talk about <Latex>\theta</Latex> on the other hand we assume
+    to know the threshold.
+  </p>
   <p>
     What we discussed so far is the full fledged artificial neuron. The
-    representation of the strength of the signal through a weight, the
-    accumulation of the input signals through a sum and the ability to declare
-    the neuron as active or inactive through an activation function is still at
-    the core of modern deep learning. The ideas developed by McCulloch and Pitts
-    stood the test of time.
+    representation of the strength of the signal through a weight <Latex
+      >w</Latex
+    >, the accumulation of the input signals through summation and the ability
+    to declare the neuron as active or inactive through an activation function
+    is still at the core of modern deep learning. The ideas developed by
+    McCulloch and Pitts stood the test of time.
   </p>
   <div class="separator" />
 
@@ -267,7 +333,7 @@
     learn.
   </p>
   <p class="info">
-    Learning in machine learning means changing weights <Latex>W</Latex> and the
+    Learning in machine learning means changing weights <Latex>w</Latex> and the
     bias
     <Latex>b</Latex>, such that the neuron gets better and better at a
     particular task.
