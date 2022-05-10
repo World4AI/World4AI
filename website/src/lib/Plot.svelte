@@ -7,7 +7,7 @@
   export let pointsData = [];
 
   //deal with cases when you only have one category of points and paths
-  if (pointsData[0] && !Array.isArray(pointsData[0])) {
+  $: if (pointsData[0] && !Array.isArray(pointsData[0])) {
     pointsData = [[...pointsData]];
   }
 
