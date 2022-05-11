@@ -6,6 +6,7 @@
   import Coin from "./_entropy/Coin.svelte";
   import Plot from "$lib/Plot.svelte";
   import Entropy from "./_entropy/Entropy.svelte";
+  import CrossEntropy from "./_entropy/CrossEntropy.svelte";
 
   const notes = [
     "The properties that make the mean squared error a bad choice for classification tasks are discussed down below after the introduction of cross entorpy",
@@ -189,12 +190,52 @@
   </p>
   <Entropy />
 
+  <p>
+    Now let us return to the fair coin toss example. Using the equation and the
+    example above, we know that the entropy is 1. We should therefore try and
+    send the message regarding the result of the coin toss using 1 bit of
+    information using 1 for heads and 0 for tails. However in the example below
+    we use two bits of information to send the message 1 0 for heads and 0 1 for
+    tails.
+  </p>
+  <Coin bitsHeads="1 0" bitsTails="0 1" showBits={true} />
+
+  <Coin bitsHeads="1 0 1" bitsTails="0 1" showBits={true} />
   <p class="info">The cross-entropy is defined as the average message length</p>
   <Latex
     >{String.raw`
     H(p, q) = - \mathbb{E}_p[\log q(x)] = - \sum_x p(x) \log q(x)
   `}</Latex
   >
+  <CrossEntropy yTicks={[0, 0.1, 0.2, 0.3, 0.4]} />
+  <CrossEntropy
+    points1={[
+      { event: "Cat", percentage: 1 },
+      { event: "Dog", percentage: 0 },
+      { event: "Pig", percentage: 0 },
+      { event: "Bear", percentage: 0 },
+      { event: "Monkey", percentage: 0 },
+    ]}
+    startingPoints={[
+      { event: "x1", percentage: 0.05 },
+      { event: "x2", percentage: 0.4 },
+      { event: "x3", percentage: 0.05 },
+      { event: "x4", percentage: 0.4 },
+      { event: "x5", percentage: 0.1 },
+    ]}
+  />
+
+  <CrossEntropy
+    maxWidth={"400px"}
+    points1={[
+      { event: "Cat", percentage: 1 },
+      { event: "Dog", percentage: 0 },
+    ]}
+    startingPoints={[
+      { event: "x1", percentage: 0.25 },
+      { event: "x2", percentage: 0.75 },
+    ]}
+  />
   <div class="separator" />
 
   <h2>Negative Log Likelihood</h2>
