@@ -27,7 +27,7 @@
 
   let points2;
   let crossEntropy;
-  let fraction = 0.00005;
+  let fraction = 0;
 
   function recalculate(fraction) {
     // recalculate points 2

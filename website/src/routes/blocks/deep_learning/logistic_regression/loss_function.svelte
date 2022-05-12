@@ -199,15 +199,176 @@
     tails.
   </p>
   <Coin bitsHeads="1 0" bitsTails="0 1" showBits={true} />
+  <p>
+    This procedure is wasteful, because instead of sending one bit of
+    information we send 2.
+  </p>
+  <p>
+    The example below is even more inefficient. We sent 3 bits of information
+    when we get heads and 2 bits when we get tails.
+  </p>
+  <Coin
+    probHead={0.4}
+    probTail={0.6}
+    bitsHeads="1 0 1"
+    bitsTails="0 1"
+    showBits={true}
+  />
+  <p>
+    The entropy of the probability distribution is just 0.97 bits. This is the
+    amount of information we receive on average.
+  </p>
+  <Latex
+    >-(0.4*\log_2(0.4) + 0.6*\log_2(0.6)) = {-(
+      0.4 * Math.log2(0.4) +
+      0.6 * Math.log2(0.6)
+    ).toFixed(2)}</Latex
+  >
+  <p>
+    Yet the average message length that we use to transimt the information is
+    2.4 bits.
+  </p>
+  <Latex>0.4*3 + 0.6*2 = {(0.4 * 3 + 0.6 * 2).toFixed(2)}</Latex>
+  <p>
+    This inconsistency comes from certain assumtpions that we make in the
+    example above. The encoding of heads with 3 bits would be optimal when the
+    probability of each event would amount to 12.5%, as
+    <Latex>\Big(\dfrac{1}{2}\Big)^3 = 0.125</Latex>
+    and we had a coin with 8 sides. A similar argument can be made for 2 bits encoding
+    of tails. We assume a probability distribution with four equally likely events,
+    because
+    <Latex>\Big(\dfrac{1}{2}\Big)^2 = 0.25</Latex>. Under these conditions we
+    can say that the average message length contains information about the
+    difference between two distributions, the actual distribution of the
+    outcomes of coin tosses and the distribution that is assumed by the number
+    of bits that is used to encode the message. In information theory the
+    average message lengths is known as cross-entropy.
+  </p>
 
-  <Coin bitsHeads="1 0 1" bitsTails="0 1" showBits={true} />
-  <p class="info">The cross-entropy is defined as the average message length</p>
+  <p class="info">
+    The cross-entropy is defined as the average message length.
+  </p>
+  <p>
+    Given two distributions <Latex>p(x)</Latex> and <Latex>q(x)</Latex> we can calculate
+    the cross-entropy <Latex>H(p, q)</Latex> by calculating the expected value with
+    respect to the distribution <Latex>p</Latex> (the real distribution) of the information
+    of distribution <Latex>q</Latex> (the wrong distribution).
+  </p>
   <Latex
     >{String.raw`
     H(p, q) = - \mathbb{E}_p[\log q(x)] = - \sum_x p(x) \log q(x)
   `}</Latex
-  >
+  >.
+  <p>
+    The cross-entropy is lowest, when <Latex>q(x)</Latex> equals <Latex
+      >p(x)</Latex
+    >. In that case the cross-entropy collapses to the entropy. Therefore the
+    cross-entropy can not be lower than the entropy.
+  </p>
+  <p>
+    In the below example the red distribution is <Latex>p(x)</Latex> and the yellow
+    distribution is <Latex>q(x)</Latex>. When you move the slider to the right <Latex
+      >q(x)</Latex
+    > starts moving towards <Latex>p(x)</Latex> and you can observe that the cross-entropy
+    gets lower and lower until its' minimal value is reached.
+  </p>
   <CrossEntropy yTicks={[0, 0.1, 0.2, 0.3, 0.4]} />
+  <p>
+    Now it is time to come full circle and to relate the calculation of
+    cross-entropy to our task. We set out to find a loss that is suited for
+    classification tasks. Let us assume that we are dealing with a problem,
+    where we have to classify an animal based on certain features in one of the
+    five categories: cat, dog, pig, bear or monkey. The cross-entropy deals with
+    probability distributions, so we need to put the label into a format that
+    eqauls a probability distribution. For example if we deal with a sample that
+    depicts a cat, the true probability distribution would be 100% for the
+    category cat and 0% for all other categories. This distribution is put in a
+    so called "one-hot" vector. A vector that contains a one for the relevant
+    category and 0 otherwise. So that we have the following distributions.
+  </p>
+  <Latex
+    >{String.raw`
+  \text{cat} = 
+  \begin{bmatrix}
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{dog} = 
+  \begin{bmatrix}
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{pig} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{bear} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{monkey} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  \end{bmatrix}
+    `}</Latex
+  >
+  <p>
+    This distributions come from the labels, in the dataset. We therefore assume
+    that the one hot vectors represent the correct distributions <Latex
+      >p(x)</Latex
+    >. Our neurons or neural networks also produce distributions that determine
+    the category based on the labels.
+  </p>
+  <Latex
+    >{String.raw`
+
+  \begin{bmatrix}
+  0.05 \\ 
+  0.4 \\ 
+  0.05 \\ 
+  0.4 \\ 
+  0.1 \\ 
+  \end{bmatrix}
+    `}</Latex
+  >
+  <p>
+    This is the estimated distribution and therefore the wrong distribution. We
+    designate this distribution <Latex>q(x)</Latex>.
+  </p>
+  <p>
+    Now we have everything to calculate the cross-entropy. The closer the one
+    hot distribution and the distribution produced by the neural network get,
+    the lower the cross-entropy gets. Because all the weight of the weight of
+    the one hot vector is on just one event, the entropy corresponds to exactly
+    0 and the cross-entropy could theoretically also reach 0. Our goal in a
+    classification task is to minimize the cross-entropy to get the two
+    distributions as close as possible.
+  </p>
+  <p>
+    Below is an interactive example where the true label corresponds to the
+    category cat. The estimated probabilities are far from the ground truth,
+    which results in a relatively high cross-entropy. When you move the slider,
+    the estimated probabilities start moving towards the ground truth, which
+    pushes the cross-entropy down.
+  </p>
   <CrossEntropy
     points1={[
       { event: "Cat", percentage: 1 },
@@ -224,7 +385,29 @@
       { event: "x5", percentage: 0.1 },
     ]}
   />
-
+  <p>
+    In logistic regression we utilize the sigmoid activation function
+    <Latex
+      >{String.raw`\sigma(b, \mathbf{w}) = \dfrac{1}{1 + e^{-(\mathbf{w^Tx}+b)}}`}</Latex
+    >
+    , which produces values between 0 and 1. The sigmoid function can be used to
+    differentiate between 2 categories . The sigmoid function
+    <Latex>{String.raw`\sigma(b, \mathbf{w})`}</Latex> produces the probability to
+    belong to the first category (e.g. cat), therefore <Latex
+      >{String.raw`1 - \sigma(b, \mathbf{w})`}</Latex
+    > returns the probability to belong to the second category (e.g. dog). This reduces
+    the cross-entropy to the so called binary cross-entropy.
+  </p>
+  <Latex
+    >{String.raw`
+    H(p, \sigma) = p(cat) \log ( \sigma(b, \mathbf{w})) + p(dog) \log ( 1 - \sigma(b, \mathbf{w}))
+  `}</Latex
+  >.
+  <p>
+    When we shift the weights and the bias of the sigmoid function, we can move
+    the probability to belong to a certain category. Our goal is therefore is to
+    find weigths that minimize the binary cross-entropy.
+  </p>
   <CrossEntropy
     maxWidth={"400px"}
     points1={[
@@ -236,6 +419,10 @@
       { event: "x2", percentage: 0.75 },
     ]}
   />
+  <p>
+    Just as with the linear regression, we will utilize gradient descent to find
+    optimal weights. This is going to be covered in the next lecture.
+  </p>
   <div class="separator" />
 
   <h2>Negative Log Likelihood</h2>
