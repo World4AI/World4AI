@@ -26,6 +26,14 @@
   ];
 </script>
 
+<svelte:head>
+  <title>World4AI | Deep Learning | Mathematical Notation</title>
+  <meta
+    name="description"
+    content="Mathematical notation in machine learning can be confusing especially if not kept consistent. Here we introduce notation, that is going to be kept consistent throughout the deep learning block."
+  />
+</svelte:head>
+
 <h1>Mathematical Notation</h1>
 <div class="separator" />
 
