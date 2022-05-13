@@ -365,8 +365,8 @@ const dl = [
             link: '/blocks/deep_learning/introduction/history'
           },
           {
-            name: 'Notation',
-            link: '/blocks/deep_learning/introduction/notation'
+            name: 'Mathematical Notation',
+            link: '/blocks/deep_learning/introduction/mathematical_notation'
           },
           {
             name: 'Deep Learning Applications',
