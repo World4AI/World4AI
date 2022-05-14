@@ -373,10 +373,6 @@ const dl = [
             link: '/blocks/deep_learning/introduction/applications'
           },
           {
-            name: 'Deep Learning Big Players',
-            link: '/blocks/deep_learning/introduction/big_players'
-          },
-          {
             name: 'Deep Learning Frameworks',
             link: '/blocks/deep_learning/introduction/frameworks'
           },
