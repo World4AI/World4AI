@@ -1,103 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Table from "$lib/Table.svelte";
-
-  let books = [
-    [
-      ["Author", "Sebastian Raschka"],
-      ["Title", "Machine Learning with PyTorch and Scikit-Learn"],
-      ["Level", "Beginner"],
-      [
-        "Description",
-        "A good machine learnning book for beginners. The book covers classical machine leanring algorithms and moves on to deep learning with PyTorch.",
-      ],
-    ],
-    [
-      ["Author", "Aurélien Géron"],
-      [
-        "Title",
-        "Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow",
-      ],
-      ["Level", "Beginner"],
-      [
-        "Description",
-        "If you have only one book to pick and do not know where to start, this is probabliy the right choice.",
-      ],
-    ],
-    [
-      ["Author", "François Chollet"],
-      ["Title", "Deep Learning with Python, Second Edition"],
-      ["Level", "Beginner"],
-      [
-        "Description",
-        "This book is written by the creator of Keras, so you know you get quality content",
-      ],
-    ],
-    [
-      ["Author", "Lewis Tunstall, Leandro von Werra, Thomas Wolf"],
-      ["Title", "Natural Language Processing with Transformers"],
-      ["Level", "Advanced"],
-      [
-        "Description",
-        "This book comes from the creators and employees of the Huggingface library. If you are interested in natural language processing, this is the right choice.",
-      ],
-    ],
-  ];
-
-  let courses = [
-    [
-      ["Name", "fast.ai"],
-      ["Lecturer", "Jeremy Howard and Rachel Thomas"],
-      ["Level", "Beginner"],
-      ["Link", "fast.ai"],
-      [
-        "Description",
-        "fast.ai is several things at the same time. It is a non-profit with the goal of democratizing deep learning, a deep learning library based on PyTorch, a book called 'Deep Learning for Coders With Fasai and Pytorch' and an online course that teaches you deep learning. The approach taken by fast.ai differs from most books and courses. They teach you how you can generate state of the art results first and go into the basic building blocks of neural networks second.",
-      ],
-    ],
-    [
-      ["Name", "Coursera"],
-      ["Lecturer", "Andrew Ng"],
-      ["Level", "Beginner"],
-      [
-        "Link",
-        "https://www.deeplearning.ai/program/deep-learning-specialization/",
-      ],
-      [
-        "Description",
-        "This is probably the most famous and the most acknowledged course in deep learning. The course starts with the basic building blocks of deep learning and steady move towards state of the art. The course is not free, but there is financial support available if you can not afford the lectures.",
-      ],
-    ],
-    [
-      ["Name", "NYU Deep Learning"],
-      ["Lecturer", "Yann LeCun and Alfredo Canziani"],
-      ["Level", "Advanced"],
-      ["Link", "https://cds.nyu.edu/deep-learning/"],
-      [
-        "Description",
-        "This course is part of the deep learning lectures at NYU. The course is very indepth and very engaging, but is probably not the best choice for absolute beginners. We recommend you take this course after you have had some exposure to an intorductory course or book.",
-      ],
-    ],
-  ];
-
-  let channels = [
-    [
-      ["Channel", "Yannic Kilcher"],
-      ["Level", "Advanced"],
-      [
-        "Description",
-        "Yannics channel has two important segments that are relevant to your machine learning journey. He has a weekly segement called 'ML News' where he discusses the newest develompents in the machine learning space. The second segment are his paper discussions, where he takes a state of the art deep learning paper apart and explains the concept at a granular level.",
-      ],
-    ],
-    [
-      ["Channel", "Machine Learning Street Talk"],
-      ["Level", "Advanced"],
-      [
-        "Description",
-        "This podcast invites AI experts to discuss either their life work or individual papers. The discussions are not easy to grasp, when you are a beginner.",
-      ],
-    ],
-  ];
+  import Blackboard from "./_education/Blackboard.svelte";
+  import SvgContainer from "$lib/SvgContainer.svelte";
 </script>
 
 <svelte:head>
@@ -108,14 +12,20 @@
   />
 </svelte:head>
 
+<h1>Education in Deep Learning</h1>
+<div class="separator" />
 <Container>
-  <h1>Education in Deep Learning</h1>
-  <div class="separator" />
+  <SvgContainer maxWidth={"600px"}>
+    <Blackboard />
+  </SvgContainer>
   <p>
-    It usually requires more than one single resource to understand a topic. You
-    should explore different books, videos, blog posts and research papers to
-    get the full picture. Once you grasp the basics of deep learning, you will
-    still need to find a way to keep up to date with the newest research and
+    Before we take a deep dive into the foundations of deep learning we would
+    like to talk about where you could find additional learning resources and to
+    encourage you to consult many different sources on your deep learning
+    journey. It usually requires more than one single resource to understand a
+    topic. You should explore different books, videos, blog posts and research
+    papers to get the full picture. Once you grasp the basics of deep learning,
+    you still need to find a way to keep up to date with the newest research and
     this might not be the easiest task. Below we attempt to list the most
     relevant literature for beginners and hints on ways you can stay informed
     regarding the newest developments.
@@ -123,22 +33,92 @@
   <div class="separator" />
 
   <h2>Books</h2>
-  {#each books as book}
-    <Table data={book} />
-  {/each}
+  <p>
+    Books are a great gateway into the world of deep learning. Especially when
+    it comes to beginner level books the choices are great.
+  </p>
+
+  <div class="book-container">
+    <img
+      src="/books/geron_book.jpeg"
+      alt="Book Cover Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow"
+    />
+    <p>
+      "Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow" by
+      Aurélien Géron is a great choice, especially if you don't know where to
+      start. If you have only one book to pick, this is probabliy the right
+      pick. At the moment of writing the second edition is available in online
+      stores, but the third edition is currently being written and is due
+      somewhere at the end of 3rd or the beginning the 4th quarter of 2022. The
+      book covers classical machine learning and goes on to discuss deep
+      learning with Keras and TensorFlow in detail. While the book is very well
+      suited for beginners, advanced topics like handling large amounts of data
+      are covered as well.
+    </p>
+  </div>
+  <div class="book-container">
+    <img
+      src="/books/cholet_book.png"
+      alt="Book Cover DEEP LEARNING with Python"
+    />
+    <p>
+      The book "DEEP LEARNING with Python" is written by the creator of Keras,
+      so you know you get quality content. François Chollet covers exclusively
+      deep learning with a high focus on intuition and Python practice.
+    </p>
+  </div>
+
+  <div class="book-container">
+    <img
+      src="/books/raschka_book.jpg"
+      alt="Book Cover Machine Learning with PyTorch and Scikit-Learn"
+    />
+    <p>
+      The book "Machine Learning with PyTorch and Scikit-Learn" by Sebastian
+      Raschka is similar in scope by to the one by Aurélien Géron, but instead
+      of Keras and TensorFlow the author uses PyTorch. For the time being
+      World4AI is going provide notebooks written in PyTorch, so you will
+      probably feel most comfortable with this book if you use intend on using
+      our notebooks.
+    </p>
+  </div>
   <div class="separator" />
 
   <h2>Online Courses</h2>
-  {#each courses as course}
-    <Table data={course} />
-  {/each}
-  <div class="separator" />
+  <p>
+    If you learn better through visual and audio explanations, then online
+    courses might be a great fit. Just as with our book recommendations, there
+    are a lot more quality content for beginners and less for intermediary and
+    advanced users.
+  </p>
+  <p>
+    <a href="https://fast.ai" target="_blank">fast.ai</a> is several things at the
+    same time. It is a non-profit with the goal of democratizing deep learning, a
+    deep learning library based on PyTorch, a book called 'Deep Learning for Coders
+    With Fasai and Pytorch' and an online course that teaches you deep learning.
+    The approach taken by fast.ai differs from most books and courses. They teach
+    you how you can generate state of the art results first and go into the basic
+    building blocks of neural networks second.
+  </p>
+  <p>
+    The deep learning <a
+      href="https://www.deeplearning.ai/program/deep-learning-specialization/"
+      target="_blank">coursera</a
+    > course by Andrew Ng is probably the most famous and the most acknowledged course
+    in deep learning. The course starts with the basic building blocks of deep learning
+    and steadily moves towards state of the art. The course is not free, but there
+    is financial support available if you can not afford the lectures.
+  </p>
 
-  <h2>YouTube Channels</h2>
-
-  {#each channels as channel}
-    <Table data={channel} />
-  {/each}
+  <p>
+    The <a href="https://cds.nyu.edu/deep-learning/" target="_blank"
+      >NYU deep learning course</a
+    > by Yann LeCun and Alfredo Canziani has become one of the most acknowledged
+    courses over the last couple of years. The course is very indepth and very engaging,
+    but is probably not the best choice for absolute beginners. We recommend you
+    take this course after you have had some exposure to an introductory course or
+    book.
+  </p>
   <div class="separator" />
 
   <h2>Deep Learning Practice</h2>
@@ -175,3 +155,27 @@
   </p>
   <div class="separator" />
 </Container>
+
+<style>
+  .book-container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .book-container img {
+    width: 200px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    height: fit-content;
+  }
+
+  .book-container p {
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    .book-container {
+      flex-direction: column;
+    }
+  }
+</style>

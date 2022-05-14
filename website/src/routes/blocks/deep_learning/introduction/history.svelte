@@ -434,7 +434,7 @@
     Marvin Minsky and Seymour Papert published a book named "Perceptrons"<sup
       >3</sup
     >
-    in the year 1969. In that book they showed that a single perceptron is not able
+    in the year 1969. mIn that book they showed that a single perceptron is not able
     to simulate a so called <Highlight>xor</Highlight> gate. The xor gate (exclusive
     or) outputs 1 only when one and only one of the inputs are active.
   </p>
