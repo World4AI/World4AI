@@ -11,7 +11,6 @@
   import ForwardBackward from "./_history/ForwardBackward.svelte";
   import Cnn from "./_history/Cnn.svelte";
   import Rnn from "./_history/Rnn.svelte";
-  import Scatterplot from "$lib/Scatterplot.svelte";
   import Plot from "$lib/Plot.svelte";
   import Table from "$lib/Table.svelte";
   import Relu from "./_history/Relu.svelte";
@@ -411,11 +410,22 @@
     We can use the perceptron algorithm to draw a decision boundary between the
     two classes.
   </p>
-  <Scatterplot
-    data={orData}
-    xLabel="Input 1"
-    yLabel="Input 2"
-    lines={[{ x1: 0, y1: 0.8, x2: 0.9, y2: 0 }]}
+  <Plot
+    pointsData={orData}
+    pathsData={[
+      { x: 0, y: 0.8 },
+      { x: 0.9, y: 0 },
+    ]}
+    config={{
+      minX: 0,
+      maxX: 1,
+      minY: 0,
+      maxY: 1,
+      xLabel: "Input 1",
+      yLabel: "Input 2",
+      xTicks: [0, 1],
+      yTicks: [0, 1],
+    }}
   />
   <p>
     The <Highlight>and</Highlight> gate on the other hand produces an output of 1
@@ -424,11 +434,22 @@
   </p>
   <Table data={andTableData} header={andTableHeader} />
   <p>The decision boundary is easily implemented.</p>
-  <Scatterplot
-    data={andData}
-    xLabel="Input 1"
-    yLabel="Input 2"
-    lines={[{ x1: 0.2, y1: 1, x2: 1, y2: 0.2 }]}
+  <Plot
+    pointsData={andData}
+    pathsData={[
+      { x: 0.2, y: 1 },
+      { x: 1, y: 0.2 },
+    ]}
+    config={{
+      minX: 0,
+      maxX: 1,
+      minY: 0,
+      maxY: 1,
+      xLabel: "Input 1",
+      yLabel: "Input 2",
+      xTicks: [0, 1],
+      yTicks: [0, 1],
+    }}
   />
   <p>
     Marvin Minsky and Seymour Papert published a book named "Perceptrons"<sup
@@ -443,7 +464,19 @@
     If you try to separate the data by drawing a single line, you will come to
     the conclusion, that it is impossible.
   </p>
-  <Scatterplot data={xorData} xLabel="Input 1" yLabel="Input 2" />
+  <Plot
+    pointsData={xorData}
+    config={{
+      minX: 0,
+      maxX: 1,
+      minY: 0,
+      maxY: 1,
+      xLabel: "Input 1",
+      yLabel: "Input 2",
+      xTicks: [0, 1],
+      yTicks: [0, 1],
+    }}
+  />
   <p>
     Yet you can separate the data by using a hidden layer. Essentially you
     combine the output from the or gate with the output from the and gate and
@@ -451,11 +484,22 @@
   </p>
   <Table data={mlpTableData} header={mlpTableHeader} />
   <p>That makes the data separable with a single line.</p>
-  <Scatterplot
-    lines={[{ x1: 0.2, y1: 0, x2: 1, y2: 0.5 }]}
-    data={mlpData}
-    xLabel="OR Output"
-    yLabel="AND Output"
+  <Plot
+    pointsData={mlpData}
+    pathsData={[
+      { x: 0.2, y: 0 },
+      { x: 1, y: 0.5 },
+    ]}
+    config={{
+      minX: 0,
+      maxX: 1,
+      minY: 0,
+      maxY: 1,
+      xLabel: "OR Output",
+      yLabel: "AND Output",
+      xTicks: [0, 1],
+      yTicks: [0, 1],
+    }}
   />
   <div class="separator" />
 
@@ -493,13 +537,18 @@
     the algorithm breaks apart when faced with nonlinear data like the one
     displayed below.
   </p>
-  <Scatterplot
-    data={circularData}
-    minX={0}
-    maxX={20}
-    minY={0}
-    maxY={20}
-    numTicks={5}
+  <Plot
+    pointsData={circularData}
+    config={{
+      minX: 0,
+      maxX: 20,
+      minY: 0,
+      maxY: 20,
+      xLabel: "Feature 1",
+      yLabel: "Feature 2",
+      xTicks: [0, 5, 10, 15, 20],
+      yTicks: [0, 5, 10, 15, 20],
+    }}
   />
   <p>
     For a relatively long time it was not clear how we could train neural
@@ -643,18 +692,19 @@
     Graphics processing units (GPU) were developed independently for the use in
     computer games. In a way it was a happy accident that the same technology
     that powers the gaming industry is compatible with deep learning. Compared
-    to a CPU a graphics card posesses tousands of cores, which enables extreme
+    to a CPU, a graphics card posesses thousands of cores, which enables extreme
     parallel computations.
   </p>
 
   <h3>AlexNet</h3>
-  <p>coming soon ...</p>
-
-  <h3>Turing Award</h3>
-  <p>coming soon ...</p>
-
-  <h2>The future is now</h2>
-  <p>coming soon ...</p>
+  <p>
+    As part of the 2012 ImageNet competition Alex Krizhevsky, Ilya Sutskever and
+    Geoffrey Hinton created a convolutional neural network called AlexNet. The
+    neural network beat the competition by a large margin combining state of the
+    art deep learning techniques, nvidia graphics cards and the large scale
+    ImageNet dataset. This moment, often called "the ImageNet moment", is
+    regarded as the birthday of modern day deep learning.
+  </p>
 
   <div class="separator" />
   <h2>Notes</h2>

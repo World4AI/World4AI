@@ -21,7 +21,7 @@
 <div class="container">
   <div class="svg-container">
     <svg version="1.1" viewBox="0 0 350 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="var(--text-color)">
+      <g fill="var(--main-color-3)" stroke="var(--text-color)">
         <g
           id="connections"
           stroke={type === "forward"
