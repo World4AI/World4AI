@@ -132,66 +132,59 @@
     </g>
     <circle cx="167.38" cy="149.18" r="6.7554" fill="black" />
   </g>
-  <g id="chip" transform="translate(125,-300)">
-    <rect
-      x="198.92"
-      y="436.85"
-      width="48.154"
-      height="48.154"
-      ry="8.1539"
+  <g id="fan" transform="rotate({angle * 2.5} 387.38 149.18) translate(220 0)">
+    <circle
+      cx="167.38"
+      cy="149.18"
+      r="63.738"
       fill="var(--main-color-4)"
       stroke="black"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="3"
     />
-    <g fill="none">
-      <g stroke="black" stroke-width="1px">
-        <path d="m238 427v10" marker-start="url(#DotS)" />
-        <path d="m228 427v10" marker-start="url(#DotS)" />
-        <path d="m218 427v10" marker-start="url(#DotS)" />
-        <path d="m208 427v10" marker-start="url(#DotS)" />
-        <path d="m238 485v10" marker-end="url(#DotS)" />
-        <path d="m228 485v10" marker-end="url(#DotS)" />
-        <path d="m218 485v10" marker-end="url(#DotS)" />
-        <path d="m208 485v10" marker-end="url(#DotS)" />
-        <path d="m258 475h-10" marker-start="url(#DotS)" />
-        <path d="m258 465h-10" marker-start="url(#DotS)" />
-        <path d="m258 455h-10" marker-start="url(#DotS)" />
-        <path d="m258 445h-10" marker-start="url(#DotS)" />
-        <path d="m198 475h-10" marker-end="url(#DotS)" />
-        <path d="m198 465h-10" marker-end="url(#DotS)" />
-        <path d="m198 455h-10" marker-end="url(#DotS)" />
-        <path d="m198 445h-10" marker-end="url(#DotS)" />
+    <g id="rotors" fill="yellow" stroke="black" stroke-width="2px">
+      <g transform="rotate(1.2088 -7667.5 -23237)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
       </g>
-      <g stroke="#000">
-        <g>
-          <ellipse cx="207.16" cy="443.75" rx="2.6052" ry="2.6028" />
-          <ellipse cx="238.03" cy="443.47" rx="2.6052" ry="2.6028" />
-          <ellipse cx="207.76" cy="478.26" rx="2.6052" ry="2.6028" />
-          <ellipse cx="238.36" cy="478.25" rx="2.6052" ry="2.6028" />
-        </g>
-        <g stroke-width="1px">
-          <path d="m205 455h10" />
-          <path d="m205 460h10" />
-          <path d="m205 465h10" />
-          <path d="m225 470h10" />
-          <path d="m230 465h10" />
-          <path d="m230 455h10" />
-        </g>
-        <rect x="215" y="440" width="15" height="5" ry="0" />
+      <g transform="rotate(-43.791 625.3 675.55)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(-88.791 500.26 314.98)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(226.21 449.56 168.8)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(181.21 414.09 66.521)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(136.21 378.93 -34.866)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(91.209 329.73 -176.75)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
+      </g>
+      <g transform="rotate(46.209 213.38 -512.25)">
+        <path d="m658.93-18.626v-53.374" />
+        <path d="m657.95-18.626 27.054-41.374" />
+        <path d="m659-72 26 12" stroke-linecap="square" />
       </g>
     </g>
-  </g>
-  <g id="top-lines" fill="none" stroke="black" stroke-width="1px">
-    <path d="m300 60v40" />
-    <path d="m310 60v40" />
-    <path d="m320 60v40" />
-    <path d="m330 60v40" />
-    <path d="m340 60v40" />
-    <path d="m350 60v40" />
-    <path d="m360 60v40" />
-    <path d="m370 60v40" />
-    <path d="m380 60v40" />
-    <path d="m260 230v-60h40" />
-    <path d="m450 70v70h-50" />
-    <path d="m460 230v-50h-60" />
+    <circle cx="167.38" cy="149.18" r="6.7554" fill="black" />
   </g>
 </svg>
