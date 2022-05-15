@@ -108,7 +108,7 @@
   </p>
   <div class="separator" />
 
-  <p>
+  <p class="warning">
     At the moment of writing most of our code examples are implemented in
     PyTorch.
   </p>
