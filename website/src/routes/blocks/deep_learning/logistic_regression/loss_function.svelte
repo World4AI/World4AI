@@ -395,17 +395,19 @@
     <Latex>{String.raw`\sigma(b, \mathbf{w})`}</Latex> produces the probability to
     belong to the first category (e.g. cat), therefore <Latex
       >{String.raw`1 - \sigma(b, \mathbf{w})`}</Latex
-    > returns the probability to belong to the second category (e.g. dog). This reduces
-    the cross-entropy to the so called binary cross-entropy.
+    > returns the probability to belong to the second category (e.g. dog). If we
+    additionally define that the label <Latex>y</Latex> is 1 when the sample is a
+    cat and 0 when the sample is a dog, the expression reduces the cross-entropy
+    to the so called binary cross-entropy.
   </p>
   <Latex
     >{String.raw`
-    H(p, \sigma) = p(cat) \log ( \sigma(b, \mathbf{w})) + p(dog) \log ( 1 - \sigma(b, \mathbf{w}))
+    H(p, \sigma) = -\Big[y \log ( \sigma(b, \mathbf{w})) + (1 - y) \log ( 1 - \sigma(b, \mathbf{w}))\Big]
   `}</Latex
   >.
   <p>
     When we shift the weights and the bias of the sigmoid function, we can move
-    the probability to belong to a certain category. Our goal is therefore is to
+    the probability to belong to a certain category. Our goal is therefore to
     find weigths that minimize the binary cross-entropy.
   </p>
   <CrossEntropy
@@ -419,6 +421,16 @@
       { event: "x2", percentage: 0.75 },
     ]}
   />
+  <p>
+    In practice we always deal with with a dataset, therefore the cross-entropy
+    loss that we are going to optimize is going to be the average over the whole
+    dataset.
+  </p>
+  <Latex
+    >{String.raw`
+    H(p, q) = -\dfrac{1}{n}\sum_i y^{(i)} \log ( \sigma(b, \mathbf{w})) + (1 - y^{(i)}) \log ( 1 - \sigma(b, \mathbf{w}))
+  `}</Latex
+  >
   <p>
     Just as with the linear regression, we will utilize gradient descent to find
     optimal weights. This is going to be covered in the next lecture.
