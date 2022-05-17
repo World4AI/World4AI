@@ -463,14 +463,14 @@ x_2
   </p>
   <p>The gradient descent algorithm works as expected.</p>
   <Latex
-    >{String.raw`\large \mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w `}</Latex
+    >{String.raw`\large \mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w \\`}</Latex
   >
   <Latex
     >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\delta}{\delta b} `}</Latex
   >
   <p>
     While didactically it makes sense to learn how we can calculate the gradient
-    for a single sample first, practicylly we always deal with much larger
+    for a single sample first, practically we always deal with much larger
     datasets, often consiting of many thousands or even millions of samples. In
     practice we use batch, stochastic or mini-batch gradient descent.
   </p>
