@@ -11,7 +11,7 @@
     pointsData = [[...pointsData]];
   }
 
-  if (pathsData[0] && !Array.isArray(pathsData[0])) {
+  $: if (pathsData[0] && !Array.isArray(pathsData[0])) {
     pathsData = [[...pathsData]];
   }
 
@@ -67,9 +67,9 @@
     config.yTicks = createTicks(config.minY, config.maxY);
   }
 
-  let paths = [];
-
-  pathsData.forEach((data) => {
+  $: paths = [];
+  $: pathsData.forEach((data) => {
+    paths = [];
     let path = `M${data.map((p) => `${xScale(p.x)},${yScale(p.y)}`).join("L")}`;
     paths.push(path);
   });
