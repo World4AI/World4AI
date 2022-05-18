@@ -425,8 +425,8 @@ const dl = [
               link: '/blocks/deep_learning/logistic_regression/gradient_descent',
           },
           {
-              name: 'Non-Liner Neuron',
-              link: '/blocks/deep_learning/logistic_regression/non_linear_neuron',
+              name: 'Sigmoid Neuron',
+              link: '/blocks/deep_learning/logistic_regression/sigmoid_neuron',
           },
         ]
     },
