@@ -29,22 +29,16 @@
     activation function.
   </p>
   <p>
-    The dot product
-
-    <Latex>{String.raw`\mathbf{w}\cdot\mathbf{x} + b`}</Latex>
-    essentially applies all three parts of the calculation in a single step.
+    The calculation from linear regression
+    <Latex>{String.raw`\mathbf{w^T}\mathbf{x} + b`}</Latex>
+    essentially performs all three parts in a single step.
   </p>
   <Latex
     >{String.raw`
 \large
 \begin{bmatrix}
-w_1 \\
-w_2 \\
-w_3 \\
-\vdots \\
-w_n \\
+w_1 & w_2 & w_3 & \dots & w_n &
 \end{bmatrix}
-\cdot
 \begin{bmatrix}
 x_1 \\
 x_2 \\
@@ -54,9 +48,7 @@ x_n \\
 \end{bmatrix}
 + b
 =
-\begin{bmatrix}
 w_1x_1 + w_2x_2 + w_3x_3 + \cdots + w_nx_n + b
-\end{bmatrix}
 `}</Latex
   >
   <p>
