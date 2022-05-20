@@ -435,12 +435,26 @@ const dl = [
         link: '/blocks/deep_learning/neural_network',
         links: [
           {
-            name: 'Backpropagation',
-            link:  '/blocks/deep_learning/neural_network/backpropagation'
+            name: 'Forward Pass',
+            link:  '/blocks/deep_learning/neural_network/forward_pass'
           },
           {
-            name: 'Automatic Differentiation',
-            link:  '/blocks/deep_learning/neural_network/autodiff'
+            name: 'Backward Pass',
+            link:  '/blocks/deep_learning/neural_network/backward_pass'
+          },
+        ]
+    },
+    {
+        name: 'Automatic Differentiation',
+        link: '/blocks/deep_learning/autodiff',
+        links: [
+          {
+            name: 'Forward-Mode',
+            link:  '/blocks/deep_learning/autodiff/forward_mode'
+          },
+          {
+            name: 'Reverse Mode',
+            link:  '/blocks/deep_learning/autodiff/reverse_mode'
           },
         ]
     },
