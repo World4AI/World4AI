@@ -2,7 +2,7 @@
   import Folder from "$lib/sidebar_components/Folder.svelte";
   export let root;
 
-  let tocActive = false;
+  let tocActive = true;
 
   function toggleToc() {
     tocActive = !tocActive;
