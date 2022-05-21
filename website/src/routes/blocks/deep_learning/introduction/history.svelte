@@ -540,10 +540,14 @@
   <Plot
     pointsData={circularData}
     config={{
+      width: 500,
+      height: 500,
+      maxWidth: 700,
       minX: 0,
       maxX: 20,
       minY: 0,
       maxY: 20,
+      radius: 3,
       xLabel: "Feature 1",
       yLabel: "Feature 2",
       xTicks: [0, 5, 10, 15, 20],
