@@ -352,7 +352,7 @@
 
     /* hamburger section */
     .hamburger {
-      height: 20px;
+      height: 15px;
       width: 25px;
       display: flex;
       flex-direction: column;
@@ -360,16 +360,20 @@
       align-items: center;
     }
 
+    .hamburger.active {
+      height: 25px;
+    }
+
     .hamburger:hover {
       cursor: pointer;
     }
 
-    .hamburger:hover:not(.active) .top {
-      transform: translate(3px);
+    .hamburger:not(.active) .top {
+      transform: translate(5px);
     }
 
-    .hamburger:hover:not(.active) .bot {
-      transform: translate(3px);
+    .hamburger:not(.active) .bot {
+      transform: translate(5px);
     }
 
     .line {
@@ -385,11 +389,11 @@
     }
 
     .active .top {
-      transform: rotate(38deg) translate(6px, 8px) scale(1.3);
+      transform: rotate(45deg) translate(8px, 9px) scale(1.3);
     }
 
     .active .bot {
-      transform: rotate(-38deg) translate(6px, -8px) scale(1.3);
+      transform: rotate(-45deg) translate(8px, -9px) scale(1.3);
     }
 
     .active .mid {
