@@ -16,7 +16,7 @@
     }
   }
 
-  let numbers = 80;
+  let numbers = 100;
   let heatmapData = [];
   for (let i = 0; i < numbers; i++) {
     for (let j = 0; j < numbers; j++) {
@@ -63,9 +63,6 @@
     radius: 5,
     colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
-    xTicks: [],
-    yTicks: [],
-    numTicks: 5,
   };
 </script>
 

@@ -89,9 +89,8 @@
         width={heatmapSize}
         height={heatmapSize}
         fill={config.heatmapColors[coordinate.class]}
-        stroke-width="0.05px"
-        stroke={config.heatmapColors[coordinate.class]}
-        opacity="0.4"
+        stroke="none"
+        opacity="1"
       />
     {/each}
     <!-- draw axis -->
