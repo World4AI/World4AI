@@ -435,6 +435,10 @@ const dl = [
         link: '/blocks/deep_learning/neural_network',
         links: [
           {
+            name: 'Nonlinear Problems',
+            link:  '/blocks/deep_learning/neural_network/nonlinear_problems'
+          },
+          {
             name: 'Forward Pass',
             link:  '/blocks/deep_learning/neural_network/forward_pass'
           },

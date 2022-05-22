@@ -5,6 +5,7 @@
 
   export let pathsData = [];
   export let pointsData = [];
+  export let heatmapData = [];
 
   //deal with cases when you only have one category of points and paths
   $: if (pointsData[0] && !Array.isArray(pointsData[0])) {
@@ -29,11 +30,14 @@
     padding: { top: 20, right: 40, bottom: 40, left: 60 },
     radius: 5,
     colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
+    heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
     xTicks: [],
     yTicks: [],
     numTicks: 5,
   };
   config = { ...standardConfig, ...config };
+
+  const heatmapSize = config.width / Math.sqrt(heatmapData.length);
 
   function createTicks(min, max) {
     let ticks = [];
@@ -77,6 +81,19 @@
 
 <SvgContainer maxWidth="{config.maxWidth}px">
   <svg viewBox="0 0 {config.width} {config.height}">
+    <!-- heatmap -->
+    {#each heatmapData as coordinate}
+      <rect
+        x={xScale(coordinate.x) - heatmapSize / 2}
+        y={yScale(coordinate.y) - heatmapSize / 2}
+        width={heatmapSize}
+        height={heatmapSize}
+        fill={config.heatmapColors[coordinate.class]}
+        stroke-width="0.05px"
+        stroke={config.heatmapColors[coordinate.class]}
+        opacity="0.4"
+      />
+    {/each}
     <!-- draw axis -->
     <g class="axis y-axis">
       {#each config.yTicks as tick}
@@ -115,7 +132,7 @@
       >{config.yLabel}</text
     >
 
-    <!-- data -->
+    <!-- paths -->
     {#each paths as path}
       <path d={path} />
     {/each}
