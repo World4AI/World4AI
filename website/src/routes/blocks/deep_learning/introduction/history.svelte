@@ -1,5 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Footer from "$lib/Footer.svelte";
+  import InternalLink from "$lib/InternalLink.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import BiologicalNeuron from "./_history/BiologicalNeuron.svelte";
   import StepFunction from "./_history/StepFunction.svelte";
@@ -14,6 +16,131 @@
   import Plot from "$lib/Plot.svelte";
   import Table from "$lib/Table.svelte";
   import Relu from "./_history/Relu.svelte";
+
+  const references = [
+    {
+      author: "Warren S. McCulloch and Walter Pitts",
+      title: "A logical calculus of the ideas immanent in nervous activity",
+      journal: "Bulletin of mathematical biophysics",
+      year: "1943",
+      pages: "115-133",
+      volume: "5",
+      issue: "",
+    },
+    {
+      author: "Rosenblatt F",
+      title:
+        "The Perceptron: A probabilistic model for information storage and organization in the brain",
+      journal: "Psychological Review",
+      year: "1958",
+      pages: "386-408",
+      volume: "65",
+      issue: "6",
+    },
+    {
+      author: "Minsky M. and Papert S. A.",
+      title: "Perceptrons: An Introduction to Computational Geometry",
+      journal: "MIT Press",
+      year: "1969",
+      pages: "",
+      volume: "",
+      issue: "",
+    },
+    {
+      author: "Rumelhart D. Hinton G. Williams R",
+      title: "Learning representations by back-propagating errors",
+      journal: "Nature",
+      year: "1986",
+      pages: "533-536",
+      volume: "323",
+      issue: "6088",
+    },
+    {
+      author: "Hopfield, J",
+      title:
+        "Neural networks and physical systems with emergent collective computational abilities",
+      journal: "Proceedings of the National Academy of Sciences",
+      year: "1982",
+      pages: "2554–2558",
+      volume: "79",
+      issue: "8",
+    },
+    {
+      author: "Hochreiter S. and Schmidhuber J",
+      title: "Long short-term memory",
+      journal: "Neural Computation",
+      year: "1997",
+      pages: "1735-1780",
+      volume: "9",
+      issue: "8",
+    },
+    {
+      author: "Hubel D. H. and Wiesel T. N.",
+      title: "Receptive fields of single neurones in the cat's striate cortex",
+      journal: "The Journal of Physiology",
+      year: "1959",
+      pages: "574-591",
+      volume: "124",
+      issue: "3",
+    },
+    {
+      author: "Fukushima K",
+      title:
+        "Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position",
+      journal: "Biological Cybernetics",
+      year: "1980",
+      pages: "193-202",
+      volume: "36",
+      issue: "4",
+    },
+    {
+      author: "LeCun Y. et. al",
+      title: "Backpropagation applied to handwritten zip code recognition",
+      journal: "Neural Computation",
+      year: "1989",
+      pages: "541-551",
+      volume: "1",
+      issue: "4",
+    },
+    {
+      author: "Nair V. and Hinton G",
+      title: "Rectified Linear Units Improve Restricted Boltzmann Machines",
+      journal:
+        "27th International Conference on International Conference on Machine Learning, ICML'10, USA: Omnipress",
+      year: "2010",
+      pages: "807-814",
+      volume: "",
+      issue: "",
+    },
+    {
+      author: "Glorot X. Bordes A. and Bengio Y",
+      title: "Deep sparse rectifier neural networks",
+      journal:
+        "International Conference on Artificial Intelligence and Statistics",
+      year: "2011",
+      pages: "",
+      volume: "",
+      issue: "",
+    },
+    {
+      author: "Deng J. Dong W. Socher R. Li L.-J Li K. and Fei-Fei L",
+      title: "ImageNet: A Large-Scale Hierarchical Image Database",
+      journal: "IEEE Computer Vision and Pattern Recognition (CVPR)",
+      year: "2009",
+      pages: "",
+      volume: "",
+      issue: "",
+    },
+    {
+      author: "Krizhevsky, A. Sutskever I.; Hinton, G. E.",
+      title: "ImageNet classification with deep convolutional neural networks",
+      journal: "Communications of the ACM",
+      year: "2017",
+      pages: "84-90",
+      volume: "60",
+      issue: "6",
+    },
+  ];
 
   const data = [
     [
@@ -167,10 +294,10 @@
   <h3>McCulloch-Pitts Neuron</h3>
   <p>
     The first artificial neuron was developed by Warren McCulloch and Walter
-    Pitts<sup>1</sup>. They tried to come up with a mathematical model of the
-    brain that would be able to simulate a biological neuron. From what was
-    known at a time about the human brain, the scientists extracted the
-    following information.
+    Pitts <InternalLink type="reference" id={1} />. They tried to come up with a
+    mathematical model of the brain that would be able to simulate a biological
+    neuron. From what was known at a time about the human brain, the scientists
+    extracted the following information.
   </p>
   <p>
     The biological neuron receives inputs in a form of a chemical signal. Each
@@ -338,9 +465,11 @@
     particular task.
   </p>
   <p>
-    The perceptron developed by Frank Rosenblatt<sup>2</sup> builds upon the idea
-    of McCulloch and Pitts and adds a learning rule, that allows us to use an artificial
-    neuron in classification tasks.
+    The perceptron developed by Frank Rosenblatt<InternalLink
+      type="reference"
+      id={2}
+    /> builds upon the idea of McCulloch and Pitts and adds a learning rule, that
+    allows us to use an artificial neuron in classification tasks.
   </p>
   <p>
     Imagine we have a labeled dataset with two features and two possible
@@ -452,9 +581,10 @@
     }}
   />
   <p>
-    Marvin Minsky and Seymour Papert published a book named "Perceptrons"<sup
-      >3</sup
-    >
+    Marvin Minsky and Seymour Papert published a book named "Perceptrons" <InternalLink
+      type="reference"
+      id={3}
+    />
     in the year 1969. mIn that book they showed that a single perceptron is not able
     to simulate a so called <Highlight>xor</Highlight> gate. The xor gate (exclusive
     or) outputs 1 only when one and only one of the inputs are active.
@@ -558,11 +688,13 @@
     For a relatively long time it was not clear how we could train neural
     networks when the data displays nonlinearity and the network has hidden
     layers. In 1986 Rumelhart, Hinton and Williams published a paper that
-    described the backpropagation algorithm<sup>4</sup>. The procedure combined
-    gradient descent, the chain rule and efficient computation to form what has
-    become the backbone of modern deep learning. The algorithm is said to have
-    been developed many times before 1986, yet the 1986 paper has popularized
-    the procedure.
+    described the backpropagation algorithm <InternalLink
+      type="reference"
+      id={4}
+    />. The procedure combined gradient descent, the chain rule and efficient
+    computation to form what has become the backbone of modern deep learning.
+    The algorithm is said to have been developed many times before 1986, yet the
+    1986 paper has popularized the procedure.
   </p>
   <p>
     The backpropagation algorithm will be covered in a dedicated section, but
@@ -600,8 +732,10 @@
   <h3>Recurrent Neural Networks</h3>
   <p>
     The second wave additionally provided us with a lot of research into the
-    field of recurrent neural networks like the Hopfield network<sup>5</sup> and
-    LSTM<sup>6</sup>.
+    field of recurrent neural networks like the Hopfield network<InternalLink
+      type="reference"
+      id={5}
+    /> and LSTM<InternalLink type="reference" id="6" />.
   </p>
   <p>
     Unlike classical feedforward neural networks, recurrent neural nets (RNN)
@@ -624,10 +758,13 @@
     The most prominent architecture that was developed during that time are the
     convolutional neural networks (CNN). The development of CNNs is essentially
     a culmination of research that started with research into the visual cortex
-    of cats<sup>7</sup>, lead to the development of the first convolutional
-    architecture by Kunihiko Fukushima, called neocognitron<sup>8</sup> and
-    eventually lead to the incorporation of backpropagation into the CNN
-    architecture by Yann LeCun<sup>9</sup>.
+    of cats <InternalLink type="reference" id={7} />, lead to the development of
+    the first convolutional architecture by Kunihiko Fukushima, called
+    neocognitron<InternalLink type="reference" id={8} /> and eventually lead to the
+    incorporation of backpropagation into the CNN architecture by Yann LeCun<InternalLink
+      type="reference"
+      id={9}
+    />.
   </p>
   <Cnn />
   <p>
@@ -666,7 +803,10 @@
     performance of neural networks, therefore we can only scratch the surface in
     this chapter. The one that seems trivial on the surface, but is actually one
     of the most significant innovations in deep leaning was the introduction of
-    the rectified linar unit (ReLU) as an activation function<sup>10,11</sup>.
+    the rectified linar unit (ReLU) as an activation function<InternalLink
+      type="reference"
+      id={10}
+    /><InternalLink type="reference" id={11} />.
   </p>
   <p>
     This activation function returns 0 when <Latex
@@ -688,7 +828,10 @@
     While most researchers focused on the algorithmic side of the deep learning
     revolution, in the year 2006 Fei-Fei Li began working on collecting images
     for a dataset suitable for large scale vision tasks. That dataset, that is
-    still used extensively today became known as ImageNet<sup>12</sup>.
+    still used extensively today became known as ImageNet<InternalLink
+      type="reference"
+      id={12}
+    />.
   </p>
 
   <h3>Computation: GPU</h3>
@@ -703,81 +846,13 @@
   <h3>AlexNet</h3>
   <p>
     As part of the 2012 ImageNet competition Alex Krizhevsky, Ilya Sutskever and
-    Geoffrey Hinton created a convolutional neural network called AlexNet. The
-    neural network beat the competition by a large margin combining state of the
-    art deep learning techniques, nvidia graphics cards and the large scale
-    ImageNet dataset. This moment, often called "the ImageNet moment", is
-    regarded as the birthday of modern day deep learning.
+    Geoffrey Hinton created a convolutional neural network called AlexNet<InternalLink
+      type="reference"
+      id={13}
+    />. The neural network beat the competition by a large margin combining
+    state of the art deep learning techniques, nvidia graphics cards and the
+    large scale ImageNet dataset. This moment, often called "the ImageNet
+    moment", is regarded as the birthday of modern day deep learning.
   </p>
-
-  <div class="separator" />
-  <h2>Notes</h2>
-  <div class="notes">
-    <p>
-      [1] Warren S. McCulloch and Walter Pitts. A logical calculus of the ideas
-      immanent in nervous activity. Bulletin of mathematical biophysics, vol. 5
-      (1943), pp. 115–133.
-    </p>
-    <p>
-      [2] Rosenblatt F. The Perceptron: A probabilistic model for information
-      storage and organization in the brain. Psychological Review Vol. 65, No.
-      6, 1958.
-    </p>
-    <p>
-      [3] Minsky M. and Papert S. A. Perceptrons: An Introduction to
-      Computational Geometry. MIT Press. 1969
-    </p>
-    <p>
-      [4] Rumelhart D and Hinton G and Williams R. Learning representations by
-      back-propagating errors. (1986a) Nature. 323 (6088): 533–536
-    </p>
-    <p>
-      [5] Hopfield, J. Neural networks and physical systems with emergent
-      collective computational abilities. (1982) Proceedings of the National
-      Academy of Sciences. 79 (8): 2554–2558
-    </p>
-    <p>
-      [6] Hochreiter S. and Schmidhuber J. Long short-term memory. 1997. Neural
-      Computation. 9 (8): 1735–1780.
-    </p>
-    <p>
-      [7] Hubel D. H. and Wiesel T. N. Receptive fields of single neurones in
-      the cat's striate cortex. 1959. The Journal of Physiology. 124 (3):
-      574–591
-    </p>
-    <p />
-    <p>
-      [8] Fukushima K. Neocognitron: A self-organizing neural network model for
-      a mechanism of pattern recognition unaffected by shift in position. 1980.
-      Biological Cybernetics. 36 (4): 193–202
-    </p>
-    <p>
-      [9] LeCun Y. et. al. Backpropagation applied to handwritten zip code
-      recognition. 1989. Neural Computation, 1(4):541-551,
-    </p>
-    <p>
-      [10] Nair V. and Hinton G. Rectified Linear Units Improve Restricted
-      Boltzmann Machines. 2010. 27th International Conference on International
-      Conference on Machine Learning, ICML'10, USA: Omnipress, pp. 807–814
-    </p>
-    <p>
-      [11] Glorot X and Bordes A. and Bengio Y. Deep sparse rectifier neural
-      networks. 2011. International Conference on Artificial Intelligence and
-      Statistics.
-    </p>
-    <p>
-      [12] Deng J. and Dong W. and Socher R. and Li L.-J and Li K. and Fei-Fei
-      L. 2009. ImageNet: A Large-Scale Hierarchical Image Database. IEEE
-      Computer Vision and Pattern Recognition (CVPR).
-    </p>
-  </div>
 </Container>
-
-<style>
-  .notes p {
-    line-height: 1.2;
-    font-size: 15px;
-    opacity: 80%;
-    margin-bottom: 5px;
-  }
-</style>
+<Footer {references} />
