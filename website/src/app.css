@@ -147,10 +147,18 @@ p {
 /* boxes like warning, info and so on */
 .info {
   background-color: var(--main-color-4);
+  padding: 10px 25px;
 }
 
 .warning {
   background-color: var(--main-color-3);
+  padding: 10px 25px;
+}
+
+.danger {
+  background-color: var(--main-color-1);
+  padding: 10px 25px;
+  color: white;
 }
 
 /* colored containers */
