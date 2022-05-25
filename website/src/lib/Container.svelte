@@ -1,4 +1,8 @@
-<div class="container">
+<script>
+  export let maxWidth = "1000px";
+</script>
+
+<div class="container" style="max-width: {maxWidth}">
   <slot />
 </div>
 
@@ -6,6 +10,5 @@
   .container {
     margin: 0 auto;
     padding: 0 30px;
-    max-width: 1000px;
   }
 </style>
