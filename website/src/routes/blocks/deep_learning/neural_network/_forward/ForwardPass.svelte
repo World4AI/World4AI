@@ -1,6 +1,7 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Container from "$lib/Container.svelte";
 
   export let config = [
     {
@@ -119,99 +120,163 @@
   calculateOutputs();
 </script>
 
-<SvgContainer maxWidth="700px">
-  <svg
-    version="1.1"
-    viewBox="0 0 {width} {height}"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <!-- draw connections between nodes -->
-    <g id="connections" fill="none" stroke="#000" stroke-dasharray="4,2">
-      {#each config as layer, layerIdx}
-        {#if layer.type !== "input"}
-          {#each layer.nodes as node, nodeIdx}
-            <g
-              stroke={activeLayerIdx === layerIdx && activeNodeIdx == nodeIdx
-                ? "var(--main-color-2)"
-                : "black"}
-              stroke-width={activeLayerIdx === layerIdx &&
-              activeNodeIdx == nodeIdx
-                ? 2
-                : 0.2}
-            >
-              {#each config[layerIdx - 1].nodes as prevNode, prevNodeIdx}
-                <line
-                  x1={nodeCenters[layerIdx - 1][prevNodeIdx].x + size}
-                  x2={nodeCenters[layerIdx][nodeIdx].x}
-                  y1={nodeCenters[layerIdx - 1][prevNodeIdx].y + size / 2}
-                  y2={nodeCenters[layerIdx][nodeIdx].y + size / 2}
+<Container maxWidth="1900px">
+  <div class="flex-container">
+    <div class="left-container">
+      <SvgContainer maxWidth="800px">
+        <svg
+          version="1.1"
+          viewBox="0 0 {width} {height}"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- draw connections between nodes -->
+          <g id="connections" fill="none" stroke="#000" stroke-dasharray="4,2">
+            {#each config as layer, layerIdx}
+              {#if layer.type !== "input"}
+                {#each layer.nodes as node, nodeIdx}
+                  <g
+                    stroke={activeLayerIdx === layerIdx &&
+                    activeNodeIdx == nodeIdx
+                      ? "var(--main-color-2)"
+                      : "black"}
+                    stroke-width={activeLayerIdx === layerIdx &&
+                    activeNodeIdx == nodeIdx
+                      ? 2
+                      : 0.2}
+                  >
+                    {#each config[layerIdx - 1].nodes as prevNode, prevNodeIdx}
+                      <line
+                        x1={nodeCenters[layerIdx - 1][prevNodeIdx].x + size}
+                        x2={nodeCenters[layerIdx][nodeIdx].x}
+                        y1={nodeCenters[layerIdx - 1][prevNodeIdx].y + size / 2}
+                        y2={nodeCenters[layerIdx][nodeIdx].y + size / 2}
+                      />
+                    {/each}
+                  </g>
+                {/each}
+              {/if}
+            {/each}
+          </g>
+
+          <!-- Draw Nodes -->
+          {#each config as layer, layerIdx}
+            <g class={layer.classes}>
+              {#each layer.nodes as node, nodeIdx}
+                <rect
+                  class={layer.type !== "input" ? "clickable" : ""}
+                  on:click={() => {
+                    if (layerIdx !== 0) {
+                      activeLayerIdx = layerIdx;
+                      activeNodeIdx = nodeIdx;
+                    }
+                  }}
+                  fill={layer.type === "input"
+                    ? "var(--main-color-1)"
+                    : layerIdx === activeLayerIdx && nodeIdx === activeNodeIdx
+                    ? "var(--main-color-3)"
+                    : "var(--main-color-4)"}
+                  stroke="var(--text-color)"
+                  x={nodeCenters[layerIdx][nodeIdx].x}
+                  y={nodeCenters[layerIdx][nodeIdx].y}
+                  width={size}
+                  height={size}
                 />
               {/each}
             </g>
           {/each}
-        {/if}
-      {/each}
-    </g>
+          <!--Draw Outputs -->
+          {#each values as layer, layerIdx}
+            {#each layer as node, nodeIdx}
+              <text
+                dominant-baseline="middle"
+                text-anchor="middle"
+                x={nodeCenters[layerIdx][nodeIdx].x + size / 2}
+                y={nodeCenters[layerIdx][nodeIdx].y + size / 2}
+                >{node.toFixed(2)}</text
+              >
+            {/each}
+          {/each}
+          <!--Draw weights -->
+          {#each config[activeLayerIdx].nodes[activeNodeIdx].weights as weight, nodeIdx}
+            <text
+              transform="rotate({angles[activeLayerIdx][activeNodeIdx][
+                nodeIdx
+              ]}, {nodeCenters[activeLayerIdx - 1][nodeIdx].x +
+                size +
+                6}, {nodeCenters[activeLayerIdx - 1][nodeIdx].y +
+                size / 2 -
+                6})"
+              class="weight-text"
+              x={nodeCenters[activeLayerIdx - 1][nodeIdx].x + size + 6}
+              y={nodeCenters[activeLayerIdx - 1][nodeIdx].y + size / 2 - 6}
+              >w_{nodeIdx}{": "} {weight.toFixed(2)}</text
+            >
+          {/each}
+          <text x={nodeCenters[activeLayerIdx - 1][0].x + size + 6} y={height}
+            >b: {config[activeLayerIdx].nodes[activeNodeIdx].bias.toFixed(
+              2
+            )}</text
+          >
+        </svg>
+      </SvgContainer>
+    </div>
 
-    <!-- Draw Nodes -->
-    {#each config as layer, layerIdx}
-      <g class={layer.classes}>
-        {#each layer.nodes as node, nodeIdx}
-          <rect
-            class={layer.type !== "input" ? "clickable" : ""}
-            on:click={() => {
-              if (layerIdx !== 0) {
-                activeLayerIdx = layerIdx;
-                activeNodeIdx = nodeIdx;
-              }
-            }}
-            fill={layer.type === "input"
-              ? "var(--main-color-1)"
-              : layerIdx === activeLayerIdx && nodeIdx === activeNodeIdx
-              ? "var(--main-color-3)"
-              : "var(--main-color-4)"}
-            stroke="var(--text-color)"
-            x={nodeCenters[layerIdx][nodeIdx].x}
-            y={nodeCenters[layerIdx][nodeIdx].y}
-            width={size}
-            height={size}
-          />
+    <table class="right-container">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each config[activeLayerIdx].nodes[activeNodeIdx].weights as weight, idx}
+          <tr>
+            <td>Input <Latex>x_{idx}</Latex></td>
+            <td>{values[activeLayerIdx - 1][idx].toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Weight <Latex>w_{idx}</Latex></td>
+            <td>{weight.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Scaled Value <Latex>x_{idx} w_{idx}</Latex></td>
+            <td>{(weight * values[activeLayerIdx - 1][idx]).toFixed(2)}</td>
+          </tr>
         {/each}
-      </g>
-    {/each}
-    <!--Draw Outputs -->
-    {#each values as layer, layerIdx}
-      {#each layer as node, nodeIdx}
-        <text
-          dominant-baseline="middle"
-          text-anchor="middle"
-          x={nodeCenters[layerIdx][nodeIdx].x + size / 2}
-          y={nodeCenters[layerIdx][nodeIdx].y + size / 2}
-          >{node.toFixed(2)}</text
-        >
-      {/each}
-    {/each}
-    <!--Draw weights -->
-    {#each config[activeLayerIdx].nodes[activeNodeIdx].weights as weight, nodeIdx}
-      <text
-        transform="rotate({angles[activeLayerIdx][activeNodeIdx][
-          nodeIdx
-        ]}, {nodeCenters[activeLayerIdx - 1][nodeIdx].x +
-          size +
-          6}, {nodeCenters[activeLayerIdx - 1][nodeIdx].y + size / 2 - 6})"
-        class="weight-text"
-        x={nodeCenters[activeLayerIdx - 1][nodeIdx].x + size + 6}
-        y={nodeCenters[activeLayerIdx - 1][nodeIdx].y + size / 2 - 6}
-        >w_{nodeIdx + 1}{": "} {weight.toFixed(2)}</text
-      >
-    {/each}
-    <text x={nodeCenters[activeLayerIdx - 1][0].x + size + 6} y={height}
-      >b: {config[activeLayerIdx].nodes[activeNodeIdx].bias.toFixed(2)}</text
-    >
-  </svg>
-</SvgContainer>
+        <tr>
+          <td>Bias <Latex>b</Latex></td>
+          <td>{config[activeLayerIdx].nodes[activeNodeIdx].bias.toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td>Net Input <Latex>z = \sum_m w_j x_j + b</Latex></td>
+          <td>{zValues[activeLayerIdx][activeNodeIdx].toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td
+            >Neuron Output <Latex>{String.raw`a = \dfrac{1}{1 + e^{-z}}`}</Latex
+            ></td
+          >
+          <td>{values[activeLayerIdx][activeNodeIdx].toFixed(2)}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Container>
 
 <style>
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left-container {
+    flex-basis: 1900px;
+  }
+  .right-container {
+    flex-shrink: 1;
+    max-width: 800px;
+  }
+
   .weight-text {
     font-size: 14px;
   }
@@ -222,5 +287,36 @@
 
   text {
     pointer-events: none;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th {
+    text-transform: uppercase;
+  }
+
+  td,
+  th {
+    border: 1px double var(--text-color);
+    padding: 7px;
+    text-align: center;
+  }
+  td {
+    font-style: italic;
+  }
+
+  @media (max-width: 1000px) {
+    .flex-container {
+      flex-direction: column;
+    }
+    .left-container {
+      flex-basis: initial;
+      margin-top: 30px;
+    }
+    .right-container {
+      margin-top: 30px;
+    }
   }
 </style>

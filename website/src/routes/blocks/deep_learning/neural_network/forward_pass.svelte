@@ -15,6 +15,6 @@
     > suggests, information flows unidirectionally from the input layer to the output
     layer.
   </p>
-  <ForwardPass />
   <p>How can we formalize this idea?</p>
 </Container>
+<ForwardPass />
