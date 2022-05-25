@@ -12,37 +12,37 @@
       classes: "layer-2",
       type: "hidden",
       nodes: [
-        { weights: [1, 1], bias: 0 },
-        { weights: [0.5, 0.5], bias: 1 },
+        { weights: [0.2, 0.3], bias: 0 },
+        { weights: [0.5, 0.5], bias: 0.5 },
         { weights: [0.5, 0.1], bias: 0 },
-        { weights: [0.2, 0.3], bias: 1 },
+        { weights: [0.2, 0.3], bias: 0.5 },
       ],
     },
     {
       classes: "layer-3",
       type: "hidden",
       nodes: [
-        { weights: [1, 0.2, 0.1, 1], bias: 1 },
-        { weights: [0.2, 0.1, 0.3, 0.2], bias: 1 },
+        { weights: [1, 0.2, 0.1, -1], bias: 1 },
+        { weights: [0.2, -0.1, -0.3, 0.2], bias: 0.5 },
       ],
     },
     {
       classes: "layer-4",
       type: "output",
-      nodes: [{ weights: [1, 1], bias: 1 }],
+      nodes: [{ weights: [0.4, 1], bias: 0.4 }],
     },
   ];
 
-  //determines which of the nodes is clicked and thereby active
-  let activeLayerIdx = 2;
-  let activeNodeIdx = 0;
+  //deermines which of the nodes is clicked and thereby active
+  $: activeLayerIdx = 1;
+  $: activeNodeIdx = 0;
 
   let width = 500;
   let height = 200;
-  let size = 35;
+  let size = 40;
 
   let xGap = width / (config.length - 1) - size / (config.length - 1);
-  let yGap = 15;
+  let yGap = 10;
 
   //calculate the centers of the node based on layer and node indeces
   let nodeCenters = [];
@@ -55,10 +55,32 @@
         nodeIdx * size +
         nodeIdx * yGap -
         (layer.nodes.length * size + (layer.nodes.length - 1) * yGap) / 2;
-
       layerCenters.push({ x, y });
     });
     nodeCenters.push(layerCenters);
+  });
+
+  // calculate angles between the centers
+  // this gets important to rotate text for weights
+  let angles = [];
+  nodeCenters.forEach((layers, layerIdx) => {
+    let layerAngles = [];
+    if (layerIdx !== 0) {
+      let nodeAngles;
+      layers.forEach((nodeCenter) => {
+        nodeAngles = [];
+        nodeCenters[layerIdx - 1].forEach((prevNodeCenter) => {
+          let dx = nodeCenter.x - size - prevNodeCenter.x;
+          let dy = nodeCenter.y - prevNodeCenter.y;
+          let rad = Math.atan2(dy, dx);
+          let degrees = (rad * 180) / Math.PI;
+
+          nodeAngles.push(degrees);
+        });
+        layerAngles.push(nodeAngles);
+      });
+    }
+    angles.push(layerAngles);
   });
 
   function sigmoid(x) {
@@ -67,12 +89,15 @@
 
   //feedforward calculations
   const values = [];
+  const zValues = [];
   function calculateOutputs() {
     config.forEach((layer, layerIdx) => {
       let layerValues = [];
+      let zLayerValues = [];
       if (layer.type === "input") {
         layer.nodes.forEach((node) => {
           layerValues.push(node.value);
+          zLayerValues.push(node.value);
         });
       } else {
         layer.nodes.forEach((node) => {
@@ -80,11 +105,14 @@
           for (let i = 0; i < node.weights.length; i++) {
             z += node.weights[i] * values[layerIdx - 1][i];
           }
+
           let a = sigmoid(z);
+          zLayerValues.push(z);
           layerValues.push(a);
         });
       }
       values.push(layerValues);
+      zValues.push(zLayerValues);
     });
   }
 
@@ -108,13 +136,13 @@
                 : "black"}
               stroke-width={activeLayerIdx === layerIdx &&
               activeNodeIdx == nodeIdx
-                ? 4
+                ? 2
                 : 0.2}
             >
               {#each config[layerIdx - 1].nodes as prevNode, prevNodeIdx}
                 <line
-                  x1={nodeCenters[layerIdx - 1][prevNodeIdx].x + size / 2}
-                  x2={nodeCenters[layerIdx][nodeIdx].x + size / 2}
+                  x1={nodeCenters[layerIdx - 1][prevNodeIdx].x + size}
+                  x2={nodeCenters[layerIdx][nodeIdx].x}
                   y1={nodeCenters[layerIdx - 1][prevNodeIdx].y + size / 2}
                   y2={nodeCenters[layerIdx][nodeIdx].y + size / 2}
                 />
@@ -124,11 +152,19 @@
         {/if}
       {/each}
     </g>
+
     <!-- Draw Nodes -->
     {#each config as layer, layerIdx}
       <g class={layer.classes}>
         {#each layer.nodes as node, nodeIdx}
           <rect
+            class={layer.type !== "input" ? "clickable" : ""}
+            on:click={() => {
+              if (layerIdx !== 0) {
+                activeLayerIdx = layerIdx;
+                activeNodeIdx = nodeIdx;
+              }
+            }}
             fill={layer.type === "input"
               ? "var(--main-color-1)"
               : layerIdx === activeLayerIdx && nodeIdx === activeNodeIdx
@@ -143,55 +179,48 @@
         {/each}
       </g>
     {/each}
+    <!--Draw Outputs -->
+    {#each values as layer, layerIdx}
+      {#each layer as node, nodeIdx}
+        <text
+          dominant-baseline="middle"
+          text-anchor="middle"
+          x={nodeCenters[layerIdx][nodeIdx].x + size / 2}
+          y={nodeCenters[layerIdx][nodeIdx].y + size / 2}
+          >{node.toFixed(2)}</text
+        >
+      {/each}
+    {/each}
+    <!--Draw weights -->
+    {#each config[activeLayerIdx].nodes[activeNodeIdx].weights as weight, nodeIdx}
+      <text
+        transform="rotate({angles[activeLayerIdx][activeNodeIdx][
+          nodeIdx
+        ]}, {nodeCenters[activeLayerIdx - 1][nodeIdx].x +
+          size +
+          6}, {nodeCenters[activeLayerIdx - 1][nodeIdx].y + size / 2 - 6})"
+        class="weight-text"
+        x={nodeCenters[activeLayerIdx - 1][nodeIdx].x + size + 6}
+        y={nodeCenters[activeLayerIdx - 1][nodeIdx].y + size / 2 - 6}
+        >w_{nodeIdx + 1}{": "} {weight.toFixed(2)}</text
+      >
+    {/each}
+    <text x={nodeCenters[activeLayerIdx - 1][0].x + size + 6} y={height}
+      >b: {config[activeLayerIdx].nodes[activeNodeIdx].bias.toFixed(2)}</text
+    >
   </svg>
-  <!-- Draw Additional Information for the Active Node -->
-  <div class="parameters yellow">
-    <div class="flex">
-      <div class="left">
-        <!-- inputs -->
-        {#each values[activeLayerIdx - 1] as input, idx}
-          <p><strong>Input</strong> <Latex>x_{idx}</Latex>:</p>
-        {/each}
-        <!-- weights -->
-        {#each config[activeLayerIdx].nodes[activeNodeIdx].weights as weight, idx}
-          <p><strong>Weight</strong> <Latex>w_{idx}</Latex>:{weight}</p>
-        {/each}
-      </div>
-      <div class="right">
-        <!-- inputs -->
-        {#each values[activeLayerIdx - 1] as input, idx}
-          <p>{input.toFixed(4)}</p>
-        {/each}
-      </div>
-    </div>
-  </div>
 </SvgContainer>
 
 <style>
-  .center {
-    text-align: center;
-  }
-  .parameters {
-    width: 50%;
-    padding: 5px 10px;
+  .weight-text {
+    font-size: 14px;
   }
 
-  div p {
-    margin: 0;
-    border-bottom: 1px solid black;
+  .clickable {
+    cursor: pointer;
   }
 
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    flex-grow: 1;
-    margin-right: 20px;
-  }
-
-  .right {
-    flex-basis: 40px;
+  text {
+    pointer-events: none;
   }
 </style>
