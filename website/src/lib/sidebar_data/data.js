@@ -446,6 +446,10 @@ const dl = [
             name: 'Backward Pass',
             link:  '/blocks/deep_learning/neural_network/backward_pass'
           },
+          {
+            name: 'Geometric Interpretation',
+            link:  '/blocks/deep_learning/neural_network/geometric_interpretation'
+          },
         ]
     },
     {
