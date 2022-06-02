@@ -56,6 +56,24 @@ class NeuralNetwork {
     this.netInputsStore.set(netInputs);
     this.activationsStore.set(activations);
   }
+
+  _predict(features) {
+    let a = features;
+    let z;
+    this.weights.forEach((weight, idx) => {
+      let w = tf.tensor(weight);
+      let b = tf.tensor(this.biases[idx]);
+      z = tf.add(tf.dot(a, w.transpose()), b);
+      a = z.sigmoid();
+    });
+
+    return a.arraySync();
+  }
+
+  predict(features) {
+    let predictCallback = this._predict.bind(this, features);
+    return tf.tidy(predictCallback);
+  }
   
   backward() {
     const dW = [];
