@@ -3,52 +3,24 @@
   import Highlight from "$lib/Highlight.svelte";
   import ForwardPass from "./_forward/ForwardPass.svelte";
   import Latex from "$lib/Latex.svelte";
+  import { NeuralNetwork } from "$lib/NeuralNetwork.js";
 
-  let inputs = [
+  let features = [
     [0.5, 0.5],
     [0.95, 0.5],
     [0.75, 0.5],
   ];
-  let weights = [
-    [
-      [0.2, 0.3],
-      [0.5, 0.5],
-      [0.5, 0.1],
-      [0.2, 0.3],
-    ],
-    [
-      [1, 0.2, 0.1, -1],
-      [0.2, -0.1, -0.3, 0.2],
-    ],
-    [[0.4, 1]],
-  ];
-  let biases = [[0, 0.5, 0, 0.5], [1, 0.5], [0.4]];
 
-  function sigmoid(z) {
-    return 1 / (1 + Math.exp(-z));
-  }
+  let labels = [[0], [1], [0]];
+  const nn = new NeuralNetwork(0.01, [2, 4, 2, 1], features, labels);
 
-  let values = [];
-  values.push(JSON.parse(JSON.stringify(inputs)));
+  //subscribe to the stores
+  const weightsStore = nn.weightsStore;
+  const biasesStore = nn.biasesStore;
+  const netInputsStore = nn.netInputsStore;
+  const activationsStore = nn.activationsStore;
 
-  weights.forEach((layer, layerIdx) => {
-    let dimValues = [];
-    for (let dim = 0; dim < inputs.length; dim++) {
-      let valuesLayer = [];
-      layer.forEach((weights, weightsIdx) => {
-        let zValue = 0;
-        weights.forEach((weight, weightIdx) => {
-          zValue += weight * values[layerIdx][dim][weightIdx];
-        });
-
-        zValue += biases[layerIdx][weightsIdx];
-        let value = sigmoid(zValue);
-        valuesLayer.push(value);
-      });
-      dimValues.push(valuesLayer);
-    }
-    values.push(dimValues);
-  });
+  nn.epoch();
 </script>
 
 <svelte:head>
@@ -86,7 +58,14 @@
   </p>
 </Container>
 <div class="separator" />
-<ForwardPass />
+<ForwardPass
+  weights={$weightsStore}
+  biases={$biasesStore}
+  {features}
+  {labels}
+  netInputs={$netInputsStore}
+  activations={$activationsStore}
+/>
 <div class="separator" />
 <Container>
   <p>
@@ -104,7 +83,7 @@
   </p>
   <Latex>
     \mathbf&#123; X &#125; = \begin&#123;bmatrix&#125;
-    {#each values[0] as row}
+    {#each features as row}
       {#each row as value, idx}
         {value.toFixed(2)}
         {#if idx !== row.length - 1}
@@ -130,7 +109,7 @@
   </p>
   <Latex>
     \mathbf&#123; W &#125; = \begin&#123;bmatrix&#125;
-    {#each weights[0] as row}
+    {#each $weightsStore[0] as row}
       {#each row as value, idx}
         {value.toFixed(2)}
         {#if idx !== row.length - 1}
@@ -147,9 +126,11 @@
   </p>
   <Latex>
     \mathbf&#123; b &#125; = \begin&#123;bmatrix&#125;
-    {#each biases[0] as value, idx}
-      {value.toFixed(2)}
-      \\
+    {#each $biasesStore[0] as value, idx}
+      {#each value as v}
+        {v.toFixed(2)}
+        \\
+      {/each}
     {/each}
     \end&#123;bmatrix&#125; \\
   </Latex>
@@ -180,7 +161,7 @@
   </p>
   <Latex>
     {String.raw`\mathbf{A}`} = \begin&#123;bmatrix&#125;
-    {#each values[1] as row}
+    {#each $activationsStore[0] as row}
       {#each row as value, idx}
         {value.toFixed(2)}
         {#if idx !== row.length - 1}
@@ -221,7 +202,7 @@
   </p>
   <Latex>
     {String.raw`\mathbf{\hat{y}} = \mathbf{A}^{<3>}`} = \begin&#123;bmatrix&#125;
-    {#each values[3] as row}
+    {#each $activationsStore[2] as row}
       {#each row as value, idx}
         {value.toFixed(4)}
         {#if idx !== row.length - 1}
