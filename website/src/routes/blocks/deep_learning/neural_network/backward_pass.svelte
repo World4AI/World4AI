@@ -3,6 +3,10 @@
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Plot from "$lib/Plot.svelte";
+  import { NeuralNetwork } from "$lib/NeuralNetwork.js";
+
+  const alpha = 0.01;
+  const sizes = [2, 4, 2, 1];
 
   // create the data to draw the svg
   let pointsData = [[], []];
@@ -20,62 +24,26 @@
   }
 
   //these are the X and the y values
-  let inputs = [];
-  let outputs = [];
+  let features = [];
+  let labels = [];
 
   // create the data for the neural network
   function createData() {
     pointsData.forEach((label, labelIdx) => {
       label.forEach((dataPoint) => {
-        let input = [];
-        input.push(dataPoint.x);
-        input.push(dataPoint.y);
-        inputs.push(input);
-        outputs.push(labelIdx);
+        let feature = [];
+        feature.push(dataPoint.x);
+        feature.push(dataPoint.y);
+        features.push(feature);
+        let label = [];
+        label.push(labelIdx);
+        labels.push(label);
       });
     });
   }
-
   createData();
 
-  // learnable parameters of the neural network
-  let weights = [
-    [
-      [-0.2, -0.3],
-      [-0.5, -0.5],
-      [-0.5, -0.1],
-      [-0.2, -0.3],
-    ],
-    [
-      [-1, -0.2, -0.1, -1],
-      [-0.2, -0.1, -0.3, 0.2],
-    ],
-    [[0.45, 1]],
-  ];
-  let biases = [[0, -0.5, 0, -0.5], [-1, -0.5], [-0.4]];
-
-  function sigmoid(z) {
-    return 1 / (1 + Math.exp(-z));
-  }
-
-  //use the weights, biases and sigmoid to calculate the output for a single sample
-  function feedForward(input) {
-    let outputs = [[...input]];
-    weights.forEach((layer, layerIdx) => {
-      let layerOutput = [];
-      layer.forEach((nodeWeights, nodeIdx) => {
-        let zValue = 0;
-        nodeWeights.forEach((weight, weightIdx) => {
-          zValue += weight * outputs[layerIdx][weightIdx];
-        });
-        zValue += biases[layerIdx][nodeIdx];
-        let activation = sigmoid(zValue);
-        layerOutput.push(activation);
-      });
-      outputs.push(layerOutput);
-    });
-    return outputs;
-  }
+  let nn = new NeuralNetwork(alpha, sizes, features, labels);
 
   // determine the x and y coordinates that are going to be used for heatmap
   let numbers = 50;
@@ -95,11 +63,10 @@
   //recalculate the heatmap based on the current weights of the neural network
   function calculateHeatmap() {
     heatmapData = [];
-    heatmapCoordinates.forEach((inputs) => {
-      let outputs = feedForward(inputs);
-      let prediction = outputs[outputs.length - 1];
+    let outputs = nn.predict(heatmapCoordinates);
+    heatmapCoordinates.forEach((inputs, idx) => {
       let label;
-      if (prediction[0] >= 0.5) {
+      if (outputs[idx] >= 0.5) {
         label = 1;
       } else {
         label = 0;
