@@ -33,6 +33,8 @@ class NeuralNetwork {
     this.biasesStore = writable(this.biases);
     this.activationsStore = writable(this.activations);
     this.netInputsStore = writable(this.netInputs);
+    this.lossStore = writable(this.lossTracker);
+    this.accStore = writable(this.accuracyTracker);
   }
 
   forward() {
@@ -162,6 +164,9 @@ class NeuralNetwork {
   
     this.lossTracker.push(crossEntropy.mean().arraySync());
     this.accuracyTracker.push(accuracy.arraySync());
+
+    this.accStore.set(this.accuracyTracker);
+    this.lossStore.set(this.lossTracker);
   }
 
   epoch() {

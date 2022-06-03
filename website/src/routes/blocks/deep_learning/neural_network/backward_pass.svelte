@@ -4,8 +4,9 @@
   import Highlight from "$lib/Highlight.svelte";
   import Plot from "$lib/Plot.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
+  import Button from "$lib/Button.svelte";
 
-  const alpha = 0.01;
+  const alpha = 0.5;
   const sizes = [2, 4, 2, 1];
 
   // create the data to draw the svg
@@ -78,6 +79,20 @@
 
   calculateHeatmap();
 
+  //generate graphs
+  let lossStore = nn.lossStore;
+  let lossData = [];
+  $: {
+    let losses = $lossStore;
+    let idx = losses.length - 1;
+    let loss = losses[idx];
+    if (idx !== -1) {
+      let point = { x: idx, y: loss };
+      lossData.push(point);
+      lossData = lossData;
+    }
+  }
+
   let config = {
     width: 500,
     height: 500,
@@ -93,6 +108,31 @@
     colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
   };
+
+  let runImprovements = true;
+  let runs = 0;
+
+  function runEpoch() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        nn.epoch();
+        calculateHeatmap();
+        resolve();
+      }, 0);
+    });
+  }
+
+  async function train() {
+    runImprovements = true;
+    while (runImprovements) {
+      await runEpoch();
+      runs++;
+    }
+  }
+
+  function stopTraining() {
+    runImprovements = false;
+  }
 </script>
 
 <h1>Backward Pass</h1>
@@ -149,5 +189,66 @@
     for each layer of the neural network.
   </p>
   <Plot {pointsData} {config} />
-  <Plot {pointsData} {heatmapData} {config} />
 </Container>
+<Container maxWidth="1900px">
+  <div class="flex-container">
+    <div class="left-container">
+      <Plot {pointsData} {heatmapData} {config} />
+    </div>
+    <div class="right-container">
+      <Plot
+        pathsData={lossData}
+        config={{
+          width: 500,
+          height: 500,
+          maxWidth: 600,
+          minX: 0,
+          maxX: 20000,
+          minY: 0,
+          maxY: 1,
+          xLabel: "Epochs",
+          yLabel: "Cross-Entropy Loss",
+          padding: { top: 20, right: 40, bottom: 40, left: 60 },
+          radius: 5,
+          colors: [
+            "var(--main-color-1)",
+            "var(--main-color-2)",
+            "var(--text-color)",
+          ],
+          xTicks: [
+            0, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000, 18000, 20000,
+          ],
+          yTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        }}
+      />
+    </div>
+  </div>
+</Container>
+<Button value="START" on:click={train} />
+<Button value="STOP" on:click={stopTraining} />
+
+<style>
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left-container {
+    flex-basis: 1900px;
+  }
+  .right-container {
+    flex-basis: 1900px;
+  }
+
+  @media (max-width: 1000px) {
+    .flex-container {
+      flex-direction: column;
+    }
+    .left-container {
+      flex-basis: initial;
+    }
+    .right-container {
+      flex-basis: initial;
+    }
+  }
+</style>
