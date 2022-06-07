@@ -3,7 +3,6 @@
   import Latex from "$lib/Latex.svelte";
   import Container from "$lib/Container.svelte";
 
-  export let labels = [];
   export let features = [];
   export let weights = [];
   export let biases = [];

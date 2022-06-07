@@ -5,6 +5,7 @@
   import Plot from "$lib/Plot.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import Button from "$lib/Button.svelte";
+  import BackwardPass from "./_backward/BackwardPass.svelte";
 
   const alpha = 0.5;
   const sizes = [2, 4, 2, 1];
@@ -109,7 +110,7 @@
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
   };
 
-  let runImprovements = true;
+  let runImprovements = false;
   let runs = 0;
 
   function runEpoch() {
@@ -134,6 +135,14 @@
     runImprovements = false;
   }
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Backward Pass</title>
+  <meta
+    name="description"
+    content="Backpropagation is the algorithm that efficiently calculates the gradients of the loss with respect to weights and biases of all the layers in the neural network."
+  />
+</svelte:head>
 
 <h1>Backward Pass</h1>
 <div class="separator" />
@@ -188,8 +197,342 @@
     The backpropagation algorithm calculates the gradients of weights and biases
     for each layer of the neural network.
   </p>
+  <p>
+    The backpropagation algorithm makes extensive use of the chain rule, which
+    allows us to find derivatives of composite functions of the form <Latex
+      >{String.raw`f(x) = h(g(x))`}</Latex
+    >.
+  </p>
+  <p>
+    The chain rule states that to find the derivative of <Latex>f(x)</Latex> with
+    respect to <Latex>x</Latex> can be achieved by separately finding the derivatives
+    <Latex>{String.raw`\dfrac{dh}{dg}`}</Latex> and <Latex
+      >{String.raw`\dfrac{dg}{dx}`}</Latex
+    > and to calculate the product of both derivatives.
+  </p>
+  <Latex
+    >{String.raw`
+  \dfrac{d}{dx}f(x) = \dfrac{dh}{dg} \dfrac{dg}{dx} \\
+    `}</Latex
+  >
+  <p>
+    Intuitively this makes sense because the terms cancel out and we are left
+    with our desired derivative.
+  </p>
+  <Latex
+    >{String.raw`
+  \dfrac{d}{dx}f(x) = \dfrac{dh}{dg} \dfrac{dg}{dx} = \dfrac{dh}{\cancel{dg}} \dfrac{\cancel{dg}}{dx} = \dfrac{dh}{dx} \\
+    `}</Latex
+  >
+  <p>
+    Let us work through a simple example to make the intuition stick. We assume
+    we deal with <Latex>{String.raw`f(x) = (5x+100)^2`}</Latex>. The function <Latex
+      >f(x)</Latex
+    > is actually a composite of the function <Latex
+      >{String.raw`h(g) = g^2`}</Latex
+    > and <Latex>{String.raw`g(x) = 5x + 100`}</Latex>.
+  </p>
+  <p>
+    First we find the derivatives <Latex
+      >{String.raw`\dfrac{dh}{dg} = 2g = 2(5x+100)`}</Latex
+    > and <Latex>{String.raw`\dfrac{dg}{dx} = 5`}</Latex>. Lastly we apply the
+    chain rule by multiplying the derivatives to end up with <Latex
+      >{String.raw`\dfrac{d}{dx}f(x) = 10(5x+100) = 50x + 1000`}</Latex
+    >. We can easily verify that this is the correct derivative by calculating
+    the derivative directly after applying the binomial formula.
+  </p>
+  <Latex
+    >{String.raw`
+  \begin{aligned}
+    \dfrac{d}{dx}f(x) & = \dfrac{d}{dx} (5x + 100)^2 \\
+    & = \dfrac{d}{dx}25x^2 + 1000x + 1000 \\
+    & = 50x + 1000
+
+  \end{aligned}
+    `}</Latex
+  >
+  <p>
+    While we used a composition of two functions for the ease of explanations,
+    the chain rule is not restricted to a composition of just two functions. For
+    example given a composite function of the following form
+    <Latex>{String.raw`f(x) = h(g(u(v(x))))`}</Latex> the derivative can be calculated
+    as follows using the chain rule <Latex
+      >{String.raw`\dfrac{d}{dx}f(x) = \dfrac{dh}{dg} \dfrac{dg}{du} \dfrac{du}{dv} \dfrac{dv}{dx}`}</Latex
+    >.
+  </p>
+  <p>
+    The chain rule is also not restricted to functions with just one variable.
+    Let us for example assume that we use two single variable functions
+    <Latex>x(t)</Latex> and <Latex>y(t)</Latex>. Let us further assume that we
+    calculate the function <Latex>f(x,y)</Latex>. The derivative of <Latex
+      >f(x,y)</Latex
+    > with respect to <Latex>t</Latex> can be calculated using the multivariable
+    chain rule, where
+    <Latex
+      >{String.raw`\dfrac{d}{dt}f(x, y) = \dfrac{df}{dx} \dfrac{dx}{dt} + \dfrac{df}{dy} \dfrac{dy}{dt}`}</Latex
+    >.
+  </p>
+  <p class="info">
+    A neural network is a composition of many different functions with many
+    variables.
+  </p>
+  <p>
+    When we look at the neural network from the previous section, we should
+    realize, that the network is a composion of many functions with many
+    variables.
+  </p>
+  <Latex
+    >{String.raw`\mathbf{\hat{y}} = \sigma( \sigma(\sigma(\mathbf{X} \mathbf{W}^{<1>T}) \mathbf{W}^{<2>T})\mathbf{W}^{<3>T})`}</Latex
+  >
+  <p>
+    That means that we can calculate the gradient of the loss function
+    <Latex>{String.raw`L(\mathbf{w}, b)`}</Latex> with respect to any of the layers
+    weights <Latex>{String.raw`\mathbf{w}`}</Latex> using the chain rule.
+  </p>
+  <p>
+    But backpropagation is more than just the chain rule, it is the chain rule
+    combined with an efficient calculation algorithm.
+  </p>
+  <p class="info">
+    Backpropagation is chain rule plus an efficient algorithm for the
+    calculation of the gradient of the loss function with respect to the weights
+    and biases.
+  </p>
+  <p>
+    To understand why we need an efficient algorithm, let us use the interactive
+    example below. You can click on any of the weights to mark the nodes and
+    paths that are necessary to calculate the derivative for that particular
+    weight. This is the neural network that we are going to utilize to solve our
+    non linear (circular) problem from the start of this chapter.
+  </p>
+  <BackwardPass />
+  <p>
+    There are a couple of things that we should notice while playing with the
+    example.
+  </p>
+  <p>
+    First, the weights that connect the inputs (leftmost layer) and second layer
+    have an impact on all neurons in the third layer. This is the reason why we
+    need to use the multivariable chain rule.
+  </p>
+  <p>
+    Second, different weights have an impact on the same neurons. For example
+    all the weights that connect the first and the second layer, have an impact
+    on all the activations in the third layer and half the weights that connect
+    the second and the third layer have an impact on the first activation in the
+    third layer and half on the second activation in the third layer. This
+    implies that when we apply the chain rule, several weights will have many of
+    the same components in the product of the chain rule.
+  </p>
+  <p>
+    To avoid duplicate calculations, some of the results will be saved in the
+    backward pass. Backpropagation calculates the gradients for the weights of
+    the last layer first. Many of the intermediate results are required parts
+    for the calculation of gradients for of all the previous layers. The
+    calculations of the gradients in the second to the last layers are also
+    saved, as those are required parts for all the layers that precede the
+    second to last layer. The process is repeated until the weights that connect
+    the inputs with the first hidden layer is reached.
+  </p>
+  <p>
+    It makes sense to work through at least one example to understand how the
+    backpropagation algorithm works. For that we are going to use a simple
+    neural network, with a two inputs, two hidden layers with two neurons each
+    and a single neuron in the output layer.
+  </p>
+  <BackwardPass sizes={[2, 2, 2, 1]} />
+  <p>
+    Our loss is defined as below, where <Latex>y</Latex> is the correct class and
+    <Latex>{String.raw`\hat{y}`}</Latex> is the prediction from the neural network,
+    the probability to belong to the class 1.
+  </p>
+  <Latex
+    >{String.raw`L(\mathbf{w}, b) = -\dfrac{1}{n}\sum_i \big[y^{(i)}\ln \hat{y}^{(i)} + (1-y^{(i)})\ln (1 - \hat{y}^{(i)})\big]`}</Latex
+  >
+  <p>
+    While we always work with a batch or mini batch, for the sake of simplicity
+    we are going to focus on a single training example. This simplifies the
+    explanations and the notation significantly.
+  </p>
+  <Latex
+    >{String.raw`L(\mathbf{w}, b) = - y\ln \hat{y} -(1-y)\ln(1 - \hat{y}) `}</Latex
+  >
+  <p>
+    Above we change the signs in the calculation, because we put the minus sign
+    in front of the sum inside the squared braces.
+  </p>
+  <p>We continue rewriting the loss function in the following way.</p>
+  <Latex
+    >{String.raw`L(\mathbf{w}, b) = - y\ln a^{<3>}-(1-y)\ln(1 - a^{<3>}) `}</Latex
+  >
+  <p>
+    We can do that because the last activation <Latex
+      >{String.raw`a^{<3>}`}</Latex
+    > is the prediction that is produced by the neural network <Latex
+      >{String.raw`\hat{y}`}</Latex
+    >.
+  </p>
+  <p>
+    First we calculate the derivative of the loss with respect to the last
+    activation. We utilize the fact that the derivative of the natural log is <Latex
+      >{String.raw`\dfrac{d}{dx}lnx = \dfrac{1}{x}`}</Latex
+    > and additionally use the chain rule and end up with.
+  </p>
+  <Latex
+    >{String.raw`\dfrac{d}{da}L = -y\dfrac{1}{a^{<3>}} + (1- y)\dfrac{1}{1-a^{<3>}} `}</Latex
+  >
+  <p>
+    In the next step we calculate the derivative <Latex
+      >{String.raw`\dfrac{d}{dz}a(z)`}</Latex
+    >. We use the sigmoid as our activation function <Latex
+      >{String.raw`\sigma(z) = \dfrac{1}{1+e^{-z}}`}</Latex
+    >. While the derivation of the derivative can be somewhat involved, the
+    derivative itself is extremely simple, <Latex
+      >{String.raw`\dfrac{d}{dz}a(z) = a(1-a)`}</Latex
+    >.
+  </p>
+  <p>
+    With those two derivatives in hand we can calculate <Latex
+      >{String.raw`\delta^{<3>}`}</Latex
+    > as <Latex
+      >{String.raw`\delta^{<3>} = \dfrac{dL}{da^{<3>}} \dfrac{da^{<3>}}{dz}`}</Latex
+    >. The deltas <Latex>\delta</Latex> are the parts of the calculation that are
+    going to be used for the gradients in the previous layers and the current layer.
+    The deltas are always partial derivatives with respect to the net inputs <Latex
+      >z</Latex
+    > of that particular layer.
+  </p>
+  <p>
+    Once we have the <Latex>\delta</Latex> for the last layer, we can reuse this
+    value to calculate the gradient with respect to the weights that connect the
+    second to last and the last layers.
+  </p>
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<3>}_{1,1}} =  \dfrac{dL}{da^{<3>}}\dfrac{da^{<3>}}{dz^{<3>}} \dfrac{dz^{<3>}}{dw_{1,1}^{<3>}} = \delta^{<3>}\dfrac{dz^{<3>}}{dw_{1,1}^{<3>}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<3>}_{1,2}} =  \dfrac{dL}{da^{<3>}}\dfrac{da^{<3>}}{dz^{<3>}} \dfrac{dz^{<3>}}{dw_{1,2}^{<3>}} = \delta^{<3>}\dfrac{dz^{<3>}}{dw_{1,2}^{<3>}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\dfrac{dL}{db^{<3>}} =  \dfrac{dL}{da^{<3>}}\dfrac{da^{<3>}}{dz^{<3>}} \dfrac{dz^{<3>}}{db^{<3>}} = \delta^{<3>}`}</Latex
+  >
+  <p>
+    Even at this point it should become apparent, that we can reuse the <Latex
+      >\delta</Latex
+    > to make the computations of the gradients more efficient.
+  </p>
+  <p>
+    After the calculation of the gradients for the weights and biases of the
+    last layer, we can move one step backwards. Once again we calculate the
+    deltas <Latex>{String.raw`\delta`}</Latex>, but this time we can reuse the <Latex
+      >\delta</Latex
+    > from the next layer. Let us remember that the deltas <Latex>\delta</Latex>
+    are derivatives with respect to the net inputs <Latex>z</Latex>. Therefore
+    there are as many deltas as there are neurons in a layer. In the second to
+    last layer there are two neurons, so we have to calculate two deltas.
+  </p>
+  <Latex
+    >{String.raw`\delta^{<2>}_1 = \delta^{<3>} \dfrac{dz^{<3>}}{da^{<2>}_1} \dfrac{da^{<2>}_1}{dz_1^{<2>}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\delta^{<2>}_2 = \delta^{<3>} \dfrac{dz^{<3>}}{da^{<2>}_2} \dfrac{da^{<2>}_2}{dz_2^{<2>}}`}</Latex
+  >
+  <p>
+    These two deltas can be reused several times to calculate the gradients of
+    the loss <Latex>L</Latex> with respect to the weights and biases in the second
+    layer.
+  </p>
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<2>}_{1,1}} = \delta_1^{<2>} \dfrac{dz^{<2>}_1}{dw^{<2>}_{1,1}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<2>}_{1,2}} = \delta_1^{<2>} \dfrac{dz^{<2>}_1}{dw^{<2>}_{1,2}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex>{String.raw`\dfrac{dL}{db^{<2>}_{1}} = \delta_1^{<2>}`}</Latex>
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<2>}_{2,1}} = \delta_2^{<2>} \dfrac{dz^{<2>}_2}{dw^{<2>}_{2,1}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\dfrac{dL}{dw^{<2>}_{2,2}} = \delta_2^{<2>} \dfrac{dz^{<2>}_2}{dw^{<2>}_{2,2}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex>{String.raw`\dfrac{dL}{db^{<2>}_{2}} = \delta_2^{<2>}`}</Latex>
+  <br />
+  <br />
+  <p>
+    As you might imagine this pattern can theoretically continue indefinetely.
+    No matter how many layers the neural network has, we calculate the deltas
+    based on the deltas from the next layers and thus avoid inefficient
+    recalculations.
+  </p>
+  <p>
+    When we deal with several hidden layers and/or several outputs, we
+    inevitably encounter the chain rule in the calculation of the <Latex
+      >\delta</Latex
+    >. This is due to the fact, that some of the activations and thus net inputs
+    are used as the inputs for all the neurons in the next layer.
+  </p>
+  <Latex
+    >{String.raw`\delta^{<1>}_1 = \delta^{<2>}_1 \dfrac{dz^{<2>}_1}{da^{<1>}_1} \dfrac{da^{<1>}_1}{dz_1^{<1>}} + \delta^{<2>}_2 \dfrac{dz^{<2>}_2}{da^{<1>}_1} \dfrac{da^{<1>}_1}{dz_1^{<1>}}`}</Latex
+  >
+  <br />
+  <br />
+  <Latex
+    >{String.raw`\delta^{<1>}_2 = \delta^{<2>}_1 \dfrac{dz^{<2>}_1}{da^{<1>}_2} \dfrac{da^{<1>}_2}{dz_2^{<1>}} + \delta^{<2>}_2 \dfrac{dz^{<2>}_2}{da^{<1>}_2} \dfrac{da^{<1>}_2}{dz_2^{<1>}}`}</Latex
+  >
+  <div class="separator" />
+  <p>
+    Remember that our original goal was to solve the non linear problem of the
+    below kind.
+  </p>
   <Plot {pointsData} {config} />
+  <p>
+    In the example below you can observe how the decision boundary moves when
+    you use backpropagation. Before you move to that example, we have to warn
+    you that you are not dealing with the most efficient implementation. For
+    once we use batch and not mini batch gradient descent. That can slow down
+    training considerably, because in mini batch gradient descent the algorithm
+    takes many gradient descent steps in one epoch and thus moves towards the
+    optimal value several times in an epoch, while in simple batch gradient
+    descent only one optimization step is taken during an epoch. Additionally we
+    initialize the weights randomly using the standard normal distribution and
+    the sigmoid activation function. Both are not used often any more, but we
+    will deal with improvements for that in a later chapter.
+  </p>
+  <p>
+    Usually 20000 steps are sufficient to find weights for a good decision
+    boundary, but the speed depends greatly on the initial weights. Try to
+    observe how the cross entropy and the shape of the decision boundary change
+    over time. At a certain point you will most likely see a sharp drop in cross
+    entropy, this is when things will start to improve greatly.
+  </p>
 </Container>
+<div class="separator" />
+<Container maxWidth="300px">
+  {#if runImprovements}
+    <Button value="PAUSE TRAINING" on:click={stopTraining} />
+  {:else}
+    <Button value="START TRAINING" on:click={train} />
+  {/if}
+
+  <span><strong>Epoch: {lossData.length}</strong></span>
+</Container>
+<div class="separator" />
 <Container maxWidth="1900px">
   <div class="flex-container">
     <div class="left-container">
@@ -224,8 +567,6 @@
     </div>
   </div>
 </Container>
-<Button value="START" on:click={train} />
-<Button value="STOP" on:click={stopTraining} />
 
 <style>
   .flex-container {
