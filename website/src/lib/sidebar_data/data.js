@@ -157,8 +157,7 @@ const rl = [
         ]
     },
     {
-        name: 'Policy Gradient Methods',
-        link: '/blocks/reinforcement_learning/policy_gradient_methods',
+        name: 'Policy Gradient Methods', link: '/blocks/reinforcement_learning/policy_gradient_methods',
         links: [
             {
                 name: 'Policy Gradient Intuition',
@@ -450,19 +449,9 @@ const dl = [
             name: 'Geometric Interpretation',
             link:  '/blocks/deep_learning/neural_network/geometric_interpretation'
           },
-        ]
-    },
-    {
-        name: 'Automatic Differentiation',
-        link: '/blocks/deep_learning/autodiff',
-        links: [
           {
-            name: 'Forward-Mode',
-            link:  '/blocks/deep_learning/autodiff/forward_mode'
-          },
-          {
-            name: 'Reverse Mode',
-            link:  '/blocks/deep_learning/autodiff/reverse_mode'
+            name: 'Automatic Differentiation',
+            link:  '/blocks/deep_learning/neural_network/autodiff'
           },
         ]
     },
