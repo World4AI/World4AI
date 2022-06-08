@@ -529,7 +529,6 @@
   {:else}
     <Button value="START TRAINING" on:click={train} />
   {/if}
-
   <span><strong>Epoch: {lossData.length}</strong></span>
 </Container>
 <div class="separator" />

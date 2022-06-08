@@ -37,6 +37,14 @@ class NeuralNetwork {
     this.accStore = writable(this.accuracyTracker);
   }
 
+  setWeights(weights){
+    this.weights = weights;
+  }
+
+  setBiases(biases) {
+    this.biases = biases;
+  }
+
   forward() {
     let activations = []; 
     let netInputs = [];
