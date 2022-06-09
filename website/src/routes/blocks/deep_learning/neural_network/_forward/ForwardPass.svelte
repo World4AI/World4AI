@@ -10,12 +10,14 @@
   export let activations = [];
 
   let nodes = [];
-  let validNetInputs = netInputs[0];
-  let validActivations = activations[0];
+  let validNetInputs = [];
+  let validActivations = [];
 
   nodes.push(features[0]);
-  activations.forEach((a) => {
+  activations.forEach((a, idx) => {
     nodes.push(a[0]);
+    validActivations.push(a[0]);
+    validNetInputs.push(netInputs[idx][0]);
   });
 
   //determines which of the nodes is clicked and thereby active
