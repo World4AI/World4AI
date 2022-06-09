@@ -2,7 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
-  import Scatterplot from "$lib/Scatterplot.svelte";
+  import Plot from "$lib/Plot.svelte";
   import Slider from "$lib/Slider.svelte";
 
   let linearData = [[]];
@@ -21,16 +21,19 @@
     nonlinearData[0].push({ x, y });
   }
 
-  let lines = [{ x1: -100, y1: 0, x2: 100, y2: 0 }];
+  let lines = [
+    { x: -100, y: 0 },
+    { x: 100, y: 0 },
+  ];
 
   let estimatedBias = -200;
   let estimatedWeight = -100;
 
   function calculatePoints(estimatedBias, estimatedWeight) {
-    let y1 = estimatedBias + estimatedWeight * lines[0].x1;
-    let y2 = estimatedBias + estimatedWeight * lines[0].x2;
-    lines[0].y1 = y1;
-    lines[0].y2 = y2;
+    let y1 = estimatedBias + estimatedWeight * lines[0].x;
+    let y2 = estimatedBias + estimatedWeight * lines[1].x;
+    lines[0].y = y1;
+    lines[1].y = y2;
     lines = lines;
   }
 
@@ -67,16 +70,23 @@
     use the line to predict the label and be relatively confident regarding the
     outcome.
   </p>
-  <Scatterplot
-    data={linearData}
-    xLabel={"Feature"}
-    yLabel={"Label"}
-    minX={-100}
-    maxX={100}
-    minY={-500}
-    maxY={500}
-    numTicks={11}
-    radius={3}
+  <Plot
+    pointsData={linearData}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -100,
+      maxX: 100,
+      minY: -500,
+      maxY: 500,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 3,
+      colors: ["var(--main-color-1)", "var(--main-color-2)"],
+      numTicks: 11,
+    }}
   />
   <p>
     In contrast the data in the following scatterplot represents a nonlinear
@@ -85,16 +95,23 @@
     but there are better alternatives (like neural networks) for non linear
     problems.
   </p>
-  <Scatterplot
-    data={nonlinearData}
-    xLabel={"Feature"}
-    yLabel={"Label"}
-    minX={-100}
-    maxX={100}
-    minY={0}
-    maxY={10000}
-    numTicks={11}
-    radius={3}
+  <Plot
+    pointsData={nonlinearData}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -100,
+      maxX: 100,
+      minY: 0,
+      maxY: 10000,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 3,
+      colors: ["var(--main-color-1)", "var(--main-color-2)"],
+      numTicks: 11,
+    }}
   />
   <p>
     From basic math we know, that in the two dimensional space we can draw a
@@ -115,17 +132,24 @@
     weight and the bias by moving the sliders. Observe what we mean when we say
     rotation and position.
   </p>
-  <Scatterplot
-    data={linearData}
-    xLabel={"Feature"}
-    yLabel={"Label"}
-    minX={-100}
-    maxX={100}
-    minY={-500}
-    maxY={500}
-    numTicks={11}
-    radius={3}
-    {lines}
+  <Plot
+    pointsData={linearData}
+    pathsData={lines}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -100,
+      maxX: 100,
+      minY: -500,
+      maxY: 500,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 3,
+      colors: ["var(--main-color-1)", "var(--main-color-2)"],
+      numTicks: 11,
+    }}
   />
   <p>The weight <Latex>w</Latex> is: {estimatedWeight}</p>
   <Slider bind:value={estimatedWeight} min={-200} max={200} />
