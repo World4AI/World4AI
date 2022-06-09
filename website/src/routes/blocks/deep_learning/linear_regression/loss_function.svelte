@@ -1,6 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Scatterplot from "$lib/Scatterplot.svelte";
+  import Plot from "$lib/Plot.svelte";
   import Slider from "$lib/Slider.svelte";
   import Latex from "$lib/Latex.svelte";
 
@@ -19,7 +19,40 @@
   let regressionLine = [];
   let lines = [];
   let rectangles = [];
-  function linesAndBoxes(w, b) {
+
+  let staticRegressionLine = [];
+  let staticLines = [];
+
+  function staticData() {
+    //regression line
+    let x1 = 0;
+    let y1 = b + w * x1;
+    let x2 = 60;
+    let y2 = b + w * x2;
+    let line = [
+      { x: x1, y: y1 },
+      { x: x2, y: y2 },
+    ];
+
+    staticRegressionLine.push(line);
+    staticLines.push(line);
+
+    data[0].forEach((point) => {
+      //lines
+      let x1 = point.x;
+      let x2 = point.x;
+      let y1 = point.y;
+      let y2 = b + w * x2;
+
+      let line = [
+        { x: x1, y: y1 },
+        { x: x2, y: y2 },
+      ];
+      staticLines.push(line);
+    });
+  }
+
+  function dynamicData(w, b) {
     regressionLine = [];
     lines = [];
     rectangles = [];
@@ -30,9 +63,13 @@
     let y1 = b + w * x1;
     let x2 = 60;
     let y2 = b + w * x2;
-    let line = { x1, x2, y1, y2 };
+    let line = [
+      { x: x1, y: y1 },
+      { x: x2, y: y2 },
+    ];
     regressionLine.push(line);
     lines.push(line);
+    rectangles.push(line);
 
     data[0].forEach((point) => {
       //lines
@@ -40,7 +77,11 @@
       let x2 = point.x;
       let y1 = point.y;
       let y2 = b + w * x2;
-      let line = { x1, x2, y1, y2 };
+
+      let line = [
+        { x: x1, y: y1 },
+        { x: x2, y: y2 },
+      ];
       lines.push(line);
 
       //sum squred error
@@ -49,14 +90,21 @@
       //rectangles
       let x = point.x;
       let y = y1 > y2 ? y1 : y2;
-      let width = Math.abs(y1 - y2);
-      let rect = { x, y, width, height: width };
+      let size = Math.abs(y1 - y2);
+      let rect = [
+        { x, y },
+        { x: x + size, y },
+        { x: x + size, y: y - size },
+        { x, y: y - size },
+        { x, y },
+      ];
       rectangles.push(rect);
     });
     mse = mse / data[0].length;
   }
 
-  $: linesAndBoxes(w, b);
+  staticData();
+  $: dynamicData(w, b);
 </script>
 
 <svelte:head>
@@ -81,37 +129,53 @@
     In our example we will use only 4 data points. A bigger dataset would
     otherwise clutter the illustrations.
   </p>
-  <Scatterplot
-    maxWidth={"600px"}
-    width={500}
-    height={500}
-    {data}
-    minX={0}
-    maxX={60}
-    mixY={0}
-    maxY={60}
-    numTicks={7}
-    xLabel={"Feature"}
-    yLabel={"Label"}
+  <Plot
+    pointsData={data}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 600,
+      minX: 0,
+      maxX: 60,
+      minY: 0,
+      maxY: 60,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      xTicks: [],
+      yTicks: [],
+      numTicks: 7,
+    }}
   />
   <p>
     We will start by drawing a 45 degree line from the (0,0) to the (60, 60)
     position. While this looks "OK", we do net have a way to compare that
     particular line with any other lines.
   </p>
-  <Scatterplot
-    maxWidth={"600px"}
-    width={500}
-    height={500}
-    {data}
-    minX={0}
-    maxX={60}
-    mixY={0}
-    maxY={60}
-    numTicks={7}
-    lines={regressionLine}
-    xLabel={"Feature"}
-    yLabel={"Label"}
+  <Plot
+    pointsData={data}
+    pathsData={staticRegressionLine}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 600,
+      minX: 0,
+      maxX: 60,
+      minY: 0,
+      maxY: 60,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      colors: ["var(--main-color-1)", "var(--main-color-2)"],
+      numTicks: 7,
+    }}
   />
 
   <p>
@@ -124,19 +188,24 @@
     > as the error. Visually we can draw that error as the line that connects the
     regression line with the true label.
   </p>
-  <Scatterplot
-    maxWidth={"600px"}
-    width={500}
-    height={500}
-    {data}
-    minX={0}
-    maxX={60}
-    mixY={0}
-    maxY={60}
-    numTicks={7}
-    {lines}
-    xLabel={"Feature"}
-    yLabel={"Label"}
+  <Plot
+    pointsData={data}
+    pathsData={staticLines}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 600,
+      minX: 0,
+      maxX: 60,
+      minY: 0,
+      maxY: 60,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      colors: ["var(--main-color-1)", "var(--main-color-2)"],
+      numTicks: 7,
+    }}
   />
   <p>
     If we tried to sum up all the errors in the dataset <Latex
@@ -162,22 +231,27 @@
     >. Try to use the example below and move the weight and the bias. Observe
     how the mean squared error changes based on the parameters.
   </p>
+
   <div class="flex-group">
     <div class="scatter">
-      <Scatterplot
-        maxWidth={"600px"}
-        width={500}
-        height={500}
-        {data}
-        minX={0}
-        maxX={60}
-        mixY={0}
-        maxY={60}
-        numTicks={7}
-        lines={regressionLine}
-        {rectangles}
-        xLabel={"Feature"}
-        yLabel={"Label"}
+      <Plot
+        pointsData={data}
+        pathsData={rectangles}
+        config={{
+          width: 500,
+          height: 500,
+          maxWidth: 600,
+          minX: 0,
+          maxX: 60,
+          minY: 0,
+          maxY: 60,
+          xLabel: "Feature",
+          yLabel: "Label",
+          padding: { top: 20, right: 40, bottom: 40, left: 60 },
+          radius: 5,
+          colors: ["var(--main-color-1)", "var(--main-color-2)"],
+          numTicks: 7,
+        }}
       />
     </div>
     <div class="text">

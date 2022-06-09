@@ -71,12 +71,16 @@
     config.yTicks = createTicks(config.minY, config.maxY);
   }
 
-  $: paths = [];
-  $: pathsData.forEach((data) => {
+  let paths = [];
+  $: {
     paths = [];
-    let path = `M${data.map((p) => `${xScale(p.x)},${yScale(p.y)}`).join("L")}`;
-    paths.push(path);
-  });
+    pathsData.forEach((data) => {
+      let path = `M${data
+        .map((p) => `${xScale(p.x)},${yScale(p.y)}`)
+        .join("L")}`;
+      paths.push(path);
+    });
+  }
 </script>
 
 <SvgContainer maxWidth="{config.maxWidth}px">
