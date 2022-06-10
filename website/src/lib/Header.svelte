@@ -172,7 +172,7 @@
     left: 0;
     top: 0;
     right: 0;
-    z-index: 2;
+    z-index: 10;
   }
 
   .flex-container {
