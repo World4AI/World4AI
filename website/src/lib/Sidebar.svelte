@@ -43,7 +43,7 @@
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--text-color);
-    z-index: 1;
+    z-index: 2;
     transition: all 1s;
   }
 
