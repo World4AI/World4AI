@@ -1,26 +1,9 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Scatterplot from "$lib/Scatterplot.svelte";
   import Plot from "$lib/Plot.svelte";
 
   const regressionData = [
-    [
-      { x: 0, y: 0 },
-      { x: 1, y: 0 },
-      { x: 2, y: 0 },
-      { x: 3, y: 0 },
-      { x: 4, y: 0 },
-    ],
-    [
-      { x: 6, y: 1 },
-      { x: 7, y: 1 },
-      { x: 8, y: 1 },
-      { x: 9, y: 1 },
-      { x: 10, y: 1 },
-    ],
-  ];
-  const regressionData2 = [
     [
       { x: 0, y: 0 },
       { x: -2, y: 0 },
@@ -90,14 +73,31 @@
     values between 0 and 1. These values can be regarded as probabilities for particular
     category.
   </p>
-  <Scatterplot
-    data={regressionData}
-    numTicks={6}
-    minX={0}
-    maxX={10}
-    xLabel={"Feature"}
-    yLabel={"Label"}
-    lines={[{ x1: 0, y1: 0, x2: 10, y2: 1 }]}
+  <Plot
+    pointsData={data.slice(2, data.length - 2)}
+    pathsData={[
+      { x: 0, y: 0 },
+      { x: 10, y: 1 },
+    ]}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: 0,
+      maxX: 10,
+      minY: 0,
+      maxY: 1,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 6,
+    }}
   />
   <p>
     We could draw a line just like the one above and at first glance this seems
@@ -112,16 +112,31 @@
     use the same regression line as above but introduce new unseen data our
     model would break apart.
   </p>
-  <Scatterplot
-    data={regressionData2}
-    numTicks={8}
-    minX={-2}
-    maxX={12}
-    minY={-0.2}
-    maxY={+1.2}
-    xLabel={"Feature"}
-    yLabel={"Label"}
-    lines={[{ x1: -2, y1: -0.2, x2: 12, y2: 1.2 }]}
+  <Plot
+    pointsData={data}
+    pathsData={[
+      { x: 0, y: 0 },
+      { x: 10, y: 1 },
+    ]}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -2,
+      maxX: 12,
+      minY: 0,
+      maxY: 1,
+      xLabel: "Feature",
+      yLabel: "Label",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 8,
+    }}
   />
   <div class="separator" />
 
@@ -133,7 +148,7 @@
   </p>
   <Plot
     pathsData={data}
-    pointsData={regressionData2}
+    pointsData={regressionData}
     config={{
       minX: -2,
       maxX: 12,

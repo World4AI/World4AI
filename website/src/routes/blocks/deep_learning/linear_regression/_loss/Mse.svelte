@@ -1,5 +1,4 @@
 <script>
-  import Scatterplot from "$lib/Scatterplot.svelte";
   import Plot from "$lib/Plot.svelte";
   import Latex from "$lib/Latex.svelte";
 
