@@ -1,48 +1,53 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Lineplot from "$lib/Lineplot.svelte";
+  import Plot from "$lib/Plot.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Mse from "./_loss/Mse.svelte";
+  import Slider from "$lib/Slider.svelte";
+  import Button from "$lib/Button.svelte";
 
-  let data = [];
-  let points = [];
-  let startingPoint = [];
-  let lines = [];
+  let parabolaData = [];
+  let parabolaWithSlopeData = [];
+  let parabolaPoint = [];
+  let parabolaStartingPoint = [];
 
   let pointX = 55;
   $: pointY = pointX ** 2;
   $: m = 2 * pointX;
   let alpha = 0.01;
 
-  startingPoint.push({ x: 55, y: 55 ** 2 });
+  parabolaStartingPoint.push({ x: 55, y: 55 ** 2 });
 
   // draw parabola x^2
   for (let i = -60; i <= 60; i++) {
     let x = i;
     let y = x ** 2;
-    data.push({ x, y });
+    parabolaData.push({ x, y });
   }
 
   function recalculatePoints() {
-    points = [];
-    points.push({ x: pointX, y: pointY });
+    parabolaPoint = [];
+    parabolaPoint.push({ x: pointX, y: pointY });
   }
 
-  function drawSlope() {
-    // draw slope
+  function calculateSlope() {
+    parabolaWithSlopeData = [[...parabolaData]];
     //derivative is 2x
     //the equation is y = mx + t, and we have m (2x) and y+x come from the current point
     //therefore we can find t and draw the line
     let m = 2 * pointX;
     let t = pointY - m * pointX;
-    lines = [];
-    lines.push({
-      x1: -100,
-      y1: m * -100 + t,
-      x2: 100,
-      y2: m * 100 + t,
-    });
+    parabolaWithSlopeData.push([
+      {
+        x: -100,
+        y: m * -100 + t,
+      },
+      {
+        x: 100,
+        y: m * 100 + t,
+      },
+    ]);
   }
 
   function gradientDescentStep() {
@@ -50,9 +55,9 @@
   }
 
   $: pointX && recalculatePoints();
-  $: pointX && drawSlope();
+  $: pointX && calculateSlope();
 
-  // gradient descent mse animation
+  // gradient descent mse
   const dataMse = [
     [
       { x: 5, y: 20 },
@@ -123,15 +128,26 @@
     that the <Latex>x</Latex> value of 0 produces the minimum <Latex>f(x)</Latex
     >.
   </p>
-  <Lineplot
-    {data}
-    minX={-80}
-    maxX={80}
-    minY={0}
-    maxY={3000}
-    numTicks={5}
-    xLabel={"x"}
-    yLabel={"f (x)"}
+  <Plot
+    pathsData={parabolaData}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -80,
+      maxX: 80,
+      minY: 0,
+      maxY: 3000,
+      xLabel: "x",
+      yLabel: "f(x)",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 5,
+    }}
   />
   <p>
     In machine learning we rarely have the luxury of being able to visually find
@@ -140,16 +156,27 @@
     therefore start with a random <Latex>x</Latex> value. In the example below we
     pick 55.
   </p>
-  <Lineplot
-    {data}
-    points={startingPoint}
-    minX={-80}
-    maxX={80}
-    minY={0}
-    maxY={3000}
-    numTicks={5}
-    xLabel={"x"}
-    yLabel={"f(x)"}
+  <Plot
+    pathsData={parabolaData}
+    pointsData={parabolaStartingPoint}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -80,
+      maxX: 80,
+      minY: 0,
+      maxY: 3000,
+      xLabel: "x",
+      yLabel: "f(x)",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 5,
+    }}
   />
   <p>
     Next we calculate the derivative of <Latex>f(x)</Latex> with respect to <Latex
@@ -160,18 +187,30 @@
     is 110. We can draw the line at the starting point to visualize the
     derivative.
   </p>
-  <Lineplot
-    {data}
-    {points}
-    {lines}
-    minX={-80}
-    maxX={80}
-    minY={0}
-    maxY={3000}
-    numTicks={5}
-    xLabel={"x"}
-    yLabel={"f(x)"}
+
+  <Plot
+    pathsData={parabolaWithSlopeData}
+    pointsData={parabolaStartingPoint}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -80,
+      maxX: 80,
+      minY: 0,
+      maxY: 3000,
+      xLabel: "x",
+      yLabel: "f(x)",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 5,
+    }}
   />
+
   <p>
     The derivative shows us the direction in which we can shift <Latex>x</Latex
     >, to be exact it gives us the direction of the steepes descent and ascent.
@@ -197,44 +236,49 @@
     gradient descent.
   </p>
 
-  <Lineplot
-    {data}
-    {points}
-    {lines}
-    minX={-80}
-    maxX={80}
-    minY={0}
-    maxY={3000}
-    numTicks={5}
-    xLabel={"x"}
-    yLabel={"f(x)"}
+  <Plot
+    pathsData={parabolaWithSlopeData}
+    pointsData={parabolaPoint}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: -80,
+      maxX: 80,
+      minY: 0,
+      maxY: 3000,
+      xLabel: "x",
+      yLabel: "f(x)",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      colors: [
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--text-color)",
+      ],
+      numTicks: 5,
+    }}
   />
-  <form>
-    <div class="form-group">
-      <label for="alpha"><Latex>\alpha</Latex></label>
-      <input id="alpha" bind:value={alpha} min="0" step="0.01" type="number" />
+  <div class="flex-container">
+    <div class="flex-container left">
+      <Latex>\alpha</Latex>
+      <p>{alpha}</p>
     </div>
-    <div class="form-group">
-      <label for="alpha"
-        ><Latex>{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex></label
-      >
-      <div class="form-box">{m}</div>
+    <Slider min={0.01} max={0.1} bind:value={alpha} step={0.01} />
+  </div>
+  <div class="flex-container">
+    <div class="flex-container left">
+      <Latex>x</Latex>
+      <p>{pointX.toFixed(2)}</p>
     </div>
-    <div class="form-group">
-      <label for="x"><Latex>x</Latex></label>
-      <input
-        id="x"
-        bind:value={pointX}
-        min="-80"
-        max="80"
-        step="1"
-        type="number"
-      />
-    </div>
-    <button type="button" on:click|preventDefault={gradientDescentStep}
-      >Take Gradient Descent Step</button
-    >
-  </form>
+    <Slider min={-60} max={60} bind:value={pointX} step={1} />
+  </div>
+  <div class="flex-container solo">
+    <Latex>{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex>
+    <p>{m.toFixed(2)}</p>
+  </div>
+  <div class="flex-container">
+    <Button value="Take Gradient Descent Step" on:click={gradientDescentStep} />
+  </div>
 
   <p>
     You can learn several things if you play with the example. If you try
@@ -348,15 +392,13 @@ x_2
       >y</Latex
     >.
   </p>
-  <Highlight>
-    <Latex
-      >{String.raw`\large \arg\min_{\mathbf{w}, b} MSE=(\hat{y} - y)^2`}</Latex
-    >
-    <br />
-    <Latex
-      >{String.raw`\large \arg\min_{\mathbf{w}, b} MSE=(\mathbf{w^Tx} + b - y)^2`}</Latex
-    >
-  </Highlight>
+  <Latex
+    >{String.raw`\large \arg\min_{\mathbf{w}, b} MSE=(\hat{y} - y)^2`}</Latex
+  >
+  <br />
+  <Latex
+    >{String.raw`\large \arg\min_{\mathbf{w}, b} MSE=(\mathbf{w^Tx} + b - y)^2`}</Latex
+  >
   <p>
     Just as in the examples above we will use gradient descent to find the
     minimim of the mean squared error. Yet there is a significant difference in
@@ -484,9 +526,8 @@ x_2
       >m</Latex
     >.
   </p>
-  <Highlight>
-    <Latex
-      >{String.raw`
+  <Latex
+    >{String.raw`
 \begin{aligned}
 \large 
 & MSE=\dfrac{1}{2m}\sum_i^m (\hat{y}^{(i)} - y^{(i)})^2 \\
@@ -494,8 +535,7 @@ x_2
 & \dfrac{\delta}{\delta b} = \dfrac{1}{m}\sum^m_i\dfrac{\delta}{\delta b}^{(i)}
 \end{aligned}
     `}</Latex
-    >
-  </Highlight>
+  >
   <p>
     This approach of using the whole dataset for gradient descent is called <Highlight
       >batch</Highlight
@@ -516,43 +556,23 @@ x_2
   </p>
 
   <Mse data={dataMse} {w} {b} />
-  <form>
-    <div class="form-group">
-      <label for="alpha-w"><Latex>\alpha</Latex></label>
-      <input
-        id="alpha-w"
-        bind:value={mseAlpha}
-        min="0"
-        step="0.01"
-        type="number"
-      />
+  <div class="flex-container">
+    <div class="flex-container left">
+      <Latex>\alpha</Latex>
+      <p>{mseAlpha}</p>
     </div>
-    <div class="form-group">
-      <label for="epochs">Epochs</label>
-      <input
-        id="epochs"
-        bind:value={numEpochs}
-        min="0"
-        step="100"
-        type="number"
-      />
+    <Slider min={0.0001} max={0.01} bind:value={mseAlpha} step={0.0001} />
+  </div>
+  <div class="flex-container">
+    <div class="flex-container left">
+      <p>Epochs:</p>
+      <p>{numEpochs}</p>
     </div>
-    <div class="form-group">
-      <label for="w"><Latex>{String.raw`w`}</Latex></label>
-      <div id="w" class="form-box">{w}</div>
-    </div>
-    <div class="form-group">
-      <label for="b"><Latex>{String.raw`b`}</Latex></label>
-      <div id="b" class="form-box">{b}</div>
-    </div>
-    <div class="form-group">
-      <label for="mse"><Latex>{String.raw`MSE`}</Latex></label>
-      <div id="mse" class="form-box">{mse}</div>
-    </div>
-    <button type="button" on:click|preventDefault={mseGradientDescentStep}
-      >Take Gradient Descent Step</button
-    >
-  </form>
+    <Slider min={1} max={100} bind:value={numEpochs} step={1} />
+  </div>
+  <div class="flex-container" on:click={mseGradientDescentStep}>
+    <Button value="Take Gradient Descent Step" />
+  </div>
 
   <h3>Stochastic Gradient Descent</h3>
   <p>
@@ -586,44 +606,21 @@ x_2
 </Container>
 
 <style>
-  input,
-  .form-box,
-  button {
-    background-color: var(--background-color);
-    outline: none;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    padding: 10px;
-    font-size: 15px;
-    width: 100%;
-  }
-
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    opacity: 0;
-  }
-
-  button {
-    cursor: pointer;
-  }
-  .form-group {
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  .flex-container {
     display: flex;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-    width: 100px;
+    justify-content: center;
+    align-items: center;
   }
 
-  button:hover {
-    color: var(--main-color-1);
+  .left p {
+    margin-left: 10px;
+  }
+  .left {
+    min-width: 110px;
+    margin-right: 10px;
+  }
+
+  .solo p {
+    padding: 0px 10px;
   }
 </style>
