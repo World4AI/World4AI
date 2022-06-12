@@ -136,7 +136,7 @@
     > with respect to the weight vector <Latex
       >{String.raw`\nabla_{\mathbf{x}}`}</Latex
     > and the derivative with respect to the bias <Latex
-      >{String.raw`\dfrac{\delta}{\delta b} H(p,x)`}</Latex
+      >{String.raw`\dfrac{\partial}{\partial b} H(p,x)`}</Latex
     >.
   </p>
   <p>
@@ -147,7 +147,7 @@
     >{String.raw`\large \mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w \\`}</Latex
   >
   <Latex
-    >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\delta}{\delta b} \\`}</Latex
+    >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} \\`}</Latex
   >
   <p>
     That meas that all we have to do is to figure out how we can calculate the
@@ -161,21 +161,21 @@
   <div class="separator" />
   <Latex
     >{String.raw`
-    \dfrac{\delta}{\delta a}H(p, q) = -\Big(y^{(i)} \dfrac{1}{a} - (1 - y^{(i)}) \dfrac{1}{1 - a}\Big)
+    \dfrac{\partial}{\partial a}H(p, q) = -\Big(y^{(i)} \dfrac{1}{a} - (1 - y^{(i)}) \dfrac{1}{1 - a}\Big)
   `}</Latex
   >
   <div class="separator" />
   <Latex>{String.raw`a = \sigma(z) = \dfrac{1}{1 + e^{-z}}`}</Latex>
   <div class="separator" />
   <Latex
-    >{String.raw`\dfrac{\delta}{\delta z}a = \sigma(z) (1 - \sigma(z)) `}</Latex
+    >{String.raw`\dfrac{\partial}{\partial z}a = \sigma(z) (1 - \sigma(z)) `}</Latex
   >
   <div class="separator" />
   <Latex>{String.raw`z = \mathbf{w^Tx}+b`}</Latex>
   <div class="separator" />
-  <Latex>{String.raw`\dfrac{\delta}{\delta w_j} z = x_j`}</Latex>
+  <Latex>{String.raw`\dfrac{\partial}{\partial w_j} z = x_j`}</Latex>
   <div class="separator" />
-  <Latex>{String.raw`\dfrac{\delta}{\delta b} z = 1`}</Latex>
+  <Latex>{String.raw`\dfrac{\partial}{\partial b} z = 1`}</Latex>
   <div class="separator" />
 
   <Plot

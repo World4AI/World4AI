@@ -319,8 +319,10 @@
     derivative with respect to <Latex>x</Latex>
     <Latex>{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex> we need to calculate
     the partial derivatives with respect to all variables, in our case
-    <Latex>{String.raw`\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_1}f`}</Latex>
-    and <Latex>{String.raw`\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_2}f`}</Latex
+    <Latex>{String.raw`\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_1}f`}</Latex
+    >
+    and <Latex
+      >{String.raw`\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_2}f`}</Latex
     >. For convenience we put the partial derivatives and the variables into
     their corresponding vectors.
   </p>
@@ -339,8 +341,8 @@ x_2
 \large
 \mathbf{\nabla} = 
 \begin{bmatrix}
-\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_1}f \\
-\dfrac{\mathrm{\delta}}{\mathrm{\delta}x_2}f
+\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_1}f \\ 
+\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_2}f
 \end{bmatrix}
   `}
   </Latex>
@@ -431,17 +433,17 @@ x_2
     utilizing <Latex>a</Latex> defined above.
   </p>
   <Latex
-    >{String.raw`\large \dfrac{\delta MSE}{\delta w_j} = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta w_j}`}</Latex
+    >{String.raw`\large \dfrac{\partial MSE}{\partial w_j} = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial w_j}`}</Latex
   >
   <Latex
-    >{String.raw`\large \dfrac{\delta MSE}{\delta b} = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta b}`}</Latex
+    >{String.raw`\large \dfrac{\partial MSE}{\partial b} = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial b}`}</Latex
   >
   <p>
     Using basic rules of calculus we derive the following partial derivatives.
   </p>
-  <Latex>{String.raw`\large \dfrac{\delta MSE}{\delta a} = 2a`}</Latex>
-  <Latex>{String.raw`\large \dfrac{\delta a}{\delta w_j} = x_j`}</Latex>
-  <Latex>{String.raw`\large \dfrac{\delta a}{\delta b} = 1`}</Latex>
+  <Latex>{String.raw`\large \dfrac{\partial MSE}{\partial a} = 2a`}</Latex>
+  <Latex>{String.raw`\large \dfrac{\partial a}{\partial w_j} = x_j`}</Latex>
+  <Latex>{String.raw`\large \dfrac{\partial a}{\partial b} = 1`}</Latex>
   <p>
     By applying the chain rule we end up with the desired partial derivatives.
   </p>
@@ -449,7 +451,7 @@ x_2
     >{String.raw`
   \large 
   \begin{aligned}
-  \dfrac{\delta MSE}{\delta w_j} & = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta w_j} \\
+  \dfrac{\partial MSE}{\partial w_j} & = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial w_j} \\
 & = 2ax_j \\
 & = 2x_j (\mathbf{w^Tx} + b - y)
   \end{aligned}
@@ -459,7 +461,7 @@ x_2
     >{String.raw`
   \large 
   \begin{aligned}
-  \dfrac{\delta MSE}{\delta b} & = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta b} \\
+  \dfrac{\partial MSE}{\partial b} & = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial b} \\
 & = 2a * 1 \\
 & = 2 (\mathbf{w^Tx} + b - y)
   \end{aligned}
@@ -481,7 +483,7 @@ x_2
     >{String.raw`
   \large 
   \begin{aligned}
-  \dfrac{\delta MSE}{\delta w_j} & = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta w_j} \\
+  \dfrac{\partial MSE}{\partial w_j} & = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial w_j} \\
 & = \dfrac{1}{2}2a * w_j \\
 & = x_j (\mathbf{w^Tx} + b - y)
   \end{aligned}
@@ -491,7 +493,7 @@ x_2
     >{String.raw`
   \large 
   \begin{aligned}
-  \dfrac{\delta MSE}{\delta b} & = \dfrac{\delta MSE}{\delta a} \dfrac{\delta a}{\delta b} \\
+  \dfrac{\partial MSE}{\partial b} & = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial b} \\
 & = \dfrac{1}{2}2a * 1 \\
 & =  (\mathbf{w^Tx} + b - y)
   \end{aligned}
@@ -508,7 +510,7 @@ x_2
     >{String.raw`\large \mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w \\`}</Latex
   >
   <Latex
-    >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\delta}{\delta b} `}</Latex
+    >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} `}</Latex
   >
   <p>
     While didactically it makes sense to learn how we can calculate the gradient
@@ -532,7 +534,7 @@ x_2
 \large 
 & MSE=\dfrac{1}{2m}\sum_i^m (\hat{y}^{(i)} - y^{(i)})^2 \\
 & \mathbf{\nabla}_{w} = \dfrac{1}{m} \sum_i^m\mathbf{\nabla}^{(i)}_w \\
-& \dfrac{\delta}{\delta b} = \dfrac{1}{m}\sum^m_i\dfrac{\delta}{\delta b}^{(i)}
+& \dfrac{\partial}{\partial b} = \dfrac{1}{m}\sum^m_i\dfrac{\partial}{\partial b}^{(i)}
 \end{aligned}
     `}</Latex
   >

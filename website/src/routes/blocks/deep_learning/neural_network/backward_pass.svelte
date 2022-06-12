@@ -181,9 +181,9 @@
     Just two small hidden layers and an output layer create a complex nested
     expression and yet we are expected to exactly calculate all the derivatives
     of the form <Latex
-      >{String.raw`\dfrac{\delta}{\delta w^{<l>}_{k,t}} L(\mathbf{x,b})`}</Latex
+      >{String.raw`\dfrac{\partial}{\partial w^{<l>}_{k,t}} L(\mathbf{x,b})`}</Latex
     > and <Latex
-      >{String.raw`\dfrac{\delta}{\delta b^{<l>}_{k}} L(\mathbf{x,b})`}</Latex
+      >{String.raw`\dfrac{\partial}{\partial b^{<l>}_{k}} L(\mathbf{x,b})`}</Latex
     >, where the superscript <Latex>{String.raw`<l>`}</Latex> is the layer in the
     neural network, <Latex>k</Latex> is the row in the weight matrix and <Latex
       >t</Latex
