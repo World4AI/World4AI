@@ -172,7 +172,7 @@
     already existing autodiff packages. You will save a lot of time and
     headaches if you rely on mature implementations like <a
       target="_blank"
-      href=" https://pytorch.org/tutorials/beginner/former_torchies/autograd_tutorial_old.html#sphx-glr-beginner-former-torchies-autograd-tutorial-old-py"
+      href="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
       >autograd</a
     > from PyTorch.
   </p>
