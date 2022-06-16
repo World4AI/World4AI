@@ -3,9 +3,9 @@
   import Header from "$lib/Header.svelte";
 </script>
 
-<div class="container">
-  <Header />
-  <main>
+<Header />
+<main>
+  <article>
     <slot />
-  </main>
-</div>
+  </article>
+</main>
