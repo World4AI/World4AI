@@ -484,7 +484,7 @@ x_2
   \large 
   \begin{aligned}
   \dfrac{\partial MSE}{\partial w_j} & = \dfrac{\partial MSE}{\partial a} \dfrac{\partial a}{\partial w_j} \\
-& = \dfrac{1}{2}2a * w_j \\
+& = \dfrac{1}{2}2a * x_j \\
 & = x_j (\mathbf{w^Tx} + b - y)
   \end{aligned}
   `}</Latex
