@@ -56,9 +56,10 @@
 <div class="separator" />
 <Container>
   <p>
-    Machine learning is often divided into specific categories, such that the
-    category depends on the amount of human supervision that has to be contained
-    in the data for the algorithm to work.
+    Machine learning is often divided into specific categories. Those
+    classifications are usually done based on the level of human supervision
+    that is required for the algorithm to work. Those classifications are
+    ubiquitous nowadays, so knowing at least some basic terminology is a must.
   </p>
   <div class="separator" />
 
@@ -67,12 +68,12 @@
     As the name supervised learning suggests, there is a human supervisor who
     labels the input data with the corresponding correct output. The different
     inputs are called <Highlight>features</Highlight>, while the outputs are
-    called <Highlight>labels</Highlight>.
+    called <Highlight>labels</Highlight> or <Highlight>targets</Highlight>.
   </p>
   <p>
     Let us for example assume that we want to estimate the price of a house
     based on the location and the size of the house. In that case the location
-    and the size are the features, while the price is the label.
+    and the size are the features, while the price is the target.
   </p>
   <Table {header} {data} />
   <p>
@@ -82,13 +83,13 @@
   </p>
   <p>
     In a classification task there is a finite number of classes that the
-    machine learning algorithm needs to determine based on the labels. The usual
-    example that is brought up in the machine learning literature is a spam
-    filter. Based on the header and content of the email the algorithm needs to
-    decide whether the email is ham or spam.
+    machine learning algorithm needs to determine based on the features. The
+    usual example that is brought up in the machine learning literature is a
+    spam filter. Based on the header and content of the email the algorithm
+    needs to decide whether the email is ham or spam.
   </p>
 
-  <div class="background-blue">
+  <div class="light-blue">
     <SvgContainer maxWidth={"700px"}>
       <svg
         version="1.1"
@@ -218,7 +219,7 @@
     is a regression task.
   </p>
 
-  <div class="background-yellow">
+  <div class="yellow">
     <SvgContainer maxWidth={"700px"}>
       <svg
         version="1.1"
@@ -303,6 +304,11 @@
       </svg>
     </SvgContainer>
   </div>
+  <p>
+    In machine learning literature it is preferable to use the term label when
+    we deal with classification tasks and the term target when we deal with
+    regression tasks, but some authors might use those terms interchangebly.
+  </p>
   <div class="separator" />
 
   <h2>Unsupervised Learning</h2>
@@ -350,9 +356,9 @@
 
   <h2>Self-supervised Learning</h2>
   <p>
-    Self-supervised learning is in a a way supervised learning, yet the labels
-    are not determined by a human supervisor, but are derived directly from the
-    features.
+    Self-supervised learning can be seen as supervised learning, where the
+    labels are not determined by a human supervisor, but are derived directly
+    from the features of the data.
   </p>
   <p>Let us look for example at the sentence below.</p>
   <div class="sentence">
@@ -372,16 +378,27 @@
     <span class="word">...</span>
   </div>
   <p>
-    The algorithm needs to learn to predict the masked word, which becomes the
-    label in our task. We feed the model with millions of such examples and the
-    better the model gets at this task, the more the model gets knowledgeble
-    about the english language. That knowledge can eventually be used in
-    supervised learning tasks, where you do not posess millions of examples.
+    The algorithm needs to learn to predict the masked word, which essentially
+    becomes the label in our task. We feed the model with millions of such
+    examples during the training process. Over time the model gets better and
+    better at this task, which would indicate some knowledge about the structure
+    of the english language. That pretrained model and by extension that
+    knowledge about the english language can eventually be used in a supervised
+    learning task like sentiment analysis, where you have only limited amount
+    data.
   </p>
   <p>
-    Over the last five years self-supervised learning has become extremely
-    successful in machine learning. While the original ideas were developed for
-    text, more recently self-supervised learning has also been used for computer
+    The process of learning a general task with a huge amount of data and using
+    the same trained model which is recalibrated for a more specific task is
+    called <Highlight>transfer learning</Highlight>. Self-supervised learning
+    excels at transfer learning. Companies spend often millions of dollars to
+    train such language models and in many cases they provide those to the
+    general public, which can reuse them for their particular tasks.
+  </p>
+  <p>
+    Self supervised learning is not limited to natural language processing.
+    While the original ideas were developed for text, more recently
+    self-supervised learning has also been applied successfully to computer
     vision.
   </p>
   <div class="separator" />
@@ -394,9 +411,9 @@
   </p>
   <CartPole showState={false} />
   <p>
-    The cartpole is probably the most well studied reinforcement learning task.
+    The cartpole is probably the most well known reinforcement learning task.
     The agent needs to learn to balance the pole by moving the cart left and
-    right. Each single step the agent succeeds the agent gets a reward of 1. If
+    right. Each single step the agent succeeds, the agent gets a reward of 1. If
     the pole gets below a certain angle or the cart moves outside the screen the
     agent fails and doesn't get any more rewards.
   </p>
@@ -409,14 +426,6 @@
     border: 1px solid var(--text-color);
     margin-right: 10px;
     padding: 0 5px;
-    background-color: var(--main-color-3);
-  }
-
-  .background-blue {
-    background-color: var(--main-color-4);
-  }
-
-  .background-yellow {
     background-color: var(--main-color-3);
   }
 </style>
