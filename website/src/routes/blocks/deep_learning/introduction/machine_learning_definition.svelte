@@ -309,11 +309,7 @@
     shown in the interactive example below.
   </p>
 
-  <PlayButton
-    on:click={handleNormalProgramming}
-    disabled={disabledNormal}
-    value="Simulate Process"
-  />
+  <PlayButton on:click={handleNormalProgramming} disabled={disabledNormal} />
   <SvgContainer maxWidth={"800px"}>
     <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -497,11 +493,7 @@
     third iteration the program produces the desired results (after that the
     example is reset).
   </p>
-  <PlayButton
-    on:click={handleMLProgramming}
-    disabled={disabledML}
-    value="Simulate Process"
-  />
+  <PlayButton on:click={handleMLProgramming} disabled={disabledML} />
   <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
     <text x="10" y="20" style="line-height:1.25" xml:space="preserve"
       ><tspan x="0" y="160">Iteration Nr. {step}</tspan></text
