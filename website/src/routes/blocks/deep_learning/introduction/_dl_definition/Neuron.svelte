@@ -1,7 +1,7 @@
 <script>
   import { tweened } from "svelte/motion";
   import { draw } from "svelte/transition";
-  import Button from "$lib/Button.svelte";
+  import PlayButton from "$lib/PlayButton.svelte";
   let showCalculation = false;
   let disabled = false;
 
@@ -38,6 +38,7 @@
   }
 </script>
 
+<PlayButton {disabled} on:click={simulate} />
 <svg version="1.1" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="DotS" overflow="visible" orient="auto">
@@ -185,4 +186,3 @@
     />
   </g>
 </svg>
-<Button value="Simulate Neuron" {disabled} on:click={simulate} />

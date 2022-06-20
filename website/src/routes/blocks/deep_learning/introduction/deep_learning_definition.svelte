@@ -249,8 +249,8 @@
     automatically, without being told what the subproblems are.
   </p>
   <p>
-    The traditional neural networks are structured in a layered architecture.
-    Each neuron takes the outputs from all neurons in the previous layer as its'
+    Traditional neural networks are structured in a layered architecture. Each
+    neuron takes the outputs from all neurons in the previous layer as its'
     inputs. Similarly the single output of each neuron is used as an input for
     each neuron of the next layer. Yet even though the input for each of the
     neurons in the same layer are the same, the outputs are different, because
@@ -490,24 +490,24 @@
   <p>
     The very first layer in a neural network is called <Highlight
       >input layer</Highlight
-    >. The input layer does involve any calculations. It is exclusively used as
-    the input to the neurons in the next layer. The last layer is called <Highlight
-      >output layer</Highlight
-    >. The intermediary layers are called <Highlight>hidden layers</Highlight>.
+    >. The input layer does involve any calculations. It holds the features of
+    the dataset and is exclusively used as the input to the neurons in the next
+    layer. The last layer is called <Highlight>output layer</Highlight>. The
+    intermediary layers are called <Highlight>hidden layers</Highlight>.
   </p>
   <div class="separator" />
 
   <h2>Deep Architecture</h2>
   <p>
-    The term deep learning implies a deep architecture, meaning that we expect a
-    neural network to consist of at least two hidden layers. Most modern neural
-    networks have vastly more layers. Historically it was extremely hard to
-    train deep neural networks and more hidden layers did not improve the
-    performance of a neural network. On the contrary, more layers usually
-    decreased the performance, because the learning algorithm broke apart once
-    the distance that information needs to travel between neurons increased
-    beyond a certain threshhold. The success of deep neural networks is a
-    relatively new phenomenon.
+    The term deep learning implies a deep architecture, which means that we
+    expect a neural network to consist of at least two hidden layers. Most
+    modern neural networks have vastly more layers, but historically it was
+    extremely hard to train deep neural networks. More hidden layers did not
+    improve the performance of a neural network automatically. On the contrary,
+    more layers usually decreased the performance, because the learning
+    algorithm broke apart once the distance that information needs to travel
+    between neurons increased beyond a certain threshhold. The success of deep
+    neural networks is a relatively new phenomenon.
   </p>
   <div class="separator" />
 
@@ -517,13 +517,13 @@
   <p class="info">
     Feature engineering is the process of creating new features out of other
     (less relevant) data using human domain knowledge. This process tends to
-    improve the performance of a traditional machine learning algorithm.
+    improve the performance of a traditional machine learning algorithms.
   </p>
 
   <p>
-    Let us imagine a regression task, where we try to predict the price of a
-    house based on the location and the size features. While the location seems
-    to have an impact on the price of a house, the representation of the
+    Let us consider a regression task, where we try to predict the price of a
+    house based on the location and the size of the house. While the location
+    seems to have an impact on the price of a house, the representation of the
     location is relatively cryptic, even for us humans.
   </p>
   <Table {header} {data} />
@@ -539,10 +539,10 @@
   <p>
     Deep learning on the other hand must not involve any active feature
     engineering. Due to its hierarchical (layered) nature, deep neural networks
-    are able to learn useful representations (features) of input variables on
-    their own. We can for example imagine that the first layers are responsible
-    for learning those representations (e.g. city center), while the latter
-    layers are responsible for the calculation of labels (e.g. price).
+    are able to learn useful representations (hidden features) of input
+    variables on their own. We can for example imagine that the first layers are
+    responsible for learning those representations (e.g. city center), while the
+    latter layers are responsible for the calculation of labels (e.g. price).
   </p>
 
   <div class="separator" />
