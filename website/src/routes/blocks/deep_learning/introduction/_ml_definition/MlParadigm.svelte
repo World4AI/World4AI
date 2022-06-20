@@ -1,37 +1,5 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import Button from "$lib/Button.svelte";
-  import { draw } from "svelte/transition";
-
-  let showCodeInput = true;
-  let showFunctionInput = true;
-  let showFunctionOutput = true;
-  let showEvaluate = true;
-  let showImprove = true;
-
-  let disabled = false;
-
-  function runSimulation() {
-    disabled = true;
-    // input code
-    showCodeInput = false;
-    // input to function
-    showFunctionInput = false;
-    // output from function
-    showFunctionOutput = false;
-    // output feedback
-    showEvaluate = false;
-    showImprove = false;
-
-    setTimeout(() => {
-      showCodeInput = true;
-      showFunctionInput = true;
-      showFunctionOutput = true;
-      showEvaluate = true;
-      showImprove = true;
-      disabled = false;
-    }, 1000);
-  }
 </script>
 
 <SvgContainer maxWidth={"500px"}>
@@ -114,43 +82,29 @@
           <rect x="135" y="215" width="15" height="5" ry="0" />
         </g>
       </g>
-      {#if showFunctionInput}
-        <g
-          id="function-inputs"
-          transform="translate(0,-26)"
-          fill="none"
-          stroke="#000"
-        >
-          <path
-            in:draw={{ duration: 500, delay: 1000 }}
-            d="m8 224h70"
-            marker-start="url(#DotM)"
-          />
-          <path
-            in:draw={{ duration: 500, delay: 1000 }}
-            d="m8 236h70"
-            marker-start="url(#DotM)"
-          />
-          <path
-            in:draw={{ duration: 500, delay: 1000 }}
-            d="m137 302v-50"
-            fill="none"
-            marker-start="url(#DotM)"
-            stroke="#000"
-            stroke-width="1px"
-          />
-        </g>
-      {/if}
-      {#if showCodeInput}
+      <g
+        id="function-inputs"
+        transform="translate(0,-26)"
+        fill="none"
+        stroke="#000"
+      >
+        <path d="m8 224h70" marker-start="url(#DotM)" />
+        <path d="m8 236h70" marker-start="url(#DotM)" />
         <path
-          id="code-input"
-          in:draw={{ duration: 500 }}
-          d="m138 116v44"
+          d="m137 302v-50"
           fill="none"
-          marker-end="url(#TriangleOutM)"
+          marker-start="url(#DotM)"
           stroke="#000"
+          stroke-width="1px"
         />
-      {/if}
+      </g>
+      <path
+        id="code-input"
+        d="m138 116v44"
+        fill="none"
+        marker-end="url(#TriangleOutM)"
+        stroke="#000"
+      />
       <g id="code" transform="translate(0,18)" stroke="#000">
         <rect
           x="108"
@@ -172,36 +126,27 @@
           <path d="m132 9 5 5-5 5" />
         </g>
       </g>
-      {#if showFunctionOutput}
-        <path
-          in:draw={{ duration: 500, delay: 2000 }}
-          d="m198 200h122"
-          fill="none"
-          marker-end="url(#marker2202)"
-          stroke="#000"
-        />
-      {/if}
-      {#if showEvaluate}
-        <path
-          in:draw={{ duration: 500, delay: 3000 }}
-          d="m45 151.67v-141.67h220v165"
-          fill="none"
-          marker-end="url(#DotM)"
-          marker-start="url(#DotM)"
-          stroke="#000"
-          stroke-width="1px"
-        />
-      {/if}
-      {#if showImprove}
-        <path
-          in:draw={{ duration: 500, delay: 4000 }}
-          d="m320 210v75h-175"
-          fill="none"
-          marker-end="url(#TriangleOutM)"
-          stroke="#000"
-          stroke-width="1px"
-        />
-      {/if}
+      <path
+        d="m198 200h122"
+        fill="none"
+        marker-end="url(#marker2202)"
+        stroke="#000"
+      />
+      <path
+        d="m45 151.67v-141.67h220v165"
+        fill="none"
+        marker-end="url(#DotM)"
+        marker-start="url(#DotM)"
+        stroke="#000"
+        stroke-width="1px"
+      />
+      <path
+        d="m320 210v75h-175"
+        fill="none"
+        marker-end="url(#TriangleOutM)"
+        stroke="#000"
+        stroke-width="1px"
+      />
       <g fill="#000000" font-size="16.673px">
         <text
           x="12.546965"
@@ -267,7 +212,6 @@
     </g>
   </svg>
 </SvgContainer>
-<Button on:click={runSimulation} value="Simulate Process" />
 
 <style>
   text {

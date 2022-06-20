@@ -1,33 +1,5 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import { draw } from "svelte/transition";
-  import Button from "$lib/Button.svelte";
-
-  let showCodeInput = true;
-  let showFunctionInput = true;
-  let showFunctionOutput = true;
-  let showFeedback = true;
-  let disabled = false;
-
-  function runSimulation() {
-    disabled = true;
-    // input code
-    showCodeInput = false;
-    // input to function
-    showFunctionInput = false;
-    // output from function
-    showFunctionOutput = false;
-    // output feedback
-    showFeedback = false;
-
-    setTimeout(() => {
-      showCodeInput = true;
-      showFunctionInput = true;
-      showFunctionOutput = true;
-      showFeedback = true;
-      disabled = false;
-    }, 1000);
-  }
 </script>
 
 <div class="flex-container">
@@ -121,34 +93,17 @@
             <rect x="135" y="215" width="15" height="5" ry="0" />
           </g>
         </g>
-        {#if showFunctionInput}
-          <g id="function-inputs" fill="none">
-            <path
-              in:draw={{ duration: 500, delay: 1000 }}
-              d="m8 214h70"
-              marker-start="url(#DotM)"
-            />
-            <path
-              in:draw={{ duration: 500, delay: 1000 }}
-              d="m8 234h70"
-              marker-start="url(#DotM)"
-            />
-            <path
-              in:draw={{ duration: 500, delay: 1000 }}
-              d="m8 254h70"
-              marker-start="url(#DotM)"
-            />
-          </g>
-        {/if}
-        {#if showCodeInput}
-          <path
-            in:draw={{ duration: 500 }}
-            id="code-input"
-            d="m138 104v71"
-            fill="none"
-            marker-end="url(#TriangleOutM)"
-          />
-        {/if}
+        <g id="function-inputs" fill="none">
+          <path d="m8 214h70" marker-start="url(#DotM)" />
+          <path d="m8 234h70" marker-start="url(#DotM)" />
+          <path d="m8 254h70" marker-start="url(#DotM)" />
+        </g>
+        <path
+          id="code-input"
+          d="m138 104v71"
+          fill="none"
+          marker-end="url(#TriangleOutM)"
+        />
         <g id="code">
           <rect
             x="108"
@@ -170,24 +125,18 @@
             <path d="m132 9 5 5-5 5" />
           </g>
         </g>
-        {#if showFunctionOutput}
-          <path
-            in:draw={{ duration: 500, delay: 1500 }}
-            id="output"
-            d="m201 234h122"
-            fill="none"
-            marker-end="url(#marker2202)"
-          />
-        {/if}
-        {#if showFeedback}
-          <path
-            in:draw={{ duration: 500, delay: 2500 }}
-            id="feedback"
-            d="m323 225v-211h-145"
-            fill="none"
-            marker-end="url(#TriangleOutM)"
-          />
-        {/if}
+        <path
+          id="output"
+          d="m201 234h122"
+          fill="none"
+          marker-end="url(#marker2202)"
+        />
+        <path
+          id="feedback"
+          d="m323 225v-211h-145"
+          fill="none"
+          marker-end="url(#TriangleOutM)"
+        />
       </g>
       <g fill="#000000">
         <text
@@ -225,7 +174,6 @@
       </g>
     </svg>
   </SvgContainer>
-  <Button value="Simulate Process" {disabled} on:click={runSimulation} />
 </div>
 
 <style>

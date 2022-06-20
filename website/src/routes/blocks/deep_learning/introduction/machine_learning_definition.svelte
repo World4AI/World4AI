@@ -4,10 +4,11 @@
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
-  import Button from "$lib/Button.svelte";
+  import PlayButton from "$lib/PlayButton.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Hightlight from "$lib/Highlight.svelte";
 
+  import Function from "./_ml_definition/Function.svelte";
   import TraditionalParadigm from "./_ml_definition/TraditionalParadigm.svelte";
   import MlParadigm from "./_ml_definition/MlParadigm.svelte";
 
@@ -147,16 +148,16 @@
   />
 </svelte:head>
 
+<h1>Machine Learning</h1>
+<div class="separator" />
 <Container>
-  <h1>Machine Learning</h1>
-  <div class="separator" />
   <p>
-    When books and lectures discuss the origin of machine learning, the name
-    Arthur Lee Samuel is surely to come up. Arthur Samuel was one of the
-    pioneers in the area of artificial intelligence, who is most known for his
-    computer checkers program<InternalLink type={"reference"} id={1} />. He is
-    also the person who coined the term
+    When books and university lectures on the topic of artificial intelligence
+    mention the origin of machine learning, the name Arthur Lee Samuel is surely
+    to come up. Arthur Samuel was one of the pioneers in the area of artificial
+    intelligence, who coined the term
     <strong>Machine Learning</strong>
+    <InternalLink type={"reference"} id={1} />
     and is responsible for its' most famous definition:
   </p>
   <p class="info">
@@ -166,32 +167,42 @@
   </p>
   <p>
     While the above definition is commonly used, it is not the one that we find
-    most useful. Throughout this block we will rely on a programming oriented
-    definition of machine learning.
+    most useful. Throughout the deep learning block we will rely on a more
+    programming oriented definition of machine learning.
   </p>
   <p class="info">
     Machine learning is a programming paradigm where the solution to a problem
     is automatically learned from data.
   </p>
 
+  <div class="separator" />
   <h2>Programming Paradigms</h2>
   <p>
-    While the term programming can be defined in a very broad way, for our
-    purposes we will narrow it down to <span class="info"
-      >writing/coding functions to solve a particular task
-    </span>. Building a spam filter is the task we will discuss in this chapter.
+    The task of the programmer is to find a function, that can generate desired
+    outputs, based on the inputs of the function. For example a programmer might
+    be assigned a task to write a spam filter, where the function would classify
+    the email as spam or ham based on the contents of the email, the email
+    address, the email subject and some additional metadata. It does not matter
+    whether the programmer uses a traditional programming paradigm or machine
+    learning, the result of the task is essentially the same: a function that
+    takes those inputs and produces the classification as the output.
+  </p>
+  <Function />
+  <p>
+    The big difference between the classical and the machine learning progamming
+    paradigm is the way that function is derived.
   </p>
   <p>
-    When the programmer uses a traditional programming paradigm (e.g. procedural
-    programming) to solve a problem, he usually takes the following steps. He
-    will most likely first study the problem and look at the inputs of the
-    function. He could for example recognize that the words money, rich and
-    quick are common in spam emails and write the first draft of the the
-    function. If the output of the function corresponds to the expectations of
-    the programmer his job is done. If not, the programmer keeps improving the
-    code of the function until the outputs of the function are satisfactory. For
-    example the programmer might be satisfied, once he is able to classify spam
-    emails with an accuracy of 90%.
+    When programmers apply a traditional programming paradigm to create a spam
+    filter, they will study the problem at hand and look at the inputs of the
+    function. They could for example recognize that the words <em
+      >money, rich and quick</em
+    > are common in spam emails and write the first draft of the the function. If
+    the output of the function corresponds to the expectations of the programmers
+    the job is done. If not, the programmers would keep improving the code of the
+    function until the outputs of the function are satisfactory. For example the
+    programmers might be satisfied, once they are able to classify spam emails with
+    an accuracy of 95%.
   </p>
   <TraditionalParadigm />
 
@@ -211,13 +222,18 @@
   </p>
   <p class="info">
     If you have trouble understanding the weights of a function, just imagine
-    that those weights somehow correspond to the logic of the function, but
-    instead of hardcoding the logic, in machine learning the weights can be
-    changed/learned. The adjustment of those weights is what we refer to as
-    learning.
+    that those weights somehow correspond to the logic of the function. In
+    machine learning the weights can be changed automatically by measureing some
+    error and trying to redice that error. The adjustment of those weights is
+    what we refer to as learning.
   </p>
   <MlParadigm />
 
+  <p>
+    While both paradigms produce a function, in machine learing we commonly tend
+    to use the word <Hightlight>model</Hightlight> instead of function.
+  </p>
+  <div class="separator" />
   <h2>Example</h2>
   <p>
     Let us use a stylized geometric example to further demonstrate how classical
@@ -289,10 +305,15 @@
   <p>
     The developer would then use a traditional programming language like
     JavaSript, C or Python and hardcode the logic that creates the additional
-    polygon and pull the polygons apart. The program could for example look as
+    polygon and pulls the polygons apart. The program could for example look as
     shown in the interactive example below.
   </p>
 
+  <PlayButton
+    on:click={handleNormalProgramming}
+    disabled={disabledNormal}
+    value="Simulate Process"
+  />
   <SvgContainer maxWidth={"800px"}>
     <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -332,11 +353,6 @@
       </g>
     </svg>
   </SvgContainer>
-  <Button
-    on:click={handleNormalProgramming}
-    disabled={disabledNormal}
-    value="Simulate Process"
-  />
 
   <p>
     In machine learning on the other hand the role of a developer is not to find
@@ -347,9 +363,9 @@
     >. Each of the weights is simply a number that is used in the function
     internally to process the inputs (the triangle in our case) in order to
     generate the output of the function. Learning then means in our case:
-    "adjusting the weights to get better and better at producing rectangles".
-    How exactly the transforming with weights and learning looks like is going
-    to be covered in the next lectures.
+    "adjusting the weights to get better and better at transforming triangles
+    into rectangles". How exactly the transforming with weights and learning
+    looks like is going to be covered in the next lectures.
   </p>
   <p>
     Below for example we have four different weights that we will utilize in
@@ -481,7 +497,15 @@
     third iteration the program produces the desired results (after that the
     example is reset).
   </p>
+  <PlayButton
+    on:click={handleMLProgramming}
+    disabled={disabledML}
+    value="Simulate Process"
+  />
   <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <text x="10" y="20" style="line-height:1.25" xml:space="preserve"
+      ><tspan x="0" y="160">Iteration Nr. {step}</tspan></text
+    >
     <g stroke="var(--text-color)">
       <g id="weights" stroke="var(--text-color)">
         <rect
@@ -545,21 +569,18 @@
       {/if}
     </g>
   </svg>
-  <Button
-    on:click={handleMLProgramming}
-    disabled={disabledML}
-    value="Simulate Process"
-  />
 
+  <div class="separator" />
   <p>
     The general intuition about machine learning that you should keep in mind is
     as follows.
   </p>
   <p class="info">
     In classical programming and machine learning we try to solve a problem by
-    using computer functions. In classical programming the programmer hardcodes
-    the logic of that function. In machine learning the programmer chooses the
-    algorithm and the parameters that are used to learn the function.
+    generating computer functions. In classical programming the programmer
+    hardcodes the logic of that function. In machine learning the programmer
+    chooses the algorithm and the parameters that are used to learn the
+    function.
   </p>
 
   <p>
