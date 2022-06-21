@@ -55,19 +55,20 @@
     The term "linear regression" consists of two words, that fully describe the
     type of model we are dealing with: <Highlight>linear</Highlight> and <Highlight
       >regression</Highlight
-    >. The "regression" part signifies that our model predicts a continuous
-    label based on some given features (we are not dealing with classification).
-    The "linear" part suggests that linear regression can only model the
-    relationship between features and label in a linear fashion. To understand
-    what a "linear" relationship means we present two examples below.
+    >. The "regression" part signifies that our model predicts a numeric target
+    variable based on given features and we are not dealing with a
+    classification task. The "linear" part suggests that linear regression can
+    only model the relationship between features and targets in a linear
+    fashion. To clarify what the words "linear relationship" mean we present two
+    examples below.
   </p>
 
   <p>
     In the first scatterplot we could plot a line that goes from the coordinates
     of (-100, -500) and goes to coordinates of (100, 500). While there is some
     randomness in the data, the line would depict the relationship between the
-    feature and the label relatively well. When we get new data points we can
-    use the line to predict the label and be relatively confident regarding the
+    feature and the target relatively well. When we get new data points we can
+    use the line to predict the target and be relatively confident regarding the
     outcome.
   </p>
   <Plot
@@ -81,7 +82,7 @@
       minY: -500,
       maxY: 500,
       xLabel: "Feature",
-      yLabel: "Label",
+      yLabel: "Target",
       padding: { top: 20, right: 40, bottom: 40, left: 60 },
       radius: 3,
       colors: ["var(--main-color-1)", "var(--main-color-2)"],
@@ -90,7 +91,7 @@
   />
   <p>
     In contrast the data in the following scatterplot represents a nonlinear
-    relationship between the feature and the label. Theoretically there is
+    relationship between the feature and the target. Theoretically there is
     nothing that stops us from using linear regression for the below problem,
     but there are better alternatives (like neural networks) for non linear
     problems.
@@ -106,7 +107,7 @@
       minY: 0,
       maxY: 10000,
       xLabel: "Feature",
-      yLabel: "Label",
+      yLabel: "Target",
       padding: { top: 20, right: 40, bottom: 40, left: 60 },
       radius: 3,
       colors: ["var(--main-color-1)", "var(--main-color-2)"],
@@ -115,22 +116,44 @@
   />
   <p>
     From basic math we know, that in the two dimensional space we can draw a
-    line using <Latex>y = wx + b</Latex>. For our purposes <Latex>x</Latex> is the
-    single feature, <Latex>y</Latex> is the label, <Latex>w</Latex> is the weight
-    that we use to scale the feature and <Latex>b</Latex> is the bias.
+    line using the equation <Latex>y = xw + b</Latex>, where <Latex>x</Latex> is
+    the only feature, <Latex>y</Latex> is the target, <Latex>w</Latex> is the weight
+    that we use to scale the feature and <Latex>b</Latex> is the bias. While we can
+    easily understand that the feature <Latex>x</Latex> is the input of our equation
+    and the label <Latex>y</Latex> is the output of the equation, we have a harder
+    time imagining what role the weight <Latex>w</Latex> and the bias <Latex
+      >b</Latex
+    > play in the equation. Below we present two possible interpretations.
   </p>
   <p>
-    While we can easily understand that the feature <Latex>x</Latex> is the input
-    of our equation and the label <Latex>y</Latex> is the output of the equation,
-    we have a harder time imagining what role the weight <Latex>w</Latex> and the
-    bias <Latex>b</Latex> play in the equation. Simply put the weight determines
-    the rotation (slope) of the line while the bias determines the position.
+    When we look at the equation <Latex>y = xw + b</Latex> from the arithmetic perspective,
+    we should notice two things. First, the output <Latex>y</Latex> equals the bias
+    when the input <Latex>x</Latex> is 0: <Latex>y = 0w + b</Latex>. The bias in
+    a way encompasses a starting point for the calculation of the output. If for
+    example we tried to model the relationship between age and height, even at
+    birth (age 0) a human would have some average height, which would be encoded
+    in the bias <Latex>b</Latex>. Second, for each unit of <Latex>x</Latex>, the
+    output increases by exactly <Latex>w</Latex>. The equation <Latex
+      >y = x*5cm + 50cm</Latex
+    > would indicate that on average a human grows by 5cm for each year in life.
+    At this point you would hopefully interject that this relation is out of touch
+    with reality. For once the equation does not reflect that a human being growth
+    up to a certain length or that a child growth at a higher rate, than a young
+    adult. At a certain age people even start to shrink. While all these points are
+    valid, the assumtion that we always make, when we model the world using linear
+    regression is: there is a linear relationship between the inputs and the output.
+    If you apply linear regression to data that is nonlinear in nature, you might
+    get illogical results.
   </p>
   <p>
-    Below we present an interactive example to demonstrate the impact of the
-    weight and the bias on the line. You can move the two slides to change the
-    weight and the bias by moving the sliders. Observe what we mean when we say
-    rotation and position.
+    When on the other hand we look at the equation <Latex>y = xw + b</Latex> from
+    the geometric perspective, we should realize, that weight determines the rotation
+    (slope) of the line while the bias determines the horizontal position. Below
+    we present an interactive example to demonstrate the impact of the weight and
+    the bias on the form of the line. You can move the two sliders to change the
+    weight and the bias. Observe what we mean when we say rotation and position.
+    Try to position the line, such that it <Highlight>fits</Highlight> the data as
+    good as possible.
   </p>
   <Plot
     pointsData={linearData}
@@ -151,42 +174,50 @@
       numTicks: 11,
     }}
   />
-  <p>The weight <Latex>w</Latex> is: {estimatedWeight}</p>
-  <Slider bind:value={estimatedWeight} min={-200} max={200} />
-  <p>The bias <Latex>b</Latex> is: {estimatedBias}</p>
-  <Slider bind:value={estimatedBias} min={-500} max={500} />
+  <div class="flex-container">
+    <div>
+      <p><Latex>w</Latex>: {estimatedWeight}</p>
+    </div>
+    <Slider bind:value={estimatedWeight} min={-200} max={200} />
+  </div>
+  <div class="flex-container">
+    <div>
+      <p><Latex>b</Latex>: {estimatedBias}</p>
+    </div>
+    <Slider bind:value={estimatedBias} min={-500} max={500} />
+  </div>
   <p>
-    We used the weight <Latex>w</Latex> of 5 and a bias <Latex>b</Latex> of 0 plus
+    We used the weight <Latex>w</Latex> of 5 and the bias <Latex>b</Latex> of 0 plus
     some randomness to generate the data above. When you played with sliders you
-    must have come relatively close. The main takeaway from this is that the weight
-    and the bias are learnable parameters. The linear regression algorithm provides
-    us with a way to find those parameters.
+    should have come relatively close.
   </p>
   <p>
-    In practice we rarely deal with a dataset where we only have one feuature.
-    In that case our equation looks like follows.
+    The weight and the bias are learnable parameters. The linear regression
+    algorithm provides us with a way to find those parameters. You can imagine
+    that the algorithm rotates and moves the line, until the line <Highlight
+      >fits</Highlight
+    > the data. This process is called data or curve fitting.
   </p>
-  <Latex>\large y = w_1x_1 + w_2x_2 + ... + w_nx_n + b</Latex>
   <p>
-    We can also use a more compact form and write the equation as a dot product.
+    In practice we rarely deal with a dataset where we only have one feature. In
+    that case our equation looks as follows.
   </p>
-  <Latex
-    >{String.raw`\large y = \mathbf{w} \cdot \mathbf{x} + b \text{, where}`}</Latex
-  >
+  <Latex>y = x_1w_1 + x_2w_2 + ... + x_nw_n+ b</Latex>
+  <p>
+    We can also use a more compact form and write the equation in vector form.
+  </p>
+  <Latex>{String.raw` y = \mathbf{x} \mathbf{w}^T + b \text{, where}`}</Latex>
   <Latex
     >{String.raw`
     \mathbf{x} = 
 \begin{bmatrix}
-   x_1  \\
-   x_2  \\
-   \vdots \\
-   x_n
-\end{bmatrix}
+   x_1 & x_2 & \cdots & x_n
+\end{bmatrix}, 
 \mathbf{w} = 
 \begin{bmatrix}
-   w_1  \\
-   w_2  \\
-   \vdots \\
+   w_1 & 
+   w_2 & 
+   \cdots &
    w_n
 \end{bmatrix}
 `}
@@ -195,19 +226,31 @@
     In a three dimensional space we calculate a two dimensional plane that
     divides the coordinate system into two regions. This procedure is harder to
     imagine for more than 3 dimensions, but we still create a plane (a so called
-    hyperplane) in the space. The weights are used to rotate the hyperplane
-    while the bias moves the plane.
+    hyperplane) in space. The weights are used to rotate the hyperplane while
+    the bias moves the plane.
   </p>
   <p>
-    Usually we draw a hat over the <Latex>y</Latex> value to indicate that we are
-    dealning with a prediction from a model. Therefore our equation looks as below.
+    Usually we draw a "hat" over the <Latex>y</Latex> value to indicate that we are
+    dealing with a prediction from a model,
+    <Latex>{String.raw`\hat{y} = \mathbf{x} \mathbf{w}^T + b`}</Latex>. The <Latex
+      >y</Latex
+    > value on the other hand represents an actual target, the so called ground truth.
   </p>
-  <Latex>{String.raw`\large \hat{y} = \mathbf{w} \cdot \mathbf{x} + b`}</Latex>
   <p>
-    The next lectures are going to cover how the learning procedure works in
-    linear regression. The main takeaway from this chapter should be the visual
-    intuition of weights and biases and the notational foundation that we
-    covered.
+    In the next lectures we are going to cover how the learning procedure works.
+    For now the main takeaway from this chapter should be the visual intuition
+    of weights and biases.
   </p>
   <div class="separator" />
 </Container>
+
+<style>
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-container div {
+    width: 100px;
+  }
+</style>
