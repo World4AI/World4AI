@@ -53,9 +53,9 @@
   </p>
   <p>
     Generally speaking we will utilze the notation that reduces the friction
-    between math and computational implementation. Or to put it differently: the
-    shape of the vectors/matrices and naming conventions should be identical on
-    paper and Python.
+    between math and computational implementation, in other words once you
+    understand the math you should be able to understand the code automatically
+    and vice versa.
   </p>
   <p>
     We are not going to completely reinvent the wheel, but instead utilize
@@ -68,7 +68,7 @@
   </p>
   <p>
     To clarify the mathematical notation we are going to use the example of a
-    dataset that contains the features of a house and the corresponding label
+    dataset that contains the features of a house and the corresponding target
     (price).
   </p>
   <Table {data} {header} />
@@ -116,7 +116,7 @@
   >
   <p>
     Often we want to show calculations for one single sample in the dataset. For
-    purpose that we use column vectors, represented by bold, lowercase letter <Latex
+    purpose that we use row vectors, represented by bold, lowercase letter <Latex
       >{String.raw`\mathbf{x}`}</Latex
     >.
   </p>
@@ -124,11 +124,7 @@
     >{String.raw`
   \mathbf{x} = 
   \begin{bmatrix}
-  x^{(i)}_1  \\
-  x^{(i)}_2  \\
-  x^{(i)}_3  \\
-  \vdots \\
-  x^{(i)}_m  \\
+  x_1 & x_2 & x_3 & \cdots & x_m
   \end {bmatrix}
   `}</Latex
   >
@@ -174,11 +170,7 @@
     >{String.raw`
   \mathbf{w} = 
   \begin{bmatrix}
-  w_1  \\
-  w_2  \\
-  w_3  \\
-  \vdots \\
-  w_m  \\
+    w_1 & w_2 & w_3 & \cdots & w_m
   \end {bmatrix}
   `}</Latex
   >
