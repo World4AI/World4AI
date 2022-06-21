@@ -95,18 +95,19 @@
       </svg>
     </a>
 
-    is a plattform designed to run machine leanring competitions. For that
+    is a plattform designed to run machine learning competitions. For that
     purpose they provide you weekly resources with at least 30 GPU hours and at
     least 30 TPU hours. Unlike Google Colab, Kaggle will not disconnect you, but
     when the hours run out you have to wait until the resources are reset. Kolab
-    was acquired by Google, therefore the computational resources are similar.
+    was acquired by Google, therefore the type of GPU or TPU you receive are
+    comparable to those at Colab.
   </p>
 
   <p>
     If you are looking for alternatives free of Google,
     <a href="https://www.paperspace.com" target="_blank">Paperspace</a>
-    might be it. Similar to Google Colab and Kaggle, Paperspace provides free cloud
-    GPU notebooks.
+    might be it. Similar to Google Colab, Paperspace provides free cloud GPU notebooks
+    for beginners and payed tiers for advanced users.
   </p>
   <div class="separator" />
 
