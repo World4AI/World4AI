@@ -17,6 +17,10 @@
   import Table from "$lib/Table.svelte";
   import Relu from "./_history/Relu.svelte";
 
+  const notes = [
+    "The idea and the drawings below were popularized by Andrew Ng in his deep learning coursera course.",
+  ];
+
   const references = [
     {
       author: "Warren S. McCulloch and Walter Pitts",
@@ -247,19 +251,22 @@
     ],
   ];
 
-  // create circular data
-  let circularData = [[], []];
-  let radius = [5, 10];
-  let centerX = 10;
-  let centerY = 10;
-  for (let i = 0; i < radius.length; i++) {
-    for (let point = 0; point < 200; point++) {
-      let angle = 2 * Math.PI * Math.random();
-      let r = radius[i];
-      let x = r * Math.cos(angle) + centerX;
-      let y = r * Math.sin(angle) + centerY;
-      circularData[i].push({ x, y });
-    }
+  // data to show performance of dl dependent on amount of data
+
+  let commonAlgorithms = [];
+  for (let i = 0; i < 100; i++) {
+    let x = i;
+    let y = Math.log10(x + 1);
+    let point = { x, y };
+    commonAlgorithms.push(point);
+  }
+
+  let dlAlgorithms = [];
+  for (let i = 0; i < 100; i++) {
+    let x = i;
+    let y = Math.log10(x + 1) + i * 0.04;
+    let point = { x, y };
+    dlAlgorithms.push(point);
   }
 </script>
 
@@ -351,12 +358,12 @@
     the weighted inputs are simply summed up.
   </p>
   <p>
-    Multiplying each input <Latex>x_i</Latex> by a corresponding weight <Latex
-      >w_i</Latex
+    Multiplying each input <Latex>x_j</Latex> by a corresponding weight <Latex
+      >w_j</Latex
     > and calculating the sum out of these products is called a <Highlight
       >weighted sum</Highlight
     >. Mathematically we can express this idea as
-    <Latex>{String.raw`\sum_i x_iw_i`}</Latex>, where <Latex>i</Latex> is the index
+    <Latex>{String.raw`\sum_j x_iw_j`}</Latex>, where <Latex>j</Latex> is the index
     of the input.
   </p>
   <p>
@@ -379,8 +386,8 @@
       f(\mathbf{w}) = 
       \left\{ 
       \begin{array}{rcl}
-      0 & for & \sum_i x_i w_i \leq \theta \\ 
-      1 & for & \sum_i x_i w_i > \theta \\
+      0 & for & \sum_j x_j w_j \leq \theta \\ 
+      1 & for & \sum_j x_j w_j > \theta \\
       \end{array}
       \right.
     `}</Latex
@@ -403,8 +410,9 @@
 
   <p>
     The last interactive example allows you to vary two weights <Latex
-      >\theta</Latex
-    >. The output is always either 0 or 1.
+      >w_1</Latex
+    >, <Latex>w_2</Latex> and the threshold <Latex>\theta</Latex>. Observe how
+    the flow of data changes based on the weights and the threshold.
   </p>
 
   <SvgContainer maxWidth={"700px"}>
@@ -412,25 +420,28 @@
   </SvgContainer>
 
   <p>
-    In practice we replace the threshold <Latex>\theta</Latex> by a so called bias.
-    Let us assume for example that the weighted sum corresponds to the threshold.
+    In practice we replace the threshold <Latex>\theta</Latex> by a so called bias
+    <Latex>b</Latex>. To illustrate the procedure let us assume that the
+    weighted sum corresponds to the threshold.
   </p>
-  <Latex>\sum_ix_i w_i = \theta</Latex>
+  <Latex>\sum_j x_j w_j = \theta</Latex>
   <p>We can bring <Latex>\theta</Latex> to the other side of the equation.</p>
-  <Latex>\sum_ix_i w_i - \theta = 0</Latex>
+  <Latex>\sum_j x_j w_j - \theta = 0</Latex>
   <p>
-    And define the negative <Latex>\theta</Latex> as the bias <Latex>b</Latex>.
+    And define the negative threshold <Latex>\theta</Latex> as the bias <Latex
+      >b</Latex
+    >.
   </p>
   <Latex>b = -\theta \\</Latex>
-  <Latex>\sum_ix_i w_i + b = 0 \\</Latex>
+  <Latex>\sum_j x_j w_j + b = 0 \\</Latex>
   <p>Which leads to the following equation for the threshold function.</p>
   <Latex
     >{String.raw`
       f(\mathbf{w}, b) = 
       \left\{ 
       \begin{array}{rcl}
-      0 & for & \sum_i x_i w_i + b \leq 0 \\ 
-      1 & for & \sum_i x_i w_i + b > 0 \\
+      0 & for & \sum_j x_j w_j + b \leq 0 \\ 
+      1 & for & \sum_j x_j w_j + b > 0 \\
       \end{array}
       \right.
     `}</Latex
@@ -438,7 +449,7 @@
   <p>
     It might seem like all we do is to reformulate the equation, but the idea is
     actually really powerful. We do not assume to know the bias <Latex>b</Latex
-    >. Just as the weights <Latex>w_i</Latex> in the equation, the bias is a learnable
+    >. Just as the weights <Latex>w_j</Latex> in the equation, the bias is a learnable
     parameter. When we talk about <Latex>\theta</Latex> on the other hand we assume
     to know the threshold.
   </p>
@@ -585,9 +596,9 @@
       type="reference"
       id={3}
     />
-    in the year 1969. mIn that book they showed that a single perceptron is not able
+    in the year 1969. In that book they showed that a single perceptron is not able
     to simulate a so called <Highlight>xor</Highlight> gate. The xor gate (exclusive
-    or) outputs 1 only when one and only one of the inputs are active.
+    or) outputs 1 only when one and only one of the inputs is active.
   </p>
   <Table data={xorTableData} header={xorTableHeader} />
   <p>
@@ -609,8 +620,8 @@
   />
   <p>
     Yet you can separate the data by using a hidden layer. Essentially you
-    combine the output from the or gate with the output from the and gate and
-    use those outputs in the neuron of the next layer as an input.
+    combine the output from the <em>or</em> gate with the output from the
+    <em>and</em> gate and use those outputs as inputs in the neuron of the next layer.
   </p>
   <Table data={mlpTableData} header={mlpTableHeader} />
   <p>That makes the data separable with a single line.</p>
@@ -663,32 +674,11 @@
 
   <h3>Backpropagation</h3>
   <p>
-    While the perceptron learning algorithm allowed to separate data linearly,
-    the algorithm breaks apart when faced with nonlinear data like the one
-    displayed below.
-  </p>
-  <Plot
-    pointsData={circularData}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 700,
-      minX: 0,
-      maxX: 20,
-      minY: 0,
-      maxY: 20,
-      radius: 3,
-      xLabel: "Feature 1",
-      yLabel: "Feature 2",
-      xTicks: [0, 5, 10, 15, 20],
-      yTicks: [0, 5, 10, 15, 20],
-    }}
-  />
-  <p>
-    For a relatively long time it was not clear how we could train neural
-    networks when the data displays nonlinearity and the network has hidden
-    layers. In 1986 Rumelhart, Hinton and Williams published a paper that
-    described the backpropagation algorithm <InternalLink
+    The perceptron learning algorithm only works for relatively easy problems.
+    For a very long time it was not clear how we could train neural networks
+    when we are faced with a complex problem (like image classification) and the
+    network has hidden layers. In 1986 Rumelhart, Hinton and Williams published
+    a paper that described the backpropagation algorithm <InternalLink
       type="reference"
       id={4}
     />. The procedure combined gradient descent, the chain rule and efficient
@@ -700,7 +690,7 @@
     The backpropagation algorithm will be covered in a dedicated section, but
     let us shortly cover the meaning of the name "backpropagation". This should
     give you some intuition regarding the workings of the algorithm. Essentially
-    modern machine learning consists of two steps: <Highlight
+    modern deep learning consists of two steps: <Highlight
       >feedforward</Highlight
     > and
     <Highlight>backpropagation</Highlight>.
@@ -709,18 +699,18 @@
   <p>
     So far we have only considered the feedforward step. During this step each
     neuron processes its corresponding inputs and its outputs are fed into the
-    next layer. Data flows forward from layer to layer until final outputs are
-    generated.
+    next layer. Data flows forward from layer to layer until final outputs, the
+    predictions of the model are generated.
   </p>
   <ForwardBackward type="forward" />
   <p>
-    Once the neural network produces outputs, they can be compared to the actual
-    true values. For example you can compare the predicted house price with the
-    actual house price in your training dataset. This allows the neural network
-    to compute the error between the prediction and the ground truth. This error
-    is in turn is propagated backwards layer after layer. Each weight (and bias)
-    is adjusted proportionally to the contribution of that the weight to the
-    overall error.
+    Once the neural network has produced outputs, they can be compared to the
+    actual targets. For example you can compare the predicted house price with
+    the actual house price in your training dataset. This allows the neural
+    network to compute the error between the prediction and the so called ground
+    truth. This error is in turn propagated backwards layer after layer and each
+    weight (and bias) is adjusted proportionally to the contribution of that the
+    weight to the overall error.
   </p>
   <ForwardBackward type="backward" />
   <p>
@@ -738,19 +728,13 @@
     /> and LSTM<InternalLink type="reference" id="6" />.
   </p>
   <p>
-    Unlike classical feedforward neural networks, recurrent neural nets (RNN)
-    have self reference. That means that when we deal with sequential data like
-    text or stock prices the output that is produced for the previous part in
-    the sequence (e.g. first word of the sentence) is used as an additional
-    input for the next part of the sequence (e.g. second word in the sentence).
+    Unlike feedforward neural networks, a recurrent neural network (RNN) has
+    self reference. When we deal with sequential data like text or stock prices,
+    the output that is produced from the previous time step in the sequence
+    (e.g. first word of the sentence) is used as an additional input for the
+    next time step of the sequence (e.g. second word in the sentence).
   </p>
   <Rnn />
-  <p>
-    For example when we input the second word in the sentence into the neuron,
-    we additionally use the output of the first word from the same neuron. This
-    architecture allows us to deal with information where the order of the data
-    matters.
-  </p>
 
   <h3>Convolutional Neural Networks</h3>
   <p>
@@ -769,10 +753,10 @@
   <Cnn />
   <p>
     In a convolutional neural network we have a sliding window of neurons, that
-    focuses on one area of a picure at a time. This architecture allows to
-    preserve the two dimensional structure that is important to visual tasks.
-    Even today convolutional neural networks produce state of the art results in
-    computer vision.
+    focuses on one area of a picure at a time. Unlike fully connected neural
+    networks, this architecture takes into account, that nearby pixels in 2d
+    space are related. Even today convolutional neural networks produce state of
+    the art results in computer vision.
   </p>
 
   <h3>NeurIPS</h3>
@@ -810,10 +794,10 @@
   </p>
   <p>
     This activation function returns 0 when <Latex
-      >{String.raw`\mathbf{xw}+b\leq{0}`}</Latex
-    > and <Latex>{String.raw`\mathbf{xw}+b`}</Latex> otherwise. In other words, the
-    activation function retains positive signals, while the function does not become
-    active for negative signals.
+      >{String.raw`\sum_j x_j w_j +b \leq{0}`}</Latex
+    > and <Latex>{String.raw`\sum_j x_j w_j + b`}</Latex> otherwise. In other words,
+    the activation function retains positive signals, while the function does not
+    become active for negative signals.
   </p>
   <Relu />
 
@@ -825,22 +809,93 @@
 
   <h3>Data: ImageNet</h3>
   <p>
-    While most researchers focused on the algorithmic side of the deep learning
-    revolution, in the year 2006 Fei-Fei Li began working on collecting images
-    for a dataset suitable for large scale vision tasks. That dataset, that is
-    still used extensively today became known as ImageNet<InternalLink
+    While most researchers focused only on the algorithmic side of the deep
+    learning revolution, in the year 2006 Fei-Fei Li began working on collecting
+    images for a dataset suitable for large scale vision tasks. That dataset,
+    that is still used extensively today became known as ImageNet<InternalLink
       type="reference"
       id={12}
     />.
   </p>
+  <p>
+    Nowadays we realize what immense role data plays in deep learning and how
+    data hungry deep learning algorithms are <InternalLink
+      id={1}
+      type={"note"}
+    />.
+  </p>
+  <p>
+    The performance of classical machine learning algorithms improves when we
+    increase the amount of data for training, but after a while the rate of
+    improvement is almost flat.
+  </p>
+
+  <Plot
+    pathsData={commonAlgorithms}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 600,
+      minX: 0,
+      maxX: 100,
+      minY: 0,
+      maxY: 6,
+      xLabel: "Amount Of Data",
+      yLabel: "ML Performance",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      xTicks: [0],
+      yTicks: [0],
+    }}
+  />
+  <p>
+    Deep learning algorithms on the other hand have a much steeper curve. The
+    more data you provide, the better the overall performance of the algorithm.
+    Deep learning scales extremely well with the amount of data.
+  </p>
+  <Plot
+    pathsData={dlAlgorithms}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 600,
+      minX: 0,
+      maxX: 100,
+      minY: 0,
+      maxY: 6,
+      xLabel: "Amount Of Data",
+      yLabel: "DL Performance",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      xTicks: [0],
+      yTicks: [0],
+    }}
+  />
+
+  <p>
+    When ImageNet became publicly available to researchers, that potential to
+    scale an artificial neural network to achieve unprecedented performance came
+    into fruition.
+  </p>
+
+  <p>
+    But therein also lies a weakness of deep learning. Unless you have at least
+    several tens of thousands of samples for training, neural networks will not
+    shine and you should use some more traditional algorithm like decision trees
+    or support vector machines. Compared to humans that can utilize their common
+    sense to learn new concepts fairly quickly, neural networks can be extremely
+    inefficent.
+  </p>
 
   <h3>Computation: GPU</h3>
   <p>
-    Graphics processing units (GPU) were developed independently for the use in
-    computer games. In a way it was a happy accident that the same technology
-    that powers the gaming industry is compatible with deep learning. Compared
-    to a CPU, a graphics card posesses thousands of cores, which enables extreme
-    parallel computations.
+    Graphics processing units (GPU) were developed independently of deep
+    learning for the use in computer games. In a way it was a happy accident
+    that the same technology that powers the gaming industry is compatible with
+    deep learning. Compared to a CPU, a graphics card posesses thousands of
+    cores, which enables extreme parallel computations. Those parallel
+    computations suddenly allowed researchers to train a model that would take
+    months or even years in a matter of mere days.
   </p>
 
   <h3>AlexNet</h3>
@@ -850,9 +905,35 @@
       type="reference"
       id={13}
     />. The neural network beat the competition by a large margin combining
-    state of the art deep learning techniques, nvidia graphics cards and the
-    large scale ImageNet dataset. This moment, often called "the ImageNet
-    moment", is regarded as the birthday of modern day deep learning.
+    state of the art deep learning techniques, Nvidia graphics cards for
+    computation and the large scale ImageNet dataset. This moment, often called
+    "the ImageNet moment", is regarded as the birthday of modern day deep
+    learning.
+  </p>
+  <div class="separator" />
+  <h2>Aftershock</h2>
+  <p>
+    The impact that AlexNet had on the artificial intelligence community and the
+    general population is hard to quantify, but just a decade after the release
+    things have changed dramatiacally. It became quickly apparent that AlexNet
+    is just the beginning. The amount of research has skyrocketed and provided
+    new state of the art results for ImageNet, until the competition was
+    declared as solved. New online courses, books, blog post and YouTube videos
+    were published on a regular basis, which in turn allowed beginners to get
+    immersed in this fascinating topic. AI research companies like DeepMind and
+    OpenAI were founded and existing tech companies like Google and FaceBook
+    created their own research laboratories. Deep learning frameworks like
+    TensorFlow and PyTorch were opensourced, which reduced the cost and time
+    needed to conduct research and deploy industry grade models.
+  </p>
+  <p>
+    While it does not look like we are running out of steam yet with our
+    innovations in deep learning, many researchers seem to agree that deep
+    learning is not our last invention in artificial intelligence. Yet there
+    also seems to be a consensus, that no matter how artificial intelligence of
+    the future will look like, deep learning will play a major role in our
+    develompent of a much more general intelligence. This is a great time to
+    learn about deep learning.
   </p>
 </Container>
-<Footer {references} />
+<Footer {references} {notes} />

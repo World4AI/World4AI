@@ -81,8 +81,14 @@
     </g>
   </g>
 </svg>
-<Slider min={-5} max={5} step={0.1} bind:value={weight1} />
-<Slider min={-5} max={5} step={0.1} bind:value={weight2} />
+<div class="flex-container">
+  <div><Latex>w_1</Latex></div>
+  <Slider min={-5} max={5} step={0.1} bind:value={weight1} />
+</div>
+<div class="flex-container">
+  <div><Latex>w_2</Latex></div>
+  <Slider min={-5} max={5} step={0.1} bind:value={weight2} />
+</div>
 
 <div class="parameters yellow">
   <div class="flex">
@@ -95,7 +101,7 @@
       <p><strong>Scaled Value</strong> <Latex>x_2*w_2</Latex>:</p>
       <p>
         <strong>Weighted Sum</strong>
-        <Latex>\sum_i x_i w_i</Latex>:
+        <Latex>\sum_j x_j w_j</Latex>:
       </p>
     </div>
     <div class="right">
@@ -133,5 +139,20 @@
 
   .right {
     flex-basis: 40px;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-container div {
+    width: 30px;
+  }
+
+  @media (max-width: 1000px) {
+    .parameters {
+      width: 100%;
+    }
   }
 </style>

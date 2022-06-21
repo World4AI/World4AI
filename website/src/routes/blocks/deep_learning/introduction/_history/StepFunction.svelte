@@ -1,5 +1,8 @@
 <script>
   import { scaleLinear } from "d3-scale";
+  import Slider from "$lib/Slider.svelte";
+  import Latex from "$lib/Latex.svelte";
+
   let width = 500;
   let height = 200;
 
@@ -87,84 +90,18 @@
   <path fill="none" stroke="var(--main-color-1)" class="path-line" d={path} />
 </svg>
 
-<input name="bias" type="range" bind:value={bias} min="-50" max="50" />
+<div class="flex-container">
+  <div><Latex>\theta</Latex></div>
+  <Slider bind:value={bias} min={-50} max={50} />
+</div>
 
 <style>
-  input[type="range"] {
-    height: 36px;
-    -webkit-appearance: none;
-    margin: 10px 0;
-    width: 100%;
-    background-color: var(--background-color);
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  input[type="range"]:focus {
-    outline: none;
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 12px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000;
-    background: var(--text-color);
-    border: 1px solid #000000;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    border: 1px solid #000000;
-    height: 28px;
-    width: 18px;
-    background: var(--main-color-1);
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -9px;
-  }
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-    background: var(--text-color);
-  }
-  input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 12px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000;
-    background: var(--text-color);
-    border: 1px solid #000000;
-  }
-  input[type="range"]::-moz-range-thumb {
-    border: 1px solid #000000;
-    height: 28px;
-    width: 18px;
-    background: var(--main-color-1);
-    cursor: pointer;
-  }
-  input[type="range"]::-ms-track {
-    width: 100%;
-    height: 12px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-  }
-  input[type="range"]::-ms-fill-lower {
-    background: var(--text-color);
-    border: 1px solid #000000;
-    box-shadow: 1px 1px 1px #000000;
-  }
-  input[type="range"]::-ms-fill-upper {
-    background: var(--text-color);
-    border: 1px solid #000000;
-    box-shadow: 1px 1px 1px #000000;
-  }
-  input[type="range"]::-ms-thumb {
-    margin-top: 1px;
-    border: 1px solid #000000;
-    height: 28px;
-    width: 18px;
-    background: var(--main-color-1);
-    cursor: pointer;
-  }
-  input[type="range"]:focus::-ms-fill-lower {
-    background: var(--text-color);
-  }
-  input[type="range"]:focus::-ms-fill-upper {
-    background: var(--text-color);
+  .flex-container div {
+    width: 30px;
   }
 </style>

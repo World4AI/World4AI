@@ -45,7 +45,10 @@
     />
   </g>
 </svg>
-<Slider min={-5} max={5} bind:value={weight} step={0.1} />
+<div class="flex-container">
+  <div><Latex>w</Latex></div>
+  <Slider min={-5} max={5} bind:value={weight} step={0.1} />
+</div>
 <div class="parameters yellow">
   <div class="flex">
     <div class="left">
@@ -84,5 +87,19 @@
 
   .right {
     flex-basis: 40px;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .flex-container div {
+    width: 30px;
+  }
+
+  @media (max-width: 1000px) {
+    .parameters {
+      width: 100%;
+    }
   }
 </style>
