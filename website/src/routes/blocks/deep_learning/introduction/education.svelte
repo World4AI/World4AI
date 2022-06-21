@@ -20,15 +20,15 @@
   </SvgContainer>
   <p>
     Before we take a deep dive into the foundations of deep learning we would
-    like to talk about where you could find additional learning resources and to
-    encourage you to consult many different sources on your deep learning
-    journey. It usually requires more than one single resource to understand a
-    topic. You should explore different books, videos, blog posts and research
-    papers to get the full picture. Once you grasp the basics of deep learning,
-    you still need to find a way to keep up to date with the newest research and
-    this might not be the easiest task. Below we attempt to list the most
-    relevant literature for beginners and hints on ways you can stay informed
-    regarding the newest developments.
+    like to talk about additional learning resources and to encourage you to
+    consult many different sources on your deep learning journey. It usually
+    requires more than one single resource to understand a topic. You should
+    explore different books, videos, blog posts and research papers to get the
+    full picture. Once you grasp the basics of deep learning, you still need to
+    find a way to keep up to date with the newest research and this might not be
+    the easiest task. Below we attempt to list the most relevant literature for
+    beginners and give hints on ways you can stay informed regarding the newest
+    developments in deep learning.
   </p>
   <div class="separator" />
 
@@ -75,20 +75,20 @@
     />
     <p>
       The book "Machine Learning with PyTorch and Scikit-Learn" by Sebastian
-      Raschka is similar in scope by to the one by Aurélien Géron, but instead
-      of Keras and TensorFlow the author uses PyTorch. For the time being
-      World4AI is going provide notebooks written in PyTorch, so you will
-      probably feel most comfortable with this book if you use intend on using
-      our notebooks.
+      Raschka is similar in scope to the book by Aurélien Géron, but instead of
+      using Keras and TensorFlow the author uses PyTorch. For the time being
+      World4AI is going to provide notebooks written in PyTorch, so you will
+      probably feel most comfortable with this book if you plan on using our
+      notebooks.
     </p>
   </div>
   <div class="separator" />
 
   <h2>Online Courses</h2>
   <p>
-    If you learn better through visual and audio explanations, then online
-    courses might be a great fit. Just as with our book recommendations, there
-    are a lot more quality content for beginners and less for intermediary and
+    If you learn better through visual and audio explanations, online courses
+    might be a great fit. Just as with our book recommendations, there is a lot
+    of quality content for beginners and few resources for intermediary and
     advanced users.
   </p>
   <p>
@@ -106,15 +106,15 @@
       target="_blank">coursera</a
     > course by Andrew Ng is probably the most famous and the most acknowledged course
     in deep learning. The course starts with the basic building blocks of deep learning
-    and steadily moves towards state of the art. The course is not free, but there
-    is financial support available if you can not afford the lectures.
+    and steadily moves towards the state of the art. The course is not free, but
+    there is financial support available if you can not afford the lectures.
   </p>
 
   <p>
     The <a href="https://cds.nyu.edu/deep-learning/" target="_blank"
       >NYU deep learning course</a
     > by Yann LeCun and Alfredo Canziani has become one of the most acknowledged
-    courses over the last couple of years. The course is very indepth and very engaging,
+    courses over the last couple of years. The course is very in-depth and very engaging,
     but is probably not the best choice for absolute beginners. We recommend you
     take this course after you have had some exposure to an introductory course or
     book.
@@ -135,21 +135,21 @@
     four mentioned categories and allows you to grow in the ranks and gain
     reputation and titles. Additionally many of the challenges give out monetary
     prices. Kaggle is essentially a social network, so if you want to get
-    addicted to one, kaggle is a good choice for machine learning practicioners.
+    addicted to one, kaggle is a good choice for machine learning practitioners.
   </p>
   <div class="separator" />
 
   <h2>Keeping Up With Research</h2>
   <p>
     When you come from the outside of the deep learning research community, you
-    do not have access to a network that you can utilize to find the most
-    relevant research papers you should focus on. Fortunately you have access to
-    twitter and can therefore follow companies that focus on deep learning
-    research, established researchers and book authors to get access to your own
-    individual network. Many of those sources will share interesting articles,
-    tutorials, videos and the newest research. It will take some time to find
-    which sources are the most reliable, but the benefits are enormous. We
-    suggest that you create an account especially for the purpose of
+    do not have access to a personal network that you can utilize to find the
+    most relevant research papers you should focus on. Fortunately you have
+    access to twitter and can therefore follow companies that focus on deep
+    learning research, established researchers and book authors to get access to
+    your own individual network. Many of those sources will share interesting
+    articles, tutorials, videos and the newest research. It will take some time
+    to find which sources are the most reliable, but the benefits are enormous.
+    We suggest that you create an account especially for the purpose of
     participating in the deep learning community and avoid other types of
     content. Otherwise you will experience the "dark side" of twitter.
   </p>
