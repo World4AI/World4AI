@@ -30,42 +30,40 @@
   </p>
   <p>
     The calculation from linear regression
-    <Latex>{String.raw`\mathbf{w^T}\mathbf{x} + b`}</Latex>
+    <Latex>{String.raw`z = \mathbf{x} \mathbf{w^T} + b`}</Latex>
     essentially performs all three parts in a single step.
   </p>
   <Latex
     >{String.raw`
-\large
+z = 
 \begin{bmatrix}
-w_1 & w_2 & w_3 & \dots & w_n &
+x_1 & x_2 & x_3 & \cdots & x_n 
 \end{bmatrix}
 \begin{bmatrix}
-x_1 \\
-x_2 \\
-x_3 \\
-\vdots \\
-x_n \\
+w_1 \\ 
+w_2 \\  
+w_3 \\ 
+\vdots \\ 
+w_n
 \end{bmatrix}
 + b
 =
-w_1x_1 + w_2x_2 + w_3x_3 + \cdots + w_nx_n + b
+x_1w_1 + x_2w_2+ x_3w_3+ \cdots + x_nw_n + b
 `}</Latex
   >
   <p>
     At this point you might interject, that we do not have an activation
-    function, so let us introduce one that does not change the nature of linear
-    regression. We are going to use the so called identity function where input
-    equals output <Latex>I(x) = x</Latex>. When we apply the identity function
-    as an activation we end up with a linear neuron, where
-
-    <Latex>{String.raw`y = I(\mathbf{w}\cdot\mathbf{x} + b)`}</Latex>. This
+    function <Latex>a(z)</Latex>, so let us introduce one that does not change
+    the nature of linear regression. We are going to use the so called identity
+    function, where the input equals the output <Latex>a(z) = z</Latex>. When we
+    apply the identity function as an activation, we end up with a linear
+    neuron, where
+    <Latex>{String.raw`\hat{y} = a(\mathbf{x} \mathbf{w}^T  + b)`}</Latex>. This
     might seem like an unnecessary step, but by enforcing the usage of an
     identity function, we put ourselves into a position where we can start to
     understand different types of neurons. All we have to do is to replace the
-    identity function <Latex>I(x)</Latex> by any other activation function <Latex
-      >a(x)</Latex
-    > to describe any other type of neuron:
-    <Latex>{String.raw`y = a(\mathbf{w}\cdot\mathbf{x} + b)`}</Latex>.
+    identity function by any other activation function <Latex>a(z)</Latex> to describe
+    any other type of neuron.
   </p>
   <div class="separator" />
 </Container>
