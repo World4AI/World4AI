@@ -4,6 +4,7 @@
   import Slider from "$lib/Slider.svelte";
   import Latex from "$lib/Latex.svelte";
   import Mse from "./_loss/Mse.svelte";
+  import Highlight from "$lib/Highlight.svelte";
 
   let data = [
     [
@@ -60,7 +61,7 @@
   <title>World4AI | Deep Learning | Linear Regression Loss</title>
   <meta
     name="description"
-    content="Linear regression utilizes the mean squared error as a measure of succuss or failure. The goal is to minimize the MSE."
+    content="Linear regression utilizes the mean squared error as a loss function. The goal of linear regression is to minimize the MSE."
   />
 </svelte:head>
 
@@ -71,12 +72,14 @@
     While we can intuitively tell how far away our line is from some optimal
     location, we need a quantitative measure that the linear regression
     algorithm can use for optimization purposes. In machine learning we use a
-    measure called loss (or loss function). Using this quantity we can tweak the
-    weights and biases to find a minimum value of the loss.
+    measure called <Highlight>loss function</Highlight> (also called <Highlight
+      >error function</Highlight
+    > or <Highlight>cost function</Highlight>) . We can tweak the weights and
+    biases to find a minimum value of the loss function.
   </p>
   <p>
-    In our example we will use only 4 data points. A bigger dataset would
-    otherwise clutter the illustrations.
+    To justify the use of a particular loss function, we will use only a dataset
+    with 4 samples, as shown in the illustration below.
   </p>
   <Plot
     pointsData={data}
@@ -89,7 +92,7 @@
       minY: 0,
       maxY: 60,
       xLabel: "Feature",
-      yLabel: "Label",
+      yLabel: "Target",
       padding: { top: 20, right: 40, bottom: 40, left: 60 },
       radius: 5,
       colors: [
@@ -103,9 +106,9 @@
     }}
   />
   <p>
-    We will start by drawing a 45 degree line from the (0,0) to the (60, 60)
-    position. While this looks "OK", we do net have a way to compare that
-    particular line with any other lines.
+    We will start by drawing a 45 degree regression line from the (0,0) to the
+    (60, 60) position. While this looks "OK", we do not have a way to compare
+    that particular line with any other lines.
   </p>
   <Plot
     pointsData={data}
@@ -119,7 +122,7 @@
       minY: 0,
       maxY: 60,
       xLabel: "Feature",
-      yLabel: "Label",
+      yLabel: "Target",
       padding: { top: 20, right: 40, bottom: 40, left: 60 },
       radius: 5,
       colors: ["var(--main-color-1)", "var(--main-color-2)"],
@@ -128,14 +131,14 @@
   />
 
   <p>
-    The first step is to calculate the error between the actual label <Latex
-      >y_i</Latex
-    > and the predicted value <Latex>{String.raw`\hat{y}_i=b+wx_i`}</Latex> for each
-    datapoint
+    The first step is to calculate the error between the actual target
+    <Latex>{String.raw`y^{(i)}`}</Latex> and the predicted value <Latex
+      >{String.raw`\hat{y}^{(i)}=x_iw + b`}</Latex
+    > for each datapoint
     <Latex>i</Latex>. We can define the difference <Latex
-      >{String.raw`y_i - \hat{y}_i`}</Latex
-    > as the error. Visually we can draw that error as the line that connects the
-    regression line with the true label.
+      >{String.raw`y^{(i)} - \hat{y}^{(i)}`}</Latex
+    > as the error. Visually we can draw that error as the vertical line that connects
+    the regression line with the true target.
   </p>
   <Plot
     pointsData={data}
@@ -149,7 +152,7 @@
       minY: 0,
       maxY: 60,
       xLabel: "Feature",
-      yLabel: "Label",
+      yLabel: "Target",
       padding: { top: 20, right: 40, bottom: 40, left: 60 },
       radius: 5,
       colors: ["var(--main-color-1)", "var(--main-color-2)"],
@@ -157,28 +160,36 @@
     }}
   />
   <p>
-    If we tried to sum up all the errors in the dataset <Latex
-      >{String.raw`\sum_i^n \hat{y}_i - y_i`}</Latex
+    Depending on the location and rotation of the regression line <Latex
+      >{String.raw`\hat{y} = xw + b`}</Latex
+    > and the actual target <Latex>{String.raw`y^{(i)}`}</Latex>, the target
+    might be above or below the regression line and thus either positive or
+    negative. If we tried to sum up all the errors in the dataset <Latex
+      >{String.raw`\sum_i^n y^{(i)} - \hat{y}^{(i)}`}</Latex
     > we would realize that the positive and the negative errors are offsetting each
-    other. If the errors were symmetrical above and below the line, we would end
+    other. If the errors were symmetrical above and below the line, we could end
     up with a summed error of 0.
   </p>
   <p>
-    The loss that used in linear regression, the mean squared error (MSE), takes
-    the error to the power of 2 to get rid of the negative sign. The error is
-    then divided by the number of data points to calculate the mean (average) of
-    the error. The mean squared error is mathematically expressed as follows.
+    The loss that is actually used in linear regression is called the mean
+    squared error (MSE). The MSE takes each of the individual errors to the
+    power of 2, <Latex>{String.raw`(y^{(i)} - \hat{y}^{(i)})^2`}</Latex>, to get
+    rid of the negative sign. The average of the errors is defined as the mean
+    squared error.
   </p>
-  <Latex>{String.raw`\Large MSE=\frac{1}{n}\sum_i^n (\hat{y} - y_i)^2`}</Latex>
+  <Latex
+    >{String.raw`MSE=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2`}</Latex
+  >
 
   <p>
-    Visually it actually makes sense to imagine squares. Each data point has a
-    corresponding square and the larger the area of that square, the larger the
-    contribution to the MSE. The length of the side of the square is calculated
-    as the absolute distance between <Latex>y</Latex> and <Latex
-      >{String.raw`\hat{y}`}</Latex
-    >. Try to use the example below and move the weight and the bias. Observe
-    how the mean squared error changes based on the parameters.
+    We can visuallize the mean squared errors by drawing actual squares. Each
+    data point has a corresponding square and the larger the area of that square
+    (the squared error), the larger the contribution to the MSE. The length of
+    the side of the square is calculated as the absolute distance between <Latex
+      >y</Latex
+    > and <Latex>{String.raw`\hat{y}`}</Latex>. Try to use the example below and
+    move the weight and the bias. Observe how the mean squared error changes
+    based on the parameters.
   </p>
 
   <Mse {data} {w} {b} />
@@ -194,7 +205,8 @@
     Different combination of the weight <Latex>w</Latex> and the bias <Latex
       >b</Latex
     > produce different losses and our job is to find the combination that minimizes
-    that loss function. The next section is dedicated to procedure that is commonly
+    that loss function. Obviously it makes no sense to search manually for those
+    parameters. The next section is therefore dedicated to a procedure that is commonly
     used to find the mimimum loss.
   </p>
   <div class="separator" />
