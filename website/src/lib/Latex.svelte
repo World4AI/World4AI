@@ -16,6 +16,12 @@
   .placeholder {
     display: none;
   }
+
+  .result {
+    display: inline-block;
+    padding: 2px 0;
+  }
+
   @media (min-width: 768px) {
     .result {
       white-space: nowrap;
