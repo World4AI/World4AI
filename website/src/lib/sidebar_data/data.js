@@ -408,8 +408,8 @@ const dl = [
         link: '/blocks/deep_learning/logistic_regression',
         links: [
           {
-              name: 'Sigmoid Activation',
-              link: '/blocks/deep_learning/logistic_regression/sigmoid_activation',
+              name: 'Sigmoid and Softmax',
+              link: '/blocks/deep_learning/logistic_regression/sigmoid_softmax',
           },
           {
               name: 'Loss Function',
