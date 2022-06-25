@@ -58,8 +58,6 @@
   }
   transformData.push(functionData);
   transformData.push(logData);
-
-  console.log(logData);
 </script>
 
 <Container>
