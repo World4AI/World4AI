@@ -390,8 +390,8 @@ const dl = [
             link:'/blocks/deep_learning/linear_regression/linear_model', 
           },
           {
-            name: 'Loss Function',
-            link:'/blocks/deep_learning/linear_regression/loss_function', 
+            name: 'Mean Squared Error',
+            link:'/blocks/deep_learning/linear_regression/mean_squared_error', 
           },
           {
             name: 'Gradient Descent',

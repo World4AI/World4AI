@@ -66,7 +66,7 @@
 </svelte:head>
 
 <Container>
-  <h1>Loss Function</h1>
+  <h1>Mean Squared Error</h1>
   <div class="separator" />
   <p>
     While we can intuitively tell how far away our line is from some optimal
