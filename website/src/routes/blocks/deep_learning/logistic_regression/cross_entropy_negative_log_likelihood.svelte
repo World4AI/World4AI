@@ -60,6 +60,16 @@
   transformData.push(logData);
 </script>
 
+<svelte:head>
+  <title
+    >World4AI | Deep Learning | Cross Entropy and Negative Log Likelihood</title
+  >
+  <meta
+    name="description"
+    content="Cross-entropy, also called negative log likelihood, is the loss function that is used in classification tasks."
+  />
+</svelte:head>
+
 <Container>
   <h1>Cross-Entropy and Negative Log Likelihood</h1>
   <div class="separator" />
