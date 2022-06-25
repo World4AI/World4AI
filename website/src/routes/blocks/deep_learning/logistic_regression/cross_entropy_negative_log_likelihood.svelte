@@ -61,7 +61,7 @@
 </script>
 
 <Container>
-  <h1>Loss Function</h1>
+  <h1>Cross-Entropy and Negative Log Likelihood</h1>
   <div class="separator" />
   <p>
     The mean squared error tends to be problematic, when used as the loss

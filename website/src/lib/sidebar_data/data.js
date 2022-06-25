@@ -412,8 +412,8 @@ const dl = [
               link: '/blocks/deep_learning/logistic_regression/sigmoid_softmax',
           },
           {
-              name: 'Loss Function',
-              link: '/blocks/deep_learning/logistic_regression/loss_function',
+              name: 'Cross-Entropy and Negative Log Likelihood',
+              link: '/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood',
           },
           {
               name: 'Gradient Descent',
