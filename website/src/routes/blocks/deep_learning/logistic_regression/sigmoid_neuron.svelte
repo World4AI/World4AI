@@ -31,10 +31,10 @@
   </p>
   <p>
     In logistic regression all three steps can be described by
-    <Latex>{String.raw`\sigma(\mathbf{w^T}\mathbf{x} + b)`}</Latex>, where <Latex
-      >\sigma</Latex
-    > is the sigmoid activation function. Written in a more familiar manner the output
-    of the neuron amounts to: <Latex
+    <Latex>{String.raw`a(z)`}</Latex>, where <Latex>a</Latex> is the sigmoid activation
+    function <Latex>\sigma</Latex> and <Latex>z</Latex> is the net input <Latex
+      >{String.raw`\mathbf{xw}^T + b`}</Latex
+    > . Written in a more familiar manner the output of the neuron amounts to: <Latex
       >{String.raw`\dfrac{1}{1+e^{-(w_1x_1 + \cdots + w_nx_n + b)}}`}</Latex
     >.
   </p>
@@ -42,6 +42,9 @@
     This type of a neuron is extremely powerful. When we combine different
     sigmoid neurons, such that the output of a neuron is used as an input to the
     neurons in the next layer, we essentially create a neural network.
+    Activation functions like the sigmoid are often called nonlinear
+    activations, because they can be utilized in a neural network to solve
+    nonlinear problems (more on that in the next chapter).
   </p>
   <div class="separator" />
 </Container>
