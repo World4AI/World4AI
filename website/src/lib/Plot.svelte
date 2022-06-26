@@ -30,6 +30,7 @@
     padding: { top: 20, right: 40, bottom: 40, left: 60 },
     radius: 5,
     colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
+    pathsColors: [],
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
     xTicks: [],
     yTicks: [],
@@ -136,8 +137,13 @@
     >
 
     <!-- paths -->
-    {#each paths as path}
-      <path d={path} />
+    {#each paths as path, idx}
+      <path
+        d={path}
+        stroke={config.pathsColors.length === 0
+          ? "black"
+          : config.pathsColors[idx]}
+      />
     {/each}
 
     <!-- points -->
@@ -161,7 +167,6 @@
 
   path {
     fill: none;
-    stroke: var(--text-color);
     stroke-linejoin: round;
     stroke-linecap: round;
     stroke-width: 1;
