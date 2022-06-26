@@ -3,7 +3,73 @@
   import Latex from "$lib/Latex.svelte";
   import Plot from "$lib/Plot.svelte";
   import Button from "$lib/Button.svelte";
+  import PlayButton from "$lib/PlayButton.svelte";
 
+  //Difference in Gradients Demonstration
+  let graphDataLoss = [];
+  let mseData0 = [];
+  let mseData1 = [];
+  let ceData0 = [];
+  let ceData1 = [];
+
+  let graphGradLoss = [];
+  let mseGrad0 = [];
+  let mseGrad1 = [];
+  let ceGrad0 = [];
+  let ceGrad1 = [];
+
+  for (let i = 0; i <= 1; i += 0.01) {
+    let dataPoint;
+    let gradPoint;
+    let grad;
+    //mse
+    // target is 0
+    let mse;
+    mse = (0 - i) ** 2;
+    grad = -2 * (0 - i);
+    dataPoint = { x: i, y: mse };
+    gradPoint = { x: i, y: grad };
+    mseData0.push(dataPoint);
+    mseGrad0.push(gradPoint);
+
+    //target is 1
+    mse = (1 - i) ** 2;
+    grad = -2 * (1 - i);
+    dataPoint = { x: i, y: mse };
+    mseData1.push(dataPoint);
+    gradPoint = { x: i, y: grad };
+    mseGrad1.push(gradPoint);
+
+    //cross-entropy
+    let ce;
+    if (i !== 0 && i !== 1) {
+      // target is 0
+      ce = -Math.log(1 - i);
+      grad = 1 / (1 - i);
+      dataPoint = { x: i, y: ce };
+      gradPoint = { x: i, y: grad };
+      ceData0.push(dataPoint);
+      ceGrad0.push(gradPoint);
+      // target = 1
+      ce = -Math.log(i);
+      grad = -1 / i;
+      dataPoint = { x: i, y: ce };
+      gradPoint = { x: i, y: grad };
+      ceData1.push(dataPoint);
+      ceGrad1.push(gradPoint);
+    }
+  }
+  graphDataLoss.push(mseData0);
+  graphDataLoss.push(mseData1);
+  graphDataLoss.push(ceData0);
+  graphDataLoss.push(ceData1);
+
+  graphGradLoss.push(mseGrad0);
+  graphGradLoss.push(mseGrad1);
+  graphGradLoss.push(ceGrad0);
+  graphGradLoss.push(ceGrad1);
+
+  // Gradient Descent Demonstrations
   let w1 = -0.15;
   let w2 = 0.2;
   let b = -0.01;
@@ -108,12 +174,144 @@
 
   calculateGradients();
   updatePathsData();
+
+  let runImprovements = false;
+  let runs = 0;
+
+  function runEpoch() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        gradientDescentStep();
+        resolve();
+      }, 1);
+    });
+  }
+
+  async function train() {
+    runImprovements = true;
+    while (runImprovements) {
+      await runEpoch();
+      runs++;
+    }
+  }
+
+  function stopTraining() {
+    runImprovements = false;
+  }
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Logistic Regression Gradient Descent</title>
+  <meta
+    name="description"
+    content="The optimal weights and biases for logistic regression can be obtained by the means of gradient descent. The gradients are calcualted using the chain rule."
+  />
+</svelte:head>
 
 <h1>Gradient Descent</h1>
 <div class="separator" />
 
 <Container>
+  <h2>Cross-Entropy vs Mean Squared Error</h2>
+  <p>
+    The cross-entropy is almost exclusively used as the loss function for
+    classification tasks, but it is not obvious why we can not use the mean
+    squared error. Actually we can, but as we will see shortly, the
+    cross-entropy is a more convenient measure of loss for classification tasks.
+  </p>
+  <p>
+    For this discusson we will deal with a single sample and distinquish between
+    two cases: the label <Latex>y</Latex> is either 0 or 1. If the label equals to
+    0, the mean squared error is <Latex>{String.raw`(0 - \sigma)^2`}</Latex> while
+    the cross-entropy is<Latex>{String.raw`-\log(1 - \sigma)`}</Latex>. Both
+    losses increase as the predicted probability <Latex>\sigma</Latex> grows. If
+    the true label <Latex>1</Latex> is 1 on the other hand the mean squared error
+    is <Latex>{String.raw`(1 - \sigma)^2`}</Latex> and the cross-entropy is<Latex
+      >{String.raw`-\log(\sigma)`}</Latex
+    >. In both cases the error decreases when the predicted probability <Latex
+      >{String.raw`\sigma`}</Latex
+    > grows.
+  </p>
+  <p>
+    Below we plot the mean squared error and the cross-entropy based on the
+    predicted probability <Latex>\sigma</Latex>. The red plot depicts the mean
+    squared error, while the blue plot depicts the cross-entropy. There are two
+    plots for each of the losses, one for each value of the target.
+  </p>
+  <Plot
+    pathsData={graphDataLoss}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: 0,
+      maxX: 1,
+      minY: 0,
+      maxY: 3,
+      xLabel: "Predicted Probability",
+      yLabel: "Error",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      xTicks: [],
+      yTicks: [0, 0.5, 1, 1.5, 2, 2.5, 3],
+      numTicks: 5,
+      pathsColors: [
+        "var(--main-color-1)",
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--main-color-2)",
+      ],
+    }}
+  />
+  <p>
+    The mean squared error and the cross-entropy start at the same position, but
+    the difference in errors starts to grow as the predicted probability starts
+    to deviate from the true label. The cross-entropy punishes
+    misclassifications with a much higher loss, than the mean squared error.
+    When we deal with probabilities the difference between the label and the
+    predicted probability can not be larger than 1. That means that the mean
+    squared error also can not grow beyond 1. The logarithm on the other hand
+    literally explodes when the value starts approaching 0.
+  </p>
+  <p>
+    This behaviour can also be observed when we draw the predicted probability
+    against the derivative of the loss function. While the derivatives of the
+    mean squared error are linear, the cross-entropy derivatives grow
+    exponentially when the quality of predictions deteriorates.
+  </p>
+  <Plot
+    pathsData={graphGradLoss}
+    config={{
+      width: 500,
+      height: 250,
+      maxWidth: 1000,
+      minX: 0,
+      maxX: 1,
+      minY: -10,
+      maxY: 10,
+      xLabel: "Predicted Probability",
+      yLabel: "Derivative",
+      padding: { top: 20, right: 40, bottom: 40, left: 60 },
+      radius: 5,
+      xTicks: [],
+      yTicks: [],
+      numTicks: 5,
+      pathsColors: [
+        "var(--main-color-1)",
+        "var(--main-color-1)",
+        "var(--main-color-2)",
+        "var(--main-color-2)",
+      ],
+    }}
+  />
+  <p>
+    The exponential growth of derivatives implies, that the gradient descent
+    algorithm will take much larger steps, when the classification predictions
+    are way off, thereby converging at a higher rate.
+  </p>
+
+  <div class="separator" />
+  <h2>The Algorithm</h2>
   <p>
     Our goal is to find weights <Latex>{String.raw`\mathbf{w}`}</Latex> and the bias
     <Latex>b</Latex> that minimize the cross-entropy loss in a binary classification
@@ -122,62 +320,115 @@
 
   <Latex
     >{String.raw`
-    \arg\min_{\mathbf{w}, b}H(p, q) = - \sum_i \Big[y^{(i)} \log \sigma(\mathbf{w},b)) + (1 - y^{(i)}) (1 - \log(\sigma(\mathbf{w}, b)) \Big] \\
+      \underset{\mathbf{w}, b} {\arg\min} L \\ 
+      L =  - \dfrac{1}{n} \sum_i \Big[y^{(i)} \log \sigma + (1 - y^{(i)}) \log(1 - \sigma) \Big] \\
   `}</Latex
   >
   <p>
     Similar to linear regression, logistic regression relies on gradient
-    descent. While the derivative is more complex, the chain rule still allows
-    us to relatively easily find the optimum.
-  </p>
-  <p>
-    Ultimately we are interested in the gradient of the loss function <Latex
-      >H(p, w)</Latex
-    > with respect to the weight vector <Latex
-      >{String.raw`\nabla_{\mathbf{x}}`}</Latex
-    > and the derivative with respect to the bias <Latex
-      >{String.raw`\dfrac{\partial}{\partial b} H(p,x)`}</Latex
-    >.
-  </p>
-  <p>
-    Once we have those we can use the same gradient descent procedure that we
+    descent. While the derivative is slightly more complex, the chain rule still
+    allows us to relatively easily find the optimum. Ultimately we are
+    interested in the gradient of the loss function <Latex>L</Latex> with respect
+    to the weight vector <Latex>{String.raw`\nabla_{\mathbf{w}}`}</Latex> and the
+    derivative with respect to the bias <Latex
+      >{String.raw`\dfrac{\partial}{\partial b} L`}</Latex
+    >. Once we have those we can use the same gradient descent procedure that we
     used in linear regression.
   </p>
   <Latex
-    >{String.raw`\large \mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w \\`}</Latex
+    >{String.raw`\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w `}</Latex
   >
+  <br />
   <Latex
-    >{String.raw`\large b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} \\`}</Latex
+    >{String.raw`b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} `}</Latex
   >
   <p>
-    That meas that all we have to do is to figure out how we can calculate the
-    gradients, the rest of the procedure does not differ from linear regression.
+    We can calculate gradients for individual samples and calculate the mean
+    afterwards. That reduces the loss of an individual sample to the following
+    equation.
   </p>
   <Latex
     >{String.raw`
-    H(p, q) = - \sum_i \Big[y^{(i)} \log a + (1 - y^{(i)}) \log(1 - a)\Big] \\
+    L = - \Big[y \log \sigma + (1 - y) \log(1 - \sigma)\Big] \\
   `}</Latex
   >
-  <div class="separator" />
+  <p>
+    We start by calculating the derivative of the loss with respect to the
+    sigmoid output.
+  </p>
   <Latex
     >{String.raw`
-    \dfrac{\partial}{\partial a}H(p, q) = -\Big(y^{(i)} \dfrac{1}{a} - (1 - y^{(i)}) \dfrac{1}{1 - a}\Big)
+    \dfrac{\partial}{\partial \sigma}L = - \Big[y^{(i)} \dfrac{1}{\sigma}  - (1 - y^{(i)}) \dfrac{1}{(1 - \sigma)}\Big] \\
   `}</Latex
   >
-  <div class="separator" />
-  <Latex>{String.raw`a = \sigma(z) = \dfrac{1}{1 + e^{-z}}`}</Latex>
-  <div class="separator" />
-  <Latex
-    >{String.raw`\dfrac{\partial}{\partial z}a = \sigma(z) (1 - \sigma(z)) `}</Latex
-  >
-  <div class="separator" />
-  <Latex>{String.raw`z = \mathbf{w^Tx}+b`}</Latex>
-  <div class="separator" />
-  <Latex>{String.raw`\dfrac{\partial}{\partial w_j} z = x_j`}</Latex>
-  <div class="separator" />
-  <Latex>{String.raw`\dfrac{\partial}{\partial b} z = 1`}</Latex>
-  <div class="separator" />
+  <p>
+    Next we calculate the derivative of the sigmoid <Latex
+      >{String.raw`\sigma(z) = \dfrac{1}{1 + e^{-z}}`}</Latex
+    > with respect to the net input <Latex>z</Latex>.
+  </p>
 
+  <Latex
+    >{String.raw`\dfrac{\partial}{\partial z}\sigma = \sigma(z) (1 - \sigma(z)) `}</Latex
+  >
+  <p>
+    The derivative of the sigmoid function is relatively straightforward, but
+    the derivation process is somewhat mathematically involved. It is not
+    necessary to know the exact steps how we arrive at the derivative, but if
+    you are interested, below we provide the necessary steps.
+  </p>
+  <Latex
+    >{String.raw`
+    \begin{aligned}
+    \dfrac{\partial}{\partial z}\sigma &= \dfrac{\partial}{\partial z} \dfrac{1}{1 + e^{-z}} \\
+    &= \dfrac{\partial}{\partial z} ({1 + e^{-z}})^{-1} \\
+    &= -({1 + e^{-z}})^{-2} * -e^{-z} \\
+    &= \dfrac{ e^{-z}}{({1 + e^{-z}})^{-2}} \\
+    &= \dfrac{1}{{1 + e^{-z}}} \dfrac{ e^{-z}}{{1 + e^{-z}}} \\
+    &= \dfrac{1}{{1 + e^{-z}}} \dfrac{ 1 + e^{-z} - 1}{{1 + e^{-z}}} \\
+    &= \dfrac{1}{{1 + e^{-z}}} \Big(\dfrac{ 1 + e^{-z}}{1 + e^{-z}} - \dfrac{1}{{1 + e^{-z}}}\Big) \\
+    &= \dfrac{1}{{1 + e^{-z}}} \Big(1 - \dfrac{1}{{1 + e^{-z}}}\Big) \\
+    &= \sigma(z) (1 - \sigma(z)) 
+    \end{aligned}
+    `}</Latex
+  >
+  <p>
+    The rest of derivations are do not differ from those that we used in linear
+    regression. We calculate the gradients of the net input <Latex
+      >{String.raw`z = \mathbf{xw^T}+b`}</Latex
+    > with respect to the individual weights and the bias applying the chain rule.
+  </p>
+  <Latex>{String.raw`\dfrac{\partial}{\partial w_j} z = x_j`}</Latex>
+  <br />
+  <Latex>{String.raw`\dfrac{\partial}{\partial b} z = 1`}</Latex>
+  <p>
+    Finally we can utilize the chain rule to calculate the derivatives of the
+    loss with respect to the weights and the bias. When we are dealing with
+    batch or minibatch gradient descent we collect the gradients for several
+    samples <Latex>n</Latex> and calculate the mean, which is utilized in gradient
+    descent.
+  </p>
+  <Latex
+    >{String.raw`\dfrac{\partial L}{\partial w_j} = \dfrac{1}{n} \sum_i^n \dfrac{\partial L}{\partial \sigma^{(i)}} \dfrac{\partial \sigma^{(i)}}{\partial z^{(i)}} \dfrac{\partial z^{(i)}}{\partial w_j^{(i)}}`}</Latex
+  >
+  <p>
+    In the interactive example below we demonstrate the gradient descent
+    algorithm for logistic regression. This is the same example that you tried
+    to solve manually in a previous chapter. Start the algorithm and observe how
+    the loss decreases over time.
+  </p>
+  <div class="flex-container">
+    {#if !runImprovements}
+      <PlayButton on:click={train} />
+    {:else if runImprovements}
+      <PlayButton type="pause" on:click={stopTraining} />
+    {/if}
+    <div class="parameters yellow">
+      <p><Latex>L</Latex>: {crossEntropy.toFixed(2)}</p>
+      <p><Latex>w_1</Latex>: {w1.toFixed(2)}</p>
+      <p><Latex>w_2</Latex>: {w2.toFixed(2)}</p>
+      <p><Latex>b</Latex>: {b.toFixed(2)}</p>
+    </div>
+  </div>
   <Plot
     {pointsData}
     {pathsData}
@@ -200,48 +451,28 @@
       ],
     }}
   />
-  <div class="parameters yellow">
-    <div class="flex">
-      <div class="left">
-        <p><strong>Cross Entropy</strong> <Latex>H(p,q)</Latex>:</p>
-        <p><strong>Weight</strong> <Latex>w_1</Latex>:</p>
-        <p><strong>Weight</strong> <Latex>w_2</Latex>:</p>
-        <p><strong>Bias</strong> <Latex>b</Latex>:</p>
-      </div>
-      <div class="right">
-        <p><strong>{crossEntropy.toFixed(2)}</strong></p>
-        <p><strong>{w1.toFixed(2)}</strong></p>
-        <p><strong>{w2.toFixed(2)}</strong></p>
-        <p><strong>{b.toFixed(2)}</strong></p>
-      </div>
-    </div>
-  </div>
-  <Button value={"Gradient Descent Step"} on:click={gradientDescentStep} />
+  <p>
+    The gradient descent algorithm learns to separate the data in a matter of
+    seconds.
+  </p>
+  <div class="separator" />
 </Container>
 
 <style>
   .parameters {
-    width: 50%;
+    width: 20%;
     padding: 5px 10px;
     margin-bottom: 5px;
   }
 
-  div p {
+  .parameters p {
     margin: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px dashed black;
   }
 
-  .flex {
+  .flex-container {
     display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    flex-grow: 1;
-    margin-right: 20px;
-  }
-
-  .right {
-    flex-basis: 40px;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
