@@ -294,12 +294,6 @@
         fill="none"
       />
     {/if}
-    <g id="output" stroke-width="0.5px">
-      <rect x="445" fill="var(--main-color-1)" y="85" width="10" height="25" />
-      <rect fill="var(--main-color-3)" x="456" y="70" width="10" height="40" />
-      <rect fill="var(--main-color-2)" x="467" y="75" width="10" height="35" />
-      <rect fill="var(--main-color-4)" x="478" y="55" width="10" height="55" />
-    </g>
     {#if backward}
       <path
         id="backward-first"

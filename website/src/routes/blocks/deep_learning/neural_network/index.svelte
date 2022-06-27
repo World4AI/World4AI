@@ -17,19 +17,17 @@
 <div class="separator" />
 <Container>
   <p>
-    Neural networks allow us to make all the marvelous calculations that lead to
-    high performance in image classification, text generation, computer games
-    and much more.
-  </p>
-  <p>
-    The training process of neural networks is always done using the same
-    procedure consisting of two major steps. In the <Highlight
-      >forward pass</Highlight
-    > a mini batch is used to calculate the loss of the neural network. In the <Highlight
-      >backward pass</Highlight
-    > the loss is distributed among the neurons and the proportional loss is used
-    to adjust individual weights. The passes run sequentially, until some condition
-    is met for the training to terminate.
+    We can train neural networks that can classify images, generate text or play
+    computer games. No matter what task we are trying to accomplish, the
+    training process of neural networks is always done using the same procedure
+    consisting of two major steps: the <Highlight>forward pass</Highlight> and the
+    <Highlight>backward pass</Highlight>. In the forward pass a mini batch is
+    used to calculate the loss of the neural network. In the backward pass the
+    loss is distributed among all neurons, from the last neurons to the first
+    neurons, and the weights and biases are adjusted proportional to their
+    contribution to the loss. The forward and the backward pass run
+    back-to-back, until some condition is met and the training process is
+    terminated.
   </p>
   <SvgContainer maxWidth="700px">
     <Network />
