@@ -44,7 +44,8 @@
               {#each nodeCenters[layerIdx + 1] as nextNode, nextNodeIdx}
                 <line
                   class="clickable"
-                  stroke-width="2"
+                  stroke-width="1"
+                  stroke-dasharray="10 5"
                   stroke="black"
                   x1={nodeCenters[layerIdx][nodeIdx].x + size}
                   x2={nodeCenters[layerIdx + 1][nextNodeIdx].x}
@@ -63,7 +64,7 @@
       <g>
         {#each layer as node, nodeIdx}
           <rect
-            fill="var(--main-color-1)"
+            fill="var(--main-color-3)"
             stroke="var(--text-color)"
             x={nodeCenters[layerIdx][nodeIdx].x}
             y={nodeCenters[layerIdx][nodeIdx].y}
