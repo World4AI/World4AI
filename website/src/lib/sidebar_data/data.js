@@ -13,8 +13,7 @@ const rl = [
             {
                 name: 'Applications',
                 link: '/blocks/reinforcement_learning/intuition/applications'
-            },
-            {
+            }, {
                 name: 'Agent and Environment',
                 link: '/blocks/reinforcement_learning/intuition/agent_and_environment'
             },
@@ -317,75 +316,71 @@ const dl = [
           },
         ]
     },
-  /*
     {
-        name: 'Loss Functions',
-        link: '/blocks/deep_learning/loss_functions',
-        links: [
-        ]
-    },
-    {
-        name: 'Vanishing and Exploding Gradients',
-        link: '/blocks/deep_learning/vanishing_exploding_gradients',
-        links: [
-        ]
-    },
-    {
-        name: 'Activations',
-        link: '/blocks/deep_learning/activations',
-        links: [
-        ]
-    },
-    {
-        name: 'Optimizers',
-        link: '/blocks/deep_learning/optimizers',
-        links: [
-          {
-            name: 'SGD',
-            link: '/blocks/deep_learning/optimizers/sgd',
-          },
-          {
-            name: 'Momentum',
-            link: '/blocks/deep_learning/optimizers/momentum',
-          },
-          {
-            name: 'RMSProp',
-            link: '/blocks/deep_learning/optimizers/rmsprop',
-          },
-          {
-            name: 'Adam',
-            link: '/blocks/deep_learning/optimizers/adam',
-          },
-        ]
-    },
-    {
-        name: 'Regularization',
-        link: '/blocks/deep_learning/regularization',
-        links: [
-        ]
-    },
-    {
-        name: 'Initialization and Normalization',
-        link: '/blocks/deep_learning/initialization_normalization',
+        name: 'Challenges and Improvements',
+        link: '/blocks/deep_learning/challenges_improvements',
         links: [
           {
             name: 'Input Normalization',
-            link: '/blocks/deep_learning/initialization_normalization/input_normalization',
+            link:  '/blocks/deep_learning/challenges_improvements/input_normalization',
           },
           {
-            name: 'Weight Initialization',
-            link: '/blocks/deep_learning/initialization_normalization/weight_initialization',
+            name: 'Overfitting',
+            link:  '/blocks/deep_learning/challenges_improvements/overfitting',
+            links: [
+              {
+                name: 'Train, Test, Validate',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate'
+              },
+              {
+                name: 'Regularization',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/regularization'
+              },
+              {
+                name: 'Dropout',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/dropout'
+              },
+              {
+                name: 'Early Stopping',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/early_stopping'
+              },
+            ]
           },
           {
-            name: 'Batch Normalization',
-            link: '/blocks/deep_learning/initialization_normalization/batch_normalization',
+            name: 'Vanishing and Exploding Gradients',
+            link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients',
+            links: [
+              {
+                name: 'Activation Functions',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions'
+              },
+              {
+                name: 'Weight Initialization',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization'
+              },
+              {
+                name: 'Layer and Batch Normalization',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/layer_batch_normalization'
+              },
+            ]
           },
           {
-            name: 'Layer Normalization',
-            link: '/blocks/deep_learning/initialization_normalization/layer_normalization',
-          },
+            name: 'Saddle Points',
+            link:  '/blocks/deep_learning/challenges_improvements/saddle_points',
+            links: [
+              {
+                name: 'Optimizers',
+                link:  '/blocks/deep_learning/challenges_improvements/saddle_points/optimizers'
+              },
+              {
+                name: 'Learning Rate Scheduling',
+                link:  '/blocks/deep_learning/challenges_improvements/saddle_points/learning_rate_scheduling'
+              },
+            ]
+          }
         ]
     },
+  /*
     {
         name: 'Convolutional Neural Networks',
         link: '/blocks/deep_learning/convolutional_neural_networks',
