@@ -333,6 +333,10 @@ const dl = [
                 link:  '/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate'
               },
               {
+                name: 'Data Augmentation',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation'
+              },
+              {
                 name: 'Regularization',
                 link:  '/blocks/deep_learning/challenges_improvements/overfitting/regularization'
               },
