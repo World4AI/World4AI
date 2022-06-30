@@ -15,8 +15,6 @@
 
 ## Used Librarries
 
-The interactive examples require 
-
 * [Svelte](https://svelte.dev/)
 * [SvelteKit](https://kit.svelte.dev/)
 
