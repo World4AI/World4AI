@@ -2,56 +2,42 @@
 
 # World4AI
 
-[World4AI](https://world4ai.org) is an educational resource for artificial intelligence. The website is still in a very early stage and will definetely change over the next weeks, months and years. 
+[World4AI](https://world4ai.org) is an interactive online book designed to learn different areas of artificial intelligence. 
 
+⚠️ The website is still in the early stages of development and is expected to change over the next weeks, months and years. 
+
+## Main Ideas
+
+* Learn AI through animations, interactive examples, intuition, math and coding exercises
+* Learn different areas of AI, e.g. deep Learning and symbolic AI
+* The book is always work in progress, aim for continuous improvement 
+* Practical examples and exercises accompany the book 
 
 ## Used Librarries
+
+The interactive examples require 
 
 * [Svelte](https://svelte.dev/)
 * [SvelteKit](https://kit.svelte.dev/)
 
-## Roadmap 2022 and beyond
+## World4AI Roadmap 2022 (and beyond)
 
-- [ ] Python Block
-    - [x] Control Flow
-    - [x] Loops 
-    - [x] OOP
+For the time being we are focusing on deep learning. 
+Some of the sections have already reached a working state and can be used to study.
 
-- [ ] Mathematics Block
-    - [ ] Linear Algebra
-    - [ ] Numpy
-    - [ ] Calculus
-    - [ ] Probability and Statistics
-    - [ ] Information Theory
 
-- [ ] Deep Learning Section
-    - [ ] Deep Learning History 
-    - [ ] Perceptron
-    - [ ] Linear Regression Transformer and Attention
-    - [ ] Logistic Regression
-    - [ ] Multilayer Neural Network 
-    - [ ] Backpropagation and Gradient Descent
-    - [ ] Optimization like SGD, RMSProp and ADAM 
+- [ ] Deep Learning Block
+    - [x] Introduction Section
+    - [x] Linear Regression
+    - [x] Logistic Regression
+    - [x] Neural Networks 
+    - [ ] Challenges and Improvement 
     - [ ] Convolutional Neural Network 
     - [ ] Recurrent Neural Network 
     - [ ] Transformer and Attention 
     - [ ] Generative Models 
     - [ ] Graph Neural Networks
 
-- [ ] Reinforcement Learning Block
-    - [x] DQN
-    - [x] Double DQN
-    - [x] Duelling DQN
-    - [x] Prioritized Experiece Replay
-    - [ ] Rainbow
-    - [x] Policy Gradient and Reinforce
-    - [x] A2C and A3C
-    - [x]  TRPO
-    - [x] PPO
-    - [ ] DDPG
-    - [ ] TD3
-    - [ ] Soft Actor-Critic
-    - [ ] Monte Carlo Tree Search MCTS
-    - [ ] AlphaGo
-    - [ ] AlphaGo Zero
-    - [ ] MuZero
+## Contributions
+
+If you notice any bugs, inconsistencies or have otherwise suggestions, please feel free to open an issue.
