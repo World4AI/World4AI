@@ -321,8 +321,8 @@ const dl = [
         link: '/blocks/deep_learning/challenges_improvements',
         links: [
           {
-            name: 'Input Normalization',
-            link:  '/blocks/deep_learning/challenges_improvements/input_normalization',
+            name: 'Feature Scaling',
+            link:  '/blocks/deep_learning/challenges_improvements/feature_scaling',
           },
           {
             name: 'Overfitting',
