@@ -3,6 +3,8 @@
   import Highlight from "$lib/Highlight.svelte";
   import Plot from "$lib/Plot.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
+  import Kfold from "./_train_test_validate/Kfold.svelte";
+  import Split from "./_train_test_validate/Split.svelte";
 
   let lossPathsData = [[], []];
   let lossTrain = 1;
@@ -33,6 +35,14 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Train Test Validate</title>
+  <meta
+    name="description"
+    content="In order to measure the level of overfitting we need to split the dataset into the trainig, the validation and the test sets."
+  />
+</svelte:head>
 
 <h1>Train, Test, Validate</h1>
 <div class="separator" />
@@ -127,9 +137,70 @@
   <div class="separator" />
 
   <h2>K-Fold Cross-Validation</h2>
+  <p>
+    In the approach above we divided the dataset in three distinct buckets and
+    kept them constant during the whole training process, but ideally we would
+    like to somehow use all available data in training and testing
+    simultaneously. While we need to keep the test data separate, untouched by
+    training, we can do just that with the rest of the data by using <Highlight
+      >k-fold cross-validation</Highlight
+    >.
+  </p>
+  <p>
+    We divide the data (excluding the test set) into k equal folds. k is a
+    hyperparameter, but usually we construct 5 or 10 folds. Each fold is
+    basically a bucket of data that can be used either for trainig or
+    validation. We use one of the folds for validation and the rest (k-1 folds)
+    for training and we repeat the trainig process k times, switching the fold
+    that is used for validation each time. After the k iterations we are left
+    with k models.
+  </p>
+  <Kfold />
+  <p>
+    This procedure is expected to provide much more robust classificaton and
+    regression models. When it comes to using the models on the test dataset, we
+    have to use a procedure that is called <Highlight>ensemble</Highlight>.
+    While we are not going to take deep dive into ensemble methods just yet, let
+    us at least discuss some basics. Ensemble methods allow us to combine
+    different models into one single model, that is more robust than the
+    individual models. For classification we could let each of the models vote
+    on a class. The class of the overall model would be the one that receives
+    the most votes. For regression tasks we could average the output of each
+    individual model, to produce better predictions.
+  </p>
+  <p>
+    There is obviously the downside to using k models. Training a neural network
+    just once requires a lot of computaional resources. By using k folds we will
+    more or less increase the training time by a factor of k.
+  </p>
   <div class="separator" />
 
-  <h2>Stratification</h2>
+  <h2>Stratified Split</h2>
+  <p>
+    We have several options, when we split our dataset into the training,
+    validation and the test set.
+  </p>
+  <p>
+    The simplest approach would be to separate the data randomly. While this
+    type of split is easy to implement, it might pose some problems. In the
+    example below we are faced with a dataset consisting of 10 classes (numbers
+    0 to 9) with 10 samples each. Each time we generate a number between 0 and
+    1. If the number is below 0.5 we assign the number to the blue split,
+    otherwise the number is assigned to the red split.
+  </p>
+  <Split type="random" />
+  <p>
+    If you observe the splits, you will most likely notice that some splits have
+    more numbers of a certain category. That means that the proportions of some
+    categories in the two splits are different. This is especially a problem,
+    when some of the categories have a limited number of samples. We could end
+    up creating a split that doesn't include a particular category at all.
+  </p>
+  <p>
+    A <Highlight>stratified</Highlight> split on the other hand tries to keep the
+    proportions of the different classes consistent with the original data.
+  </p>
+  <Split type="stratified" />
   <div class="separator" />
 </Container>
 
