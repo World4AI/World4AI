@@ -58,6 +58,73 @@
 
   let radius = 0.1;
   $: touchingCircle = [infiniteSolutions, ...generateUnit([radius])];
+
+  // diamonds of different size
+  function generateDiamond(lengths = [1]) {
+    let paths = [];
+    lengths.forEach((len) => {
+      let path = [];
+      for (let i = 0; i <= 1; i += 0.1) {
+        let x = i * len;
+        let y = len - x;
+        path.push({ x, y });
+      }
+      for (let i = 1; i >= 0; i -= 0.1) {
+        let x = i * len;
+        let y = -(len - x);
+        path.push({ x, y });
+      }
+      for (let i = 0; i <= 1; i += 0.1) {
+        let x = -i * len;
+        let y = -(len + x);
+        path.push({ x, y });
+      }
+      for (let i = 1; i >= 0; i -= 0.1) {
+        let x = -i * len;
+        let y = len + x;
+        path.push({ x, y });
+      }
+      paths.push(path);
+    });
+    return paths;
+  }
+
+  // move point along the diamond
+  let diamondPlusVectorPath;
+  let diamondPath = generateDiamond();
+  let diamondPoint;
+  let count = 0;
+  function moveDiamond() {
+    count = count % (diamondPath[0].length - 1);
+    let x = diamondPath[0][count].x;
+    let y = diamondPath[0][count].y;
+    diamondPoint = [{ x, y }];
+    diamondPlusVectorPath = [[{ x: 0, y: 0 }, ...diamondPoint], ...diamondPath];
+    count += 1;
+  }
+  moveDiamond();
+
+  let moveDiamondIntervalId = null;
+  function diamondRotationHandler() {
+    if (!moveDiamondIntervalId) {
+      moveDiamondIntervalId = setInterval(moveDiamond, 100);
+    } else {
+      clearInterval(moveDiamondIntervalId);
+      moveDiamondIntervalId = null;
+    }
+  }
+
+  // draw equation of the form 2x_1 + x_2 = 3
+  let infiniteDiamondSolutions = [];
+
+  for (let i = -4; i <= 4; i++) {
+    let x = 2 * i;
+    let y = 3 - i;
+    infiniteDiamondSolutions.push({ x, y });
+  }
+
+  let size = 0.1;
+  $: touchingDiamond = [infiniteDiamondSolutions, ...generateDiamond([size])];
 </script>
 
 <h1>Regularization</h1>
@@ -279,5 +346,60 @@
     line.
   </p>
   <L1Polynomial />
+  <PlayButton
+    type={!moveDiamondIntervalId ? "play" : "pause"}
+    on:click={diamondRotationHandler}
+  />
+  <Plot
+    pathsData={diamondPlusVectorPath}
+    pointsData={diamondPoint}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 500,
+      minX: -1.5,
+      maxX: 1.5,
+      minY: -1.5,
+      maxY: 1.5,
+      xLabel: "x 1",
+      yLabel: "x 2",
+      xTicks: [-1, 0, 1],
+      yTicks: [-1, 0, 1],
+    }}
+  />
+  <Plot
+    pathsData={generateDiamond([1, 2, 3])}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 500,
+      minX: -4,
+      maxX: 4,
+      minY: -4,
+      maxY: 4,
+      xLabel: "x 1",
+      yLabel: "x 2",
+      xTicks: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+      yTicks: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+    }}
+  />
+  <Plot
+    pathsData={touchingDiamond}
+    pointsData={[{ x: 0, y: 3 }]}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 500,
+      minX: -4,
+      maxX: 4,
+      minY: -4,
+      maxY: 4,
+      xLabel: "x 1",
+      yLabel: "x 2",
+      xTicks: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+      yTicks: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+    }}
+  />
+  <Slider bind:value={size} min="0.1" max="4" step="0.1" />
   <div class="separator" />
 </Container>
