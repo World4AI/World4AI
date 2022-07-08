@@ -127,6 +127,14 @@
   $: touchingDiamond = [infiniteDiamondSolutions, ...generateDiamond([size])];
 </script>
 
+<svelte:head>
+  <title>World4AI | Deep Learning | L1 and L2 Regularization</title>
+  <meta
+    name="description"
+    content="The L1 and L2 regularization techniques reduce overfitting by modifying the loss function. Both regularizers keep the size of the weights small, but the L1 loss also enforces sparsity."
+  />
+</svelte:head>
+
 <h1>Regularization</h1>
 <div class="separator" />
 <Container>
@@ -198,7 +206,8 @@
 
   <p>
     While the the Pythagorean theorem is used to calculate the length of a
-    vector on a 2 dimensional plane, the <Latex>L_2</Latex> norm generalizes to
+    vector on a 2 dimensional plane, the <Latex>L_2</Latex> norm generalizes the
+    idea of length to
     <Latex>n</Latex> dimensions,
     <Latex
       >{String.raw`
@@ -209,9 +218,8 @@
   </p>
   <p />
   <p>
-    If we are given a specific <Latex>L_2</Latex> norm for a vector <Latex
-      >l</Latex
-    > such that <Latex>{String.raw`\sqrt{x_1^2 + x_2^2} = l`}</Latex>, we will
+    If we are given a specific vector length <Latex>l</Latex>
+    such that <Latex>{String.raw`\sqrt{x_1^2 + x_2^2} = l`}</Latex>, we will
     find that there is whole set of vectors that that satisfy that condition and
     that this set has a circular shape. In the interactive example below we draw
     a unit circle, such that <Latex
@@ -319,33 +327,82 @@
       >L_2</Latex
     > how does this apply to machine learning and why is this useful to avoid overfitting?
     We can add the squared <Latex>L_2</Latex> norm to the loss function as a regularizer.
-    We square the norm to avoid the root and to make the calculation of the derivative
-    easier.
+    We do not use the <Latex>||L||_2</Latex> norm directly, but calculate the square
+    of the norm, <Latex>||L||_2^2</Latex>. This is done simply because the root
+    makes the calculation of the derivative more complicarted than it needs to
+    be.
   </p>
   <p>
-    If we are dealing with the mean squared error for example our new function
-    looks as below.
+    If we are dealing with the mean squared error for example our new loss
+    function looks as below.
   </p>
   <Latex
     >{String.raw`L=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2 + \lambda \sum_j^m w_j^2`}</Latex
   >
   <p>
-    The overall idea is to find the solution that reduces the mean squared error
-    without creating large weights. When the size of one of the weights increses
-    disproportionatly, the loss function will rise sharply. Therefore by using
-    the regularization term we reduce the overemphasis on any particular
-    feature, thereby reducing the complexity of the model. The <Latex
+    The overall intention is to find the solution that reduces the mean squared
+    error without creating large weights. When the size of one of the weights
+    increses disproportionatly, the loss function will rise sharply. Therefore
+    by using the regularization term we reduce the overemphasis on any
+    particular feature, thereby reducing the complexity of the model. The <Latex
       >\lambda</Latex
     > (lambda) is the hyperparameter that we can tune to determine how much emphasis
     we would like to put on the <Latex>L_2</Latex> norm. It is the lever that lets
     you control the size of the weights.
   </p>
   <p>
-    Below you can move the slider to adjust the lambda. The higher the lambda,
-    the simpler the model becomes and the more the curve looks like a straight
+    Below we have random the same model trained with and without the <Latex
+      >L_2</Latex
+    > regurlarization. You can move the slider to adjust the lambda. The higher the
+    lambda, the simpler the model becomes and the more the curve looks like a straight
     line.
   </p>
   <L1Polynomial />
+  <p>
+    The <Latex>L_1</Latex> norm, also called the Manhattan distance, simply adds
+    the absolute values of each element of the vector,
+    <Latex
+      >{String.raw`
+      ||\mathbf{v}||_1 = \sum_{i=1}^n |v_i|
+      `}</Latex
+    >.
+  </p>
+  <p>
+    This definition means essentially that when you want to move from the blue
+    point to the red point, you do not take the direct route, but move along the
+    axis.
+  </p>
+
+  <Plot
+    pointsData={[[{ x: 5, y: 4 }], [{ x: 0, y: 0 }]]}
+    pathsData={[
+      [
+        { x: 0, y: 0 },
+        { x: 5, y: 0 },
+        { x: 5, y: 4 },
+      ],
+    ]}
+    config={{
+      width: 500,
+      height: 500,
+      maxWidth: 450,
+      minX: 0,
+      maxX: 5,
+      minY: 0,
+      maxY: 5,
+      xLabel: "x",
+      yLabel: "y",
+      xTicks: [1, 2, 3, 4, 5],
+      yTicks: [1, 2, 3, 4, 5],
+    }}
+  />
+  <p>
+    We can make the same exercise we did with the <Latex>L_2</Latex> norm and imagine
+    how the set of vectors looks like if we restrict the <Latex>L_1</Latex> norm
+    to length <Latex>1</Latex>, <Latex>{String.raw`|x_1| + |x_2| = 1`}</Latex>.
+    The result is a diamond shaped figure. All the vectors on the ridge of the
+    diamond have a <Latex>L_1</Latex> norm of exactly 1.
+  </p>
   <PlayButton
     type={!moveDiamondIntervalId ? "play" : "pause"}
     on:click={diamondRotationHandler}
@@ -367,6 +424,9 @@
       yTicks: [-1, 0, 1],
     }}
   />
+  <p>
+    Different <Latex>L_1</Latex> norms in 2D produce diamonds of different sizes.
+  </p>
   <Plot
     pathsData={generateDiamond([1, 2, 3])}
     config={{
@@ -383,6 +443,11 @@
       yTicks: [-4, -3, -2, -1, 0, 1, 2, 3, 4],
     }}
   />
+  <p>
+    Below we are give an underdetermined system of equations <Latex
+      >2x_1 + x_2 = 3</Latex
+    > and we want to find a solution with the smallest <Latex>L_1</Latex> norm.
+  </p>
   <Plot
     pathsData={touchingDiamond}
     pointsData={[{ x: 0, y: 3 }]}
@@ -401,5 +466,24 @@
     }}
   />
   <Slider bind:value={size} min="0.1" max="4" step="0.1" />
+  <p>
+    When you move the slider you will find the solution, where the diamond
+    touches the line. An important characteristic of the <Latex>L_1</Latex> norm,
+    is the <Highlight>sparse</Highlight> solution. The diamond has four sharp points,
+    where one of the axis is zero. That means that when the dimond touches the function
+    we are interested in, we are dealing with a solution where the vector is mostly
+    zero, a sparse vector.
+  </p>
+  <p>
+    When we add the <Latex>L_1</Latex> regularization to the mean squared error,
+    we are simultaneously reducing the mean squared error and reduce the <Latex
+      >L_1</Latex
+    > norm. Similar to <Latex>L_2</Latex>, the <Latex>L_1</Latex> regularization
+    reduces overfitting by not letting the weights grow disproportionatly. Additionally
+    the <Latex>L_1</Latex> norm tends to generate sparse weights.
+  </p>
+  <Latex
+    >{String.raw`L=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2 + \lambda \sum_j^m |w_j|`}</Latex
+  >
   <div class="separator" />
 </Container>
