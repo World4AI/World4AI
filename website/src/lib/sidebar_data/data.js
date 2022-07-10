@@ -363,22 +363,26 @@ const dl = [
                 link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization'
               },
               {
-                name: 'Layer and Batch Normalization',
-                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/layer_batch_normalization'
+                name: 'Gradient Clipping',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping'
               },
             ]
           },
           {
-            name: 'Saddle Points',
-            link:  '/blocks/deep_learning/challenges_improvements/saddle_points',
+            name: 'Stability and Speedup',
+            link:  '/blocks/deep_learning/challenges_improvements/stability_speedup',
             links: [
               {
                 name: 'Optimizers',
-                link:  '/blocks/deep_learning/challenges_improvements/saddle_points/optimizers'
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers'
+              },
+              {
+                name: 'Layer and Batch Normalization',
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/layer_batch_normalization'
               },
               {
                 name: 'Learning Rate Scheduling',
-                link:  '/blocks/deep_learning/challenges_improvements/saddle_points/learning_rate_scheduling'
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling'
               },
             ]
           }
