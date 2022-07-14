@@ -388,6 +388,10 @@ const dl = [
                 name: 'Learning Rate Scheduling',
                 link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling'
               },
+              {
+                name: 'Transfer Learning',
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/transfer_learning'
+              },
             ]
           }
         ]
