@@ -119,7 +119,7 @@
     implemented logistic regression still applies. We can use the sigmoid and
     the softmax to turn logits into probabilities. Nowadays we primarily use the
     sigmoid <Latex>{String.raw`\dfrac{1}{1+e^{-z}}`}</Latex> and the softmax <Latex
-      >{String.raw`\dfrac{e^{(-z_k)}}{\sum_d e^{(-z_d)}}`}</Latex
+      >{String.raw`\dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex
     > in the last layer of the neural network, to determine the probability to belong
     to a particular class.
   </p>

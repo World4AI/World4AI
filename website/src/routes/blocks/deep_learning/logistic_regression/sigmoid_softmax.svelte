@@ -497,7 +497,7 @@ softmax(\mathbf{z}) =
     using the following softmax equation.
   </p>
   <Latex
-    >{String.raw`\large softmax(z_k) = \dfrac{e^{(-z_k)}}{\sum_d e^{(-z_d)}}`}</Latex
+    >{String.raw`\large softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex
   >
   <p>
     Similar to sigmoid function, the softmax function has several advantageous
