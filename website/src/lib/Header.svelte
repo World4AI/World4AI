@@ -66,7 +66,6 @@
                       href="/blocks/deep_learning/introduction">Deep Learning</a
                     >
                   </li>
-                  <!--
                   <li>
                     <a
                       class:selected={path === "/blocks/reinforcement_learning"}
@@ -74,7 +73,6 @@
                       >Reinforcement Learning</a
                     >
                   </li>
-                  -->
                 </ul>
               </div>
             </li>

@@ -1,4 +1,3 @@
-/*
 const rl = [
     {
       name: 'Introduction',
@@ -205,7 +204,6 @@ const rl = [
         ]
     },
 ];
-*/
 
 const dl = [
     {
@@ -527,4 +525,4 @@ const dl = [
     },
     */
 ]
-export {dl}
+export {dl, rl}
