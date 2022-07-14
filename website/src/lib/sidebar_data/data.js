@@ -366,6 +366,10 @@ const dl = [
                 name: 'Gradient Clipping',
                 link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping'
               },
+              {
+                name: 'Skip Connections',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections'
+              },
             ]
           },
           {
