@@ -1,5 +1,6 @@
 <script>
-  import Question from "$lib/Question.svelte";
+  import Container from "$lib/Container.svelte";
+  import SvgContainer from "$lib/SvgContainer.svelte";
 </script>
 
 <svelte:head>
@@ -11,10 +12,10 @@
 </svelte:head>
 
 <h1>Intuition</h1>
-<Question>How can we start learning reinforcement learning?</Question>
 <div class="separator" />
-<div class="flex-center">
-  <div class="container">
+
+<Container>
+  <SvgContainer maxWidth="300px">
     <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter
@@ -28,7 +29,7 @@
           <feGaussianBlur stdDeviation="6" />
         </filter>
       </defs>
-      <g fill="none" stroke="#fff">
+      <g fill="none" stroke="var(--text-color)">
         <path
           d="m240 140c20.572-0.50795 41.25 6.3029 57.494 18.937 16.243 12.634 27.935 30.999 32.506 51.063 6.065 26.619-0.81242 55.879-18.1 77.009s-44.607 33.665-71.9 32.991"
           filter="url(#filter7566)"
@@ -118,23 +119,17 @@
         />
       </g>
     </svg>
-  </div>
-</div>
-<p>
-  A big chunk of machine learning is mathematics and reinforcement learning is
-  no exception. Often we can lose track of what we are actually trying to solve
-  and lose ourselves in the definitions and mathematics. This chapter is inteded
-  to give an intuitive introduction into the topic of reinforcement learning
-  without any rigourous proofs. The intention of the chapter is to elicit
-  excitement and passion and to show that under all those calculations lie
-  simple but powerful ideas. Still all the knowledge learned in this chapter is
-  going to be useful for when we start dealing with math and programming.
-</p>
-<div class="separator" />
-
-<style>
-  .container {
-    max-width: 300px;
-    min-width: 200px;
-  }
-</style>
+  </SvgContainer>
+  <p>
+    A big chunk of machine learning is mathematics and reinforcement learning is
+    no exception. Often we can lose track of what we are actually trying to
+    solve and lose ourselves in the definitions and mathematics. This chapter is
+    inteded to give an intuitive introduction into the topic of reinforcement
+    learning without any rigourous proofs. The intention of the chapter is to
+    elicit excitement and passion and to show that under all those calculations
+    lie simple but powerful ideas. Still all the knowledge learned in this
+    chapter is going to be useful for when we start dealing with math and
+    programming.
+  </p>
+  <div class="separator" />
+</Container>
