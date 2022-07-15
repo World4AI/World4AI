@@ -1,4 +1,5 @@
 <script>
+  import SvgContainer from "$lib/SvgContainer.svelte";
   import { scaleLinear } from "d3-scale";
   export let width = 500;
   export let height = 200;
@@ -53,33 +54,31 @@
   generatePaths();
 </script>
 
-<svg viewBox="0 0 {width} {height}">
-  <g class="y" transform="translate(0, {padding.top})">
-    {#each yTicks as tick}
-      <g transform="translate(0, {yScale(tick) - padding.bottom})">
-        <line x2="100%" />
-        <text transform="translate(3, -5)">{tick}</text>
+<SvgContainer maxWidth="700px">
+  <svg viewBox="0 0 {width} {height}">
+    <g class="y" transform="translate(0, {padding.top})">
+      {#each yTicks as tick}
+        <g transform="translate(0, {yScale(tick) - padding.bottom})">
+          <line x2="100%" />
+          <text transform="translate(3, -5)">{tick}</text>
+        </g>
+      {/each}
+    </g>
+    {#each xTicks as tick}
+      <g class="x" transform="translate({xScale(tick)},{height})">
+        <text y="0">{tick}</text>
+        <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
       </g>
     {/each}
-  </g>
-  {#each xTicks as tick}
-    <g class="x" transform="translate({xScale(tick)},{height})">
-      <text y="0">{tick}</text>
-      <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
+    <g fill="none" stroke="var(--text-color)" stroke-opacity="0.2">
+      {#each paths as path}
+        <path d={path} />
+      {/each}
     </g>
-  {/each}
-  <g fill="none" stroke="var(--text-color)">
-    {#each paths as path}
-      <path d={path} />
-    {/each}
-  </g>
-</svg>
+  </svg>
+</SvgContainer>
 
 <style>
-  svg {
-    max-width: 700px;
-  }
-
   line {
     stroke: var(--text-color);
     stroke-width: 0.1px;
