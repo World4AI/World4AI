@@ -13,10 +13,12 @@
 * The book is always work in progress, aim for continuous improvement 
 * Practical examples and exercises accompany the book 
 
-## Used Librarries
+## Main Libraries
 
-* [Svelte](https://svelte.dev/)
-* [SvelteKit](https://kit.svelte.dev/)
+
+* [Svelte](https://svelte.dev/), [SvelteKit](https://kit.svelte.dev/) and [Vite](https://vitejs.dev/)
+* [D3.js](https://d3js.org/)
+* [KaTeX](https://katex.org/)
 
 ## World4AI Roadmap 2022 (and beyond)
 
@@ -31,10 +33,28 @@ Some of the sections have already reached a working state and can be used to stu
     - [x] Neural Networks 
     - [ ] Challenges and Improvement 
     - [ ] Convolutional Neural Network 
+    - [ ] Convolutional Neural Networks: Architectures 
+    - [ ] Object Detection and Segmentation
+    - [ ] Word Embeddings
     - [ ] Recurrent Neural Network 
     - [ ] Transformer and Attention 
     - [ ] Generative Models 
     - [ ] Graph Neural Networks
+
+Some of the sections in the reinforcement learning block have been already implemented, but a lot of refactoring still needs to be done. 
+- [ ] Reinforcement Learning Block
+    - [ ] Introduction 
+    - [ ] Intuition 
+    - [ ] Markov Decisoin Process
+    - [ ] Dynamic Programming 
+    - [ ] Exploration/Exploitation
+    - [ ] Tabular Reinforcement Learning 
+    - [ ] Approximative Value Functions
+    - [ ] Value Based Deep RL
+    - [ ] Policy Gradient Methods
+    - [ ] Actor Critic Methods
+    - [ ] Trust Region Methods
+    - [ ] AlphaGo Zero and Variants
 
 ## Contributions
 
