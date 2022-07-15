@@ -21,7 +21,7 @@
   />
 </svelte:head>
 
-<p class="danger">The whole block is not in a working state!!!</p>
+<p class="warning">The block needs a lot of refactoring.</p>
 
 <h1>Reinforcement Learning</h1>
 <div class="separator" />
