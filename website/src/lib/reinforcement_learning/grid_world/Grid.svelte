@@ -4,6 +4,7 @@
   // svg parameters
   export let width = 500;
   export let height = 500;
+  export let maxWidth = "500px";
   export let strokeWidth = 0.3;
 
   // TODO: Make the calculation dynamic
@@ -39,7 +40,7 @@
     Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);
 </script>
 
-<SvgContainer maxWidth={"500px"}>
+<SvgContainer {maxWidth}>
   <svg
     version="1.1"
     viewBox="0 0 {width} {height}"
@@ -134,7 +135,7 @@
                 refX="0"
                 refY="3.5"
                 orient="auto"
-                fill="var(--main-color-1)"
+                fill="var(--text-color)"
               >
                 <polygon points="0 0, 10 3.5, 0 7" />
               </marker>
@@ -149,7 +150,7 @@
                   policy[cell.r][cell.c]
                 ]}, {cell.c * colSize + colSize / 2}, {cell.r * rowSize +
                   rowSize / 2})"
-                stroke="var(--main-color-1)"
+                stroke="var(--text-color)"
                 stroke-width="1"
                 marker-end="url(#arrowhead)"
               />

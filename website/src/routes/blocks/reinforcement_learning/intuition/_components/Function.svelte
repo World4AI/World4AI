@@ -10,7 +10,7 @@
 
   let xMargin = 1;
   let yMargin = 40;
-  let size = 70;
+  let size = 40;
   let gap = 20;
 
   let width = 300;
@@ -41,8 +41,8 @@
         on:click={() => {
           activeInput = i;
         }}
-        stroke="var(--main-color-2)"
-        fill="var(--aside-color)"
+        stroke="var(--text-color)"
+        fill="var(--main-color-4)"
         x={xMargin}
         y={yMargin + i * size + i * gap}
         width={size}
@@ -59,8 +59,8 @@
     {/each}
     {#each outputs as output, o}
       <rect
-        stroke="var(--main-color-1)"
-        fill="var(--aside-color)"
+        stroke="var(--text-color)"
+        fill="var(--main-color-3)"
         x={width - size - xMargin}
         y={yMargin + o * size + o * gap}
         width={size}
