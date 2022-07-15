@@ -56,19 +56,20 @@
                 <ul>
                   <li>
                     <a
-                      class:selected={path === "/blocks/introduction"}
+                      class:selecteddropdown={path === "/blocks/introduction"}
                       href="/blocks/introduction">Introduction</a
                     >
                   </li>
                   <li>
                     <a
-                      class:selected={path === "/blocks/deep_learning"}
+                      class:selecteddropdown={path === "/blocks/deep_learning"}
                       href="/blocks/deep_learning/introduction">Deep Learning</a
                     >
                   </li>
                   <li>
                     <a
-                      class:selected={path === "/blocks/reinforcement_learning"}
+                      class:selecteddropdown={path ===
+                        "/blocks/reinforcement_learning"}
                       href="/blocks/reinforcement_learning/introduction"
                       >Reinforcement Learning</a
                     >
@@ -211,10 +212,6 @@
     align-items: center;
   }
 
-  nav a:hover {
-    color: var(--main-color-1);
-  }
-
   li {
     list-style: none;
     margin: 0 20px;
@@ -261,6 +258,20 @@
     width: 100%;
     top: 25px;
     left: 0%;
+    background-color: var(--background-color);
+  }
+
+  .selecteddropdown {
+    position: relative;
+  }
+
+  .selecteddropdown::before {
+    position: absolute;
+    content: "";
+    height: 5px;
+    width: 5px;
+    top: 50%;
+    left: -15px;
     background-color: var(--background-color);
   }
 
