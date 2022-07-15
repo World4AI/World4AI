@@ -1,5 +1,5 @@
 <script>
-  import Question from "$lib/Question.svelte";
+  import Container from "$lib/Container.svelte";
 
   let timeline = [
     { time: "2013, 2015", content: "DQN" },
@@ -24,58 +24,60 @@
 </svelte:head>
 
 <h1>Value Based Deep Reinforcement Learning</h1>
-<Question>What are the benefits of modern deep reinforcement learning?</Question
->
 <div class="separator" />
 
-<p>
-  The naive implementation of approximate value based reinforcement learning
-  algorithms can lead to divergence, especially when combining non-linear
-  function approximators, temporal difference learning and off-policy learning.
-  Yet particularly over the last decade researchers have developed techniques to
-  reduce the probability of divergence dramatically, making off-policy temporal
-  difference learning algorithms the first choice for many problemns. This
-  trajectory started with the development of the deep Q-network (DQN) by
-  DeepMind. Since then each new iteration of the algorithm provided a new
-  improvement, a piece of the puzzle. All of those pieces were eventually
-  combined by DeepMind into the so called Rainbow algorithm.
-</p>
-<div class="timeline">
-  {#each timeline as paper, idx}
-    <div
-      class="container"
-      class:left={idx % 2 === 0}
-      class:right={idx % 2 != 0}
-    >
-      <div class="content">
-        <h6 class="title">{paper.time}</h6>
-        <p>{paper.content}</p>
-      </div>
+<Container>
+  <p>
+    The naive implementation of approximate value based reinforcement learning
+    algorithms can lead to divergence, especially when combining non-linear
+    function approximators, temporal difference learning and off-policy
+    learning. Yet particularly over the last decade researchers have developed
+    techniques to reduce the probability of divergence dramatically, making
+    off-policy temporal difference learning algorithms the first choice for many
+    problemns. This trajectory started with the development of the deep
+    Q-network (DQN) by DeepMind. Since then each new iteration of the algorithm
+    provided a new improvement, a piece of the puzzle. All of those pieces were
+    eventually combined by DeepMind into the so called Rainbow algorithm.
+  </p>
+  <Container maxWidth="300px">
+    <div class="timeline">
+      {#each timeline as paper, idx}
+        <div
+          class="container"
+          class:left={idx % 2 === 0}
+          class:right={idx % 2 != 0}
+        >
+          <div class="content">
+            <h6 class="title">{paper.time}</h6>
+            <p>{paper.content}</p>
+          </div>
+        </div>
+      {/each}
     </div>
-  {/each}
-</div>
-<p>
-  In this chapter we are basically going to take a ride down the history lane of
-  modern value based deep reinforcement learning. We will start the journey by
-  impelementing the DQN algorithm. After that we will cover each subsequent
-  improvement separately until we are able to implement a fully featured Rainbow
-  algorithm.
-</p>
-<p>
-  Before we move on to the discussions and implementations of the individual
-  algorithms let us shortly discuss the approach that we are going to take in
-  the subsequent chapters. Some of the discussed algorithms built upon the
-  previous findings. For example the duelling DQN used the double DQN and not
-  the original vanilla DQN as the basis for improvement. In research this
-  approach is desirable, as you need to show that your contributions are able to
-  improve the current state of the art implementation. We are going to cover
-  each of the sections independently. Only the original DQN is going to serve as
-  the basis for each of the the improvements. In our opinion this makes
-  didactically more sense, as we only need to focus on one piece of the puzzle.
-  The combination of the different improvements is going to be implemented in
-  the final chapter of this section, the Rainbow algorithm.
-</p>
-<div class="separator" />
+  </Container>
+  <p>
+    In this chapter we are basically going to take a ride down the history lane
+    of modern value based deep reinforcement learning. We will start the journey
+    by impelementing the DQN algorithm. After that we will cover each subsequent
+    improvement separately until we are able to implement a fully featured
+    Rainbow algorithm.
+  </p>
+  <p>
+    Before we move on to the discussions and implementations of the individual
+    algorithms let us shortly discuss the approach that we are going to take in
+    the subsequent chapters. Some of the discussed algorithms built upon the
+    previous findings. For example the duelling DQN used the double DQN and not
+    the original vanilla DQN as the basis for improvement. In research this
+    approach is desirable, as you need to show that your contributions are able
+    to improve the current state of the art implementation. We are going to
+    cover each of the sections independently. Only the original DQN is going to
+    serve as the basis for each of the the improvements. In our opinion this
+    makes didactically more sense, as we only need to focus on one piece of the
+    puzzle. The combination of the different improvements is going to be
+    implemented in the final chapter of this section, the Rainbow algorithm.
+  </p>
+  <div class="separator" />
+</Container>
 
 <style>
   .timeline {
