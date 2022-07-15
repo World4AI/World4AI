@@ -5,7 +5,7 @@
 <SvgContainer maxWidth={"500px"}>
   <svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
     <g>
-      <g fill="none" stroke-width="2" stroke="var(--tint)">
+      <g fill="none" stroke-width="2" stroke="black" stroke-opacity="0.2">
         <path d="m0.5 0.5v499" />
         <path d="m28.222 0.5v499" />
         <path d="m55.944 0.5v499" />
@@ -45,7 +45,13 @@
         <path d="m0.5 471.78h499" />
         <path d="m0.5 499.5h499" />
       </g>
-      <g fill-rule="evenodd" stroke-width="1" fill="none">
+      <g
+        fill-rule="evenodd"
+        stroke-width="1"
+        stroke-opacity="0.5"
+        fill="white"
+        stroke="var(--text-color)"
+      >
         <circle cx="416.33" cy="83.667" r="11.341" fill="var(--tint)" />
         <circle cx="83.667" cy="416.33" r="11.341" fill="var(--text-color)" />
         <circle cx="55.944" cy="83.667" r="11.341" fill="var(--tint)" />
@@ -101,4 +107,3 @@
     </g>
   </svg>
 </SvgContainer>
-

@@ -3,7 +3,7 @@
 
   // TODO
   // Find a way to figure out global css colors
-  export let color = "#dad9eb";
+  export let color = "black";
 
   let heightPaddle = 120;
   let widthPaddle = 20;

@@ -4,7 +4,7 @@
   // svg parameters
   export let width = 500;
   export let height = 500;
-  export let strokeWidth = 0.1;
+  export let strokeWidth = 0.3;
 
   // TODO: Make the calculation dynamic
   let colSize = 100;
@@ -50,9 +50,9 @@
       {#each cells as cell}
         <!-- cells -->
         <rect
-          fill="none"
+          fill="#889"
           stroke-width={strokeWidth}
-          stroke="var(--text-color)"
+          stroke="white"
           x={cell.c * colSize}
           y={cell.r * rowSize}
           width={colSize}
@@ -87,7 +87,7 @@
           <!-- blocks -->
           {#if cell.type === "block"}
             <rect
-              fill="var(--text-color)"
+              fill="var(--main-color-4)"
               stroke="black"
               stroke-width="3"
               x={cell.c * colSize + obstaclePadding}
@@ -100,7 +100,7 @@
           <!-- goal -->
           {#if cell.type === "goal"}
             <polygon
-              fill="var(--text-color)"
+              fill="#FFF"
               stroke="black"
               stroke-width="2"
               points={`${cell.c * colSize + colSize / 2},${
@@ -164,7 +164,7 @@
           cx={player.c * colSize + colSize / 2}
           cy={player.r * rowSize + rowSize / 2}
           r={colSize * 0.25}
-          fill="var(--text-color)"
+          fill="var(--main-color-3)"
           opacity="0.8"
           stroke="black"
           stroke-width="3"
