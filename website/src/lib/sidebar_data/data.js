@@ -364,10 +364,6 @@ const dl = [
                 name: 'Gradient Clipping',
                 link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping'
               },
-              {
-                name: 'Skip Connections',
-                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections'
-              },
             ]
           },
           {
@@ -381,6 +377,10 @@ const dl = [
               {
                 name: 'Layer and Batch Normalization',
                 link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/layer_batch_normalization'
+              },
+              {
+                name: 'Skip Connections',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections'
               },
               {
                 name: 'Learning Rate Scheduling',
