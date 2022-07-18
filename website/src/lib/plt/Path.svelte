@@ -2,6 +2,9 @@
   import { getContext } from "svelte";
 
   export let data = [];
+  export let strokeDashArray = "none";
+  export let color = "black";
+  export let stroke = "1";
 
   const xScale = getContext("xScale");
   const yScale = getContext("yScale");
@@ -12,14 +15,17 @@
   }
 </script>
 
-<path d={path} />
+<path
+  d={path}
+  stroke={color}
+  stroke-width={stroke}
+  stroke-dasharray={strokeDashArray}
+/>
 
 <style>
   path {
-    stroke: var(--text-color);
     fill: none;
     stroke-linejoin: round;
     stroke-linecap: round;
-    stroke-width: 1;
   }
 </style>
