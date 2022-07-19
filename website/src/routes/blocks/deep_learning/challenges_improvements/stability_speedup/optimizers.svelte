@@ -11,6 +11,9 @@
   import YLabel from "$lib/plt/YLabel.svelte";
   import Path from "$lib/plt/Path.svelte";
   import Circle from "$lib/plt/Circle.svelte";
+  import Ellipse from "$lib/plt/Ellipse.svelte";
+  import Legend from "$lib/plt/Legend.svelte";
+  import * as d3 from "d3";
 
   //parameters for function with local minimum
   let localPoint = [];
@@ -62,80 +65,143 @@
 
   $: (localY || localMomentumY) && recalculateLocalMinimumPoints();
 
+  /*-------------------------------------------------------*/
+  function calculatePath(
+    epochs,
+    f,
+    // grad example (x, y) => {return { x: 2 * x, y: 2 * y };};
+    grad,
+    startX,
+    startY,
+    alpha,
+    //adaptive -> rmsprop, momentum + adaptive -> adam
+    momentum = false,
+    adaptive = false,
+    beta1 = 0.9,
+    beta2 = 0.9,
+    // numerical stability rmsprop and adam
+    epsilon = 0.0001
+  ) {
+    let coordinates = [];
+    coordinates.push({ x: startX, y: startY });
+
+    let x;
+    let y;
+    let gradX;
+    let gradY;
+    let momentumWeighted;
+    let adaptiveWeighted;
+    if (momentum) {
+      momentumWeighted = { x: 0, y: 0 };
+    }
+    if (adaptive) {
+      adaptiveWeighted = { x: 0, y: 0 };
+    }
+
+    for (let i = 0; i < epochs; i++) {
+      x = coordinates[i].x;
+      y = coordinates[i].y;
+
+      gradX = grad(x, y).x;
+      gradY = grad(x, y).y;
+
+      let numeratorX = gradX;
+      let numeratorY = gradY;
+
+      if (momentum) {
+        numeratorX = momentumWeighted.x =
+          momentumWeighted.x * beta1 + gradX * (1 - beta1);
+        numeratorY = momentumWeighted.y =
+          momentumWeighted.y * beta1 + gradY * (1 - beta1);
+
+        let bias = 1 / (1 - beta1 ** (i + 1));
+        numeratorX *= bias;
+        numeratorY *= bias;
+      }
+
+      let denominatorX = 1;
+      let denominatorY = 1;
+      if (adaptive) {
+        denominatorX = adaptiveWeighted.x =
+          adaptiveWeighted.x * beta2 + gradX ** 2 * (1 - beta2);
+        denominatorY = adaptiveWeighted.y =
+          adaptiveWeighted.y * beta2 + gradY ** 2 * (1 - beta2);
+
+        let bias = 1 / (1 - beta2 ** (i + 1));
+        denominatorX *= bias;
+        denominatorY *= bias;
+
+        denominatorX = Math.sqrt(denominatorX) + epsilon;
+        denominatorY = Math.sqrt(denominatorY) + epsilon;
+      }
+
+      x -= (alpha * numeratorX) / denominatorX;
+      y -= (alpha * numeratorY) / denominatorY;
+
+      coordinates.push({ x, y });
+    }
+    return coordinates;
+  }
+
   //function for contour plot
   let f = (x, y) => x ** 2 + y ** 2;
 
   // for example (x, y) => {return { x: 2 * x, y: 2 * y };};
-  let gradient = (x, y) => {
+  let grad = (x, y) => {
     return { x: 2 * x, y: 2 * y };
   };
 
   let epochs = 250;
 
   //gradient descent
-  let vanillaCoordinates = [];
-  let momentumCoordinates = [];
+  let vanillaCoordinates = calculatePath(epochs, f, grad, -120, 120, 0.01);
+  let momentumCoordinates = calculatePath(
+    epochs,
+    f,
+    grad,
+    120,
+    120,
+    0.01,
+    true
+  );
 
-  let vanillaStartingX = -100;
-  let vanillaStartingY = 100;
-  let momentumStartingX = 100;
-  let momentumStartingY = 100;
-
-  function calculateGradients() {
-    let learningRate = 0.01;
-    let beta = 0.91;
-    let tau = 0.1;
-    let momentum = { x: 0, y: 0 };
-
-    vanillaCoordinates = [];
-    momentumCoordinates = [];
-    let xVanilla;
-    let yVanilla;
-    let xMomentum;
-    let yMomentum;
-    for (let i = 0; i < epochs; i++) {
-      if (i === 0) {
-        xVanilla = vanillaStartingX;
-        yVanilla = vanillaStartingY;
-        vanillaCoordinates.push({ x: xVanilla, y: yVanilla });
-
-        xMomentum = momentumStartingX;
-        yMomentum = momentumStartingY;
-        momentumCoordinates.push({ x: xMomentum, y: yMomentum });
-      } else {
-        xVanilla = vanillaCoordinates[i].x;
-        yVanilla = vanillaCoordinates[i].y;
-
-        xMomentum = momentumCoordinates[i].x;
-        yMomentum = momentumCoordinates[i].y;
-      }
-
-      let vanillaGrads = gradient(xVanilla, yVanilla);
-
-      xVanilla -= learningRate * vanillaGrads.x;
-      yVanilla -= learningRate * vanillaGrads.y;
-      let vanillaCoordinate = { x: xVanilla, y: yVanilla };
-      vanillaCoordinates.push(vanillaCoordinate);
-
-      let momentumGrads = gradient(xMomentum, yMomentum);
-
-      if (i === 0) {
-        momentum.x = momentumGrads.x;
-        momentum.y = momentumGrads.y;
-      }
-
-      momentum.x = beta * momentum.x + tau * momentumGrads.x;
-      momentum.y = beta * momentum.y + tau * momentumGrads.y;
-
-      xMomentum -= learningRate * momentum.x;
-      yMomentum -= learningRate * momentum.y;
-
-      let momentumCoordinate = { x: xMomentum, y: yMomentum };
-      momentumCoordinates.push(momentumCoordinate);
-    }
-  }
-  calculateGradients();
+  /*--------------------------------------------*/
+  //squished contours and rmsprop
+  let epochs2 = 100;
+  let f2 = (x, y) => x ** 2 + 9 * y ** 2;
+  let grad2 = (x, y) => {
+    return { x: 2 * x, y: 18 * y };
+  };
+  let vanillaCoordinates2 = calculatePath(epochs2, f2, grad2, -1, -1, 0.01);
+  let momentumCoordinates2 = calculatePath(
+    epochs2,
+    f2,
+    grad2,
+    1,
+    1,
+    0.01,
+    true,
+    false
+  );
+  let rmsCoordinates2 = calculatePath(
+    epochs2,
+    f2,
+    grad2,
+    -1,
+    1,
+    0.01,
+    false,
+    true
+  );
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Optimizers</title>
+  <meta
+    name="description"
+    content="Optimizers like momentum gradient descent, RMSProp and adam have several advantages over vanilla gradient descent and can speed up training significantly."
+  />
+</svelte:head>
 
 <h1>Optimizers</h1>
 <div class="separator" />
@@ -204,8 +270,7 @@
     Below we see the same example with the local minimum, that we studied the
     first time we encountered gradient descent. The example showed, that
     gradient descent will get stuck in a local minimum. Gradient descent with
-    momentum on the other hand has a chance, has a chance to escape the local
-    minimum.
+    momentum on the other has a chance to escape the local minimum.
   </p>
 
   <PlayButton on:click={localGradientDescent} />
@@ -227,16 +292,20 @@
     <Circle data={localPoint} />
   </Plot>
 
+  <p>
+    But even given a direct path towards the minimum without any saddle points
+    and local minimuma, the momentum optimizer will build acceleration and
+    converge faster towards the minimum.
+  </p>
   <Plot
-    width="700"
-    height="700"
+    width="600"
+    height="600"
     maxWidth="700"
     domain={[-1, 1]}
     range={[-1, 1]}
     padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
   >
-    <Contour {f} />
-    <Ticks xTicks={[-1, -0.5, 0, 0.5, 1]} yTicks={[-1, -0.5, 0, 0.5, 1]} />
+    <Contour {f} thresholds={d3.range(-2, 2, 0.1).map((i) => i)} />
     <Path data={vanillaCoordinates} stroke="2" strokeDashArray={"4 4"} />
     <Path
       data={momentumCoordinates}
@@ -244,18 +313,158 @@
       strokeDashArray={"4 4"}
       stroke="2"
     />
-    <!--
-    {#each Array(epochs + 1) as _, idx}
-      <Circle data={[vanillaCoordinates[idx]]} />
-      <Circle data={[momentumCoordinates[idx]]} />
-    {/each}
-    -->
+    <XLabel text="x" type="latex" y="580" fontSize="15" />
+    <YLabel text="y" type="latex" y="300" fontSize="15" />
+    <Legend
+      coordinates={{ x: -0.9, y: -0.85 }}
+      legendColor="black"
+      text="Vanilla Gradient Descent"
+    />
+    <Legend
+      coordinates={{ x: -0.9, y: -0.9 }}
+      text="Gradient Descent With Momentum"
+      legendColor="var(--main-color-4)"
+    />
   </Plot>
   <div class="separator" />
 
   <h2>RMSProp</h2>
+  <p>
+    Adaptive optimizers, like RMSProp, do not focus on speed per se, but help to
+    determine a better direction for gradient descent. If we are dealing with a
+    bowl shaped loss function, the gradients will not be symmetrical. That means
+    that we will approach the optimal value not in a direct line, but rather in
+    a zig zagging manner.
+  </p>
+  <Plot
+    width="1000"
+    height="200"
+    maxWidth="700"
+    domain={[-1, 1]}
+    range={[-1, 1]}
+    padding={{ top: 5, right: 5, bottom: 20, left: 30 }}
+  >
+    <Ellipse
+      data={[{ x: 0, y: 0 }]}
+      radiusX="480"
+      radiusY="80"
+      color="var(--main-color-4)"
+    />
+    <Ellipse data={[{ x: 0, y: 0 }]} radiusX="240" radiusY="40" color="none" />
+    <Ellipse data={[{ x: 0, y: 0 }]} radiusX="120" radiusY="20" color="none" />
+    <Ellipse data={[{ x: 0, y: 0 }]} radiusX="60" radiusY="10" color="none" />
+    <Ellipse data={[{ x: 0, y: 0 }]} radiusX="30" radiusY="5" color="none" />
+    <Path
+      data={[
+        { x: -0.85, y: -0.55 },
+        { x: -0.8, y: +0.65 },
+        { x: -0.75, y: -0.6 },
+        { x: -0.7, y: +0.62 },
+        { x: -0.65, y: -0.6 },
+        { x: -0.6, y: +0.57 },
+        { x: -0.5, y: -0.5 },
+        { x: -0.4, y: +0.5 },
+      ]}
+      stroke="2"
+      strokeDashArray="2 4"
+    />
+    <Ticks xTicks={[-1, 0, 1]} yTicks={[-1, 0, 1]} />
+  </Plot>
+  <p>
+    We would like to move more in a the x direction and less in the y direction,
+    which would result in a straight line towards the optimium. Theoretically we
+    could offset the zig zag by using an individual learning rate for each of
+    the weights, but given that there are million of weights in modern deep
+    learning, this approach is not feasable. Adaptive optimizers scales each
+    gradient in such a way, that we approach the optimum in a much straighter
+    line. These optimizers allow to use a single learning rate for the whole
+    neural network.
+  </p>
+  <p>
+    Similar to momentum, RMSProp (root mean squared prop) calcualtes a moving
+    average, but instead of tracking the gradient, we track the squared
+    gradient.
+  </p>
+  <Latex
+    >{String.raw`\mathbf{d_t} = \beta_2 \mathbf{d}_{t-1} + (1 - \beta_2) \mathbf{\nabla}_w^2`}</Latex
+  >
+  <p>
+    This root of the vector <Latex>{String.raw`\mathbf{d}`}</Latex> is used to scale
+    the gradient. This causes the gradients to get similar in magnitute (which creates
+    a straighter line), while still following the general direction that is encoded
+    in the moving average.
+  </p>
+  <Latex
+    >{String.raw`\mathbf{w}_{t+1} := \mathbf{w}_t - \alpha \dfrac{\mathbf{\nabla}_w}{\sqrt{\mathbf{d}_t} + \epsilon}`}</Latex
+  >
+  <p>
+    The <Latex>\epsilon</Latex> varialble is a very small positive number that is
+    used in order to avoid divisions by 0.
+  </p>
+  <p>
+    Below we compare vanilla gradient descent, gradient descent with momentum
+    and RMSProp on a loss function with an elongated form. While the simple
+    gradient descent and momentum gradient descent approach the optimum first
+    from the y direction and then from the x direction, RMSProp takes basically
+    a straight route.
+  </p>
+  <Plot
+    width="600"
+    height="600"
+    maxWidth="700"
+    domain={[-1, 1]}
+    range={[-1, 1]}
+    padding={{ top: 5, right: 5, bottom: 20, left: 30 }}
+  >
+    <Contour f={f2} thresholds={d3.range(-16, 16.1, 0.5).map((i) => i)} />
+    <Ticks xTicks={d3.range(-2, 2)} yTicks={d3.range(-2, 2)} />
+    <Path data={vanillaCoordinates2} stroke="4" strokeDashArray={"3 6"} />
+    <Path
+      data={momentumCoordinates2}
+      color="var(--main-color-4)"
+      stroke="4"
+      strokeDashArray={"3 6"}
+    />
+    <Path
+      data={rmsCoordinates2}
+      color="var(--main-color-3)"
+      stroke="4"
+      strokeDashArray={"3 6"}
+    />
+    <Circle data={[{ x: 0, y: 0 }]} />
+    <Legend
+      coordinates={{ x: -0.9, y: -0.85 }}
+      legendColor="black"
+      text="Vanilla Gradient Descent"
+    />
+    <Legend
+      coordinates={{ x: -0.9, y: -0.9 }}
+      text="Gradient Descent With Momentum"
+      legendColor="var(--main-color-4)"
+    />
+    <Legend
+      coordinates={{ x: -0.9, y: -0.95 }}
+      text="RMSProp"
+      legendColor="var(--main-color-3)"
+    />
+  </Plot>
   <div class="separator" />
 
   <h2>Adam</h2>
+  <p>
+    It didn't take researchers too long to combine momentum and adaptive
+    learning. Adam (and its derivateives) is probably the most used optimizer.
+    If you don't have any specific reason to use a different optimizer, use
+    adam.
+  </p>
+  <Latex
+    >{String.raw`
+  \begin{aligned}
+    \mathbf{m_t} &= \beta_1 \mathbf{m}_{t-1} + (1 - \beta_1) \mathbf{\nabla}_w \\
+    \mathbf{d_t} &= \beta_2 \mathbf{d}_{t-1} + (1 - \beta_2) \mathbf{\nabla}_w^2 \\
+    \mathbf{w}_{t+1} & := \mathbf{w}_t - \alpha \dfrac{\mathbf{m}_t}{\sqrt{\mathbf{d}_t} + \epsilon}
+  \end{aligned}
+    `}</Latex
+  >
   <div class="separator" />
 </Container>
