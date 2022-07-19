@@ -5,7 +5,11 @@
 
   // for example (x, y) => x ** 2 + y ** 2;
   export let f;
-  export let thresholds = d3.range(-2, 2, 0.1).map((i) => i);
+  // e.g. d3.range(-2, 2, 0.1).map((i) => i);
+  export let thresholds;
+
+  //linear or log
+  export let scale = "linear";
 
   let xScale = getContext("xScale");
   let yScale = getContext("yScale");
@@ -14,7 +18,12 @@
   let x = xScale;
   let y = yScale;
 
-  let color = d3.scaleSequential(d3.extent(thresholds), d3.interpolateMagma);
+  let color;
+  if (scale === "linear") {
+    color = d3.scaleSequential(d3.extent(thresholds), d3.interpolateMagma);
+  } else if (scale === "log") {
+    color = d3.scaleSequentialLog(d3.extent(thresholds), d3.interpolateMagma);
+  }
 
   const x0 = xScale(domain[0]);
   const x1 = xScale(domain[1]);
