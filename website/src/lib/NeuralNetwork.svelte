@@ -11,7 +11,7 @@
   export let verticalGap = 15;
   export let padding = { left: 0, right: 0 };
 
-  let layers = [
+  export let layers = [
     {
       title: "Input",
       nodes: [
@@ -61,7 +61,7 @@
   <svg viewBox="0 0 {width} {height}">
     {#each layers as layer, layerIdx}
       <!-- Node Title -->
-      <text x={centers[layerIdx][0].x} y="0">{layer.title}</text>
+      <text class="title" x={centers[layerIdx][0].x} y="0">{layer.title}</text>
       {#each layer.nodes as node, nodeIdx}
         <!-- Nodes -->
         <rect
@@ -116,7 +116,7 @@
   }
   text {
     font-size: 7px;
-    dominant-baseline: hanging;
+    dominant-baseline: text-before-edge;
     font-weight: bold;
   }
 </style>

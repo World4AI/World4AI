@@ -375,8 +375,8 @@ const dl = [
                 link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers'
               },
               {
-                name: 'Layer and Batch Normalization',
-                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/layer_batch_normalization'
+                name: 'Batch Normalization',
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization'
               },
               {
                 name: 'Skip Connections',
