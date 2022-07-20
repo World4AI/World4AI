@@ -35,6 +35,7 @@ Some of the sections have already reached a working state and can be used to stu
     - [ ] Convolutional Neural Network 
     - [ ] Convolutional Neural Networks: Architectures 
     - [ ] Object Detection and Segmentation
+    - [ ] Time Series
     - [ ] Word Embeddings
     - [ ] Recurrent Neural Network 
     - [ ] Transformer and Attention 
@@ -55,6 +56,7 @@ Some of the sections in the reinforcement learning block have been already imple
     - [ ] Actor Critic Methods
     - [ ] Trust Region Methods
     - [ ] AlphaGo Zero and Variants
+
 
 ## Contributions
 
