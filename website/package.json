@@ -10,16 +10,17 @@
   },
   "type": "module",
   "devDependencies": {
-    "svelte": "^3.48.0",
-    "@sveltejs/kit": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.34",
     "@sveltejs/adapter-auto": "next",
-    "d3": "^7.5.0",
-    "d3-contour": "^3.1.0",
-    "d3-interpolate": "^3.0.1",
-    "d3-scale": "^4.0.2",
+    "@sveltejs/adapter-static": "^1.0.0-next.38",
+    "@sveltejs/kit": "next",
     "@tensorflow/tfjs": "^3.18.0",
     "@tensorflow/tfjs-backend-webgl": "^3.18.0",
-    "katex": "^0.16.0"
+    "d3": "^7.6.1",
+    "d3-contour": "^4.0.0",
+    "d3-interpolate": "^3.0.1",
+    "d3-scale": "^4.0.2",
+    "katex": "^0.16.0",
+    "svelte": "^3.49.0",
+    "svelte-highlight": "^6.2.0"
   }
 }
