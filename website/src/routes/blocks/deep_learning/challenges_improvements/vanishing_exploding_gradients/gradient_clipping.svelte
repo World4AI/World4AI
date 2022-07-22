@@ -2,7 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Clipping from "./_gradient_clipping/Clipping.svelte";
   import Plot from "$lib/Plot.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   let valueIntervalId = null;
   let valuePaths = [];
@@ -40,15 +40,6 @@
   }
   recalculateValue();
 
-  function valueHandler() {
-    if (!valueIntervalId) {
-      valueIntervalId = setInterval(recalculateValue, 800);
-    } else {
-      clearInterval(valueIntervalId);
-      valueIntervalId = null;
-    }
-  }
-
   let normIntervalId = null;
   let normPaths = [];
   let normPoints = [];
@@ -76,15 +67,6 @@
     normPoints.push([{ x, y }]);
   }
   recalculateNorm();
-
-  function normHandler() {
-    if (!normIntervalId) {
-      normIntervalId = setInterval(recalculateNorm, 800);
-    } else {
-      clearInterval(normIntervalId);
-      normIntervalId = null;
-    }
-  }
 </script>
 
 <svelte:head>
@@ -124,10 +106,7 @@
     the vector was clipped. In most cases that means that the original (longer)
     vector and the clipped vectors will show into different directions.
   </p>
-  <PlayButton
-    type={!valueIntervalId ? "play" : "pause"}
-    on:click={valueHandler}
-  />
+  <PlayButton f={recalculateValue} delta={800} />
   <Plot
     pathsData={valuePaths}
     pointsData={valuePoints}
@@ -156,10 +135,7 @@
     While the magnitude of the gradient vector is reduced to the threshold
     value, the direction remains unchanged.
   </p>
-  <PlayButton
-    type={!normIntervalId ? "play" : "pause"}
-    on:click={normHandler}
-  />
+  <PlayButton f={recalculateNorm} delta={800} />
   <Plot
     pathsData={normPaths}
     pointsData={normPoints}

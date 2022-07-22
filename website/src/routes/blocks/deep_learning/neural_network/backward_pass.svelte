@@ -4,7 +4,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Plot from "$lib/Plot.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
   import BackwardPass from "./_backward/BackwardPass.svelte";
 
   const alpha = 0.5;
@@ -143,29 +143,12 @@
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
   };
 
-  let runImprovements = false;
   let runs = 0;
 
-  function runEpoch() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        nn.epoch();
-        calculateHeatmap();
-        resolve();
-      }, 0);
-    });
-  }
-
-  async function train() {
-    runImprovements = true;
-    while (runImprovements) {
-      await runEpoch();
-      runs++;
-    }
-  }
-
-  function stopTraining() {
-    runImprovements = false;
+  function train() {
+    runs++;
+    nn.epoch();
+    calculateHeatmap();
   }
 </script>
 
@@ -578,11 +561,7 @@
   </p>
 </Container>
 <Container maxWidth="1900px">
-  {#if runImprovements}
-    <PlayButton type="pause" on:click={stopTraining} />
-  {:else}
-    <PlayButton on:click={train} />
-  {/if}
+  <PlayButton f={train} delta={0} />
   <div class="flex-container">
     <div class="left-container">
       <Plot {pointsData} {heatmapData} {config} />

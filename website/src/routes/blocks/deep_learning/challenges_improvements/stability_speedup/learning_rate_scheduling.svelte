@@ -9,7 +9,7 @@
   import Circle from "$lib/plt/Circle.svelte";
   import Title from "$lib/plt/Title.svelte";
 
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   let data = [];
   for (let i = -8; i <= 8; i += 0.1) {
@@ -52,26 +52,6 @@
     momentumMoving = momentumMoving * beta + grad * (1 - beta);
     xCoordinateMovingLR -= alphaMoving * momentumMoving;
   }
-
-  let intervalIdFixed = null;
-  function handlerFixed() {
-    if (!intervalIdFixed) {
-      intervalIdFixed = setInterval(gradientDescentStepFixed, 50);
-    } else {
-      clearInterval(intervalIdFixed);
-      intervalIdFixed = null;
-    }
-  }
-
-  let intervalIdMoving = null;
-  function handlerMoving() {
-    if (!intervalIdMoving) {
-      intervalIdMoving = setInterval(gradientDescentStepMoving, 50);
-    } else {
-      clearInterval(intervalIdMoving);
-      intervalIdMoving = null;
-    }
-  }
 </script>
 
 <svelte:head>
@@ -97,10 +77,7 @@
     gradient descent algorithm overshoots and keeps oscilating for a while,
     before settling on the minimum.
   </p>
-  <PlayButton
-    type={!intervalIdFixed ? "play" : "pause"}
-    on:click={handlerFixed}
-  />
+  <PlayButton f={gradientDescentStepFixed} delta={50} />
   <Plot domain={[-8, 8]} range={[0, 60]}>
     <Ticks
       xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
@@ -127,10 +104,7 @@
     decrease the learning rate by a predetermined factor. In our example that
     makes the ball "glide" into the minimum once we overshoot.
   </p>
-  <PlayButton
-    type={!intervalIdMoving ? "play" : "pause"}
-    on:click={handlerMoving}
-  />
+  <PlayButton f={gradientDescentStepMoving} delta={50} />
   <Plot domain={[-8, 8]} range={[0, 60]}>
     <Ticks
       xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}

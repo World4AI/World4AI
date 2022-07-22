@@ -2,7 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import StepButton from "$lib/button/StepButton.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -273,7 +273,7 @@
     momentum on the other has a chance to escape the local minimum.
   </p>
 
-  <PlayButton on:click={localGradientDescent} />
+  <StepButton on:click={localGradientDescent} />
   <Plot
     width="450"
     height="450"

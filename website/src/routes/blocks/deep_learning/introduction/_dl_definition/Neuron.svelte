@@ -1,7 +1,7 @@
 <script>
   import { tweened } from "svelte/motion";
   import { draw } from "svelte/transition";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import StepButton from "$lib/button/StepButton.svelte";
   let showCalculation = false;
   let disabled = false;
 
@@ -38,7 +38,7 @@
   }
 </script>
 
-<PlayButton {disabled} on:click={simulate} />
+<StepButton {disabled} on:click={simulate} />
 <svg version="1.1" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="DotS" overflow="visible" orient="auto">

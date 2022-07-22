@@ -1,6 +1,6 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   export let width = 500;
   export let height = 250;
@@ -75,22 +75,9 @@
     });
     offset += 5;
   }
-
-  let dropoutIntervalId = null;
-  function dropoutHandler() {
-    if (!dropoutIntervalId) {
-      dropoutIntervalId = setInterval(recalculateDropout, 800);
-    } else {
-      clearInterval(dropoutIntervalId);
-      dropoutIntervalId = null;
-    }
-  }
 </script>
 
-<PlayButton
-  type={!dropoutIntervalId ? "play" : "pause"}
-  on:click={dropoutHandler}
-/>
+<PlayButton f={recalculateDropout} delta={800} />
 <SvgContainer maxWidth="650px">
   <svg viewBox="0 0 {width} {height}">
     <!--connections-->

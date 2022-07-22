@@ -2,7 +2,7 @@
   import Container from "$lib/Container.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import Plot from "$lib/Plot.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
   import Architecture from "./_geometric/Architecture.svelte";
   import Transformation from "./_geometric/Transformation.svelte";
   import Latex from "$lib/Latex.svelte";
@@ -160,29 +160,12 @@
     heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
   };
 
-  let runImprovements = false;
   let runs = 0;
 
-  function runEpoch() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        nn.epoch();
-        calculateHeatmap();
-        resolve();
-      }, 0);
-    });
-  }
-
-  async function train() {
-    runImprovements = true;
-    while (runImprovements) {
-      await runEpoch();
-      runs++;
-    }
-  }
-
-  function stopTraining() {
-    runImprovements = false;
+  function train() {
+    nn.epoch();
+    calculateHeatmap();
+    runs++;
   }
 </script>
 
@@ -340,11 +323,7 @@
 </Container>
 
 <Container maxWidth="1900px">
-  {#if runImprovements}
-    <PlayButton type="pause" on:click={stopTraining} />
-  {:else}
-    <PlayButton on:click={train} />
-  {/if}
+  <PlayButton f={train} delta={0} />
   <div class="flex-container">
     <div class="left-container">
       <Plot {pointsData} {heatmapData} {config} />

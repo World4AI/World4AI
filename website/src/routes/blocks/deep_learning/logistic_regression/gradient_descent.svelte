@@ -2,8 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Plot from "$lib/Plot.svelte";
-  import Button from "$lib/Button.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   //Difference in Gradients Demonstration
   let graphDataLoss = [];
@@ -175,28 +174,8 @@
   calculateGradients();
   updatePathsData();
 
-  let runImprovements = false;
-  let runs = 0;
-
-  function runEpoch() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        gradientDescentStep();
-        resolve();
-      }, 1);
-    });
-  }
-
-  async function train() {
-    runImprovements = true;
-    while (runImprovements) {
-      await runEpoch();
-      runs++;
-    }
-  }
-
-  function stopTraining() {
-    runImprovements = false;
+  function train() {
+    gradientDescentStep();
   }
 </script>
 
@@ -417,11 +396,7 @@
     the loss decreases over time.
   </p>
   <div class="flex-container">
-    {#if !runImprovements}
-      <PlayButton on:click={train} />
-    {:else if runImprovements}
-      <PlayButton type="pause" on:click={stopTraining} />
-    {/if}
+    <PlayButton f={train} delta={100} />
     <div class="parameters yellow">
       <p><Latex>L</Latex>: {crossEntropy.toFixed(2)}</p>
       <p><Latex>w_1</Latex>: {w1.toFixed(2)}</p>

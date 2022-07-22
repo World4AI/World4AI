@@ -5,8 +5,8 @@
   import Highlight from "$lib/Highlight.svelte";
   import Mse from "./_loss/Mse.svelte";
   import Slider from "$lib/Slider.svelte";
-  import Button from "$lib/Button.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import StepButton from "$lib/button/StepButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   let parabolaData = [];
   let parabolaWithSlopeData = [];
@@ -123,28 +123,10 @@
     calculateMse();
   }
 
-  let runImprovements = false;
   let runs = 0;
-
-  function runEpoch() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        mseGradientDescentStep();
-        resolve();
-      }, 1);
-    });
-  }
-
-  async function train() {
-    runImprovements = true;
-    while (runImprovements) {
-      await runEpoch();
-      runs++;
-    }
-  }
-
-  function stopTraining() {
-    runImprovements = false;
+  function train() {
+    mseGradientDescentStep();
+    runs++;
   }
 </script>
 
@@ -282,7 +264,7 @@
     descent step, based on the parameters that you can change with the sliders.
   </p>
 
-  <PlayButton on:click={gradientDescentStep} />
+  <StepButton on:click={gradientDescentStep} />
   <Plot
     pathsData={parabolaWithSlopeData}
     pointsData={parabolaPoint}
@@ -373,7 +355,7 @@
     could move the slider below the graph and place the ball to the left of 0 and
     observe that the ball will keep going and going further down.
   </p>
-  <PlayButton on:click={localGradientDescent} />
+  <StepButton on:click={localGradientDescent} />
   <Plot
     pathsData={localMinimumData}
     pointsData={localPoint}
@@ -639,11 +621,7 @@ x_2
     4 datapoints, batch gradient descent is a fine choice.
   </p>
 
-  {#if !runImprovements}
-    <PlayButton on:click={train} />
-  {:else if runImprovements}
-    <PlayButton type="pause" on:click={stopTraining} />
-  {/if}
+  <PlayButton f={train} delta={1} />
   <Mse data={dataMse} {w} {b} />
 
   <h3>Stochastic Gradient Descent</h3>

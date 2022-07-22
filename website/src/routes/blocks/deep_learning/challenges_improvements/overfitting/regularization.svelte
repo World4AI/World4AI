@@ -3,7 +3,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
   import Plot from "$lib/Plot.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import PlayButton from "$lib/button/PlayButton.svelte";
   import Slider from "$lib/Slider.svelte";
   import L1Polynomial from "./_regularization/L1Polynomial.svelte";
 
@@ -36,15 +36,6 @@
   }
   moveCircular();
 
-  let moveCircleIntervalId = null;
-  function rotationHandler() {
-    if (!moveCircleIntervalId) {
-      moveCircleIntervalId = setInterval(moveCircular, 100);
-    } else {
-      clearInterval(moveCircleIntervalId);
-      moveCircleIntervalId = null;
-    }
-  }
   let manyCircles = generateUnit([1, 2, 3]);
 
   // draw equation of the form x_1 + x_2 = 3
@@ -103,16 +94,6 @@
     count += 1;
   }
   moveDiamond();
-
-  let moveDiamondIntervalId = null;
-  function diamondRotationHandler() {
-    if (!moveDiamondIntervalId) {
-      moveDiamondIntervalId = setInterval(moveDiamond, 100);
-    } else {
-      clearInterval(moveDiamondIntervalId);
-      moveDiamondIntervalId = null;
-    }
-  }
 
   // draw equation of the form 2x_1 + x_2 = 3
   let infiniteDiamondSolutions = [];
@@ -227,10 +208,7 @@
     >. When the <Latex>x_1</Latex> variable changes, the <Latex>x_2</Latex> variable
     has to move along in order for the sum of the squares to amount to 1.
   </p>
-  <PlayButton
-    type={!moveCircleIntervalId ? "play" : "pause"}
-    on:click={rotationHandler}
-  />
+  <PlayButton f={moveCircular} delta={100} />
   <Plot
     pathsData={unitPlusVectorPath}
     pointsData={unitPoint}
@@ -403,10 +381,7 @@
     The result is a diamond shaped figure. All the vectors on the ridge of the
     diamond have a <Latex>L_1</Latex> norm of exactly 1.
   </p>
-  <PlayButton
-    type={!moveDiamondIntervalId ? "play" : "pause"}
-    on:click={diamondRotationHandler}
-  />
+  <PlayButton f={moveDiamond} delta={100} />
   <Plot
     pathsData={diamondPlusVectorPath}
     pointsData={diamondPoint}

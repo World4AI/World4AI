@@ -1,6 +1,6 @@
 <script>
   import Plot from "$lib/Plot.svelte";
-  import PlayButton from "$lib/PlayButton.svelte";
+  import StepButton from "$lib/button/StepButton.svelte";
   import { tweened } from "svelte/motion";
 
   //disable or enable play button
@@ -76,7 +76,7 @@
   }
 </script>
 
-<PlayButton {disabled} on:click={tranform} />
+<StepButton {disabled} on:click={tranform} />
 <Plot
   pointsData={$store}
   {pathsData}
