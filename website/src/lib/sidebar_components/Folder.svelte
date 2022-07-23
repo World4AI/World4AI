@@ -33,6 +33,7 @@
 <style>
   ul {
     list-style: none;
+    margin: 0;
   }
 
   li {
