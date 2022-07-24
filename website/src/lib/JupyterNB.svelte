@@ -9,10 +9,9 @@
   import JupyterLatex from "$lib/JupyterLatex.svelte";
 
   export let url;
-  let cells = [];
 
+  let cells = [];
   onMount(async () => {
-    console.log(url);
     const response = await fetch(url);
     const notebook = await response.json();
 
@@ -75,6 +74,14 @@
 </svelte:head>
 
 <Container>
+  <a
+    href="https://colab.research.google.com/github/World4AI/World4AI/blob/main/website{url}"
+    target="_blank"
+    ><img
+      src="https://colab.research.google.com/assets/colab-badge.svg"
+      alt="Open In Colab"
+    /></a
+  >
   {#each cells as cell}
     {#if cell.type === "code"}
       <div class="code-container">
@@ -114,5 +121,11 @@
     margin: 0 auto;
     width: 100%;
     max-width: 500px;
+  }
+
+  a {
+    display: block;
+    width: 120px;
+    margin-bottom: 30px;
   }
 </style>
