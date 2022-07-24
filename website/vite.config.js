@@ -6,6 +6,7 @@ const config = {
   optimizeDeps: {
     include: ["highlight.js", "highlight.js/lib/core"],
   },
+  assetsInclude: ['**/*.ipynb']
 };
 
 export default config;

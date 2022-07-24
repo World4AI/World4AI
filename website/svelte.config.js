@@ -10,6 +10,9 @@ const config = {
 			fallback: null,
 			precompress: false
 		}),
+    alias: {
+      $notebooks: 'src/notebooks'
+    },
     prerender: {
       default: true
     }
