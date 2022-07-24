@@ -261,6 +261,10 @@ const dl = [
             link:'/blocks/deep_learning/linear_regression/gradient_descent', 
           },
           {
+            name: 'Linear Regression in NumPy',
+            link:'/blocks/deep_learning/linear_regression/numpy', 
+          },
+          {
             name: 'Linear Neuron',
             link:'/blocks/deep_learning/linear_regression/linear_neuron', 
           },
