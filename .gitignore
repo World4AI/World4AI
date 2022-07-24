@@ -16,3 +16,5 @@ testing
 venv
 __pycache__
 .ipynb_checkpoints
+*.py[cod]
+*$py.class
