@@ -1,10 +1,12 @@
 <script>
   import Container from "$lib/Container.svelte";
   import SvelteMarkdown from "svelte-markdown";
+  import { marked } from "marked";
   import { Highlight } from "svelte-highlight";
   import python from "svelte-highlight/languages/python";
   import a11yDark from "svelte-highlight/styles/a11y-dark";
   import { onMount } from "svelte";
+  import JupyterLatex from "$lib/JupyterLatex.svelte";
 
   export let url;
   let cells = [];
@@ -41,6 +43,31 @@
     });
     cells = cells;
   });
+
+  //TODO there is probably a but in RegEx
+  // logic to process latex
+  const latexTokenizer = {
+    name: "latex",
+    level: "inline",
+    start(src) {
+      return src.indexOf("$");
+    },
+    tokenizer(src) {
+      const rule = /^\$+([^\$\n]+?)\$+/;
+      const match = rule.exec(src);
+      if (match) {
+        return {
+          type: "latex",
+          raw: match[0],
+          text: match[1].trim(),
+        };
+      }
+    },
+  };
+  marked.use({ extensions: [latexTokenizer] });
+  const options = marked.defaults;
+
+  const renderers = { latex: JupyterLatex };
 </script>
 
 <svelte:head>
@@ -58,7 +85,7 @@
         <pre>{cell.content}</pre>
       </div>
     {:else if cell.type === "markdown"}
-      <SvelteMarkdown source={cell.content} />
+      <SvelteMarkdown {options} {renderers} source={cell.content} />
     {:else if cell.type === "image"}
       <img src="data:image/png;base64,{cell.content}" alt="code output" />
     {/if}
