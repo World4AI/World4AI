@@ -287,6 +287,10 @@ const dl = [
               link: '/blocks/deep_learning/logistic_regression/gradient_descent',
           },
           {
+              name: 'Logistic Regression in NumPy',
+              link: '/blocks/deep_learning/logistic_regression/numpy',
+          },
+          {
               name: 'Sigmoid Neuron',
               link: '/blocks/deep_learning/logistic_regression/sigmoid_neuron',
           },
@@ -307,6 +311,10 @@ const dl = [
           {
             name: 'Backward Pass',
             link:  '/blocks/deep_learning/neural_network/backward_pass'
+          },
+          {
+            name: 'Backpropagation in NumPy',
+            link:  '/blocks/deep_learning/neural_network/numpy'
           },
           {
             name: 'Automatic Differentiation',
