@@ -9,6 +9,9 @@
   import JupyterLatex from "$lib/JupyterLatex.svelte";
 
   export let url;
+  // needed to construct the google colab filename
+  export let fileName;
+  let colabLink = String.raw`https://colab.research.google.com/github/World4AI/World4AI/blob/main/website/src/notebooks/${fileName}`;
 
   let cells = [];
   onMount(async () => {
@@ -74,9 +77,7 @@
 </svelte:head>
 
 <Container>
-  <a
-    href="https://colab.research.google.com/github/World4AI/World4AI/blob/main/website{url}"
-    target="_blank"
+  <a href={colabLink} target="_blank"
     ><img
       src="https://colab.research.google.com/assets/colab-badge.svg"
       alt="Open In Colab"

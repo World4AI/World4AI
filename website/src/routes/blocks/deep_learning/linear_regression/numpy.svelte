@@ -3,6 +3,7 @@
   import notebookUrl from "$notebooks/linear_regression/linear_regression.ipynb";
 
   const url = notebookUrl;
+  const fileName = "linear_regression\\linear_regression.ipynb";
 </script>
 
 <svelte:head>
@@ -12,4 +13,5 @@
     content="Linear regression can easily and efficiently be implemented in NumPy."
   />
 </svelte:head>
-<JupyterNB {url} />
+
+<JupyterNB {url} {fileName} />
