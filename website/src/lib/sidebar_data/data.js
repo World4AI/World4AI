@@ -327,6 +327,32 @@ const dl = [
         ]
     },
     {
+        name: 'PyTorch Basics',
+        link: '/blocks/deep_learning/pytorch_basics',
+        links: [
+          {
+            name: 'Tensors',
+            link:  '/blocks/deep_learning/pytorch_basics/tensors'
+          },
+          {
+            name: 'Autograd',
+            link:  '/blocks/deep_learning/pytorch_basics/autograd'
+          },
+          {
+            name: 'Data',
+            link:  '/blocks/deep_learning/pytorch_basics/data'
+          },
+          {
+            name: 'Training Loop',
+            link:  '/blocks/deep_learning/pytorch_basics/training_loop'
+          },
+          {
+            name: 'Modules, Optimizers, Losses',
+            link:  '/blocks/deep_learning/pytorch_basics/modules_optimizers_losses'
+          },
+        ]
+    },
+    {
         name: 'Challenges and Improvements',
         link: '/blocks/deep_learning/challenges_improvements',
         links: [
