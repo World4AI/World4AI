@@ -3,7 +3,7 @@
   import notebookUrl from "$notebooks/pytorch_basics/modules_optimizers_losses.ipynb";
 
   const url = notebookUrl;
-  const fileName = "pytorch_basics\\modueles_optimizers_losses.ipynb";
+  const fileName = "pytorch_basics\\modules_optimizers_losses.ipynb";
 </script>
 
 <svelte:head>
