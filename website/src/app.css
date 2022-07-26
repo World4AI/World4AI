@@ -79,11 +79,11 @@ p {
     margin: 20px 0;
 }
 
-ul {
+ul, ol {
   margin: 20px 0px 20px 40px;
 }
 
-ul li {
+ul li, ol li {
   margin-bottom: 10px;
     font-size: 17px;
 }
