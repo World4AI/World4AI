@@ -60,18 +60,19 @@
   <Dropout />
   <p>
     When we use our model for inference, we do not remove any of the nodes. If
-    we did that, we would get different results each time we run a model.
-    Different conditions during training and inference will prevent the neural
-    network from generating good predictions. The net inputs into neurons will
-    be on completely different scales. To prevent that from happening the active
+    we did that, we would get different results each time we run a model. By not
+    deactivating any nodes we introduce a problem though. Because more neurons
+    are active, each layer has to deal with an input that is on a different
+    scale, than the one the neural network has seen during training. Different
+    conditions during training and inference will prevent the neural network
+    from generating good predictions. To prevent that from happening the active
     nodes are scaled by
-    <Latex>{String.raw`\dfrac{1}{1+p}`}</Latex>. That way we create a condition
-    that is similar to the one the model experiences during inference.
+    <Latex>{String.raw`\dfrac{1}{1-p}`}</Latex> during training. We skip that scaling
+    during inference and thus create similar conditions for training and inference.
   </p>
   <p>
-    Let us assume that the activations layer contains only 1's and the <Latex
-      >p</Latex
-    > is 0.5.
+    Let us assume for example that the activation layer contains only 1's and
+    <Latex>p</Latex> is 0.5.
   </p>
   <Latex
     >{String.raw`
@@ -102,16 +103,14 @@
     `}</Latex
   >
   <p>
-    But why is the dropout procedure helpful in avoiding overfitting? Usually
-    dropout is looked at from an ensemble perspective. Each time we remove a set
-    of activations from training, we essentially create a different model. This
-    simplified model has to learn to deal with the task at hand without
-    overrelying on any of the previous activations, because any of those might
-    get deactivated at any time. The final model can be seen as an ensemble of
-    an immensely huge collection of simplified models. Ensembles models, that
-    combine even very simple models tend to produce better results and reduce
-    overfitting. In practice you will notice that dropout actually produces
-    great results.
+    But why is the dropout procedure helpful in avoiding overfitting? Each time
+    we remove a set of activations from training, we essentially create a
+    different model. This simplified model has to learn to deal with the task at
+    hand without overrelying on any of the previous activations, because any of
+    those might get deactivated at any time. The final model can be seen as an
+    ensemble of an immensely huge collection of simplified models. Ensembles
+    models tend to produce better results and reduce overfitting. You will
+    notice that in practice dropout works extremely well.
   </p>
 </Container>
 
