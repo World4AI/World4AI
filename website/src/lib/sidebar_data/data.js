@@ -426,10 +426,6 @@ const dl = [
               },
             ]
           },
-          {
-             name: 'Transfer Learning',
-             link:  '/blocks/deep_learning/challenges_improvements/transfer_learning'
-          },
         ]
     },
   /*
