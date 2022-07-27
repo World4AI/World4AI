@@ -346,12 +346,13 @@
     .dropdown-content li {
       margin-top: 20px;
       margin-bottom: 10px;
-      margin-left: 15px;
+      margin-left: 0px;
     }
 
     .dropdown-content ul {
       border: none;
       background-color: var(--aside-color);
+      margin-left: 15px;
     }
 
     .social-links {
