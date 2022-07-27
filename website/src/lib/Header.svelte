@@ -78,9 +78,6 @@
               </div>
             </li>
             <li>
-              <a class:selected={path === "/books"} href="/books">Books</a>
-            </li>
-            <li>
               <a class:selected={path === "/sponsor"} href="/sponsor">Sponsor</a
               >
             </li>
