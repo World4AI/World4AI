@@ -1,66 +1,37 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Highlight from "$lib/Highlight.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import Circle from "$lib/plt/Circle.svelte";
+  import Path from "$lib/plt/Path.svelte";
 
   let pointsData1 = [
     { x: 0, y: 0.05 },
-    { x: 0.1, y: 0.12 },
-    { x: 0.21, y: 0.19 },
+    { x: 0.1, y: 0.6 },
+    { x: 0.21, y: 0.69 },
     { x: 0.31, y: 0.19 },
-    { x: 0.41, y: 0.27 },
+    { x: 0.41, y: 0.77 },
     { x: 0.51, y: 0.32 },
-    { x: 0.61, y: 0.39 },
+    { x: 0.61, y: 0.79 },
     { x: 0.69, y: 0.47 },
-    { x: 0.81, y: 0.59 },
-    { x: 0.92, y: 0.53 },
+    { x: 0.81, y: 0.89 },
+    { x: 0.92, y: 0.63 },
     { x: 1, y: 0.62 },
   ];
 
   let pathsData1 = [
-    { x: 0, y: 0.02 },
-    { x: 1, y: 0.61 },
+    { x: 0, y: 0.3 },
+    { x: 1, y: 0.81 },
   ];
 
   let pointsData2 = [
-    [
-      { x: 0, y: 0.05 },
-      { x: 0.1, y: 0.12 },
-      { x: 0.21, y: 0.19 },
-      { x: 0.31, y: 0.19 },
-      { x: 0.41, y: 0.27 },
-      { x: 0.51, y: 0.32 },
-      { x: 0.61, y: 0.39 },
-      { x: 0.69, y: 0.47 },
-      { x: 0.81, y: 0.59 },
-      { x: 0.92, y: 0.53 },
-      { x: 1, y: 0.62 },
-    ],
-    [
-      { x: 0.75, y: 0.5 },
-      { x: 0.54, y: 0.4 },
-      { x: 0.25, y: 0.18 },
-      { x: 0.04, y: 0.05 },
-    ],
-  ];
-  let pathsData2 = [
-    [
-      { x: 0, y: 0.05 },
-      { x: 0.1, y: 0.12 },
-      { x: 0.21, y: 0.19 },
-      { x: 0.31, y: 0.19 },
-      { x: 0.41, y: 0.27 },
-      { x: 0.51, y: 0.32 },
-      { x: 0.61, y: 0.39 },
-      { x: 0.69, y: 0.47 },
-      { x: 0.81, y: 0.59 },
-      { x: 0.92, y: 0.53 },
-      { x: 1, y: 0.62 },
-    ],
-    [
-      { x: 0, y: 0.02 },
-      { x: 1, y: 0.61 },
-    ],
+    { x: 0.04, y: 0.55 },
+    { x: 0.25, y: 0.28 },
+    { x: 0.54, y: 0.7 },
+    { x: 0.75, y: 0.5 },
+    { x: 0.95, y: 0.9 },
   ];
 
   let pointsData3 = [];
@@ -92,46 +63,48 @@
     Let us assume that we face the data below and we contemplate how we are
     going to fit some model to the data.
   </p>
-  <Plot
-    pointsData={pointsData1}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+    <Circle data={pointsData1} radius={3} />
+    <Ticks
+      xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+    />
+  </Plot>
   <p>
-    There seems to be a linear relationship between the feature and the label,
-    therefore we decide to use a linear regression model.
+    There seems to be a linear relationship between the feature and the target,
+    even though there is quite a bit of noise. So we might decide to use linear
+    regression for our task.
   </p>
-  <Plot
-    pointsData={pointsData1}
-    pathsData={pathsData1}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+    <Circle data={pointsData1} radius={3} />
+    <Path data={pathsData1} />
+    <Ticks
+      xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+    />
+  </Plot>
   <p>
-    We could also train a neural network and would end up with a model that fits
-    the data very closely.
+    The results looks quite reasonable, but we could also train a neural
+    network. In that case we would end up with a model that fits the data very
+    closely.
   </p>
-  <Plot
-    pointsData={pointsData1}
-    pathsData={pointsData1}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-      pathsColors: ["var(--main-color-1)", "var(--text-color)"],
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+    <Circle data={pointsData1} radius={3} />
+    <Path data={pointsData1} />
+    <Ticks
+      xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+    />
+  </Plot>
   <p>
     While linear regression can only model linear relationships, a neural
-    network can assume any imaginable form. When we try to reduce the mean
-    squared error, the neural network will inevitably assume a form that fits
-    the data as close as possible. Given enough neurons and layers we might end
-    up fitting the data perfectly. Yet when you look at both models above you
-    might end up thinking that a simple linear model is actually a much better
-    fit. The keyword we are looking for is <Highlight>generalization</Highlight
+    network can theoretically assume any imaginable form. When we try to reduce
+    the mean squared error, the neural network will inevitably assume a form
+    that fits the data as close as possible. Given enough neurons and layers we
+    might end up fitting the data perfectly. Yet when you look at both models
+    above you might end up thinking that a simple linear model is actually a
+    much better fit. The keyword we are looking for is <Highlight
+      >generalization</Highlight
     >.
   </p>
   <p>
@@ -140,28 +113,26 @@
     >
   </p>
   <p>
-    When the relationship between the feature and the label turns out to be
-    truly linear, the neural network will underperform when new data comes along
-    (blue dots). The simpler linear regression model on the other hand will do
-    just fine. In other words the linear model generalizes much better in this
-    example.
+    When the two models are faced with new data, the neural network will
+    underperform, while the simpler linear regression model will do just fine.
+    In other words the linear model generalizes much better in this example.
   </p>
-  <Plot
-    pointsData={pointsData2}
-    pathsData={pathsData2}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-      pathsColors: ["var(--main-color-1)", "var(--text-color)"],
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+    <Circle data={pointsData1} radius={3} />
+    <Path data={pathsData1} />
+    <Circle data={pointsData2} radius={3} color={"var(--main-color-2)"} />
+    <Path data={pointsData1} />
+    <Ticks
+      xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+    />
+  </Plot>
   <p>
-    The problem of the model that fits too closely to the training data and does
+    This problem when the model fits too closely to the training data and does
     not generalize well to previously unforseen data is called <Highlight
       >overfitting</Highlight
     >. Overfitting is a common problem in deep learning and we are going to
-    spend this entire section discussing different remedies, starting with ways
-    to measure the level of overfitting.
+    spend this entire section discussing different remedies.
   </p>
   <p>
     As you might imagine <Highlight>underfitting</Highlight> can also be a potential
@@ -177,59 +148,48 @@
     even during training we are going to underperform.
   </p>
   <Plot
-    pointsData={pointsData3}
-    pathsData={[
-      { x: -5, y: 0 },
-      { x: 5, y: 11 },
-    ]}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -5,
-      maxX: 5,
-      minY: 0,
-      maxY: 11,
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 2,
-      xTicks: [],
-      yTicks: [],
-      numTicks: 5,
-    }}
-  />
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-4, 4]}
+    range={[0, 11]}
+  >
+    <Circle data={pointsData3} radius={3} />
+    <Path
+      data={[
+        { x: -5, y: 0 },
+        { x: 5, y: 11 },
+      ]}
+    />
+    <Ticks
+      xTicks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
+      yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    />
+  </Plot>
   <p>
-    Solving underfitting is usually a much easier problem, because it is usually
-    sufficient to increase the parameters of the model. We could for example use
-    a neural network to train a model that fits better. Increasing the number of
-    layers and/or the number of neurons usually solves the problem of
-    underfitting.
+    Solving underfitting is usually a much easier problem, because it is often
+    (but not always) sufficient to increase the parameters of the model. We
+    could for example use a neural network to train a model that fits better.
+    Increasing the number of layers and/or the number of neurons usually solves
+    the problem of underfitting.
   </p>
   <Plot
-    pointsData={pointsData3}
-    pathsData={pathsData3}
-    config={{
-      xLabel: "Feature",
-      yLabel: "Label",
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -5,
-      maxX: 5,
-      minY: 0,
-      maxY: 11,
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 2,
-      xTicks: [],
-      yTicks: [],
-      numTicks: 5,
-    }}
-  />
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-4, 4]}
+    range={[0, 11]}
+  >
+    <Circle data={pointsData3} radius={3} />
+    <Path data={pathsData3} />
+    <Ticks
+      xTicks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
+      yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    />
+  </Plot>
   <p>
-    In a later chapter we will discuss that we can not increase the number of
-    layers indefinetly, even if theoretically more layers have the potential to
-    further decrease underfitting.
+    To combat overfitting and uderfitting we need to be able to identify the
+    problem. This is going to be our starting point.
   </p>
   <div class="separator" />
 </Container>
