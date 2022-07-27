@@ -1,7 +1,11 @@
 <script>
   import Slider from "$lib/Slider.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Latex from "$lib/Latex.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import Circle from "$lib/plt/Circle.svelte";
 
   let degree = 10;
   let alpha = 1;
@@ -120,32 +124,24 @@
 
   let weights = train();
   let overfittedPath = createPath(weights);
-
-  let lambdaPath = [];
   let l2Path = [];
   $: if (lambda) {
     weights = train(lambda);
-    lambdaPath = createPath(weights);
-    l2Path = [[...overfittedPath], [...lambdaPath]];
+    l2Path = createPath(weights);
   }
 </script>
 
 <span class="yellow"><Latex>\lambda</Latex>: {lambda}</span>
 <Plot
-  pointsData={polynomialPoints}
-  pathsData={l2Path}
-  config={{
-    width: 800,
-    height: 300,
-    maxWidth: 800,
-    minX: 0,
-    maxX: 30,
-    minY: -100,
-    maxY: 100,
-    xLabel: "x",
-    yLabel: "y",
-    radius: 2,
-    pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-  }}
-/>
+  width={800}
+  height={300}
+  maxWidth={800}
+  domain={[0, 30]}
+  range={[-100, 100]}
+>
+  <Ticks xTicks={[0, 10, 20, 30]} yTicks={[-100, -50, 0, 50, 100]} />
+  <Circle data={polynomialPoints} />
+  <Path data={overfittedPath} />
+  <Path data={l2Path} />
+</Plot>
 <Slider min="0.001" max="0.1" step="0.001" bind:value={lambda} />
