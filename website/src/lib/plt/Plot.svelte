@@ -24,6 +24,31 @@
   setContext("yScale", yScale);
   setContext("domain", domain);
   setContext("range", range);
+
+  //TODO
+  function handleClick(e) {
+    let rect = e.target.getBoundingClientRect();
+    let width = rect.width;
+    let height = rect.height;
+
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+
+    let scaleX = d3
+      .scaleLinear()
+      .domain([0, width])
+      .range([domain[0], domain[1]]);
+    let scaleY = d3
+      .scaleLinear()
+      .domain([0, height])
+      .range([range[1], range[0]]);
+
+    x = scaleX(x);
+    y = scaleY(y);
+
+    startingX = x;
+    startingY = y;
+  }
 </script>
 
 <SvgContainer maxWidth="{maxWidth}px">

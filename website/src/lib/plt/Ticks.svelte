@@ -4,11 +4,13 @@
   export let xTicks = [];
   export let yTicks = [];
   export let showGrid = true;
+  export let fontSize = 12;
 
   let xScale = getContext("xScale");
   let yScale = getContext("yScale");
   let domain = getContext("domain");
   let range = getContext("range");
+  let height = getContext("height");
 </script>
 
 <!-- draw axis -->
@@ -18,7 +20,7 @@
       {#if showGrid}
         <line x1={xScale(domain[0])} x2={xScale(domain[1])} />
       {/if}
-      <text x={xScale(domain[0]) - 12} y="+4">{tick}</text>
+      <text font-size={fontSize} x={fontSize}>{tick}</text>
     </g>
   {/each}
 </g>
@@ -29,7 +31,7 @@
       {#if showGrid}
         <line y1={yScale(range[0])} y2={yScale(range[1])} />
       {/if}
-      <text y={yScale(range[0]) + 12}>{tick}</text>
+      <text font-size={fontSize} y={height - fontSize}>{tick}</text>
     </g>
   {/each}
 </g>
@@ -57,7 +59,6 @@
   }
 
   text {
-    font-size: 12px;
     fill: var(--text-color);
   }
 </style>
