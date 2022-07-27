@@ -1,21 +1,28 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
-  import Plot from "$lib/Plot.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Kfold from "./_train_test_validate/Kfold.svelte";
   import Split from "./_train_test_validate/Split.svelte";
 
-  let lossPathsData = [[], []];
+  import Plot from "$lib/plt/Plot.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Legend from "$lib/plt/Legend.svelte";
+
+  let path1 = [];
+  let path2 = [];
   let lossTrain = 1;
   let lossValid = 1;
   for (let i = 0; i < 100; i++) {
     let x = i;
     let y = lossTrain;
-    lossPathsData[0].push({ x, y });
+    path1.push({ x, y });
 
     y = lossValid;
-    lossPathsData[1].push({ x, y });
+    path2.push({ x, y });
 
     lossTrain *= 0.94;
     if (i <= 30) {
@@ -52,7 +59,7 @@
     generalize well to new unforseen data, but we would also like to have some
     tools that would allow us to measure the level of overfitting during the
     training process. It turns out that splitting the dataset into different
-    buckets is essential to achieve the goal of measuring overfitting.
+    buckets (sets) is essential to achieve the goal of measuring overfitting.
   </p>
   <div class="separator" />
 
@@ -63,55 +70,64 @@
     training set, the validation set and the test set.
   </p>
   <p>
-    The <Highlight>training</Highlight> set is the part that is actually used to
-    train a neural network. This part of the data is used in the backpropagation
-    algorithm, the other sets are never used to adjust the weights and biases of
-    a neural network.
+    The <Highlight>training</Highlight> set contians the vast majority of available
+    data. It is the part of the data that is actually used to train a neural network.
+    This part of the data is used in the backpropagation algorithm, the other sets
+    are never used to directly adjust the weights and biases of a neural network.
   </p>
   <p>
     The <Highlight>validation</Highlight> set is also used in the training process,
-    but only during the performance measurement step. After each epoch we use the
-    training and the validation sets to measure the loss. At first both losses decline,
-    but after a while the validation loss (blue line) starts to increase again, the
-    training loss (red line) on the other hand keeps decreasing. This is a strong
-    indication that our model overfits to the training data and the larger the divergence,
-    the larger the overfitting. The validation set simulates a situation, where the
-    neural network encounters new data in the real world, so if we deploy the model
-    with the final weights, the performance of the live model will most likely not
-    correspond to our expectations. Therefore we might need to consider techniques
-    to reduce overfitting. More on that in the next sections.
+    but only during the performance measurement step. After each epoch (or batch)
+    we use the training and the validation sets separately to measure the loss. At
+    first both losses decline, but after a while the validation loss starts to increase
+    again, while the training loss keeps decreasing. This is a strong indication
+    that our model overfits to the training data. The larger the divergence, the
+    larger the level of overfitting. The validation set simulates a situation, where
+    the neural network encounters new data, so if we deploy the model with the final
+    (overfitted) weights, the performance of the live model will most likely not
+    correspond to our expectations. We will need to consider techniques to reduce
+    overfitting. More on that in the next sections.
   </p>
   <Plot
-    pathsData={lossPathsData}
-    config={{
-      minX: 0,
-      maxX: 100,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Time",
-      yLabel: "Loss",
-      radius: 5,
-      xTicks: [],
-      yTicks: [],
-      numTicks: 5,
-      pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-    }}
-  />
+    width={500}
+    height={300}
+    maxWidth={700}
+    domain={[0, 100]}
+    range={[0, 1]}
+  >
+    <Path data={path1} color={"var(--main-color-1)"} />
+    <Path data={path2} />
+    <Ticks
+      xTicks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+      yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      xOffset={-19}
+      yOffset={18}
+      fontSize={10}
+    />
+    <XLabel text={"Time"} fontSize={15} />
+    <YLabel text={"Loss"} fontSize={15} />
+    <Legend text="Validation Loss" coordinates={{ x: 75, y: 0.92 }} />
+    <Legend
+      text="Training Loss"
+      coordinates={{ x: 75, y: 0.85 }}
+      legendColor={"var(--main-color-1)"}
+    />
+  </Plot>
   <p>
-    When we encounter overfitting by comparing the loss of the training and the
-    validation dataset, we will most likely change several hyperparameters of
-    the neural network in hope to reduce overfitting. It is not unlikely that we
-    will continue doing that until we are satisfied with the performance. While
-    we are not using the validation dataset directly in training, we are still
+    When we encounter overfitting we will most likely change several
+    hyperparameters of the neural network and apply some (soon to be introduced)
+    techniques in order to reduce overfitting. It is not unlikely that we will
+    continue doing that until we are satisfied with the performance. While we
+    are not using the validation dataset directly in training, we are still
     observing the performance of the validation data and ajust accordingly, thus
-    injecting some knowledge into the training of the weights and biases. At
-    this point it is hard to argue that the validation dataset represents
-    completely unforseen data. The <Highlight>test</Highlight> set on the other hand
-    is not touched during the training process at all. The intention of having this
-    additional dataset is to provide a method to test the performance of our model
-    when it encounters truly never before seen data. We only use the data once. If
-    we find out that we overfitted to the training and the validation dataset, we
-    can not go back to tweak the parameters, because we would require a completely
+    injecting our knowledge into the training of the weights and biases. At this
+    point it is hard to argue that the validation dataset represents completely
+    unforseen data. The <Highlight>test</Highlight> set on the other hand is neither
+    touched nor seen during the training process at all. The intention of having
+    this additional dataset is to provide a method to test the performance of our
+    model when it encounters truly never before seen data. We only use the data once.
+    If we find out that we overfitted to the training and the validation dataset,
+    we can not go back to tweak the parameters, because we would require a completely
     new test dataset, which we might not posess.
   </p>
   <p>
@@ -138,13 +154,13 @@
 
   <h2>K-Fold Cross-Validation</h2>
   <p>
-    In the approach above we divided the dataset in three distinct buckets and
+    In the approach above we divided the dataset into three distinct buckets and
     kept them constant during the whole training process, but ideally we would
     like to somehow use all available data in training and testing
-    simultaneously. While we need to keep the test data separate, untouched by
-    training, we can do just that with the rest of the data by using <Highlight
-      >k-fold cross-validation</Highlight
-    >.
+    simultaneously. This is especially important if our dataset is relatively
+    small. While we need to keep the test data separate, untouched by training,
+    we can use the rest of the data simultaneously for training and validation
+    by using <Highlight>k-fold cross-validation</Highlight>.
   </p>
   <p>
     We divide the data (excluding the test set) into k equal folds. k is a
@@ -157,21 +173,24 @@
   </p>
   <Kfold />
   <p>
-    This procedure is expected to provide much more robust classificaton and
-    regression models. When it comes to using the models on the test dataset, we
-    have to use a procedure that is called <Highlight>ensemble</Highlight>.
-    While we are not going to take deep dive into ensemble methods just yet, let
-    us at least discuss some basics. Ensemble methods allow us to combine
-    different models into one single model, that is more robust than the
+    K-Fold cross-validation provides a much robust measure of performance. At
+    the end of the trainig process we average over the results of the k-folds to
+    get a more accurate estimate of how our model performs. Once we are
+    satisfied with the choise of our hypterparamters, we could retrain the model
+    on the full k folds. Alternatively we could use a procedure called <Highlight
+      >ensemble</Highlight
+    >. While we are not going to take a deep dive into ensemble methods just
+    yet, let us at least discuss some basics. Ensemble methods allow us to
+    combine different models into one single model, that is more robust than the
     individual models. For classification we could let each of the models vote
     on a class. The class of the overall model would be the one that receives
     the most votes. For regression tasks we could average the output of each
     individual model, to produce better predictions.
   </p>
   <p>
-    There is obviously the downside to using k models. Training a neural network
-    just once requires a lot of computaional resources. By using k folds we will
-    more or less increase the training time by a factor of k.
+    There is obviously also a downside to using k models. Training a neural
+    network just once requires a lot of computaional resources. By using k folds
+    we will more or less increase the training time by a factor of k.
   </p>
   <div class="separator" />
 
@@ -184,9 +203,10 @@
     The simplest approach would be to separate the data randomly. While this
     type of split is easy to implement, it might pose some problems. In the
     example below we are faced with a dataset consisting of 10 classes (numbers
-    0 to 9) with 10 samples each. Each time we generate a number between 0 and
-    1. If the number is below 0.5 we assign the number to the blue split,
-    otherwise the number is assigned to the red split.
+    0 to 9) with 10 samples each. In the random procedure that we use below we
+    generate a random number between 0 and 1. If the number is below 0.5 we
+    assign the number to the blue split, otherwise the number is assigned to the
+    red split.
   </p>
   <Split type="random" />
   <p>
