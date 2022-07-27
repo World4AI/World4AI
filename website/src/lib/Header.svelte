@@ -190,6 +190,8 @@
   .social-links {
     margin-left: 80px;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .social-links a {
