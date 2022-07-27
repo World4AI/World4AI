@@ -41,8 +41,8 @@
 
   svg {
     fill: var(--main-color-3);
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     stroke-width: 1px;
     border: 2px solid black;
   }
