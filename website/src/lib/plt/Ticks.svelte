@@ -5,6 +5,8 @@
   export let yTicks = [];
   export let showGrid = true;
   export let fontSize = 12;
+  export let xOffset = 0;
+  export let yOffset = 0;
 
   let xScale = getContext("xScale");
   let yScale = getContext("yScale");
@@ -20,7 +22,7 @@
       {#if showGrid}
         <line x1={xScale(domain[0])} x2={xScale(domain[1])} />
       {/if}
-      <text font-size={fontSize} x={fontSize}>{tick}</text>
+      <text font-size={fontSize} x={fontSize + yOffset}>{tick}</text>
     </g>
   {/each}
 </g>
@@ -31,7 +33,7 @@
       {#if showGrid}
         <line y1={yScale(range[0])} y2={yScale(range[1])} />
       {/if}
-      <text font-size={fontSize} y={height - fontSize}>{tick}</text>
+      <text font-size={fontSize} y={height - fontSize + xOffset}>{tick}</text>
     </g>
   {/each}
 </g>
