@@ -19,11 +19,9 @@
     <p>
       World4AI is organized into building blocks. Each block builds knowledge
       that is fundamental to modern artificial intelligence. But you don't need
-      to be proficient in any of the sections to start the next one, therefore
-      you do not need to learn the blocks in a stricly linear manner. You can
-      learn the material that you require as you go along. The sections will
-      generally link to relevant posts from previous sections if the need
-      arises.
+      to be proficient in any of the topics to start the next one and you do not
+      need to learn the blocks in a stricly linear manner. You can learn the
+      material that you require as you go along.
     </p>
 
     <SvgContainer maxWidth={"700px"}>
