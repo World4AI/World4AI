@@ -45,6 +45,10 @@
     scrollbar-color: var(--text-color);
     z-index: 2;
     transition: all 1s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   /* style scrollbar */
