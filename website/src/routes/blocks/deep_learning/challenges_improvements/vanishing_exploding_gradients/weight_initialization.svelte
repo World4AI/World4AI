@@ -91,21 +91,22 @@
     `}</Latex
   >
   <p>
-    That means that each layer will always have weights of equal size. This is
-    no different than having a neural network with a single neuron per layer.
-    The network will never be able to solve complex problems. And if you
-    initialize all your weights with zero, the network will always have dead
-    neurons, always staying at the 0 value.
+    The same starting values and the same gradients can only mean that all nodes
+    in a layer will always have the same value. This is no different than having
+    a neural network with a single neuron per layer. The network will never be
+    able to solve complex problems. And if you initialize all your weights with
+    zero, the network will always have dead neurons, always staying at the 0
+    value.
   </p>
   <p class="danger">
     Never initialize your weights uniformly. Break the symmetry!
   </p>
   <p>
-    For a long time researchers were using either a normal distribution (<Latex
+    For a long time researchers were using either a normal distribution (e.g. <Latex
       >\mu = 0
-    </Latex> and e.g. <Latex>\sigma = 0.1</Latex>) or a uniform distribution
-    (e.g in the range <Latex>{String.raw`-0.5 \text{ to } 0.5`}</Latex>) to
-    initialize weights. This might seem reasonable, but Glorot and Bengio<InternalLink
+    </Latex> and <Latex>\sigma = 0.1</Latex>) or a uniform distribution (e.g in
+    the range <Latex>{String.raw`-0.5 \text{ to } 0.5`}</Latex>) to initialize
+    weights. This might seem reasonable, but Glorot and Bengio<InternalLink
       id={1}
       type="reference"
     /> showed that it is much more preferable to initialize weights in such a way,
@@ -122,8 +123,8 @@
     <Latex>{String.raw` std = \sqrt{\frac{2}{fan_{in} + fan_{out}}}`}</Latex>.
     The words <Latex>{String.raw`fan_{in}`}</Latex> and <Latex
       >{String.raw`fan_{out}`}</Latex
-    > stand for the number of neurons that go into the layer that we are initializing
-    and the number of neurons that is in the layer we are initializing respectively.
+    > stand for the number of neurons that go into the layer as input and the number
+    of neurons that are in the layer respectively.
   </p>
   <p>
     While the Xavier/Glorot initialization was studied in conjunction with the
@@ -137,8 +138,9 @@
     For the most part you will not spend a lot of time dealing with weight
     initializations. Libraries like PyTorch and Keras have good common sense
     initialization values and allow you to switch between the initialization
-    modes relatively easy. If you implement backpropagation on your own don't
-    forget to at least break the symmetry.
+    modes relatively easy. You do not nead to memorize those formulas. If you
+    implement backpropagation on your own don't forget to at least break the
+    symmetry.
   </p>
 </Container>
 <Footer {references} />
