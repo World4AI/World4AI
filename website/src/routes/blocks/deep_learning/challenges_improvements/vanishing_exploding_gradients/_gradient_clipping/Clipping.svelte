@@ -74,7 +74,7 @@
         y={(height / weights.length) * weightIdx + 1}
         height={boxHeight}
         width={((width / 2) * Math.abs(weight.real)) / maxValue}
-        fill={weight.real > 0 ? "var(--main-color-2)" : "var(--main-color-1)"}
+        fill={weight.real > 0 ? "none" : "none"}
         stroke="var(--text-color)"
         stroke-width="0.5"
       />
@@ -85,7 +85,7 @@
         y={(height / weights.length) * weightIdx + boxHeight + 2}
         height={boxHeight}
         width={((width / 2) * Math.abs(weight.clipped)) / maxValue}
-        fill="var(--main-color-3)"
+        fill="var(--main-color-1)"
         stroke="var(--text-color)"
         stroke-width="0.5"
       />

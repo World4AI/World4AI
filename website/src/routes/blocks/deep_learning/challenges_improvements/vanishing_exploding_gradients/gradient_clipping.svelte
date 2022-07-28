@@ -1,15 +1,16 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Clipping from "./_gradient_clipping/Clipping.svelte";
-  import Plot from "$lib/Plot.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
-  let valueIntervalId = null;
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import Circle from "$lib/plt/Circle.svelte";
+
   let valuePaths = [];
-  let valuePoints = [];
   function recalculateValue() {
     valuePaths = [];
-    valuePoints = [];
     // original value
     let x = Math.random() * 6 - 3;
     let y = Math.random() * 6 - 3;
@@ -18,7 +19,6 @@
       { x: 0, y: 0 },
       { x, y },
     ]);
-    valuePoints.push([{ x, y }]);
 
     //clip values
     if (x >= 1) {
@@ -36,16 +36,12 @@
       { x: 0, y: 0 },
       { x, y },
     ]);
-    valuePoints.push([{ x, y }]);
   }
   recalculateValue();
 
-  let normIntervalId = null;
   let normPaths = [];
-  let normPoints = [];
   function recalculateNorm() {
     normPaths = [];
-    normPoints = [];
     // original value
     let x = Math.random() * 6 - 3;
     let y = Math.random() * 6 - 3;
@@ -54,17 +50,17 @@
       { x: 0, y: 0 },
       { x, y },
     ]);
-    normPoints.push([{ x, y }]);
 
     let norm = Math.sqrt(x ** 2 + y ** 2);
-    x = x / norm;
-    y = y / norm;
+    if (norm > 1) {
+      x = x / norm;
+      y = y / norm;
+    }
 
     normPaths.push([
       { x: 0, y: 0 },
       { x, y },
     ]);
-    normPoints.push([{ x, y }]);
   }
   recalculateNorm();
 </script>
@@ -101,59 +97,65 @@
   <Clipping type="value" />
   <p>
     Value clipping is problematic, because it basically changes the direction of
-    gradient descent. The play button will start to move the gradients around
-    the 2d coordinate system. If ones of the vectors is shorter, that means that
-    the vector was clipped. In most cases that means that the original (longer)
-    vector and the clipped vectors will show into different directions.
+    gradient descent. When you start the simulation, the gradients will start to
+    move randomly in the 2d coordinate system. If one of the gradients is larger
+    than one, we will clip that gradient to 1. So if one gradient is 3 and the
+    other is 1.5, we clip both to 1, thereby disregarding the relative magnitude
+    of the vector components and changing the direction of the vector. The
+    clipped vector will move along the circumference of the square.
   </p>
   <PlayButton f={recalculateValue} delta={800} />
   <Plot
-    pathsData={valuePaths}
-    pointsData={valuePoints}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 500,
-      minX: -3,
-      maxX: 3,
-      minY: -3,
-      maxY: 3,
-      xLabel: "Weight 1",
-      yLabel: "Weight 2",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 2,
-      numTicks: 7,
-    }}
-  />
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-3, 3]}
+    range={[-3, 3]}
+  >
+    <Ticks
+      xTicks={[-3, -2, -1, 0, 1, 2, 3]}
+      yTicks={[-3, -2, -1, 0, 1, 2, 3]}
+    />
+    <Path
+      data={[
+        { x: 1, y: 1 },
+        { x: -1, y: 1 },
+        { x: -1, y: -1 },
+        { x: 1, y: -1 },
+        { x: 1, y: 1 },
+      ]}
+      color="var(--main-color-1)"
+    />
+    <Path data={valuePaths[0]} strokeDashArray={[4, 4]} />
+    <Path data={valuePaths[1]} color="var(--main-color-1)" />
+  </Plot>
   <p>
-    The solution is to use norm clipping. When we clip the norm, we clip all the
-    gradients proportialnally, such that the direction remains the same. Below
-    we specifically use the L2 norm.
+    A better solution is to use norm clipping. When we clip the norm, we clip
+    all the gradients proportialnally, such that the direction remains the same.
+    Below we specifically use the L2 norm.
   </p>
   <Clipping type="norm" />
   <p>
     While the magnitude of the gradient vector is reduced to the threshold
-    value, the direction remains unchanged.
+    value, the direction remains unchanged. The clipped vector moves along the
+    circumference of a circle.
   </p>
   <PlayButton f={recalculateNorm} delta={800} />
   <Plot
-    pathsData={normPaths}
-    pointsData={normPoints}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 500,
-      minX: -3,
-      maxX: 3,
-      minY: -3,
-      maxY: 3,
-      xLabel: "Weight 1",
-      yLabel: "Weight 2",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 2,
-      numTicks: 7,
-    }}
-  />
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-3, 3]}
+    range={[-3, 3]}
+  >
+    <Ticks
+      xTicks={[-3, -2, -1, 0, 1, 2, 3]}
+      yTicks={[-3, -2, -1, 0, 1, 2, 3]}
+    />
+    <Circle data={[{ x: 0, y: 0 }]} color="none" radius="70" />
+    <Path data={normPaths[0]} strokeDashArray={[4, 4]} />
+    <Path data={normPaths[1]} color="var(--main-color-1)" />
+  </Plot>
   <p>
     This solution feels like a hack, but it is quite pracktical. You might not
     be able to solve all your problems with gradient clipping, but it should be
