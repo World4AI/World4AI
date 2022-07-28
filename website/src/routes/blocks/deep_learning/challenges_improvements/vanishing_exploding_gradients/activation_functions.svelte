@@ -1,8 +1,13 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
 
   //1. sigmoid
   function sigmoid(z) {
@@ -81,12 +86,11 @@
 
 <Container>
   <p>
-    The derivative of the sigmoid activation function can cause the vanishing
-    gradient problem when we increase the number of layers. Over the years
-    researchers have come up with activation functions that try to address that
-    problem. In this section we are going to compare and contrast some of the
-    most popular activation functions, while emphasizing when each of the
-    activations should be used.
+    The sigmoid activation fuction is one of the causes of the vanishing
+    gradients problem. Because of that researchers have tried to come up with
+    activation functions with better properties. In this section we are going to
+    compare and contrast some of the most popular activation functions, while
+    emphasizing when each of the activations should be used.
   </p>
   <div class="separator" />
 
@@ -94,32 +98,33 @@
   <p>
     From our previous discussion it might have seemed, that the sigmoid
     activation function (and by extension softmax) is the root cause of the
-    vanishing gradient problem and should be avoided at any cost.
+    vanishing gradient problem and should be avoided at all cost.
   </p>
   <Plot
-    pathsData={sigmoidPath}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: -10,
-      maxX: 10,
-      minY: -0.01,
-      maxY: 1.01,
-      xLabel: "z",
-      yLabel: "f(z)",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      xTicks: [],
-      yTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      numTicks: 21,
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-10, 10]}
+    range={[0, 1]}
+    padding={{ top: 5, right: 40, bottom: 30, left: 40 }}
+  >
+    <Path data={sigmoidPath} />
+    <XLabel text={"z"} type="latex" />
+    <YLabel text={"\\sigma(z)"} type="latex" x={0} />
+    <Ticks
+      xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-10}
+      yOffset={23}
+      fontSize={8}
+    />
+  </Plot>
   <p>
     While this is somewhat true, the original argumentation that we used when we
     implemented logistic regression still applies. We can use the sigmoid and
     the softmax to turn logits into probabilities. Nowadays we primarily use the
     sigmoid <Latex>{String.raw`\dfrac{1}{1+e^{-z}}`}</Latex> and the softmax <Latex
-      >{String.raw`\dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex
+      >{String.raw`\dfrac{e^{z}}{\sum_d e^{z}}`}</Latex
     > in the last layer of the neural network, to determine the probability to belong
     to a particular class.
   </p>
@@ -143,49 +148,53 @@
     between -1 and 1.
   </p>
   <Plot
-    pathsData={tanhPath}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: -10,
-      maxX: 10,
-      minY: -1.1,
-      maxY: 1.1,
-      xLabel: "z",
-      yLabel: "f(z)",
-      xTicks: [],
-      yTicks: [1, 0.8, 0.6, 0.4, 0.2, 0, -0.2, -0.4, -0.6, -0.8, -1],
-      numTicks: 21,
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-10, 10]}
+    range={[-1, 1]}
+    padding={{ top: 5, right: 40, bottom: 30, left: 40 }}
+  >
+    <Path data={tanhPath} />
+    <XLabel text={"z"} type="latex" />
+    <YLabel text={"\\tanh(z)"} type="latex" x={0} />
+    <Ticks
+      xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+      yTicks={[-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-10}
+      yOffset={23}
+      fontSize={8}
+    />
+  </Plot>
 
   <p>
     For a long time researchers used the tanh activation function instead of the
     sigmoid, because it worked better in practice. Generally tanh exhibits a
-    more favourable derivative function. While the sigmoid (red line) can only
-    have very low derivatives of up to 0.25, the tanh (blue line) can exhibit a
-    derivative of up to 1, thereby reducing the risk of vanishing gradients.
+    more favourable derivative function. While the sigmoid can only have very
+    low derivatives of up to 0.25, the tanh can exhibit a derivative of up to 1,
+    thereby reducing the risk of vanishing gradients.
   </p>
   <p>
     <Plot
-      pathsData={sigmoidTanhPrimePath}
-      config={{
-        width: 500,
-        height: 250,
-        maxWidth: 800,
-        minX: -10,
-        maxX: 10,
-        minY: 0,
-        maxY: 1.01,
-        xLabel: "z",
-        yLabel: "f'(z)",
-        pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-        xTicks: [],
-        yTicks: [1, 0.8, 0.6, 0.4, 0.2, 0],
-        numTicks: 21,
-      }}
-    />
+      width={500}
+      height={250}
+      maxWidth={800}
+      domain={[-10, 10]}
+      range={[0, 1]}
+      padding={{ top: 5, right: 40, bottom: 30, left: 40 }}
+    >
+      <Path data={sigmoidTanhPrimePath[0]} strokeDashArray={[2, 4]} />
+      <Path data={sigmoidTanhPrimePath[1]} />
+      <XLabel text={"z"} type="latex" />
+      <YLabel text={"f(z)`"} type="latex" x={0} />
+      <Ticks
+        xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+        yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+        xOffset={-10}
+        yOffset={23}
+        fontSize={8}
+      />
+    </Plot>
   </p>
   <p>
     Over time researchers found better activations functoions that they prefer
@@ -201,8 +210,8 @@
   <h2>ReLU</h2>
   <p>
     The ReLU (rectified linear unit) is at the same time extremely simple and
-    extremely powerful. The function returns its input when the input is
-    positive and 0 otherwise.
+    extremely powerful. The function returns the unchanged input as its output
+    when the input value is positive and 0 otherwise.
   </p>
   <Latex
     >{String.raw`
@@ -214,24 +223,24 @@
     `}</Latex
   >
   <Plot
-    pathsData={reluPath}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: -10,
-      maxX: 10,
-      minY: -0.1,
-      maxY: 10.1,
-      xLabel: "z",
-      yLabel: "ReLU",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-      xTicks: [],
-      yTicks: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-      numTicks: 21,
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-10, 10]}
+    range={[0, 10]}
+    padding={{ top: 15, right: 40, bottom: 30, left: 40 }}
+  >
+    <Path data={reluPath} />
+    <XLabel text={"z"} type="latex" />
+    <YLabel text={"relu(z)"} type="latex" x={0} />
+    <Ticks
+      xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+      yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      xOffset={-10}
+      yOffset={23}
+      fontSize={8}
+    />
+  </Plot>
   <p>
     The calculation of the derivative is also extremely straightforward. It is
     exactly 1 when the net input <Latex>z</Latex> is above 1 and 0 otherwise. While
@@ -253,10 +262,9 @@
     gradients, a derivative of 0 will push the product in the chain rule to
     exactly 0. Given there is even a single neuron in the chain with a negative
     net input, the whole derivative will amount to 0. This is true and is known
-    under the name of <Highlight>dying relu problem</Highlight>, but in practice
-    you will not encounter the problem too often. Given that you have a large
-    amount of neurons in each layer, there should be enough paths to propagate
-    the signal.
+    as the <Highlight>dying relu problem</Highlight>, but in practice you will
+    not encounter the problem too often. Given that you have a large amount of
+    neurons in each layer, there should be enough paths to propagate the signal.
   </p>
   <p>
     Over time researchers tried to come up with improvements for the ReLU
@@ -272,26 +280,26 @@
         \end{cases}
     `}</Latex
   >
-  <p>In the example below alpha is exactly 0.1.</p>
+  <p>In the example below alpha corresponds to 0.1.</p>
   <Plot
-    pathsData={leakyReluPath}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: -10,
-      maxX: 10,
-      minY: -0.1,
-      maxY: 10.1,
-      xLabel: "z",
-      yLabel: "ReLU",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-      xTicks: [],
-      yTicks: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-      numTicks: 21,
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-10, 10]}
+    range={[0, 10]}
+    padding={{ top: 15, right: 40, bottom: 30, left: 40 }}
+  >
+    <Path data={leakyReluPath} />
+    <XLabel text={"z"} type="latex" />
+    <YLabel text={"relu(z)"} type="latex" x={0} />
+    <Ticks
+      xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+      yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      xOffset={-10}
+      yOffset={23}
+      fontSize={8}
+    />
+  </Plot>
   <p>
     There are many more activation functions out there, expecially those that
     try to improve the original ReLU. For the most part we will use the plain
