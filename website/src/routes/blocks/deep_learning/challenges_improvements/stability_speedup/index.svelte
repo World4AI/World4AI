@@ -6,7 +6,7 @@
   <title>World4AI | Deep Learning | Stability and Speedup</title>
   <meta
     name="description"
-    content="Over the years several techniques, like new optimizers and batch norm, have been developed to combat long or unstable training."
+    content="Over the years several techniques, like new optimizers, skip connections and batch normalization have been developed to combat long or unstable training."
   />
 </svelte:head>
 
@@ -15,11 +15,11 @@
 <Container>
   <p>
     It takes a lot of time and patience to train a neural network. In practice
-    you usually want to undergo many iterations to find a good approach to a
-    particular problem. But if a single iteration takes hours (or even days) you
-    might not be able to solve your taks. Given that you additionally need to
-    train large models on a cluster of GPUs, each saved hour of training will
-    additionally correspond to monetary savings.
+    you usually want to iterate often to find a good approach to a particular
+    problem. But if a single iteration takes hours (or even days) you might not
+    be able to solve your taks. Given that you additionally need to train large
+    models on a cluster of GPUs, each saved hour of training will additionally
+    correspond to monetary savings.
   </p>
   <p>
     In this chapter we will look at different techniques that will either
