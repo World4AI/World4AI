@@ -108,14 +108,6 @@
       color: "var(--main-color-1)",
     },
     {
-      type: "arrow",
-      data: [
-        { x: 50, y: 35 },
-        { x: 50, y: 25 },
-      ],
-      color: "var(--main-color-1)",
-    },
-    {
       type: "block",
       text: "Net Input",
       x: 50,
@@ -125,28 +117,12 @@
       color: "var(--main-color-1)",
     },
     {
-      type: "arrow",
-      data: [
-        { x: 50, y: 65 },
-        { x: 50, y: 55 },
-      ],
-      color: "var(--main-color-1)",
-    },
-    {
       type: "block",
       text: "Activation",
       x: 50,
       y: 75,
       width: 55,
       height: 13,
-      color: "var(--main-color-1)",
-    },
-    {
-      type: "arrow",
-      data: [
-        { x: 50, y: 95 },
-        { x: 50, y: 85 },
-      ],
       color: "var(--main-color-1)",
     },
     {
@@ -572,16 +548,17 @@
   <p>
     We expect deep neural networks to perform better than their shallow
     counterparts. Deeper architecures have more parameters and should be able to
-    model more complex relationships. Yet when we increase the number of layers
-    training becomes impractical and performance deteriorates as the number of
-    layers grows. While the usual suspect is the vanishing gradient problem, He
-    et al.<InternalLink type="reference" id="1" /> were primarily motivated by the
-    so called degradation problem, when they first released their ResNet (residual
-    network) architecure. We are going to follow both strategies: we will discuss
-    how skip connections might reduce the risk of vanishing gradients and we will
-    discuss the degredation problem. As with many other techniques in deep learning,
-    we know when a certain architecture works empirically, but often we do not know
-    exactly why.
+    model more complex relationships. Yet when we increase the number of layers,
+    training becomes impractical and performance deteriorates. While the usual
+    suspect is the vanishing gradient problem, He et al.<InternalLink
+      type="reference"
+      id="1"
+    /> were primarily motivated by the so called degradation problem, when they first
+    released their ResNet (residual network) architecure. We are going to follow
+    both strategies: we will discuss how skip connections might reduce the risk of
+    vanishing gradients and we will discuss the degradation problem. As with many
+    other techniques in deep learning, we know when a certain architecture works
+    empirically, but often we do not know exactly why.
   </p>
   <p>
     Usually data flows from one calculation block into the next, from net inputs
@@ -592,8 +569,8 @@
     When we add skip connections, we add an additional path for the data to
     flow. Additionally to flowing into the next net input layer, the output of
     an activation is routed directly into one of the future activation layers.
-    The streams from the net input and the previous activation are joined
-    through a simple summation and the sum is used as input into the following
+    The streams from the net input and a previous activation are joined through
+    a simple summation and the sum is used as input into the following
     activation function.
   </p>
   <Diagram height="160" components={skipDiagram} />
@@ -626,7 +603,7 @@
   <p>
     So when we are using skip connections we are not asking how the next layer
     should look like based on the current layer, but we are asking what quantity
-    we should add to the current layer to end up with the next layer. While the
+    we should add to the current layer to generate the next layer. While the
     question is different, the result should theoretically be the same.
   </p>
   <p>
@@ -638,8 +615,8 @@
   <Diagram height="150" components={usualDiagramBackward} />
   <p>
     If we have skip connections on the other hand, information can flow through
-    the skip connection. That way we can circumvent the nodes in the neural
-    network, that would deteriorate the performance in the neural network.
+    the additional connection. That way we can circumvent the nodes in the
+    neural network, that would deteriorate the performance.
   </p>
   <Diagram height="160" components={skipDiagramBackward} />
 
@@ -688,16 +665,6 @@
   <p>
     In practice this technique does not only stop the degradation, but improves
     performance and allows researchers to train very deep neural networks.
-  </p>
-  <p>
-    There is one small caveat. Different layers have to have similar
-    dimensionalities in order for the addition to work.
-  </p>
-  <p>
-    Skip connections, like many other techniques that we covered in this
-    chapter, have been originally developed to deal with problems in computer
-    vision, but over the years the technique has been incorporated in many other
-    architecures.
   </p>
   <div class="separator" />
 </Container>
