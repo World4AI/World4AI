@@ -69,13 +69,13 @@
   <p>
     There is probably no hyperparameter that is more important than the learning
     rate <Latex>\alpha</Latex>. If the learning rate is too high, we might
-    overshood and keep oscilating. If the learning rate is too low, training
-    might be too slow, or we might get stuck in some local minimum.
+    overshood or oscilate. If the learning rate is too low, training might be
+    too slow, or we might get stuck in some local minimum.
   </p>
   <p>
-    In the example below we pick a learning rate that is relatively large. The
-    gradient descent algorithm overshoots and keeps oscilating for a while,
-    before settling on the minimum.
+    In the example below we pick a learning rate that is relatively large and we
+    use gradient descent with momentum. The gradient descent algorithm
+    overshoots and keeps oscilating for a while, before settling on the minimum.
   </p>
   <PlayButton f={gradientDescentStepFixed} delta={50} />
   <Plot domain={[-8, 8]} range={[0, 60]}>
@@ -92,7 +92,7 @@
     It is possible, that a single constant rate is not the optimal solution.
     What if we start out with a relatively large learning rate to gain momentum
     at the beginning of trainig, but decrease the learning rate either over time
-    or at certain intervals. In deep learning this is called <Highlight
+    or at specific events. In deep learning this is called <Highlight
       >learning rate decay</Highlight
     > or <Highlight>learning rate scheduling</Highlight>. There are dozens of
     different schedulers. You could for example decay the learing rate by
@@ -101,8 +101,9 @@
     <Latex>0.9</Latex>. Below we use a popular learning rate decay technique
     that is called <Highlight>reduce learning rate on plateau</Highlight>. Once
     a metric (like a loss) stops improving for certain amount of epochs we
-    decrease the learning rate by a predetermined factor. In our example that
-    makes the ball "glide" into the minimum once we overshoot.
+    decrease the learning rate by a predetermined factor. Below we reduce the
+    learning rate on plateau, which makes the ball "glide" into the optimal
+    value.
   </p>
   <PlayButton f={gradientDescentStepMoving} delta={50} />
   <Plot domain={[-8, 8]} range={[0, 60]}>
@@ -116,7 +117,7 @@
   </Plot>
   <p>
     Deep learning frameworks like PyTorch or Keras make it extremely easy to
-    create learning rate scedulers. Usually it involves no more than 2-3 lines
+    create learning rate schedulers. Usually it involves no more than 2-3 lines
     of code.
   </p>
   <p>
