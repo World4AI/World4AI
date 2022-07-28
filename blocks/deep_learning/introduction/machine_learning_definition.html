@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Machine Learning</title><meta name="description" content="Machine learning is a programming paradigm, where the logic of a program is learned from data." data-svelte="svelte-u4fyfh">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/machine_learning_definition-2c0423b2.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/InternalLink-a20fc793.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/StepButton-6f130556.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/introduction/machine_learning_definition.svelte-73ebdfc9.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-658140a5.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-13c6122f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/InternalLink-f9299a76.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/StepButton-44b9569e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn selected">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Machine Learning</h1>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>When books and university lectures on the topic of artificial intelligence
+    mention the origin of machine learning, the name Arthur Lee Samuel is surely
+    to come up. Arthur Samuel was one of the pioneers in the area of artificial
+    intelligence, who coined the term
+    <strong>Machine Learning</strong>
+    <sup class="svelte-1a9jg9d"><a href="#reference-1" class="svelte-1a9jg9d"><sup id="reference-origin-1" class="svelte-1a9jg9d">[1]
+    </sup></a>
+</sup>
+    and is responsible for its&#39; most famous definition:
+  </p>
+  <p class="info">&quot;Machine learning is the field of study that gives computers the ability to
+    learn without being explicitly programmed
+    <sup class="svelte-1a9jg9d"><a href="#note-1" class="svelte-1a9jg9d"><sup id="note-origin-1" class="svelte-1a9jg9d">[1]
+    </sup></a>
+</sup>&quot;.
+  </p>
+  <p>While the above definition is commonly used, it is not the one that we find
+    most useful. Throughout the deep learning block we will rely on a more
+    programming oriented definition of machine learning.
+  </p>
+  <p class="info">Machine learning is a programming paradigm where the solution to a problem
+    is automatically learned from data.
+  </p>
+
+  <div class="separator"></div>
+  <h2>Programming Paradigms</h2>
+  <p>The task of the programmer is to find a function, that can generate desired
+    outputs, based on the inputs of the function. For example a programmer might
+    be assigned a task to write a spam filter, where the function would classify
+    the email as spam or ham based on the contents of the email, the email
+    address, the email subject and some additional metadata. It does not matter
+    whether the programmer uses a traditional programming paradigm or machine
+    learning, the result of the task is essentially the same: a function that
+    takes those inputs and produces the classification as the output.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg"><defs><marker id="DotS" overflow="visible" orient="auto"><path transform="matrix(.2 0 0 .2 1.48 .2)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker></defs><text x="7.7187953" y="212.79494" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="7.7187953" y="212.79494">Inputs</tspan></text><text x="632.1347" y="213.05861" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="632.1347" y="213.05861">Outputs</tspan></text><g><text x="314.66797" y="52.91214" fill="#000000" font-family="sans-serif" font-size="40px" style="line-height:1.25" xml:space="preserve"><tspan x="323" y="52">Function</tspan></text></g><g id="neuron" transform="matrix(3.2411 0 0 3.2411 -280.62 72.732)" fill="var(--main-color-3)" stroke="#000" stroke-width="1.2645"><rect x="186.67" y="16.667" width="46.667" height="46.667" ry="5.8333" stroke-width="1.2645"></rect><g id="neuron-lines" stroke-width="1.2645px"><path d="m192.5 16.667v-11.667" marker-end="url(#DotS)"></path><path d="m204.17 16.667v-11.667" marker-end="url(#DotS)"></path><path d="m215.83 16.667v-11.667" marker-end="url(#DotS)"></path><path d="m227.5 16.667v-11.667" marker-end="url(#DotS)"></path><path d="m233.33 22.5h11.667" marker-end="url(#DotS)"></path><path d="m233.33 34.167h11.667" marker-end="url(#DotS)"></path><path d="m233.33 45.833h11.667" marker-end="url(#DotS)"></path><path d="m233.33 57.5h11.667" marker-end="url(#DotS)"></path><path d="m227.5 63.333v11.667" marker-end="url(#DotS)"></path><path d="m215.83 63.333v11.667" marker-end="url(#DotS)"></path><path d="m204.17 63.333v11.667" marker-end="url(#DotS)"></path><path d="m192.5 63.333v11.667" marker-end="url(#DotS)"></path><path d="m186.67 57.5h-11.667" marker-end="url(#DotS)"></path><path d="m186.67 45.833h-11.667" marker-end="url(#DotS)"></path><path d="m186.67 34.167h-11.667" marker-end="url(#DotS)"></path><path d="m186.67 22.5h-11.667" marker-end="url(#DotS)"></path></g><g id="neuron-circles" stroke-width="1.2645"><circle cx="192.5" cy="22.5" r="2.4442"></circle><circle cx="227.51" cy="22.5" r="2.4442"></circle><circle cx="192.5" cy="57.398" r="2.4442"></circle><circle cx="227.51" cy="57.398" r="2.4442"></circle></g><g stroke-width=".63223"><path d="m210 34.167h17.5"></path><path d="m210 40h17.5"></path><path d="m210 45.833h17.5"></path><path d="m192.5 51.667h11.667"></path><path d="m192.5 48.75h11.667"></path><path d="m192.5 45.833h11.667"></path></g><rect x="210" y="51.667" width="11.667" height="5.8333" stroke-width="1.2645"></rect><g id="large-chip" stroke-width=".63223"><rect x="207.4" y="19.985" width="13.201" height="5.0296"></rect><g><path d="m209 17.5v2.5"></path><path d="m211.5 17.5v2.5"></path><path d="m214 17.5v2.5"></path><path d="m216.5 17.5v2.5"></path><path d="m219 17.5v2.5"></path><path d="m219 25v2.5"></path><path d="m216.5 25v2.5"></path><path d="m214 25v2.5"></path><path d="m211.5 25v2.5"></path><path d="m209 25v2.5"></path></g></g><g id="small-chip-left"><rect x="190" y="31.667" width="5" height="5" stroke-width=".42149"></rect><g stroke-width=".42149px"><path d="m191.67 30v1.6667"></path><path d="m193.33 30v1.6667"></path><path d="m188.33 33.333h1.6667"></path><path d="m188.33 35h1.6667"></path><path d="m191.67 38.333v-1.6667"></path><path d="m193.33 38.333v-1.6667"></path><path d="m196.67 33.333h-1.6667"></path><path d="m196.67 35h-1.6667"></path></g></g><g id="small-chip-right"><rect x="200" y="36.667" width="5" height="5" stroke-width=".42149"></rect><g stroke-width=".42149px"><path d="m201.67 35v1.6667"></path><path d="m203.33 35v1.6667"></path><path d="m198.33 38.333h1.6667"></path><path d="m198.33 40h1.6667"></path><path d="m201.67 43.333v-1.6667"></path><path d="m203.33 43.333v-1.6667"></path><path d="m206.67 38.333h-1.6667"></path><path d="m206.67 40h-1.6667"></path></g></g></g><path d="m140 198h140" fill="none" stroke="#000" stroke-dasharray="15, 15" stroke-dashoffset="0" stroke-width="3"></path><path d="m520 198h100" fill="none" stroke="#000" stroke-dasharray="15, 15" stroke-dashoffset="0" stroke-width="3"></path></svg></div>
+</div>
+  <p>The big difference between the classical and the machine learning progamming
+    paradigm is the way that function is derived.
+  </p>
+  <p>When programmers apply a traditional programming paradigm to create a spam
+    filter, they will study the problem at hand and look at the inputs of the
+    function. They could for example recognize that the words <em>money, rich and quick</em> are common in spam emails and write the first draft of the the function. If
+    the output of the function corresponds to the expectations of the programmers
+    the job is done. If not, the programmers would keep improving the code of the
+    function until the outputs of the function are satisfactory. For example the
+    programmers might be satisfied, once they are able to classify spam emails with
+    an accuracy of 95%.
+  </p>
+  <div class="flex-container"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 350 290" xmlns="http://www.w3.org/2000/svg"><defs><marker id="TriangleOutM" overflow="visible" orient="auto"><path transform="scale(.4)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker><marker id="DotM" overflow="visible" orient="auto"><path transform="matrix(.4 0 0 .4 2.96 .4)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker><marker id="DotS" overflow="visible" orient="auto"><path transform="matrix(.2 0 0 .2 1.48 .2)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker><marker id="marker2202" overflow="visible" orient="auto"><path transform="matrix(.8 0 0 .8 5.92 .8)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker></defs><g stroke="#000"><g id="chip"><rect x="118.92" y="211.85" width="48.154" height="48.154" ry="8.1539" fill="var(--main-color-1)"></rect><g fill="none"><g stroke-width="1px"><path d="m158 202v10" marker-start="url(#DotS)"></path><path d="m148 202v10" marker-start="url(#DotS)"></path><path d="m138 202v10" marker-start="url(#DotS)"></path><path d="m128 202v10" marker-start="url(#DotS)"></path><path d="m158 260v10" marker-end="url(#DotS)"></path><path d="m148 260v10" marker-end="url(#DotS)"></path><path d="m138 260v10" marker-end="url(#DotS)"></path><path d="m128 260v10" marker-end="url(#DotS)"></path><path d="m178 250h-10" marker-start="url(#DotS)"></path><path d="m178 240h-10" marker-start="url(#DotS)"></path><path d="m178 230h-10" marker-start="url(#DotS)"></path><path d="m178 220h-10" marker-start="url(#DotS)"></path><path d="m118 250h-10" marker-end="url(#DotS)"></path><path d="m118 240h-10" marker-end="url(#DotS)"></path><path d="m118 230h-10" marker-end="url(#DotS)"></path><path d="m118 220h-10" marker-end="url(#DotS)"></path></g><g><ellipse cx="127.16" cy="218.75" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="158.03" cy="218.47" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="127.76" cy="253.26" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="158.36" cy="253.25" rx="2.6052" ry="2.6028"></ellipse></g><g stroke-width="1px"><path d="m125 230h10"></path><path d="m125 235h10"></path><path d="m125 240h10"></path><path d="m145 245h10"></path><path d="m150 240h10"></path><path d="m150 230h10"></path></g><rect x="135" y="215" width="15" height="5" ry="0"></rect></g></g><g id="function-inputs" fill="none"><path d="m8 214h70" marker-start="url(#DotM)"></path><path d="m8 234h70" marker-start="url(#DotM)"></path><path d="m8 254h70" marker-start="url(#DotM)"></path></g><path id="code-input" d="m138 104v71" fill="none" marker-end="url(#TriangleOutM)"></path><g id="code"><rect x="108" y="4" width="60" height="90" fill="var(--main-color-2)" stroke-width="2"></rect><g fill="none" stroke-width="1px"><path d="m118 34h40"></path><path d="m118 44h40"></path><path d="m118 54h40"></path><path d="m118 64h40"></path><path d="m118 74h40"></path><path d="m118 84h40"></path><path d="m123 9-5 5 5 5"></path><path d="m131 9-5 10"></path><path d="m132 9 5 5-5 5"></path></g></g><path id="output" d="m201 234h122" fill="none" marker-end="url(#marker2202)"></path><path id="feedback" d="m323 225v-211h-145" fill="none" marker-end="url(#TriangleOutM)"></path></g><g fill="#000000"><text x="10.456777" y="281.07825" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="10.456777" y="281.07825">2. Inputs</tspan></text><text x="220.04919" y="281.07825" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="220.04919" y="281.07825">3. Outputs</tspan></text><text x="220.04919" y="101.23457" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="220.04919" y="101.23457">4. Evaluate</tspan><tspan x="220.04919" y="126.4732">and
+          </tspan><tspan x="220.04919" y="151.71182">Improve</tspan></text><text x="40.55479" y="28.234875" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="40.55479" y="28.234875">1. Code</tspan></text></g></svg></div>
+</div>
+</div>
+
+  <p>The machine learning approach is different in several aspects. While the
+    programmer still needs to write some parts of the function explicitly, many
+    parts of the logic of the function are adjusted in an automatic procedure.
+    The function requires a set of inputs and the corresponding (correct)
+    outputs for those inputs in order to be able to learn. The programmer
+    basically needs a dataset with the corresponding flags that show if the text
+    (input) corresponds to a spam email (output). The function takes those
+    inputs in, uses so called
+    <strong><span class="highlight svelte-16edlvf">weights</span></strong> to transform the inputs into the outputs and
+    compares the expected outputs to those produced by the function. Using the differences
+    between the actual outputs (spam or not) and the produced outputs the weights
+    are adjusted automatically to improve the outputs of the function.
+  </p>
+  <p class="info">If you have trouble understanding the weights of a function, just imagine
+    that those weights somehow correspond to the logic of the function. In
+    machine learning the weights can be changed automatically by measureing some
+    error and trying to redice that error. The adjustment of those weights is
+    what we refer to as learning.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 350 290" xmlns="http://www.w3.org/2000/svg"><defs><marker id="TriangleOutM" overflow="visible" orient="auto"><path transform="scale(.4)" d="m5.77 0-8.65 5v-10l8.65 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker><marker id="DotM" overflow="visible" orient="auto"><path transform="matrix(.4 0 0 .4 2.96 .4)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker><marker id="DotS" overflow="visible" orient="auto"><path transform="matrix(.2 0 0 .2 1.48 .2)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker></defs><g><g id="chip" transform="translate(-6,-34)" stroke="#000"><rect x="118.92" y="211.85" width="48.154" height="48.154" ry="8.1539" fill="var(--main-color-1)"></rect><g fill="none"><g stroke-width="1px"><path d="m158 202v10" marker-start="url(#DotS)"></path><path d="m148 202v10" marker-start="url(#DotS)"></path><path d="m138 202v10" marker-start="url(#DotS)"></path><path d="m128 202v10" marker-start="url(#DotS)"></path><path d="m158 260v10" marker-end="url(#DotS)"></path><path d="m148 260v10" marker-end="url(#DotS)"></path><path d="m138 260v10" marker-end="url(#DotS)"></path><path d="m128 260v10" marker-end="url(#DotS)"></path><path d="m178 250h-10" marker-start="url(#DotS)"></path><path d="m178 240h-10" marker-start="url(#DotS)"></path><path d="m178 230h-10" marker-start="url(#DotS)"></path><path d="m178 220h-10" marker-start="url(#DotS)"></path><path d="m118 250h-10" marker-end="url(#DotS)"></path><path d="m118 240h-10" marker-end="url(#DotS)"></path><path d="m118 230h-10" marker-end="url(#DotS)"></path><path d="m118 220h-10" marker-end="url(#DotS)"></path></g><g><ellipse cx="127.16" cy="218.75" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="158.03" cy="218.47" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="127.76" cy="253.26" rx="2.6052" ry="2.6028"></ellipse><ellipse cx="158.36" cy="253.25" rx="2.6052" ry="2.6028"></ellipse></g><g stroke-width="1px"><path d="m125 230h10"></path><path d="m125 235h10"></path><path d="m125 240h10"></path><path d="m145 245h10"></path><path d="m150 240h10"></path><path d="m150 230h10"></path></g><rect x="135" y="215" width="15" height="5" ry="0"></rect></g></g><g id="function-inputs" transform="translate(0,-26)" fill="none" stroke="#000"><path d="m8 224h70" marker-start="url(#DotM)"></path><path d="m8 236h70" marker-start="url(#DotM)"></path><path d="m137 302v-50" fill="none" marker-start="url(#DotM)" stroke="#000" stroke-width="1px"></path></g><path id="code-input" d="m138 116v44" fill="none" marker-end="url(#TriangleOutM)" stroke="#000"></path><g id="code" transform="translate(0,18)" stroke="#000"><rect x="108" y="4" width="60" height="90" fill="var(--main-color-2)" stroke-width="2"></rect><g fill="none" stroke-width="1px"><path d="m118 34h40"></path><path d="m118 44h40"></path><path d="m118 54h40"></path><path d="m118 64h40"></path><path d="m118 74h40"></path><path d="m118 84h40"></path><path d="m123 9-5 5 5 5"></path><path d="m131 9-5 10"></path><path d="m132 9 5 5-5 5"></path></g></g><path d="m198 200h122" fill="none" marker-end="url(#marker2202)" stroke="#000"></path><path d="m45 151.67v-141.67h220v165" fill="none" marker-end="url(#DotM)" marker-start="url(#DotM)" stroke="#000" stroke-width="1px"></path><path d="m320 210v75h-175" fill="none" marker-end="url(#TriangleOutM)" stroke="#000" stroke-width="1px"></path><g fill="#000000" font-size="16.673px"><text x="12.546965" y="236.48779" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="12.546965" y="236.48779">2. Inputs</tspan></text><text x="242.54794" y="194.23212" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="242.54794" y="194.23212">3. Outputs</tspan></text><text x="248.58961" y="258.23315" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="248.58961" y="258.23315"></tspan><tspan x="230" y="279.0744">5. Improve</tspan></text><text x="181.68901" y="42.35067" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="181.68901" y="42.35067">1. Code</tspan></text></g><text x="72.882713" y="287.15833" fill="#000000" font-size="16.673px" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="60" y="287.15833">2. Weights</tspan></text><text x="10.118352" y="169.74382" fill="#000000" font-size="16.673px" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="10.118352" y="169.74382">2. Expected </tspan><tspan x="10.118352" y="190.58507">Outputs</tspan></text><text x="269.32263" y="101.85865" fill="#000000" font-size="16.673px" style="line-height:1.25" xml:space="preserve" class="svelte-ei1fkg"><tspan x="269.32263" y="101.85865">4. Evaluate</tspan></text></g></svg></div>
+</div>
+
+  <p>While both paradigms produce a function, in machine learing we commonly tend
+    to use the word <strong><span class="highlight svelte-16edlvf">model</span></strong> instead of function.
+  </p>
+  <div class="separator"></div>
+  <h2>Example</h2>
+  <p>Let us use a stylized geometric example to further demonstrate how classical
+    programming paradigms differ from machine learning programming. Let us
+    assume we are assigned a task to transform a triangle into a rectangle of
+    same height.
+  </p>
+</div>
+
+<div class="background-yellow svelte-5s69ku"><div class="container svelte-1sizmlt"><div style="max-width: 900px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)"><path d="m30.784 21.587 24.216 48.404h-48.433z"></path><rect x="345.98" y="20.98" width="49.02" height="49.02"></rect><path d="m60 45.49h275" stroke-dasharray="2, 2"></path></g></svg></div>
+</div></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>In classical programming the programmer could for example notice, that both
+    shapes are polygons. The input (the triangle) has 3 connected points while
+    the output (the rectangle) has 4 connected points. To complete the
+    transformation from the triangle to the rectangle, the programmer would need
+    to add an additional point at the tip of the triangle and to pull the two
+    points apart.
+  </p>
+</div>
+
+<div class="background-blue svelte-5s69ku"><div class="container svelte-1sizmlt"><div style="max-width: 900px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg"><defs><marker id="marker2143" overflow="visible" orient="auto"><path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="var(--main-color-1)" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker></defs><g fill="none" stroke="#000"><path d="m30.784 21.587 24.216 48.404h-48.433z" marker-end="url(#marker2143)" marker-mid="url(#marker2143)" marker-start="url(#marker2143)" stroke-width=".96837"></path><path d="m60 45.49h275" stroke-dasharray="2, 2"></path><path d="m345 20h50v49.991l-50 0.008767z" marker-end="url(#marker2143)" marker-mid="url(#marker2143)" marker-start="url(#marker2143)" stroke-width=".96837"></path></g></svg></div>
+</div></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>The developer would then use a traditional programming language like
+    JavaSript, C or Python and hardcode the logic that creates the additional
+    polygon and pulls the polygons apart. The program could for example look as
+    shown in the interactive example below.
+  </p>
+
+  <button  class="svelte-frpj7p">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-skip-forward svelte-frpj7p"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+</button>
+  <div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg"><defs><marker id="marker2143" overflow="visible" orient="auto"><path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill="var(--main-color-1)" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"></path></marker></defs><g stroke="var(--text-color)"><rect id="transformer" x="150" y="19.992" width="99.992" height="75.007" fill="none"></rect><g opacity="1" transform="translate(0, 0)"><polygon transform="translate(3, 0)" fill="none" marker-end="url(#marker2143)" marker-mid="url(#marker2143)" marker-start="url(#marker2143)" points="0,60 0,60 51,40 51,80"></polygon></g></g></svg></div>
+</div>
+
+  <p>In machine learning on the other hand the role of a developer is not to find
+    the logic that can transform triangles into squares, but to design a program
+    that can learn the logic which can transform triangles into squares. In
+    machine learning this logic is represented by so called <strong><span class="highlight svelte-16edlvf">weights</span></strong>. Each of the weights is simply a number that is used in the function
+    internally to process the inputs (the triangle in our case) in order to
+    generate the output of the function. Learning then means in our case:
+    &quot;adjusting the weights to get better and better at transforming triangles
+    into rectangles&quot;. How exactly the transforming with weights and learning
+    looks like is going to be covered in the next lectures.
+  </p>
+  <p>Below for example we have four different weights that we will utilize in
+    order to solve the task of turning triangles into rectangles.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 250px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 100 85" xmlns="http://www.w3.org/2000/svg"><g id="weights" fill="none" stroke="#000"><rect x="5" y="5" width="15" height="75" fill="var(--main-color-1)"></rect><rect x="30" y="40" width="15" height="40" fill="var(--main-color-2)"></rect><rect x="55" y="25" width="15" height="55" fill="var(--main-color-3)"></rect><rect x="80" y="55" width="15" height="25" fill="var(--main-color-4)"></rect></g></svg></div>
+</div>
+  <p>For that purpose the developer has access to a dataset that shows how for
+    each of the inputs a corresponding output should look like.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 315 150" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)"><path d="m30.784 5 24.216 48.404h-48.433z" stroke-width=".96837"></path><rect x="5.9804" y="95" width="49.02" height="49.02" stroke-width=".98039"></rect><path d="m30 60v30" stroke-dasharray="2.19089, 4.38178" stroke-width="1.0954"></path><g transform="translate(15.181)"><path d="m100 55-24.216-48.404h48.433z" stroke-width=".96837"></path><rect x="75.98" y="95" width="49.02" height="49.02" stroke-width=".98039"></rect><path d="m100 60v30" stroke-dasharray="2.19089, 4.38178" stroke-width="1.0954"></path></g><g transform="translate(29.724)"><path d="m146.6 29.216 48.404-24.216v48.433z" stroke-width=".96837"></path><rect x="145.98" y="95" width="49.02" height="49.02" stroke-width=".98039"></rect><path d="m170 60v30" stroke-dasharray="2.19089, 4.38178" stroke-width="1.0954"></path></g><g transform="translate(45)"><path d="m263.4 29.216-48.404 24.216v-48.433z" stroke-width=".96837"></path><rect x="215.98" y="95" width="49.02" height="49.02" stroke-width=".98039"></rect><path d="m240 60v30" stroke-dasharray="2.19089, 4.38178" stroke-width="1.0954"></path></g></g></svg></div>
+</div>
+
+  <p>The inintial logic (first set of weights) of the program is going to be very
+    far off from the correct logic. The programmer feeds the program with data
+    and the algorithm measures the magnitude of the error. For example if the
+    program produces a triangle (input equals output) the logic is very far from
+    the desired one. A trapezoid on the other hand is closer to a rectangle. The
+    measure of the error is eventually used to automatically adjust the weights
+    of the program to improve the performance. How the process exactly works
+    depends on the algorithm, but the idea is that each iteration of data input,
+    error measurement and weight adjustment leads to better and better
+    performance until the error is less than some threshold.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 120 60" width="200" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)" stroke-width=".96837"><path d="m27.96 6.0969 24.216 48.404h-48.433z"></path><path d="m82.177 6.0969h20l14.216 48.404h-48.433z"></path></g><g fill="none" stroke="var(--main-color-1)" stroke-dasharray="1.96079, 3.92157" stroke-width=".98039"><rect x="3.382" y="5.4902" width="49.02" height="49.02"></rect><rect x="67.598" y="5.4902" width="49.02" height="49.02"></rect></g></svg></div>
+</div>
+  <p>Below is an interactive example where the machine learning process is shown.
+    It takes the algorithm three iterations to learn the desired logic. At first
+    the difference between the square and the produced output is relatively
+    large, but the error is used to adjust the weights of the function. In the
+    third iteration the program produces the desired results (after that the
+    example is reset).
+  </p>
+  <button  class="svelte-frpj7p">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-skip-forward svelte-frpj7p"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+</button>
+  <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"><text x="10" y="20" style="line-height:1.25" xml:space="preserve"><tspan x="0" y="160">Iteration Nr. 0</tspan></text><g stroke="var(--text-color)"><g id="weights" stroke="var(--text-color)"><rect x="155" y="115" width="15" height="75" fill="var(--main-color-1)"></rect><rect x="180" y="150" width="15" height="40" fill="var(--main-color-2)"></rect><rect x="205" y="135" width="15" height="55" fill="var(--main-color-3)"></rect><rect x="230" y="165" width="15" height="25" fill="var(--main-color-4)"></rect></g><rect id="transformer" x="150" y="19.992" width="99.992" height="75.007" fill="none"></rect><g opacity="1" stroke="var(--main-color-1)" stroke-dasharray="4 2" transform="translate(340, 0)"><polygon fill="none" points="1,80 1,40 51,40 51,80"></polygon></g><g opacity="1" transform="translate(0, 0)"><polygon fill="none" points="1,60 1,60 51,40 51,80"></polygon></g></g></svg>
+
+  <div class="separator"></div>
+  <p>The general intuition about machine learning that you should keep in mind is
+    as follows.
+  </p>
+  <p class="info">In classical programming and machine learning we try to solve a problem by
+    generating computer functions. In classical programming the programmer
+    hardcodes the logic of that function. In machine learning the programmer
+    chooses the algorithm and the parameters that are used to learn the
+    function.
+  </p>
+
+  <p>One final question that we should ask ourselves before we move on to the
+    next chapter is: when do we use machine learning and when do we use
+    classical programming? Machine learning is usually used when the complexity
+    of the program would get out of hand if we implemented the logic manually. A
+    program that is able to recognize digits is almost impossible to implement
+    by hand. How would you for example implement a program that is able to
+    differentiate between an 8 and a 9? This is an especially hard problem when
+    the location of the numbers is scattered and not centered in the middle of
+    an image. The same problem can be solved relatively straightforward using
+    neural networks, provided we have the necessary data.
+  </p>
+</div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><footer class="svelte-e6sorm"><section class="notes svelte-e6sorm"><h4 class="svelte-e6sorm">Notes</h4>
+        <ol class="notes svelte-e6sorm"><li id="note-1" class="svelte-e6sorm">This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papers, only the general sentiment regarding that definition.
+              <a href="#note-origin-1" class="svelte-e6sorm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li></ol></section>
+    <section class="references"><h4 class="svelte-e6sorm">References</h4>
+        <ol class="references"><li id="reference-1" class="svelte-e6sorm">Samuel A.L.
+              Some Studies in Machine Learning Using the Game of Checkers.
+              IBM Journal of Research and Development.
+              Vol. 44.
+              
+              pp. 206-226.
+              (1959).
+              <a href="#reference-origin-1" class="svelte-e6sorm"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li></ol></section></footer>
+</div>
+<div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="smq7ut">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="smq7ut"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 31],
+				params: {},
+				routeId: "blocks/deep_learning/introduction/machine_learning_definition"
+			}
+		});
+	</script></div>
+	</body>
+</html>

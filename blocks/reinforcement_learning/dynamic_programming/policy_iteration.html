@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | Policy Iteration Algorithm</title><meta name="description" content="Policy iteration is an iterative (dynamic programming) algorithm. The algorithm alternates between policy evaluation and policy improvement to arrive at the optimal policy and value functions" data-svelte="svelte-1rhre4">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Button-7ab7b2f7.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/dynamic_programming/policy_iteration.svelte-a265f036.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/maps-4e6d9d32.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Button-13b097c1.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn selected">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Policy Iteration</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>Dynamic programming algorithms that are designed to solve a Markov decision
+    process are iterative algorithms, which consist of two basic steps: policy
+    evaluation and policy improvement. The purpose of policy evaluation is to
+    measure the performance of a given policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    by estimating the corresponding value function <span class="placeholder svelte-1mpoqm2">v_{\pi}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    . Policy improvement on the other hand generates a new policy, that is better
+    (or at least not worse) than the previous policy. The output of policy evaluation
+    is used as an input into policy improvement and vice versa. The iterative process
+    of evaluation and improvement produces value and policy functions that converge
+    towards the optimal policy function <span class="placeholder svelte-1mpoqm2">\pi_*</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and optimal
+    value function <span class="placeholder svelte-1mpoqm2">v_*</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> over time. The policy iteration
+    algorithm that is covered in this section is one such iterative algorithm.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Policy Evaluation</h2>
+  <p>The goal of policy evaluation is to find the true value function <span class="placeholder svelte-1mpoqm2">v_{\pi}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    of the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    \begin{aligned}
+   v_{\pi}(s)  &amp; = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(s') \mid S_t=s] \\
+&amp; = \sum_a \pi(a \mid s)  R(a, s) + \gamma \sum_a \pi(a \mid s) \sum_{s'} P(s' \mid s, a)v_{\pi}(s')
+\end{aligned}
+</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Often it is more convenient to use the joint probability of simultaneously
+    getting the reward <span class="placeholder svelte-1mpoqm2">r</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the next state <span class="placeholder svelte-1mpoqm2">s&#39;</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> given
+    current state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. This joint
+    probability function is depicted as <span class="placeholder svelte-1mpoqm2">p(s&#39;, r \mid s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. This
+    notation is more compact and is likely to make the transition from theory to
+    practice easier.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    \begin{aligned}
+    v_{\pi}(s) &amp; = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s] \\
+    &amp; = \sum_a \pi(a \mid s)  R(a, s) + \gamma \sum_a \pi(a \mid s) \sum_{s'} P(s' \mid s, a)v_{\pi}(s') \\
+    &amp; = \sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]
+    \end{aligned}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>If we look closely at the Bellman equation, we can observe that the equation
+    basically consists of two sides. The left side and the right side.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\underbrace{v_{\pi}(s)}_{\text{left side}} = \underbrace{\sum_{a}\pi(a \mid s)\sum_{s', r}p(s', r \mid s, a)[r + \gamma v_{\pi}(s')]}_{\text{right side}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>The left side is the function that returns the value of a state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, it is the mapping from states to values. The left side is essentially the
+    function we are trying to find. The right side is the definition of the
+    value function, that is based on the expectation of the returns and is
+    expressed using the Bellman equation.
+  </p>
+  <p>When we initialize the policy evaluation algorithm, the first step is to
+    generate a value function that is used as a benchmark that needs to be
+    constantly improved in the interative process. The initial values are set
+    either randomly or to zero. When we start to use the above equation we will
+    not surprisingly discover that the random/zero value (the left side of the
+    above equation) and the expected value of the reward plus value for the next
+    state (the right side of the above equation) will diverge quite a lot. The
+    goal of the policy evaluation algorithm is to make the left side of the
+    equation and the right side of the equation to be exactly equal. That is
+    done in an iterative process where at each step the difference between both
+    sides is reduced. In practice we do not expect the difference between the
+    two to go all the way down to zero. Instead we define a threshold value. For
+    example a threshold value of 0.0001 indicates that we can interrupt the
+    iterative process as soon as for all the states <span class="placeholder svelte-1mpoqm2">s \in \mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the difference between the left and the right side of the equation is below
+    the threshold value.
+  </p>
+  <p>The policy estimation algorithm is relatively straightforward. All we need
+    to do is to turn the definition of the of the Bellman equation into the
+    update rule.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">V_{k+1}(s) = \sum_a \pi(a \mid s) \sum_{s', r}p(s', r \mid s, a)[r + \gamma V_{k}(s')]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Above we use <span class="placeholder svelte-1mpoqm2">V(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> instead of
+    <span class="placeholder svelte-1mpoqm2">v(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. This notational difference is to show that <span class="placeholder svelte-1mpoqm2">v(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the true value function of a policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, while <span class="placeholder svelte-1mpoqm2">V(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is it&#39;s estimate. At each iteration step <span class="placeholder svelte-1mpoqm2">k+1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the left side of
+    the equation (the esimate of the value function) is replaced by the right hand
+    of the equation. At this point it should become apparent why the Bellman equation
+    is useful. Only the reward from the next time step is required to improve the
+    approximation, because all subsequent rewards are already condensed into the
+    value function from the next time step. That allows the algorithm to use the
+    model to look only one step into the future for the reward and use the approximated
+    value function for the next time step. By repeating the update rule over and
+    over again the rewards are getting embedded into the value function and the approximation
+    gets better and better.
+  </p>
+  <p class="info">The process of using past estimates to improve current estimates is called
+    <strong>bootstrapping</strong>. Bootstrapping is used heavily through
+    reinforcement learning and can generally be used without the full knowledge
+    of the model of the environment.
+  </p>
+  <p>Below you can find the Python implementation of the policy evaluation
+    algorithm.
+  </p>
+  <p>Once again below we deal with a simple grid world where the task is to
+    arrive at the bottom left corner starting from the top left corner. The
+    environment transitions with 50% probability into the desired direction
+    (unless there is some barrier) and with 50% chance the environment takes a
+    randomm action. The playground below allows you to calculate the value
+    function for a randomly initialized deterministic policy, using the policy
+    evaluation algorithm. You can switch between the display of the policy and
+    the value function. Start by taking one step of the algorithm at the time
+    and observe how the value function propagates and the difference between
+    steps keeps decreasing. Finally you can run the full policy evaluation
+    algorithm, where the iterative process keeps going until the difference
+    betwenn the left and the right side of the Bellman equation is less than
+    0.00001.
+  </p>
+  <div class="flex-space"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="50" x2="62" y2="50" transform="rotate(0, 50, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="50" x2="162" y2="50" transform="rotate(0, 150, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="50" x2="262" y2="50" transform="rotate(0, 250, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="50" x2="362" y2="50" transform="rotate(0, 350, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="50" x2="462" y2="50" transform="rotate(0, 450, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="150" x2="62" y2="150" transform="rotate(90, 50, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="150" x2="162" y2="150" transform="rotate(180, 150, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="150" x2="262" y2="150" transform="rotate(270, 250, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="150" x2="362" y2="150" transform="rotate(270, 350, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="150" x2="462" y2="150" transform="rotate(0, 450, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="250" x2="362" y2="250" transform="rotate(270, 350, 250)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="250" x2="462" y2="250" transform="rotate(180, 450, 250)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="350" x2="62" y2="350" transform="rotate(180, 50, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="350" x2="162" y2="350" transform="rotate(0, 150, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="350" x2="262" y2="350" transform="rotate(90, 250, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="350" x2="362" y2="350" transform="rotate(90, 350, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="350" x2="462" y2="350" transform="rotate(90, 450, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="450" x2="162" y2="450" transform="rotate(0, 150, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="450" x2="262" y2="450" transform="rotate(270, 250, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="450" x2="362" y2="450" transform="rotate(270, 350, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="450" x2="462" y2="450" transform="rotate(270, 450, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g></g></svg></div>
+</div>
+    <div class="flex-vertical"><button  class="svelte-d3jbge">Swith To Value Function</button>
+      <button  class="svelte-d3jbge">1 Step Policy Evaluation</button>
+      <button  class="svelte-d3jbge">Full Policy Evaluation</button></div></div>
+
+  <div class="separator"></div>
+
+  <h2>Policy Improvement</h2>
+  <p>The goal of policy improvement is to create a new and improved policy using
+    the value function <span class="placeholder svelte-1mpoqm2">V(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> from the previous policy
+    evaluation step.
+  </p>
+  <p>Let us assume for simplicity that the agent follows a deterministic policy <span class="placeholder svelte-1mpoqm2">\mu(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, but in the current state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the agent contemplates to pick the
+    action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> that contradicts the policy, therefore
+    <span class="placeholder svelte-1mpoqm2">a \neq \mu(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. After that action the agent will
+    stick to the old policy <span class="placeholder svelte-1mpoqm2">\mu(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and follow it until
+    the terminal state <span class="placeholder svelte-1mpoqm2">T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. We can measure the value of using the
+    action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> at state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and then following the policy
+    <span class="placeholder svelte-1mpoqm2">\mu(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> using the action-value function.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">q_{\mu}(s, a) \doteq \mathbb{E}[R_{t+1} + \gamma v_{\mu}(S_{t+1}) \mid S_t = s, A_t = a]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>What if the agent compares the estimates <span class="placeholder svelte-1mpoqm2">V_{\mu}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">Q_{\mu}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and determines that taking some action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and then following
+    <span class="placeholder svelte-1mpoqm2">\mu</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is of higher value than strictly following <span class="placeholder svelte-1mpoqm2">\mu</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, showing that
+    <span class="placeholder svelte-1mpoqm2">Q_{\mu}(s, a) > V_{\mu}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>? Does that imply
+    that the agent should change the policy and always take the action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    when facing the state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>? Does the short term gain from the
+    new action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> justifies changing the policy? It turns out that
+    this is exactly the case.
+  </p>
+  <p>In the policy improvement step the we create a new policy <span class="placeholder svelte-1mpoqm2">\mu'</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> where the agent chooses the greedy action at each state <span class="placeholder svelte-1mpoqm2">s \in \mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mu'(s) = \arg\max_a Q_{\mu}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Below you can find a Python example of the policy improvement step.</p>
+  <div class="separator"></div>
+
+  <h2>The Policy Iteration Algorithm</h2>
+  <p>The idea of policy iteration is to alternate between policy evaluation and
+    policy improvement until the optimal policy has been reached. Once the new
+    policy and the old policy are exactly the same we have reached the optimal
+    policy.
+  </p>
+
+  <p>Below is a playground from the same gridworld, that demonstrates the policy
+    iteration algorithm. The algorithm finds the optimal policy and
+    corresponding optimal value function, once you click on the <em>&quot;policy iteration&quot;</em> button.
+  </p>
+  <div class="flex-space"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="50" x2="62" y2="50" transform="rotate(0, 50, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="50" x2="162" y2="50" transform="rotate(0, 150, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="50" x2="262" y2="50" transform="rotate(0, 250, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="50" x2="362" y2="50" transform="rotate(0, 350, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="50" x2="462" y2="50" transform="rotate(0, 450, 50)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="150" x2="62" y2="150" transform="rotate(90, 50, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="150" x2="162" y2="150" transform="rotate(180, 150, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="150" x2="262" y2="150" transform="rotate(270, 250, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="150" x2="362" y2="150" transform="rotate(270, 350, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="150" x2="462" y2="150" transform="rotate(0, 450, 150)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="250" x2="362" y2="250" transform="rotate(270, 350, 250)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="250" x2="462" y2="250" transform="rotate(180, 450, 250)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="50" y1="350" x2="62" y2="350" transform="rotate(180, 50, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="350" x2="162" y2="350" transform="rotate(0, 150, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="350" x2="262" y2="350" transform="rotate(90, 250, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="350" x2="362" y2="350" transform="rotate(90, 350, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="350" x2="462" y2="350" transform="rotate(90, 450, 350)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="150" y1="450" x2="162" y2="450" transform="rotate(0, 150, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="250" y1="450" x2="262" y2="450" transform="rotate(270, 250, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="350" y1="450" x2="362" y2="450" transform="rotate(270, 350, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g>
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs>
+            <g><line x1="450" y1="450" x2="462" y2="450" transform="rotate(270, 450, 450)" stroke="var(--text-color)" stroke-width="1" marker-end="url(#arrowhead)"></line></g></g></svg></div>
+</div>
+    <div class="flex-vertical"><button  class="svelte-d3jbge">Swith To Value Function</button>
+      <button  class="svelte-d3jbge">Policy Iteration</button></div></div>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1pa1j95">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1pa1j95"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 67],
+				params: {},
+				routeId: "blocks/reinforcement_learning/dynamic_programming/policy_iteration"
+			}
+		});
+	</script></div>
+	</body>
+</html>

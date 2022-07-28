@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | Prioritized Experience Replay</title><meta name="description" content="The prioritized experience replay (PER) adjust the memory buffer in such a way, that assigns each experience tuple a priority. Experience tuples with higher priorities are used more often for training." data-svelte="svelte-cwpdpa">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Button-7ab7b2f7.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay.svelte-a32d46b1.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/MemoryBuffer-d03c34ea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Button-13b097c1.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn selected">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Prioritized Experience Replay</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p class="info">&quot;In this paper we develop a framework for prioritizing experience, so as to
+    replay important transitions more frequently, and therefore learn more
+    efficiently.
+  </p>
+  <div class="separator"></div>
+
+  <p>The experience replay is one of the major DQN components that make the
+    algorithm so efficient. The agent is able to store already seen experiences
+    and to reuse them several times in training before they are discarded. Each
+    of the past experiences has the same chance of being drawn and being used
+    for training.
+  </p>
+  <svg viewBox="0 0 700 250"><rect fill="none" stroke="var(--text-color)" x="40" y="165" width="610" height="55"></rect><line stroke="var(--text-color)" stroke-width="0.5px" x1="307.5" y1="70" x2="147.5" y2="175"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="347.5" y1="70" x2="107.5" y2="175"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="387.5" y1="70" x2="227.5" y2="175"></line><text stroke="none" fill="var(--text-color)" x="350" y="15" dominant-baseline="middle" text-anchor="middle">BATCH
+  </text><rect stroke="var(--text-color)" fill="var(--background-color)" x="290" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="307.5" y="52.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="330" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="347.5" y="52.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="370" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="387.5" y="52.5" dominant-baseline="middle" text-anchor="middle">1</text><text stroke="none" fill="var(--text-color)" x="350" y="235" dominant-baseline="middle" text-anchor="middle">MEMORY BUFFER
+  </text><rect stroke="black" fill="var(--main-color-1)" x="50" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="67.5" y="192.5" dominant-baseline="middle" text-anchor="middle">5</text><rect stroke="black" fill="var(--main-color-1)" x="90" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="107.5" y="192.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="black" fill="var(--main-color-1)" x="130" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="147.5" y="192.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="black" fill="var(--main-color-1)" x="170" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="187.5" y="192.5" dominant-baseline="middle" text-anchor="middle">2</text><rect stroke="black" fill="var(--main-color-1)" x="210" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="227.5" y="192.5" dominant-baseline="middle" text-anchor="middle">1</text><rect stroke="black" fill="var(--main-color-1)" x="250" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="267.5" y="192.5" dominant-baseline="middle" text-anchor="middle">0</text></svg>
+<div class="flex-center"><button  class="svelte-d3jbge">Step</button></div>
+  <p>But the uniform distribution with with the experiences are drawn is also the
+    drawback of the experience replay. It is reasonable to assume that some
+    experiences are more important and therefore better suited to learn from.
+    This is where the prioritized experience replay (PER) comes into play. Each
+    of the experience tuples has a priority assigned to it and the probability
+    with which the tuple is likely to be drawn from the replay buffer and be
+    used in training increases with higher priority. That way more important
+    experiences are used more often and contribute to faster learning of the
+    agent.
+  </p>
+  <p>The interactive example below is an attempt to visualize to procedure of the
+    prioritized experience replay technique. You will notice that each of the
+    experiences in the memory buffer have a different size. This size represents
+    the priority of the experiece and has therefore a higher probability to be
+    drawn. Each time an experience is drawn, the priority is reduced, because we
+    generally expect that the agent has already learned from that particular
+    experience. Additionally we can observe that the newest experiences have
+    generally extremely high priority. This is because each new experience gets
+    automatically a the highest priority to make sure that it is used at least
+    once for learning.
+  </p>
+  <svg viewBox="0 0 700 250"><rect fill="none" stroke="var(--text-color)" x="40" y="105" width="610" height="115"></rect><line stroke="var(--text-color)" stroke-width="0.5px" x1="307.5" y1="70" x2="147.5" y2="127"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="347.5" y1="70" x2="107.5" y2="127"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="387.5" y1="70" x2="227.5" y2="151"></line><text stroke="none" fill="var(--text-color)" x="350" y="15" dominant-baseline="middle" text-anchor="middle">BATCH
+  </text><rect stroke="var(--text-color)" fill="var(--background-color)" x="290" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="307.5" y="52.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="330" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="347.5" y="52.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="370" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="387.5" y="52.5" dominant-baseline="middle" text-anchor="middle">1</text><text stroke="none" fill="var(--text-color)" x="350" y="235" dominant-baseline="middle" text-anchor="middle">MEMORY BUFFER
+  </text><rect stroke="black" fill="var(--main-color-1)" x="50" y="115" width="35" height="95"></rect>
+    <text stroke="none" fill="var(--background-color)" x="67.5" y="192.5" dominant-baseline="middle" text-anchor="middle">5</text><rect stroke="black" fill="var(--main-color-1)" x="90" y="127" width="35" height="83"></rect>
+    <text stroke="none" fill="var(--background-color)" x="107.5" y="192.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="black" fill="var(--main-color-1)" x="130" y="127" width="35" height="83"></rect>
+    <text stroke="none" fill="var(--background-color)" x="147.5" y="192.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="black" fill="var(--main-color-1)" x="170" y="145" width="35" height="65"></rect>
+    <text stroke="none" fill="var(--background-color)" x="187.5" y="192.5" dominant-baseline="middle" text-anchor="middle">2</text><rect stroke="black" fill="var(--main-color-1)" x="210" y="151" width="35" height="59"></rect>
+    <text stroke="none" fill="var(--background-color)" x="227.5" y="192.5" dominant-baseline="middle" text-anchor="middle">1</text><rect stroke="black" fill="var(--main-color-1)" x="250" y="151" width="35" height="59"></rect>
+    <text stroke="none" fill="var(--background-color)" x="267.5" y="192.5" dominant-baseline="middle" text-anchor="middle">0</text></svg>
+<div class="flex-center"><button  class="svelte-d3jbge">Step</button></div>
+  <p>The creators of PER mention, that the ideal quantity of priority would be a
+    measure of how much an agent can learn from a given experience. Such a
+    measure is obviously not available and TD error is used as a proxy of
+    priority.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\delta = r + \gamma \max_{a'} Q(s', a', \mathbf{w}^-) - Q(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This is obviously not an ideal measure, because the TD error is based on a
+    noisy estimate, but we will assume that this is valid approximation of the
+    importance of an experience tuple.
+  </p>
+  <p>TD error can be positive or negative, but we are only interested in the
+    magnitude of the error and not in the direction. Therefore the absolute
+    value of the error, <span class="placeholder svelte-1mpoqm2">| \delta |</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, is going to be used.
+  </p>
+  <p>If we sampled only according to the magnitude of TD error, some experiences
+    would not be sampled at all before they are discarded. This is especially
+    problematic when we consider that we bootstrap and have only access to
+    estimates of TD errors. Therefore we generally want to sample experiences
+    with high TD error more often, but still have a non zero probability for
+    experiences with low TD errors. DeepMind proposes two approaches to
+    calculate priorities.
+  </p>
+  <p>Proportilan priorization: <span class="placeholder svelte-1mpoqm2">p_i = |\delta_i| + \epsilon</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where <span class="placeholder svelte-1mpoqm2">\epsilon</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is a positive constant that makes sure that experience tuples with a TD error
+    of 0 still have a non-zero percent probability of being selected.
+  </p>
+  <p>Ranked-based priorization: <span class="placeholder svelte-1mpoqm2">p_i = \frac{1}{rank(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where rank(i) is the index number of an experience tuple in a list, in
+    which all absolute TD errors are sorted in descending order. Ranked-based
+    prioritization is expected to be less sensitive to outliers, therefore this
+    approach is going to be utilized in this chapter.
+  </p>
+  <p>The distribution is not only determined by the priority
+    <span class="placeholder svelte-1mpoqm2">p_i</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, but is additionally controlled by a constant
+    <span class="placeholder svelte-1mpoqm2">\alpha</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. If <span class="placeholder svelte-1mpoqm2">\alpha</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is 0 we are essentially facing
+    a uniform distribution. Higher numbers of <span class="placeholder svelte-1mpoqm2">\alpha</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> increase the
+    to higher importance of priorities.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">P(i) = (p^{\alpha}_i) / (\sum_k p^{\alpha}_k)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Measuring TD errors for all experience tuples at each time step would be
+    extremely inefficient, therefore the updates are done only periodically. The
+    TD errors are updated only once they are drawn from the memory buffer and
+    used in the training step. This is due to the fact that TD errors have to be
+    calculated at the training step anyway and no additional computational power
+    is therefore required. The calculations are not done for new experiences
+    therefore each new experience tuple will receive the highest possible
+    priority.
+  </p>
+  <p>If we are not careful and keep using the prioritized experience replay
+    without any adjustment to the update step, we will introduce a bias. Let us
+    assume that we possess the weights of the policy that minimize the mean
+    squared error for the optimal policy. We utilize the policy and interact
+    with the environment to fill the replay buffer. Lastly we want to recreate
+    the weights for the above mentioned policy using the filled replay buffer.
+    If we use the prioritized experience replay we utilize a different
+    distribution than the one that is implied by the optimal weights, which is
+    the uniform distribution. For example we might draw rare experiences more
+    often, which would imply gradient descent steps calculated based on rare
+    experiences more often. On the one hand we want to use important experiences
+    more often, but we would also like to avoid the bias, especially in the long
+    run. For that purpose we adjust the gradient descent step by a weight
+    factor.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">w_i = (N \cdot P(i))^{-\beta}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+  <p>The simplest way to imagine why the adjustment works is to imagine that we
+    have uniform distribution.<span class="placeholder svelte-1mpoqm2">{P(i)} </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> becomes
+    <span class="placeholder svelte-1mpoqm2">{\frac{1}{N}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the whole expression amounts to
+    1, indicating that the uniform distribution is already the correct one and we
+    do not need any adjustments. The <span class="placeholder svelte-1mpoqm2">\beta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> factor is used to control
+    the correction factor. The requirement that we would like to impose is the uniform
+    distribution at the end of the training. Therefore we start with a low <span class="placeholder svelte-1mpoqm2">\beta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and allow for stronger updates towards the rare experiences and increase the
+    value over time to make full corrections.
+  </p>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="p8is59">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="p8is59"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 103],
+				params: {},
+				routeId: "blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay"
+			}
+		});
+	</script></div>
+	</body>
+</html>

@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | Agent and Environment</title><meta name="description" content="The agent and the environment are the two main components in reinforcement learning. The agent is the component that generates the decisons. The environment is everything else." data-svelte="svelte-18hqm9y">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/agent_and_environment-5a54674f.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Action-1d033e9b.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/intuition/agent_and_environment.svelte-bb0fddbf.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/RandomAgent-d01f8d90.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Interaction-aa3fe544.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/maps-4e6d9d32.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Action-dd19d4d2.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-658140a5.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn selected">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Agent and Environment</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>All of reinforcement learning is based on two main components, the <strong>agent</strong>
+    and the <strong>environment</strong>. To introduce both components we will
+    follow the customary route taken in the reinforcement learning education and
+    use a grid world example.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+
+  <p>The gridworld above is the same that we have seen in the previous section.
+    We are going to use this simple game throughout the coming sections to get
+    familiar with the basics of reinforcement learning.
+  </p>
+
+  <p>In the gridworld the main player is represented by a circle. The player can
+    move into 4 different directions: North, East, South and West. If the circle
+    is against a wall (outermost lines) or a barrier (boxes in the middle of the
+    grid) the circle can not move in that particular direction. The goal of the
+    game is for the circle to reach the triangle in the bottom left corner in as
+    few steps as possible, but at this point in time the circle moves randomly.
+  </p>
+
+  <p>Intuitively we could say that the circle is the agent and the grid world is
+    the environment the agent interacts with, but that definition would not be
+    entirely correct. There is actually a relatively strict separation between
+    the agent and the environment.
+  </p>
+
+  <p>All the agent can actually do is to make the decisions. In the case of the
+    above gridworld the agent chooses the direction, meaning north, west, east
+    or south. Whether the circle actually moves in that direction is outside of
+    the influence of the agent.
+  </p>
+
+  <p class="info">The agent is the code that makes the decisions. Do not mix up the agent with
+    its physical / graphical representation in the environment.
+  </p>
+</div>
+
+<div class="flex-container svelte-1urxqrf"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+  <div class="container"><div class="container svelte-1sizmlt"><div style="max-width: 150;" class="svg-container svelte-1sizmlt"><svg><circle cx="75" cy="75" r="70" fill="none" stroke="var(--text-color)"></circle><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs></svg></div>
+</div>
+
+  <table class="svelte-ufdfb7"><thead><tr><th class="svelte-ufdfb7">Action</th></tr></thead>
+    <tbody><tr><td class="svelte-ufdfb7">null</td></tr></tbody></table>
+</div></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>For example in the gridworld above the agent can decide to go north even
+    when the circle is against a barrier or a wall in the northern direction.
+    That decision is legitimate in many grid worlds, but the position of the
+    circle will not change. The arrow indicates the choice the agent made when
+    it was in the previous cell. From time to time we can observe that the agent
+    tries to move against a wall or a barrier, but the grid world does not react
+    to that decision.
+  </p>
+
+  <p>The agent is the program that generates the decision and the decision of the
+    agent is then relayed to the environment. The environment processes the
+    decision, but that is not something that the agent can influence. In the
+    simple grid-world game if the agent decides to go north the circle might
+    actually move north or it could move in a totally different direction or not
+    move at all.
+  </p>
+
+  <p>The environment on the other hand is everything that is not the agent. The
+    enviroment in the grid world reacts to the decisions of the agent and
+    decides what position the circle moves to. Additionally the environment
+    rewards the agent for its decisions.
+  </p>
+
+  <p class="info">Anything outside of the agent is the environment.</p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g id="agent" fill="none" stroke="var(--text-color)"><g><rect x="451.86" y="64.657" width="29.624" height="29.623" ry="0"></rect><rect x="454.82" y="67.619" width="23.698" height="23.698" ry="0"></rect><circle cx="466.67" cy="79.468" r="4.5016" fill-rule="evenodd" stroke-linejoin="round"></circle></g><g><g><path d="m456.71 63.966v-6.1912h-6.1912v-6.1912"></path><path d="m462.9 63.966v-12.382"></path><path d="m469.1 63.966v-12.382"></path></g><path d="m475.29 63.967v-6.1913h6.1912v-6.1913"></path><g><path d="m481.48 70.158h6.1912v-6.1912h6.1912"></path><path d="m481.48 76.349h12.382"></path><path d="m481.48 82.54h12.382"></path><path d="m481.48 88.731h6.1912v6.1912h6.1912"></path><path d="m450.52 70.158h-6.1912v-6.1912h-6.1912"></path><path d="m450.52 76.349h-12.382"></path><path d="m450.52 82.54h-12.382"></path><path d="m450.52 88.731h-6.1912v6.1912h-6.1912"></path><path d="m456.71 94.922v6.1912h-6.1912v6.1912"></path><path d="m462.9 94.922v12.382"></path><path d="m469.1 94.922v12.382"></path><path d="m475.29 94.922v6.1912h6.1912v6.1912"></path></g></g></g><g id="robot" fill="none" stroke="var(--text-color)"><g id="legs" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="189.87" y="-68.075" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="189.87" y="-26.273" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect></g><g id="body" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect x="13.448" y="62.557" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="45.977" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="29.396" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="18.801" y="79.137" width="47.11" height="20.333" style="paint-order:markers fill stroke"></rect></g><g id="arms" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="30.167" y="-10.136" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="matrix(0,1,1,0,0,0)" x="30.584" y="74.576" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect x="1.425" y="43.824" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="scale(-1,1)" x="-83.287" y="44.241" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="matrix(.99997 -.0075742 .0075215 .99997 0 0)" x=".85526" y="75.756" width="7.286" height="27.77" style="paint-order:markers fill stroke"></rect><rect transform="matrix(-.99999 .0041997 .0042671 .99999 0 0)" x="-82.846" y="75.723" width="7.3762" height="27.793" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-8.3844" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-82.751" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect></g><g id="head" transform="translate(243.74)"><rect x="29.508" y=".5" width="25.696" height="25.684" ry="0" stroke-linecap="round" stroke-linejoin="round" style="paint-order:markers fill stroke"></rect><path d="m42.356 8.3955v10.702"></path></g></g><path id="connection" d="m426 75h-90" fill="none" stroke="var(--text-color)" stroke-dasharray="2, 4" stroke-dashoffset="0"></path><g id="batteries" stroke="var(--text-color)" stroke-linejoin="round"><rect transform="rotate(90)" x="171.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g fill="none"><rect transform="rotate(90)" x="174.7" y="-104.89" width="19.279" height="5.4133" ry="0"></rect><rect transform="rotate(90)" x="174.7" y="-96.067" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="176.83" y="-120.62" width="15" height="5"></rect><rect transform="rotate(90)" x="174.7" y="-112.89" width="19.279" height="5.4133" ry="0"></rect></g><rect transform="rotate(90)" x="143.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g fill="none"><rect transform="rotate(90)" x="146.7" y="-104.89" width="19.279" height="5.4133" ry="0"></rect><rect transform="rotate(90)" x="146.7" y="-96.067" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="148.83" y="-120.62" width="15" height="5"></rect><rect transform="rotate(90)" x="146.7" y="-112.89" width="19.279" height="5.4133" ry="0"></rect></g><rect transform="rotate(90)" x="117.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g fill="none"><rect transform="rotate(90)" x="120.7" y="-104.89" width="19.279" height="5.4133" ry="0"></rect><rect transform="rotate(90)" x="120.7" y="-96.067" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="122.83" y="-120.62" width="15" height="5"></rect><rect transform="rotate(90)" x="120.7" y="-112.89" width="19.279" height="5.4133" ry="0"></rect></g></g><g id="sparks" fill="none" stroke="var(--text-color)" stroke-width="1px"><path d="m85.269 106.99v-13.502"></path><path d="m96.258 106.66 6.2446-10.545"></path><path d="m111.01 108.75 10.389-11.87"></path><path d="m70.604 104.41-7.2062-12.956"></path><path d="m58.697 105.93-12.772-10.241"></path><path d="m44.772 119.77-11.367-8.2351"></path><path d="m45.065 129.08-17.702-2.6742"></path><path d="m41.728 140.73-16.064 0.5"></path><path d="m42.142 151.62-14.957 5.7583"></path><path d="m37.988 167.94-17.506 4.6349"></path><path d="m44.09 182.83-18.866 3.4485"></path><path d="m121.14 115.96 13.629-4.1756"></path><path d="m127.85 129.11 13.056-1"></path><path d="m131.54 144.72 13.358 0.5"></path><path d="m134.86 160.38 11.758-3.6032"></path><path d="m133.74 172.81 13.268 2.4387"></path><path d="m133.35 183.45 13.832 1.9768"></path><path d="m135.63 194.65h13.316"></path><path d="m43.768 193.9-15.104 1.7727"></path></g></svg></div>
+</div>
+  <p>A different common example that is often used to make the distinction
+    between the agent and the environment is that of a robot that interacts with
+    the real world. The goal of the agent might be to move the robot from right
+    to left to recharge the battery. The agent (represented by a chip on the
+    right) sends the decison to move the robot. But it is entirely possible that
+    the robot does not even start moving because the battery is already
+    completely depleted. In this example the agent is the code that makes the
+    decision to move left. While the arms, the legs, the cooling system of the
+    robot, the battery, the floor and everything else in the image is part of
+    the environment.
+  </p>
+
+  <p>A similar argument can be made for a human or any other form of a biological
+    machine. The neural network in our brain makes the decisions to move, to
+    study or to sleep. How the body actually reacts is not really in our
+    control. For example the movement could be stopped when you are parallyzed
+    either because of an illness or through fear. The desire to study could be
+    stopped through external triggers like the smell of food or a habit to
+    listen to music. And the decision to go to bed to fall asleep is not always
+    accompanied by actual sleep. We do not have full control of our body. For
+    example, no matter how hard we try, we can not stop our heart though our
+    will.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)"><g id="environment"><rect x=".59406" y=".59406" width="118.81" height="118.81" opacity=".999" stroke-linejoin="round" stroke-width="1.1881"></rect><rect x="10.495" y="10.495" width="99.01" height="99.01" opacity=".999" stroke-linejoin="round" stroke-width="1"></rect><g stroke-width="1"><path d="m20.396 10.495v99.01"></path><path d="m30.297 10.495v99.01"></path><path d="m40.198 10.495v99.01"></path><path d="m50.099 10.495v99.01"></path><path d="m60 10.495v99.01"></path><path d="m69.901 10.495v99.01"></path><path d="m79.802 10.495v99.01"></path><path d="m89.703 10.495v99.01"></path><path d="m99.604 10.495v99.01"></path><path d="m10.495 20.396h99.01"></path><path d="m10.495 30.297h99.01"></path><path d="m10.495 40.198h99.01"></path><path d="m10.495 50.099h99.01"></path><path d="m10.495 60h99.01"></path><path d="m10.495 69.901h99.01"></path><path d="m10.495 79.802h99.01"></path><path d="m10.495 89.703h99.01"></path><path d="m10.495 99.604h99.01"></path></g></g><g id="agent"><g><rect x="409.54" y="28.153" width="63.797" height="63.797" ry="0" stroke-width="1"></rect><rect x="415.92" y="34.533" width="51.036" height="51.036" ry="0" stroke-width="1"></rect><circle cx="441.44" cy="60.05" r="9.6947" fill-rule="evenodd" stroke-linejoin="round" stroke-width="1"></circle></g><g stroke-width="1"><path d="m420 26.667v-13.333h-13.333v-13.333"></path><path d="m433.33 26.667v-26.667"></path><path d="m446.67 26.667v-26.667"></path><path d="m460 26.667v-13.333h13.333v-13.333"></path><path d="m473.33 40h13.333v-13.333h13.333"></path><path d="m473.33 53.333h26.667"></path><path d="m473.33 66.667h26.667"></path><path d="m473.33 80h13.333v13.333h13.333"></path><path d="m406.67 40h-13.333v-13.333h-13.333"></path><path d="m406.67 53.333h-26.667"></path><path d="m406.67 66.667h-26.667"></path><path d="m406.67 80h-13.333v13.333h-13.333"></path><path d="m420 93.333v13.333h-13.333v13.333"></path><path d="m433.33 93.333v26.667"></path><path d="m446.67 93.333v26.667"></path><path d="m460 93.333v13.333h13.333v13.333"></path></g></g><g id="direction"><path d="m130 10h240" stroke-dasharray="8,2,1,2" stroke-dashoffset="0"></path><path d="m370 110h-240" stroke-dasharray="8,2,1,2" stroke-dashoffset="0"></path></g></g></svg></div>
+</div>
+
+  <p>Before we move on to the next section let us clarify the visual notation we
+    are going to use in the reinforcement learning block. The grid on the left
+    is going to depict the environment. You can think about a grid world or
+    about a chess/go board. The symbol on the right is going to represent the
+    agent. Think about a chip that runs on the computer and produces the
+    decisions that are then transmitted to the environment. Finally, the lines
+    represent the interaction between the two components.
+  </p>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1sdily">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1sdily"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 74],
+				params: {},
+				routeId: "blocks/reinforcement_learning/intuition/agent_and_environment"
+			}
+		});
+	</script></div>
+	</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | MDP Stochastic Process</title><meta name="description" content="A Markov decision process is a stochastic process that has the Markov property and provides a mechanism for the agent to make decisions." data-svelte="svelte-knykxb">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/stochastic_process-5b99266c.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/markov_decision_process/stochastic_process.svelte-0e256b72.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-13c6122f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn selected">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>MDP as Stochastic Process</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>The name Markov decison process was not created out of thin air. It is
+    categorized by three distinct parts. It is a
+    <strong><span class="highlight svelte-16edlvf">stochastic process</span></strong>, it has the <strong><span class="highlight svelte-16edlvf">Markov</span></strong>
+    property and it provides a mechanism for the agent to make
+    <strong><span class="highlight svelte-16edlvf">decisions</span></strong>. In the following sections we will unpack
+    and discuss the three parts.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Stochastic Process</h2>
+  <p class="info">A stochastic process is defined as a sequence of random variables.
+  </p>
+  <svg viewBox="0 0 500 100"><g transform="translate(512, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(542, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(572, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(602, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(632, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(662, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(692, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(722, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(752, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(782, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(812, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(842, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(872, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(902, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(932, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g><g transform="translate(962, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(992, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">H</text></g><g transform="translate(1022, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">T</text></g></svg>
+  <p>In the animation above we see the result of an unlimited number of random
+    coin tosses, where each toss results either in an <strong>H</strong>, the
+    head of a coin, or a <strong>T</strong>, the tail of a coin. In this example
+    we deal with a fair coin, that means that the probability of drawing eather
+    heads or tails is always exaclty 50%. What we have described is the so
+    called Bernoulli process. The process evolves randomly by continuosly
+    flipping an imaginary fair coin.
+  </p>
+  <svg viewBox="0 0 500 100"><g transform="translate(512, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(542, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(572, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(602, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(632, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(662, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(692, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(722, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(752, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(782, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(812, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(842, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(872, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(902, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(932, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g><g transform="translate(962, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(992, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">0</text></g><g transform="translate(1022, 50)"><circle cx="0" cy="0" r="12" stroke="black" fill="var(--main-color-1)"></circle><text class="text-style svelte-w6xc3r" x="-6.5" y="6.5" fill="black">1</text></g></svg>
+  <p>For our purposes it is more convenient to represent heads and tails as a 0&#39;s
+    and 1&#39;s. We can look at these numbers as states in an enviroment, where the
+    environment transitions from one state into an another with a 50%
+    probability and stays in the same state with 50% probability.
+  </p>
+  <p>For the Bernoulli process we can state the following: <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1} \mid S_t) = Pr(S_{t+1})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the probability that a certain
+    state will be tossed, in the above case <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1}=0) = 0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1}=1)=0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    . <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1} \mid S_t)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, reads as <span class="placeholder svelte-1mpoqm2">S_{t+1}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> given <span class="placeholder svelte-1mpoqm2">S_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, depicts a conditional probability, where the
+    probability of being in the new state <span class="placeholder svelte-1mpoqm2">S_{t+1}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> depends
+    on the current state <span class="placeholder svelte-1mpoqm2">S_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. For example <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1}=0|S_t=1)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    shows the probability of a coin toss having a value of HEADS when the previous
+    toss had a value of TAILS. When you consider a coin toss, then the new occurrence
+    of either heads or tails does not depend on the previous specific value of the
+    toss. The events are independent.
+    <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1} \mid S_t) = Pr(S_t)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> means that knowing
+    the last value of a coin toss does not give us any more knowledge regarding the
+    future toss and therefore <span class="placeholder svelte-1mpoqm2">Pr(S_{t+1} \mid S_t) = Pr(S_t) = 0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>If we used the Bernoulli process in reinforcement learning, our agent would
+    drift from one state into the next state, without any agency and any rewards
+    to guide his actions.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Markov Chain</h2>
+  <p class="info">A Markov chain is a stochastic process that has the Markov property.
+  </p>
+  <svg viewBox="0 0 500 300"><defs><marker id="arrowhead" markerWidth="6" markerHeight="3" refX="5" refY="1.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 6 1.5, 0 3"></polygon></marker></defs><path d="M115,175L115,205L75,205L75,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="95" y="195" dominant-baseline="middle" text-anchor="middle">0.2</text>
+
+<path d="M120,130L380,130" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="150" y="120" dominant-baseline="middle" text-anchor="middle">0.8</text>
+
+<path d="M380,170L120,170" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="360" y="160" dominant-baseline="middle" text-anchor="middle">0.5</text>
+
+<path d="M385,175L385,205L425,205L425,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="405" y="190" dominant-baseline="middle" text-anchor="middle">0.5</text>
+
+
+<rect stroke="black" fill="var(--main-color-1)" x="70" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="95" y="150" dominant-baseline="middle" text-anchor="middle">0</text>
+<rect stroke="black" fill="var(--main-color-1)" x="380" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="405" y="150" dominant-baseline="middle" text-anchor="middle">1</text></svg>
+  <p>The above animation depicts a simple, two state, Markov chain. Unlike in the
+    case of a Bernoulli process the next state is not independent of the current
+    state. The probability of the next state depends on the current state. If
+    the environment is in the 0&#39;s state the probability to remain is 20% and the
+    probability to transition into the 1&#39;s state is 80%. If the environment is
+    in the 1&#39;s state on the other hand, there is a 50/50 chance of either
+    staying in the same state or transitioning into the 0&#39;s state.
+  </p>
+  <p>The Markov chain exhibits a so called Markov property. In simple words that
+    means that the probability of transitioning into the next state is only
+    dependent on the current state. The whole history of past states is
+    irrelevant. This property is sometimes called <strong>memorylessness</strong>.
+  </p>
+  <p>Mathematically the Markov property can be depicted as follows.</p>
+  <span class="placeholder svelte-1mpoqm2">Pr[S_{t+1} \mid S_t] = Pr[S_{t+1} \mid S_1, .... , S_t]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <div class="separator"></div>
+  <h2>Markov Reward Process</h2>
+  <svg viewBox="0 0 500 300"><defs><marker id="arrowhead" markerWidth="6" markerHeight="3" refX="5" refY="1.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 6 1.5, 0 3"></polygon></marker></defs><path d="M115,175L115,205L75,205L75,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="95" y="195" dominant-baseline="middle" text-anchor="middle">0.2</text>
+
+<path d="M120,130L380,130" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="150" y="120" dominant-baseline="middle" text-anchor="middle">0.8</text>
+
+<path d="M380,170L120,170" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="360" y="160" dominant-baseline="middle" text-anchor="middle">0.5</text>
+
+<path d="M385,175L385,205L425,205L425,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="405" y="190" dominant-baseline="middle" text-anchor="middle">0.5</text>
+
+
+<rect stroke="black" fill="var(--main-color-1)" x="70" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="95" y="150" dominant-baseline="middle" text-anchor="middle">0</text>
+<rect stroke="black" fill="var(--main-color-1)" x="380" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="405" y="150" dominant-baseline="middle" text-anchor="middle">1</text><defs><marker id="rewardArrow" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 5 2.5, 0 5"></polygon></marker></defs>
+<circle cx="20" cy="150" r="15" stroke="black" fill="var(--text-color)"></circle>
+
+<text dominant-baseline="middle" text-anchor="middle" x="20" y="150">5</text>
+<g transform="rotate(0 20 150)"><path marker-end="url(#rewardArrow)" d="M 35 150 h 25" stroke="var(--text-color)"></path></g>
+<defs><marker id="rewardArrow" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 5 2.5, 0 5"></polygon></marker></defs>
+<circle cx="480" cy="150" r="15" stroke="black" fill="var(--text-color)"></circle>
+
+<text dominant-baseline="middle" text-anchor="middle" x="480" y="150">-1</text>
+<g transform="rotate(180 480 150)"><path marker-end="url(#rewardArrow)" d="M 495 150 h 25" stroke="var(--text-color)"></path></g>
+</svg>
+  <p>The Markov reward process adds a reward for to each state. Whenever a time
+    step passes a reward is generated by a Markov reward process. The reward can
+    theoretically also be calculated stochastically, but for simplicity sake let
+    us assume a deterministic reward.
+  </p>
+  <p>In a Markov reward process the sequence of random variables not only
+    contains states (reddish tint) but also rewards (white tint). The process
+    drifts randomly from one state into the next and gives out rewards, but the
+    agent has no influence on the process whatsoever.
+  </p>
+  <div class="separator"></div>
+  <h2>Markov Decision Process</h2>
+  <p>A Markov decision process adds, as the name suggests, decisions to the
+    Markov chain. In other words the agent gets some agency over it&#39;s decision.
+  </p>
+  <p class="info">A Markov decision process is a Markov chain, where a part of the chain is
+    influenced by the decisions of the agent.
+  </p>
+  <svg viewBox="0 0 500 300"><defs><marker id="arrowhead" markerWidth="6" markerHeight="3" refX="5" refY="1.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 6 1.5, 0 3"></polygon></marker></defs><path d="M175,70L95,70L95,125" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="145" y="60" dominant-baseline="middle" text-anchor="middle">0.8</text>
+
+<path d="M175,70L380,140" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="210" y="70" dominant-baseline="middle" text-anchor="middle">0.2</text>
+
+<path d="M175,230L95,230L95,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="145" y="245" dominant-baseline="middle" text-anchor="middle">0.1</text>
+
+<path d="M175,230L380,160" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="215" y="230" dominant-baseline="middle" text-anchor="middle">0.9</text>
+
+<path d="M325,70L120,140" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="285" y="72" dominant-baseline="middle" text-anchor="middle">0.7</text>
+
+<path d="M325,70L405,70L405,125" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="360" y="60" dominant-baseline="middle" text-anchor="middle">0.3</text>
+
+<path d="M325,230L120,160" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="295" y="235" dominant-baseline="middle" text-anchor="middle">0.3</text>
+
+<path d="M325,230L405,230L405,175" marker-end="url(#arrowhead)" stroke="var(--text-color)" fill="transparent"></path>
+<text stroke="none" fill="var(--text-color)" x="365" y="220" dominant-baseline="middle" text-anchor="middle">0.7</text>
+
+<path d="M 95 150 L 175 70" stroke="var(--text-color)"></path>
+
+<circle cx="175" cy="70" r="15" stroke="black" fill="var(--main-color-2)"></circle>
+<text dominant-baseline="middle" text-anchor="middle" x="175" y="70">0</text>
+<text stroke="none" fill="var(--text-color)" x="125" y="100" font-size="10" dominant-baseline="middle" text-anchor="middle">0.3</text><path d="M 95 150 L 175 230" stroke="var(--text-color)"></path>
+
+<circle cx="175" cy="230" r="15" stroke="black" fill="var(--main-color-2)"></circle>
+<text dominant-baseline="middle" text-anchor="middle" x="175" y="230">1</text>
+<text stroke="none" fill="var(--text-color)" x="125" y="200" font-size="10" dominant-baseline="middle" text-anchor="middle">0.7</text><path d="M 405 150 L 325 70" stroke="var(--text-color)"></path>
+
+<circle cx="325" cy="70" r="15" stroke="black" fill="var(--main-color-2)"></circle>
+<text dominant-baseline="middle" text-anchor="middle" x="325" y="70">0</text>
+<text stroke="none" fill="var(--text-color)" x="375" y="100" font-size="10" dominant-baseline="middle" text-anchor="middle">0.4</text><path d="M 405 150 L 325 230" stroke="var(--text-color)"></path>
+
+<circle cx="325" cy="230" r="15" stroke="black" fill="var(--main-color-2)"></circle>
+<text dominant-baseline="middle" text-anchor="middle" x="325" y="230">1</text>
+<text stroke="none" fill="var(--text-color)" x="375" y="200" font-size="10" dominant-baseline="middle" text-anchor="middle">0.6</text>
+<rect stroke="black" fill="var(--main-color-1)" x="70" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="95" y="150" dominant-baseline="middle" text-anchor="middle">0</text>
+<rect stroke="black" fill="var(--main-color-1)" x="380" y="125" width="50" height="50"></rect>
+<text stroke="none" fill="var(--background-color)" x="405" y="150" dominant-baseline="middle" text-anchor="middle">1</text><defs><marker id="rewardArrow" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 5 2.5, 0 5"></polygon></marker></defs>
+<circle cx="20" cy="150" r="15" stroke="black" fill="var(--text-color)"></circle>
+
+<text dominant-baseline="middle" text-anchor="middle" x="20" y="150">5</text>
+<g transform="rotate(0 20 150)"><path marker-end="url(#rewardArrow)" d="M 35 150 h 25" stroke="var(--text-color)"></path></g>
+<defs><marker id="rewardArrow" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 5 2.5, 0 5"></polygon></marker></defs>
+<circle cx="480" cy="150" r="15" stroke="black" fill="var(--text-color)"></circle>
+
+<text dominant-baseline="middle" text-anchor="middle" x="480" y="150">-1</text>
+<g transform="rotate(180 480 150)"><path marker-end="url(#rewardArrow)" d="M 495 150 h 25" stroke="var(--text-color)"></path></g>
+</svg>
+  <p>In the example above the environment has still two states, state 0 and state
+    1 (represented by red boxes). Landing in 0&#39;s state is more advantagous as
+    the agent receives a reward of 5, while landing in the 1&#39;s state generates a
+    reward of -1 (white circles). In both states the agent can choose between
+    two actions (blue circles). The 0&#39;s action is the action toward the 0&#39;s
+    state and the 1&#39;s action is the action towards the 1&#39;s state. For example if
+    the agent is in the 0&#39;s state it will choose the action to move (or better
+    remain) left with a probability of 30% and right with a probability of 70%.
+    If it chooses the 1&#39;s action the environment will transition towards the 0&#39;s
+    state in 10% of cases and towards the 1&#39;s state with 90% of cases. The whole
+    process is the succession of states, actions and rewards. This is the same
+    mechanism, that is more often introduced as the interaction between the
+    agent and the environment. The interaction is nothing more than a Markov
+    chain that is made out of two elements. The first element, the environment
+    is static and can not be changed in any form. The second component is the
+    agent. The agent can change the probabilities of the whole chain, by
+    tweaking the probabilities of actions. In the example above, when the agent
+    starts improving we expect it to increase the probabilities to move to state
+    0. Ideally that would mean that the agent will only choose action 0.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1bbuku7">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1bbuku7"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 84],
+				params: {},
+				routeId: "blocks/reinforcement_learning/markov_decision_process/stochastic_process"
+			}
+		});
+	</script></div>
+	</body>
+</html>

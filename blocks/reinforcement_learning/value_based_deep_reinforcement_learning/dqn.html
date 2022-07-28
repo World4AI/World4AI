@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | DQN</title><meta name="description" content="The deep Q-network (DQN) is considered to be one of the seminal works in deep reinforcement learning. The agent was able to achieve human level control in many Atari games and even outperformed professional players." data-svelte="svelte-1n7tt4a">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Table-818b9eab.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Button-7ab7b2f7.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn.svelte-a19c5cf4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/NeuralNetworkOld-c5b87430.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/CartPole-8bd7166b.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Table-a51fb5ea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/MemoryBuffer-d03c34ea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Button-13b097c1.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-13c6122f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-658140a5.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn selected">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Deep Q-Network (DQN)</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>The paper on the deep Q-network (often abbreviated as DQN) by DeepMind is
+    regarded as one of the most seminal papers on modern reinforcement learning.
+    The research that came from DeepMind showed how a combination of Q-learning
+    with deep neural networks can be applied to Atari games. For many Atari
+    games the DQN Agent even outperformed professional human players. The
+    results were inspiring and groundbreaking in many respects, but the most
+    important contribution of the paper was probably the rejuvenation of a field
+    that seemed to be forgotten by the public. DQN spurred a research streak
+    that continues up to this day.
+  </p>
+  <p>Many of the solutions by the DQN seem to show creativity and even if you are
+    not a reinforcement learning enthusiast, you will most likely find the
+    playthroughs of Atari games by the DQN agent to be almost magical.
+  </p>
+
+  <p>In this chapter we are going to explore the components that made the deep
+    Q-network successful. We will look at how Atari games can be solved, but
+    before that we are going to explore solutions to simpler OpenAI gym
+    environments, because those can be solved quicker, especially if you do not
+    possess a modern Nvidia graphics card.
+  </p>
+  <div class="separator"></div>
+  <h2>Architecture</h2>
+  <p>In value based deep reinforcement learning we are utilizing a neural network
+    to represent the approximate action value function <span class="placeholder svelte-1mpoqm2">\hat{Q}(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the state of the environment, <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is
+    the action and <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the weight vector of
+    the neural network.
+  </p>
+  <svg viewBox="0 0 400 100"><rect fill="none" stroke="var(--text-color)" x="187.5" y="85.45454545454545" width="25.000000000000004" height="10"></rect><g fill="var(--background-color)" stroke="var(--text-color)"><circle cx="193.75" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="193.75" cy="95.45454545454545" r="0.5"></circle><circle cx="206.25" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="206.25" cy="95.45454545454545" r="0.5"></circle></g><g transform="rotate(0 200 85.45454545454545)"><rect fill="none" stroke="var(--text-color)" x="198" y="2.1212121212121122" width="4" height="83.33333333333334"></rect></g><line x1="0" y1="100" x2="400" y2="100" stroke="var(--text-color)"></line></svg>
+
+<table class="svelte-18triin"><thead><tr><th class="svelte-18triin">Variable</th><th class="svelte-18triin">Value</th></tr></thead>
+  <tbody><tr class="svelte-18triin"><td class="svelte-18triin">Sum of Rewards</td><td class="svelte-18triin">0</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Cart Position</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Cart Velocity</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Pole Angle</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Pole Angular Velocity</td><td class="svelte-18triin">0.000</td>
+      </tr></tbody>
+</table>
+  <p>If we take the cart pole environment as an example of a simple OpenAI gym
+    environment, we will face a state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> represented by a 4 dimensional
+    vector.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+\mathbf{x} \doteq 
+\begin{bmatrix}
+  x_1 \\
+  x_2 \\ 
+  x_3 \\
+  x_4 
+\end{bmatrix}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>There are two possible actions in the action space <span class="placeholder svelte-1mpoqm2">\mathcal{A}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The agent can choose the action to move left (action 0) or to move right
+    (action 1).
+  </p>
+  <p>Alltogether there are 5 inputs into the neural network, the four variables
+    representing the state and one variable representing the value of the chosen
+    action (0 or 1). The input is processed in a series of hidden layers by
+    applying linear transformations and non-linear activation functions. The
+    output layer is a single neuron that represents the action value of the
+    state action combination.
+  </p>
+  <svg viewBox="0 0 400 150">
+      
+
+      
+      <circle cx="10" cy="15" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="45" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="105" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="135" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="10.714285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="32.14285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="53.57142857142856" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="75" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="96.42857142857143" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="117.85714285714285" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="139.28571428571428" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="15" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="45" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="105" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="135" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="390" y1="75" x2="263.33333333333337" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="75" x2="263.33333333333337" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="75" x2="263.33333333333337" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="75" x2="263.33333333333337" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="75" x2="263.33333333333337" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="390" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      </svg>
+  <p>The architecture above is theoretically sound, but has a significant
+    practical drawback. In order to improve the policy the agent needs to act
+    greedy with respect to the action value function<span class="placeholder svelte-1mpoqm2">\hat{Q}(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The agent needs to take the action with the hightest action value and
+    that implies that we need to calculate the action values for all available
+    actions in order to determine which action has the highest value. Each
+    calculation would require the full pass through the neural network which
+    gets computationally costly with the increased complexity of the network and
+    the number of possible actions.
+  </p>
+  <p>The below architecture on the other hand is the one that is similar in
+    spirit to the solution that DeepMind ended up using for DQN.
+  </p>
+  <svg viewBox="0 0 400 150">
+      
+
+      
+      <circle cx="10" cy="18.75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="56.25" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="93.75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="131.25" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="10.714285714285714" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="10.714285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="32.14285714285714" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="32.14285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="53.57142857142856" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="53.57142857142856" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="75" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="75" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="96.42857142857143" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="96.42857142857143" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="117.85714285714285" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="117.85714285714285" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="136.66666666666669" y1="139.28571428571428" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="136.66666666666669" cy="139.28571428571428" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="15" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="15" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="45" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="45" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="75" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="105" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="105" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="263.33333333333337" y1="135" x2="136.66666666666669" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="263.33333333333337" cy="135" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="390" y1="37.5" x2="263.33333333333337" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="37.5" x2="263.33333333333337" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="37.5" x2="263.33333333333337" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="37.5" x2="263.33333333333337" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="37.5" x2="263.33333333333337" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="390" cy="37.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="390" y1="112.5" x2="263.33333333333337" y2="15" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="112.5" x2="263.33333333333337" y2="45" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="112.5" x2="263.33333333333337" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="112.5" x2="263.33333333333337" y2="105" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="112.5" x2="263.33333333333337" y2="135" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="390" cy="112.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      </svg>
+  <p>The input of the neural network consists only of the state representation<span class="placeholder svelte-1mpoqm2">\mathbf{x}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The output layer has as many neurons as there are available actions in
+    the environment. In the cart pole environment for example only two actions
+    are available, therefore the neural network has two output neurons. With the
+    above architecture only one pass through the network is required and
+    choosing the action with the hightest value corresponds to taking the
+    <span class="placeholder svelte-1mpoqm2">\arg\max_a \hat{Q}(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> operation.
+  </p>
+  <p></p>
+  <div class="separator"></div>
+  <h2>Divergence</h2>
+  <p>In tabular Q-learning each experience is thrown away as soon as it has been
+    used for training. The tabular Q-function contains all the required
+    information to arrive at the optimal value function. If we apply the same
+    logic to approximative value functions, that would imply that we would take
+    a single gradient descent step after taking a single action and throw that
+    experience away.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+  w_{t+1} \doteq w_t - \frac{1}{2}\alpha\nabla[r + \gamma \max_{a'} \hat{Q}(s', a', \mathbf{w}_t) - \hat{Q}(s, a, \mathbf{w}_t)]^2
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This naive implementation of deep Q-learning will most likely diverge. We
+    might observe improvements until a breaking point, when the neural network
+    will start failing catastrophically, never to recover again. In some cases
+    we would be able to achieve descent results in simple environments like the
+    cart pole environment, but achieving good results for Atari games is almost
+    impossible with the naive above implementation.
+  </p>
+  <div class="separator"></div>
+  <h2>Experience Replay</h2>
+
+  <p>One of the reasons for the divergence of value based deep reinforcement
+    learning algorithms is the high correlation of sequential observations. When
+    we use gradient descent at each timestep we need to assume, that the current
+    observation of the environment is very close to the previous observation. To
+    convince yourself you can look at the example of the cart pole above. The
+    cart position does not jump from 0 to 1, but moves slowly in incremental
+    steps. From supervised learning we know, that the gradient descent algorithm
+    assumes the data to be i.i.d. (independently and identically distributed),
+    which is a hard limitation given the sequential nature of reinforcement
+    learning. Thus sequential observations contribute to the destabilization of
+    the learning process.
+  </p>
+  <p>Additionally we should also remember that in supervised learning, we rarely
+    use stochastic gradient descent, instead we use batch gradient descent. This
+    has the advantage of reducing the variance of a single observation and of
+    making the calculations more efficient through parallel processing on the
+    GPU.
+  </p>
+  <p>The experience replay technique uses a data structure called memory buffer
+    to alleviate the above problem. Each experience tuple <span class="placeholder svelte-1mpoqm2">e_t = (s_t, a_t, r_t, s_{t+1}, d_t)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is stored in the memory buffer: a data structure with limited capacity. At
+    each time step the agent faces a certain observation, uses epsilon-greedy action
+    selection and collects the corresponding reward and next observation. The whole
+    tuple is pushed into the memory buffer <span class="placeholder svelte-1mpoqm2">D_t = \{e_1, ... , e_t\}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. At full capacity the memory buffer removes the oldest tuple to make room
+    for the new experience.
+  </p>
+  <p>Before the agent starts optimizing the value function, there is usually a so
+    called warm-up phase. In that phase the agent collects random experience, in
+    order to fill the memory buffer with a minimum amount of tuples.
+  </p>
+  <p>The agent learns only from the collected experiences and never online. At
+    each time step the agent gets a randomized batch from the memory buffer and
+    uses the whole batch to apply batch gradient descent. Using experience
+    replay the mean squared error can be defined as follows.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">MSE \doteq \mathbb{E}_{(s, a, r, s', d) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \mathbf{w}) - Q(s, a, \mathbf{w}))^2]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>We provide the interactive example of the experience replay below. We
+    suggest you play with it in order to get a better intuitive understanding.
+    The batch size corresponds to 3, the warmup phase is 6 and the maximum
+    length of the buffer is 15. When you take a step a new experience is
+    collected and the batch is chosen randomly from the available experiece
+    tuples in the memory buffer. The oldest tuple is thrown away once the
+    maximum size is reached.
+  </p>
+  <svg viewBox="0 0 700 250"><rect fill="none" stroke="var(--text-color)" x="40" y="165" width="610" height="55"></rect><line stroke="var(--text-color)" stroke-width="0.5px" x1="307.5" y1="70" x2="147.5" y2="175"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="347.5" y1="70" x2="107.5" y2="175"></line><line stroke="var(--text-color)" stroke-width="0.5px" x1="387.5" y1="70" x2="227.5" y2="175"></line><text stroke="none" fill="var(--text-color)" x="350" y="15" dominant-baseline="middle" text-anchor="middle">BATCH
+  </text><rect stroke="var(--text-color)" fill="var(--background-color)" x="290" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="307.5" y="52.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="330" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="347.5" y="52.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="var(--text-color)" fill="var(--background-color)" x="370" y="35" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--text-color)" x="387.5" y="52.5" dominant-baseline="middle" text-anchor="middle">1</text><text stroke="none" fill="var(--text-color)" x="350" y="235" dominant-baseline="middle" text-anchor="middle">MEMORY BUFFER
+  </text><rect stroke="black" fill="var(--main-color-1)" x="50" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="67.5" y="192.5" dominant-baseline="middle" text-anchor="middle">5</text><rect stroke="black" fill="var(--main-color-1)" x="90" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="107.5" y="192.5" dominant-baseline="middle" text-anchor="middle">4</text><rect stroke="black" fill="var(--main-color-1)" x="130" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="147.5" y="192.5" dominant-baseline="middle" text-anchor="middle">3</text><rect stroke="black" fill="var(--main-color-1)" x="170" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="187.5" y="192.5" dominant-baseline="middle" text-anchor="middle">2</text><rect stroke="black" fill="var(--main-color-1)" x="210" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="227.5" y="192.5" dominant-baseline="middle" text-anchor="middle">1</text><rect stroke="black" fill="var(--main-color-1)" x="250" y="175" width="35" height="35"></rect>
+    <text stroke="none" fill="var(--background-color)" x="267.5" y="192.5" dominant-baseline="middle" text-anchor="middle">0</text></svg>
+<div class="flex-center"><button  class="svelte-d3jbge">Step</button></div>
+  <p>The maximum length of the buffer and the batch size depend on the task the
+    agent needs to solve. In the original implementation by DeepMind the memory
+    size corresponded to 1,000,000 and batch size to 32. Depending on your
+    hardware you might need to reduce the memory size. Especially for simpler
+    tasks a memory size between 10,000 and 100,000 is usually sufficient.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Frozen Target Network</h2>
+  <p>The second problem that the agent faces is the correlation between the
+    action values <span class="placeholder svelte-1mpoqm2">Q(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the target
+    values
+    <span class="placeholder svelte-1mpoqm2">r + \gamma \max_{a'} Q(s', a', \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>,
+    because the same action-value function is used for the target value and the
+    current action value.
+  </p>
+  <p>Below we see an interactive game to explain the problem in a more intuitive
+    manner. The blue circle represents our estimate we are trying to improve.
+    The red circle is our target. When you take a step our estimate moves into
+    the direction of the target. This is the whole point of gradient descent,
+    you want to minimized the distance between the estimte and the target.
+    Because the estimate and the bootstrapped value share the same weights of
+    the neural network the weights of the target change as well, which forces
+    the target to move. A great analogy that is often used in the literature is
+    a dog chasing it&#39;s own tail. Catching up seems imporssible, which can have a
+    destabilizing effect on the neural network.
+  </p>
+  <svg viewBox="0 0 500 200"><circle fill="var(--main-color-1)" stroke="black" cx="230" cy="60" r="10"></circle><circle fill="var(--main-color-2)" stroke="black" cx="250" cy="100" r="10"></circle></svg>
+<div class="flex-center"><button  class="svelte-d3jbge">Step</button></div>
+  <p>In order to mitigate the destabilization the researchers at DeepMind used a
+    neural network with frozen weights <span class="placeholder svelte-1mpoqm2">w^-</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for the calculation
+    of the target value. This weights are held constant for a period of time and
+    only periodically are the weights copied from the action value function <span class="placeholder svelte-1mpoqm2">Q(s, a, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> to the neural network used for the calculation of the target <span class="placeholder svelte-1mpoqm2">Q(s', a', \mathbf{w}^-)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. In the original paper the update frequency is 10,000 steps for Atari
+    games, but for simpler environments the frequency is usually much shorter.
+  </p>
+  <p>Below if a similar interactive example using a frozen target network. The
+    estimate moves into the direction of the target for 3 steps. In those three
+    steps the weights of the target network are held constant. After the three
+    steps the weights are copied from the blue estimate into the red target.
+  </p>
+  <svg viewBox="0 0 500 200"><circle fill="var(--main-color-1)" stroke="black" cx="230" cy="60" r="10"></circle><circle fill="var(--main-color-2)" stroke="black" cx="250" cy="100" r="10"></circle></svg>
+<div class="flex-center"><button  class="svelte-d3jbge">Step</button></div>
+  <div class="separator"></div>
+
+  <h2>Mean Squared Error</h2>
+  <p>The final mean squared error calculation of the DQN is defined below. The
+    optimization is done by drawing a batch of experiences from the memory
+    buffer <span class="placeholder svelte-1mpoqm2">(s, a, r, s', t) \sim U(D)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> using the uniform
+    distribution. The estimated action value function and the action value function
+    used for bootstrapping use the same architecture, but the bootstrapped calculation
+    utilizes frozen weights <span class="placeholder svelte-1mpoqm2">w^-</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">MSE \doteq \mathbb{E}_{(s, a, r, s', t) \sim U(D)}[(r + \gamma \max_{a'} Q(s', a', \mathbf{w}^-) - Q(s, a, \mathbf{w}))^2]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <div class="separator"></div>
+
+  <h2>Atari</h2>
+  <h3>Architecture</h3>
+  <h3>Preprocessing</h3>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1pg5rpg">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1pg5rpg"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 101],
+				params: {},
+				routeId: "blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn"
+			}
+		});
+	</script></div>
+	</body>
+</html>

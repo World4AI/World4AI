@@ -1,0 +1,15 @@
+import{S as I,i as S,s as E,l as f,a as y,r as k,w as x,T as q,m,h as a,c as v,n as _,u as g,x as G,p as b,G as w,b as p,y as P,f as B,t as C,B as D,E as z}from"../../../../../chunks/index-caa95cd4.js";import{C as A}from"../../../../../chunks/Container-5c6b7f6d.js";function T($){let n,c,l,u,d,r,s;return{c(){n=f("p"),c=k(`It takes a lot of time and patience to train a neural network. In practice
+    you usually want to iterate often to find a good approach to a particular
+    problem. But if a single iteration takes hours (or even days) you might not
+    be able to solve your taks. Given that you additionally need to train large
+    models on a cluster of GPUs, each saved hour of training will additionally
+    correspond to monetary savings.`),l=y(),u=f("p"),d=k(`In this chapter we will look at different techniques that will either
+    improve your training time significantly or allow you to build models that
+    are less prone to instability during training.`),r=y(),s=f("div"),this.h()},l(e){n=m(e,"P",{});var o=_(n);c=g(o,`It takes a lot of time and patience to train a neural network. In practice
+    you usually want to iterate often to find a good approach to a particular
+    problem. But if a single iteration takes hours (or even days) you might not
+    be able to solve your taks. Given that you additionally need to train large
+    models on a cluster of GPUs, each saved hour of training will additionally
+    correspond to monetary savings.`),o.forEach(a),l=v(e),u=m(e,"P",{});var t=_(u);d=g(t,`In this chapter we will look at different techniques that will either
+    improve your training time significantly or allow you to build models that
+    are less prone to instability during training.`),t.forEach(a),r=v(e),s=m(e,"DIV",{class:!0}),_(s).forEach(a),this.h()},h(){b(s,"class","separator")},m(e,o){p(e,n,o),w(n,c),p(e,l,o),p(e,u,o),w(u,d),p(e,r,o),p(e,s,o)},p:z,d(e){e&&a(n),e&&a(l),e&&a(u),e&&a(r),e&&a(s)}}}function U($){let n,c,l,u,d,r,s,e,o;return e=new A({props:{$$slots:{default:[T]},$$scope:{ctx:$}}}),{c(){n=f("meta"),c=y(),l=f("h1"),u=k("Stability and Speedup"),d=y(),r=f("div"),s=y(),x(e.$$.fragment),this.h()},l(t){const i=q('[data-svelte="svelte-ha0r8"]',document.head);n=m(i,"META",{name:!0,content:!0}),i.forEach(a),c=v(t),l=m(t,"H1",{});var h=_(l);u=g(h,"Stability and Speedup"),h.forEach(a),d=v(t),r=m(t,"DIV",{class:!0}),_(r).forEach(a),s=v(t),G(e.$$.fragment,t),this.h()},h(){document.title="World4AI | Deep Learning | Stability and Speedup",b(n,"name","description"),b(n,"content","Over the years several techniques, like new optimizers, skip connections and batch normalization have been developed to combat long or unstable training."),b(r,"class","separator")},m(t,i){w(document.head,n),p(t,c,i),p(t,l,i),w(l,u),p(t,d,i),p(t,r,i),p(t,s,i),P(e,t,i),o=!0},p(t,[i]){const h={};i&1&&(h.$$scope={dirty:i,ctx:t}),e.$set(h)},i(t){o||(B(e.$$.fragment,t),o=!0)},o(t){C(e.$$.fragment,t),o=!1},d(t){a(n),t&&a(c),t&&a(l),t&&a(d),t&&a(r),t&&a(s),D(e,t)}}}class L extends I{constructor(n){super(),S(this,n,null,U,E,{})}}export{L as default};

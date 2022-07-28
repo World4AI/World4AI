@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Cross Entropy and Negative Log Likelihood</title><meta name="description" content="Cross-entropy, also called negative log likelihood, is the loss function that is used in classification tasks." data-svelte="svelte-131mgfc">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/cross_entropy_negative_log_likelihood-73b6ce2e.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/InternalLink-a20fc793.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Plot-474e03af.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Slider-2b4fd518.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood.svelte-367b31f1.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/InternalLink-f9299a76.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Plot-e628e9dd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Slider-19e7021e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn selected">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h1>Cross-Entropy and Negative Log Likelihood</h1>
+  <div class="separator"></div>
+  <p>The mean squared error tends to be problematic, when used as the loss
+    function for classification tasks<sup class="svelte-1a9jg9d"><a href="#note-1" class="svelte-1a9jg9d"><sup id="note-origin-1" class="svelte-1a9jg9d">[1]
+    </sup></a>
+</sup>. The
+    loss that is usually used in classification tasks is either called
+    cross-entropy or negative log likelihood. Both names are used in the
+    literature and the standard machine learning libraries and while the
+    calculation is the same, the motivation (and therefore the derivation) is
+    different. We will introduce both explanations in order to get a better
+    understanding and intuition for this type of loss.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Entropy and Cross-Entropy</h2>
+  <p>In 1948 Claude Shanon published an article called &quot;A Mathematical Theory of
+    Communication&quot;<sup class="svelte-1a9jg9d"><a href="#reference-1" class="svelte-1a9jg9d"><sup id="reference-origin-1" class="svelte-1a9jg9d">[1]
+    </sup></a>
+</sup>. This paper
+    introduced a theoretical foundation for a field that has become known as
+    information theory.
+  </p>
+  <p>At first glance it might look like we are about to go on a tangent here,
+    because information theory and the loss function for classification tasks
+    should&#39;t have a lot in common. Yet the opposite is the case.
+  </p>
+  <p class="info">To understand cross-entropy loss is to understand information theory!
+  </p>
+  <p>We measure information using specific information units. The most common
+    unit of information is the so called bit<sup class="svelte-1a9jg9d"><a href="#note-2" class="svelte-1a9jg9d"><sup id="note-origin-2" class="svelte-1a9jg9d">[2]
+    </sup></a>
+</sup>
+    <sup class="svelte-1a9jg9d"><a href="#note-3" class="svelte-1a9jg9d"><sup id="note-origin-3" class="svelte-1a9jg9d">[3]
+    </sup></a>
+</sup>. A bit takes a value of either 0 or 1.
+    Below for example we use 8 bits to encode and send some information.
+  </p>
+  <p class="bits svelte-ng9iid"><span class="bit svelte-ng9iid">1</span><span class="bit svelte-ng9iid">1</span><span class="bit svelte-ng9iid">0</span><span class="bit svelte-ng9iid">1</span><span class="bit svelte-ng9iid">1</span><span class="bit svelte-ng9iid">0</span><span class="bit svelte-ng9iid">0</span><span class="bit svelte-ng9iid">1</span></p>
+  <p>But there is a difference between using 8 bits to send a message and the
+    amout of information that is actually contained in the message. To get an
+    intuition regarding that statement let us look at a toss of a coin as an
+    example.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 300px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 100 45"><circle cx="30" cy="15" r="10" class="svelte-lc2za9"></circle><circle cx="70" cy="15" r="10" class="svelte-lc2za9"></circle><text x="30" y="15.5" class="svelte-lc2za9">H</text><text x="70" y="15.5" class="svelte-lc2za9">T</text><rect class="probability svelte-lc2za9" x="20" y="30" width="20" height="10"></rect><rect class="probability svelte-lc2za9" x="60" y="30" width="20" height="10"></rect><text x="6" y="35.5" class="svelte-lc2za9">Pr:</text><text x="30" y="35.5" class="svelte-lc2za9">0.5</text><text x="70" y="35.5" class="svelte-lc2za9">0.5</text></svg></div>
+</div>
+  <p>To send a message regarding the outcome of the fair coin toss we need 1 bit.
+    We could for example define heads as <span class="bit svelte-ng9iid">1</span> and tails as
+    <span class="bit svelte-ng9iid">0</span>.
+  </p>
+  <p>But what if we deal with an unfair coin where heads comes up with a
+    probability of 1.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 300px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 100 45"><circle cx="30" cy="15" r="10" class="svelte-lc2za9"></circle><circle cx="70" cy="15" r="10" class="svelte-lc2za9"></circle><text x="30" y="15.5" class="svelte-lc2za9">H</text><text x="70" y="15.5" class="svelte-lc2za9">T</text><rect class="probability svelte-lc2za9" x="20" y="30" width="20" height="10"></rect><rect class="probability svelte-lc2za9" x="60" y="30" width="20" height="10"></rect><text x="6" y="35.5" class="svelte-lc2za9">Pr:</text><text x="30" y="35.5" class="svelte-lc2za9">1</text><text x="70" y="35.5" class="svelte-lc2za9">0</text></svg></div>
+</div>
+  <p>We could still send 1 bit, but there would be no useful information
+    contained in the message. As the probability is always 100%, there would be
+    0 information provided.
+  </p>
+  <p>Intuitively speaking information is the level of surprise. Information is
+    inversely related to probability, therefore we expect less likely events to
+    provide more information than more likely events. In fact an event with a
+    probability of 50% provides exactly 1 bit of information. Or to put it
+    differently one bit reduces uncertainty by exactly 2. 2 bits of information
+    reduce the uncertainty by 4, 3 bits by 8 and so on.
+  </p>
+  <p>We can generalize this idea using the equation: <span class="placeholder svelte-1mpoqm2">(\frac{1}{2})^I = p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where <span class="placeholder svelte-1mpoqm2">p</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is a probability of an event <span class="placeholder svelte-1mpoqm2">x</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">I</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the information in bits. If the probability is 50%, the information content
+    is exactly 1 bit. If the probability of an event is 25%, the uncertainty is divided
+    by 4 when this event occurs and the information content is 2 bits.
+  </p>
+  <p>We can use basic math to solve
+    <span class="placeholder svelte-1mpoqm2">(\frac{1}{2})^I = p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    for information in bits.
+  </p>
+  <div class="latex-box svelte-ng9iid"><span class="placeholder svelte-1mpoqm2">
+    \begin{aligned}
+      &amp;\Big(\frac{1}{2}\Big)^I = p(x) \\
+      &amp; 2^I = \frac{1}{p(x)} \\
+      &amp; I = \log_2\Big(\frac{1}{p(x)}\Big) \\
+      &amp; I = \log_2(1) - \log_2(p(x)) \\
+      &amp; I = 0 - \log_2(p(x)) \\
+    \end{aligned} \\
+    \boxed{I= -\log_2(p(x))}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div>
+  <p>The plot below shows this relationship between the probability and the
+    information measured in bits. The lower the probability the higher the
+    surprise and the information in bits when the event occurs.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-481epo zero"></line><text x="32" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 191)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">1</text></g><g class="tick tick-2 svelte-481epo" transform="translate(0, 172)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">2</text></g><g class="tick tick-3 svelte-481epo" transform="translate(0, 153)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">3</text></g><g class="tick tick-4 svelte-481epo" transform="translate(0, 134)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">4</text></g><g class="tick tick-5 svelte-481epo" transform="translate(0, 115)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">5</text></g><g class="tick tick-6 svelte-481epo" transform="translate(0, 96)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">6</text></g><g class="tick tick-7 svelte-481epo" transform="translate(0, 77)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">7</text></g><g class="tick tick-8 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">8</text></g><g class="tick tick-9 svelte-481epo" transform="translate(0, 39)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">9</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 20)"><line x1="40" x2="460" class="svelte-481epo"></line><text x="32" y="+4" class="svelte-481epo">10</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(40,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(82,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.1</text></g><g class="tick svelte-481epo" transform="translate(124,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.2</text></g><g class="tick svelte-481epo" transform="translate(166,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.3</text></g><g class="tick svelte-481epo" transform="translate(208,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.4</text></g><g class="tick svelte-481epo" transform="translate(250,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.5</text></g><g class="tick svelte-481epo" transform="translate(292,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.6</text></g><g class="tick svelte-481epo" transform="translate(334,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.7</text></g><g class="tick svelte-481epo" transform="translate(376,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.8</text></g><g class="tick svelte-481epo" transform="translate(418,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.9</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="250" y="245">Probability</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Number of Bits</text><path d="M40.42,20.650098591420345L40.84,39.650098591420345L41.260000000000005,50.76438610512232L41.68000000000001,58.65009859142033L42.099999999999994,64.76673239428023L42.519999999999996,69.76438610512233L42.94,73.98984211051481L43.36,77.65009859142036L43.78,80.87867361882428L44.2,83.76673239428024L44.620000000000005,86.379299345529L45.04,88.76438610512234L45.46,90.95845323610112L45.88,92.98984211051481L46.300000000000004,94.8810199079822L46.72,96.65009859142037L47.14,98.31189257517681L47.56,99.8786736188243L47.980000000000004,101.36072134684848L48.400000000000006,102.76673239428027L48.82,104.10412962421681L49.24,105.37929934552902L49.660000000000004,106.59777575650361L50.080000000000005,107.76438610512233L50.50000000000001,108.88336619714013L50.92000000000001,109.95845323610111L51.34000000000001,110.99296113252626L51.760000000000005,111.98984211051484L52.18000000000001,112.95173749884424L52.60000000000001,113.88101990798222L53.02000000000001,114.77982848877099L53.44000000000001,115.65009859142037L53.860000000000014,116.49358685923097L54.280000000000015,117.31189257517681L54.70000000000002,118.10647591337474L55.12000000000002,118.8786736188243L55.540000000000006,119.62971253837043L55.96000000000001,120.36072134684849L56.38000000000001,121.07274074980309L56.80000000000001,121.76673239428025L57.22000000000001,122.44358667916396L57.640000000000015,123.10412962421682L58.06000000000002,123.74912893076024L58.48000000000001,124.37929934552902L58.900000000000006,124.99530742168417L59.32000000000001,125.59777575650361L59.74000000000001,126.18728677329548L60.16000000000001,126.76438610512233L60.58000000000001,127.32958562960931L61.000000000000014,127.88336619714015L61.420000000000016,128.4261800888788L61.84000000000002,128.95845323610112L62.26000000000001,129.48058722812115L62.680000000000014,129.9929611325263L63.100000000000016,130.4959331483889L63.52000000000002,130.98984211051487L63.94000000000002,131.47500886055047L64.36000000000001,131.95173749884424L64.78000000000003,132.42031652929535L65.20000000000002,132.88101990798222L65.62000000000002,133.3341080051152L66.04000000000002,133.77982848877102L66.46000000000001,134.21841713791878L66.88000000000002,134.65009859142037L67.30000000000001,135.075087038961L67.72000000000003,135.49358685923096L68.14000000000001,135.90579321011805L68.56000000000003,136.3118925751768L68.98000000000002,136.7120632702056L69.40000000000002,137.10647591337474L69.82000000000002,137.4952938620093L70.24000000000002,137.8786736188243L70.66000000000003,138.2567652101407L71.08000000000001,138.6297125383704L71.50000000000003,138.99765371084212L71.92000000000002,139.3607213468485L72.34000000000002,139.71904286462347L72.76000000000002,140.07274074980307L73.18000000000002,140.42193280678532L73.60000000000002,140.76673239428024L74.02000000000002,141.10724864622824L74.44000000000003,141.44358667916396L74.86000000000003,141.77584778701194L75.28000000000003,142.10412962421682L75.70000000000002,142.42852637803668L76.12000000000003,142.74912893076024L76.54000000000002,143.06602501254622L76.96000000000004,143.37929934552903L77.38000000000002,143.68903377978194L77.80000000000003,143.9953074216842L78.22000000000003,144.29819675519562L78.64000000000001,144.5977757565036L79.06000000000003,144.89411600247297L79.48000000000002,145.18728677329545L79.90000000000003,145.4773551497084L80.32000000000002,145.76438610512236L80.74000000000004,146.0484425929758L81.16000000000003,146.32958562960934L81.58000000000004,146.60787437293294L82.00000000000003,146.88336619714013L82.42000000000003,147.1561167637045L82.84000000000003,147.42618008887877L83.26000000000003,147.6936086079015L83.68000000000004,147.95845323610112L84.10000000000004,148.22076342707672L84.52000000000004,148.48058722812115L84.94000000000003,148.73797133304217L85.36000000000003,148.99296113252626L85.78000000000003,149.24560076218194L86.20000000000003,149.4959331483889L86.62000000000003,149.7440000520724L87.04000000000003,149.98984211051484L87.46000000000004,150.23349887730893L87.88000000000004,150.47500886055047L88.30000000000004,150.7144095593635L88.72000000000004,150.95173749884424L89.14000000000004,151.18702826350508L89.56000000000003,151.42031652929538L89.98000000000005,151.65163609427128L90.40000000000003,151.8810199079822L90.82000000000005,152.10850009963764L91.24000000000004,152.3341080051152L91.66000000000004,152.55787419286594L92.08000000000004,152.77982848877102L92.50000000000003,153L92.92000000000003,153.21841713791878L93.34000000000003,153.4351076400915L93.76000000000003,153.65009859142037L94.18000000000004,153.8634164444622L94.60000000000004,154.075087038961L95.02000000000004,154.2851356206319L95.44000000000004,154.493586859231L95.86000000000004,154.700464865943L96.28000000000003,154.90579321011805L96.70000000000005,155.10959493538616L97.12000000000003,155.3118925751768L97.54000000000005,155.51270816767038L97.96000000000004,155.7120632702056L98.38000000000005,155.909978973167L98.80000000000004,156.10647591337474L99.22000000000003,156.30157428699744L99.64000000000004,156.49529386200936L100.06000000000003,156.68765399020978L100.48000000000005,156.87867361882428L100.90000000000003,157.0683713017041L101.32000000000005,157.25676521014068L101.74000000000004,157.4438731433113L102.16000000000004,157.6297125383704L102.58000000000004,157.81430048020144L103.00000000000003,157.99765371084212L103.42000000000004,158.17978863859685L103.84000000000003,158.3607213468485L104.26000000000005,158.54046760258078L104.68000000000004,158.7190428646235L105.10000000000005,158.89646229163085L105.52000000000004,159.07274074980307L105.94000000000005,159.24789282036127L106.36000000000004,159.42193280678535L106.78000000000006,159.5948747418231L107.20000000000005,159.76673239428024L107.62000000000006,159.9375192755981L108.04000000000005,160.10724864622824L108.46000000000006,160.27593352181086L108.88000000000005,160.44358667916396L109.30000000000004,160.61022066209088L109.72000000000006,160.77584778701194L110.14000000000004,160.94048014842735L110.56000000000006,161.1041296242168L110.98000000000005,161.26680788078184L111.40000000000006,161.4285263780367L111.82000000000005,161.58929637425243L112.24000000000005,161.74912893076024L112.66000000000005,161.90803491651812L113.08000000000006,162.0660250125462L113.50000000000006,162.2231097162346L113.92000000000006,162.37929934552898L114.34000000000006,162.5346040429973L114.76000000000006,162.68903377978194L115.18000000000006,162.84259835944124L115.60000000000005,162.9953074216842L116.02000000000005,163.14717044600127L116.44000000000005,163.29819675519562L116.86000000000006,163.44839551881716L117.28000000000006,163.5977757565036L117.70000000000006,163.7463463412303L118.12000000000006,163.89411600247297L118.54000000000006,164.04109332928547L118.96000000000005,164.18728677329545L119.38000000000005,164.33270465162076L119.80000000000005,164.47735514970836L120.22000000000006,164.6212463240996L120.64000000000006,164.76438610512233L121.06000000000006,164.90678229951388L121.48000000000006,165.0484425929758L121.90000000000006,165.18937455266297L122.32000000000006,165.32958562960934L122.74000000000005,165.4690831610915L123.16000000000005,165.60787437293294L123.58000000000006,165.7459663817497L124.00000000000006,165.88336619714013L124.42000000000006,166.02008072382L124.84000000000006,166.15611676370446L125.26000000000006,166.2914810179387L125.68000000000006,166.42618008887877L126.10000000000007,166.56022048202382L126.52000000000007,166.69360860790152L126.94000000000005,166.82635078390754L127.36000000000007,166.95845323610112L127.78000000000006,167.08992210095712L128.20000000000007,167.2207634270767L128.62000000000006,167.3509831768569L129.04000000000005,167.48058722812115L129.46000000000006,167.6095813757113L129.88000000000005,167.73797133304217L130.30000000000007,167.8657627336201L130.72000000000006,167.9929611325263L131.14000000000007,168.11957200786546L131.56000000000006,168.24560076218197L131.98000000000008,168.37105272384267L132.40000000000006,168.4959331483889L132.82000000000008,168.62024721985756L133.24000000000007,168.7440000520724L133.66000000000008,168.86719668990617L134.08000000000007,168.98984211051484L134.50000000000009,169.11194122454407L134.92000000000007,169.23349887730893L135.3400000000001,169.35451984994776L135.76000000000008,169.47500886055047L136.18000000000006,169.5949705652623L136.60000000000008,169.7144095593635L137.02000000000007,169.83333037832546L137.44000000000008,169.95173749884424L137.86000000000007,170.06963533985171L138.2800000000001,170.18702826350506L138.70000000000007,170.30392057615538L139.1200000000001,170.42031652929535L139.54000000000008,170.53622032048727L139.9600000000001,170.65163609427128L140.38000000000008,170.7665679430546L140.80000000000007,170.88101990798222L141.22000000000008,170.99499597978962L141.6400000000001,171.10850009963767L142.0600000000001,171.2215361599302L142.48000000000008,171.3341080051152L142.9000000000001,171.44621943246918L143.32000000000008,171.55787419286594L143.74000000000007,171.66907599152924L144.16000000000008,171.77982848877102L144.5800000000001,171.8901353007139L145.00000000000006,172L145.42000000000007,172.10942611648503L145.84000000000006,172.2184171379188L146.26000000000008,172.32697651061224L146.68000000000006,172.43510764009153L147.10000000000008,172.54281389173866L147.52000000000007,172.65009859142037L147.94000000000008,172.75696502610407L148.36000000000007,172.86341644446216L148.7800000000001,172.96945605746487L149.20000000000007,173.075087038961L149.6200000000001,173.18031252624817L150.04000000000008,173.28513562063193L150.46000000000006,173.3895593879741L150.88000000000008,173.493586859231L151.30000000000007,173.59722103098102L151.72000000000008,173.70046486594296L152.14000000000007,173.8033212934839L152.5600000000001,173.90579321011805L152.98000000000008,174.00788347999622L153.4000000000001,174.10959493538616L153.82000000000008,174.21093037714394L154.24000000000007,174.3118925751768L154.66000000000008,174.41248426889754L155.0800000000001,174.51270816767038L155.50000000000009,174.61256695124877L155.92000000000007,174.7120632702056L156.3400000000001,174.81119974635496L156.76000000000008,174.90997897316703L157.1800000000001,175.00840351617492L157.60000000000008,175.10647591337477L158.02000000000007,175.20419867561793L158.44000000000008,175.30157428699746L158.86000000000007,175.39860520522612L159.2800000000001,175.4952938620093L159.70000000000007,175.5916426634103L160.12000000000006,175.68765399020975L160.54000000000008,175.78333019825843L160.9600000000001,175.87867361882428L161.38000000000008,175.97368655893328L161.80000000000007,176.0683713017041L162.22000000000008,176.16273010667777L162.6400000000001,176.2567652101407L163.0600000000001,176.35047882544308L163.48000000000008,176.4438731433113L163.9000000000001,176.53695033215521L164.32000000000008,176.62971253837043L164.7400000000001,176.72216188663492L165.16000000000008,176.81430048020144L165.5800000000001,176.90613040118436L166.00000000000009,176.9976537108421L166.42000000000007,177.0888724498547L166.8400000000001,177.17978863859688L167.2600000000001,177.2704042774064L167.68000000000006,177.36072134684852L168.10000000000008,177.4507418079751L168.5200000000001,177.54046760258078L168.9400000000001,177.62990065345377L169.36000000000007,177.7190428646235L169.7800000000001,177.8078961216035L170.2000000000001,177.89646229163088L170.6200000000001,177.9847432239018L171.04000000000008,178.0727407498031L171.4600000000001,178.1604566831401L171.8800000000001,178.24789282036127L172.30000000000007,178.33505094077864L172.72000000000008,178.42193280678535L173.1400000000001,178.50854016406913L173.56000000000012,178.5948747418231L173.98000000000008,178.68093825295287L174.4000000000001,178.76673239428024L174.8200000000001,178.85225884674412L175.24000000000012,178.9375192755981L175.66000000000008,179.02251533060493L176.0800000000001,179.10724864622824L176.5000000000001,179.19172084182088L176.9200000000001,179.27593352181086L177.3400000000001,179.35988827588395L177.7600000000001,179.44358667916399L178.18000000000012,179.52703029238998L178.60000000000008,179.61022066209085L179.0200000000001,179.6931593207575L179.4400000000001,179.77584778701194L179.86000000000013,179.85828756577433L180.2800000000001,179.94048014842735L180.7000000000001,180.02242701297791L181.12000000000012,180.10412962421682L181.5400000000001,180.1855894338757L181.9600000000001,180.26680788078184L182.3800000000001,180.3477863910109L182.8000000000001,180.4285263780367L183.2200000000001,180.50902924287965L183.6400000000001,180.58929637425243L184.06000000000012,180.66932914870378L184.4800000000001,180.74912893076024L184.9000000000001,180.82869707306546L185.3200000000001,180.90803491651812L185.74000000000012,180.98714379040734L186.1600000000001,181.0660250125462L186.5800000000001,181.14467988940376L187.0000000000001,181.2231097162346L187.42000000000013,181.301315777207L187.84000000000012,181.37929934552903L188.2600000000001,181.4570616835728L188.68000000000012,181.5346040429973L189.1000000000001,181.6119276648692L189.52000000000012,181.68903377978194L189.9400000000001,181.76592360797326L190.3600000000001,181.84259835944124L190.78000000000011,181.91905923405835L191.2000000000001,181.9953074216842L191.62000000000012,182.0713441022766L192.0400000000001,182.14717044600127L192.46000000000012,182.22278761333962L192.8800000000001,182.2981967551956L193.30000000000013,182.37339901300058L193.7200000000001,182.44839551881716L194.14000000000013,182.52318739544143L194.56000000000012,182.5977757565036L194.9800000000001,182.6721617065679L195.40000000000012,182.7463463412303L195.82000000000014,182.82033074721562L196.2400000000001,182.89411600247294L196.6600000000001,182.96770317626988L197.08000000000013,183.04109332928547L197.5000000000001,183.11428751370198L197.9200000000001,183.18728677329545L198.34000000000012,183.260092143525L198.76000000000013,183.33270465162073L199.18000000000012,183.4051253166711L199.6000000000001,183.4773551497084L200.02000000000012,183.54939515379348L200.4400000000001,183.6212463240996L200.86000000000013,183.69290964799455L201.28000000000011,183.76438610512233L201.70000000000013,183.83567666748337L202.12000000000012,183.9067822995139L202.5400000000001,183.97770395816417L202.96000000000012,184.0484425929758L203.38000000000014,184.11899914615802L203.80000000000013,184.18937455266297L204.2200000000001,184.25956974026005L204.64000000000013,184.32958562960934L205.06000000000014,184.3994231343339L205.4800000000001,184.4690831610915L205.90000000000012,184.5385666096452L206.32000000000014,184.60787437293297L206.74000000000012,184.67700733713656L207.1600000000001,184.74596638174967L207.58000000000013,184.81475237964491L208.0000000000001,184.88336619714013L208.42000000000013,184.95180869406386L208.84000000000012,185.02008072382003L209.26000000000013,185.08818313345176L209.68000000000012,185.1561167637045L210.10000000000014,185.2238824490881L210.52000000000012,185.2914810179387L210.94000000000014,185.35891329247903L211.36000000000013,185.4261800888788L211.78000000000011,185.4932822173136L212.20000000000013,185.56022048202385L212.62000000000012,185.62699568137236L213.04000000000013,185.69360860790152L213.46000000000012,185.76006004838982L213.8800000000001,185.82635078390754L214.30000000000013,185.89248158987184L214.72000000000014,185.95845323610112L215.14000000000013,186.02426648686895L215.56000000000012,186.08992210095712L215.98000000000013,186.15542083170806L216.40000000000015,186.2207634270767L216.82000000000014,186.28595062968188L217.24000000000012,186.35098317685691L217.66000000000014,186.41586180069942L218.08000000000013,186.48058722812115L218.50000000000014,186.5451601808966L218.92000000000013,186.6095813757113L219.34000000000015,186.67385152420968L219.76000000000013,186.73797133304217L220.18000000000012,186.80194150391173L220.60000000000014,186.8657627336201L221.02000000000015,186.92943571411325L221.4400000000001,186.9929611325263L221.86000000000013,187.05633967122816L222.28000000000014,187.11957200786546L222.70000000000016,187.1826588154061L223.12000000000012,187.24560076218197L223.54000000000013,187.30839851193173L223.96000000000015,187.37105272384267L224.38000000000014,187.43356405259217L224.80000000000013,187.4959331483889L225.22000000000014,187.55816065701325L225.64000000000016,187.62024721985756L226.06000000000012,187.68219347396573L226.48000000000013,187.74400005207238L226.90000000000015,187.8056675826418L227.32000000000016,187.86719668990617L227.74000000000012,187.92858799390342L228.16000000000014,187.98984211051484L228.58000000000015,188.05095965150215L229.00000000000017,188.11194122454407L229.42000000000013,188.17278743327262L229.84000000000015,188.2334988773089L230.26000000000016,188.29407615229883L230.68000000000015,188.35451984994776L231.10000000000014,188.41483055805548L231.52000000000015,188.47500886055045L231.94000000000017,188.5350553375237L232.36000000000013,188.59497056526232L232.78000000000014,188.65475511628273L233.20000000000016,188.7144095593635L233.62000000000018,188.7739344595778L234.04000000000013,188.83333037832543L234.46000000000015,188.89259787336485L234.88000000000017,188.95173749884424L235.30000000000015,189.01074980533284L235.72000000000014,189.0696353398517L236.14000000000016,189.12839464590394L236.56000000000014,189.18702826350506L236.98000000000016,189.24553672921252L237.40000000000015,189.30392057615535L237.82000000000016,189.36218033406325L238.24000000000015,189.42031652929535L238.66000000000014,189.4783296848689L239.08000000000015,189.53622032048727L239.50000000000017,189.59398895256825L239.92000000000016,189.65163609427128L240.34000000000015,189.70916225552511L240.76000000000016,189.7665679430546L241.18000000000018,189.8238536604078L241.60000000000016,189.88101990798222L242.02000000000015,189.93806718305117L242.44000000000017,189.99499597978962L242.86000000000016,190.05180678930003L243.28000000000017,190.10850009963767L243.70000000000016,190.16507639583568L244.12000000000015,190.2215361599302L244.54000000000016,190.27787987098486L244.96000000000015,190.3341080051152L245.38000000000017,190.39022103551278L245.80000000000015,190.4462194324692L246.22000000000017,190.50210366339954L246.64000000000016,190.5578741928659L247.06000000000017,190.61353148260068L247.48000000000016,190.66907599152924L247.90000000000018,190.72450817579283L248.32000000000016,190.779828488771L248.74000000000015,190.8350373811038L249.16000000000017,190.89013530071392L249.58000000000018,190.9451226928283L250.0000000000001,191.00000000000003L250.42000000000013,191.05476766212934L250.84000000000015,191.10942611648503L251.26000000000016,191.16397579772539L251.68000000000012,191.21841713791878L252.10000000000014,191.27275056656435L252.52000000000015,191.32697651061227L252.94000000000017,191.38109539448385L253.36000000000013,191.43510764009153L253.78000000000014,191.48901366685857L254.20000000000016,191.54281389173866L254.62000000000012,191.59650872923518L255.04000000000013,191.65009859142037L255.46000000000015,191.7035838879544L255.88000000000017,191.75696502610404L256.3000000000001,191.8102424107614L256.72000000000014,191.8634164444622L257.14000000000016,191.91648752740412L257.5600000000002,191.9694560574649L257.98000000000013,192.0223224302201L258.40000000000015,192.075087038961L258.82000000000016,192.127750274712L259.2400000000002,192.18031252624817L259.66000000000014,192.23277418011224L260.08000000000015,192.2851356206319L260.50000000000017,192.33739722993658L260.92000000000013,192.38955938797412L261.34000000000015,192.44162247252746L261.76000000000016,192.493586859231L262.1800000000002,192.54545292158684L262.60000000000014,192.59722103098102L263.02000000000015,192.6488915566993L263.44000000000017,192.70046486594296L263.8600000000002,192.7519413238447L264.28000000000014,192.8033212934839L264.70000000000016,192.85460513590203L265.1200000000002,192.90579321011805L265.5400000000002,192.9568858731432L265.96000000000015,193.00788347999622L266.38000000000017,193.05878638371797L266.8000000000002,193.10959493538613L267.22000000000014,193.16030948412984L267.64000000000016,193.21093037714394L268.0600000000002,193.26145795970322L268.4800000000002,193.3118925751768L268.90000000000015,193.36223456504183L269.32000000000016,193.41248426889757L269.7400000000002,193.46264202447892L270.1600000000002,193.51270816767038L270.58000000000015,193.56268303251915L271.00000000000017,193.61256695124877L271.4200000000002,193.66236025427236L271.84000000000015,193.7120632702056L272.26000000000016,193.7616763258798L272.6800000000002,193.81119974635493L273.10000000000014,193.86063385493227L273.52000000000015,193.909978973167L273.94000000000017,193.95923542088096L274.3600000000002,194.00840351617492L274.78000000000014,194.05748357544098L275.20000000000016,194.10647591337474L275.6200000000002,194.15538084298743L276.04000000000013,194.20419867561796L276.46000000000015,194.25292972094473L276.88000000000017,194.30157428699746L277.3000000000002,194.35013268016883L277.72000000000014,194.39860520522612L278.14000000000016,194.4469921653227L278.5600000000002,194.49529386200933L278.9800000000002,194.54351059524544L279.40000000000015,194.59164266341034L279.82000000000016,194.63969036331437L280.2400000000002,194.68765399020975L280.66000000000014,194.73553383780157L281.08000000000015,194.78333019825843L281.50000000000017,194.83104336222337L281.9200000000002,194.87867361882428L282.34000000000015,194.92622125568454L282.76000000000016,194.97368655893325L283.1800000000002,195.02106981321586L283.60000000000014,195.0683713017041L284.02000000000015,195.1155913061064L284.44000000000017,195.16273010667777L284.8600000000002,195.2097879822298L285.2800000000002,195.25676521014068L285.70000000000016,195.30366206636495L286.1200000000002,195.35047882544308L286.5400000000002,195.39721576051133L286.96000000000015,195.44387314331127L287.38000000000017,195.49045124419914L287.8000000000002,195.53695033215524L288.22000000000014,195.58337067479349L288.64000000000016,195.62971253837043L289.0600000000002,195.67597618779442L289.4800000000002,195.72216188663492L289.9000000000002,195.76826989713118L290.32000000000016,195.81430048020144L290.7400000000002,195.86025389545165L291.1600000000002,195.90613040118436L291.58000000000015,195.9519302544073L292.00000000000017,195.9976537108421L292.4200000000002,196.0433010249329L292.84000000000015,196.08887244985473L293.2600000000002,196.13436823752198L293.6800000000002,196.17978863859685L294.10000000000014,196.22513390249753L294.5200000000002,196.27040427740644L294.94000000000017,196.3156000102783L295.3600000000002,196.36072134684852L295.7800000000002,196.4057685316407L296.20000000000016,196.4507418079751L296.6200000000002,196.49564141797623L297.0400000000002,196.54046760258075L297.46000000000015,196.58522060154522L297.8800000000002,196.62990065345377L298.3000000000002,196.67450799572583L298.72000000000014,196.7190428646235L299.1400000000002,196.7635054952593L299.5600000000002,196.80789612160348L299.9800000000002,196.85221497649138L300.4000000000002,196.89646229163088L300.82000000000016,196.9406382976095L301.2400000000002,196.9847432239018L301.6600000000002,197.02877729887638L302.08000000000015,197.07274074980307L302.5000000000002,197.1166338028599L302.9200000000002,197.16045668314013L303.34000000000015,197.2042096146591L303.7600000000002,197.24789282036127L304.1800000000002,197.29150652212684L304.60000000000014,197.33505094077864L305.0200000000002,197.37852629608878L305.44000000000017,197.42193280678532L305.86000000000024,197.46527069055884L306.2800000000002,197.50854016406913L306.70000000000016,197.55174144295142L307.12000000000023,197.5948747418231L307.5400000000002,197.6379402742901L307.96000000000015,197.6809382529529L308.3800000000002,197.72386888941327L308.8000000000002,197.76673239428024L309.22000000000014,197.80952897717646L309.6400000000002,197.85225884674412L310.0600000000002,197.89492221065134L310.48000000000025,197.93751927559808L310.9000000000002,197.98005024732208L311.32000000000016,198.02251533060493L311.74000000000024,198.064914729278L312.1600000000002,198.10724864622824L312.58000000000015,198.149517283404L313.0000000000002,198.1917208418209L313.4200000000002,198.23385952156747L313.8400000000002,198.27593352181083L314.2600000000002,198.31794304080253L314.6800000000002,198.35988827588392L315.1000000000002,198.40176942349177L315.5200000000002,198.44358667916396L315.94000000000017,198.48534023754462L316.36000000000024,198.52703029238995L316.7800000000002,198.56865703657334L317.20000000000016,198.61022066209085L317.62000000000023,198.65172136006652L318.0400000000002,198.6931593207575L318.4600000000002,198.73453473355954L318.8800000000002,198.7758477870119L319.3000000000002,198.81709866880288L319.7200000000002,198.85828756577433L320.1400000000002,198.8994146639275L320.5600000000002,198.94048014842735L320.98000000000025,198.98148420360812L321.4000000000002,199.02242701297794L321.82000000000016,199.06330875922387L322.24000000000024,199.10412962421682L322.6600000000002,199.1448897890164L323.0800000000002,199.1855894338757L323.5000000000002,199.22622873824605L323.9200000000002,199.26680788078187L324.3400000000002,199.30732703934532L324.7600000000002,199.3477863910109L325.1800000000002,199.3881861120703L325.6000000000002,199.42852637803668L326.0200000000002,199.4688073636497L326.4400000000002,199.50902924287965L326.86000000000024,199.5491921889321L327.2800000000002,199.5892963742524L327.7000000000002,199.62934197053025L328.12000000000023,199.66932914870378L328.5400000000002,199.70925807896427L328.9600000000002,199.7491289307602L329.3800000000002,199.7889418728019L329.8000000000002,199.82869707306546L330.2200000000002,199.8683946987973L330.6400000000002,199.90803491651812L331.06000000000023,199.94761789202744L331.48000000000025,199.98714379040734L331.9000000000002,200.0266127760269L332.3200000000002,200.0660250125462L332.74000000000024,200.10538066292042L333.1600000000002,200.14467988940376L333.5800000000002,200.18392285355364L334.0000000000002,200.2231097162346L334.42000000000024,200.2622406376222L334.8400000000002,200.301315777207L335.2600000000002,200.34033529379855L335.68000000000023,200.37929934552903L336.1000000000002,200.4182080898573L336.5200000000002,200.4570616835728L336.9400000000002,200.49586028279896L337.36000000000024,200.5346040429973L337.7800000000002,200.57329311897118L338.2000000000002,200.61192766486923L338.62000000000023,200.65050783418926L339.04000000000025,200.68903377978194L339.4600000000002,200.72750565385422L339.8800000000002,200.76592360797326L340.30000000000024,200.80428779306965L340.7200000000002,200.8425983594412L341.1400000000002,200.88085545675654L341.56000000000023,200.91905923405835L341.9800000000002,200.95720983976705L342.4000000000002,200.99530742168417L342.8200000000002,201.033352126996L343.24000000000024,201.07134410227664L343.66000000000025,201.1092834934916L344.0800000000002,201.14717044600127L344.5000000000002,201.185005104564L344.92000000000024,201.22278761333962L345.3400000000002,201.26051811589267L345.7600000000002,201.2981967551956L346.18000000000023,201.33582367363218L346.6000000000002,201.37339901300058L347.02000000000027,201.41092291451668L347.4400000000002,201.44839551881716L347.86000000000024,201.48581696596278L348.28000000000026,201.5231873954414L348.7000000000002,201.5605069461712L349.12000000000023,201.5977757565036L349.54000000000025,201.6349939642267L349.9600000000002,201.6721617065679L350.3800000000002,201.70927912019724L350.80000000000024,201.7463463412303L351.2200000000002,201.78336350523122L351.64000000000027,201.82033074721562L352.06000000000023,201.8572482016537L352.4800000000002,201.89411600247297L352.90000000000026,201.9309342830613L353.3200000000002,201.9677031762699L353.74000000000024,202.00442281441588L354.16000000000025,202.04109332928547L354.5800000000002,202.07771485213664L355.0000000000002,202.11428751370198L355.42000000000024,202.1508114441915L355.8400000000002,202.18728677329548L356.2600000000003,202.223713630187L356.68000000000023,202.260092143525L357.1000000000002,202.29642244145677L357.52000000000027,202.33270465162073L357.9400000000002,202.36893890114928L358.36000000000024,202.4051253166711L358.78000000000026,202.44126402431422L359.2000000000002,202.47735514970836L359.6200000000003,202.5133988179877L360.04000000000025,202.54939515379348L360.4600000000002,202.58534428127643L360.8800000000003,202.62124632409962L361.30000000000024,202.65710140544064L361.7200000000002,202.69290964799455L362.14000000000027,202.7286711739761L362.56000000000023,202.76438610512233L362.9800000000002,202.80005456269507L363.40000000000026,202.8356766674834L363.8200000000002,202.87125253980602L364.24000000000024,202.9067822995139L364.66000000000025,202.94226606599247L365.0800000000002,202.97770395816417L365.5000000000003,203.01309609449078L365.92000000000024,203.0484425929758L366.3400000000002,203.08374357116685L366.7600000000003,203.11899914615802L367.18000000000023,203.1542094345921L367.60000000000025,203.18937455266297L368.02000000000027,203.22449461611797L368.4400000000002,203.25956974026005L368.86000000000024,203.29460003995013L369.28000000000026,203.3295856296093L369.7000000000002,203.36452662322117L370.1200000000003,203.3994231343339L370.54000000000025,203.4342752760626L370.9600000000002,203.4690831610915L371.3800000000003,203.5038469016761L371.80000000000024,203.53856660964522L372.22000000000025,203.57324239640343L372.64000000000027,203.60787437293294L373.06000000000023,203.64246264979596L373.48000000000025,203.67700733713656L373.90000000000026,203.711508544683L374.3200000000002,203.7459663817497L374.74000000000024,203.78038095723934L375.16000000000025,203.81475237964491L375.5800000000002,203.84908075705192L376.0000000000003,203.8833661971401L376.42000000000024,203.91760880718584L376.84000000000026,203.95180869406383L377.2600000000003,203.98596596424935L377.68000000000023,204.02008072382003L378.10000000000025,204.05415307845797L378.52000000000027,204.08818313345176L378.9400000000002,204.12217099369818L379.36000000000024,204.1561167637045L379.78000000000026,204.19002054758994L380.2000000000003,204.2238824490881L380.6200000000003,204.25770257154855L381.04000000000025,204.2914810179387L381.46000000000026,204.3252178908459L381.8800000000003,204.35891329247906L382.30000000000024,204.39256732467072L382.72000000000025,204.4261800888788L383.14000000000027,204.45975168618835L383.56000000000023,204.4932822173136L383.98000000000025,204.52677178259952L384.40000000000026,204.56022048202385L384.8200000000003,204.59362841519865L385.24000000000024,204.62699568137236L385.66000000000025,204.66032237943128L386.08000000000027,204.69360860790152L386.5000000000003,204.72685446495078L386.92000000000024,204.76006004838982L387.34000000000026,204.7932254556746L387.7600000000003,204.82635078390754L388.18000000000023,204.85943612983962L388.60000000000025,204.89248158987184L389.02000000000027,204.9254872600569L389.4400000000003,204.95845323610112L389.86000000000024,204.99137961336578L390.28000000000026,205.02426648686895L390.7000000000003,205.05711395128725L391.1200000000003,205.08992210095712L391.54000000000025,205.1226910298769L391.96000000000026,205.15542083170806L392.3800000000003,205.18811159977702L392.8000000000003,205.2207634270767L393.22000000000025,205.2533764062681L393.64000000000027,205.28595062968188L394.0600000000003,205.31848618931994L394.48000000000025,205.3509831768569L394.90000000000026,205.38344168364173L395.3200000000003,205.4158618006994L395.74000000000024,205.44824361873214L396.16000000000025,205.48058722812115L396.58000000000027,205.5128927189281L397.0000000000003,205.5451601808966L397.4200000000003,205.57738970345366L397.84000000000026,205.6095813757113L398.2600000000003,205.64173528646788L398.6800000000003,205.67385152420968L399.10000000000025,205.70593017711232L399.52000000000027,205.73797133304217L399.9400000000003,205.7699750795579L400.36000000000024,205.80194150391173L400.7800000000003,205.83387069305118L401.2000000000003,205.8657627336201L401.62000000000023,205.8976177119604L402.0400000000003,205.92943571411323L402.46000000000026,205.96121682582051L402.8800000000003,205.9929611325263L403.3000000000003,206.024668719378L403.72000000000025,206.05633967122813L404.14000000000027,206.08797407263523L404.5600000000003,206.1195720078655L404.98000000000025,206.15113356089398L405.4000000000003,206.18265881540609L405.8200000000003,206.2141478547988L406.24000000000024,206.24560076218197L406.6600000000003,206.27701762037972L407.08000000000027,206.30839851193173L407.5000000000003,206.3397435190945L407.9200000000003,206.37105272384267L408.34000000000026,206.4023262078703L408.7600000000003,206.43356405259217L409.1800000000003,206.46476633914503L409.60000000000025,206.4959331483889L410.0200000000003,206.52706456090823L410.4400000000003,206.55816065701325L410.86000000000024,206.58922151674125L411.2800000000003,206.62024721985756L411.7000000000003,206.6512378458572L412.12000000000023,206.68219347396573L412.5400000000003,206.7131141831406L412.96000000000026,206.74400005207238L413.38000000000034,206.774851159186L413.8000000000003,206.8056675826418L414.22000000000025,206.83644940033687L414.6400000000003,206.86719668990617L415.0600000000003,206.8979095287236L415.48000000000025,206.9285879939034L415.9000000000003,206.95923216230113L416.3200000000003,206.98984211051484L416.74000000000024,207.02041791488634L417.1600000000003,207.05095965150215L417.58000000000027,207.08146739619485L418.00000000000034,207.11194122454407L418.4200000000003,207.14238121187762L418.84000000000026,207.17278743327262L419.26000000000033,207.20315996355666L419.6800000000003,207.23349887730893L420.10000000000025,207.26380424886113L420.5200000000003,207.29407615229883L420.9400000000003,207.3243146614623L421.3600000000003,207.35451984994776L421.7800000000003,207.3846917911084L422.2000000000003,207.41483055805548L422.6200000000003,207.44493622365934L423.0400000000003,207.47500886055045L423.46000000000026,207.5050485411206L423.88000000000034,207.5350553375237L424.3000000000003,207.56502932167706L424.72000000000025,207.59497056526232L425.1400000000003,207.6248791397264L425.5600000000003,207.65475511628273L425.9800000000003,207.684598565912L426.4000000000003,207.7144095593635L426.8200000000003,207.74418816715573L427.2400000000003,207.7739344595778L427.6600000000003,207.80364850669008L428.08000000000027,207.83333037832546L428.50000000000034,207.8629801440902L428.9200000000003,207.89259787336488L429.34000000000026,207.92218363530546L429.76000000000033,207.95173749884424L430.1800000000003,207.98125953269079L430.6000000000003,208.01074980533284L431.0200000000003,208.04020838503746L431.4400000000003,208.0696353398517L431.8600000000003,208.09903073760378L432.2800000000003,208.12839464590397L432.7000000000003,208.15772713214534L433.1200000000003,208.18702826350506L433.5400000000003,208.21629810694492L433.9600000000003,208.24553672921252L434.38000000000034,208.27474419684205L434.8000000000003,208.30392057615535L435.2200000000003,208.33306593326256L435.6400000000003,208.36218033406325L436.0600000000003,208.3912638442472L436.4800000000003,208.42031652929535L436.9000000000003,208.44933845448065L437.3200000000003,208.4783296848689L437.7400000000003,208.50729028531967L438.1600000000003,208.53622032048727L438.5800000000003,208.56511985482143L439.0000000000003,208.59398895256825L439.4200000000003,208.62282767777106L439.8400000000003,208.65163609427128L440.26000000000033,208.68041426570926L440.6800000000003,208.70916225552511L441.1000000000003,208.73788012695948L441.5200000000003,208.76656794305458L441.94000000000034,208.79522576665485L442.3600000000003,208.8238536604078L442.7800000000003,208.85245168676482L443.20000000000033,208.88101990798222L443.6200000000003,208.90955838612163L444.0400000000003,208.93806718305117L444.4600000000003,208.96654636044613L444.88000000000034,208.99499597978965L445.3000000000003,209.0234161023738L445.7200000000003,209.05180678930006L446.1400000000003,209.08016810148035L446.56000000000034,209.10850009963764L446.9800000000003,209.1368028443069L447.4000000000003,209.16507639583568L447.82000000000033,209.19332081438503L448.2400000000003,209.2215361599302L448.6600000000003,209.2497224922615L449.0800000000003,209.2778798709849L449.5000000000003,209.30600835552283L449.9200000000003,209.3341080051152L450.3400000000003,209.3621788788197L450.76000000000033,209.3902210355128L451.18000000000035,209.41823453389057L451.6000000000003,209.4462194324692L452.0200000000003,209.4741757895859L452.44000000000034,209.50210366339954L452.8600000000003,209.5300031118914L453.2800000000003,209.5578741928659L453.70000000000033,209.58571696395143L454.1200000000003,209.6135314826007L454.54000000000036,209.6413178060919L454.9600000000003,209.66907599152924L455.38000000000034,209.6968060958435L455.80000000000035,209.72450817579283L456.2200000000003,209.75218228796365L456.6400000000003,209.779828488771L457.06000000000034,209.80744683445945L457.4800000000003,209.8350373811038L457.9000000000003,209.8626001846096L458.32000000000033,209.89013530071392L458.7400000000003,209.9176427849861L459.16000000000037,209.9451226928283L459.5800000000003,209.97257507947631" stroke="black" class="svelte-481epo"></path></svg></div>
+</div>
+
+  <p>Often we are not only interested in the amount of bits that is provided by a
+    single event, but in the expected value of information (the expected number
+    of bits) that is contained in the whole probability distribution. This
+    measure is called entropy.
+  </p>
+  <p class="info">The entropy <span class="placeholder svelte-1mpoqm2">H(p)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> of the probability distrubution <span class="placeholder svelte-1mpoqm2">p</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is defined as the expected level of information or the expected number of bits.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    H(p) = -\sum_x p(x) * log_2(p(x))
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Intuitively the information entropy is a measure of order of a probability
+    distribution. Entropy is highest, when all the possible events have the same
+    probability and entropy is 0 when one of the events has the probability 1
+    while all other events have a probability of 0. Below you can use an
+    interactive example of a binomial distribution where you can change the
+    probability of heads and tails. When you have a fair coin entropy amounts to
+    exactly 1. When the probability starts getting uneven, entropy reduces until
+    it reaches a value of 0.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="50" x2="460" class="svelte-481epo zero"></line><text x="42" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.1 svelte-481epo" transform="translate(0, 191.9047619047619)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.1</text></g><g class="tick tick-0.2 svelte-481epo" transform="translate(0, 173.8095238095238)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.2</text></g><g class="tick tick-0.3 svelte-481epo" transform="translate(0, 155.71428571428572)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.3</text></g><g class="tick tick-0.4 svelte-481epo" transform="translate(0, 137.61904761904762)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.4</text></g><g class="tick tick-0.5 svelte-481epo" transform="translate(0, 119.52380952380952)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.5</text></g><g class="tick tick-0.6 svelte-481epo" transform="translate(0, 101.42857142857143)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.6</text></g><g class="tick tick-0.7 svelte-481epo" transform="translate(0, 83.33333333333334)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.7</text></g><g class="tick tick-0.8 svelte-481epo" transform="translate(0, 65.23809523809524)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.8</text></g><g class="tick tick-0.9 svelte-481epo" transform="translate(0, 47.14285714285715)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">0.9</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 29.047619047619058)"><line x1="50" x2="460" class="svelte-481epo"></line><text x="42" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(50,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(91,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.1</text></g><g class="tick svelte-481epo" transform="translate(132,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.2</text></g><g class="tick svelte-481epo" transform="translate(173,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.3</text></g><g class="tick svelte-481epo" transform="translate(214,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.4</text></g><g class="tick svelte-481epo" transform="translate(255,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.5</text></g><g class="tick svelte-481epo" transform="translate(296,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.6</text></g><g class="tick svelte-481epo" transform="translate(337,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.7</text></g><g class="tick svelte-481epo" transform="translate(378,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.8</text></g><g class="tick svelte-481epo" transform="translate(419,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.9</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="255" y="245">p(x)</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Entropy</text><path d="M50.410000000000004,207.93573907607845L50.82,206.23364423452838L51.230000000000004,204.66840966615695L51.64,203.19214432263533L52.05,201.7821032919801L52.46,200.4248902233133L52.87,199.11165334658892L53.28,197.83610142468734L53.69,196.59353057087017L54.1,195.3802896950256L54.510000000000005,194.19346211038086L54.92,193.030663932308L55.330000000000005,191.88991015887638L55.74,190.7695222037282L56.150000000000006,189.66806198201755L56.56,188.5842836499312L56.97,187.517097454926L57.38000000000001,186.46554211997295L57.79,185.42876338260828L58.2,184.40599706386104L58.61,183.39655553130856L59.02,182.39981674602993L59.43000000000001,181.4152153048228L59.84,180.44223504300336L60.25000000000001,179.4804028720311L60.660000000000004,178.52928360455113L61.07000000000001,177.58847557665345L61.48000000000001,176.65760691949097L61.89000000000001,175.73633236413633L62.30000000000001,174.82433048761953L62.71000000000001,173.9213013265264L63.120000000000005,173.02696429880655L63.530000000000015,172.1410563855819L63.94000000000001,171.26333053352235L64.35000000000001,170.3935542453218L64.76,169.53150833137965L65.17000000000002,168.67698580027877L65.58000000000001,167.8297908692899L65.99000000000001,166.98973807909695L66.4,166.15665149937257L66.81,165.33036401383993L67.22000000000001,164.51071667512142L67.63000000000002,163.69755812106055L68.04000000000002,162.89074404536612L68.45000000000002,162.09013671640065L68.86000000000001,161.29560453876263L69.27000000000001,160.50702165300754L69.68,159.72426756944878L70.09000000000002,158.94722683248688L70.50000000000001,158.1757887123508L70.91000000000001,157.40984692150803L71.32000000000002,156.64929935332557L71.73000000000002,155.8940478408394L72.14000000000001,155.14399793373667L72.55000000000001,154.3990586918625L72.96000000000001,153.65914249374873L73.37000000000002,152.92416485882347L73.78000000000002,152.19404428210018L74.19000000000003,151.46870208027119L74.60000000000002,150.74806224823763L75.01000000000002,150.03205132520685L75.42000000000002,149.3205982695726L75.83000000000001,148.613634341869L76.24000000000001,147.91109299515819L76.65000000000002,147.21290977226994L77.06000000000002,146.5190222093667L77.47000000000003,145.82936974535443L77.88000000000002,145.14389363670264L78.29000000000002,144.46253687727642L78.70000000000002,143.78524412281672L79.11000000000001,143.1119616197368L79.52000000000002,142.4426371379312L79.93000000000002,141.7772199073181L80.34000000000002,141.11566055785946L80.75000000000003,140.4579110628243L81.16000000000003,139.80392468507796L81.57000000000002,139.1536559261993L81.98000000000002,138.5070604782413L82.39000000000001,137.86409517796625L82.80000000000003,137.2247179633982L83.21000000000002,136.58888783254866L83.62000000000003,135.95656480418052L84.03000000000003,135.32770988048642L84.44000000000003,134.7022850115662L84.85000000000002,134.08025306159624L85.26000000000002,133.46157777659053L85.67000000000003,132.84622375366274L86.08000000000003,132.23415641170044L86.49000000000004,131.6253419633735L86.90000000000002,131.0197473884004L87.31000000000003,130.41734040800296L87.72000000000003,129.81808946048443L88.13000000000002,129.22196367786916L88.54000000000002,128.6289328635476L88.95000000000002,128.03896747087248L89.36000000000003,127.45203858265708L89.77000000000004,126.86811789152671L90.18000000000004,126.2871776810817L90.59000000000003,125.70919080782909L91.00000000000003,125.13413068384432L91.41000000000003,124.56197126012677L91.82000000000004,123.99268701061477L92.23000000000003,123.42625291682732L92.64000000000004,122.86264445310277L93.05000000000004,122.30183757240508L93.46000000000004,121.74380869267107L93.87000000000003,121.18853468367296L94.28000000000003,120.63599285437242L94.69000000000003,120.0861609407426L95.10000000000002,119.53901709403775L95.51000000000003,118.99453986948915L95.92000000000003,118.45270821540868L96.33000000000004,117.91350146268171L96.74000000000004,117.3768993146319L97.15000000000003,116.8428818372419L97.56000000000003,116.31142944971424L97.97000000000003,115.78252291535773L98.38000000000004,115.2561433327859L98.79000000000005,114.7322721274134L99.20000000000005,114.21089104323879L99.61000000000004,113.6919821349012L100.02000000000004,113.17552775999957L100.43000000000004,112.6615105716641L100.84000000000003,112.14991351136905L101.25000000000003,111.64071980197777L101.66000000000003,111.13391294101027L102.07000000000002,110.62947669412475L102.48000000000003,110.12739508880438L102.89000000000004,109.62765240824139L103.30000000000004,109.13023318541144L103.71000000000004,108.63512219732968L104.12000000000003,108.1423044594828L104.53000000000003,107.65176522042987L104.94000000000004,107.16348995656537L105.35000000000004,106.67746436703898L105.76000000000005,106.19367436882588L106.17000000000004,105.71210609194208L106.58000000000004,105.23274587479952L106.99000000000004,104.75558025969613L107.40000000000003,104.28059598843556L107.81000000000003,103.80777999807212L108.22000000000004,103.33711941677682L108.63000000000004,102.86860155981964L109.04000000000005,102.4022139256644L109.45000000000005,101.93794419217237L109.86000000000004,101.47578021291032L110.27000000000004,101.01571001356035L110.68000000000004,100.55772178842683L111.09000000000003,100.10180389703858L111.50000000000003,99.64794486084179L111.91000000000005,99.1961333599815L112.32000000000004,98.7463582301684L112.73000000000005,98.29860845962813L113.14000000000004,97.85287318613042L113.55000000000004,97.40914169409564L113.96000000000004,96.96740341177586L114.37000000000005,96.52764790850853L114.78000000000004,96.08986489204007L115.19000000000005,95.65404420591742L115.60000000000005,95.22017582694514L116.01000000000005,94.78824986270644L116.42000000000004,94.35825654914564L116.83000000000006,93.93018624821053L117.24000000000004,93.50402944555269L117.65000000000003,93.07977674828396L118.06000000000006,92.65741888278745L118.47000000000004,92.23694669258126L118.88000000000005,91.81835113623362L119.29000000000005,91.40162328532766L119.70000000000005,90.98675432247451L120.11000000000004,90.57373553937319L120.52000000000005,90.162558334916L120.93000000000005,89.75321421333803L121.34000000000006,89.34569478240964L121.75000000000006,88.93999175167048L122.16000000000005,88.5360969307041L122.57000000000005,88.13400222745165L122.98000000000006,87.73369964656402L123.39000000000004,87.33518128779099L123.80000000000004,86.93843934440643L124.21000000000005,86.54346610166877L124.62000000000005,86.15025393531516L125.03000000000006,85.75879531008954L125.44000000000005,85.36908277830214L125.85000000000005,84.98110897842115L126.26000000000005,84.59486663369428L126.67000000000006,84.21034855080063L127.08000000000006,83.82754761853106L127.49000000000007,83.44645680649688L127.90000000000006,83.06706916386612L128.31000000000006,82.68937781812625L128.72000000000006,82.31337597387308L129.13000000000005,81.93905691162472L129.54000000000005,81.56641398666082L129.95000000000007,81.19544062788498L130.36000000000007,80.82613033671133L130.77000000000004,80.45847668597354L131.18000000000006,80.09247331885625L131.59000000000006,79.72811394784793L132.00000000000006,79.36539235371532L132.41000000000005,79.00430238449795L132.82000000000005,78.6448379545232L133.23000000000008,78.28699304344077L133.64000000000007,77.93076169527619L134.05000000000007,77.57613801750331L134.46000000000006,77.22311618013447L134.87000000000006,76.87169041482885L135.2800000000001,76.52185501401812L135.69000000000005,76.1736043300487L136.10000000000008,75.8269327743409L136.51000000000005,75.48183481656382L136.92000000000007,75.1383049838264L137.33000000000007,74.79633785988334L137.74000000000007,74.45592808435649L138.15000000000006,74.11707035197058L138.56000000000006,73.77975941180338L138.97000000000008,73.44399006654993L139.38000000000005,73.1097571718001L139.79000000000008,72.77705563533007L140.20000000000007,72.44588041640617L140.61000000000007,72.11622652510216L141.02000000000007,71.78808902162834L141.43000000000006,71.46146301567327L141.84000000000006,71.13634366575725L142.25000000000009,70.81272617859746L142.66000000000008,70.49060580848433L143.07000000000008,70.16997785666942L143.48000000000008,69.85083767076385L143.89000000000007,69.53318064414746L144.30000000000007,69.21700221538836L144.71000000000006,68.90229786767298L145.12000000000006,68.58906312824561L145.53000000000006,68.27729356785797L145.94000000000008,67.9669848002284L146.35000000000008,67.65813248151015L146.76000000000008,67.3507323097692L147.17000000000007,67.04478002447037L147.58000000000007,66.74027140597312L147.99000000000007,66.43720227503509L148.4000000000001,66.1355684923245L148.81000000000006,65.83536595794072L149.22000000000008,65.53659061094272L149.63000000000008,65.23923842888578L150.04000000000008,64.9433054273654L150.45000000000007,64.6487876595693L150.86000000000007,64.3556812158365L151.2700000000001,64.06398222322392L151.68000000000006,63.77368684507981L152.0900000000001,63.48479128062452L152.50000000000006,63.19729176453781L152.91000000000008,62.911184566552954L153.32000000000005,62.62646599105747L153.73000000000008,62.343132376700304L154.14000000000007,62.061180096005266L154.55000000000007,61.780605554990665L154.96000000000006,61.50140519279498L155.37000000000006,61.2235754813087L155.78000000000006,60.94711292481158L156.19000000000008,60.672014059616274L156.60000000000008,60.3982754537167L157.01000000000008,60.125893706442916L157.42000000000007,59.85486544812042L157.83000000000007,59.585187339735576L158.24000000000007,59.31685607260582L158.65000000000006,59.049868368054895L159.06000000000006,58.78422097709332L159.47000000000008,58.51991068010381L159.88000000000008,58.256934286531234L160.29000000000008,57.995288634577655L160.70000000000007,57.7349705909015L161.11000000000007,57.47597705032222L161.5200000000001,57.21830493552819L161.93000000000006,56.96195119679021L162.3400000000001,56.706912811678365L162.75000000000009,56.45318678478376L163.16000000000008,56.2007701474441L163.57000000000008,55.94965995747357L163.98000000000008,55.69985329889636L164.39000000000007,55.45134728168469L164.80000000000007,55.20413904150014L165.21000000000006,54.95822573943921L165.62000000000006,54.713604561782326L166.0300000000001,54.47027271974688L166.44000000000008,54.22822744924334L166.85000000000008,53.98746601063546L167.26000000000008,53.747985688503576L167.67000000000007,53.50978379141161L168.0800000000001,53.27285765167717L168.49000000000007,53.03720462514525L168.9000000000001,52.80282209096486L169.3100000000001,52.56970745136921L169.72000000000008,52.33785813145866L170.13000000000008,52.107271578987174L170.54000000000008,51.877945264151286L170.9500000000001,51.64987667938275L171.36000000000007,51.42306333914325L171.7700000000001,51.197502779723024L172.1800000000001,50.973192559041244L172.5900000000001,50.750130256450184L173.00000000000006,50.528313472541285L173.41000000000008,50.307739828954766L173.82000000000008,50.08840696819095L174.2300000000001,49.870312553425215L174.64000000000007,49.653454268324495L175.0500000000001,49.43782981686732L175.4600000000001,49.223436923165394L175.87000000000012,49.0102733312885L176.2800000000001,48.79833680509103L176.69000000000008,48.58762512804165L177.10000000000008,48.378136103054445L177.51000000000008,48.16986755232334L177.92000000000007,47.96281731715785L178.3300000000001,47.756983257821766L178.7400000000001,47.55236325337354L179.1500000000001,47.34895520150937L179.5600000000001,47.14675701840757L179.97000000000008,46.94576663857617L180.3800000000001,46.74598201470136L180.79000000000008,46.547401117499106L181.2000000000001,46.350021935567725L181.6100000000001,46.15384247524338L182.0200000000001,45.95886076045666L182.4300000000001,45.765074832591836L182.8400000000001,45.57248275034731L183.2500000000001,45.38108258959846L183.6600000000001,45.190872443262045L184.0700000000001,45.00185042116243L184.4800000000001,44.81401464989954L184.8900000000001,44.62736327271884L185.30000000000007,44.44189444938259L185.7100000000001,44.25760635604327L186.1200000000001,44.074497185118226L186.53000000000011,43.892565145166344L186.94000000000008,43.71180846076598L187.3500000000001,43.53222537239505L187.7600000000001,43.35381413631191L188.17000000000013,43.17657302443857L188.5800000000001,43.00050032424488L188.9900000000001,42.8255943386346L189.4000000000001,42.65185338583261L189.81000000000012,42.479275799274035L190.22000000000008,42.307859927494235L190.6300000000001,42.13760413402099L191.0400000000001,41.96850679726715L191.4500000000001,41.800566310425666L191.8600000000001,41.633781081365164L192.2700000000001,41.46814953252746L192.68000000000012,41.30367010082591L193.0900000000001,41.14034123754563L193.5000000000001,40.97816140824445L193.9100000000001,40.81712909265557L194.3200000000001,40.65724278459128L194.7300000000001,40.49850099184805L195.1400000000001,40.34090223611255L195.55000000000013,40.18444505286942L195.96000000000012,40.02912799130962L196.37000000000012,39.874949614240556L196.78000000000011,39.72190849799685L197.1900000000001,39.570003232352605L197.60000000000008,39.419232420434696L198.0100000000001,39.26959467863721L198.4200000000001,39.12108863653691L198.83000000000013,38.97371293680989L199.2400000000001,38.827466235149295L199.65000000000012,38.68234720018408L200.06000000000012,38.5383545133988L200.4700000000001,38.39548686905456L200.8800000000001,38.25374297411072L201.2900000000001,38.11312154814817L201.7000000000001,37.97362132329281L202.11000000000013,37.83524104414069L202.5200000000001,37.69797946768382L202.93000000000012,37.56183536323718L203.34000000000012,37.42680751236621L203.7500000000001,37.29289470881584L204.1600000000001,37.160095758439994L204.5700000000001,37.02840947913234L204.98000000000013,36.8978347007576L205.3900000000001,36.76837026508417L205.8000000000001,36.64001502571719L206.21000000000012,36.512767848033064L206.62000000000012,36.38662760911403L207.03000000000011,36.261593197684604L207.4400000000001,36.13766351404783L207.85000000000014,36.01483747002331L208.26000000000013,35.89311398888532L208.6700000000001,35.77249200530214L209.08000000000013,35.65297046527622L209.49000000000012,35.53454832608496L209.90000000000012,35.41722455622228L210.31000000000012,35.30099813534132L210.7200000000001,35.18586805419727L211.13000000000014,35.0718333145918L211.5400000000001,34.95889292931746L211.95000000000013,34.84704592210335L212.36000000000013,34.73629132756126L212.77000000000012,34.62662819113282L213.18000000000012,34.51805556903704L213.59000000000012,34.41057252821881L214.0000000000001,34.304178146298014L214.41000000000014,34.198871511519506L214.8200000000001,34.09465172270353L215.23000000000013,33.99151788919689L215.64000000000013,33.889469130825105L216.05000000000013,33.78850457784494L216.46000000000012,33.68862337089749L216.87000000000012,33.589824660962435L217.28000000000014,33.49210760931242L217.6900000000001,33.39547138746844L218.1000000000001,33.29991517715561L218.51000000000013,33.20543817025991L218.92000000000013,33.112039568785136L219.33000000000013,33.01971858481089L219.74000000000012,32.928474440450884L220.15000000000015,32.838306367812095L220.56000000000014,32.74921360895437L220.9700000000001,32.6611954158506L221.3800000000001,32.57425105034778L221.79000000000013,32.48837978412834L222.20000000000013,32.40358089867218L222.61000000000013,32.3198536852194L223.02000000000012,32.237197444733425L223.43000000000015,32.1556114878648L223.84000000000012,32.07509513491564L224.2500000000001,31.995647715804516L224.66000000000014,31.91726857003169L225.07000000000014,31.83995704664578L225.48000000000013,31.76371250420961L225.89000000000013,31.688534310767853L226.30000000000013,31.614421843814497L226.71000000000015,31.541374490261216L227.12000000000012,31.46939164640594L227.53000000000014,31.398472717902322L227.94000000000014,31.328617119729365L228.35000000000014,31.259824276161986L228.76000000000013,31.19209362074164L229.17000000000013,31.125424596247896L229.58000000000015,31.059816654670072L229.99000000000012,30.99526925717992L230.40000000000012,30.931781874104203L230.81000000000014,30.86935398489841L231.22000000000014,30.807985078120332L231.63000000000014,30.74767465140467L232.04000000000013,30.688422211437832L232.45000000000016,30.630227273933233L232.86000000000016,30.57308936360726L233.27000000000012,30.517008014155532L233.68000000000012,30.461982768229564L234.09000000000015,30.408013177414468L234.50000000000014,30.35509880220613L234.91000000000014,30.303239211989847L235.32000000000014,30.25243398501886L235.73000000000016,30.20268270839363L236.14000000000016,30.15398497804121L236.55000000000013,30.10634039869553L236.96000000000015,30.059748583877848L237.37000000000015,30.014209155877733L237.78000000000014,29.969721745734454L238.19000000000014,29.92628599321904L238.60000000000014,29.8839015468163L239.01000000000016,29.842568063707873L239.42000000000013,29.802285209755333L239.83000000000015,29.76305265948391L240.24000000000015,29.72487009606643L240.65000000000015,29.687737211308054L241.06000000000014,29.65165370563109L241.47000000000014,29.6166192880605L241.88000000000017,29.582633676209547L242.29000000000016,29.549696596266422L242.70000000000013,29.517807782980455L243.11000000000016,29.486966979649665L243.52000000000015,29.45717393810801L243.93000000000015,29.42842841871356L244.34000000000015,29.40073019033654L244.75000000000017,29.374079030348664L245.16000000000017,29.348474724611805L245.57000000000014,29.32391706746816L245.98000000000013,29.300405861729697L246.39000000000016,29.27794091866928L246.80000000000015,29.256522058011093L247.21000000000015,29.236149107922117L247.62000000000015,29.21682190500377L248.03000000000017,29.19854029428418L248.44000000000017,29.18130412921048L248.85000000000014,29.165113271641967L249.26000000000016,29.14996759184324L249.67000000000016,29.135866968478243L250.08000000000015,29.12281128860408L250.49000000000015,29.11080044766586L250.90000000000015,29.09983434949155L251.31000000000017,29.08991290628732L251.72000000000014,29.081036038633385L252.13000000000017,29.073203675480222L252.54000000000016,29.066415754145034L252.95000000000016,29.060672220308852L253.36000000000016,29.055973028013874L253.77000000000015,29.05231813966133L254.18000000000015,29.04970752600942L254.59000000000017,29.048141166172414L255.0000000000001,29.047619047619058L255.41000000000014,29.048141166172393L255.82000000000014,29.049707526009456L256.23000000000013,29.05231813966131L256.6400000000001,29.055973028013895L257.0500000000001,29.060672220308874L257.46000000000015,29.066415754145034L257.8700000000002,29.0732036754802L258.28000000000014,29.081036038633385L258.69000000000017,29.089912906287303L259.10000000000014,29.09983434949153L259.5100000000001,29.11080044766586L259.92000000000013,29.12281128860408L260.33000000000015,29.135866968478243L260.7400000000001,29.149967591843264L261.15000000000015,29.165113271641967L261.5600000000001,29.1813041292105L261.97000000000014,29.19854029428418L262.38000000000017,29.216821905003812L262.79000000000013,29.236149107922117L263.20000000000016,29.256522058011114L263.6100000000001,29.27794091866928L264.02000000000015,29.300405861729697L264.4300000000001,29.32391706746816L264.84000000000015,29.348474724611847L265.25000000000017,29.374079030348664L265.66000000000014,29.40073019033658L266.07000000000016,29.42842841871356L266.48000000000013,29.457173938108053L266.89000000000016,29.486966979649665L267.3000000000001,29.517807782980498L267.71000000000015,29.549696596266422L268.1200000000002,29.58263367620957L268.53000000000014,29.6166192880605L268.94000000000017,29.651653705631134L269.35000000000014,29.687737211308075L269.76000000000016,29.724870096066454L270.1700000000002,29.763052659483957L270.58000000000015,29.802285209755375L270.9900000000001,29.84256806370789L271.40000000000015,29.8839015468163L271.8100000000002,29.92628599321904L272.22000000000014,29.96972174573454L272.63000000000017,30.014209155877776L273.0400000000002,30.059748583877894L273.45000000000016,30.10634039869559L273.8600000000001,30.153984978041247L274.27000000000015,30.202682708393674L274.6800000000002,30.252433985018907L275.09000000000015,30.303239211989865L275.50000000000017,30.35509880220615L275.91000000000014,30.40801317741451L276.32000000000016,30.46198276822965L276.73000000000013,30.517008014155532L277.14000000000016,30.573089363607302L277.5500000000002,30.630227273933272L277.96000000000015,30.688422211437853L278.3700000000002,30.74767465140471L278.78000000000014,30.807985078120375L279.1900000000001,30.86935398489843L279.6000000000002,30.931781874104246L280.01000000000016,30.995269257179963L280.42000000000013,31.059816654670115L280.83000000000015,31.12542459624794L281.2400000000001,31.192093620741705L281.6500000000002,31.25982427616203L282.0600000000002,31.328617119729408L282.47000000000014,31.398472717902365L282.88000000000017,31.46939164640598L283.29000000000013,31.541374490261234L283.70000000000016,31.614421843814558L284.1100000000002,31.6885343107679L284.52000000000015,31.763712504209654L284.9300000000001,31.839957046645843L285.34000000000015,31.917268570031755L285.75000000000017,31.995647715804537L286.1600000000002,32.07509513491573L286.57000000000016,32.155611487864846L286.98000000000013,32.23719744473348L287.39000000000016,32.31985368521947L287.8000000000002,32.40358089867222L288.21000000000015,32.488379784128384L288.6200000000002,32.574251050347854L289.03000000000014,32.66119541585064L289.44000000000017,32.74921360895439L289.8500000000002,32.83830636781216L290.26000000000016,32.92847444045097L290.6700000000002,33.019718584810974L291.08000000000015,33.1120395687852L291.4900000000001,33.20543817025997L291.9000000000002,33.2999151771557L292.3100000000002,33.395471387468525L292.72000000000014,33.492107609312505L293.13000000000017,33.58982466096252L293.54000000000013,33.688623370897574L293.9500000000002,33.78850457784498L294.3600000000002,33.88946913082517L294.77000000000015,33.99151788919694L295.1800000000002,34.094651722703595L295.59000000000015,34.19887151151964L296.00000000000017,34.30417814629809L296.4100000000002,34.410572528218864L296.82000000000016,34.5180555690371L297.2300000000002,34.62662819113291L297.64000000000016,34.73629132756132L298.0500000000002,34.84704592210342L298.4600000000002,34.95889292931754L298.8700000000002,35.071833314591885L299.28000000000014,35.185868054197336L299.69000000000017,35.30099813534137L300.1000000000002,35.417224556222386L300.51000000000016,35.534548326085016L300.9200000000002,35.65297046527628L301.33000000000015,35.772492005302226L301.7400000000002,35.893113988885396L302.1500000000002,36.01483747002342L302.5600000000002,36.13766351404795L302.9700000000002,36.26159319768469L303.38000000000017,36.38662760911411L303.79000000000013,36.51276784803312L304.2000000000002,36.640015025717275L304.6100000000002,36.76837026508424L305.02000000000015,36.897834700757684L305.4300000000002,37.02840947913243L305.84000000000015,37.1600957584401L306.2500000000002,37.29289470881592L306.6600000000002,37.426807512366295L307.07000000000016,37.561835363237286L307.4800000000002,37.697979467683936L307.89000000000016,37.835241044140794L308.3000000000002,37.97362132329292L308.7100000000002,38.1131215481483L309.1200000000002,38.25374297411085L309.5300000000002,38.39548686905462L309.94000000000017,38.5383545133989L310.3500000000002,38.682347200184196L310.7600000000002,38.8274662351494L311.1700000000002,38.97371293681L311.58000000000015,39.121088636536996L311.9900000000002,39.26959467863733L312.4000000000002,39.4192324204348L312.8100000000002,39.57000323235272L313.2200000000002,39.72190849799698L313.63000000000017,39.87494961424066L314.0400000000002,40.02912799130975L314.4500000000002,40.184445052869506L314.8600000000002,40.340902236112655L315.2700000000002,40.49850099184815L315.6800000000002,40.65724278459143L316.09000000000015,40.81712909265568L316.5000000000002,40.978161408244574L316.9100000000002,41.140341237545755L317.3200000000002,41.30367010082606L317.7300000000002,41.46814953252756L318.14000000000016,41.633781081365285L318.55000000000024,41.80056631042579L318.9600000000002,41.96850679726726L319.3700000000002,42.137604134021075L319.7800000000002,42.30785992749438L320.19000000000017,42.479275799274134L320.6000000000002,42.65185338583274L321.0100000000002,42.82559433863473L321.4200000000002,43.000500324245024L321.8300000000002,43.176573024438696L322.2400000000002,43.35381413631204L322.6500000000002,43.53222537239517L323.06000000000023,43.71180846076611L323.4700000000002,43.89256514516647L323.88000000000017,44.074497185118375L324.2900000000002,44.25760635604342L324.7000000000002,44.44189444938275L325.1100000000002,44.627363272718966L325.5200000000002,44.81401464989966L325.9300000000002,45.00185042116256L326.3400000000002,45.19087244326221L326.7500000000002,45.381082589598606L327.1600000000002,45.57248275034743L327.5700000000002,45.765074832591985L327.9800000000002,45.95886076045683L328.39000000000016,46.15384247524351L328.80000000000024,46.350021935567874L329.2100000000002,46.547401117499234L329.62000000000023,46.745982014701525L330.0300000000002,46.945766638576295L330.44000000000017,47.14675701840772L330.85000000000025,47.34895520150951L331.2600000000002,47.55236325337371L331.6700000000002,47.75698325782189L332.0800000000002,47.962817317158L332.4900000000002,48.16986755232349L332.9000000000002,48.378136103054615L333.31000000000023,48.58762512804178L333.7200000000002,48.7983368050912L334.1300000000002,49.01027333128865L334.5400000000002,49.22343692316556L334.9500000000002,49.43782981686748L335.36000000000024,49.653454268324666L335.7700000000002,49.87031255342538L336.1800000000002,50.08840696819112L336.5900000000002,50.30773982895493L337.0000000000002,50.52831347254145L337.41000000000025,50.750130256450305L337.8200000000002,50.973192559041394L338.2300000000002,51.197502779723166L338.6400000000002,51.42306333914344L339.05000000000024,51.6498766793829L339.4600000000002,51.877945264151464L339.87000000000023,52.10727157898732L340.2800000000002,52.3378581314588L340.69000000000017,52.56970745136934L341.10000000000025,52.80282209096504L341.5100000000002,53.0372046251454L341.92000000000024,53.272857651677356L342.3300000000002,53.50978379141178L342.7400000000002,53.74798568850375L343.15000000000026,53.98746601063563L343.56000000000023,54.22822744924353L343.9700000000002,54.470272719747044L344.3800000000002,54.71360456178251L344.7900000000002,54.95822573943933L345.2000000000002,55.20413904150029L345.61000000000024,55.45134728168486L346.0200000000002,55.69985329889656L346.43000000000023,55.94965995747377L346.8400000000002,56.20077014744432L347.2500000000002,56.45318678478395L347.66000000000025,56.706912811678556L348.0700000000002,56.96195119679042L348.4800000000002,57.2183049355284L348.8900000000002,57.475977050322385L349.30000000000024,57.73497059090171L349.71000000000026,57.995288634577804L350.12000000000023,58.25693428653144L350.5300000000002,58.519910680104026L350.9400000000002,58.784220977093526L351.35000000000025,59.04986836805509L351.7600000000002,59.31685607260601L352.17000000000024,59.58518733973579L352.5800000000002,59.854865448120606L352.9900000000002,60.12589370644309L353.40000000000026,60.398275453716934L353.81000000000023,60.672014059616444L354.22000000000025,60.94711292481183L354.6300000000002,61.22357548130888L355.0400000000002,61.50140519279519L355.4500000000003,61.78060555499087L355.86000000000024,62.06118009600548L356.2700000000002,62.34313237670051L356.68000000000023,62.626465991057664L357.0900000000002,62.91118456655316L357.5000000000002,63.197291764538036L357.91000000000025,63.48479128062475L358.3200000000002,63.773686845080015L358.73000000000025,64.0639822232241L359.1400000000002,64.35568121583674L359.5500000000002,64.64878765956955L359.96000000000026,64.94330542736563L360.37000000000023,65.23923842888604L360.7800000000002,65.53659061094297L361.1900000000002,65.83536595794094L361.60000000000025,66.13556849232472L362.0100000000003,66.4372022750353L362.42000000000024,66.74027140597335L362.8300000000002,67.04478002447063L363.24000000000024,67.3507323097694L363.6500000000002,67.65813248151045L364.06000000000023,67.96698480022864L364.47000000000025,68.27729356785821L364.8800000000002,68.58906312824584L365.2900000000002,68.90229786767324L365.7000000000003,69.21700221538859L366.11000000000024,69.53318064414768L366.52000000000027,69.85083767076412L366.93000000000023,70.16997785666969L367.3400000000002,70.49060580848459L367.7500000000002,70.81272617859769L368.16000000000025,71.1363436657575L368.5700000000002,71.46146301567353L368.98000000000025,71.7880890216286L369.3900000000002,72.11622652510242L369.8000000000003,72.44588041640645L370.21000000000026,72.7770556353303L370.62000000000023,73.10975717180035L371.03000000000026,73.44399006655019L371.4400000000002,73.77975941180368L371.85000000000025,74.11707035197085L372.2600000000003,74.45592808435677L372.67000000000024,74.79633785988361L373.0800000000002,75.13830498382666L373.49000000000024,75.48183481656412L373.9000000000002,75.82693277434113L374.3100000000003,76.17360433004897L374.72000000000025,76.52185501401839L375.1300000000002,76.87169041482912L375.54000000000025,77.22311618013472L375.9500000000002,77.57613801750358L376.36000000000024,77.93076169527649L376.77000000000027,78.28699304344104L377.18000000000023,78.64483795452345L377.5900000000002,79.00430238449822L378.0000000000002,79.3653923537156L378.41000000000025,79.72811394784823L378.8200000000003,80.09247331885655L379.23000000000025,80.45847668597386L379.6400000000002,80.8261303367116L380.05000000000024,81.19544062788523L380.46000000000026,81.56641398666108L380.87000000000023,81.93905691162502L381.28000000000026,82.31337597387333L381.6900000000002,82.68937781812657L382.10000000000025,83.06706916386639L382.5100000000003,83.44645680649718L382.92000000000024,83.82754761853136L383.33000000000027,84.21034855080093L383.74000000000024,84.59486663369458L384.1500000000002,84.98110897842145L384.5600000000003,85.36908277830247L384.97000000000025,85.75879531008981L385.3800000000002,86.15025393531546L385.79000000000025,86.54346610166907L386.2000000000002,86.93843934440677L386.6100000000003,87.33518128779129L387.02000000000027,87.7336996465643L387.43000000000023,88.13400222745196L387.84000000000026,88.53609693070439L388.2500000000002,88.93999175167082L388.66000000000025,89.34569478240994L389.0700000000003,89.75321421333834L389.48000000000025,90.16255833491633L389.8900000000002,90.57373553937353L390.30000000000024,90.98675432247484L390.71000000000026,91.40162328532797L391.1200000000003,91.81835113623391L391.53000000000026,92.23694669258157L391.9400000000002,92.65741888278774L392.35000000000025,93.07977674828426L392.7600000000003,93.504029445553L393.17000000000024,93.93018624821084L393.58000000000027,94.35825654914595L393.99000000000024,94.78824986270678L394.40000000000026,95.22017582694546L394.8100000000003,95.65404420591774L395.22000000000025,96.08986489204041L395.6300000000003,96.52764790850887L396.04000000000025,96.9674034117762L396.4500000000002,97.40914169409601L396.8600000000003,97.85287318613078L397.27000000000027,98.29860845962847L397.68000000000023,98.74635823016874L398.09000000000026,99.19613335998186L398.5000000000002,99.64794486084213L398.9100000000003,100.10180389703893L399.3200000000003,100.55772178842717L399.73000000000025,101.01571001356072L400.14000000000027,101.47578021291072L400.55000000000024,101.93794419217271L400.96000000000026,102.40221392566478L401.3700000000003,102.86860155981998L401.78000000000026,103.33711941677718L402.1900000000003,103.80777999807249L402.60000000000025,104.28059598843592L403.0100000000003,104.7555802596965L403.4200000000003,105.23274587479989L403.83000000000027,105.71210609194243L404.24000000000024,106.19367436882624L404.65000000000026,106.67746436703935L405.0600000000003,107.16348995656574L405.47000000000025,107.65176522043022L405.8800000000003,108.14230445948321L406.29000000000025,108.63512219733005L406.7000000000003,109.13023318541184L407.1100000000003,109.62765240824179L407.52000000000027,110.12739508880475L407.9300000000003,110.62947669412513L408.34000000000026,111.13391294101065L408.7500000000002,111.64071980197814L409.1600000000003,112.14991351136942L409.5700000000003,112.66151057166451L409.98000000000025,113.17552776L410.39000000000027,113.6919821349016L410.80000000000024,114.21089104323919L411.2100000000003,114.73227212741376L411.6200000000003,115.2561433327863L412.03000000000026,115.78252291535816L412.4400000000003,116.31142944971464L412.85000000000025,116.84288183724232L413.2600000000003,117.3768993146323L413.6700000000003,117.9135014626821L414.08000000000027,118.45270821540909L414.4900000000003,118.99453986948954L414.90000000000026,119.53901709403816L415.3100000000003,120.08616094074303L415.7200000000003,120.63599285437283L416.1300000000003,121.18853468367337L416.54000000000025,121.74380869267148L416.9500000000003,122.3018375724055L417.3600000000003,122.86264445310323L417.77000000000027,123.42625291682775L418.1800000000003,123.9926870106152L418.59000000000026,124.5619712601272L419.0000000000003,125.13413068384473L419.4100000000003,125.70919080782953L419.8200000000003,126.28717768108214L420.2300000000003,126.86811789152713L420.64000000000027,127.45203858265755L421.05000000000024,128.03896747087296L421.4600000000003,128.628932863548L421.8700000000003,129.2219636778696L422.2800000000003,129.81808946048488L422.6900000000003,130.41734040800344L423.10000000000025,131.01974738840084L423.51000000000033,131.62534196337396L423.9200000000003,132.2341564117009L424.33000000000027,132.84622375366322L424.7400000000003,133.46157777659104L425.15000000000026,134.0802530615967L425.5600000000003,134.70228501156674L425.9700000000003,135.3277098804869L426.3800000000003,135.95656480418103L426.7900000000003,136.58888783254915L427.2000000000003,137.22471796339872L427.6100000000003,137.8640951779667L428.0200000000003,138.50706047824178L428.4300000000003,139.1536559261998L428.84000000000026,139.80392468507847L429.2500000000003,140.4579110628248L429.6600000000003,141.11566055785997L430.0700000000003,141.7772199073186L430.4800000000003,142.44263713793174L430.89000000000027,143.11196161973731L431.3000000000003,143.78524412281723L431.7100000000003,144.46253687727696L432.1200000000003,145.14389363670315L432.5300000000003,145.82936974535494L432.9400000000003,146.51902220936725L433.35000000000025,147.21290977227042L433.76000000000033,147.91109299515873L434.1700000000003,148.61363434186956L434.5800000000003,149.32059826957314L434.9900000000003,150.0320513252074L435.40000000000026,150.74806224823817L435.81000000000034,151.46870208027175L436.2200000000003,152.19404428210075L436.6300000000003,152.92416485882404L437.0400000000003,153.65914249374933L437.4500000000003,154.39905869186308L437.8600000000003,155.14399793373724L438.2700000000003,155.89404784084L438.6800000000003,156.64929935332617L439.0900000000003,157.40984692150863L439.5000000000003,158.17578871235136L439.9100000000003,158.94722683248747L440.32000000000033,159.72426756944938L440.7300000000003,160.5070216530081L441.14000000000027,161.2956045387632L441.5500000000003,162.09013671640125L441.9600000000003,162.89074404536672L442.37000000000035,163.6975581210612L442.7800000000003,164.51071667512204L443.1900000000003,165.33036401384055L443.6000000000003,166.15665149937317L444.01000000000033,166.98973807909758L444.4200000000003,167.82979086929055L444.8300000000003,168.6769858002794L445.2400000000003,169.53150833138028L445.65000000000026,170.39355424532246L446.06000000000034,171.263330533523L446.4700000000003,172.14105638558257L446.88000000000034,173.02696429880723L447.2900000000003,173.9213013265271L447.7000000000003,174.82433048762022L448.11000000000035,175.73633236413704L448.5200000000003,176.65760691949168L448.9300000000003,177.5884755766542L449.3400000000003,178.52928360455184L449.7500000000003,179.48040287203185L450.1600000000003,180.44223504300413L450.57000000000033,181.41521530482356L450.9800000000003,182.39981674603072L451.3900000000003,183.39655553130933L451.8000000000003,184.4059970638618L452.2100000000003,185.42876338260908L452.62000000000035,186.46554211997375L453.0300000000003,187.5170974549268L453.4400000000003,188.58428364993202L453.8500000000003,189.66806198201837L454.26000000000033,190.76952220372905L454.67000000000036,191.88991015887726L455.0800000000003,193.03066393230887L455.4900000000003,194.19346211038177L455.9000000000003,195.38028969502653L456.31000000000034,196.5935305708711L456.7200000000003,197.8361014246883L457.13000000000034,199.11165334658992L457.5400000000003,200.42489022331432L457.9500000000003,201.78210329198117L458.36000000000035,203.19214432263647L458.7700000000003,204.6684096661581L459.18000000000035,206.23364423452963L459.5900000000003,207.93573907607987" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="255" cy="29.047619047619058" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+<div class="parameters yellow svelte-1veb8aw"><div class="flex svelte-1veb8aw"><div class="left svelte-1veb8aw"><p class="svelte-1veb8aw"><strong>Probability Heads</strong> <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>:</p>
+      <p class="svelte-1veb8aw"><strong>Probability Tails</strong> <span class="placeholder svelte-1mpoqm2">1-p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>:</p>
+      <p class="svelte-1veb8aw"><strong>Entropy</strong> <span class="placeholder svelte-1mpoqm2">H(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>:</p></div>
+    <div class="right svelte-1veb8aw"><p class="svelte-1veb8aw"><strong>0.500</strong></p>
+      <p class="svelte-1veb8aw"><strong>0.500</strong></p>
+      <p class="svelte-1veb8aw"><strong>1.00000</strong></p></div></div></div>
+<input type="range" min="0" max="1" step="0.001" class="svelte-1tcoic2" value="0.5">
+
+  <p>Now let us return to the fair coin toss example. Using the equation and the
+    example above, we know that the entropy is 1. We should therefore try and
+    send the message regarding the result of the coin toss using 1 bit of
+    information using 1 for heads and 0 for tails. However in the example below
+    we use two bits of information to send the message 1 0 for heads and 0 1 for
+    tails.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 300px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 100 70"><circle cx="30" cy="15" r="10" class="svelte-lc2za9"></circle><circle cx="70" cy="15" r="10" class="svelte-lc2za9"></circle><text x="30" y="15.5" class="svelte-lc2za9">H</text><text x="70" y="15.5" class="svelte-lc2za9">T</text><rect class="probability svelte-lc2za9" x="20" y="30" width="20" height="10"></rect><rect class="probability svelte-lc2za9" x="60" y="30" width="20" height="10"></rect><text x="6" y="35.5" class="svelte-lc2za9">Pr:</text><text x="30" y="35.5" class="svelte-lc2za9">0.5</text><text x="70" y="35.5" class="svelte-lc2za9">0.5</text><rect class="encoding svelte-lc2za9" x="20" y="50" width="20" height="10"></rect>
+      <rect class="encoding svelte-lc2za9" x="60" y="50" width="20" height="10"></rect>
+      <text x="9" y="55.5" class="svelte-lc2za9">Bits:</text>
+      <text x="30" y="55.5" class="svelte-lc2za9">1 0</text>
+      <text x="70" y="55.5" class="svelte-lc2za9">0 1</text></svg></div>
+</div>
+  <p>This procedure is wasteful, because instead of sending one bit of
+    information we send 2.
+  </p>
+  <p>The example below is even more inefficient. We sent 3 bits of information
+    when we get heads and 2 bits when we get tails.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 300px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 100 70"><circle cx="30" cy="15" r="10" class="svelte-lc2za9"></circle><circle cx="70" cy="15" r="10" class="svelte-lc2za9"></circle><text x="30" y="15.5" class="svelte-lc2za9">H</text><text x="70" y="15.5" class="svelte-lc2za9">T</text><rect class="probability svelte-lc2za9" x="20" y="30" width="20" height="10"></rect><rect class="probability svelte-lc2za9" x="60" y="30" width="20" height="10"></rect><text x="6" y="35.5" class="svelte-lc2za9">Pr:</text><text x="30" y="35.5" class="svelte-lc2za9">0.4</text><text x="70" y="35.5" class="svelte-lc2za9">0.6</text><rect class="encoding svelte-lc2za9" x="20" y="50" width="20" height="10"></rect>
+      <rect class="encoding svelte-lc2za9" x="60" y="50" width="20" height="10"></rect>
+      <text x="9" y="55.5" class="svelte-lc2za9">Bits:</text>
+      <text x="30" y="55.5" class="svelte-lc2za9">1 0 1</text>
+      <text x="70" y="55.5" class="svelte-lc2za9">0 1</text></svg></div>
+</div>
+  <p>The entropy of the probability distribution is just 0.97 bits. This is the
+    amount of information we receive on average.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">-(0.4*\log_2(0.4) + 0.6*\log_2(0.6)) = 0.97</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Yet the average message length that we use to transimt the information is
+    2.4 bits.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">0.4*3 + 0.6*2 = 2.40</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This inconsistency comes from certain assumtpions that we make in the
+    example above. The encoding of heads with 3 bits would be optimal when the
+    probability of each event would amount to 12.5%, as
+    <span class="placeholder svelte-1mpoqm2">\Big(\dfrac12\Big)^3 = 0.125</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and we had a coin with 8 sides. A similar argument can be made for 2 bits encoding
+    of tails. We assume a probability distribution with four equally likely events,
+    because
+    <span class="placeholder svelte-1mpoqm2">\Big(\dfrac12\Big)^2 = 0.25</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Under these conditions we
+    can say that the average message length contains information about the
+    difference between two distributions, the actual distribution of the
+    outcomes of coin tosses and the distribution that is assumed by the number
+    of bits that is used to encode the message. In information theory the
+    average message lengths is known as cross-entropy.
+  </p>
+
+  <p class="info">The cross-entropy is defined as the average message length.
+  </p>
+  <p>Given two distributions <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">q(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> we can calculate
+    the cross-entropy <span class="placeholder svelte-1mpoqm2">H(p, q)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by calculating the expected value with
+    respect to the distribution <span class="placeholder svelte-1mpoqm2">p</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (the real distribution) of the information
+    of distribution <span class="placeholder svelte-1mpoqm2">q</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (the wrong distribution).
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    H(p, q) = - \mathbb{E}_p[\log q(x)] = - \sum_x p(x) \log q(x)
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  <p>The cross-entropy is lowest, when <span class="placeholder svelte-1mpoqm2">q(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> equals <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. In that case the cross-entropy collapses to the entropy. Therefore the
+    cross-entropy can not be lower than the entropy.
+  </p>
+  <p>In the below example the red distribution is <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the yellow
+    distribution is <span class="placeholder svelte-1mpoqm2">q(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. When you move the slider to the right <span class="placeholder svelte-1mpoqm2">q(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> starts moving towards <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and you can observe that the cross-entropy
+    gets lower and lower until its&#39; minimal value is reached.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 200"><g class="axis y-axis"><g class="tick tick-0 svelte-13vk1z8" transform="translate(0, 180)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0</text></g><g class="tick tick-0.1 svelte-13vk1z8" transform="translate(0, 140)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.1</text></g><g class="tick tick-0.2 svelte-13vk1z8" transform="translate(0, 100)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.2</text></g><g class="tick tick-0.3 svelte-13vk1z8" transform="translate(0, 60.00000000000002)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.3</text></g><g class="tick tick-0.4 svelte-13vk1z8" transform="translate(0, 20)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.4</text></g></g><g class="axis x-axis svelte-13vk1z8"><g class="tick svelte-13vk1z8" transform="translate(35,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">x1</text></g><g class="tick svelte-13vk1z8" transform="translate(128,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">x2</text></g><g class="tick svelte-13vk1z8" transform="translate(221,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">x3</text></g><g class="tick svelte-13vk1z8" transform="translate(314,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">x4</text></g><g class="tick svelte-13vk1z8" transform="translate(407,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">x5</text></g></g><g class="bars svelte-13vk1z8"><rect class="rect-1 svelte-13vk1z8" x="35" y="100" width="38.272727272727266" height="80"></rect><rect class="rect-1 svelte-13vk1z8" x="128" y="100" width="38.272727272727266" height="80"></rect><rect class="rect-1 svelte-13vk1z8" x="221" y="100" width="38.272727272727266" height="80"></rect><rect class="rect-1 svelte-13vk1z8" x="314" y="100" width="38.272727272727266" height="80"></rect><rect class="rect-1 svelte-13vk1z8" x="407" y="100" width="38.272727272727266" height="80"></rect><rect class="rect-2 svelte-13vk1z8" x="77.27272727272727" y="20" width="38.272727272727266" height="160"></rect><rect class="rect-2 svelte-13vk1z8" x="170.27272727272725" y="20" width="38.272727272727266" height="160"></rect><rect class="rect-2 svelte-13vk1z8" x="263.27272727272725" y="160" width="38.272727272727266" height="20"></rect><rect class="rect-2 svelte-13vk1z8" x="356.27272727272725" y="160" width="38.272727272727266" height="20"></rect><rect class="rect-2 svelte-13vk1z8" x="449.27272727272725" y="140" width="38.272727272727266" height="40"></rect></g></svg></div>
+</div>
+<div class="cross-entropy svelte-13vk1z8"><span>Cross-Entropy: </span>2.9219</div>
+<input type="range" min="0" max="1" step="0.01" class="svelte-1tcoic2" value="0">
+  <p>Now it is time to come full circle and to relate the calculation of
+    cross-entropy to our task. We set out to find a loss that is suited for
+    classification tasks. Let us assume that we are dealing with a problem,
+    where we have to classify an animal based on certain features in one of the
+    five categories: cat, dog, pig, bear or monkey. The cross-entropy deals with
+    probability distributions, so we need to put the label into a format that
+    eqauls a probability distribution. For example if we deal with a sample that
+    depicts a cat, the true probability distribution would be 100% for the
+    category cat and 0% for all other categories. This distribution is put in a
+    so called &quot;one-hot&quot; vector. A vector that contains a one for the relevant
+    category and 0 otherwise. So that we have the following distributions.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+  \text{cat} = 
+  \begin{bmatrix}
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{dog} = 
+  \begin{bmatrix}
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{pig} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{bear} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  0 \\ 
+  \end{bmatrix}
+  \text{monkey} = 
+  \begin{bmatrix}
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  0 \\ 
+  1 \\ 
+  \end{bmatrix}
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This distributions come from the labels, in the dataset. We therefore assume
+    that the one hot vectors represent the correct distributions <span class="placeholder svelte-1mpoqm2">p(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Our neurons or neural networks also produce distributions that determine
+    the category based on the labels.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+
+  \begin{bmatrix}
+  0.05 \\ 
+  0.4 \\ 
+  0.05 \\ 
+  0.4 \\ 
+  0.1 \\ 
+  \end{bmatrix}
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This is the estimated distribution and therefore the wrong distribution. We
+    designate this distribution <span class="placeholder svelte-1mpoqm2">q(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>Now we have everything to calculate the cross-entropy. The closer the one
+    hot distribution and the distribution produced by the neural network get,
+    the lower the cross-entropy gets. Because all the weight of the weight of
+    the one hot vector is on just one event, the entropy corresponds to exactly
+    0 and the cross-entropy could theoretically also reach 0. Our goal in a
+    classification task is to minimize the cross-entropy to get the two
+    distributions as close as possible.
+  </p>
+  <p>Below is an interactive example where the true label corresponds to the
+    category cat. The estimated probabilities are far from the ground truth,
+    which results in a relatively high cross-entropy. When you move the slider,
+    the estimated probabilities start moving towards the ground truth, which
+    pushes the cross-entropy down.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 200"><g class="axis y-axis"><g class="tick tick-0 svelte-13vk1z8" transform="translate(0, 180)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0</text></g><g class="tick tick-0.1 svelte-13vk1z8" transform="translate(0, 164)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.1</text></g><g class="tick tick-0.1 svelte-13vk1z8" transform="translate(0, 164)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.1</text></g><g class="tick tick-0.2 svelte-13vk1z8" transform="translate(0, 148)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.2</text></g><g class="tick tick-0.3 svelte-13vk1z8" transform="translate(0, 132)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.3</text></g><g class="tick tick-0.4 svelte-13vk1z8" transform="translate(0, 116)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.4</text></g><g class="tick tick-0.5 svelte-13vk1z8" transform="translate(0, 100)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.5</text></g><g class="tick tick-0.6 svelte-13vk1z8" transform="translate(0, 84)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.6</text></g><g class="tick tick-0.7 svelte-13vk1z8" transform="translate(0, 68)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.7</text></g><g class="tick tick-0.8 svelte-13vk1z8" transform="translate(0, 51.99999999999999)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.8</text></g><g class="tick tick-0.9 svelte-13vk1z8" transform="translate(0, 36)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.9</text></g><g class="tick tick-1 svelte-13vk1z8" transform="translate(0, 20)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">1</text></g></g><g class="axis x-axis svelte-13vk1z8"><g class="tick svelte-13vk1z8" transform="translate(35,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">Cat</text></g><g class="tick svelte-13vk1z8" transform="translate(128,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">Dog</text></g><g class="tick svelte-13vk1z8" transform="translate(221,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">Pig</text></g><g class="tick svelte-13vk1z8" transform="translate(314,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">Bear</text></g><g class="tick svelte-13vk1z8" transform="translate(407,200)"><text x="41.13636363636363" y="-4" class="svelte-13vk1z8">Monkey</text></g></g><g class="bars svelte-13vk1z8"><rect class="rect-1 svelte-13vk1z8" x="35" y="20" width="38.272727272727266" height="160"></rect><rect class="rect-1 svelte-13vk1z8" x="128" y="180" width="38.272727272727266" height="0"></rect><rect class="rect-1 svelte-13vk1z8" x="221" y="180" width="38.272727272727266" height="0"></rect><rect class="rect-1 svelte-13vk1z8" x="314" y="180" width="38.272727272727266" height="0"></rect><rect class="rect-1 svelte-13vk1z8" x="407" y="180" width="38.272727272727266" height="0"></rect><rect class="rect-2 svelte-13vk1z8" x="77.27272727272727" y="172" width="38.272727272727266" height="8"></rect><rect class="rect-2 svelte-13vk1z8" x="170.27272727272725" y="116" width="38.272727272727266" height="64"></rect><rect class="rect-2 svelte-13vk1z8" x="263.27272727272725" y="172" width="38.272727272727266" height="8"></rect><rect class="rect-2 svelte-13vk1z8" x="356.27272727272725" y="116" width="38.272727272727266" height="64"></rect><rect class="rect-2 svelte-13vk1z8" x="449.27272727272725" y="164" width="38.272727272727266" height="16"></rect></g></svg></div>
+</div>
+<div class="cross-entropy svelte-13vk1z8"><span>Cross-Entropy: </span>4.3219</div>
+<input type="range" min="0" max="1" step="0.01" class="svelte-1tcoic2" value="0">
+  <p>In logistic regression we utilize the sigmoid activation function
+    <span class="placeholder svelte-1mpoqm2">\sigma(b, \mathbf{w}) = \dfrac{1}{1 + e^{-(\mathbf{w^Tx}+b)}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    , which produces values between 0 and 1. The sigmoid function can be used to
+    differentiate between 2 categories . The sigmoid function
+    <span class="placeholder svelte-1mpoqm2">\sigma(b, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> produces the probability to
+    belong to the first category (e.g. cat), therefore <span class="placeholder svelte-1mpoqm2">1 - \sigma(b, \mathbf{w})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> returns the probability to belong to the second category (e.g. dog). If we
+    additionally define that the label <span class="placeholder svelte-1mpoqm2">y</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is 1 when the sample is a
+    cat and 0 when the sample is a dog, the expression reduces the cross-entropy
+    to the so called binary cross-entropy.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    H(p, \sigma) = -\Big[y \log ( \sigma(b, \mathbf{w})) + (1 - y) \log ( 1 - \sigma(b, \mathbf{w}))\Big]
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  <p>When we shift the weights and the bias of the sigmoid function, we can move
+    the probability to belong to a certain category. Our goal is therefore to
+    find weigths that minimize the binary cross-entropy.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 400px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 200 200"><g class="axis y-axis"><g class="tick tick-0 svelte-13vk1z8" transform="translate(0, 180)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0</text></g><g class="tick tick-0.1 svelte-13vk1z8" transform="translate(0, 164)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.1</text></g><g class="tick tick-0.1 svelte-13vk1z8" transform="translate(0, 164)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.1</text></g><g class="tick tick-0.2 svelte-13vk1z8" transform="translate(0, 148)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.2</text></g><g class="tick tick-0.3 svelte-13vk1z8" transform="translate(0, 132)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.3</text></g><g class="tick tick-0.4 svelte-13vk1z8" transform="translate(0, 116)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.4</text></g><g class="tick tick-0.5 svelte-13vk1z8" transform="translate(0, 100)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.5</text></g><g class="tick tick-0.6 svelte-13vk1z8" transform="translate(0, 84)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.6</text></g><g class="tick tick-0.7 svelte-13vk1z8" transform="translate(0, 68)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.7</text></g><g class="tick tick-0.8 svelte-13vk1z8" transform="translate(0, 51.99999999999999)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.8</text></g><g class="tick tick-0.9 svelte-13vk1z8" transform="translate(0, 36)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">0.9</text></g><g class="tick tick-1 svelte-13vk1z8" transform="translate(0, 20)"><line x2="100%" class="svelte-13vk1z8"></line><text y="-4" class="svelte-13vk1z8">1</text></g></g><g class="axis x-axis svelte-13vk1z8"><g class="tick svelte-13vk1z8" transform="translate(35,200)"><text x="38.75" y="-4" class="svelte-13vk1z8">Cat</text></g><g class="tick svelte-13vk1z8" transform="translate(117.5,200)"><text x="38.75" y="-4" class="svelte-13vk1z8">Dog</text></g></g><g class="bars svelte-13vk1z8"><rect class="rect-1 svelte-13vk1z8" x="35" y="20" width="33.5" height="160"></rect><rect class="rect-1 svelte-13vk1z8" x="117.5" y="180" width="33.5" height="0"></rect><rect class="rect-2 svelte-13vk1z8" x="72.5" y="140" width="33.5" height="40"></rect><rect class="rect-2 svelte-13vk1z8" x="155" y="60" width="33.5" height="120"></rect></g></svg></div>
+</div>
+<div class="cross-entropy svelte-13vk1z8"><span>Cross-Entropy: </span>2.0000</div>
+<input type="range" min="0" max="1" step="0.01" class="svelte-1tcoic2" value="0">
+  <p>In practice we always deal with with a dataset, therefore the cross-entropy
+    loss that we are going to optimize is going to be the average over the whole
+    dataset.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    H(p, q) = -\dfrac{1}{n}\sum_i y^{(i)} \log ( \sigma(b, \mathbf{w})) + (1 - y^{(i)}) \log ( 1 - \sigma(b, \mathbf{w}))
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Just as with the linear regression, we will utilize gradient descent to find
+    optimal weights. This is going to be covered in the next lecture.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Negative Log Likelihood</h2>
+  <p>There is a second approach to cover the loss function that is used in
+    classification tasks. This is done by following the path of maximum
+    likelihood estimation.
+  </p>
+  <p>Let us start with a small revision of probability theory and statistics and
+    answer the following question: <span class="light-blue">&quot;What is the difference between probability and likelihood?&quot;<span>.
+      </span></span>
+    We will demonstrate the difference using our trusted coin toss example.
+  </p>
+  <p>The result of the coin toss <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> has a Bernoulli
+    distribution, <span class="placeholder svelte-1mpoqm2">y^{(i)} \sim Ber(\theta)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. With a
+    probability of <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> we toss heads and with probability of <span class="placeholder svelte-1mpoqm2">1-\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> we toss tails. If we define the results of heads as 1 and the results of tails
+    as 0, we can define the parameter
+    <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> as <span class="placeholder svelte-1mpoqm2">\Pr(y^{(i)} = 1)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">1 - \theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> as <span class="placeholder svelte-1mpoqm2">\Pr(y^{(i)} = 0)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The PMF (probability
+    mass function) is therefore <span class="placeholder svelte-1mpoqm2">p(y^{(i)} | \theta) = \theta^{y^{(i)}} (1 - \theta)^{1 - y^{(i)}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. To understand the PMF imagine the following. In case we need to calculate
+    the probability for heads, we replace <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by
+    1 and end up with just <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. On the other hand we can use
+    the PMF to calculate the probability for tails by replacing <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by 0. In that case we end up with <span class="placeholder svelte-1mpoqm2">1-\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Lets clarify
+    those definitions with a simple example.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 300px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 100 45"><circle cx="30" cy="15" r="10" class="svelte-lc2za9"></circle><circle cx="70" cy="15" r="10" class="svelte-lc2za9"></circle><text x="30" y="15.5" class="svelte-lc2za9">H</text><text x="70" y="15.5" class="svelte-lc2za9">T</text><rect class="probability svelte-lc2za9" x="20" y="30" width="20" height="10"></rect><rect class="probability svelte-lc2za9" x="60" y="30" width="20" height="10"></rect><text x="6" y="35.5" class="svelte-lc2za9">Pr:</text><text x="30" y="35.5" class="svelte-lc2za9">0.3</text><text x="70" y="35.5" class="svelte-lc2za9">0.7</text></svg></div>
+</div>
+  <p>We are faced with an unfair coin, where <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is 0.3 and <span class="placeholder svelte-1mpoqm2">1 - \theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is 0.7. The PMF is <span class="placeholder svelte-1mpoqm2">p(y^{(i)}|\theta)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> resolves
+    to <span class="placeholder svelte-1mpoqm2">p(1 | 0.3) = 0.3</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">p(0 | 0.3) = 0.7</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> respectively. Often we are interested in the probability of a particular sequence
+    of coin tosses,
+    <span class="placeholder svelte-1mpoqm2">p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    . All coin tosses are independently distributed, it does not matter what coin
+    tosses came before. That means we can express the probability of the sequence
+    as the product of probabilities.
+  </p>
+  <p><span class="placeholder svelte-1mpoqm2">
+ \begin{aligned}
+ &amp; p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) = \\
+&amp; = p(y^{(1)} | \theta) * p(y^{(2)}|\theta)  * \cdots * p(y^{(n)}|\theta) \\
+&amp; = \prod_{i=1}^n p(y^{(i)}|\theta)
+  \end{aligned}
+ </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p>For example: &quot;What is the probability to get the sequence of Heads, Heads,
+    Tails, Heads, Tails, when <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> equals 0.3? Or expressed mathematically:
+    <span class="placeholder svelte-1mpoqm2">p(1, 1, 0, 1, 0 | 0.3)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+ \begin{aligned}
+ &amp; p(y^{(1)}, y^{(2)},  y^{(3)},y^{(4)},y^{(5)} | \theta)= \\
+ &amp; = p(1, 1, 0, 1, 0 | 0.3) \\ 
+&amp; = 0.3 * 0.3 * 0.7 * 0.3 * 0.7 \\
+&amp; = 0.01323 \\  
+&amp; = 1.323 \%
+  \end{aligned}
+ </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>When we are dealing with probabilities, the function<span class="placeholder svelte-1mpoqm2">
+p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) 
+      </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> has a fixed parameter <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and expects observations (e.g.
+    coin tosses) as inputs to the function. The PMF <span class="placeholder svelte-1mpoqm2">p</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> returns the
+    corresponding probability.
+  </p>
+  <p>Now imagine we do not know the parameter <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, instead we
+    toss a coin many times to gain access to observations <span class="placeholder svelte-1mpoqm2">y^{(1)}, y^{(2)}, \cdots, y^{(n)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The likelihood function
+    <span class="placeholder svelte-1mpoqm2">\mathcal{L}(\mathbf{\theta} | y^{(1)}, y^{(1)},\cdots y^{(n)})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> returns the likelihood that the parameter <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the parameter
+    of the PMF, given that we collected the samples <span class="placeholder svelte-1mpoqm2">y^{(1)}, y^{(2)}, \cdots, y^{(n)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>There is a straightforward relatinoship between the likelihood <span class="placeholder svelte-1mpoqm2">\mathcal{L}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the probability <span class="placeholder svelte-1mpoqm2">p</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Given the same parameter values <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the same observations
+    <span class="placeholder svelte-1mpoqm2">
+y^{(1)}, y^{(1)},\cdots y^{(n)}
+        </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the probability and the likelihood are equal.
+  </p>
+
+  <span class="placeholder svelte-1mpoqm2">
+\mathcal{L}(\mathbf{\theta} | y^{(1)}, y^{(1)},\cdots y^{(n)})
+= p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) = \prod_{i=1}^n p(y^{(i)}|\theta)
+
+</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>We can change <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and observe how the likelihood changes. Lets
+    assume we tossed the coin and got Heads, Heads, Tails, Heads and Tails.
+  </p>
+  <p class="blue">Parameter <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0.1, Likelihood <span class="placeholder svelte-1mpoqm2">\mathcal{L}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0.00081</p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210.0475118779695)"><line x1="55" x2="460" class="svelte-481epo zero"></line><text x="47" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.01 svelte-481epo" transform="translate(0, 162.5356339084771)"><line x1="55" x2="460" class="svelte-481epo"></line><text x="47" y="+4" class="svelte-481epo">0.01</text></g><g class="tick tick-0.02 svelte-481epo" transform="translate(0, 115.02375593898473)"><line x1="55" x2="460" class="svelte-481epo"></line><text x="47" y="+4" class="svelte-481epo">0.02</text></g><g class="tick tick-0.03 svelte-481epo" transform="translate(0, 67.51187796949237)"><line x1="55" x2="460" class="svelte-481epo"></line><text x="47" y="+4" class="svelte-481epo">0.03</text></g><g class="tick tick-0.04 svelte-481epo" transform="translate(0, 20)"><line x1="55" x2="460" class="svelte-481epo"></line><text x="47" y="+4" class="svelte-481epo">0.04</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(55,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(95.5,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.1</text></g><g class="tick svelte-481epo" transform="translate(136,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.2</text></g><g class="tick svelte-481epo" transform="translate(176.5,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.3</text></g><g class="tick svelte-481epo" transform="translate(217,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.4</text></g><g class="tick svelte-481epo" transform="translate(257.5,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.5</text></g><g class="tick svelte-481epo" transform="translate(298,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.6</text></g><g class="tick svelte-481epo" transform="translate(338.5,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.7</text></g><g class="tick svelte-481epo" transform="translate(379,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.8</text></g><g class="tick svelte-481epo" transform="translate(419.5,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.9</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="257.5" y="245">Theta</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Likelihood</text><circle fill="var(--main-color-1)" cx="95.5" cy="206.1990497624406" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <input type="range" min="0" max="1" step="0.01" class="svelte-1tcoic2" value="0.1">
+  <p>When you increase <span class="placeholder svelte-1mpoqm2">\theta</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by moving the slider to the right, you
+    will notice that the likelihood will increase up to a point and start decreasing
+    again. At roughly <span class="placeholder svelte-1mpoqm2">\theta = 0.6</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the likelihood will reach the maximum.
+    This is called the <strong><span class="highlight svelte-16edlvf">maximum likelihood</span></strong> and the parameters
+    that produce the maximum likelihood is exactly what we are looking for.
+  </p>
+  <p>In logistic regression we are looking for weights<span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the bias <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> that maximize the likelihood, provided we are
+    faced with the features matrix <span class="placeholder svelte-1mpoqm2">\mathbf{X}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the
+    labels vector <span class="placeholder svelte-1mpoqm2">\mathbf{y}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\underset{\mathbf{w}, b}{\arg\max}  \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Given a binary classification problem, we can use logistic regression and
+    calculate the probability of a class <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> using
+    the sigmoid function <span class="placeholder svelte-1mpoqm2">\sigma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Recognizing that the likelihood
+    and the probability are the same, we can rewrite the likelihood in terms of
+    probabilities.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \prod_{i=1}^n \sigma^{y^{(i)}} (1 - \sigma)^{1 - y^{(i)}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In practice it is difficult to use gradient descent when we are dealing with
+    a product. For once we would prefer to work with sums rather than products
+    when taking derivatives. This makes the calculation easier, because the
+    derivative of the sum is the sum of derivatives, which enables us to
+    separately calculate the derivatives for individual samples. The derivative
+    of a product on the other hand would involve the product rule, which would
+    overcomplicate things. Additionally, when we calculate the product of small
+    numbers, like probabilities, the number will get smaller and smaller and
+    might get to a point where it would underflow. Instead in practice we
+    maximize the natural log of the likelihood. This turns products into sums
+    and exponents into products.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>A question that often occurs the first time you apply a logarithm to a
+    function you want to optimize: &quot;do the optimal values of <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> change by applying the natural logarithm?&quot; The answer
+    is no. Below are depicted 2 functions, the original function <span class="placeholder svelte-1mpoqm2">f(x) = x^2 + 0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the transformed function <span class="placeholder svelte-1mpoqm2">g(f(x)) = \log(f(x))</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick--1 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">-1</text></g><g class="tick tick-4.25 svelte-481epo" transform="translate(0, 162.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">4.25</text></g><g class="tick tick-9.50 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">9.50</text></g><g class="tick tick-14.75 svelte-481epo" transform="translate(0, 67.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">14.75</text></g><g class="tick tick-20 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">20</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-7</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-3.50</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">3.50</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">7</text></g></g><text class="label svelte-481epo" x="260" y="245">x</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Output</text><path d="M88.57142857142857,-129.2857142857143L91.42857142857142,-118.51904761904764L94.28571428571426,-107.93333333333342L97.14285714285711,-97.52857142857151L99.99999999999996,-87.30476190476205L102.8571428571428,-77.26190476190497L105.71428571428565,-67.4000000000002L108.5714285714285,-57.71904761904784L111.42857142857135,-48.21904761904792L114.28571428571419,-38.900000000000304L117.14285714285704,-29.76190476190509L119.99999999999989,-20.804761904762234L122.85714285714275,-12.028571428571812L125.71428571428558,-3.4333333333337066L128.57142857142844,4.980952380951962L131.42857142857127,13.214285714285275L134.28571428571414,21.266666666666232L137.14285714285697,29.13809523809477L139.99999999999983,36.82857142857094L142.85714285714266,44.33809523809474L145.71428571428552,51.66666666666615L148.57142857142838,58.814285714285234L151.42857142857122,65.78095238095192L154.2857142857141,72.56666666666621L157.14285714285694,79.17142857142812L159.99999999999983,85.59523809523768L162.85714285714266,91.83809523809484L165.71428571428555,97.89999999999961L168.57142857142838,103.780952380952L171.42857142857125,109.48095238095203L174.2857142857141,114.99999999999966L177.14285714285697,120.33809523809491L179.99999999999983,125.4952380952378L182.85714285714266,130.4714285714283L185.71428571428555,135.2666666666664L188.57142857142844,139.88095238095212L191.42857142857127,144.3142857142855L194.28571428571414,148.56666666666644L197.14285714285697,152.63809523809502L199.99999999999986,156.52857142857124L202.85714285714272,160.23809523809504L205.71428571428555,163.76666666666648L208.57142857142844,167.11428571428556L211.4285714285713,170.28095238095224L214.28571428571414,173.2666666666665L217.14285714285697,176.07142857142844L219.99999999999986,178.695238095238L222.85714285714275,181.13809523809513L225.7142857142856,183.3999999999999L228.57142857142844,185.4809523809523L231.4285714285713,187.3809523809523L234.28571428571416,189.09999999999994L237.14285714285703,190.63809523809516L239.9999999999999,191.99523809523805L242.85714285714272,193.17142857142852L245.71428571428558,194.1666666666666L248.57142857142844,194.98095238095235L251.4285714285713,195.61428571428567L254.28571428571416,196.06666666666663L257.142857142857,196.33809523809524L259.9999999999999,196.42857142857142L262.8571428571427,196.33809523809524L265.7142857142856,196.0666666666667L268.57142857142844,195.61428571428573L271.42857142857133,194.9809523809524L274.28571428571416,194.16666666666669L277.142857142857,193.17142857142863L279.9999999999999,191.99523809523814L282.8571428571428,190.6380952380953L285.7142857142856,189.10000000000005L288.5714285714284,187.38095238095246L291.4285714285713,185.48095238095246L294.28571428571416,183.4000000000001L297.142857142857,181.13809523809536L299.99999999999983,178.6952380952382L302.8571428571428,176.0714285714287L305.7142857142856,173.2666666666668L308.57142857142844,170.2809523809525L311.42857142857133,167.11428571428584L314.2857142857142,163.7666666666668L317.14285714285705,160.23809523809535L319.99999999999983,156.52857142857155L322.8571428571427,152.6380952380954L325.7142857142856,148.5666666666668L328.57142857142844,144.31428571428586L331.4285714285713,139.88095238095252L334.28571428571416,135.26666666666685L337.142857142857,130.47142857142873L339.99999999999994,125.49523809523825L342.8571428571428,120.33809523809542L345.71428571428567,115.00000000000017L348.5714285714285,109.48095238095254L351.42857142857133,103.78095238095256L354.2857142857142,97.90000000000018L357.14285714285705,91.83809523809542L359.9999999999999,85.59523809523826L362.8571428571428,79.17142857142873L365.71428571428567,72.56666666666683L368.5714285714285,65.78095238095254L371.4285714285714,58.8142857142859L374.2857142857143,51.66666666666683L377.1428571428571,44.33809523809542L379.99999999999994,36.82857142857161L382.8571428571428,29.138095238095445L385.7142857142856,21.26666666666693L388.57142857142844,13.214285714285992L391.4285714285713,4.980952380952722L394.28571428571416,-3.433333333332989L397.142857142857,-12.028571428571055L399.99999999999983,-20.804761904761477L402.8571428571427,-29.761904761904294L405.71428571428555,-38.899999999999466L408.5714285714284,-48.219047619047075L411.4285714285713,-57.71904761904699L414.2857142857141,-67.39999999999931L417.14285714285694,-77.26190476190405L419.99999999999983,-87.30476190476111L422.85714285714266,-97.52857142857061L425.7142857142855,-107.93333333333248L428.5714285714283,-118.51904761904677L431.42857142857116,-129.28571428571334" stroke="black" class="svelte-481epo"></path><path d="M88.57142857142857,168.4052700232474L91.42857142857142,168.70516286244495L94.28571428571426,169.01003589049543L97.14285714285711,169.32005465734792L99.99999999999996,169.63539295944946L102.8571428571428,169.95623338533426L105.71428571428565,170.28276790595905L108.5714285714285,170.61519851411893L111.42857142857135,170.95373791775728L114.28571428571419,171.29861029251535L117.14285714285704,171.6500520994651L119.99999999999989,172.00831297463787L122.85714285714275,172.37365669770927L125.71428571428558,172.74636224803888L128.57142857142844,173.12672495719806L131.42857142857127,173.5150577681631L134.28571428571414,173.91169261251258L137.14285714285697,174.31698191825728L139.99999999999983,174.73130026235575L142.85714285714266,175.15504618353603L145.71428571428552,175.58864417275035L148.57142857142838,176.0325468604366L151.42857142857122,176.4872374217196L154.2857142857141,176.95323222272992L157.14285714285694,177.4310837332785L159.99999999999983,177.9213837331027L162.85714285714266,178.42476684062774L165.71428571428555,178.94191439441772L168.57142857142838,179.4735587178411L171.42857142857125,180.0204877963737L174.2857142857141,180.58355039356024L177.14285714285697,181.16366162468012L179.99999999999983,181.76180899474164L182.85714285714266,182.37905888677594L185.71428571428555,183.01656345338213L188.57142857142844,183.67556781295028L191.42857142857127,184.3574173727961L194.28571428571414,185.06356498089846L197.14285714285697,185.79557742549045L199.99999999999986,186.5551405265132L202.85714285714272,187.34406164821462L205.71428571428555,188.16426783730722L208.57142857142844,189.0177968489988L211.4285714285713,189.90677690168812L214.28571428571414,190.83338885556114L217.14285714285697,191.7998012752899L219.99999999999986,192.80806397669465L222.85714285714275,193.859938412981L225.7142857142856,194.95663262455733L228.57142857142844,196.09839331439196L231.4285714285713,197.28388711711654L234.28571428571416,198.50927828235797L237.14285714285703,199.7668871496563L239.9999999999999,201.043312562484L242.85714285714272,202.31696900236045L245.71428571428558,203.55521875075416L248.57142857142844,204.71180639774832L251.4285714285713,205.72620099979287L254.28571428571416,206.5273984043107L257.142857142857,207.0445459581007L259.9999999999999,207.22371258601854L262.8571428571427,207.04454595810077L265.7142857142856,206.52739840431076L268.57142857142844,205.72620099979295L271.42857142857133,204.71180639774846L274.28571428571416,203.55521875075425L277.142857142857,202.31696900236057L279.9999999999999,201.04331256248415L282.8571428571428,199.7668871496564L285.7142857142856,198.50927828235808L288.5714285714284,197.28388711711665L291.4285714285713,196.09839331439204L294.28571428571416,194.95663262455744L297.142857142857,193.8599384129811L299.99999999999983,192.80806397669474L302.8571428571428,191.79980127528998L305.7142857142856,190.83338885556122L308.57142857142844,189.9067769016882L311.42857142857133,189.0177968489989L314.2857142857142,188.1642678373073L317.14285714285705,187.3440616482147L319.99999999999983,186.5551405265133L322.8571428571427,185.7955774254905L325.7142857142856,185.06356498089852L328.57142857142844,184.35741737279616L331.4285714285713,183.67556781295033L334.28571428571416,183.01656345338222L337.142857142857,182.37905888677597L339.99999999999994,181.76180899474173L342.8571428571428,181.1636616246802L345.71428571428567,180.5835503935603L348.5714285714285,180.02048779637374L351.42857142857133,179.47355871784114L354.2857142857142,178.94191439441775L357.14285714285705,178.42476684062774L359.9999999999999,177.92138373310277L362.8571428571428,177.43108373327857L365.71428571428567,176.95323222272998L368.5714285714285,176.48723742171967L371.4285714285714,176.03254686043664L374.2857142857143,175.5886441727504L377.1428571428571,175.1550461835361L379.99999999999994,174.7313002623558L382.8571428571428,174.31698191825728L385.7142857142856,173.91169261251264L388.57142857142844,173.51505776816316L391.4285714285713,173.12672495719812L394.28571428571416,172.7463622480389L397.142857142857,172.37365669770932L399.99999999999983,172.00831297463793L402.8571428571427,171.65005209946514L405.71428571428555,171.29861029251538L408.5714285714284,170.95373791775734L411.4285714285713,170.615198514119L414.2857142857141,170.2827679059591L417.14285714285694,169.9562333853343L419.99999999999983,169.63539295944946L422.85714285714266,169.32005465734795L425.7142857142855,169.01003589049543L428.5714285714283,168.70516286244498L431.42857142857116,168.4052700232474" stroke="black" class="svelte-481epo"></path></svg></div>
+</div>
+  <p>The original function is the parabola at the top and the transformed
+    function is the one at the bottom. As you can see the same x value of 0
+    leads to the minimum function output. Therefore it does not matter that we
+    optimize <span class="placeholder svelte-1mpoqm2">\log(f(x))</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> instead of <span class="placeholder svelte-1mpoqm2">f(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>Often we calculate the mean of the log likelihood. This is perfectly legal,
+    because this procedure also does not change the parameters <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> which maximize the log likelihood.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \dfrac{1}{n} \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>If we wanted to maximize the log likelihood function, we would need to apply
+    gradient ascent. Most deep learning libraries only implement gradient
+    descent though. Maximizing <span class="placeholder svelte-1mpoqm2">f(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the same as minimizing <span class="placeholder svelte-1mpoqm2">-f(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. For that reason we change the sign of the log likelihood and minimize the
+    negative log likelihood.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">- \log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = - \dfrac{1}{n} \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>At this point you might have already made the following discovery.</p>
+  <p class="info">Minimizing the cross-entropy equals maximizing the log likelihood.
+  </p>
+  <div class="separator"></div>
+</div>
+
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><footer class="svelte-e6sorm"><section class="notes svelte-e6sorm"><h4 class="svelte-e6sorm">Notes</h4>
+        <ol class="notes svelte-e6sorm"><li id="note-1" class="svelte-e6sorm">The properties that make the mean squared error a bad choice for classification tasks are discussed in the next section.
+              <a href="#note-origin-1" class="svelte-e6sorm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li><li id="note-2" class="svelte-e6sorm">A bit is a binary unit of of information. This unit is also referred to as a Shanon.
+              <a href="#note-origin-2" class="svelte-e6sorm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li><li id="note-3" class="svelte-e6sorm">In machine learning we often use nats for convenience (natural units), which use the base e instead of bits with the base of 2. This does not pose a problem, as we can simply convert from bits to nats by changing the base from 2 to e.
+              <a href="#note-origin-3" class="svelte-e6sorm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li></ol></section>
+    <section class="references"><h4 class="svelte-e6sorm">References</h4>
+        <ol class="references"><li id="reference-1" class="svelte-e6sorm">Shannon C. E..
+              A Mathematical Theory of Communication.
+              Bell System Technical Journal.
+              Vol. 27.
+              (3).
+              pp. 379-423.
+              (1948).
+              <a href="#reference-origin-1" class="svelte-e6sorm"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+            </li></ol></section></footer>
+</div>
+<div class="separator"></div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="ou12pg">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="ou12pg"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 39],
+				params: {},
+				routeId: "blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood"
+			}
+		});
+	</script></div>
+	</body>
+</html>

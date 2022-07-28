@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | States, Actions, Rewards</title><meta name="description" content="In Reinforcement learning states, actions and rewards are send between the agent and the environment." data-svelte="svelte-8rawm4">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/states_actions_rewards-20954e5a.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Action-1d033e9b.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/intuition/states_actions_rewards.svelte-1baee0d6.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/RandomAgent-d01f8d90.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Interaction-aa3fe544.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/maps-4e6d9d32.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Interaction-0e54d0f0.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Action-dd19d4d2.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-658140a5.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn selected">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>States, Actions, Rewards</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h2>Interaction</h2>
+  <p>In essence interaction means that there is a communication channel between
+    the agent and the environment, where data flows sequentially between the
+    two. The agent and the environment interact continuously, each reacting to
+    the data sent by the other.
+  </p>
+
+  <p class="info">In reinforcement learning the sequential information flow between the agent
+    and the environment is called <strong>interaction</strong>.
+  </p>
+
+  <p>It is important to remember that this stream of data is sent in a strictly
+    sequential way. When the environment sends the data for example, it has to
+    wait until it receives the response from the agent. Only then can the
+    environment generate a new batch of data and send it back to the agent
+    again.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><defs><marker id="marker4005" overflow="visible" orient="auto"><path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker3806" overflow="visible" orient="auto"><path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker3359" overflow="visible" orient="auto"><path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker3172" overflow="visible" orient="auto"><path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker2510" overflow="visible" orient="auto"><path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker2500" overflow="visible" orient="auto"><path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker5204" overflow="visible" orient="auto"><path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker5194" overflow="visible" orient="auto"><path transform="scale(.8) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker5184" overflow="visible" orient="auto"><path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="TriangleOutL" overflow="visible" orient="auto"><path transform="scale(.8)" d="m5.77 0-8.65 5v-10l8.65 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="marker4840" overflow="visible" orient="auto"><path transform="scale(.8) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker><marker id="EmptyDiamondL" overflow="visible" orient="auto"><path transform="scale(.8)" d="m0-7.0711-7.0711 7.0711 7.0711 7.0711 7.071-7.0711-7.071-7.0711z" fill="#fff" fill-rule="evenodd" stroke="var(--text-color)" stroke-width="1pt"></path></marker></defs><g stroke-width="1.2" stroke="var(--text-color)" fill="none"><g id="environment"><rect x="20" y="182.96" width="120" height="120"></rect><rect x="30" y="192.96" width="100" height="100"></rect><g><path d="m40 192.96v100"></path><path d="m50 192.96v100"></path><path d="m60 192.96v100"></path><path d="m70 192.96v100"></path><path d="m80 192.96v100"></path><path d="m90 192.96v100"></path><path d="m100 192.96v100"></path><path d="m110 192.96v100"></path><path d="m120 192.96v100"></path><path d="m30 202.96h100"></path><path d="m30 212.96h100"></path><path d="m30 222.96h100"></path><path d="m30 232.96h100"></path><path d="m30 242.96h100"></path><path d="m30 252.96h100"></path><path d="m30 262.96h100"></path><path d="m30 272.96h100"></path><path d="m30 282.96h100"></path></g></g><text id="agent-text" x="377.98828" y="480.05859" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="377.98828" y="480.05859" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Agent</tspan></text><text id="environment-text" x="17.988281" y="40.058594" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="17.988281" y="40.058594" font-family="sans-serif" fill="var(--text-color)" font-size="40px" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Environment</tspan></text><g stroke-dashoffset="0"><path id="env-agent-path" d="m80 154v-84h340v74" fill="none" marker-end="url(#TriangleOutL)" marker-mid="url(#marker4840)" marker-start="url(#EmptyDiamondL)" stroke="var(--text-color)" stroke-dasharray="5, 25"></path></g><g stroke-dashoffset="0"><path id="agent-env-path" d="m420 348v70h-340v-100" fill="none" marker-end="url(#marker5204)" marker-mid="url(#marker5194)" marker-start="url(#marker5184)" stroke="var(--text-color)" stroke-dasharray="5, 25"></path></g><g font-family="sans-serif" fill="var(--text-color)"><text id="state-reward-text" x="157.55345" y="99.272934" font-size="30.483px" stroke-width=".76208" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="157.55345" y="99.272934" font-family="sans-serif" fill="var(--text-color)" font-size="30.483px" stroke-width=".76208" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">State, Reward</tspan></text><text id="action-text" x="207.1257" y="399.27295" font-size="30.483px" stroke-width=".76208" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="207.1257" y="399.27295" font-family="sans-serif" fill="var(--text-color)" font-size="30.483px" stroke-width=".76208" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Action</tspan></text><text id="generate-action-text" transform="rotate(-90)" x="-311.70435" y="328.7066" font-size="18.867px" stroke-width=".47167" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="-311.70435" y="328.7066" font-family="sans-serif" fill="var(--text-color)" font-size="18.867px" stroke-width=".47167" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">State to Action</tspan></text><text id="generate-newstate-text" transform="rotate(-90)" x="-308.66428" y="165.19115" font-size="18.867px" stroke-width=".47167" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="-308.66428" y="165.19115" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">State and Action</tspan><tspan x="-308.66428" y="188.77477" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">to new State</tspan></text></g><g stroke-dashoffset="0"><g fill="none" stroke="var(--text-color)"><path id="generate-newstate" d="m120 180v-30h80v200h-80v-40" marker-end="url(#marker2510)" marker-start="url(#marker2500)" stroke-dasharray="4,8"></path><path id="generate-action" d="m394 170v-30h-90v210h80v-40" marker-end="url(#marker3359)" marker-start="url(#marker3172)" stroke-dasharray="4, 8"></path><path id="learn" d="m410 160v-40h-140v250h130v-50" marker-end="url(#marker4005)" marker-start="url(#marker3806)" stroke-dasharray="4,8"></path></g></g><text id="learn-text" transform="rotate(-90)" x="-319.70435" y="290.7066" font-family="sans-serif" fill="var(--text-color)" font-size="18.867px" stroke-width=".47167" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="-319.70435" y="290.7066" font-family="sans-serif" fill="var(--text-color)" font-size="18.867px" stroke-width=".47167" style="font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Learn from Reward</tspan></text><g id="agent" stroke="var(--text-color)"><rect x="387.54" y="211.12" width="63.797" height="63.797" ry="0" fill="none"></rect><rect x="393.92" y="217.5" width="51.036" height="51.036" ry="0" fill="none"></rect><circle cx="419.44" cy="243.01" r="9.6947" fill="#fff" fill-rule="evenodd" stroke-linejoin="round"></circle><g fill="none"><path d="m398 209.63v-13.333h-13.333v-13.333"></path><path d="m411.33 209.63v-26.667"></path><path d="m424.67 209.63v-26.667"></path><path d="m438 209.63v-13.333h13.333v-13.333"></path><path d="m451.33 222.96h13.333v-13.333h13.333"></path><path d="m451.33 236.3h26.667"></path><path d="m451.33 249.63h26.667"></path><path d="m451.33 262.96h13.333v13.333h13.333"></path><path d="m384.67 222.96h-13.333v-13.333h-13.333"></path><path d="m384.67 236.3h-26.667"></path><path d="m384.67 249.63h-26.667"></path><path d="m384.67 262.96h-13.333v13.333h-13.333"></path><path d="m398 276.3v13.333h-13.333v13.333"></path><path d="m411.33 276.3v26.667"></path><path d="m424.67 276.3v26.667"></path><path d="m438 276.3v13.333h13.333v13.333"></path></g></g></g></svg></div>
+</div>
+
+  <p>The interaction cycle starts with the the agent receiving the current state
+    of the environment. Based on that state the agent generates the action it
+    would like to take, which is sent to the environment. The environment
+    calculates the reward for that action and transitions into a new state,
+    while taking the action of the agent and the current state into account. The
+    new state and the reward is finally transmitted to the agent. The agent can
+    use the reward as feedback to learn to make better decisions. The new state
+    is once again used to generates a new action and the cycle repeats,
+    ponentially forever.
+  </p>
+
+  <p class="info">In reinforcement learning there are just 3 types of data that need to be
+    send between the agent and the environment: <strong>states</strong>,
+    <strong>actions</strong>
+    and <strong>rewards</strong>.
+  </p>
+  <div class="separator"></div>
+
+  <h2>State</h2>
+
+  <p>The state describes how the environment actually looks like. It is the
+    situation the agent faces and needs to take into account to make good
+    decisions.
+  </p>
+
+  <p class="info">The state is the representation of the current condition of the environment.
+  </p>
+  <div class="flex-container svelte-1a4hyrc"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+    <table class="svelte-68jpdp"><thead><tr><th class="svelte-68jpdp">Column</th>
+      <th class="svelte-68jpdp">Row</th></tr></thead>
+  <tbody></tbody>
+</table></div>
+
+  <p>In our simple gridworld example all the agent needs to know to make the
+    decisions is the location of the circle in the environment. In the starting
+    position the state would be row=0 and column=0. The state to the right of
+    the starting position would be row equals to 0 and column equals to 1,
+    meaning (0, 1). Based on the position the agent can choose the path towards
+    the triangle. Above the animation you can observe how the state changes
+    depending on the position of the circle.
+  </p>
+
+  <p>This is not the only way to represent the the state of the environment. The
+    state can be represented by a scalar, a vector, a matrix or a tensor and can
+    be either discrete or continuous. In future chapters we will see more
+    complex environments and learn how to deal with those. For now it is
+    sufficient to know what role the state plays in the action-environment
+    interaction.
+  </p>
+
+  <div class="separator"></div>
+
+  <h2>Action</h2>
+  <p>The action is the behaviour the agent chooses based on the state of the
+    environment (or sometimes randomly). Like the state the action can be a
+    scalar, a vector, a matrix or a tensor of discrete or continuous values.
+  </p>
+  <p class="info">The action is the representation of the decision of the agent.
+  </p>
+  <div class="flex-container svelte-1a4hyrc"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+    <div class="container"><div class="container svelte-1sizmlt"><div style="max-width: 150;" class="svg-container svelte-1sizmlt"><svg><circle cx="75" cy="75" r="70" fill="none" stroke="var(--text-color)"></circle><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="var(--text-color)"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs></svg></div>
+</div>
+
+  <table class="svelte-ufdfb7"><thead><tr><th class="svelte-ufdfb7">Action</th></tr></thead>
+    <tbody><tr><td class="svelte-ufdfb7">null</td></tr></tbody></table>
+</div></div>
+  <p>In the above gridworld example the agent can move north, east, south and
+    west. Each action is encoded by a discrete scalar value, where north equals
+    0, east equals 1, south equals 2 and west equals 3.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Reward</h2>
+  <p>The reward is what the agent receives from the environment for an action. It
+    is the value that the environment uses to reinforce a behaviour to solve an
+    environment and it is the value that the agent uses to improve it&#39;s
+    behaviour.
+  </p>
+  <p>Unlike the action or the state the reward has to be a scalar, one single
+    number, it is not possible for the reward to be a vector, matrix or tensor.
+    As expected larger numbers represent larger or better rewards so that the
+    reward of 1 is higher than the reward of -1.
+  </p>
+  <p class="info">The reward is the scalar signal to reinforce certain behaviour of the agent.
+  </p>
+  <div class="flex-container svelte-1a4hyrc"><div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+    <table class="svelte-68jpdp"><thead><tr><th class="svelte-68jpdp">Reward</th></tr></thead>
+  <tbody></tbody>
+</table></div>
+  <p>In this gridworld example the agent receives a reward of -1 for each step
+    taken with the exception of reaching the triangle, where the agent receives
+    a reward of +1.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Timestep</h2>
+  <p>Reinforcement learning works in discrete timesteps. Each iteration where the
+    environment and the agent each have sent their data constitutes a timestep.
+  </p>
+  <p class="info">In reinforcement learning each iteration of exchanging an action for a state
+    and a reward is called a timestep.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1tr7phi">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1tr7phi"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 79],
+				params: {},
+				routeId: "blocks/reinforcement_learning/intuition/states_actions_rewards"
+			}
+		});
+	</script></div>
+	</body>
+</html>

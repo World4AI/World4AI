@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Sigmoid and Softmax</title><meta name="description" content="The sigmoid activation function bounds the outputs between 0 and 1, allowing the results to be interpreted as probabilities." data-svelte="svelte-18pvyou">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/sigmoid_softmax-f57ce318.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Plot-474e03af.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Slider-2b4fd518.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/logistic_regression/sigmoid_softmax.svelte-b48e0321.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Plot-e628e9dd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Slider-19e7021e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn selected">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h1>Sigmoid and Softmax</h1>
+  <div class="separator"></div>
+  <p>Let us start from the basic assumption, that we want to come up with a
+    classification algorithm. Similar to linear regression there should be
+    learnable parameters <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, but unlike with linear regression the output of the algorithm should be
+    the probability to belong to a particular category.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Linear Regression</h2>
+  <p>We might start by implementing simple linear regression without any
+    adjustments. Let us assume that at the moment we face two possible
+    categories and therefore the output <span class="placeholder svelte-1mpoqm2">y</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is either 0 or 1. We therefore
+    need to train a model that produces values between 0 and 1. These values can
+    be regarded as probabilities to belong to the category 1. If the output is 0.3
+    for example, the model predicts that based on the features we are dealing with
+    category 1 with 30% probability and with 70% probability we are dealing with
+    category 0.
+  </p>
+  <p>We could draw a line just like the one below and at first glance this seems
+    to be a reasonable approach. Higher values of some feature correspond to a
+    higher probability to belong to the &quot;blue&quot; category and lower values of the
+    same feature correspond to a lower probability.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.20 svelte-481epo" transform="translate(0, 172)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.20</text></g><g class="tick tick-0.40 svelte-481epo" transform="translate(0, 134)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.40</text></g><g class="tick tick-0.60 svelte-481epo" transform="translate(0, 96)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.60</text></g><g class="tick tick-0.80 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.80</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(140,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">2</text></g><g class="tick svelte-481epo" transform="translate(220,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">4</text></g><g class="tick svelte-481epo" transform="translate(300,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">6</text></g><g class="tick svelte-481epo" transform="translate(380,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">8</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">10</text></g></g><text class="label svelte-481epo" x="260" y="245">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Label</text><path d="M60,210L460,20" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="60" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="100" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="140" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="180" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="220" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="300" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="340" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="380" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="420" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="460" cy="20" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <p>We could also get into trouble with linear regression and our regression
+    line could produce results that are above 1 or below 0, values that can not
+    be interpreted as probabilities. Especially when our model faces data that
+    contains new unforseen features, the linear regression model would break
+    apart.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick--0.2 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">-0.2</text></g><g class="tick tick-0 svelte-481epo" transform="translate(0, 182.85714285714286)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.2 svelte-481epo" transform="translate(0, 155.7142857142857)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.2</text></g><g class="tick tick-0.4 svelte-481epo" transform="translate(0, 128.57142857142858)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.4</text></g><g class="tick tick-0.6 svelte-481epo" transform="translate(0, 101.42857142857142)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.6</text></g><g class="tick tick-0.8 svelte-481epo" transform="translate(0, 74.28571428571429)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.8</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 47.14285714285713)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g><g class="tick tick-1.2 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1.2</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(88.57142857142857,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-1</text></g><g class="tick svelte-481epo" transform="translate(145.71428571428572,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g><g class="tick svelte-481epo" transform="translate(202.85714285714283,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">3</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">5</text></g><g class="tick svelte-481epo" transform="translate(317.14285714285717,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">7</text></g><g class="tick svelte-481epo" transform="translate(374.2857142857143,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">9</text></g><g class="tick svelte-481epo" transform="translate(431.42857142857144,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">11</text></g></g><text class="label svelte-481epo" x="260" y="245">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Label</text><path d="M60,210L460,20" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="117.14285714285714" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="60" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="88.57142857142857" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="145.71428571428572" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="174.28571428571428" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="202.85714285714283" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="231.42857142857142" cy="182.85714285714286" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="288.57142857142856" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="317.14285714285717" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="345.7142857142857" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="374.2857142857143" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="402.85714285714283" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="431.42857142857144" cy="47.14285714285713" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="460" cy="47.14285714285713" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <div class="separator"></div>
+
+  <h2>Threshold Activation</h2>
+  <p>In our second attempt to construct a classification algorithm we could the
+    original threshold activation function that was used in the McCulloch and
+    Pitts neuron.
+  </p>
+  <p>We could use the threshold of 5, which would mean that each sample with a
+    feature value above 5 is classified into the &quot;blue&quot; category and the rest
+    would be classified as the &quot;red&quot; category.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+      f(x) = 
+      \left\{ 
+      \begin{array}{rcl}
+      0 &amp; for &amp; x \leq 5 \\ 
+      1 &amp; for &amp; x > 5 \\
+      \end{array}
+      \right.
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.2 svelte-481epo" transform="translate(0, 172)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.2</text></g><g class="tick tick-0.4 svelte-481epo" transform="translate(0, 134)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.4</text></g><g class="tick tick-0.6 svelte-481epo" transform="translate(0, 96)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.6</text></g><g class="tick tick-0.8 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.8</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(88.57142857142857,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-1</text></g><g class="tick svelte-481epo" transform="translate(145.71428571428572,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g><g class="tick svelte-481epo" transform="translate(202.85714285714283,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">3</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">5</text></g><g class="tick svelte-481epo" transform="translate(317.14285714285717,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">7</text></g><g class="tick svelte-481epo" transform="translate(374.2857142857143,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">9</text></g><g class="tick svelte-481epo" transform="translate(431.42857142857144,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">11</text></g></g><text class="label svelte-481epo" x="260" y="245">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Label</text><path d="M60,210L88.57142857142857,210L117.14285714285714,210L145.71428571428572,210L174.28571428571428,210L202.85714285714283,210L231.42857142857142,210L260,210L260,20L288.57142857142856,20L317.14285714285717,20L345.7142857142857,20L374.2857142857143,20L402.85714285714283,20L431.42857142857144,20L460,20" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="117.14285714285714" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="60" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="88.57142857142857" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="145.71428571428572" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="174.28571428571428" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="202.85714285714283" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="231.42857142857142" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="288.57142857142856" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="317.14285714285717" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="345.7142857142857" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="374.2857142857143" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="402.85714285714283" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="431.42857142857144" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="460" cy="20" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <p>While this rule perfectly separates the data into the two categories, the
+    threshold function is not differentiable. A non differentiable function
+    would prevent us from applying gradient descent, which would limit our
+    ability to learn optimal weights and biases.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Sigmoid</h2>
+  <p>The sigmoid function <span class="placeholder svelte-1mpoqm2">\sigma(x) = \dfrac{1}{1 + e^{-x}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is an S shaped function that is commonly used in machine learning to produce
+    probabilites, because the function does not display any of the problems that
+    we faced with the two approaches above.
+  </p>
+
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.1 svelte-481epo" transform="translate(0, 191)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.1</text></g><g class="tick tick-0.2 svelte-481epo" transform="translate(0, 172)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.2</text></g><g class="tick tick-0.3 svelte-481epo" transform="translate(0, 153)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.3</text></g><g class="tick tick-0.4 svelte-481epo" transform="translate(0, 134)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.4</text></g><g class="tick tick-0.5 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.5</text></g><g class="tick tick-0.6 svelte-481epo" transform="translate(0, 96)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.6</text></g><g class="tick tick-0.7 svelte-481epo" transform="translate(0, 77)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.7</text></g><g class="tick tick-0.8 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.8</text></g><g class="tick tick-0.9 svelte-481epo" transform="translate(0, 39)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.9</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-6</text></g><g class="tick svelte-481epo" transform="translate(93.33333333333333,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-5</text></g><g class="tick svelte-481epo" transform="translate(126.66666666666666,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-4</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-3</text></g><g class="tick svelte-481epo" transform="translate(193.33333333333331,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-2</text></g><g class="tick svelte-481epo" transform="translate(226.66666666666669,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-1</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(293.33333333333337,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g><g class="tick svelte-481epo" transform="translate(326.66666666666663,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">2</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">3</text></g><g class="tick svelte-481epo" transform="translate(393.33333333333337,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">4</text></g><g class="tick svelte-481epo" transform="translate(426.66666666666663,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">5</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">6</text></g></g><text class="label svelte-481epo" x="260" y="245">x</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">f(x)</text><path d="M60,209.5302016002394L63.33333333333332,209.48092745502788L66.66666666666664,209.4265008983054L69.99999999999997,209.36638661159148L73.33333333333329,209.29999441910718L76.6666666666666,209.22667383397973L79.99999999999993,209.1457080994212L83.33333333333326,209.0563076864892L86.66666666666657,208.9576032091044L89.99999999999989,208.848637716599L93.33333333333321,208.72835832438588L96.66666666666654,208.5956071445864L99.99999999999986,208.44911148089963L103.33333333333317,208.2874732559589L106.6666666666665,208.1091576452882L109.99999999999983,207.91248090018732L113.33333333333314,207.6955973529879L116.66666666666646,207.4564856127437L119.99999999999979,207.19293397827812L123.33333333333312,206.90252511942623L126.66666666666643,206.58262010720264L129.99999999999977,206.23034191052528L133.33333333333312,205.84255852213522L136.66666666666643,205.41586593064287L139.99999999999977,204.9465712203955L143.33333333333312,204.43067615724232L146.66666666666646,203.86386170729443L149.99999999999977,203.2414740381992L153.33333333333312,202.5585126686148L156.66666666666646,201.8096215611937L159.9999999999998,200.98908409626236L163.33333333333312,200.09082301510068L166.66666666666646,199.108406579215L169.99999999999983,198.03506234917072L173.33333333333312,196.86370013476414L176.6666666666665,195.5869457959638L179.99999999999983,194.19718766615483L183.33333333333314,192.68663740717741L186.6666666666665,191.0474070672599L189.99999999999983,189.27160397283365L193.33333333333314,187.35144481579778L196.66666666666646,185.27938987103053L199.99999999999983,183.04829766890745L203.33333333333317,180.65159963412853L206.66666666666652,178.08349317544577L209.99999999999983,175.33915047679244L213.33333333333317,172.41493882613068L216.66666666666652,169.30864677808628L219.99999999999986,166.01970886481354L223.33333333333317,162.5494200630725L226.66666666666652,158.9011299397011L229.99999999999986,155.08040549875093L233.3333333333332,151.09515141424654L236.66666666666652,146.95567671195172L239.99999999999983,142.67469818290132L243.3333333333332,138.26727292835255L246.66666666666652,133.75065542136608L249.99999999999986,129.1440781942154L253.33333333333317,124.46845948937101L256.6666666666665,119.74604562099881L259.9999999999999,115.0000000000002L263.3333333333332,110.25395437900163L266.6666666666665,105.53154051062941L269.99999999999983,100.85592180578502L273.33333333333314,96.24934457863431L276.6666666666665,91.73272707164784L279.99999999999983,87.32530181709906L283.3333333333332,83.04432328804864L286.6666666666665,78.90484858575384L289.99999999999983,74.91959450124943L293.33333333333314,71.09887006029926L296.66666666666646,67.45057993692781L299.99999999999983,63.98029113518682L303.33333333333314,60.691353221914014L306.6666666666665,57.58506117386958L309.99999999999983,54.66084952320783L313.33333333333314,51.91650682455444L316.66666666666646,49.34840036587168L319.99999999999983,46.95170233109277L323.3333333333332,44.7206101289697L326.6666666666666,42.64855518420242L329.9999999999999,40.72839602716652L333.3333333333332,38.95259293274025L336.6666666666666,37.31336259282271L339.9999999999999,35.80281233384531L343.3333333333332,34.41305420403634L346.6666666666665,33.13629986523596L349.99999999999983,31.964937650829356L353.3333333333332,30.8915934207851L356.6666666666665,29.909176984899403L359.99999999999983,29.010915903737704L363.33333333333326,28.190378438806405L366.6666666666666,27.441487331385268L369.9999999999999,26.75852596180091L373.3333333333332,26.13613829270561L376.6666666666666,25.569323842757708L379.99999999999994,25.05342877960453L383.33333333333326,24.584134069357148L386.6666666666666,24.157441477864808L389.99999999999994,23.769658089474717L393.33333333333326,23.417379892797392L396.6666666666666,23.097474880573774L399.9999999999999,22.80706602172188L403.3333333333332,22.543514387256327L406.6666666666665,22.304402647012118L409.99999999999983,22.087519099812702L413.33333333333314,21.890842354711808L416.66666666666646,21.71252674404111L419.99999999999983,21.550888519100376L423.33333333333314,21.40439285541356L426.6666666666665,21.27164167561414L429.99999999999983,21.151362283401006L433.33333333333314,21.042396790895598L436.66666666666646,20.943692313510837L439.9999999999998,20.85429190057882L443.3333333333331,20.773326166020247L446.6666666666664,20.700005580892864L449.9999999999997,20.633613388408527L453.3333333333331,20.573499101694583L456.6666666666664,20.519072544972083L459.9999999999997,20.469798399760627" stroke="black" class="svelte-481epo"></path></svg></div>
+</div>
+  <p><span class="placeholder svelte-1mpoqm2">\sigma(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is always bounded between 0 and 1, no matter how large
+    or how negative the inputs are. This allows us to interpret the results as probabilities.
+  </p>
+  <p>The sigmoid is a softer version of the threshold function. It smoothly
+    changes between the probabilities. The function is therefore differentiable,
+    which allows us to use gradient descent to learn the weights and biases.
+  </p>
+  <p>Usually the output of 0.5 (50%) is regarded as the cutoff point. That would
+    mean that inputs above 0 would be classified as category one and inputs
+    below 0 would be classified as category 0.
+  </p>
+  <p>In practice we combine linear regression with a sigmoid function, which
+    forms the basis for logistic regression. The output of logistic regression
+    is used as the input into the sigmoid.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\hat{y} = \sigma(\mathbf{w}, x) = \dfrac{1}{1 + e^{-z}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where <span class="placeholder svelte-1mpoqm2">z = \mathbf{x} \mathbf{w}^T + b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This procedure allows to learn parameters <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> which align the true categories <span class="placeholder svelte-1mpoqm2">\mathbf{y}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    with the probabilities <span class="placeholder svelte-1mpoqm2">\mathbf{\hat{y}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Below
+    is an interactive example that lets you change the weight and the bias and
+    observe how the probabilities would change based on the inputs. Using both
+    sliders you can move and rotate the probabilities as much as you want. Try
+    to find parameters that would fit the data.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0.1 svelte-481epo" transform="translate(0, 191)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.1</text></g><g class="tick tick-0.2 svelte-481epo" transform="translate(0, 172)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.2</text></g><g class="tick tick-0.3 svelte-481epo" transform="translate(0, 153)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.3</text></g><g class="tick tick-0.4 svelte-481epo" transform="translate(0, 134)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.4</text></g><g class="tick tick-0.5 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.5</text></g><g class="tick tick-0.6 svelte-481epo" transform="translate(0, 96)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.6</text></g><g class="tick tick-0.7 svelte-481epo" transform="translate(0, 77)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.7</text></g><g class="tick tick-0.8 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.8</text></g><g class="tick tick-0.9 svelte-481epo" transform="translate(0, 39)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.9</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-16</text></g><g class="tick svelte-481epo" transform="translate(85,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-14</text></g><g class="tick svelte-481epo" transform="translate(110,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-12</text></g><g class="tick svelte-481epo" transform="translate(135,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-10</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-8</text></g><g class="tick svelte-481epo" transform="translate(185,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-6</text></g><g class="tick svelte-481epo" transform="translate(210,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-4</text></g><g class="tick svelte-481epo" transform="translate(235,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">-2</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(285,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">2</text></g><g class="tick svelte-481epo" transform="translate(310,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">4</text></g><g class="tick svelte-481epo" transform="translate(335,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">6</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">8</text></g><g class="tick svelte-481epo" transform="translate(385,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">10</text></g><g class="tick svelte-481epo" transform="translate(410,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">12</text></g><g class="tick svelte-481epo" transform="translate(435,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">14</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">16</text></g></g><text class="label svelte-481epo" x="260" y="245">x</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">f(x)</text><path d="M60,209.9999786183192L61.24999999999999,209.99997636958847L62.49999999999999,209.99997388435676L63.74999999999999,209.999971137751L64.99999999999999,209.99996810228228L66.24999999999997,209.99996474757066L67.49999999999997,209.99996104004106L68.74999999999997,209.99995694258735L69.99999999999997,209.99995241420086L71.24999999999996,209.99994740956004L72.49999999999996,209.9999418785769L73.74999999999996,209.99993576589554L74.99999999999994,209.9999290103383L76.24999999999994,209.9999215442935L77.49999999999994,209.9999132930386L78.74999999999994,209.99990417399243L79.99999999999993,209.99989409588886L81.24999999999991,209.99988295786312L82.49999999999991,209.9998706484425L83.74999999999991,209.9998570444307L84.99999999999991,209.99984200967475L86.24999999999991,209.99982539370245L87.4999999999999,209.9998070302165L88.7499999999999,209.99978673543L89.99999999999989,209.99976430622718L91.24999999999989,209.9997395181307L92.49999999999989,209.99971212305488L93.74999999999989,209.99968184682294L94.99999999999989,209.99964838642316L96.24999999999986,209.99961140697613L97.49999999999986,209.99957053838338L98.74999999999986,209.99952537162375L99.99999999999986,209.99947545465946L101.24999999999986,209.99942028791276L102.49999999999986,209.99935931926592L103.74999999999986,209.999291938536L104.99999999999983,209.99921747136847L106.24999999999983,209.9991351724885L107.49999999999983,209.99904421824266L108.74999999999983,209.9989436983566L109.99999999999983,209.9988326068256L111.24999999999982,209.99870983184735L112.49999999999982,209.99857414469656L113.7499999999998,209.99842418742895L114.9999999999998,209.99825845929323L116.2499999999998,209.99807530171367L117.49999999999979,209.99787288169404L118.7499999999998,209.99764917347684L119.99999999999979,209.99740193827395L121.24999999999977,209.99712870186622L122.49999999999977,209.99682672984886L123.74999999999977,209.99649300027383L124.99999999999977,209.99612417341683L126.24999999999976,209.9957165583664L127.49999999999977,209.9952660761015L128.74999999999977,209.99476821868822L129.99999999999974,209.99421800418892L131.24999999999974,209.99360992683265L132.49999999999974,209.99293790195043L133.74999999999974,209.9921952051247L134.99999999999972,209.99137440494653L136.24999999999972,209.9904672887101L137.49999999999972,209.98946478030265L138.74999999999972,209.98835684947286L139.99999999999972,209.98713241157225L141.24999999999972,209.98577921677298L142.49999999999972,209.98428372765818L143.74999999999972,209.98263098396808L144.99999999999972,209.98080445315753L146.2499999999997,209.97878586528037L147.4999999999997,209.97655503056262L148.7499999999997,209.97408963785492L149.9999999999997,209.97136503196862L151.24999999999966,209.9683539676923L152.49999999999966,209.96502633805696L153.74999999999966,209.96134887416952L154.99999999999966,209.95728481365566L156.24999999999966,209.95279353445054L157.49999999999966,209.94783015034076L158.74999999999966,209.9423450642945L159.99999999999966,209.93628347521135L161.24999999999963,209.92958483328098L162.49999999999966,209.92218223865265L163.74999999999963,209.9140017775843L164.99999999999963,209.9049617896549L166.2499999999996,209.89497205898454L167.4999999999996,209.88393292170747L168.74999999999963,209.87173428117978L169.9999999999996,209.85825452157104L171.2499999999996,209.84335930958432L172.4999999999996,209.82690027306387L173.7499999999996,209.80871354418372L174.99999999999957,209.78861815375654L176.24999999999957,209.7664142619573L177.49999999999957,209.74188120941852L178.74999999999957,209.71477537122L179.99999999999957,209.68482779476687L181.24999999999957,209.65174160092639L182.49999999999955,209.61518912608057L183.74999999999955,209.5748087809575L184.99999999999955,209.53020160023942L186.24999999999955,209.4809274550279L187.49999999999955,209.42650089830542L188.74999999999955,209.3663866115915L189.99999999999955,209.29999441910718L191.24999999999952,209.22667383397976L192.49999999999955,209.14570809942123L193.74999999999955,209.0563076864892L194.99999999999955,208.95760320910446L196.2499999999995,208.84863771659906L197.4999999999995,208.7283583243859L198.74999999999952,208.5956071445865L199.9999999999995,208.4491114808997L201.2499999999995,208.287473255959L202.49999999999952,208.10915764528826L203.7499999999995,207.9124809001874L204.9999999999995,207.695597352988L206.2499999999995,207.4564856127438L207.4999999999995,207.19293397827823L208.7499999999995,206.90252511942634L209.99999999999946,206.58262010720276L211.24999999999946,206.23034191052542L212.49999999999946,205.8425585221354L213.7499999999995,205.41586593064304L214.9999999999995,204.9465712203957L216.24999999999946,204.43067615724254L217.4999999999995,203.86386170729463L218.7499999999995,203.2414740381994L219.9999999999995,202.55851266861507L221.2499999999995,201.80962156119398L222.49999999999946,200.98908409626267L223.7499999999995,200.09082301510102L224.9999999999995,199.10840657921534L226.2499999999995,198.03506234917114L227.49999999999952,196.8637001347646L228.7499999999995,195.58694579596428L229.9999999999995,194.19718766615534L231.2499999999995,192.68663740717798L232.4999999999995,191.04740706726054L233.74999999999952,189.27160397283433L234.9999999999995,187.3514448157985L236.2499999999995,185.27938987103127L237.4999999999995,183.04829766890828L238.7499999999995,180.6515996341294L239.99999999999952,178.08349317544673L241.2499999999995,175.33915047679344L242.4999999999995,172.41493882613176L243.7499999999995,169.30864677808742L244.9999999999995,166.0197088648147L246.24999999999952,162.54942006307377L247.49999999999952,158.90112993970243L248.74999999999952,155.0804054987523L249.99999999999952,151.095151414248L251.2499999999995,146.95567671195326L252.49999999999952,142.6746981829029L253.7499999999995,138.26727292835417L254.99999999999952,133.7506554213677L256.2499999999995,129.14407819421706L257.4999999999995,124.46845948937269L258.7499999999995,119.7460456210005L259.9999999999995,115.0000000000019L261.2499999999995,110.2539543790033L262.4999999999995,105.53154051063106L263.74999999999955,100.85592180578666L264.9999999999995,96.24934457863596L266.2499999999995,91.73272707164942L267.4999999999995,87.32530181710061L268.7499999999995,83.04432328805012L269.99999999999955,78.90484858575529L271.2499999999995,74.91959450125083L272.4999999999995,71.09887006030057L273.7499999999995,67.45057993692907L274.9999999999995,63.980291135188L276.24999999999955,60.69135322191512L277.4999999999995,57.585061173870685L278.7499999999995,54.66084952320885L279.9999999999995,51.91650682455541L281.2499999999995,49.34840036587257L282.49999999999955,46.95170233109359L283.7499999999995,44.72061012897042L284.9999999999995,42.648555184203104L286.2499999999995,40.72839602716719L287.4999999999995,38.95259293274086L288.7499999999995,37.31336259282327L289.9999999999995,35.802812333845814L291.2499999999995,34.413054204036804L292.4999999999995,33.13629986523636L293.7499999999995,31.964937650829775L294.9999999999995,30.891593420785462L296.24999999999955,29.909176984899737L297.4999999999995,29.01091590373802L298.7499999999995,28.190378438806682L299.9999999999995,27.4414873313855L301.2499999999995,26.758525961801098L302.49999999999955,26.13613829270582L303.7499999999995,25.56932384275792L304.9999999999995,25.05342877960468L306.2499999999995,24.584134069357297L307.4999999999995,24.157441477864957L308.74999999999955,23.769658089474888L309.9999999999995,23.41737989279752L311.2499999999995,23.0974748805739L312.4999999999995,22.80706602172201L313.7499999999995,22.543514387256412L314.99999999999955,22.3044026470122L316.2499999999995,22.08751909981277L317.4999999999995,21.890842354711893L318.7499999999995,21.71252674404113L319.9999999999995,21.55088851910046L321.2499999999995,21.404392855413644L322.49999999999943,21.271641675614184L323.7499999999995,21.15136228340105L324.9999999999995,21.04239679089564L326.24999999999943,20.94369231351088L327.49999999999943,20.85429190057886L328.74999999999943,20.77332616602029L329.9999999999995,20.700005580892864L331.24999999999943,20.63361338840857L332.49999999999943,20.573499101694626L333.74999999999943,20.519072544972126L334.99999999999943,20.469798399760627L336.24999999999943,20.425191219042517L337.49999999999943,20.38481087391948L338.74999999999943,20.348258399073636L339.99999999999943,20.31517220523315L341.24999999999943,20.285224628780032L342.49999999999943,20.258118790581534L343.74999999999943,20.2335857380427L344.99999999999943,20.211381846243484L346.24999999999943,20.191286455816307L347.4999999999994,20.173099726936115L348.74999999999943,20.15664069041568L349.99999999999943,20.14174547842897L351.24999999999943,20.128265718820227L352.4999999999994,20.116067078292534L353.7499999999994,20.105027941015486L354.99999999999943,20.095038210345102L356.2499999999994,20.085998222415693L357.4999999999994,20.077817761347355L358.7499999999994,20.070415166719027L359.9999999999994,20.063716524788653L361.2499999999994,20.057654935705475L362.4999999999993,20.052169849659272L363.7499999999994,20.047206465549497L364.9999999999994,20.042715186344335L366.2499999999994,20.038651125830487L367.4999999999993,20.034973661943045L368.7499999999993,20.031646032307684L369.9999999999994,20.02863496803134L371.2499999999993,20.02591036214512L372.4999999999993,20.0234449694374L373.7499999999993,20.021214134719617L374.9999999999993,20.01919554684247L376.2499999999993,20.017369016031918L377.49999999999926,20.015716272341802L378.7499999999993,20.014220783227L379.9999999999993,20.012867588427774L381.24999999999926,20.011643150527167L382.49999999999926,20.01053521969734L383.74999999999926,20.00953271128993L384.9999999999993,20.008625595053456L386.24999999999926,20.0078047948753L387.49999999999926,20.007062098049555L388.74999999999926,20.006390073167356L389.99999999999926,20.00578199581112L391.24999999999926,20.005231781311792L392.4999999999992,20.004733923898474L393.74999999999926,20.004283441633586L394.99999999999926,20.003875826583183L396.2499999999992,20.00350699972616L397.4999999999992,20.00317327015111L398.7499999999992,20.002871298133797L399.99999999999926,20.002598061726072L401.2499999999992,20.002350826523152L402.49999999999915,20.00212711830595L403.7499999999992,20.001924698286356L404.9999999999992,20.001741540706764L406.2499999999992,20.001575812571044L407.49999999999915,20.001425855303456L408.74999999999915,20.001290168152618L409.9999999999992,20.00116739317442L411.24999999999915,20.001056301643363L412.49999999999915,20.000955781757355L413.74999999999915,20.000864827511514L414.99999999999915,20.000782528631547L416.24999999999915,20.000708061463992L417.4999999999991,20.0006406807341L418.74999999999915,20.000579712087244L419.99999999999915,20.00052454534056L421.24999999999915,20.00047462837628L422.4999999999991,20.000429461616612L423.7499999999991,20.00038859302387L424.99999999999915,20.000351613576854L426.2499999999991,20.000318153177055L427.4999999999991,20.000287876945148L428.7499999999991,20.000260481869326L429.9999999999991,20.00023569377281L431.2499999999991,20.000213264570007L432.49999999999903,20.000192969783487L433.7499999999991,20.000174606297538L434.9999999999991,20.000157990325278L436.24999999999903,20.00014295556929L437.49999999999903,20.00012935155745L438.74999999999903,20.00011704213687L439.9999999999991,20.000105904111123L441.24999999999903,20.000095826007552L442.4999999999991,20.000086706961415L443.74999999999903,20.0000784557065L444.99999999999903,20.00007098966168L446.2499999999991,20.00006423410447L447.49999999999903,20.00005812142313L448.7499999999991,20.00005259043996L449.99999999999903,20.00004758579915L451.24999999999903,20.000043057412665L452.49999999999903,20.00003895995892L453.74999999999903,20.000035252429353L454.9999999999991,20.00003189771772L456.24999999999903,20.000028862249017L457.49999999999903,20.000026115643237L458.74999999999903,20.000023630411498L459.99999999999903,20.000021381680796" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="260" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="235" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="247.5" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="272.5" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="285" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="297.5" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="310" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="335" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="347.5" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="372.5" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="385" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="397.5" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="410" cy="20" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <div class="flex-container svelte-1abrujo"><div class="svelte-1abrujo"><span class="placeholder svelte-1mpoqm2">w</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 1</div>
+    <input type="range" min="-5" max="5" step="0.1" class="svelte-1tcoic2" value="1"></div>
+  <div class="flex-container svelte-1abrujo"><div class="svelte-1abrujo"><span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0</div>
+    <input type="range" min="-30" max="30" step="0.1" class="svelte-1tcoic2" value="0"></div>
+
+  <p>When we are dealing with a classification problem, we are trying to draw a
+    decision boundary between the different classes in order to separate the
+    data as good as possible. In the below example we have a classification
+    problem with two features and two classes. We utilize logistic regression
+    (the sigmoid function) with two weights <span class="placeholder svelte-1mpoqm2">w_1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, <span class="placeholder svelte-1mpoqm2">w_2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the bias <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> to draw a boundary. The boundary represents the
+    exact cutoff, the 50% probability. On the one side of the boundary you would
+    have
+    <span class="placeholder svelte-1mpoqm2">\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} > 0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, while on the other side of the boundary you have <span class="placeholder svelte-1mpoqm2">\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} &lt; 0.5</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. By changing the weights and the bias you can rotate and move the decision
+    boundary respectively.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.25 svelte-481epo" transform="translate(0, 162.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.25</text></g><g class="tick tick-0.50 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.50</text></g><g class="tick tick-0.75 svelte-481epo" transform="translate(0, 67.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.75</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.25</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.50</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.75</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="260" y="245">Feature 1</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Feature 2</text><path d="M60,200.5L460,58.000000000000014" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="60" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="100" cy="166.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="33.29999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="120" cy="90.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="185.29999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="100" cy="33.29999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="108" cy="109.29999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="188" cy="166.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="148" cy="115" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="256" cy="191" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="240" cy="153" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="220" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="200" cy="115" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="140" cy="172" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="460" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="40.9" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="67.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="440" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="320" cy="57.99999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="134" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="162.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="105.49999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="440" cy="143.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="181.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="29.500000000000007" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="420" cy="105.49999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="420" cy="156.79999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="452" cy="29.500000000000007" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <div class="flex-container svelte-1abrujo"><div class="svelte-1abrujo"><span class="placeholder svelte-1mpoqm2">w_1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: -0.15</div>
+    <input type="range" min="-5" max="5" step="0.01" class="svelte-1tcoic2" value="-0.15"></div>
+  <div class="flex-container svelte-1abrujo"><div class="svelte-1abrujo"><span class="placeholder svelte-1mpoqm2">w_2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0.2</div>
+    <input type="range" min="-5" max="5" step="0.01" class="svelte-1tcoic2" value="0.2"></div>
+  <div class="flex-container svelte-1abrujo"><div class="svelte-1abrujo"><span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: -0.01</div>
+    <input type="range" min="-5" max="5" step="0.01" class="svelte-1tcoic2" value="-0.01"></div>
+  <p>When we apply gradient descent to logistic regression, essentially we are
+    adjusting the weights and the bias to separate the data.
+  </p>
+  <div class="separator"></div>
+  <h2>Softmax</h2>
+  <p>Before we move on to the next chapter, let us shortly discuss what function
+    can be used if we are faced with more than two categories. The explanations
+    below will not make full sense until we reach the chapter that covers the
+    artificial neural networks, but this is a good place to make a short
+    introduction.
+  </p>
+  <p>Let us assume, that we face a classification problem with d possible
+    categories. Our goal is to calculate the probabilities to belong to each of
+    these categories. The softmax function takes a <span class="placeholder svelte-1mpoqm2">d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> dimensional vector
+    <span class="placeholder svelte-1mpoqm2">\mathbf{z}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and returns a vector of the same size
+    that contains the corresponding probabilities.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+softmax(\mathbf{z}) = 
+softmax
+\begin{pmatrix}
+\begin{bmatrix}
+   z_1  \\
+   z_2 \\ 
+   z_3 \\ 
+   \vdots \\
+   z_d 
+\end{bmatrix}
+\end{pmatrix}
+=
+\begin{bmatrix}
+   p_1 \\
+   p_2 \\ 
+   p_3 \\ 
+   \vdots \\
+   p_d
+\end{bmatrix}
+\\
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>If we had four categories for example, the results might look as follows.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+softmax(\mathbf{z}) = 
+
+\begin{bmatrix}
+   0.05 \\
+   0.1 \\ 
+   0.8 \\ 
+   0.05
+\end{bmatrix}
+\\
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Given these numbers, we would assume that it is most likely that the
+    features belong to the category Nr. 3.
+  </p>
+  <p>The values <span class="placeholder svelte-1mpoqm2">\mathbf{z}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> that are used as input into
+    the softmax function are called <strong><span class="highlight svelte-16edlvf">logits</span></strong>. You can
+    imagine that each of the logits is a separate linear regression of the form <span class="placeholder svelte-1mpoqm2">z = \mathbf{x} \mathbf{w}^T + b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and that we have <span class="placeholder svelte-1mpoqm2">d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> linear regressions, as many as there are
+    categories. The weights and the biases for each of the logits are independent
+    of each other, which means that each of the linear regressions produces different
+    results, which leads to a different probability.
+  </p>
+  <p>We calculate the probability for the <span class="placeholder svelte-1mpoqm2">k</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> of <span class="placeholder svelte-1mpoqm2">d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> categories
+    using the following softmax equation.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\large softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Similar to sigmoid function, the softmax function has several advantageous
+    properties. The equation for example guarantees, that the sum of
+    probabilities is exactly 1, thus avoiding any violations of the law of
+    probabilities. Additionally as the name suggest the function is &quot;soft&quot;,
+    which indicates that it is differentiable and can be used in gradient
+    descent.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="u4dg1p">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="u4dg1p"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 43],
+				params: {},
+				routeId: "blocks/deep_learning/logistic_regression/sigmoid_softmax"
+			}
+		});
+	</script></div>
+	</body>
+</html>

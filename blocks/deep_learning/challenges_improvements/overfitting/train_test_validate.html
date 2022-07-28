@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Train Test Validate</title><meta name="description" content="In order to measure the level of overfitting we need to split the dataset into the trainig, the validation and the test sets." data-svelte="svelte-112f2fu">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/train_test_validate-8cde2c21.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/StepButton-6f130556.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Path-9c42b51d.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/YLabel-7560cbb1.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Legend-92b4e047.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate.svelte-f0edf2fc.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/StepButton-44b9569e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Path-3729d76b.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/YLabel-3efdf996.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Legend-cc9102c0.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn selected">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Train, Test, Validate</h1>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>We understand intuitively that overfitting leads to a model that does not
+    generalize well to new unforseen data, but we would also like to have some
+    tools that would allow us to measure the level of overfitting during the
+    training process. It turns out that splitting the dataset into different
+    buckets (sets) is essential to achieve the goal of measuring overfitting.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Data Splitting</h2>
+  <p>All examples that we covered so far assumed that we have a single training
+    dataset. In practice we split the dataset into preferably 3 sets. The
+    training set, the validation set and the test set.
+  </p>
+  <p>The <strong><span class="highlight svelte-16edlvf">training</span></strong> set contians the vast majority of available
+    data. It is the part of the data that is actually used to train a neural network.
+    This part of the data is used in the backpropagation algorithm, the other sets
+    are never used to directly adjust the weights and biases of a neural network.
+  </p>
+  <p>The <strong><span class="highlight svelte-16edlvf">validation</span></strong> set is also used in the training process,
+    but only during the performance measurement step. After each epoch (or batch)
+    we use the training and the validation sets separately to measure the loss. At
+    first both losses decline, but after a while the validation loss starts to increase
+    again, while the training loss keeps decreasing. This is a strong indication
+    that our model overfits to the training data. The larger the divergence, the
+    larger the level of overfitting. The validation set simulates a situation, where
+    the neural network encounters new data, so if we deploy the model with the final
+    (overfitted) weights, the performance of the live model will most likely not
+    correspond to our expectations. We will need to consider techniques to reduce
+    overfitting. More on that in the next sections.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 700px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 300" class="svelte-1sf1opq"><path d="M40,40L44.2,53.20000000000001L48.400000000000006,65.608L52.599999999999994,77.27152000000002L56.8,88.23522880000004L61,98.54111507200005L65.19999999999999,108.22864816768006L69.4,117.33492927761925L73.60000000000001,125.89483352096212L77.8,133.94114350970437L82,141.50467489912214L86.2,148.61439440517483L90.4,155.29753074086435L94.6,161.57967889641247L98.80000000000001,167.48489816262773L103,173.03580427287008L107.20000000000002,178.2536560164979L111.4,183.158436655508L115.6,187.76893045617754L119.80000000000001,192.1027946288069L124,196.17662695107848L128.2,200.00602933401376L132.4,203.60566757397297L136.60000000000002,206.98932751953456L140.79999999999998,210.1699678683625L145,213.15976979626075L149.20000000000002,215.97018360848512L153.4,218.611972591976L157.60000000000002,221.09525423645746L161.79999999999998,223.42953898227L166,225.62376664333382L170.2,227.68634064473375L174.4,229.62516020604977L178.60000000000002,231.44765059368675L182.8,233.16079155806557L187,234.77114406458162L191.2,236.28487542070675L195.39999999999998,237.70778289546433L199.60000000000002,239.0453159217365L203.8,240.30259696643228L208,241.48444114844636L212.2,242.5953746795396L216.39999999999998,243.63965219876718L220.6,244.62127306684116L224.8,245.5439966828307L229,246.41135688186085L233.20000000000002,247.2266754689492L237.39999999999998,247.99307494081225L241.6,248.71349044436352L245.8,249.39068101770172L250,250.02724015663964L254.2,250.62560574724125L258.40000000000003,251.18806940240677L262.6,251.71678523826236L266.8,252.21377812396662L271,252.68095143652863L275.20000000000005,253.12009435033693L279.4,253.53288868931668L283.59999999999997,253.9209153679577L287.79999999999995,254.2856604458802L292,254.62852081912737L296.2,254.95080956997978L300.4,255.25376099578097L304.6,255.53853533603413L308.8,255.80622321587208L313,256.05784982291976L317.20000000000005,256.29437883354456L321.40000000000003,256.5167161035319L325.6,256.72571313731993L329.79999999999995,256.9221703490808L334,257.10684012813596L338.2,257.2804297204478L342.4,257.44360393722087L346.6,257.5969877009876L350.79999999999995,257.74116843892836L355,257.8766983325927L359.20000000000005,258.0040964326371L363.4,258.12385064667893L367.6,258.23641960787813L371.8,258.3422344314055L376,258.44170036552117L380.20000000000005,258.53519834358985L384.4,258.62308644297445L388.59999999999997,258.705701256396L392.79999999999995,258.78335918101226L397,258.85635763015154L401.2,258.92497617234244L405.4,258.9894776020019L409.6,259.0501089458818L413.8,259.10710240912886L418,259.1606762645811L422.20000000000005,259.21103568870626L426.40000000000003,259.2583735473839L430.6,259.30287113454085L434.79999999999995,259.34469886646843L439,259.3840169344803L443.2,259.42097591841144L447.4,259.4557173633068L451.6,259.4883743215084L455.79999999999995,259.5190718622179" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    <path d="M40,40L44.2,51.000000000000014L48.400000000000006,61.45000000000001L52.599999999999994,71.37750000000003L56.8,80.80862500000003L61,89.76819375000002L65.19999999999999,98.27978406250004L69.4,106.36579485937506L73.60000000000001,114.04750511640631L77.8,121.345129860586L82,128.2778733675567L86.2,134.8639796991789L90.4,141.12078071421996L94.6,147.06474167850897L98.80000000000001,152.71150459458352L103,158.07592936485435L107.20000000000002,163.17213289661163L111.4,168.0135262517811L115.6,172.61284993919202L119.80000000000001,176.98220744223244L124,181.13309707012084L128.2,185.0764422166148L132.4,188.82262010578404L136.60000000000002,192.38148910049483L140.79999999999998,195.76241464547007L145,198.97429391319662L149.20000000000002,202.02557921753677L153.4,204.9243002566599L157.60000000000002,207.67808524382693L161.79999999999998,210.29418098163558L166,212.7794719325538L170.2,215.14049833592614L174.4,216.93487840248912L178.60000000000002,218.6574832663895L182.8,220.31118393573394L187,221.89873657830458L191.2,223.4227871151724L195.39999999999998,224.8858756305655L199.60000000000002,226.2904406053429L203.8,227.63882298112918L208,228.93327006188403L212.2,230.17593925940864L216.39999999999998,231.0706610816264L220.6,231.93854124917763L224.8,232.7803850117023L229,233.59697346135124L233.20000000000002,234.38906425751068L237.39999999999998,235.15739232978535L241.6,235.90267055989182L245.8,236.62559044309504L250,237.3268227298022L254.2,238.00701804790813L258.40000000000003,238.44687768694993L262.6,238.87794013321096L266.8,239.30038133054677L271,239.71437370393582L275.20000000000005,240.1200862298571L279.4,240.51768450525998L283.59999999999997,240.90733081515475L287.79999999999995,241.28918419885167L292,241.66340051487464L296.2,242.03013250457713L300.4,242.03013250457713L304.6,242.03013250457713L308.8,242.03013250457713L313,242.03013250457713L317.20000000000005,242.03013250457713L321.40000000000003,241.85043382962292L325.6,241.66893816791915L329.79999999999995,241.48562754959832L334,241.30048382509432L338.2,241.11348866334524L342.4,240.54689332324563L346.6,239.963300122943L350.79999999999995,239.36219912663125L355,238.7430651004302L359.20000000000005,238.10535705344313L363.4,237.44851776504643L367.6,236.77197329799782L371.8,236.07513249693773L376,235.35738647184587L380.20000000000005,234.61810806600124L384.4,233.85665130798128L388.59999999999997,233.07235084722072L392.79999999999995,232.26452137263732L397,231.43245701381645L401.2,230.57543072423096L405.4,229.6926936459579L409.6,228.7834744553366L413.8,227.8469786889967L418,226.88238804966662L422.20000000000005,225.88885969115663L426.40000000000003,224.8655254818913L430.6,223.81149124634806L434.79999999999995,222.72583598373848L439,221.60761106325063L443.2,220.4558393951482L447.4,219.2695145770026L451.6,218.04760001431265L455.79999999999995,216.78902801474206" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    
+<g class="axis y-axis svelte-1tr3h4r"><g class="tick tick-0 svelte-1tr3h4r" transform="translate(0, 260)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0</text></g><g class="tick tick-0.1 svelte-1tr3h4r" transform="translate(0, 238)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.1</text></g><g class="tick tick-0.2 svelte-1tr3h4r" transform="translate(0, 216)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.2</text></g><g class="tick tick-0.3 svelte-1tr3h4r" transform="translate(0, 194)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.3</text></g><g class="tick tick-0.4 svelte-1tr3h4r" transform="translate(0, 172)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.4</text></g><g class="tick tick-0.5 svelte-1tr3h4r" transform="translate(0, 150)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.5</text></g><g class="tick tick-0.6 svelte-1tr3h4r" transform="translate(0, 128)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.6</text></g><g class="tick tick-0.7 svelte-1tr3h4r" transform="translate(0, 106.00000000000001)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.7</text></g><g class="tick tick-0.8 svelte-1tr3h4r" transform="translate(0, 83.99999999999999)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.8</text></g><g class="tick tick-0.9 svelte-1tr3h4r" transform="translate(0, 61.99999999999999)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">0.9</text></g><g class="tick tick-1 svelte-1tr3h4r" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="10" x="28" class="svelte-1tr3h4r">1</text></g></g>
+
+<g class="axis x-axis svelte-1tr3h4r"><g class="tick svelte-1tr3h4r" transform="translate(40,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">0</text></g><g class="tick svelte-1tr3h4r" transform="translate(82,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">10</text></g><g class="tick svelte-1tr3h4r" transform="translate(124,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">20</text></g><g class="tick svelte-1tr3h4r" transform="translate(166,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">30</text></g><g class="tick svelte-1tr3h4r" transform="translate(208,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">40</text></g><g class="tick svelte-1tr3h4r" transform="translate(250,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">50</text></g><g class="tick svelte-1tr3h4r" transform="translate(292,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">60</text></g><g class="tick svelte-1tr3h4r" transform="translate(334,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">70</text></g><g class="tick svelte-1tr3h4r" transform="translate(376,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">80</text></g><g class="tick svelte-1tr3h4r" transform="translate(418,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">90</text></g><g class="tick svelte-1tr3h4r" transform="translate(460,0)"><line y1="260" y2="40" class="svelte-1tr3h4r"></line><text font-size="10" y="271" class="svelte-1tr3h4r">100</text></g></g>
+    <text class="label svelte-1xq181p" font-size="15" x="250" y="292.5">Time</text>
+    <text class="label svelte-13uhf56" font-size="15" transform="rotate(-90 7.5 150)" x="7.5" y="150">Loss</text>
+    <rect x="352.5" y="55.099999999999994" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="365" y="57.599999999999994" class="svelte-1hnqnop">Validation Loss</text>
+    <rect x="352.5" y="70.5" width="5" height="5" fill="var(--main-color-1)" stroke="black"></rect>
+<text fill="black" x="365" y="73" class="svelte-1hnqnop">Training Loss</text></svg></div>
+</div>
+  <p>When we encounter overfitting we will most likely change several
+    hyperparameters of the neural network and apply some (soon to be introduced)
+    techniques in order to reduce overfitting. It is not unlikely that we will
+    continue doing that until we are satisfied with the performance. While we
+    are not using the validation dataset directly in training, we are still
+    observing the performance of the validation data and ajust accordingly, thus
+    injecting our knowledge into the training of the weights and biases. At this
+    point it is hard to argue that the validation dataset represents completely
+    unforseen data. The <strong><span class="highlight svelte-16edlvf">test</span></strong> set on the other hand is neither
+    touched nor seen during the training process at all. The intention of having
+    this additional dataset is to provide a method to test the performance of our
+    model when it encounters truly never before seen data. We only use the data once.
+    If we find out that we overfitted to the training and the validation dataset,
+    we can not go back to tweak the parameters, because we would require a completely
+    new test dataset, which we might not posess.
+  </p>
+  <p>While there are no hard rules when it comes to the proportions of your
+    splits, there are some rules of thumb. A 10-10-80 split is for example
+    relatively common.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 700px;" class="svg-container svelte-1sizmlt"><svg class="split svelte-hk9qx9" viewBox="0 0 500 40"><rect x="0" y="0" width="500" height="50" fill="var(--main-color-4)"></rect><line x1="50" y1="0" x2="50" y2="50" stroke="black"></line><line x1="100" y1="0" x2="100" y2="50" stroke="black"></line><text x="25" y="20" class="svelte-hk9qx9">Test</text><text x="75" y="20" class="svelte-hk9qx9">Validate</text><text x="300" y="20" class="svelte-hk9qx9">Train</text></svg></div>
+</div>
+  <p>In that case we want to keep the biggest chunk of our data for training and
+    keep roughly 10 percent for validation and 10 percent for testing.
+  </p>
+  <div class="separator"></div>
+
+  <h2>K-Fold Cross-Validation</h2>
+  <p>In the approach above we divided the dataset into three distinct buckets and
+    kept them constant during the whole training process, but ideally we would
+    like to somehow use all available data in training and testing
+    simultaneously. This is especially important if our dataset is relatively
+    small. While we need to keep the test data separate, untouched by training,
+    we can use the rest of the data simultaneously for training and validation
+    by using <strong><span class="highlight svelte-16edlvf">k-fold cross-validation</span></strong>.
+  </p>
+  <p>We divide the data (excluding the test set) into k equal folds. k is a
+    hyperparameter, but usually we construct 5 or 10 folds. Each fold is
+    basically a bucket of data that can be used either for trainig or
+    validation. We use one of the folds for validation and the rest (k-1 folds)
+    for training and we repeat the trainig process k times, switching the fold
+    that is used for validation each time. After the k iterations we are left
+    with k models.
+  </p>
+  <button  class="svelte-frpj7p">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-skip-forward svelte-frpj7p"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+</button>
+<br>
+<div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 252"><rect x="2" y="2" width="100" height="223.27272727272725" fill="var(--main-color-3)" class="svelte-9k9wfv"></rect><rect x="2" y="225.27272727272725" width="100" height="20.727272727272727" fill="var(--main-color-3)" class="svelte-9k9wfv"></rect><line x1="102" x2="200" y1="111.63636363636363" y2="10.363636363636363" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="113.63636363636363" y2="33.09090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="115.63636363636363" y2="55.81818181818181" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="117.63636363636363" y2="78.54545454545455" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="119.63636363636363" y2="101.27272727272727" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="121.63636363636363" y2="123.99999999999999" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="123.63636363636363" y2="146.72727272727275" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="125.63636363636363" y2="169.45454545454547" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="127.63636363636363" y2="192.1818181818182" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="129.63636363636363" y2="214.9090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><text x="50" y="111.63636363636363" class="svelte-9k9wfv">Train + Validate</text><text x="50" y="235.63636363636363" class="svelte-9k9wfv">Test</text><rect x="200" y="0" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="10.363636363636363" class="svelte-9k9wfv">Fold Nr. 1</text><rect x="200" y="22.727272727272727" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="33.09090909090909" class="svelte-9k9wfv">Fold Nr. 2</text><rect x="200" y="45.45454545454545" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="55.81818181818181" class="svelte-9k9wfv">Fold Nr. 3</text><rect x="200" y="68.18181818181819" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="78.54545454545455" class="svelte-9k9wfv">Fold Nr. 4</text><rect x="200" y="90.9090909090909" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="101.27272727272727" class="svelte-9k9wfv">Fold Nr. 5</text><rect x="200" y="113.63636363636363" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="123.99999999999999" class="svelte-9k9wfv">Fold Nr. 6</text><rect x="200" y="136.36363636363637" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="146.72727272727275" class="svelte-9k9wfv">Fold Nr. 7</text><rect x="200" y="159.0909090909091" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="169.45454545454547" class="svelte-9k9wfv">Fold Nr. 8</text><rect x="200" y="181.8181818181818" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="192.1818181818182" class="svelte-9k9wfv">Fold Nr. 9</text><rect x="200" y="204.54545454545453" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9k9wfv"></rect>
+      <text x="250" y="214.9090909090909" class="svelte-9k9wfv">Fold Nr. 10</text><rect x="400" y="0" width="100" height="20.727272727272727" fill="var(--main-color-1)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="10.363636363636363" class="svelte-9k9wfv">Validate</text><rect x="400" y="22.727272727272727" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="33.09090909090909" class="svelte-9k9wfv">Train</text><rect x="400" y="45.45454545454545" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="55.81818181818181" class="svelte-9k9wfv">Train</text><rect x="400" y="68.18181818181819" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="78.54545454545455" class="svelte-9k9wfv">Train</text><rect x="400" y="90.9090909090909" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="101.27272727272727" class="svelte-9k9wfv">Train</text><rect x="400" y="113.63636363636363" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="123.99999999999999" class="svelte-9k9wfv">Train</text><rect x="400" y="136.36363636363637" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="146.72727272727275" class="svelte-9k9wfv">Train</text><rect x="400" y="159.0909090909091" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="169.45454545454547" class="svelte-9k9wfv">Train</text><rect x="400" y="181.8181818181818" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="192.1818181818182" class="svelte-9k9wfv">Train</text><rect x="400" y="204.54545454545453" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9k9wfv"></rect>
+      <text x="450" y="214.9090909090909" class="svelte-9k9wfv">Train</text><line x1="300" x2="400" y1="10.363636363636363" y2="10.363636363636363" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="33.09090909090909" y2="33.09090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="55.81818181818181" y2="55.81818181818181" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="78.54545454545455" y2="78.54545454545455" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="101.27272727272727" y2="101.27272727272727" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="123.99999999999999" y2="123.99999999999999" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="146.72727272727275" y2="146.72727272727275" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="169.45454545454547" y2="169.45454545454547" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="192.1818181818182" y2="192.1818181818182" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="214.9090909090909" y2="214.9090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line></svg></div>
+</div>
+  <p>K-Fold cross-validation provides a much robust measure of performance. At
+    the end of the trainig process we average over the results of the k-folds to
+    get a more accurate estimate of how our model performs. Once we are
+    satisfied with the choise of our hypterparamters, we could retrain the model
+    on the full k folds. Alternatively we could use a procedure called <strong><span class="highlight svelte-16edlvf">ensemble</span></strong>. While we are not going to take a deep dive into ensemble methods just
+    yet, let us at least discuss some basics. Ensemble methods allow us to
+    combine different models into one single model, that is more robust than the
+    individual models. For classification we could let each of the models vote
+    on a class. The class of the overall model would be the one that receives
+    the most votes. For regression tasks we could average the output of each
+    individual model, to produce better predictions.
+  </p>
+  <p>There is obviously also a downside to using k models. Training a neural
+    network just once requires a lot of computaional resources. By using k folds
+    we will more or less increase the training time by a factor of k.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Stratified Split</h2>
+  <p>We have several options, when we split our dataset into the training,
+    validation and the test set.
+  </p>
+  <p>The simplest approach would be to separate the data randomly. While this
+    type of split is easy to implement, it might pose some problems. In the
+    example below we are faced with a dataset consisting of 10 classes (numbers
+    0 to 9) with 10 samples each. In the random procedure that we use below we
+    generate a random number between 0 and 1. If the number is below 0.5 we
+    assign the number to the blue split, otherwise the number is assigned to the
+    red split.
+  </p>
+  <svg viewBox="0 0 500 220"><rect x="2" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="13" class="svelte-84ll2f">0</text><rect x="24" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="13" class="svelte-84ll2f">0</text><rect x="46" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="13" class="svelte-84ll2f">0</text><rect x="68" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="13" class="svelte-84ll2f">0</text><rect x="90" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="13" class="svelte-84ll2f">0</text><rect x="112" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="13" class="svelte-84ll2f">0</text><rect x="134" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="13" class="svelte-84ll2f">0</text><rect x="156" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="13" class="svelte-84ll2f">0</text><rect x="178" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="13" class="svelte-84ll2f">0</text><rect x="200" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="13" class="svelte-84ll2f">0</text><rect x="2" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="35" class="svelte-84ll2f">1</text><rect x="24" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="35" class="svelte-84ll2f">1</text><rect x="46" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="35" class="svelte-84ll2f">1</text><rect x="68" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="35" class="svelte-84ll2f">1</text><rect x="90" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="35" class="svelte-84ll2f">1</text><rect x="112" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="35" class="svelte-84ll2f">1</text><rect x="134" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="35" class="svelte-84ll2f">1</text><rect x="156" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="35" class="svelte-84ll2f">1</text><rect x="178" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="35" class="svelte-84ll2f">1</text><rect x="200" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="35" class="svelte-84ll2f">1</text><rect x="2" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="57" class="svelte-84ll2f">2</text><rect x="24" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="57" class="svelte-84ll2f">2</text><rect x="46" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="57" class="svelte-84ll2f">2</text><rect x="68" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="57" class="svelte-84ll2f">2</text><rect x="90" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="57" class="svelte-84ll2f">2</text><rect x="112" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="57" class="svelte-84ll2f">2</text><rect x="134" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="57" class="svelte-84ll2f">2</text><rect x="156" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="57" class="svelte-84ll2f">2</text><rect x="178" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="57" class="svelte-84ll2f">2</text><rect x="200" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="57" class="svelte-84ll2f">2</text><rect x="2" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="79" class="svelte-84ll2f">3</text><rect x="24" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="79" class="svelte-84ll2f">3</text><rect x="46" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="79" class="svelte-84ll2f">3</text><rect x="68" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="79" class="svelte-84ll2f">3</text><rect x="90" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="79" class="svelte-84ll2f">3</text><rect x="112" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="79" class="svelte-84ll2f">3</text><rect x="134" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="79" class="svelte-84ll2f">3</text><rect x="156" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="79" class="svelte-84ll2f">3</text><rect x="178" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="79" class="svelte-84ll2f">3</text><rect x="200" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="79" class="svelte-84ll2f">3</text><rect x="2" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="101" class="svelte-84ll2f">4</text><rect x="24" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="101" class="svelte-84ll2f">4</text><rect x="46" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="101" class="svelte-84ll2f">4</text><rect x="68" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="101" class="svelte-84ll2f">4</text><rect x="90" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="101" class="svelte-84ll2f">4</text><rect x="112" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="101" class="svelte-84ll2f">4</text><rect x="134" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="101" class="svelte-84ll2f">4</text><rect x="156" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="101" class="svelte-84ll2f">4</text><rect x="178" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="101" class="svelte-84ll2f">4</text><rect x="200" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="101" class="svelte-84ll2f">4</text><rect x="2" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="123" class="svelte-84ll2f">5</text><rect x="24" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="123" class="svelte-84ll2f">5</text><rect x="46" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="123" class="svelte-84ll2f">5</text><rect x="68" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="123" class="svelte-84ll2f">5</text><rect x="90" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="123" class="svelte-84ll2f">5</text><rect x="112" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="123" class="svelte-84ll2f">5</text><rect x="134" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="123" class="svelte-84ll2f">5</text><rect x="156" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="123" class="svelte-84ll2f">5</text><rect x="178" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="123" class="svelte-84ll2f">5</text><rect x="200" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="123" class="svelte-84ll2f">5</text><rect x="2" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="145" class="svelte-84ll2f">6</text><rect x="24" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="145" class="svelte-84ll2f">6</text><rect x="46" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="145" class="svelte-84ll2f">6</text><rect x="68" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="145" class="svelte-84ll2f">6</text><rect x="90" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="145" class="svelte-84ll2f">6</text><rect x="112" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="145" class="svelte-84ll2f">6</text><rect x="134" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="145" class="svelte-84ll2f">6</text><rect x="156" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="145" class="svelte-84ll2f">6</text><rect x="178" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="145" class="svelte-84ll2f">6</text><rect x="200" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="145" class="svelte-84ll2f">6</text><rect x="2" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="167" class="svelte-84ll2f">7</text><rect x="24" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="167" class="svelte-84ll2f">7</text><rect x="46" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="167" class="svelte-84ll2f">7</text><rect x="68" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="167" class="svelte-84ll2f">7</text><rect x="90" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="167" class="svelte-84ll2f">7</text><rect x="112" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="167" class="svelte-84ll2f">7</text><rect x="134" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="167" class="svelte-84ll2f">7</text><rect x="156" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="167" class="svelte-84ll2f">7</text><rect x="178" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="167" class="svelte-84ll2f">7</text><rect x="200" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="167" class="svelte-84ll2f">7</text><rect x="2" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="189" class="svelte-84ll2f">8</text><rect x="24" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="189" class="svelte-84ll2f">8</text><rect x="46" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="189" class="svelte-84ll2f">8</text><rect x="68" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="189" class="svelte-84ll2f">8</text><rect x="90" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="189" class="svelte-84ll2f">8</text><rect x="112" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="189" class="svelte-84ll2f">8</text><rect x="134" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="189" class="svelte-84ll2f">8</text><rect x="156" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="189" class="svelte-84ll2f">8</text><rect x="178" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="189" class="svelte-84ll2f">8</text><rect x="200" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="189" class="svelte-84ll2f">8</text><rect x="2" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="211" class="svelte-84ll2f">9</text><rect x="24" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="211" class="svelte-84ll2f">9</text><rect x="46" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="211" class="svelte-84ll2f">9</text><rect x="68" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="211" class="svelte-84ll2f">9</text><rect x="90" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="211" class="svelte-84ll2f">9</text><rect x="112" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="211" class="svelte-84ll2f">9</text><rect x="134" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="211" class="svelte-84ll2f">9</text><rect x="156" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="211" class="svelte-84ll2f">9</text><rect x="178" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="211" class="svelte-84ll2f">9</text><rect x="200" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="211" class="svelte-84ll2f">9</text><rect x="478" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="13" class="svelte-84ll2f">0</text><rect x="456" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="13" class="svelte-84ll2f">0</text><rect x="434" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="13" class="svelte-84ll2f">0</text><rect x="412" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="13" class="svelte-84ll2f">0</text><rect x="390" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="13" class="svelte-84ll2f">0</text><rect x="368" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="13" class="svelte-84ll2f">0</text><rect x="346" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="13" class="svelte-84ll2f">0</text><rect x="324" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="13" class="svelte-84ll2f">0</text><rect x="302" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="13" class="svelte-84ll2f">0</text><rect x="280" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="13" class="svelte-84ll2f">0</text><rect x="478" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="35" class="svelte-84ll2f">1</text><rect x="456" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="35" class="svelte-84ll2f">1</text><rect x="434" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="35" class="svelte-84ll2f">1</text><rect x="412" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="35" class="svelte-84ll2f">1</text><rect x="390" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="35" class="svelte-84ll2f">1</text><rect x="368" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="35" class="svelte-84ll2f">1</text><rect x="346" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="35" class="svelte-84ll2f">1</text><rect x="324" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="35" class="svelte-84ll2f">1</text><rect x="302" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="35" class="svelte-84ll2f">1</text><rect x="280" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="35" class="svelte-84ll2f">1</text><rect x="478" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="57" class="svelte-84ll2f">2</text><rect x="456" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="57" class="svelte-84ll2f">2</text><rect x="434" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="57" class="svelte-84ll2f">2</text><rect x="412" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="57" class="svelte-84ll2f">2</text><rect x="390" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="57" class="svelte-84ll2f">2</text><rect x="368" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="57" class="svelte-84ll2f">2</text><rect x="346" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="57" class="svelte-84ll2f">2</text><rect x="324" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="57" class="svelte-84ll2f">2</text><rect x="302" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="57" class="svelte-84ll2f">2</text><rect x="280" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="57" class="svelte-84ll2f">2</text><rect x="478" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="79" class="svelte-84ll2f">3</text><rect x="456" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="79" class="svelte-84ll2f">3</text><rect x="434" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="79" class="svelte-84ll2f">3</text><rect x="412" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="79" class="svelte-84ll2f">3</text><rect x="390" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="79" class="svelte-84ll2f">3</text><rect x="368" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="79" class="svelte-84ll2f">3</text><rect x="346" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="79" class="svelte-84ll2f">3</text><rect x="324" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="79" class="svelte-84ll2f">3</text><rect x="302" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="79" class="svelte-84ll2f">3</text><rect x="280" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="79" class="svelte-84ll2f">3</text><rect x="478" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="101" class="svelte-84ll2f">4</text><rect x="456" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="101" class="svelte-84ll2f">4</text><rect x="434" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="101" class="svelte-84ll2f">4</text><rect x="412" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="101" class="svelte-84ll2f">4</text><rect x="390" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="101" class="svelte-84ll2f">4</text><rect x="368" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="101" class="svelte-84ll2f">4</text><rect x="346" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="101" class="svelte-84ll2f">4</text><rect x="324" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="101" class="svelte-84ll2f">4</text><rect x="302" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="101" class="svelte-84ll2f">4</text><rect x="280" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="101" class="svelte-84ll2f">4</text><rect x="478" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="123" class="svelte-84ll2f">5</text><rect x="456" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="123" class="svelte-84ll2f">5</text><rect x="434" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="123" class="svelte-84ll2f">5</text><rect x="412" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="123" class="svelte-84ll2f">5</text><rect x="390" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="123" class="svelte-84ll2f">5</text><rect x="368" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="123" class="svelte-84ll2f">5</text><rect x="346" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="123" class="svelte-84ll2f">5</text><rect x="324" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="123" class="svelte-84ll2f">5</text><rect x="302" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="123" class="svelte-84ll2f">5</text><rect x="280" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="123" class="svelte-84ll2f">5</text><rect x="478" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="145" class="svelte-84ll2f">6</text><rect x="456" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="145" class="svelte-84ll2f">6</text><rect x="434" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="145" class="svelte-84ll2f">6</text><rect x="412" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="145" class="svelte-84ll2f">6</text><rect x="390" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="145" class="svelte-84ll2f">6</text><rect x="368" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="145" class="svelte-84ll2f">6</text><rect x="346" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="145" class="svelte-84ll2f">6</text><rect x="324" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="145" class="svelte-84ll2f">6</text><rect x="302" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="145" class="svelte-84ll2f">6</text><rect x="280" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="145" class="svelte-84ll2f">6</text><rect x="478" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="167" class="svelte-84ll2f">7</text><rect x="456" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="167" class="svelte-84ll2f">7</text><rect x="434" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="167" class="svelte-84ll2f">7</text><rect x="412" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="167" class="svelte-84ll2f">7</text><rect x="390" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="167" class="svelte-84ll2f">7</text><rect x="368" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="167" class="svelte-84ll2f">7</text><rect x="346" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="167" class="svelte-84ll2f">7</text><rect x="324" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="167" class="svelte-84ll2f">7</text><rect x="302" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="167" class="svelte-84ll2f">7</text><rect x="280" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="167" class="svelte-84ll2f">7</text><rect x="478" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="189" class="svelte-84ll2f">8</text><rect x="456" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="189" class="svelte-84ll2f">8</text><rect x="434" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="189" class="svelte-84ll2f">8</text><rect x="412" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="189" class="svelte-84ll2f">8</text><rect x="390" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="189" class="svelte-84ll2f">8</text><rect x="368" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="189" class="svelte-84ll2f">8</text><rect x="346" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="189" class="svelte-84ll2f">8</text><rect x="324" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="189" class="svelte-84ll2f">8</text><rect x="302" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="189" class="svelte-84ll2f">8</text><rect x="280" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="189" class="svelte-84ll2f">8</text><rect x="478" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="211" class="svelte-84ll2f">9</text><rect x="456" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="211" class="svelte-84ll2f">9</text><rect x="434" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="211" class="svelte-84ll2f">9</text><rect x="412" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="211" class="svelte-84ll2f">9</text><rect x="390" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="211" class="svelte-84ll2f">9</text><rect x="368" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="211" class="svelte-84ll2f">9</text><rect x="346" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="211" class="svelte-84ll2f">9</text><rect x="324" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="211" class="svelte-84ll2f">9</text><rect x="302" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="211" class="svelte-84ll2f">9</text><rect x="280" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="211" class="svelte-84ll2f">9</text></svg>
+  <p>If you observe the splits, you will most likely notice that some splits have
+    more numbers of a certain category. That means that the proportions of some
+    categories in the two splits are different. This is especially a problem,
+    when some of the categories have a limited number of samples. We could end
+    up creating a split that doesn&#39;t include a particular category at all.
+  </p>
+  <p>A <strong><span class="highlight svelte-16edlvf">stratified</span></strong> split on the other hand tries to keep the
+    proportions of the different classes consistent with the original data.
+  </p>
+  <svg viewBox="0 0 500 220"><rect x="2" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="13" class="svelte-84ll2f">0</text><rect x="24" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="13" class="svelte-84ll2f">0</text><rect x="46" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="13" class="svelte-84ll2f">0</text><rect x="68" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="13" class="svelte-84ll2f">0</text><rect x="90" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="13" class="svelte-84ll2f">0</text><rect x="112" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="13" class="svelte-84ll2f">0</text><rect x="134" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="13" class="svelte-84ll2f">0</text><rect x="156" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="13" class="svelte-84ll2f">0</text><rect x="178" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="13" class="svelte-84ll2f">0</text><rect x="200" y="2" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="13" class="svelte-84ll2f">0</text><rect x="2" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="35" class="svelte-84ll2f">1</text><rect x="24" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="35" class="svelte-84ll2f">1</text><rect x="46" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="35" class="svelte-84ll2f">1</text><rect x="68" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="35" class="svelte-84ll2f">1</text><rect x="90" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="35" class="svelte-84ll2f">1</text><rect x="112" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="35" class="svelte-84ll2f">1</text><rect x="134" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="35" class="svelte-84ll2f">1</text><rect x="156" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="35" class="svelte-84ll2f">1</text><rect x="178" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="35" class="svelte-84ll2f">1</text><rect x="200" y="24" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="35" class="svelte-84ll2f">1</text><rect x="2" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="57" class="svelte-84ll2f">2</text><rect x="24" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="57" class="svelte-84ll2f">2</text><rect x="46" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="57" class="svelte-84ll2f">2</text><rect x="68" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="57" class="svelte-84ll2f">2</text><rect x="90" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="57" class="svelte-84ll2f">2</text><rect x="112" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="57" class="svelte-84ll2f">2</text><rect x="134" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="57" class="svelte-84ll2f">2</text><rect x="156" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="57" class="svelte-84ll2f">2</text><rect x="178" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="57" class="svelte-84ll2f">2</text><rect x="200" y="46" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="57" class="svelte-84ll2f">2</text><rect x="2" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="79" class="svelte-84ll2f">3</text><rect x="24" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="79" class="svelte-84ll2f">3</text><rect x="46" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="79" class="svelte-84ll2f">3</text><rect x="68" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="79" class="svelte-84ll2f">3</text><rect x="90" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="79" class="svelte-84ll2f">3</text><rect x="112" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="79" class="svelte-84ll2f">3</text><rect x="134" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="79" class="svelte-84ll2f">3</text><rect x="156" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="79" class="svelte-84ll2f">3</text><rect x="178" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="79" class="svelte-84ll2f">3</text><rect x="200" y="68" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="79" class="svelte-84ll2f">3</text><rect x="2" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="101" class="svelte-84ll2f">4</text><rect x="24" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="101" class="svelte-84ll2f">4</text><rect x="46" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="101" class="svelte-84ll2f">4</text><rect x="68" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="101" class="svelte-84ll2f">4</text><rect x="90" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="101" class="svelte-84ll2f">4</text><rect x="112" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="101" class="svelte-84ll2f">4</text><rect x="134" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="101" class="svelte-84ll2f">4</text><rect x="156" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="101" class="svelte-84ll2f">4</text><rect x="178" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="101" class="svelte-84ll2f">4</text><rect x="200" y="90" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="101" class="svelte-84ll2f">4</text><rect x="2" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="123" class="svelte-84ll2f">5</text><rect x="24" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="123" class="svelte-84ll2f">5</text><rect x="46" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="123" class="svelte-84ll2f">5</text><rect x="68" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="123" class="svelte-84ll2f">5</text><rect x="90" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="123" class="svelte-84ll2f">5</text><rect x="112" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="123" class="svelte-84ll2f">5</text><rect x="134" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="123" class="svelte-84ll2f">5</text><rect x="156" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="123" class="svelte-84ll2f">5</text><rect x="178" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="123" class="svelte-84ll2f">5</text><rect x="200" y="112" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="123" class="svelte-84ll2f">5</text><rect x="2" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="145" class="svelte-84ll2f">6</text><rect x="24" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="145" class="svelte-84ll2f">6</text><rect x="46" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="145" class="svelte-84ll2f">6</text><rect x="68" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="145" class="svelte-84ll2f">6</text><rect x="90" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="145" class="svelte-84ll2f">6</text><rect x="112" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="145" class="svelte-84ll2f">6</text><rect x="134" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="145" class="svelte-84ll2f">6</text><rect x="156" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="145" class="svelte-84ll2f">6</text><rect x="178" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="145" class="svelte-84ll2f">6</text><rect x="200" y="134" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="145" class="svelte-84ll2f">6</text><rect x="2" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="167" class="svelte-84ll2f">7</text><rect x="24" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="167" class="svelte-84ll2f">7</text><rect x="46" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="167" class="svelte-84ll2f">7</text><rect x="68" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="167" class="svelte-84ll2f">7</text><rect x="90" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="167" class="svelte-84ll2f">7</text><rect x="112" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="167" class="svelte-84ll2f">7</text><rect x="134" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="167" class="svelte-84ll2f">7</text><rect x="156" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="167" class="svelte-84ll2f">7</text><rect x="178" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="167" class="svelte-84ll2f">7</text><rect x="200" y="156" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="167" class="svelte-84ll2f">7</text><rect x="2" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="189" class="svelte-84ll2f">8</text><rect x="24" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="189" class="svelte-84ll2f">8</text><rect x="46" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="189" class="svelte-84ll2f">8</text><rect x="68" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="189" class="svelte-84ll2f">8</text><rect x="90" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="189" class="svelte-84ll2f">8</text><rect x="112" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="189" class="svelte-84ll2f">8</text><rect x="134" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="189" class="svelte-84ll2f">8</text><rect x="156" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="189" class="svelte-84ll2f">8</text><rect x="178" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="189" class="svelte-84ll2f">8</text><rect x="200" y="178" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="189" class="svelte-84ll2f">8</text><rect x="2" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="12" y="211" class="svelte-84ll2f">9</text><rect x="24" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="34" y="211" class="svelte-84ll2f">9</text><rect x="46" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="56" y="211" class="svelte-84ll2f">9</text><rect x="68" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="78" y="211" class="svelte-84ll2f">9</text><rect x="90" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="100" y="211" class="svelte-84ll2f">9</text><rect x="112" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="122" y="211" class="svelte-84ll2f">9</text><rect x="134" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="144" y="211" class="svelte-84ll2f">9</text><rect x="156" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="166" y="211" class="svelte-84ll2f">9</text><rect x="178" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="188" y="211" class="svelte-84ll2f">9</text><rect x="200" y="200" fill="var(--main-color-3)" stroke="black" width="20" height="20"></rect>
+
+      <text x="210" y="211" class="svelte-84ll2f">9</text><rect x="478" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="13" class="svelte-84ll2f">0</text><rect x="456" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="13" class="svelte-84ll2f">0</text><rect x="434" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="13" class="svelte-84ll2f">0</text><rect x="412" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="13" class="svelte-84ll2f">0</text><rect x="390" y="2" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="13" class="svelte-84ll2f">0</text><rect x="368" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="13" class="svelte-84ll2f">0</text><rect x="346" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="13" class="svelte-84ll2f">0</text><rect x="324" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="13" class="svelte-84ll2f">0</text><rect x="302" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="13" class="svelte-84ll2f">0</text><rect x="280" y="2" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="13" class="svelte-84ll2f">0</text><rect x="478" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="35" class="svelte-84ll2f">1</text><rect x="456" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="35" class="svelte-84ll2f">1</text><rect x="434" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="35" class="svelte-84ll2f">1</text><rect x="412" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="35" class="svelte-84ll2f">1</text><rect x="390" y="24" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="35" class="svelte-84ll2f">1</text><rect x="368" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="35" class="svelte-84ll2f">1</text><rect x="346" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="35" class="svelte-84ll2f">1</text><rect x="324" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="35" class="svelte-84ll2f">1</text><rect x="302" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="35" class="svelte-84ll2f">1</text><rect x="280" y="24" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="35" class="svelte-84ll2f">1</text><rect x="478" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="57" class="svelte-84ll2f">2</text><rect x="456" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="57" class="svelte-84ll2f">2</text><rect x="434" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="57" class="svelte-84ll2f">2</text><rect x="412" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="57" class="svelte-84ll2f">2</text><rect x="390" y="46" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="57" class="svelte-84ll2f">2</text><rect x="368" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="57" class="svelte-84ll2f">2</text><rect x="346" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="57" class="svelte-84ll2f">2</text><rect x="324" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="57" class="svelte-84ll2f">2</text><rect x="302" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="57" class="svelte-84ll2f">2</text><rect x="280" y="46" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="57" class="svelte-84ll2f">2</text><rect x="478" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="79" class="svelte-84ll2f">3</text><rect x="456" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="79" class="svelte-84ll2f">3</text><rect x="434" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="79" class="svelte-84ll2f">3</text><rect x="412" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="79" class="svelte-84ll2f">3</text><rect x="390" y="68" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="79" class="svelte-84ll2f">3</text><rect x="368" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="79" class="svelte-84ll2f">3</text><rect x="346" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="79" class="svelte-84ll2f">3</text><rect x="324" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="79" class="svelte-84ll2f">3</text><rect x="302" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="79" class="svelte-84ll2f">3</text><rect x="280" y="68" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="79" class="svelte-84ll2f">3</text><rect x="478" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="101" class="svelte-84ll2f">4</text><rect x="456" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="101" class="svelte-84ll2f">4</text><rect x="434" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="101" class="svelte-84ll2f">4</text><rect x="412" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="101" class="svelte-84ll2f">4</text><rect x="390" y="90" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="101" class="svelte-84ll2f">4</text><rect x="368" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="101" class="svelte-84ll2f">4</text><rect x="346" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="101" class="svelte-84ll2f">4</text><rect x="324" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="101" class="svelte-84ll2f">4</text><rect x="302" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="101" class="svelte-84ll2f">4</text><rect x="280" y="90" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="101" class="svelte-84ll2f">4</text><rect x="478" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="123" class="svelte-84ll2f">5</text><rect x="456" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="123" class="svelte-84ll2f">5</text><rect x="434" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="123" class="svelte-84ll2f">5</text><rect x="412" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="123" class="svelte-84ll2f">5</text><rect x="390" y="112" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="123" class="svelte-84ll2f">5</text><rect x="368" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="123" class="svelte-84ll2f">5</text><rect x="346" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="123" class="svelte-84ll2f">5</text><rect x="324" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="123" class="svelte-84ll2f">5</text><rect x="302" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="123" class="svelte-84ll2f">5</text><rect x="280" y="112" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="123" class="svelte-84ll2f">5</text><rect x="478" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="145" class="svelte-84ll2f">6</text><rect x="456" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="145" class="svelte-84ll2f">6</text><rect x="434" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="145" class="svelte-84ll2f">6</text><rect x="412" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="145" class="svelte-84ll2f">6</text><rect x="390" y="134" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="145" class="svelte-84ll2f">6</text><rect x="368" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="145" class="svelte-84ll2f">6</text><rect x="346" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="145" class="svelte-84ll2f">6</text><rect x="324" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="145" class="svelte-84ll2f">6</text><rect x="302" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="145" class="svelte-84ll2f">6</text><rect x="280" y="134" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="145" class="svelte-84ll2f">6</text><rect x="478" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="167" class="svelte-84ll2f">7</text><rect x="456" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="167" class="svelte-84ll2f">7</text><rect x="434" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="167" class="svelte-84ll2f">7</text><rect x="412" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="167" class="svelte-84ll2f">7</text><rect x="390" y="156" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="167" class="svelte-84ll2f">7</text><rect x="368" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="167" class="svelte-84ll2f">7</text><rect x="346" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="167" class="svelte-84ll2f">7</text><rect x="324" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="167" class="svelte-84ll2f">7</text><rect x="302" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="167" class="svelte-84ll2f">7</text><rect x="280" y="156" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="167" class="svelte-84ll2f">7</text><rect x="478" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="189" class="svelte-84ll2f">8</text><rect x="456" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="189" class="svelte-84ll2f">8</text><rect x="434" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="189" class="svelte-84ll2f">8</text><rect x="412" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="189" class="svelte-84ll2f">8</text><rect x="390" y="178" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="189" class="svelte-84ll2f">8</text><rect x="368" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="189" class="svelte-84ll2f">8</text><rect x="346" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="189" class="svelte-84ll2f">8</text><rect x="324" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="189" class="svelte-84ll2f">8</text><rect x="302" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="189" class="svelte-84ll2f">8</text><rect x="280" y="178" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="189" class="svelte-84ll2f">8</text><rect x="478" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="488" y="211" class="svelte-84ll2f">9</text><rect x="456" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="466" y="211" class="svelte-84ll2f">9</text><rect x="434" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="444" y="211" class="svelte-84ll2f">9</text><rect x="412" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="422" y="211" class="svelte-84ll2f">9</text><rect x="390" y="200" fill="var(--main-color-1)" stroke="black" width="20" height="20"></rect>
+
+      <text x="400" y="211" class="svelte-84ll2f">9</text><rect x="368" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="378" y="211" class="svelte-84ll2f">9</text><rect x="346" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="356" y="211" class="svelte-84ll2f">9</text><rect x="324" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="334" y="211" class="svelte-84ll2f">9</text><rect x="302" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="312" y="211" class="svelte-84ll2f">9</text><rect x="280" y="200" fill="var(--main-color-2)" stroke="black" width="20" height="20"></rect>
+
+      <text x="290" y="211" class="svelte-84ll2f">9</text></svg>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="11phsjq">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="11phsjq"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 14],
+				params: {},
+				routeId: "blocks/deep_learning/challenges_improvements/overfitting/train_test_validate"
+			}
+		});
+	</script></div>
+	</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Education</title><meta name="description" content="Deep learning is a fast moving field. It is necessary to constantly improve your skills. You can use books, youtube channel and research papers to keep up to date." data-svelte="svelte-r8sdus">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/education-8ea1cc12.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/introduction/education.svelte-fbf88c73.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn selected">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Education in Deep Learning</h1>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 490 320" xmlns="http://www.w3.org/2000/svg"><g id="blackboard"><rect x="20" y="16" width="450" height="180" ry="0" stroke="#000" fill="var(--text-color)" stroke-linejoin="bevel"></rect></g><g id="top-bot" fill="var(--main-color-1)" stroke="#000" stroke-linejoin="bevel"><rect x="10" y="6" width="470" height="10"></rect><rect x="10" y="196" width="470" height="10"></rect></g><g id="feet" stroke="#000" fill="var(--text-color)" stroke-linejoin="bevel"><rect x="120" y="206" width="250" height="10"></rect><rect x="240" y="216" width="10" height="100"></rect><rect x="130" y="216" width="10" height="100"></rect><rect x="350" y="216" width="10" height="100"></rect></g><g id="left-neurons" stroke-linejoin="bevel"><rect x="50" y="30" width="30" height="150" fill="none" stroke="#fff"></rect><g fill="#fff" stroke="#000"><circle cx="65" cy="51.626" r="10"></circle><circle cx="65" cy="87.209" r="10"></circle><circle cx="65" cy="122.79" r="10"></circle><circle cx="65" cy="158.37" r="10"></circle></g></g><g id="middle-neurons" stroke-linejoin="bevel"><rect x="230" y="31" width="30" height="150" fill="none" stroke="#fff"></rect><g fill="#fff" stroke="#000"><circle cx="245" cy="52.626" r="10"></circle><circle cx="245" cy="88.209" r="10"></circle><circle cx="245" cy="123.79" r="10"></circle><circle cx="245" cy="159.37" r="10"></circle></g></g><g id="right-neuron"><circle cx="436.29" cy="106" r="10" fill="#fff" stroke="#000" stroke-linejoin="bevel"></circle></g><g id="connections" fill="none" stroke="#fff"><g id="left-connections" stroke-dasharray="1.99999833,5.99999499"><path d="m90 51.626h130"></path><path d="m90 158.37h130"></path><path d="m90 87.209h130"></path><path d="m90 122.79h130"></path></g><path d="m273.15 106h140" stroke-dasharray="2, 5.99999"></path></g></svg></div>
+</div>
+  <p>Before we take a deep dive into the foundations of deep learning we would
+    like to talk about additional learning resources and to encourage you to
+    consult many different sources on your deep learning journey. It usually
+    requires more than one single resource to understand a topic. You should
+    explore different books, videos, blog posts and research papers to get the
+    full picture. Once you grasp the basics of deep learning, you still need to
+    find a way to keep up to date with the newest research and this might not be
+    the easiest task. Below we attempt to list the most relevant literature for
+    beginners and give hints on ways you can stay informed regarding the newest
+    developments in deep learning.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Books</h2>
+  <p>Books are a great gateway into the world of deep learning. Especially when
+    it comes to beginner level books the choices are great.
+  </p>
+
+  <div class="book-container svelte-af6t15"><img src="/books/geron_book.jpeg" alt="Book Cover Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow" class="svelte-af6t15">
+    <p class="svelte-af6t15">&quot;Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow&quot; by
+      Aurélien Géron is a great choice, especially if you don&#39;t know where to
+      start. If you have only one book to pick, this is probabliy the right
+      pick. At the moment of writing the second edition is available in online
+      stores, but the third edition is currently being written and is due
+      somewhere at the end of 3rd or the beginning the 4th quarter of 2022. The
+      book covers classical machine learning and goes on to discuss deep
+      learning with Keras and TensorFlow in detail. While the book is very well
+      suited for beginners, advanced topics like handling large amounts of data
+      are covered as well.
+    </p></div>
+  <div class="book-container svelte-af6t15"><img src="/books/cholet_book.png" alt="Book Cover DEEP LEARNING with Python" class="svelte-af6t15">
+    <p class="svelte-af6t15">The book &quot;DEEP LEARNING with Python&quot; is written by the creator of Keras,
+      so you know you get quality content. François Chollet covers exclusively
+      deep learning with a high focus on intuition and Python practice.
+    </p></div>
+
+  <div class="book-container svelte-af6t15"><img src="/books/raschka_book.jpg" alt="Book Cover Machine Learning with PyTorch and Scikit-Learn" class="svelte-af6t15">
+    <p class="svelte-af6t15">The book &quot;Machine Learning with PyTorch and Scikit-Learn&quot; by Sebastian
+      Raschka is similar in scope to the book by Aurélien Géron, but instead of
+      using Keras and TensorFlow the author uses PyTorch. For the time being
+      World4AI is going to provide notebooks written in PyTorch, so you will
+      probably feel most comfortable with this book if you plan on using our
+      notebooks.
+    </p></div>
+  <div class="separator"></div>
+
+  <h2>Online Courses</h2>
+  <p>If you learn better through visual and audio explanations, online courses
+    might be a great fit. Just as with our book recommendations, there is a lot
+    of quality content for beginners and few resources for intermediary and
+    advanced users.
+  </p>
+  <p><a href="https://fast.ai" target="_blank">fast.ai</a> is several things at the
+    same time. It is a non-profit with the goal of democratizing deep learning, a
+    deep learning library based on PyTorch, a book called &#39;Deep Learning for Coders
+    With Fasai and Pytorch&#39; and an online course that teaches you deep learning.
+    The approach taken by fast.ai differs from most books and courses. They teach
+    you how you can generate state of the art results first and go into the basic
+    building blocks of neural networks second.
+  </p>
+  <p>The deep learning <a href="https://www.deeplearning.ai/program/deep-learning-specialization/" target="_blank">coursera</a> course by Andrew Ng is probably the most famous and the most acknowledged course
+    in deep learning. The course starts with the basic building blocks of deep learning
+    and steadily moves towards the state of the art. The course is not free, but
+    there is financial support available if you can not afford the lectures.
+  </p>
+
+  <p>The <a href="https://cds.nyu.edu/deep-learning/" target="_blank">NYU deep learning course</a> by Yann LeCun and Alfredo Canziani has become one of the most acknowledged
+    courses over the last couple of years. The course is very in-depth and very engaging,
+    but is probably not the best choice for absolute beginners. We recommend you
+    take this course after you have had some exposure to an introductory course or
+    book.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Deep Learning Practice</h2>
+  <p>You can not learn deep learning without applying the algorithms with a deep
+    learning framework yourself. Learning the theory is not going to be
+    sufficient. If you have the data and an idea, then go for it and upload your
+    project to GitHub. A popular alternative is to compete in machine learning
+    challenges. The most popular plattform that host competitions is <a href="https://www.kaggle.com" target="_blank">Kaggle</a>. There you can take part in discussions, upload datasets, create notebooks
+    and take part in competitions. The plattform has a ranking system in the
+    four mentioned categories and allows you to grow in the ranks and gain
+    reputation and titles. Additionally many of the challenges give out monetary
+    prices. Kaggle is essentially a social network, so if you want to get
+    addicted to one, kaggle is a good choice for machine learning practitioners.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Keeping Up With Research</h2>
+  <p>When you come from the outside of the deep learning research community, you
+    do not have access to a personal network that you can utilize to find the
+    most relevant research papers you should focus on. Fortunately you have
+    access to twitter and can therefore follow companies that focus on deep
+    learning research, established researchers and book authors to get access to
+    your own individual network. Many of those sources will share interesting
+    articles, tutorials, videos and the newest research. It will take some time
+    to find which sources are the most reliable, but the benefits are enormous.
+    We suggest that you create an account especially for the purpose of
+    participating in the deep learning community and avoid other types of
+    content. Otherwise you will experience the &quot;dark side&quot; of twitter.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="z7kioe">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="z7kioe"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 25],
+				params: {},
+				routeId: "blocks/deep_learning/introduction/education"
+			}
+		});
+	</script></div>
+	</body>
+</html>

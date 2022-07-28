@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Machine Learning Categories</title><meta name="description" content="Machine learning can be divided into different categories: supervised learning, unsupervised learning, self-supervised learning, semi-supervised learning and reinforcement learning." data-svelte="svelte-bp5uzp">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/machine_learning_categories-ab18b6ac.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Table-818b9eab.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Plot-474e03af.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/introduction/machine_learning_categories.svelte-58e363fa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Table-a51fb5ea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Plot-e628e9dd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/CartPole-8bd7166b.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn selected">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h1>Categories of Machine Learning</h1>
+</div>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>Machine learning is often divided into specific categories. Those
+    classifications are usually done based on the level of human supervision
+    that is required for the algorithm to work. Those classifications are
+    ubiquitous nowadays, so knowing at least some basic terminology is a must.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Supervised Learning</h2>
+  <p>As the name supervised learning suggests, there is a human supervisor who
+    labels the input data with the corresponding correct output. The different
+    inputs are called <strong><span class="highlight svelte-16edlvf">features</span></strong>, while the outputs are
+    called <strong><span class="highlight svelte-16edlvf">labels</span></strong> or <strong><span class="highlight svelte-16edlvf">targets</span></strong>.
+  </p>
+  <p>Let us for example assume that we want to estimate the price of a house
+    based on the location and the size of the house. In that case the location
+    and the size are the features, while the price is the target.
+  </p>
+  <table class="svelte-18triin"><thead><tr><th class="svelte-18triin">Location</th><th class="svelte-18triin">Size</th><th class="svelte-18triin">Price</th></tr></thead>
+  <tbody><tr class="svelte-18triin"><td class="svelte-18triin">London</td><td class="svelte-18triin">100</td><td class="svelte-18triin">1000000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Berlin</td><td class="svelte-18triin">30</td><td class="svelte-18triin">80000000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">...</td><td class="svelte-18triin">...</td><td class="svelte-18triin">...</td>
+      </tr></tbody>
+</table>
+  <p>The two common tasks that we try to solve with supervised learning are <strong><span class="highlight svelte-16edlvf">regression</span></strong> and <strong><span class="highlight svelte-16edlvf">classification</span></strong>.
+  </p>
+  <p>In a classification task there is a finite number of classes that the
+    machine learning algorithm needs to determine based on the features. The
+    usual example that is brought up in the machine learning literature is a
+    spam filter. Based on the header and content of the email the algorithm
+    needs to decide whether the email is ham or spam.
+  </p>
+
+  <div class="light-blue"><div class="container svelte-1sizmlt"><div style="max-width: 700px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--text-color)"><g id="ham"><rect x="425" y="15" width="60" height="40" fill="none"></rect><path d="m425 15 30 20 30-20" fill="none" stroke-width="1px"></path></g><g id="filter"><rect x="160" y="45" width="120" height="120" fill="none" stroke-width="1px"></rect><g fill="none" stroke-width="0.5"><path d="m165 45v120"></path><path d="m170 45v120"></path><path d="m175 45v120"></path><path d="m180 45v120"></path><path d="m185 45v120"></path><path d="m190 45v120"></path><path d="m195 45v120"></path><path d="m200 45v120"></path><path d="m205 45v120"></path><path d="m210 45v120"></path><path d="m215 45v120"></path><path d="m220 45v120"></path><path d="m225 45v120"></path><path d="m230 45v120"></path><path d="m235 45v120"></path><path d="m240 45v120"></path><path d="m245 45v120"></path><path d="m250 45v120"></path><path d="m255 45v120"></path><path d="m260 45v120"></path><path d="m265 45v120"></path><path d="m270 45v120"></path><path d="m275 45v120"></path><path d="m160 50h120"></path><path d="m160 55h120"></path><path d="m160 60h120"></path><path d="m160 65h120"></path><path d="m160 70h120"></path><path d="m160 75h120"></path><path d="m160 80h120"></path><path d="m160 85h120"></path><path d="m160 90h120"></path><path d="m160 95h120"></path><path d="m160 100h120"></path><path d="m160 105h120"></path><path d="m160 110h120"></path><path d="m160 115h120"></path><path d="m160 120h120"></path><path d="m160 125h120"></path><path d="m160 130h120"></path><path d="m160 135h120"></path><path d="m160 140h120"></path><path d="m160 145h120"></path><path d="m160 150h120"></path><path d="m160 155h120"></path><path d="m160 160h120"></path></g></g><g id="spam"><rect x="433" y="169.5" width="40" height="46.495" ry="5.1661" fill="none"></rect><g fill="none" stroke-width=".91333px"><path d="m441 173.5v36.495"></path><path d="m453 173.5v36.495"></path><path d="m465 173.5v36.495"></path></g><rect x="433" y="165.5" width="40" height="4" ry="0" fill="#b8a0cd" fill-opacity=".054902" stroke-width=".78431"></rect><path d="m449 165.5v-4h8v4" fill="none" stroke-width=".8px"></path></g><g fill="none" stroke-dasharray="4,8"><path d="m70 105h80"></path><path stroke="var(--main-color-2)" d="m285 100 135-62"></path><path stroke="var(--main-color-1)" d="m285 115 140 77"></path></g><g id="mail"><rect x="9.3548" y="78.71" width="49.57" height="71.29" ry="1.371" fill="none"></rect><g fill="none"><path d="m13.28 85h41.832"></path><path d="m13.28 90h41.832"></path><path d="m13.28 95h41.832"></path><path d="m13.28 100h41.72"></path><path d="m13.28 105h41.72"></path><path d="m13.28 110h41.72"></path><path d="m13.28 115h41.72"></path></g></g></g></svg></div>
+</div></div>
+  <p>In a regression task on the other hand the algorithm produces a continuous
+    number. Predicting the price of the house based on the features of the house
+    is a regression task.
+  </p>
+
+  <div class="yellow"><div class="container svelte-1sizmlt"><div style="max-width: 700px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><path d="m110 50h275" fill="none" stroke="var(--text-color)" stroke-dasharray="4, 8"></path><g fill="none" stroke="var(--text-color)"><path d="m35.535 85h38.93v-42.823h-38.93z" stroke-width=".7786px"></path><path d="m31.642 46.07 23.358-31.144 23.358 31.144" stroke-width=".7786px"></path><g stroke-width="1px"><path d="m50 83v-15h10v15z"></path><path d="m40 50h5v5h-5z"></path><path d="m70 50v5h-5v-5z"></path><path d="m50 30h10v5h-10z"></path><path d="m30 46 25-35 25 35"></path></g></g><g fill="none" stroke="var(--text-color)"><path d="m16.624 175h81.753v-42.823h-81.753z" stroke-width="1.1283px"></path><g stroke-width="1px"><path d="m50 173v-20s0-5 5-5 5 5 5 5v20z"></path><path d="m20 135h5v5h-5z"></path><path d="m30 135h5v5h-5z"></path><path d="m30 145h5v5h-5z"></path><path d="m20 145h5v5h-5z"></path><path d="m20 155h5v5h-5z"></path><path d="m30 155h5v5h-5z"></path><path d="m85 145h5v5h-5z"></path><path d="m75 145h5v5h-5z"></path><path d="m75 155h5v5h-5z"></path><path d="m85 155h5v5h-5z"></path><path d="m5 130h105l-5-20h-95z"></path><path d="m20 115v10h10v-10z"></path><path d="m100 120v5h-20v-5z"></path></g></g><path d="m110 150h270" fill="none" stroke="var(--text-color)" stroke-dasharray="3.96347, 7.92694" stroke-width=".99087"></path><text x="384.08905" y="155.58189" fill="var(--text-color)" font-family="sans-serif" font-size="19.997px" stroke-width=".49992" style="line-height:1.25" xml:space="preserve"><tspan x="384.08905" y="155.58189" stroke-width=".49992">1,000,000$</tspan></text><text x="403.52597" y="55.515846" fill="var(--text-color)" font-family="sans-serif" font-size="19.997px" stroke-width=".49992" style="line-height:1.25" xml:space="preserve"><tspan x="403.52597" y="55.515846" stroke-width=".49992">200,000$</tspan></text></svg></div>
+</div></div>
+  <p>In machine learning literature it is preferable to use the term label when
+    we deal with classification tasks and the term target when we deal with
+    regression tasks, but some authors might use those terms interchangebly.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Unsupervised Learning</h2>
+  <p>In unsupervised learning the dataset contains only features and no labels.
+    The overall task is to find some hidden structure in the data. We could for
+    example use the labels in the house pricing dataset and cluster those houses
+    according to the features of the houses. Similar houses would be allocated
+    to the same cluster, while different houses should be in different clusters.
+  </p>
+  <p>In the below example we divide the houses into two categories based on size
+    and price.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="80" x2="460" class="svelte-481epo zero"></line><text x="72" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-200000 svelte-481epo" transform="translate(0, 172)"><line x1="80" x2="460" class="svelte-481epo"></line><text x="72" y="+4" class="svelte-481epo">200000</text></g><g class="tick tick-400000 svelte-481epo" transform="translate(0, 134)"><line x1="80" x2="460" class="svelte-481epo"></line><text x="72" y="+4" class="svelte-481epo">400000</text></g><g class="tick tick-600000 svelte-481epo" transform="translate(0, 96)"><line x1="80" x2="460" class="svelte-481epo"></line><text x="72" y="+4" class="svelte-481epo">600000</text></g><g class="tick tick-800000 svelte-481epo" transform="translate(0, 57.99999999999999)"><line x1="80" x2="460" class="svelte-481epo"></line><text x="72" y="+4" class="svelte-481epo">800000</text></g><g class="tick tick-1000000 svelte-481epo" transform="translate(0, 20)"><line x1="80" x2="460" class="svelte-481epo"></line><text x="72" y="+4" class="svelte-481epo">1000000</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(80,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(206.66666666666666,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">50</text></g><g class="tick svelte-481epo" transform="translate(333.3333333333333,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">100</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">150</text></g></g><text class="label svelte-481epo" x="270" y="245">Size</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Price</text><circle fill="var(--main-color-1)" cx="105.33333333333334" cy="207.15" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="130.66666666666669" cy="203.35" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="130.66666666666669" cy="205.25" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="143.33333333333331" cy="203.35" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="194" cy="200.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="118" cy="206.2" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="135.73333333333335" cy="205.25" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="163.60000000000002" cy="205.63" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="181.33333333333334" cy="202.97" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="148.4" cy="202.4" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="358.66666666666663" cy="162.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="333.3333333333333" cy="165.35" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="308" cy="172" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="384" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="422" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="434.66666666666663" cy="57.99999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="389.06666666666666" cy="148.25" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="416.93333333333334" cy="72.63" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="434.66666666666663" cy="123.16999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="401.73333333333335" cy="126.4" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <div class="separator"></div>
+
+  <h2>Semi-supervised Learning</h2>
+  <p>Labeling your dataset is costly, therefore companies and researchers try to
+    get away with labeling as few samples as possible. In semi-supervised
+    learning only a fraction of data has labels, while the rest is unlabeled.
+    The labeled data is used to train the algorithm and to label the remaining
+    data. After that step the whole dataset can be used for training.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Self-supervised Learning</h2>
+  <p>Self-supervised learning can be seen as supervised learning, where the
+    labels are not determined by a human supervisor, but are derived directly
+    from the features of the data.
+  </p>
+  <p>Let us look for example at the sentence below.</p>
+  <div class="sentence"><span class="word svelte-zhapdh">What</span>
+    <span class="word svelte-zhapdh">is</span>
+    <span class="word svelte-zhapdh">your</span>
+    <span class="word svelte-zhapdh">name</span></div>
+  <p>We could design a natural language processing task by masking a part of the
+    sentence.
+  </p>
+  <div class="sentence"><span class="word svelte-zhapdh">What</span>
+    <span class="word svelte-zhapdh">is</span>
+    <span class="word svelte-zhapdh">your</span>
+    <span class="word svelte-zhapdh">...</span></div>
+  <p>The algorithm needs to learn to predict the masked word, which essentially
+    becomes the label in our task. We feed the model with millions of such
+    examples during the training process. Over time the model gets better and
+    better at this task, which would indicate some knowledge about the structure
+    of the english language. That pretrained model and by extension that
+    knowledge about the english language can eventually be used in a supervised
+    learning task like sentiment analysis, where you have only limited amount
+    data.
+  </p>
+  <p>The process of learning a general task with a huge amount of data and using
+    the same trained model which is recalibrated for a more specific task is
+    called <strong><span class="highlight svelte-16edlvf">transfer learning</span></strong>. Self-supervised learning
+    excels at transfer learning. Companies spend often millions of dollars to
+    train such language models and in many cases they provide those to the
+    general public, which can reuse them for their particular tasks.
+  </p>
+  <p>Self supervised learning is not limited to natural language processing.
+    While the original ideas were developed for text, more recently
+    self-supervised learning has also been applied successfully to computer
+    vision.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Reinforcement Learning</h2>
+  <p>Reinforcemnt learning deals with sequential decisions, where an agent
+    interacts with the environment and receives rewards based on the preceding
+    actions.
+  </p>
+  <svg viewBox="0 0 400 100"><rect fill="none" stroke="var(--text-color)" x="187.5" y="85.45454545454545" width="25.000000000000004" height="10"></rect><g fill="var(--background-color)" stroke="var(--text-color)"><circle cx="193.75" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="193.75" cy="95.45454545454545" r="0.5"></circle><circle cx="206.25" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="206.25" cy="95.45454545454545" r="0.5"></circle></g><g transform="rotate(0 200 85.45454545454545)"><rect fill="none" stroke="var(--text-color)" x="198" y="2.1212121212121122" width="4" height="83.33333333333334"></rect></g><line x1="0" y1="100" x2="400" y2="100" stroke="var(--text-color)"></line></svg>
+
+
+  <p>The cartpole is probably the most well known reinforcement learning task.
+    The agent needs to learn to balance the pole by moving the cart left and
+    right. Each single step the agent succeeds, the agent gets a reward of 1. If
+    the pole gets below a certain angle or the cart moves outside the screen the
+    agent fails and doesn&#39;t get any more rewards.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="48xu4v">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="48xu4v"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 30],
+				params: {},
+				routeId: "blocks/deep_learning/introduction/machine_learning_categories"
+			}
+		});
+	</script></div>
+	</body>
+</html>

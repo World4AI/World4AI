@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Logistic Regression Gradient Descent</title><meta name="description" content="The optimal weights and biases for logistic regression can be obtained by the means of gradient descent. The gradients are calcualted using the chain rule." data-svelte="svelte-1062yce">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/gradient_descent-4e570928.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Plot-474e03af.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/PlayButton-14063fa2.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/logistic_regression/gradient_descent.svelte-e4cf18b4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Plot-e628e9dd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/PlayButton-ea5f48d9.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn selected">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Gradient Descent</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h2>Cross-Entropy vs Mean Squared Error</h2>
+  <p>The cross-entropy is almost exclusively used as the loss function for
+    classification tasks, but it is not obvious why we can not use the mean
+    squared error. Actually we can, but as we will see shortly, the
+    cross-entropy is a more convenient measure of loss for classification tasks.
+  </p>
+  <p>For this discusson we will deal with a single sample and distinquish between
+    two cases: the label <span class="placeholder svelte-1mpoqm2">y</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is either 0 or 1. If the label equals to
+    0, the mean squared error is <span class="placeholder svelte-1mpoqm2">(0 - \sigma)^2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> while
+    the cross-entropy is<span class="placeholder svelte-1mpoqm2">-\log(1 - \sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Both
+    losses increase as the predicted probability <span class="placeholder svelte-1mpoqm2">\sigma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> grows. If
+    the true label <span class="placeholder svelte-1mpoqm2">1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is 1 on the other hand the mean squared error
+    is <span class="placeholder svelte-1mpoqm2">(1 - \sigma)^2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the cross-entropy is<span class="placeholder svelte-1mpoqm2">-\log(\sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. In both cases the error decreases when the predicted probability <span class="placeholder svelte-1mpoqm2">\sigma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> grows.
+  </p>
+  <p>Below we plot the mean squared error and the cross-entropy based on the
+    predicted probability <span class="placeholder svelte-1mpoqm2">\sigma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The red plot depicts the mean
+    squared error, while the blue plot depicts the cross-entropy. There are two
+    plots for each of the losses, one for each value of the target.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.5 svelte-481epo" transform="translate(0, 178.33333333333334)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.5</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 146.66666666666669)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g><g class="tick tick-1.5 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1.5</text></g><g class="tick tick-2 svelte-481epo" transform="translate(0, 83.33333333333334)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">2</text></g><g class="tick tick-2.5 svelte-481epo" transform="translate(0, 51.66666666666666)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">2.5</text></g><g class="tick tick-3 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">3</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.25</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.50</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.75</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="260" y="245">Predicted Probability</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Error</text><path d="M60,210L64,209.99366666666666L68,209.97466666666668L72,209.943L76,209.89866666666666L80,209.84166666666667L84,209.772L88,209.68966666666665L92,209.59466666666665L96,209.487L100,209.36666666666667L104,209.23366666666666L107.99999999999999,209.088L112,208.92966666666663L116,208.75866666666667L120,208.57500000000002L124,208.37866666666667L128,208.16966666666664L132,207.948L136,207.71366666666665L140,207.4666666666667L144.00000000000003,207.207L148.00000000000003,206.93466666666666L152.00000000000003,206.64966666666666L156.00000000000003,206.35199999999998L160.00000000000003,206.04166666666666L164.00000000000003,205.71866666666668L168.00000000000003,205.38299999999998L172.00000000000003,205.03466666666668L176.00000000000003,204.67366666666666L180.00000000000006,204.29999999999998L184.00000000000006,203.91366666666667L188.00000000000006,203.51466666666667L192.00000000000006,203.103L196.00000000000006,202.6786666666667L200.00000000000006,202.24166666666665L204.00000000000006,201.792L208.00000000000006,201.32966666666664L212.00000000000006,200.85466666666667L216.00000000000009,200.367L220.00000000000009,199.86666666666667L224.00000000000006,199.35366666666667L228.00000000000009,198.82799999999997L232.00000000000009,198.28966666666665L236.00000000000009,197.73866666666666L240.0000000000001,197.17499999999998L244.0000000000001,196.59866666666665L248.00000000000009,196.00966666666665L252.0000000000001,195.408L256.0000000000001,194.79366666666664L260.0000000000001,194.16666666666666L264.0000000000001,193.527L268.0000000000001,192.87466666666666L272.0000000000001,192.20966666666664L276.0000000000001,191.53199999999998L280.0000000000001,190.84166666666667L284.0000000000001,190.13866666666664L288.0000000000001,189.42299999999997L292.0000000000001,188.69466666666665L296.0000000000001,187.95366666666666L300.00000000000017,187.2L304.0000000000001,186.43366666666665L308.0000000000001,185.65466666666666L312.00000000000017,184.863L316.0000000000001,184.05866666666665L320.00000000000017,183.24166666666665L324.00000000000017,182.41199999999995L328.0000000000001,181.56966666666665L332.00000000000017,180.71466666666666L336.00000000000017,179.84699999999998L340.00000000000017,178.96666666666664L344.00000000000017,178.07366666666664L348.00000000000017,177.16799999999998L352.00000000000017,176.24966666666663L356.00000000000017,175.31866666666662L360.0000000000002,174.37499999999994L364.00000000000017,173.41866666666664L368.00000000000017,172.44966666666662L372.0000000000002,171.46799999999996L376.00000000000017,170.47366666666662L380.0000000000002,169.4666666666666L384.0000000000002,168.44699999999995L388.00000000000017,167.4146666666666L392.0000000000002,166.36966666666663L396.0000000000002,165.31199999999995L400.00000000000017,164.2416666666666L404.0000000000002,163.15866666666662L408.0000000000002,162.06299999999993L412.0000000000002,160.9546666666666L416.0000000000002,159.8336666666666L420.0000000000002,158.69999999999993L424.0000000000002,157.5536666666666L428.0000000000002,156.3946666666666L432.0000000000003,155.22299999999993L436.0000000000002,154.0386666666666L440.0000000000002,152.84166666666658L444.0000000000003,151.63199999999992L448.0000000000002,150.4096666666666L452.0000000000003,149.17466666666658L456.0000000000003,147.92699999999994" stroke="var(--main-color-1)" class="svelte-481epo"></path><path d="M60,146.66666666666669L64,147.927L68,149.17466666666667L72,150.40966666666668L76,151.63200000000003L80,152.8416666666667L84,154.03866666666667L88,155.22299999999998L92,156.39466666666667L96,157.55366666666666L100,158.7L104,159.83366666666666L107.99999999999999,160.95466666666667L112,162.063L116,163.15866666666668L120,164.24166666666667L124,165.312L128,166.36966666666666L132,167.41466666666668L136,168.447L140,169.4666666666667L144.00000000000003,170.47366666666667L148.00000000000003,171.46800000000002L152.00000000000003,172.44966666666667L156.00000000000003,173.41866666666667L160.00000000000003,174.375L164.00000000000003,175.31866666666667L168.00000000000003,176.24966666666666L172.00000000000003,177.168L176.00000000000003,178.07366666666667L180.00000000000006,178.96666666666667L184.00000000000006,179.847L188.00000000000006,180.71466666666666L192.00000000000006,181.56966666666668L196.00000000000006,182.412L200.00000000000006,183.24166666666667L204.00000000000006,184.05866666666668L208.00000000000006,184.863L212.00000000000006,185.65466666666669L216.00000000000009,186.43366666666668L220.00000000000009,187.20000000000002L224.00000000000006,187.95366666666666L228.00000000000009,188.69466666666668L232.00000000000009,189.423L236.00000000000009,190.1386666666667L240.0000000000001,190.84166666666664L244.0000000000001,191.532L248.00000000000009,192.2096666666667L252.0000000000001,192.87466666666666L256.0000000000001,193.52700000000004L260.0000000000001,194.16666666666669L264.0000000000001,194.79366666666667L268.0000000000001,195.40800000000002L272.0000000000001,196.0096666666667L276.0000000000001,196.59866666666667L280.0000000000001,197.175L284.0000000000001,197.7386666666667L288.0000000000001,198.28966666666668L292.0000000000001,198.828L296.0000000000001,199.35366666666667L300.00000000000017,199.86666666666667L304.0000000000001,200.36700000000002L308.0000000000001,200.8546666666667L312.00000000000017,201.3296666666667L316.0000000000001,201.79200000000003L320.00000000000017,202.24166666666667L324.00000000000017,202.6786666666667L328.0000000000001,203.103L332.00000000000017,203.5146666666667L336.00000000000017,203.9136666666667L340.00000000000017,204.3L344.00000000000017,204.6736666666667L348.00000000000017,205.03466666666668L352.00000000000017,205.383L356.00000000000017,205.71866666666668L360.0000000000002,206.04166666666669L364.00000000000017,206.352L368.00000000000017,206.6496666666667L372.0000000000002,206.9346666666667L376.00000000000017,207.20700000000002L380.0000000000002,207.46666666666667L384.0000000000002,207.71366666666668L388.00000000000017,207.94800000000004L392.0000000000002,208.16966666666667L396.0000000000002,208.37866666666667L400.00000000000017,208.57500000000002L404.0000000000002,208.75866666666667L408.0000000000002,208.92966666666666L412.0000000000002,209.08800000000002L416.0000000000002,209.23366666666666L420.0000000000002,209.36666666666667L424.0000000000002,209.48700000000002L428.0000000000002,209.59466666666665L432.0000000000003,209.68966666666668L436.0000000000002,209.772L440.0000000000002,209.84166666666667L444.0000000000003,209.89866666666668L448.0000000000002,209.943L452.0000000000003,209.97466666666668L456.0000000000003,209.99366666666666" stroke="var(--main-color-1)" class="svelte-481epo"></path><path d="M64,209.36347872927823L68,208.72049520322375L72,208.07091685930178L76,207.41460701371716L80,206.75142468878846L84,206.08122443118776L88,205.40385612046043L92,204.71916476719343L96,204.0269903001547L100,203.327167341671L104,202.61952497045638L107.99999999999999,201.90388647104064L112,201.18006906887783L116,200.44788365014304L120,199.7071344651409L124,198.95761881416408L128,198.19912671453872L132,197.43144054749024L136,196.654334683342L140,195.8675750834334L144.00000000000003,195.07091887699892L148.00000000000003,194.264113911095L152.00000000000003,193.4468982714875L156.00000000000003,192.61899977222183L160.00000000000003,191.78013541138722L164.00000000000003,190.93001079035162L168.00000000000003,190.06831949348563L172.00000000000003,189.19474242510435L176.00000000000003,188.3089471000375L180.00000000000006,187.41058688388028L184.00000000000006,186.49930017858063L188.00000000000006,185.5747095485743L192.00000000000006,184.63642078218206L196.00000000000006,183.6840218824278L200.00000000000006,182.7170819808112L204.00000000000006,181.73515016686676L208.00000000000006,180.73775422555127L212.00000000000006,179.72439927361L216.00000000000009,178.6945662850639L220.00000000000009,177.6477104948206L224.00000000000006,176.58325966811643L228.00000000000009,175.5006122220274L232.00000000000009,174.39913518360905L236.00000000000009,173.27816196731368L240.0000000000001,172.136989952144L244.0000000000001,170.97487783649157L248.00000000000009,169.79104274572188L252.0000000000001,168.5846570642446L256.0000000000001,167.3548449599615L260.0000000000001,166.10067856453676L264.0000000000001,164.82117376776057L268.0000000000001,163.51528557825392L272.0000000000001,162.18190299572456L276.0000000000001,160.81984333173017L280.0000000000001,159.42784590620775L284.0000000000001,158.0045650355774L288.0000000000001,156.5485622146798L292.0000000000001,155.05829737870084L296.0000000000001,153.532119112027L300.00000000000017,151.96825364797016L304.0000000000001,150.36479247563176L308.0000000000001,148.7196783367586L312.00000000000017,147.03068935488838L316.0000000000001,145.29542098964114L320.00000000000017,143.51126544841702L324.00000000000017,141.67538811311104L328.0000000000001,139.78470044696456L332.00000000000017,137.8358287314035L336.00000000000017,135.8250778381467L340.00000000000017,133.7483890593573L344.00000000000017,131.60129078656414L348.00000000000017,129.37884053185036L352.00000000000017,127.0755564010283L356.00000000000017,124.68533562878132L360.0000000000002,122.20135712907349L364.00000000000017,119.61596414279066L368.00000000000017,116.9205218962669L372.0000000000002,114.10524360011408L376.00000000000017,111.15897594323754L380.0000000000002,108.06893221250682L384.0000000000002,104.82035690129528L388.00000000000017,101.39609955417778L392.0000000000002,97.7760666776477L396.0000000000002,93.93650729594015L400.00000000000017,89.84906762389397L404.0000000000002,85.47951909638701L408.0000000000002,80.78601419331794L412.0000000000002,75.71664270732727L416.0000000000002,70.20592216465069L420.0000000000002,64.16961077704342L424.0000000000002,57.49677811871436L428.0000000000002,50.0371858604767L432.0000000000003,41.5801976609235L436.0000000000002,31.817321271863715L440.0000000000002,20.270289341579783L444.0000000000003,6.137864425012937L448.0000000000002,-12.082000163600195L452.0000000000003,-37.76145701045131L456.0000000000003,-81.66077844591666" stroke="var(--main-color-2)" class="svelte-481epo"></path><path d="M64,-81.66077844591244L68,-37.76145701044925L72,-12.082000163598845L76,6.13786442501395L80,20.270289341580586L84,31.817321271864365L88,41.58019766092407L92,50.037185860477145L96,57.496778118714786L100,64.16961077704376L104,70.20592216465099L107.99999999999999,75.71664270732757L112,80.78601419331821L116,85.47951909638724L120,89.84906762389417L124,93.93650729594036L128,97.7760666776479L132,101.39609955417798L136,104.82035690129545L140,108.068932212507L144.00000000000003,111.15897594323768L148.00000000000003,114.10524360011422L152.00000000000003,116.92052189626702L156.00000000000003,119.61596414279079L160.00000000000003,122.20135712907361L164.00000000000003,124.68533562878144L168.00000000000003,127.07555640102842L172.00000000000003,129.3788405318505L176.00000000000003,131.60129078656428L180.00000000000006,133.74838905935738L184.00000000000006,135.82507783814683L188.00000000000006,137.83582873140358L192.00000000000006,139.78470044696465L196.00000000000006,141.67538811311113L200.00000000000006,143.5112654484171L204.00000000000006,145.29542098964123L208.00000000000006,147.03068935488847L212.00000000000006,148.71967833675868L216.00000000000009,150.36479247563184L220.00000000000009,151.9682536479702L224.00000000000006,153.53211911202706L228.00000000000009,155.05829737870093L232.00000000000009,156.54856221467986L236.00000000000009,158.00456503557743L240.0000000000001,159.42784590620784L244.0000000000001,160.81984333173025L248.00000000000009,162.1819029957246L252.0000000000001,163.515285578254L256.0000000000001,164.8211737677606L260.0000000000001,166.10067856453682L264.0000000000001,167.35484495996153L268.0000000000001,168.58465706424462L272.0000000000001,169.79104274572197L276.0000000000001,170.97487783649163L280.0000000000001,172.13698995214406L284.0000000000001,173.27816196731368L288.0000000000001,174.39913518360908L292.0000000000001,175.50061222202746L296.0000000000001,176.58325966811648L300.00000000000017,177.64771049482061L304.0000000000001,178.69456628506398L308.0000000000001,179.72439927361003L312.00000000000017,180.73775422555133L316.0000000000001,181.7351501668668L320.00000000000017,182.71708198081126L324.00000000000017,183.68402188242786L328.0000000000001,184.63642078218209L332.00000000000017,185.57470954857433L336.00000000000017,186.49930017858068L340.00000000000017,187.4105868838803L344.00000000000017,188.30894710003756L348.00000000000017,189.1947424251044L352.00000000000017,190.0683194934857L356.00000000000017,190.93001079035167L360.0000000000002,191.78013541138722L364.00000000000017,192.61899977222188L368.00000000000017,193.44689827148756L372.0000000000002,194.26411391109505L376.00000000000017,195.07091887699895L380.0000000000002,195.86757508343342L384.0000000000002,196.65433468334203L388.00000000000017,197.43144054749027L392.0000000000002,198.19912671453878L396.0000000000002,198.9576188141641L400.00000000000017,199.70713446514097L404.0000000000002,200.44788365014307L408.0000000000002,201.18006906887788L412.0000000000002,201.90388647104064L416.0000000000002,202.61952497045644L420.0000000000002,203.32716734167104L424.0000000000002,204.02699030015475L428.0000000000002,204.7191647671935L432.0000000000003,205.40385612046046L436.0000000000002,206.08122443118782L440.0000000000002,206.7514246887885L444.0000000000003,207.41460701371722L448.0000000000002,208.07091685930183L452.0000000000003,208.7204952032238L456.0000000000003,209.36347872927828" stroke="var(--main-color-2)" class="svelte-481epo"></path></svg></div>
+</div>
+  <p>The mean squared error and the cross-entropy start at the same position, but
+    the difference in errors starts to grow as the predicted probability starts
+    to deviate from the true label. The cross-entropy punishes
+    misclassifications with a much higher loss, than the mean squared error.
+    When we deal with probabilities the difference between the label and the
+    predicted probability can not be larger than 1. That means that the mean
+    squared error also can not grow beyond 1. The logarithm on the other hand
+    literally explodes when the value starts approaching 0.
+  </p>
+  <p>This behaviour can also be observed when we draw the predicted probability
+    against the derivative of the loss function. While the derivatives of the
+    mean squared error are linear, the cross-entropy derivatives grow
+    exponentially when the quality of predictions deteriorates.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick--10 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">-10</text></g><g class="tick tick--5 svelte-481epo" transform="translate(0, 162.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">-5</text></g><g class="tick tick-0 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-5 svelte-481epo" transform="translate(0, 67.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">5</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">10</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.25</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.50</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.75</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="260" y="245">Predicted Probability</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Derivative</text><path d="M60,115L64,114.81L68,114.62L72,114.43L76,114.24L80,114.05L84,113.86L88,113.67L92,113.47999999999999L96,113.28999999999999L100,113.1L104,112.91L107.99999999999999,112.72L112,112.53L116,112.34L120,112.14999999999999L124,111.96000000000001L128,111.77L132,111.58L136,111.38999999999999L140,111.2L144.00000000000003,111.00999999999999L148.00000000000003,110.82L152.00000000000003,110.63L156.00000000000003,110.44L160.00000000000003,110.25L164.00000000000003,110.05999999999999L168.00000000000003,109.87L172.00000000000003,109.67999999999999L176.00000000000003,109.49L180.00000000000006,109.29999999999998L184.00000000000006,109.11L188.00000000000006,108.92L192.00000000000006,108.72999999999999L196.00000000000006,108.53999999999999L200.00000000000006,108.35L204.00000000000006,108.16L208.00000000000006,107.96999999999998L212.00000000000006,107.78L216.00000000000009,107.58999999999999L220.00000000000009,107.39999999999999L224.00000000000006,107.20999999999998L228.00000000000009,107.02L232.00000000000009,106.83L236.00000000000009,106.63999999999999L240.0000000000001,106.45L244.0000000000001,106.25999999999999L248.00000000000009,106.07L252.0000000000001,105.88L256.0000000000001,105.69L260.0000000000001,105.49999999999999L264.0000000000001,105.31000000000002L268.0000000000001,105.11999999999999L272.0000000000001,104.92999999999999L276.0000000000001,104.74L280.0000000000001,104.54999999999998L284.0000000000001,104.36L288.0000000000001,104.16999999999999L292.0000000000001,103.97999999999999L296.0000000000001,103.79000000000002L300.00000000000017,103.6L304.0000000000001,103.40999999999998L308.0000000000001,103.22L312.00000000000017,103.02999999999999L316.0000000000001,102.83999999999999L320.00000000000017,102.64999999999999L324.00000000000017,102.45999999999998L328.0000000000001,102.27000000000001L332.00000000000017,102.07999999999998L336.00000000000017,101.88999999999999L340.00000000000017,101.69999999999999L344.00000000000017,101.50999999999999L348.00000000000017,101.31999999999998L352.00000000000017,101.13L356.00000000000017,100.93999999999998L360.0000000000002,100.75000000000001L364.00000000000017,100.55999999999999L368.00000000000017,100.36999999999999L372.0000000000002,100.17999999999999L376.00000000000017,99.98999999999998L380.0000000000002,99.79999999999998L384.0000000000002,99.60999999999999L388.00000000000017,99.41999999999999L392.0000000000002,99.23L396.0000000000002,99.03999999999999L400.00000000000017,98.84999999999998L404.0000000000002,98.65999999999998L408.0000000000002,98.47L412.0000000000002,98.27999999999999L416.0000000000002,98.08999999999999L420.0000000000002,97.89999999999998L424.0000000000002,97.71000000000001L428.0000000000002,97.51999999999998L432.0000000000003,97.32999999999998L436.0000000000002,97.13999999999999L440.0000000000002,96.94999999999999L444.0000000000003,96.75999999999998L448.0000000000002,96.56999999999998L452.0000000000003,96.38L456.0000000000003,96.19000000000001" stroke="var(--main-color-1)" class="svelte-481epo"></path><path d="M60,134L64,133.81L68,133.62L72,133.42999999999998L76,133.24L80,133.04999999999998L84,132.85999999999999L88,132.67000000000002L92,132.48L96,132.29L100,132.10000000000002L104,131.91L107.99999999999999,131.72L112,131.53L116,131.34L120,131.15L124,130.95999999999998L128,130.76999999999998L132,130.58L136,130.39L140,130.2L144.00000000000003,130.01L148.00000000000003,129.82000000000002L152.00000000000003,129.63L156.00000000000003,129.44L160.00000000000003,129.25L164.00000000000003,129.06000000000003L168.00000000000003,128.87L172.00000000000003,128.67999999999998L176.00000000000003,128.49L180.00000000000006,128.3L184.00000000000006,128.10999999999999L188.00000000000006,127.91999999999999L192.00000000000006,127.72999999999999L196.00000000000006,127.54000000000002L200.00000000000006,127.35000000000001L204.00000000000006,127.15999999999998L208.00000000000006,126.96999999999998L212.00000000000006,126.78000000000002L216.00000000000009,126.58999999999999L220.00000000000009,126.39999999999999L224.00000000000006,126.20999999999998L228.00000000000009,126.02000000000001L232.00000000000009,125.83000000000001L236.00000000000009,125.63999999999999L240.0000000000001,125.44999999999999L244.0000000000001,125.26L248.00000000000009,125.06999999999998L252.0000000000001,124.88L256.0000000000001,124.68999999999998L260.0000000000001,124.50000000000001L264.0000000000001,124.31L268.0000000000001,124.11999999999999L272.0000000000001,123.92999999999999L276.0000000000001,123.74000000000001L280.0000000000001,123.54999999999998L284.0000000000001,123.35999999999999L288.0000000000001,123.16999999999999L292.0000000000001,122.98L296.0000000000001,122.79000000000002L300.00000000000017,122.59999999999998L304.0000000000001,122.40999999999998L308.0000000000001,122.22L312.00000000000017,122.02999999999999L316.0000000000001,121.83999999999999L320.00000000000017,121.64999999999998L324.00000000000017,121.46000000000001L328.0000000000001,121.27000000000001L332.00000000000017,121.07999999999998L336.00000000000017,120.88999999999997L340.00000000000017,120.70000000000002L344.00000000000017,120.50999999999998L348.00000000000017,120.31999999999998L352.00000000000017,120.13L356.00000000000017,119.94000000000001L360.0000000000002,119.75L364.00000000000017,119.55999999999997L368.00000000000017,119.36999999999999L372.0000000000002,119.18L376.00000000000017,118.98999999999998L380.0000000000002,118.79999999999998L384.0000000000002,118.60999999999999L388.00000000000017,118.42L392.0000000000002,118.23L396.0000000000002,118.03999999999999L400.00000000000017,117.84999999999998L404.0000000000002,117.66L408.0000000000002,117.46999999999997L412.0000000000002,117.27999999999999L416.0000000000002,117.08999999999997L420.0000000000002,116.9L424.0000000000002,116.71000000000001L428.0000000000002,116.51999999999998L432.0000000000003,116.32999999999998L436.0000000000002,116.14L440.0000000000002,115.94999999999999L444.0000000000003,115.75999999999998L448.0000000000002,115.56999999999998L452.0000000000003,115.38L456.0000000000003,115.19" stroke="var(--main-color-1)" class="svelte-481epo"></path><path d="M64,105.4040404040404L68,105.30612244897958L72,105.2061855670103L76,105.10416666666669L80,105.00000000000001L84,104.89361702127661L88,104.78494623655912L92,104.67391304347825L96,104.56043956043955L100,104.44444444444444L104,104.3258426966292L107.99999999999999,104.20454545454544L112,104.08045977011493L116,103.95348837209303L120,103.8235294117647L124,103.69047619047619L128,103.55421686746988L132,103.41463414634147L136,103.2716049382716L140,103.125L144.00000000000003,102.9746835443038L148.00000000000003,102.82051282051282L152.00000000000003,102.66233766233766L156.00000000000003,102.5L160.00000000000003,102.33333333333333L164.00000000000003,102.16216216216218L168.00000000000003,101.986301369863L172.00000000000003,101.80555555555556L176.00000000000003,101.61971830985914L180.00000000000006,101.42857142857143L184.00000000000006,101.23188405797102L188.00000000000006,101.02941176470588L192.00000000000006,100.82089552238806L196.00000000000006,100.6060606060606L200.00000000000006,100.38461538461539L204.00000000000006,100.15625L208.00000000000006,99.92063492063492L212.00000000000006,99.6774193548387L216.00000000000009,99.4262295081967L220.00000000000009,99.16666666666666L224.00000000000006,98.89830508474576L228.00000000000009,98.62068965517241L232.00000000000009,98.33333333333331L236.00000000000009,98.03571428571429L240.0000000000001,97.72727272727272L244.0000000000001,97.40740740740739L248.00000000000009,97.07547169811322L252.0000000000001,96.73076923076923L256.0000000000001,96.37254901960785L260.0000000000001,96L264.0000000000001,95.61224489795916L268.0000000000001,95.20833333333331L272.0000000000001,94.78723404255318L276.0000000000001,94.34782608695652L280.0000000000001,93.88888888888889L284.0000000000001,93.4090909090909L288.0000000000001,92.90697674418605L292.0000000000001,92.38095238095235L296.0000000000001,91.8292682926829L300.00000000000017,91.24999999999997L304.0000000000001,90.64102564102562L308.0000000000001,89.99999999999999L312.00000000000017,89.3243243243243L316.0000000000001,88.61111111111109L320.00000000000017,87.85714285714283L324.00000000000017,87.05882352941174L328.0000000000001,86.21212121212118L332.00000000000017,85.31249999999996L336.00000000000017,84.35483870967738L340.00000000000017,83.3333333333333L344.00000000000017,82.24137931034478L348.00000000000017,81.07142857142853L352.00000000000017,79.81481481481477L356.00000000000017,78.4615384615384L360.0000000000002,76.99999999999991L364.00000000000017,75.4166666666666L368.00000000000017,73.69565217391298L372.0000000000002,71.81818181818173L376.00000000000017,69.76190476190465L380.0000000000002,67.49999999999987L384.0000000000002,64.99999999999986L388.00000000000017,62.22222222222207L392.0000000000002,59.11764705882335L396.0000000000002,55.62499999999979L400.00000000000017,51.666666666666444L404.0000000000002,47.14285714285688L408.0000000000002,41.923076923076614L412.0000000000002,35.83333333333299L416.0000000000002,28.636363636363207L420.0000000000002,19.99999999999945L424.0000000000002,9.444444444443722L428.0000000000002,-3.750000000000888L432.0000000000003,-20.714285714286877L436.0000000000002,-43.33333333333496L440.0000000000002,-75.00000000000236L444.0000000000003,-122.50000000000381L448.0000000000002,-201.66666666667348L452.0000000000003,-360.00000000001535L456.0000000000003,-835.0000000000624" stroke="var(--main-color-2)" class="svelte-481epo"></path><path d="M64,1065L68,590L72,431.66666666666674L76,352.5L80,305L84,273.3333333333333L88,250.7142857142857L92,233.75L96,220.55555555555557L100,210L104,201.36363636363637L107.99999999999999,194.16666666666669L112,188.0769230769231L116,182.85714285714286L120,178.33333333333334L124,174.375L128,170.88235294117646L132,167.77777777777777L136,164.99999999999997L140,162.5L144.00000000000003,160.2380952380952L148.00000000000003,158.1818181818182L152.00000000000003,156.30434782608694L156.00000000000003,154.58333333333331L160.00000000000003,153L164.00000000000003,151.53846153846155L168.00000000000003,150.1851851851852L172.00000000000003,148.9285714285714L176.00000000000003,147.75862068965517L180.00000000000006,146.66666666666666L184.00000000000006,145.6451612903226L188.00000000000006,144.68749999999997L192.00000000000006,143.78787878787878L196.00000000000006,142.94117647058823L200.00000000000006,142.14285714285714L204.00000000000006,141.38888888888889L208.00000000000006,140.67567567567565L212.00000000000006,140L216.00000000000009,139.35897435897436L220.00000000000009,138.74999999999997L224.00000000000006,138.17073170731706L228.00000000000009,137.6190476190476L232.00000000000009,137.09302325581393L236.00000000000009,136.59090909090907L240.0000000000001,136.1111111111111L244.0000000000001,135.65217391304347L248.00000000000009,135.21276595744678L252.0000000000001,134.79166666666666L256.0000000000001,134.38775510204079L260.0000000000001,134L264.0000000000001,133.62745098039213L268.0000000000001,133.26923076923075L272.0000000000001,132.9245283018868L276.0000000000001,132.59259259259258L280.0000000000001,132.27272727272725L284.0000000000001,131.9642857142857L288.0000000000001,131.66666666666666L292.0000000000001,131.3793103448276L296.0000000000001,131.10169491525426L300.00000000000017,130.83333333333331L304.0000000000001,130.5737704918033L308.0000000000001,130.32258064516128L312.00000000000017,130.07936507936506L316.0000000000001,129.84375L320.00000000000017,129.6153846153846L324.00000000000017,129.39393939393938L328.0000000000001,129.17910447761193L332.00000000000017,128.97058823529412L336.00000000000017,128.768115942029L340.00000000000017,128.57142857142858L344.00000000000017,128.38028169014086L348.00000000000017,128.19444444444443L352.00000000000017,128.01369863013701L356.00000000000017,127.83783783783782L360.0000000000002,127.66666666666667L364.00000000000017,127.49999999999997L368.00000000000017,127.33766233766231L372.0000000000002,127.17948717948718L376.00000000000017,127.0253164556962L380.0000000000002,126.875L384.0000000000002,126.72839506172838L388.00000000000017,126.58536585365853L392.0000000000002,126.44578313253012L396.0000000000002,126.30952380952381L400.00000000000017,126.1764705882353L404.0000000000002,126.04651162790697L408.0000000000002,125.91954022988504L412.0000000000002,125.79545454545453L416.0000000000002,125.6741573033708L420.0000000000002,125.55555555555556L424.0000000000002,125.43956043956045L428.0000000000002,125.32608695652172L432.0000000000003,125.21505376344085L436.0000000000002,125.10638297872339L440.0000000000002,124.99999999999999L444.0000000000003,124.89583333333331L448.0000000000002,124.7938144329897L452.0000000000003,124.6938775510204L456.0000000000003,124.5959595959596" stroke="var(--main-color-2)" class="svelte-481epo"></path></svg></div>
+</div>
+  <p>The exponential growth of derivatives implies, that the gradient descent
+    algorithm will take much larger steps, when the classification predictions
+    are way off, thereby converging at a higher rate.
+  </p>
+
+  <div class="separator"></div>
+  <h2>The Algorithm</h2>
+  <p>Our goal is to find weights <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the bias
+    <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> that minimize the cross-entropy loss in a binary classification
+    problem.
+  </p>
+
+  <span class="placeholder svelte-1mpoqm2">
+      \underset{\mathbf{w}, b} {\arg\min} L \\ 
+      L =  - \dfrac{1}{n} \sum_i \Big[y^{(i)} \log \sigma + (1 - y^{(i)}) \log(1 - \sigma) \Big] \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Similar to linear regression, logistic regression relies on gradient
+    descent. While the derivative is slightly more complex, the chain rule still
+    allows us to relatively easily find the optimum. Ultimately we are
+    interested in the gradient of the loss function <span class="placeholder svelte-1mpoqm2">L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> with respect
+    to the weight vector <span class="placeholder svelte-1mpoqm2">\nabla_{\mathbf{w}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the
+    derivative with respect to the bias <span class="placeholder svelte-1mpoqm2">\dfrac{\partial}{\partial b} L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Once we have those we can use the same gradient descent procedure that we
+    used in linear regression.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <br>
+  <span class="placeholder svelte-1mpoqm2">b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>We can calculate gradients for individual samples and calculate the mean
+    afterwards. That reduces the loss of an individual sample to the following
+    equation.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    L = - \Big[y \log \sigma + (1 - y) \log(1 - \sigma)\Big] \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>We start by calculating the derivative of the loss with respect to the
+    sigmoid output.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    \dfrac{\partial}{\partial \sigma}L = - \Big[y^{(i)} \dfrac{1}{\sigma}  - (1 - y^{(i)}) \dfrac{1}{(1 - \sigma)}\Big] \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Next we calculate the derivative of the sigmoid <span class="placeholder svelte-1mpoqm2">\sigma(z) = \dfrac{1}{1 + e^{-z}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> with respect to the net input <span class="placeholder svelte-1mpoqm2">z</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+
+  <span class="placeholder svelte-1mpoqm2">\dfrac{\partial}{\partial z}\sigma = \sigma(z) (1 - \sigma(z)) </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>The derivative of the sigmoid function is relatively straightforward, but
+    the derivation process is somewhat mathematically involved. It is not
+    necessary to know the exact steps how we arrive at the derivative, but if
+    you are interested, below we provide the necessary steps.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    \begin{aligned}
+    \dfrac{\partial}{\partial z}\sigma &amp;= \dfrac{\partial}{\partial z} \dfrac{1}{1 + e^{-z}} \\
+    &amp;= \dfrac{\partial}{\partial z} ({1 + e^{-z}})^{-1} \\
+    &amp;= -({1 + e^{-z}})^{-2} * -e^{-z} \\
+    &amp;= \dfrac{ e^{-z}}{({1 + e^{-z}})^{-2}} \\
+    &amp;= \dfrac{1}{{1 + e^{-z}}} \dfrac{ e^{-z}}{{1 + e^{-z}}} \\
+    &amp;= \dfrac{1}{{1 + e^{-z}}} \dfrac{ 1 + e^{-z} - 1}{{1 + e^{-z}}} \\
+    &amp;= \dfrac{1}{{1 + e^{-z}}} \Big(\dfrac{ 1 + e^{-z}}{1 + e^{-z}} - \dfrac{1}{{1 + e^{-z}}}\Big) \\
+    &amp;= \dfrac{1}{{1 + e^{-z}}} \Big(1 - \dfrac{1}{{1 + e^{-z}}}\Big) \\
+    &amp;= \sigma(z) (1 - \sigma(z)) 
+    \end{aligned}
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>The rest of derivations are do not differ from those that we used in linear
+    regression. We calculate the gradients of the net input <span class="placeholder svelte-1mpoqm2">z = \mathbf{xw^T}+b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> with respect to the individual weights and the bias applying the chain rule.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{\partial}{\partial w_j} z = x_j</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <br>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{\partial}{\partial b} z = 1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Finally we can utilize the chain rule to calculate the derivatives of the
+    loss with respect to the weights and the bias. When we are dealing with
+    batch or minibatch gradient descent we collect the gradients for several
+    samples <span class="placeholder svelte-1mpoqm2">n</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and calculate the mean, which is utilized in gradient
+    descent.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{\partial L}{\partial w_j} = \dfrac{1}{n} \sum_i^n \dfrac{\partial L}{\partial \sigma^{(i)}} \dfrac{\partial \sigma^{(i)}}{\partial z^{(i)}} \dfrac{\partial z^{(i)}}{\partial w_j^{(i)}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In the interactive example below we demonstrate the gradient descent
+    algorithm for logistic regression. This is the same example that you tried
+    to solve manually in a previous chapter. Start the algorithm and observe how
+    the loss decreases over time.
+  </p>
+  <div class="flex-container svelte-819ysf"><button class="svelte-mb92cp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle svelte-mb92cp"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+</button>
+    <div class="parameters yellow svelte-819ysf"><p class="svelte-819ysf"><span class="placeholder svelte-1mpoqm2">L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 21.23</p>
+      <p class="svelte-819ysf"><span class="placeholder svelte-1mpoqm2">w_1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: -0.15</p>
+      <p class="svelte-819ysf"><span class="placeholder svelte-1mpoqm2">w_2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0.20</p>
+      <p class="svelte-819ysf"><span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: -0.01</p></div></div>
+  <div class="container svelte-1sizmlt"><div style="max-width: 1000px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 210)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-0.25 svelte-481epo" transform="translate(0, 162.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.25</text></g><g class="tick tick-0.50 svelte-481epo" transform="translate(0, 115)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.50</text></g><g class="tick tick-0.75 svelte-481epo" transform="translate(0, 67.5)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">0.75</text></g><g class="tick tick-1 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">1</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="210" y2="20" class="svelte-481epo zero"></line><text y="226" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(160,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.25</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.50</text></g><g class="tick svelte-481epo" transform="translate(360,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">0.75</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="210" y2="20" class="svelte-481epo"></line><text y="226" class="svelte-481epo">1</text></g></g><text class="label svelte-481epo" x="260" y="245">Feature 1</text><text class="label svelte-481epo" transform="rotate(-90)" x="-125" y="15">Feature 2</text><path d="M60,200.5L460,58.000000000000014" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="60" cy="210" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="100" cy="166.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="33.29999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="120" cy="90.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="185.29999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="100" cy="33.29999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="108" cy="109.29999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="188" cy="166.3" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="148" cy="115" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="256" cy="191" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="240" cy="153" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="220" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="200" cy="115" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="160" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="140" cy="172" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="460" cy="20" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="40.9" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="67.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="440" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="77" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="320" cy="57.99999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="134" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="162.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="360" cy="105.49999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="440" cy="143.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="181.5" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="400" cy="29.500000000000007" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="420" cy="105.49999999999999" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="420" cy="156.79999999999998" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-2)" cx="452" cy="29.500000000000007" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <p>The gradient descent algorithm learns to separate the data in a matter of
+    seconds.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="csa9wu">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="csa9wu"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 40],
+				params: {},
+				routeId: "blocks/deep_learning/logistic_regression/gradient_descent"
+			}
+		});
+	</script></div>
+	</body>
+</html>

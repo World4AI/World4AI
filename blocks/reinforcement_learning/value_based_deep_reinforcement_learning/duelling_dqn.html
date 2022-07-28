@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | Duelling DQN</title><meta name="description" content="The duelling DQN aims to imrove the vanilla implementation of the DQN by separating the action value function Q(s, a) into the two components: the advantage function and the state value function." data-svelte="svelte-qh8vll">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Table-818b9eab.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn.svelte-827c3e49.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/NeuralNetworkOld-c5b87430.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/CartPole-8bd7166b.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Table-a51fb5ea.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn selected">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Duelling DQN</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p class="info">&quot;Our dueling network represents two separate estimators: one for the state
+    value function and one for the state-dependent action advantage function.&quot;
+  </p>
+  <p>The neural network architectures that we have seen so far were not much
+    different from typical convolutional or fully connected neural networks that
+    are used in supervised learning. With the duelling DQN the architecture of
+    the neural network that estimates the action value function is adjusted in a
+    way that is tailored specifically to reinforcement learning problems.
+  </p>
+  <div class="separator"></div>
+
+  <p>In tabular Q-learning (and by extension DQN) we estimate the action value
+    function <span class="placeholder svelte-1mpoqm2">Q_{\pi}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> directly. The action value
+    function <span class="placeholder svelte-1mpoqm2">Q_{\pi}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> measures the value of taking
+    the action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> in state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and following the policy
+    <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> afterwards. We can calculate the same function as the sum
+    of two components: the state value function and the advantage function.
+  </p>
+  <p>The state value function
+    <span class="placeholder svelte-1mpoqm2">V_{\pi}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> measures the goodness of a state. It
+    is the expected return when the agent follows the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> at
+    state
+    <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. We can define the state value function in terms of the
+    action value function.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">V_{\pi}(s) = \mathbb{E}_{a \sim \pi(s)}[Q_{\pi}(s, a)]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In this section we additionally utilze the advantage function <span class="placeholder svelte-1mpoqm2">A(s,a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, that measures the advantage of taking the action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and then
+    following policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> over always following the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+
+  <span class="placeholder svelte-1mpoqm2">A_{\pi}(s, a) = Q_{\pi}(s, a) - V_{\pi}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In other words the action value function can be rewritten in the following
+    way.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">Q(s, a) = V(s) + A(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <svg viewBox="0 0 400 150">
+      
+
+      
+      <circle cx="10" cy="18.75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="56.25" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="93.75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+
+      
+      <circle cx="10" cy="131.25" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="10.714285714285714" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="10.714285714285714" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="10.714285714285714" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="10.714285714285714" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="10.714285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="32.14285714285714" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="32.14285714285714" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="32.14285714285714" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="32.14285714285714" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="32.14285714285714" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="53.57142857142856" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="53.57142857142856" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="53.57142857142856" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="53.57142857142856" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="53.57142857142856" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="75" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="75" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="75" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="75" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="96.42857142857143" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="96.42857142857143" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="96.42857142857143" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="96.42857142857143" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="96.42857142857143" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="117.85714285714285" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="117.85714285714285" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="117.85714285714285" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="117.85714285714285" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="117.85714285714285" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="86" y1="139.28571428571428" x2="10" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="139.28571428571428" x2="10" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="139.28571428571428" x2="10" y2="93.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="86" y1="139.28571428571428" x2="10" y2="131.25" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="86" cy="139.28571428571428" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="7.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="7.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="7.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="22.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="22.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="22.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="37.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="37.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="37.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="52.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="52.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="52.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="67.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="67.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="67.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="82.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="82.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="82.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="97.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="97.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="97.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="112.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="112.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="112.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="127.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="127.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="127.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="162" y1="142.5" x2="86" y2="10.714285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="32.14285714285714" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="53.57142857142856" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="96.42857142857143" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="117.85714285714285" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="162" y1="142.5" x2="86" y2="139.28571428571428" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="162" cy="142.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="7.5" x2="162" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="7.5" x2="162" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="7.5" x2="162" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="7.5" x2="162" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="7.5" x2="162" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="7.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="22.5" x2="162" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="22.5" x2="162" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="22.5" x2="162" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="22.5" x2="162" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="22.5" x2="162" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="22.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="37.5" x2="162" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="37.5" x2="162" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="37.5" x2="162" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="37.5" x2="162" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="37.5" x2="162" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="37.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="52.5" x2="162" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="52.5" x2="162" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="52.5" x2="162" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="52.5" x2="162" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="52.5" x2="162" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="52.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="67.5" x2="162" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="67.5" x2="162" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="67.5" x2="162" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="67.5" x2="162" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="238" y1="67.5" x2="162" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="67.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="82.5" x2="162" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="82.5" x2="162" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="82.5" x2="162" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="82.5" x2="162" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="82.5" x2="162" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="82.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="97.5" x2="162" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="97.5" x2="162" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="97.5" x2="162" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="97.5" x2="162" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="97.5" x2="162" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="97.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="112.5" x2="162" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="112.5" x2="162" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="112.5" x2="162" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="112.5" x2="162" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="112.5" x2="162" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="112.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="127.5" x2="162" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="127.5" x2="162" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="127.5" x2="162" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="127.5" x2="162" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="127.5" x2="162" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="127.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="238" y1="142.5" x2="162" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="142.5" x2="162" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="142.5" x2="162" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="142.5" x2="162" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="238" y1="142.5" x2="162" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="238" cy="142.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="314" y1="18.75" x2="238" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="18.75" x2="238" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="18.75" x2="238" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="18.75" x2="238" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="18.75" x2="238" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="314" cy="18.75" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="314" y1="56.25" x2="238" y2="7.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="56.25" x2="238" y2="22.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="56.25" x2="238" y2="37.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="56.25" x2="238" y2="52.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line><line x1="314" y1="56.25" x2="238" y2="67.5" stroke="var(--main-color-2)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="314" cy="56.25" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="314" y1="112.5" x2="238" y2="82.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="314" y1="112.5" x2="238" y2="97.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="314" y1="112.5" x2="238" y2="112.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="314" y1="112.5" x2="238" y2="127.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line><line x1="314" y1="112.5" x2="238" y2="142.5" stroke="var(--main-color-1)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="314" cy="112.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      
+      
+        <line x1="390" y1="37.5" x2="314" y2="18.75" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="37.5" x2="314" y2="112.5" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="390" cy="37.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      <line x1="387.5" y1="37.5" x2="392.5" y2="37.5" stroke="var(--text-color)"></line>
+        <line x1="390" y1="35" x2="390" y2="40" stroke="var(--text-color)"></line>
+      
+        <line x1="390" y1="112.5" x2="314" y2="56.25" stroke="var(--text-color)" stroke-width="0.1px"></line><line x1="390" y1="112.5" x2="314" y2="112.5" stroke="var(--text-color)" stroke-width="0.1px"></line>
+
+      
+      <circle cx="390" cy="112.5" r="5" fill="var(--background-color)" stroke="var(--text-color)"></circle>
+      
+      <line x1="387.5" y1="112.5" x2="392.5" y2="112.5" stroke="var(--text-color)"></line>
+        <line x1="390" y1="110" x2="390" y2="115" stroke="var(--text-color)"></line></svg>
+  <p>The architecture of the duelling DQN uses this exact interpretation of the
+    action value function. In the first layers the weights are shared between
+    the state value and the advantage function. In the later layers the single
+    state value is calculated separately from the advantage values. The state
+    value (red path) is finally added to advantage values (blue path) to
+    reconstruct the action values.
+  </p>
+  <p>The question that you have at this moment is probably: why is it useful to
+    separate the action value function into two components? The authors of the
+    duelleing DQN paper mention that the agent often faces states, where it is
+    not important which action is taken and it is more important to learn how
+    valuable the actual state is. In other states a single action might
+    determine the outcome of a particular environment. The separation of the
+    action value function into two components allows the architecture to be more
+    aware of those differences.
+  </p>
+  <svg viewBox="0 0 400 100"><rect fill="none" stroke="var(--text-color)" x="187.5" y="85.45454545454545" width="25.000000000000004" height="10"></rect><g fill="var(--background-color)" stroke="var(--text-color)"><circle cx="193.75" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="193.75" cy="95.45454545454545" r="0.5"></circle><circle cx="206.25" cy="95.45454545454545" r="4.545454545454545"></circle><circle cx="206.25" cy="95.45454545454545" r="0.5"></circle></g><g transform="rotate(0 200 85.45454545454545)"><rect fill="none" stroke="var(--text-color)" x="198" y="2.1212121212121122" width="4" height="83.33333333333334"></rect></g><line x1="0" y1="100" x2="400" y2="100" stroke="var(--text-color)"></line></svg>
+
+<table class="svelte-18triin"><thead><tr><th class="svelte-18triin">Variable</th><th class="svelte-18triin">Value</th></tr></thead>
+  <tbody><tr class="svelte-18triin"><td class="svelte-18triin">Sum of Rewards</td><td class="svelte-18triin">0</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Cart Position</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Cart Velocity</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Pole Angle</td><td class="svelte-18triin">0.000</td>
+      </tr><tr class="svelte-18triin"><td class="svelte-18triin">Pole Angular Velocity</td><td class="svelte-18triin">0.000</td>
+      </tr></tbody>
+</table>
+  <p>In the cart pole environment for example you if the pole is at the 90 degree
+    angle and the cart is in the middle of the screen, it does not actually
+    matter what action the agent is going to take and the state should be
+    generally favourable. If the cart moves too far from the center or the pole
+    angle is off, the advantages between the two actions are going to be very
+    different.
+  </p>
+  <p>There is still a problem if we implement the calculation of the action value
+    <span class="placeholder svelte-1mpoqm2">Q(s,a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> naively as the sum of the state value <span class="placeholder svelte-1mpoqm2">V(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the advantage values <span class="placeholder svelte-1mpoqm2">A(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Imagine we have four
+    possible actions and the action value function <span class="placeholder svelte-1mpoqm2">Q(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> returns
+    the following values [18, 15, 16, 16] for a particular state s. There is no unique
+    solution to represent the action values as the sum of the advantages and the
+    state value. If we assume that the state value is 10, then the advantages amount
+    to [8, 5, 6, 6]. If we assume that the state value is 16 then advantages are
+    [2, -1, 0, 0]. There are an unlimited number of possible combinations and therefore
+    the training of the neural network is not going to be stable.
+  </p>
+  <p>To stabilize the training process we need to remove a degree of freedom in
+    order to enforce unique solutions.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">Q(s, a) = V(s) + A(s, a) - \max_a A(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>By using the above equation we enforce the advantage for the highest action
+    value to be 0. Let us look at the same example where the action values
+    correspond to [18, 15, 16, 16]. The solution that we come up with to make
+    both sides of the equation equal is to set the state value to 18 and the
+    advantages to [0, -3, -2, -2].
+  </p>
+  <p>Below is a different version of the duelling architecture. Instead of
+    subtracting the maximum advantage value, we are subtructing the average.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">Q(s, a) = V(s) + A(s, a) - \frac{1}{\mathcal{|A|}} \sum_a A(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>According to the authors this version is more stable. Therefore in the
+    PyTorch implementation below we show this version. We only need to adjust
+    the model of the Q-function and the forward pass. The algorithm itself does
+    not require any adjustments.
+  </p>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1f7pkky">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1f7pkky"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 102],
+				params: {},
+				routeId: "blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn"
+			}
+		});
+	</script></div>
+	</body>
+</html>

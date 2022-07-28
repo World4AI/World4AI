@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Exploding/Vanishing Gradients</title><meta name="description" content="Exploding and vanishing gradients are two common problems in deep learning. By using the chain rule we constantly multiply values below zero, which leads to vanishing gradients or values above zero, which leads to exploding gradients." data-svelte="svelte-1s45bzh">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/NeuralNetwork-4f9a8435.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Path-9c42b51d.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/YLabel-7560cbb1.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Legend-92b4e047.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/index.svelte-a472a8d1.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/NeuralNetwork-14818774.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Path-3729d76b.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/YLabel-3efdf996.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Legend-cc9102c0.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn selected folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Vanishing and Exploding Gradients</h1>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>We expect the performance of a neural network to improve when we add more
+    layers to its architecture. A deep neural network has more degrees of
+    freedom to fit to the data than a shallow neural network and should thereby
+    perform much better. In the very least the neural network should be able to
+    overfit to the training data and to display decent performance on the
+    training dataset. Yet the opposite is the case. When you naively keep adding
+    more and more layers to the neural network, the performance will start to
+    deterioarate until the network is not able to learn anything at all. This
+    has to do with the so called <strong><span class="highlight svelte-16edlvf">vanishing</span></strong> or <strong><span class="highlight svelte-16edlvf">exploding</span></strong> gradients. The vanishing gradient problem especially plagued the machine learning
+    community for a long period of time, but by now we have some excellent tools
+    to deal with those problems.
+  </p>
+  <p>To focus on the core idea of the problem, we are going to assume that each
+    layer has just one neuron with one weight and no bias. While this is an
+    unreasonable assumption, the ideas will hold for much more complex neural
+    networks.
+  </p>
+</div>
+<div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 200 65">
+      <text class="title svelte-1whrl10" x="1" y="0">Input</text>
+      
+        <rect x="1" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="1" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">x</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="27.142857142857142" y="0">Hidden 1</text>
+      
+        <rect x="27.142857142857142" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="27.142857142857142" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">z</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="53.285714285714285" y="0"></text>
+      
+        <rect x="53.285714285714285" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="53.285714285714285" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="79.42857142857143" y="0">Hidden 2</text>
+      
+        <rect x="79.42857142857143" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="79.42857142857143" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">z</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="105.57142857142857" y="0"></text>
+      
+        <rect x="105.57142857142857" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="105.57142857142857" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="131.71428571428572" y="0">Output</text>
+      
+        <rect x="131.71428571428572" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="131.71428571428572" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">z</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="157.85714285714286" y="0"></text>
+      
+        <rect x="157.85714285714286" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="157.85714285714286" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+      <text class="title svelte-1whrl10" x="184" y="0">Loss</text>
+      
+        <rect x="184" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" fill="none"></rect>
+        
+        <foreignObject x="184" y="25" width="15" height="15"><div class="svelte-1whrl10"><span class="placeholder svelte-1mpoqm2">L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+          <line x1="16" y1="32.5" x2="27.142857142857142" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="42.14285714285714" y1="32.5" x2="53.285714285714285" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="68.28571428571428" y1="32.5" x2="79.42857142857143" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="94.42857142857143" y1="32.5" x2="105.57142857142857" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="120.57142857142857" y1="32.5" x2="131.71428571428572" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="146.71428571428572" y1="32.5" x2="157.85714285714286" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line>
+          <line x1="172.85714285714286" y1="32.5" x2="184" y2="32.5" stroke="var(--text-color)" stroke-dasharray="2 2" stroke-width="0.3"></line></svg></div>
+</div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>The forward pass is straighforward. We iterate between the calculation of
+    the net value <span class="placeholder svelte-1mpoqm2">z^{&lt;l>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the activation<span class="placeholder svelte-1mpoqm2">a^{&lt;l>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> until we are able to calculate the final activation <span class="placeholder svelte-1mpoqm2">a_3</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and
+    the loss <span class="placeholder svelte-1mpoqm2">L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+    \begin{aligned}
+    z^{&lt;1>} &amp;= x^{&lt;1>}w^{&lt;1>} \\
+    a^{&lt;1>} &amp;= a(z^{&lt;1>}) \\
+    z^{&lt;2>} &amp;= a^{&lt;1>}w^{&lt;2>} \\
+    a^{&lt;2>} &amp;= a(z^{&lt;2>}) \\
+    z^{&lt;3>} &amp;= a^{&lt;2>}w^{&lt;3>} \\
+    a^{&lt;3>} &amp;= a(z^{&lt;3>}) \\
+    \end{aligned}
+      </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In the backward pass we calculate the derivative of the loss with respect to
+    weights of different layers by using the chain rule over and over again. For
+    the first weigth <span class="placeholder svelte-1mpoqm2">w^{&lt;1>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> the calculation of the
+    derivative would look as follows.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{d}{dw^{&lt;1>}} Loss = 
+    \dfrac{dLoss}{da^{&lt;3>}} 
+    \boxed{
+    \dfrac{da^{&lt;3>}}{dz^{&lt;3>}} 
+    \dfrac{dz^{&lt;3>}}{da^{&lt;2>}} 
+    \dfrac{da^{&lt;2>}}{dz^{&lt;2>}} 
+    \dfrac{dz^{&lt;2>}}{da^{&lt;1>}} 
+    \dfrac{da^{&lt;1>}}{dz^{&lt;1>}} 
+    }
+    \dfrac{dz^{&lt;1>}}{dw^{&lt;1>}} 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>If you look at the boxed calculations, you should notice that the same type
+    of calculations are repeated over and over again: <span class="placeholder svelte-1mpoqm2">\dfrac{da}{dz}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">\dfrac{dz}{da}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. We would encounter the
+    same pattern even if we had to deal with 100 layers. If we can figure out
+    the nature of those two derivatives we might understand what the value of
+    the overall derivative looks like.
+  </p>
+
+  <p>So far we have exclusively dealt with the sigmoid activation function <span class="placeholder svelte-1mpoqm2">\dfrac{1}{1 + e^{-z}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, therefore the derivative <span class="placeholder svelte-1mpoqm2">\dfrac{da^{&lt;l>}}{dz^{&lt;l>}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is <span class="placeholder svelte-1mpoqm2">\sigma(1-\sigma)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. If we draw both
+    functions we will notice, that the derivative of the sigmoid approaches 0,
+    when the net input gets too large or too small. At its peak the derivative
+    is exactly 0.25.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250" class="svelte-1sf1opq"><path d="M40,209.9922823623206L42.09999999999999,209.99147073200376L44.19999999999999,209.99057375079713L46.29999999999998,209.98958244426518L48.39999999999997,209.98848689456466L50.49999999999996,209.98727614132318L52.59999999999995,209.98593807211523L54.699999999999946,209.98445930144513L56.79999999999994,209.98282503703567L58.899999999999935,209.98101893209298L60.99999999999993,209.97902292208235L63.099999999999916,209.9768170443965L65.1999999999999,209.97437923912983L67.2999999999999,209.97168512898784L69.39999999999989,209.9687077761562L71.49999999999989,209.96541741373062L73.59999999999988,209.96178114906033L75.69999999999987,209.95776263608732L77.79999999999987,209.95332171346277L79.89999999999986,209.94841400489508L81.99999999999986,209.9429904778207L84.09999999999984,209.9369969560935L86.19999999999985,209.93037358195235L88.29999999999984,209.92305422204913L90.39999999999982,209.91496581179646L92.4999999999998,209.906027631723L94.5999999999998,209.89615050889614L96.69999999999979,209.8852359357924L98.7999999999998,209.87317509824777L100.89999999999978,209.85984780331228L102.99999999999977,209.8451212969519L105.09999999999977,209.82884896058545L107.19999999999976,209.81086887441376L109.29999999999976,209.79100223438286L111.39999999999975,209.7690516084271L113.49999999999974,209.7447990163547L115.59999999999972,209.71800381637038L117.69999999999972,209.68840037977623L119.79999999999973,209.65569553386152L121.89999999999972,209.61956575138302L123.9999999999997,209.5796540633721L126.09999999999968,209.53556667028815L128.19999999999968,209.4868692247996L130.29999999999967,209.43308275773973L132.3999999999997,209.3736792170959L134.49999999999966,209.30807658829767L136.59999999999965,209.23563356264L138.69999999999965,209.1556437194903L140.79999999999964,209.06732918709343L142.89999999999964,208.9698337464307L144.99999999999963,208.8622153428716L147.09999999999962,208.74343797147208L149.1999999999996,208.61236290396286L151.2999999999996,208.4677392290159L153.39999999999958,208.3081936826263L155.49999999999957,208.1322197527992L157.5999999999996,207.93816605267344L159.6999999999996,207.72422396929704L161.79999999999956,207.48841461214363L163.89999999999955,207.22857510685512L165.99999999999955,206.94234430644448L168.09999999999954,206.62714802520688L170.19999999999956,206.2801839408579L172.29999999999956,205.8984063589963L174.39999999999955,205.4785110919329L176.49999999999955,205.01692077226954L178.59999999999957,204.50977100126352L180.69999999999956,203.95289782365197L182.79999999999956,203.34182712455018L184.89999999999958,202.6717666600155L186.99999999999955,201.9376015598138L189.09999999999957,201.13389427666917L191.1999999999996,200.25489009719251L193.29999999999956,199.2945294703108L195.39999999999958,198.2464685416313L197.49999999999957,197.10410939638882L199.5999999999996,195.86064159603345L201.6999999999996,194.50909662747475L203.79999999999959,193.04241684965382L205.8999999999996,191.45354039674612L207.99999999999957,189.73550325624038L210.0999999999996,187.88155935829073L212.1999999999996,185.88531896691748L214.29999999999959,183.74090493579953L216.3999999999996,181.4431254727676L218.4999999999996,178.98766095291992L220.59999999999957,176.3712610549594L222.6999999999996,173.59194711723552L224.7999999999996,170.64921319483358L226.8999999999996,167.54421795117057L228.99999999999963,164.27995836710144L231.09999999999962,160.8614154462513L233.1999999999996,157.2956617916948L235.2999999999996,153.59192126858895L237.3999999999996,149.76157205838595L239.4999999999996,145.818086304316L241.59999999999962,141.7769022191176L243.69999999999965,137.6552278579828L245.79999999999959,133.47177954312204L247.8999999999996,129.2464618714206L249.99999999999957,125.0000000000008L252.09999999999962,120.75353812858101L254.19999999999965,116.52822045687954L256.2999999999996,112.34477214201875L258.3999999999996,108.22309778088393L260.4999999999996,104.18191369568548L262.5999999999996,100.2384279416155L264.6999999999996,96.40807873141247L266.7999999999996,92.70433820830657L268.8999999999996,89.13858455374998L270.9999999999996,85.7200416328998L273.09999999999957,82.4557820488306L275.1999999999996,79.35078680516756L277.2999999999996,76.40805288276556L279.39999999999964,73.6287389450416L281.4999999999996,71.01233904708104L283.59999999999957,68.55687452723325L285.6999999999996,66.2590950642013L287.7999999999996,64.1146810330833L289.89999999999964,62.11844064170998L291.99999999999966,60.26449674376029L294.09999999999957,58.5464596032545L296.1999999999996,56.95758315034675L298.2999999999996,55.49090337252579L300.39999999999964,54.139358403967044L302.49999999999966,52.89589060361162L304.5999999999996,51.75353145836915L306.6999999999996,50.70547052968959L308.7999999999996,49.745109902807854L310.89999999999964,48.866105723331174L312.99999999999966,48.06239844018648L315.0999999999996,47.328233339984735L317.19999999999965,46.658172875450035L319.29999999999967,46.047102176348254L321.39999999999964,45.490228998736676L323.49999999999966,44.983079227730656L325.5999999999996,44.52148890806728L327.69999999999965,44.101593641003845L329.79999999999967,43.71981605914224L331.8999999999997,43.37285197479324L333.99999999999966,43.0576556935556L336.0999999999996,42.77142489314499L338.19999999999965,42.51158538785646L340.29999999999967,42.27577603070307L342.39999999999964,42.06183394732666L344.49999999999966,41.867780247200876L346.59999999999957,41.69180631737376L348.6999999999996,41.53226077098415L350.7999999999996,41.38763709603722L352.8999999999996,41.25656202852796L354.9999999999996,41.13778465712844L357.09999999999957,41.03016625356932L359.1999999999996,40.932670812906586L361.29999999999956,40.84435628050969L363.3999999999995,40.76436643736003L365.49999999999955,40.69192341170237L367.59999999999957,40.62632078290414L369.69999999999953,40.5669172422603L371.79999999999956,40.51313077520046L373.8999999999995,40.4644333297119L375.9999999999995,40.420345936627925L378.0999999999995,40.380434248616986L380.1999999999995,40.34430446613848L382.2999999999995,40.31159962022378L384.3999999999995,40.28199618362966L386.4999999999995,40.255200983645295L388.59999999999945,40.23094839157295L390.6999999999994,40.20899776561715L392.79999999999944,40.18913112558627L394.8999999999994,40.17115103941455L396.9999999999994,40.154878703048105L399.09999999999945,40.140152196687716L401.1999999999995,40.12682490175224L403.29999999999944,40.11476406420758L405.39999999999935,40.103849491103844L407.4999999999994,40.093972368277015L409.59999999999945,40.085034188203515L411.6999999999994,40.07694577795088L413.79999999999933,40.06962641804763L415.89999999999935,40.0630030439065L417.9999999999994,40.05700952217932L420.09999999999934,40.0515859951049L422.1999999999993,40.046678286537244L424.29999999999933,40.04223736391271L426.39999999999935,40.038218850939664L428.4999999999993,40.03458258626939L430.5999999999993,40.03129222384378L432.69999999999936,40.028314871012135L434.79999999999933,40.02562076087015L436.89999999999924,40.02318295560353L438.9999999999992,40.02097707791768L441.0999999999993,40.01898106790702L443.19999999999936,40.01717496296432L445.29999999999933,40.01554069855487L447.39999999999924,40.01406192788477L449.4999999999992,40.01272385867679L451.5999999999993,40.011513105435334L453.69999999999925,40.01041755573483L455.7999999999992,40.00942624920288L457.89999999999924,40.00852926799625L459.99999999999926,40.007717637679406" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    <path d="M40,209.99228271268487L42.09999999999999,209.9914711599356L44.19999999999999,209.99057427346875L46.29999999999998,209.98958308265028L48.39999999999997,209.98848767427992L50.49999999999996,209.987277093656L52.59999999999995,209.98593923527883L54.699999999999946,209.98446072211166L56.79999999999994,209.98282677220834L58.899999999999935,209.98102105139262L60.99999999999993,209.97902551053997L63.099999999999916,209.9768202058637L65.1999999999999,209.9743831004439L67.2999999999999,209.97168984505797L69.39999999999989,209.96871353617547L71.49999999999989,209.96542444876164L73.59999999999988,209.96178974129896L75.69999999999987,209.957773130175L77.79999999999987,209.95333453030062L79.89999999999986,209.94842965851208L81.99999999999986,209.9430095959714L84.09999999999984,209.93702030540848L86.19999999999985,209.93040209864702L88.29999999999984,209.9230890494182L90.39999999999982,209.91500834599154L92.4999999999998,209.90607957764067L94.5999999999998,209.89621394840677L96.69999999999979,209.88531341103027L98.7999999999998,209.8732697132813L100.89999999999978,209.85996334824307L102.99999999999977,209.8452623993793L105.09999999999977,209.82902127045776L107.19999999999976,209.81107928960589L109.29999999999976,209.79125917594774L111.39999999999975,209.76936535642454L113.49999999999974,209.74518211954327L115.59999999999972,209.71847159194436L117.69999999999972,209.68897152285462L119.79999999999973,209.6563928607168L121.89999999999972,209.62041710560374L123.9999999999997,209.5806934204688L126.09999999999968,209.53683548392192L128.19999999999968,209.48841806710814L130.29999999999967,209.43497331750194L132.3999999999997,209.3759867331141L134.49999999999966,209.31089281187215L136.59999999999965,209.23907036293744L138.69999999999965,209.1598374696576L140.79999999999964,209.07244609794785L142.89999999999964,208.97607634943068L144.99999999999963,208.8698303659657L147.09999999999962,208.7527259016576L149.1999999999996,208.623689590494L151.2999999999996,208.48154995295883L153.39999999999958,208.325030203894L155.49999999999957,208.15274094722176L157.5999999999996,207.96317287165195L159.6999999999996,207.75468959601423L161.79999999999956,207.5255208542642L163.89999999999955,207.27375625943358L165.99999999999955,206.99733994374057L168.09999999999954,206.69406643958257L170.19999999999956,206.36157824388056L172.29999999999956,205.9973655966194L174.39999999999955,205.59876910337863L176.49999999999955,205.16298594044505L178.59999999999957,204.68708049807864L180.69999999999956,204.16800043971782L182.79999999999956,203.602599277723L184.89999999999958,202.98766668286996L186.99999999999955,202.31996784574505L189.09999999999957,201.5962932807708L191.1999999999996,200.81352049141483L193.29999999999956,199.96868887773456L195.39999999999958,199.0590891401187L197.49999999999957,198.0823681873318L199.5999999999996,197.03665016118532L201.6999999999996,195.92067361157422L203.79999999999959,194.73394406318857L205.8999999999996,193.47690018389392L207.99999999999957,192.15109048140414L210.0999999999996,190.75935592547202L212.1999999999996,189.30601215119577L214.29999999999959,187.79702301574494L216.3999999999996,186.24015537137993L218.4999999999996,184.64510314804372L220.59999999999957,183.02356742574582L222.6999999999996,181.3892783802601L224.7999999999996,179.75794509004334L226.8999999999996,178.1471204769218L228.99999999999963,176.57597134894834L231.09999999999962,175.06494775181548L233.1999999999996,173.6353515915502L235.2999999999996,172.3088115401717L237.3999999999996,171.1066791223685L239.4999999999996,170.04936892572914L241.59999999999962,169.15567322394023L243.69999999999965,168.44208701257332L245.79999999999959,167.92218263898386L247.8999999999996,167.6060731672084L249.99999999999957,167.5L252.09999999999962,167.60607316720834L254.19999999999965,167.9221826389837L256.2999999999996,168.44208701257307L258.3999999999996,169.1556732239399L260.4999999999996,170.04936892572874L262.5999999999996,171.10667912236804L264.6999999999996,172.30881154017123L266.7999999999996,173.63535159154966L268.8999999999996,175.06494775181494L270.9999999999996,176.5759713489478L273.09999999999957,178.1471204769212L275.1999999999996,179.75794509004274L277.2999999999996,181.38927838025944L279.39999999999964,183.0235674257452L281.4999999999996,184.64510314804315L283.59999999999957,186.24015537137936L285.6999999999996,187.79702301574434L287.7999999999996,189.3060121511952L289.89999999999964,190.75935592547148L291.99999999999966,192.15109048140366L294.09999999999957,193.47690018389346L296.1999999999996,194.73394406318812L298.2999999999996,195.9206736115738L300.39999999999964,197.03665016118492L302.49999999999966,198.08236818733144L304.5999999999996,199.05908914011835L306.6999999999996,199.96868887773425L308.7999999999996,200.8135204914145L310.89999999999964,201.5962932807705L312.99999999999966,202.31996784574483L315.0999999999996,202.98766668286976L317.19999999999965,203.6025992777228L319.29999999999967,204.16800043971762L321.39999999999964,204.68708049807844L323.49999999999966,205.16298594044488L325.5999999999996,205.59876910337846L327.69999999999965,205.99736559661923L329.79999999999967,206.36157824388044L331.8999999999997,206.69406643958246L333.99999999999966,206.99733994374049L336.0999999999996,207.2737562594335L338.19999999999965,207.5255208542641L340.29999999999967,207.75468959601415L342.39999999999964,207.96317287165184L344.49999999999966,208.15274094722164L346.59999999999957,208.3250302038939L348.6999999999996,208.48154995295877L350.7999999999996,208.62368959049394L352.8999999999996,208.75272590165756L354.9999999999996,208.86983036596564L357.09999999999957,208.97607634943063L359.1999999999996,209.07244609794782L361.29999999999956,209.1598374696576L363.3999999999995,209.23907036293738L365.49999999999955,209.31089281187212L367.59999999999957,209.37598673311408L369.69999999999953,209.43497331750189L371.79999999999956,209.4884180671081L373.8999999999995,209.53683548392192L375.9999999999995,209.58069342046878L378.0999999999995,209.62041710560374L380.1999999999995,209.6563928607168L382.2999999999995,209.68897152285462L384.3999999999995,209.71847159194436L386.4999999999995,209.74518211954327L388.59999999999945,209.76936535642452L390.6999999999994,209.79125917594774L392.79999999999944,209.81107928960589L394.8999999999994,209.82902127045776L396.9999999999994,209.84526239937932L399.09999999999945,209.85996334824307L401.1999999999995,209.8732697132813L403.29999999999944,209.88531341103027L405.39999999999935,209.89621394840677L407.4999999999994,209.90607957764067L409.59999999999945,209.91500834599157L411.6999999999994,209.92308904941822L413.79999999999933,209.93040209864702L415.89999999999935,209.93702030540845L417.9999999999994,209.94300959597138L420.09999999999934,209.94842965851208L422.1999999999993,209.9533345303006L424.29999999999933,209.957773130175L426.39999999999935,209.96178974129896L428.4999999999993,209.96542444876164L430.5999999999993,209.96871353617547L432.69999999999936,209.97168984505797L434.79999999999933,209.97438310044387L436.89999999999924,209.9768202058637L438.9999999999992,209.97902551053997L441.0999999999993,209.98102105139262L443.19999999999936,209.9828267722083L445.29999999999933,209.98446072211166L447.39999999999924,209.98593923527886L449.4999999999992,209.98727709365602L451.5999999999993,209.98848767427995L453.69999999999925,209.98958308265026L455.7999999999992,209.99057427346872L457.89999999999924,209.9914711599356L459.99999999999926,209.9922827126849" stroke="var(--main-color-2)" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    
+<g class="axis y-axis svelte-1tr3h4r"><g class="tick tick-0 svelte-1tr3h4r" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0</text></g><g class="tick tick-0.2 svelte-1tr3h4r" transform="translate(0, 176)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.2</text></g><g class="tick tick-0.25 svelte-1tr3h4r" transform="translate(0, 167.5)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.25</text></g><g class="tick tick-0.4 svelte-1tr3h4r" transform="translate(0, 142)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.4</text></g><g class="tick tick-0.6 svelte-1tr3h4r" transform="translate(0, 108)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.6</text></g><g class="tick tick-0.8 svelte-1tr3h4r" transform="translate(0, 74)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.8</text></g><g class="tick tick-1 svelte-1tr3h4r" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">1</text></g></g>
+
+<g class="axis x-axis svelte-1tr3h4r"><g class="tick svelte-1tr3h4r" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">-10</text></g><g class="tick svelte-1tr3h4r" transform="translate(82,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">-8</text></g><g class="tick svelte-1tr3h4r" transform="translate(124,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">-6</text></g><g class="tick svelte-1tr3h4r" transform="translate(166,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">-4</text></g><g class="tick svelte-1tr3h4r" transform="translate(208,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">-2</text></g><g class="tick svelte-1tr3h4r" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">0</text></g><g class="tick svelte-1tr3h4r" transform="translate(292,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">2</text></g><g class="tick svelte-1tr3h4r" transform="translate(334,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">4</text></g><g class="tick svelte-1tr3h4r" transform="translate(376,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">6</text></g><g class="tick svelte-1tr3h4r" transform="translate(418,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">8</text></g><g class="tick svelte-1tr3h4r" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">10</text></g></g>
+    <foreignObject x="0" y="235" width="500" height="100%"><div style="font-size: 10px" class="svelte-1xq181p"><span class="placeholder svelte-1mpoqm2">z</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+    <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-13uhf56"><span class="placeholder svelte-1mpoqm2">f(x)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div></foreignObject>
+    <rect x="58.5" y="54.5" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="71" y="57" class="svelte-1hnqnop">sigmoid</text>
+    <rect x="58.5" y="66.4" width="5" height="5" fill="var(--main-color-2)" stroke="black"></rect>
+<text fill="black" x="71" y="68.9" class="svelte-1hnqnop">sigmoid derivative</text></svg></div>
+</div>
+  <p>If we assume the best case scenario, we can replace
+    <span class="placeholder svelte-1mpoqm2">
+\dfrac{da^{&lt;l>}}{dz^{&lt;l>}} 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by 0.25 and we end up with the following calculatoin of the derivative.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{d}{dw^{&lt;1>}} Loss = 
+    \dfrac{dLoss}{da^{&lt;3>}} 
+    \boxed{
+    0.25
+    \dfrac{dz^{&lt;3>}}{da^{&lt;2>}} 
+    0.25
+    \dfrac{dz^{&lt;2>}}{da^{&lt;1>}} 
+    0.25
+    }
+    \dfrac{dz^{&lt;1>}}{dw^{&lt;1>}} 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Each additional layer in the neural network forces the derivative to shrink
+    by at least 4. With just 5 layers we are dealing with the factor close to <span class="placeholder svelte-1mpoqm2">0</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>,<span class="placeholder svelte-1mpoqm2">0.25^{5}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 250" class="svelte-1sf1opq"><path d="M40,68.33333333333333L50.500000000000014,86.67200353304911L61.00000000000002,102.63674320551348L71.50000000000003,116.53485632025337L82.00000000000004,128.63386652104342L92.50000000000004,139.1666666666667L103.00000000000006,148.33600176652456L113.50000000000006,156.31837160275677L124.00000000000009,163.26742816012668L134.50000000000009,169.31693326052172L145.00000000000009,174.58333333333337L155.5000000000001,179.1680008832623L166.0000000000001,183.15918580137838L176.50000000000014,186.63371408006338L187.0000000000001,189.65846663026088L197.5000000000001,192.29166666666669L208.00000000000017,194.58400044163116L218.50000000000017,196.57959290068922L229.00000000000017,198.3168570400317L239.50000000000017,199.8292333151304L250.00000000000017,201.14583333333337L260.5000000000002,202.2920002208156L271.0000000000002,203.2897964503446L281.5000000000002,204.15842852001583L292.0000000000002,204.91461665756523L302.5000000000002,205.57291666666666L313.0000000000003,206.14600011040778L323.5000000000003,206.6448982251723L334.0000000000003,207.07921426000792L344.5000000000003,207.4573083287826L355.0000000000003,207.78645833333337L365.5000000000003,208.07300005520392L376.0000000000002,208.32244911258613L386.50000000000017,208.53960713000396L397.00000000000017,208.72865416439132L407.5000000000001,208.89322916666666L418.00000000000006,209.03650002760193L428.5,209.1612245562931L439,209.26980356500198L449.49999999999994,209.36432708219564L459.9999999999999,209.44661458333334" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    
+<g class="axis y-axis svelte-1tr3h4r"><g class="tick tick-0.3 svelte-1tr3h4r" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.3</text></g><g class="tick tick-0.25 svelte-1tr3h4r" transform="translate(0, 68.33333333333333)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.25</text></g><g class="tick tick-0.2 svelte-1tr3h4r" transform="translate(0, 96.66666666666666)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.2</text></g><g class="tick tick-0.15 svelte-1tr3h4r" transform="translate(0, 125)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.15</text></g><g class="tick tick-0.1 svelte-1tr3h4r" transform="translate(0, 153.33333333333334)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.1</text></g><g class="tick tick-0.05 svelte-1tr3h4r" transform="translate(0, 181.66666666666663)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0.05</text></g><g class="tick tick-0 svelte-1tr3h4r" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="27" class="svelte-1tr3h4r">0</text></g></g>
+
+<g class="axis x-axis svelte-1tr3h4r"><g class="tick svelte-1tr3h4r" transform="translate(-65,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">0</text></g><g class="tick svelte-1tr3h4r" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">1</text></g><g class="tick svelte-1tr3h4r" transform="translate(145,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">2</text></g><g class="tick svelte-1tr3h4r" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">3</text></g><g class="tick svelte-1tr3h4r" transform="translate(355,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">4</text></g><g class="tick svelte-1tr3h4r" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="220" class="svelte-1tr3h4r">5</text></g></g>
+    <text class="label svelte-1xq181p" font-size="10" x="250" y="245">Layers</text>
+    <text class="label svelte-13uhf56" font-size="10" transform="rotate(-90 5 125)" x="5" y="125">Factor</text>
+    <rect x="-1012.5" y="-302.5" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="-1000" y="-300" class="svelte-1hnqnop">sigmoid</text>
+    <rect x="-1012.5" y="-262.83333333333337" width="5" height="5" fill="var(--main-color-2)" stroke="black"></rect>
+<text fill="black" x="-1000" y="-260.33333333333337" class="svelte-1hnqnop">sigmoid derivative</text></svg></div>
+</div>
+  <p>Given that the sigmoid derivative <span class="placeholder svelte-1mpoqm2">\dfrac{da^{&lt;l>}}{dz^{&lt;l>}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is always between 0.25 and 0, we have to assume, that the overall derivative
+    <span class="placeholder svelte-1mpoqm2">\dfrac{d}{dw^{&lt;1>}}Loss</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> approaches 0 when the number
+    of layers starts to grow. Layers that are close to the last layer are still able
+    to change their respective weights appropriately, but the farther the layers
+    are removed from the loss, the closer the multiplicator gets to 0 and the closer
+    the derivative gets to 0. The weights of the first layers remain virtually unchanged
+    from their initial values, essentially preventing the neural network from learning.
+    That is the vanishing gradient problem.
+  </p>
+  <p>The derivative <span class="placeholder svelte-1mpoqm2">\dfrac{dz^{&lt;l>}}{da^{&lt;l-1>}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> on the
+    other hand is just the corresponding weight <span class="placeholder svelte-1mpoqm2">w^{&lt;l>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Assuming for example that <span class="placeholder svelte-1mpoqm2">w^{&lt;2>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">w^{&lt;3>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> are both 0.95, we would deal with the following gradient.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{d}{dw^{&lt;1>}} Loss = 
+    \dfrac{dLoss}{da^{&lt;3>}} 
+    \boxed{
+    \dfrac{da^{&lt;3>}}{dz^{&lt;3>}} 
+    0.95 
+    \dfrac{da^{&lt;2>}}{dz^{&lt;2>}} 
+    0.95 
+    \dfrac{da^{&lt;1>}}{dz^{&lt;1>}} 
+    }
+    \dfrac{dz^{&lt;1>}}{dw^{&lt;1>}} 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Here we can make a similar argument that we did with the derivative of the
+    sigmoid. Given that the majority of weights are between -1 and 1 and the
+    number of layer grows, we will face vanishing gradients.
+  </p>
+  <p>Obviously unlike with the sigmoid, weights do not have any lower or higher
+    bounds. All weights could therefore be in the range <span class="placeholder svelte-1mpoqm2">w > 1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">w &lt; - 1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. If each weight corresponds to
+    exactly 2, then the gradient will grow exponentially.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\dfrac{d}{dw^{&lt;1>}} Loss = 
+    \dfrac{dLoss}{da^{&lt;3>}} 
+    \boxed{
+    \dfrac{da^{&lt;3>}}{dz^{&lt;3>}} 
+    2
+    \dfrac{da^{&lt;2>}}{dz^{&lt;2>}} 
+    2
+    \dfrac{da^{&lt;1>}}{dz^{&lt;1>}} 
+    }
+    \dfrac{dz^{&lt;1>}}{dw^{&lt;1>}} 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>That could make the gradients in the first layers enormous, leading to the
+    so called exploding gradient problem. Gradient descent will most likely
+    start to diverge and at some point our program will throw an error, as the
+    gradient will overflow.
+  </p>
+  <p class="info">Derivatives of activation functions and weights have a significant impact on
+    whether we can train a deep neural network successfully or not.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="wakrp4">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="wakrp4"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 21],
+				params: {},
+				routeId: "blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients"
+			}
+		});
+	</script></div>
+	</body>
+</html>

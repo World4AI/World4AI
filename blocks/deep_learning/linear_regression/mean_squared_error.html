@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Linear Regression Loss</title><meta name="description" content="Linear regression utilizes the mean squared error as a loss function. The goal of linear regression is to minimize the MSE." data-svelte="svelte-17kzfio">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/mean_squared_error-cc868a01.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Plot-474e03af.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Slider-2b4fd518.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Mse-33dffe75.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/linear_regression/mean_squared_error.svelte-a8e4e0f2.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Plot-e628e9dd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Slider-19e7021e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Mse-37b9a973.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn selected">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><h1>Mean Squared Error</h1>
+  <div class="separator"></div>
+  <p>While we can intuitively tell how far away our line is from some optimal
+    location, we need a quantitative measure that the linear regression
+    algorithm can use for optimization purposes. In machine learning we use a
+    measure called <strong><span class="highlight svelte-16edlvf">loss function</span></strong> (also called <strong><span class="highlight svelte-16edlvf">error function</span></strong> or <strong><span class="highlight svelte-16edlvf">cost function</span></strong>) . We can tweak the weights and
+    biases to find a minimum value of the loss function.
+  </p>
+  <p>To justify the use of a particular loss function, we will use only a dataset
+    with 4 samples, as shown in the illustration below.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 460)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 386.6666666666667)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">10</text></g><g class="tick tick-20 svelte-481epo" transform="translate(0, 313.33333333333337)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">20</text></g><g class="tick tick-30 svelte-481epo" transform="translate(0, 240)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">30</text></g><g class="tick tick-40 svelte-481epo" transform="translate(0, 166.66666666666669)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">40</text></g><g class="tick tick-50 svelte-481epo" transform="translate(0, 93.33333333333331)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">50</text></g><g class="tick tick-60 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">60</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="460" y2="20" class="svelte-481epo zero"></line><text y="476" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(126.66666666666666,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">10</text></g><g class="tick svelte-481epo" transform="translate(193.33333333333331,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">20</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">30</text></g><g class="tick svelte-481epo" transform="translate(326.66666666666663,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">40</text></g><g class="tick svelte-481epo" transform="translate(393.33333333333337,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">50</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">60</text></g></g><text class="label svelte-481epo" x="260" y="495">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-250" y="15">Target</text><circle fill="var(--main-color-1)" cx="93.33333333333333" cy="313.33333333333337" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="126.66666666666666" cy="166.66666666666669" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="293.33333333333337" cy="350" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="360" cy="27.333333333333357" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <p>We will start by drawing a 45 degree regression line from the (0,0) to the
+    (60, 60) position. While this looks &quot;OK&quot;, we do not have a way to compare
+    that particular line with any other lines.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 460)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 386.6666666666667)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">10</text></g><g class="tick tick-20 svelte-481epo" transform="translate(0, 313.33333333333337)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">20</text></g><g class="tick tick-30 svelte-481epo" transform="translate(0, 240)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">30</text></g><g class="tick tick-40 svelte-481epo" transform="translate(0, 166.66666666666669)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">40</text></g><g class="tick tick-50 svelte-481epo" transform="translate(0, 93.33333333333331)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">50</text></g><g class="tick tick-60 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">60</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="460" y2="20" class="svelte-481epo zero"></line><text y="476" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(126.66666666666666,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">10</text></g><g class="tick svelte-481epo" transform="translate(193.33333333333331,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">20</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">30</text></g><g class="tick svelte-481epo" transform="translate(326.66666666666663,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">40</text></g><g class="tick svelte-481epo" transform="translate(393.33333333333337,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">50</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">60</text></g></g><text class="label svelte-481epo" x="260" y="495">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-250" y="15">Target</text><path d="M60,460L460,20" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="93.33333333333333" cy="313.33333333333337" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="126.66666666666666" cy="166.66666666666669" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="293.33333333333337" cy="350" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="360" cy="27.333333333333357" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+
+  <p>The first step is to calculate the error between the actual target
+    <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the predicted value <span class="placeholder svelte-1mpoqm2">\hat{y}^{(i)}=x_iw + b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for each datapoint
+    <span class="placeholder svelte-1mpoqm2">i</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. We can define the difference <span class="placeholder svelte-1mpoqm2">y^{(i)} - \hat{y}^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> as the error. Visually we can draw that error as the vertical line that connects
+    the regression line with the true target.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 460)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 386.6666666666667)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">10</text></g><g class="tick tick-20 svelte-481epo" transform="translate(0, 313.33333333333337)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">20</text></g><g class="tick tick-30 svelte-481epo" transform="translate(0, 240)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">30</text></g><g class="tick tick-40 svelte-481epo" transform="translate(0, 166.66666666666669)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">40</text></g><g class="tick tick-50 svelte-481epo" transform="translate(0, 93.33333333333331)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">50</text></g><g class="tick tick-60 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">60</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="460" y2="20" class="svelte-481epo zero"></line><text y="476" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(126.66666666666666,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">10</text></g><g class="tick svelte-481epo" transform="translate(193.33333333333331,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">20</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">30</text></g><g class="tick svelte-481epo" transform="translate(326.66666666666663,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">40</text></g><g class="tick svelte-481epo" transform="translate(393.33333333333337,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">50</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">60</text></g></g><text class="label svelte-481epo" x="260" y="495">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-250" y="15">Target</text><path d="M60,460L460,20" stroke="black" class="svelte-481epo"></path><path d="M93.33333333333333,313.33333333333337L93.33333333333333,423.3333333333333" stroke="black" class="svelte-481epo"></path><path d="M126.66666666666666,166.66666666666669L126.66666666666666,386.6666666666667" stroke="black" class="svelte-481epo"></path><path d="M293.33333333333337,350L293.33333333333337,203.33333333333331" stroke="black" class="svelte-481epo"></path><path d="M360,27.333333333333357L360,130" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="93.33333333333333" cy="313.33333333333337" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="126.66666666666666" cy="166.66666666666669" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="293.33333333333337" cy="350" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="360" cy="27.333333333333357" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+  <p>Depending on the location and rotation of the regression line <span class="placeholder svelte-1mpoqm2">\hat{y} = xw + b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the actual target <span class="placeholder svelte-1mpoqm2">y^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, the target
+    might be above or below the regression line and thus either positive or
+    negative. If we tried to sum up all the errors in the dataset <span class="placeholder svelte-1mpoqm2">\sum_i^n y^{(i)} - \hat{y}^{(i)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> we would realize that the positive and the negative errors are offsetting each
+    other. If the errors were symmetrical above and below the line, we could end
+    up with a summed error of 0.
+  </p>
+  <p>The loss that is actually used in linear regression is called the mean
+    squared error (MSE). The MSE takes each of the individual errors to the
+    power of 2, <span class="placeholder svelte-1mpoqm2">(y^{(i)} - \hat{y}^{(i)})^2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, to get
+    rid of the negative sign. The average of the errors is defined as the mean
+    squared error.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">MSE=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+  <p>We can visuallize the mean squared errors by drawing actual squares. Each
+    data point has a corresponding square and the larger the area of that square
+    (the squared error), the larger the contribution to the MSE. The length of
+    the side of the square is calculated as the absolute distance between <span class="placeholder svelte-1mpoqm2">y</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and <span class="placeholder svelte-1mpoqm2">\hat{y}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. Try to use the example below and
+    move the weight and the bias. Observe how the mean squared error changes
+    based on the parameters.
+  </p>
+
+  <span class="plot-container svelte-jmng7x"><div class="calculations svelte-jmng7x"><p class="svelte-jmng7x"><span class="placeholder svelte-1mpoqm2">w</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 1.00</p>
+    <p class="svelte-jmng7x"><span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 0.00</p>
+    <p class="svelte-jmng7x"><span class="placeholder svelte-1mpoqm2">MSE</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>: 430.25</p></div>
+  <div class="container svelte-1sizmlt"><div style="max-width: 600px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500"><g class="axis y-axis svelte-481epo"><g class="tick tick-0 svelte-481epo" transform="translate(0, 460)"><line x1="60" x2="460" class="svelte-481epo zero"></line><text x="52" y="+4" class="svelte-481epo">0</text></g><g class="tick tick-10 svelte-481epo" transform="translate(0, 386.6666666666667)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">10</text></g><g class="tick tick-20 svelte-481epo" transform="translate(0, 313.33333333333337)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">20</text></g><g class="tick tick-30 svelte-481epo" transform="translate(0, 240)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">30</text></g><g class="tick tick-40 svelte-481epo" transform="translate(0, 166.66666666666669)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">40</text></g><g class="tick tick-50 svelte-481epo" transform="translate(0, 93.33333333333331)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">50</text></g><g class="tick tick-60 svelte-481epo" transform="translate(0, 20)"><line x1="60" x2="460" class="svelte-481epo"></line><text x="52" y="+4" class="svelte-481epo">60</text></g></g><g class="axis x-axis svelte-481epo"><g class="tick svelte-481epo" transform="translate(60,0)"><line y1="460" y2="20" class="svelte-481epo zero"></line><text y="476" class="svelte-481epo">0</text></g><g class="tick svelte-481epo" transform="translate(126.66666666666666,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">10</text></g><g class="tick svelte-481epo" transform="translate(193.33333333333331,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">20</text></g><g class="tick svelte-481epo" transform="translate(260,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">30</text></g><g class="tick svelte-481epo" transform="translate(326.66666666666663,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">40</text></g><g class="tick svelte-481epo" transform="translate(393.33333333333337,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">50</text></g><g class="tick svelte-481epo" transform="translate(460,0)"><line y1="460" y2="20" class="svelte-481epo"></line><text y="476" class="svelte-481epo">60</text></g></g><text class="label svelte-481epo" x="260" y="495">Feature</text><text class="label svelte-481epo" transform="rotate(-90)" x="-250" y="15">Label</text><path d="M60,460L460,20" stroke="black" class="svelte-481epo"></path><path d="M93.33333333333333,313.33333333333337L193.33333333333331,313.33333333333337L193.33333333333331,423.3333333333333L93.33333333333333,423.3333333333333L93.33333333333333,313.33333333333337" stroke="black" class="svelte-481epo"></path><path d="M126.66666666666666,166.66666666666669L326.66666666666663,166.66666666666669L326.66666666666663,386.6666666666667L126.66666666666666,386.6666666666667L126.66666666666666,166.66666666666669" stroke="black" class="svelte-481epo"></path><path d="M293.33333333333337,203.33333333333331L426.66666666666663,203.33333333333331L426.66666666666663,350L293.33333333333337,350L293.33333333333337,203.33333333333331" stroke="black" class="svelte-481epo"></path><path d="M360,27.333333333333357L453.3333333333333,27.333333333333357L453.3333333333333,130L360,130L360,27.333333333333357" stroke="black" class="svelte-481epo"></path><circle fill="var(--main-color-1)" cx="93.33333333333333" cy="313.33333333333337" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="126.66666666666666" cy="166.66666666666669" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="293.33333333333337" cy="350" r="5" class="svelte-481epo"></circle><circle fill="var(--main-color-1)" cx="360" cy="27.333333333333357" r="5" class="svelte-481epo"></circle></svg></div>
+</div>
+</span>
+  <div class="flex-container svelte-1fo2rmg"><div class="svelte-1fo2rmg"><span class="placeholder svelte-1mpoqm2">w</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div>
+    <input type="range" min="-20" max="20" step="0.1" class="svelte-1tcoic2" value="1"></div>
+  <div class="flex-container svelte-1fo2rmg"><div class="svelte-1fo2rmg"><span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></div>
+    <input type="range" min="-50" max="50" step="1" class="svelte-1tcoic2" value="0"></div>
+  <p>Different combination of the weight <span class="placeholder svelte-1mpoqm2">w</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the bias <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> produce different losses and our job is to find the combination that minimizes
+    that loss function. Obviously it makes no sense to search manually for those
+    parameters. The next section is therefore dedicated to a procedure that is commonly
+    used to find the mimimum loss.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="jaivtz">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="jaivtz"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 36],
+				params: {},
+				routeId: "blocks/deep_learning/linear_regression/mean_squared_error"
+			}
+		});
+	</script></div>
+	</body>
+</html>

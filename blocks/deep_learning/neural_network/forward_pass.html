@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Forward Pass</title><meta name="description" content="In the forward pass the neural network takes features as the input and produces estimates of the outputs. These can be used in the backpropagation algorithm." data-svelte="svelte-1bomiht">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/forward_pass-5c67d4e8.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Highlight-b2c9a182.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/neural_network/forward_pass.svelte-dda0bf66.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Highlight-284f0e69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/NeuralNetwork-d1415a90.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn selected">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Forward Pass</h1>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>In the forward pass the features in the dataset are processed layer by
+    layer, where the outputs from the previous layer are used as inputs into the
+    current layer. As the name <strong><span class="highlight svelte-16edlvf">forward pass</span></strong> suggests, information
+    flows unidirectionally from the input layer to the output layer.
+  </p>
+  <p>You can use the interactive example of a neural network below to better
+    understand the calculation of a neural network. This is the same
+    architecture from the previous section that we are going to use to create a
+    nonlinear decision boundary. The leftmost (red) numbers are the two features
+    that are used as the input into the neural network. The network has two
+    hidden layers with four and two neurons respectively. The neurons in the
+    same layer use the same inputs, but have individual weights, which allows
+    the neural network to learn different representations based on the same
+    input. The single output represents the probability to belong to the
+    category 1. Each neuron uses the sigmoid as its activation function. By
+    selecting one of the neurons you can observe which weights, inputs and bias
+    were used in the calculation. The table of the neural network is designed to
+    show the exact values and intermediary steps that were used to calculate the
+    output of a particular unit.
+  </p>
+</div>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1900px"><div class="flex-container svelte-1ooc2q7"><div class="left-container svelte-1ooc2q7"><div class="container svelte-1sizmlt"><div style="max-width: 800px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g id="connections" fill="none" stroke="#000" stroke-dasharray="4,2"><g stroke="black" stroke-width="0.2"><line x1="41" x2="153.33333333333331" y1="75" y2="25"></line><line x1="41" x2="153.33333333333331" y1="125" y2="25"></line></g><g stroke="var(--main-color-2)" stroke-width="2"><line x1="41" x2="153.33333333333331" y1="75" y2="75"></line><line x1="41" x2="153.33333333333331" y1="125" y2="75"></line></g><g stroke="black" stroke-width="0.2"><line x1="41" x2="153.33333333333331" y1="75" y2="125"></line><line x1="41" x2="153.33333333333331" y1="125" y2="125"></line></g><g stroke="black" stroke-width="0.2"><line x1="41" x2="153.33333333333331" y1="75" y2="175"></line><line x1="41" x2="153.33333333333331" y1="125" y2="175"></line></g><g stroke="black" stroke-width="0.2"><line x1="193.33333333333331" x2="305.66666666666663" y1="25" y2="75"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="75" y2="75"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="125" y2="75"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="175" y2="75"></line></g><g stroke="black" stroke-width="0.2"><line x1="193.33333333333331" x2="305.66666666666663" y1="25" y2="125"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="75" y2="125"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="125" y2="125"></line><line x1="193.33333333333331" x2="305.66666666666663" y1="175" y2="125"></line></g><g stroke="black" stroke-width="0.2"><line x1="345.66666666666663" x2="457.99999999999994" y1="75" y2="100"></line><line x1="345.66666666666663" x2="457.99999999999994" y1="125" y2="100"></line></g></g><g><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-1)" stroke="var(--text-color)" x="1" y="55" width="40" height="40"></rect><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-1)" stroke="var(--text-color)" x="1" y="105" width="40" height="40"></rect></g><g><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="153.33333333333331" y="5" width="40" height="40"></rect><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-3)" stroke="var(--text-color)" x="153.33333333333331" y="55" width="40" height="40"></rect><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="153.33333333333331" y="105" width="40" height="40"></rect><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="153.33333333333331" y="155" width="40" height="40"></rect></g><g><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="305.66666666666663" y="55" width="40" height="40"></rect><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="305.66666666666663" y="105" width="40" height="40"></rect></g><g><rect class="clickable svelte-1ooc2q7" fill="var(--main-color-4)" stroke="var(--text-color)" x="457.99999999999994" y="80" width="40" height="40"></rect></g><text dominant-baseline="middle" text-anchor="middle" x="21" y="75" class="svelte-1ooc2q7">0.50</text><text dominant-baseline="middle" text-anchor="middle" x="21" y="125" class="svelte-1ooc2q7">0.50</text><text dominant-baseline="middle" text-anchor="middle" x="173.33333333333331" y="25" class="svelte-1ooc2q7">0.33</text><text dominant-baseline="middle" text-anchor="middle" x="173.33333333333331" y="75" class="svelte-1ooc2q7">0.65</text><text dominant-baseline="middle" text-anchor="middle" x="173.33333333333331" y="125" class="svelte-1ooc2q7">0.36</text><text dominant-baseline="middle" text-anchor="middle" x="173.33333333333331" y="175" class="svelte-1ooc2q7">0.39</text><text dominant-baseline="middle" text-anchor="middle" x="325.66666666666663" y="75" class="svelte-1ooc2q7">0.74</text><text dominant-baseline="middle" text-anchor="middle" x="325.66666666666663" y="125" class="svelte-1ooc2q7">0.20</text><text dominant-baseline="middle" text-anchor="middle" x="477.99999999999994" y="100" class="svelte-1ooc2q7">0.62</text><text transform="rotate(0, 47, 69)" class="weight-text svelte-1ooc2q7" x="47" y="69">w_0: -0.32</text><text transform="rotate(-23.994030826339845, 47, 119)" class="weight-text svelte-1ooc2q7" x="47" y="119">w_1: 0.01</text><text x="47" y="200" class="svelte-1ooc2q7">b: 0.78</text></svg></div>
+</div></div>
+
+    <table class="right-container svelte-1ooc2q7"><thead><tr><th class="svelte-1ooc2q7">Variable</th>
+          <th class="svelte-1ooc2q7">Value</th></tr></thead>
+      <tbody><tr><td class="svelte-1ooc2q7">Input <span class="placeholder svelte-1mpoqm2">x_0</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+            <td class="svelte-1ooc2q7">0.50</td></tr>
+          <tr><td class="svelte-1ooc2q7">Weight <span class="placeholder svelte-1mpoqm2">w_0</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+            <td class="svelte-1ooc2q7">-0.32</td>
+          </tr><tr><td class="svelte-1ooc2q7">Input <span class="placeholder svelte-1mpoqm2">x_1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+            <td class="svelte-1ooc2q7">0.50</td></tr>
+          <tr><td class="svelte-1ooc2q7">Weight <span class="placeholder svelte-1mpoqm2">w_1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+            <td class="svelte-1ooc2q7">0.01</td>
+          </tr>
+        <tr><td class="svelte-1ooc2q7">Bias <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+          <td class="svelte-1ooc2q7">0.78</td></tr>
+        <tr><td class="svelte-1ooc2q7">Net Input <span class="placeholder svelte-1mpoqm2">z = \sum_m w_j x_j + b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+          <td class="svelte-1ooc2q7">0.63</td></tr>
+        <tr><td class="svelte-1ooc2q7">Neuron Output <span class="placeholder svelte-1mpoqm2">a = \dfrac{1}{1 + e^{-z}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></td>
+          <td class="svelte-1ooc2q7">0.65</td></tr></tbody></table></div>
+</div>
+<div class="separator"></div>
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>While the interactive example is a good way to demonstrate the functionality
+    of the neural network, we need a way to formalize these calculations through
+    mathematical notation.
+  </p>
+  <p>In the above example we worked with a single sample, but in practice in the
+    forward pass we will use a dataset consisting of many samples, a mini batch <span class="placeholder svelte-1mpoqm2">\mathbf{X}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. As usual <span class="placeholder svelte-1mpoqm2">\mathbf{X}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is an <span class="placeholder svelte-1mpoqm2">n \times m</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> matrix, where <span class="placeholder svelte-1mpoqm2">n</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (rows) is the number of samples and <span class="placeholder svelte-1mpoqm2">m</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (columns) is the number of input features.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+  \mathbf{X} =
+  \begin{bmatrix}
+  x_1^{(1)} &amp; x_1^{(2)} &amp; x_1^{(3)} &amp; \cdots &amp; x_1^{(m)} \\
+  x_2^{(1)} &amp; x_2^{(2)} &amp; x_2^{(3)} &amp; \cdots &amp; x_2^{(m)} \\
+  x_3^{(1)} &amp; x_3^{(2)} &amp; x_3^{(3)} &amp; \cdots &amp; x_3^{(m)} \\
+  \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots \\
+  x_n^{(1)} &amp; x_n^{(2)} &amp; x_n^{(3)} &amp; \cdots &amp; x_n^{(m)} \\
+  \end{bmatrix}
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Each neuron in a particular layer has the same set of inputs, but has its
+    own set of weights <span class="placeholder svelte-1mpoqm2">\mathbf{w}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and its own bias <span class="placeholder svelte-1mpoqm2">b</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. For convenience it makes sence to collect the weights in a matrix <span class="placeholder svelte-1mpoqm2">\mathbf{W}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the biases in the vector <span class="placeholder svelte-1mpoqm2">\mathbf{b}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. We
+    distinguish between layers by using the superscript <span class="placeholder svelte-1mpoqm2">&lt;l></span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    , where <span class="placeholder svelte-1mpoqm2">l</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> represents the number of the layer. The matrix <span class="placeholder svelte-1mpoqm2">\mathbf{W}^{&lt;1>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for example contains weights that connect the input features with the features
+    in the first hidden layer.
+  </p>
+  <p>The weight matrix <span class="placeholder svelte-1mpoqm2">\mathbf{W}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is a <span class="placeholder svelte-1mpoqm2">d \times m</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> matrix, where <span class="placeholder svelte-1mpoqm2">m</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the number of features from the previous
+    layer (or input features) and <span class="placeholder svelte-1mpoqm2">d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the number of neurons in a
+    layer, or put differnetly <span class="placeholder svelte-1mpoqm2">d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the number of hidden features produced
+    by the weight matrix for the next layer <span class="placeholder svelte-1mpoqm2">m^{&lt;l>} = d^{&lt;l+1>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+    <span class="placeholder svelte-1mpoqm2">\mathbf{b}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is a <span class="placeholder svelte-1mpoqm2">d \times 1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> vector
+    of biases.
+  </p>
+  <p>We can calculate the net input <span class="placeholder svelte-1mpoqm2">\mathbf{Z}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> by multiplying
+    the matrix of features <span class="placeholder svelte-1mpoqm2">\mathbf{X}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> with the transpose
+    of the weights <span class="placeholder svelte-1mpoqm2">\mathbf{W}^T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and adding the weights
+    <span class="placeholder svelte-1mpoqm2">\mathbf{b}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. The result is an <span class="placeholder svelte-1mpoqm2">n \times d</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    matrix. Finally we apply an activation function (sigmoid in our case) to all
+    net inputs, to get the activation values <span class="placeholder svelte-1mpoqm2">\mathbf{A} = a(\mathbf{Z})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> .
+  </p>
+  <p>We can calculate the outputs for each of the layers by applying the same
+    procedure over and over again.
+  </p>
+
+  <p>For the first layer we get:</p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{Z^{&lt;1>}} = \mathbf{X}\mathbf{W^{&lt;1>T}} + \mathbf{b^{&lt;T>}} \\ 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <br>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{A^{&lt;1>}} = a( \mathbf{Z^{&lt;l>}})
+      \\
+      </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>For all the other layers we get:</p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{Z^{&lt;l>}} = \mathbf{X}\mathbf{A^{&lt;l-1>T}} + \mathbf{b^{&lt;T>}} \\ 
+    </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <br>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{A^{&lt;l>}} = a( \mathbf{Z^{&lt;l>}})
+      \\
+      </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>The output of the very last layer <span class="placeholder svelte-1mpoqm2">L</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> corresponds to the predicted
+    values <span class="placeholder svelte-1mpoqm2">\hat{\mathbf{y}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. In our case<span class="placeholder svelte-1mpoqm2">\hat{y}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is a scalar value.
+  </p>
+  <p>The neural network is essentially just a collection of matrix
+    multiplications and nonlinear activation functions. Each matrix
+    multiplication follows by an activation and each activation is followed by a
+    matrix multiplication until the last layer is reached.
+  </p>
+  <p>Essentially a neural network is a deeply nested function composition, where
+    the output of a function is used as input into the next function.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{\hat{y}} = a(\cdots a(a(a(\mathbf{X}\mathbf{W}^{&lt;1>T})\mathbf{W}^{&lt;2>T}) \mathbf{W}^{&lt;3>T}) \cdots \mathbf{W}^{&lt;L>T})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>This nesting makes it harder to determine the gradients of individual
+    weights. Luckily the backpropagation algorithm allows us to calculate the
+    gradients of all the weights and biases in a very efficient manner.
+  </p>
+  <p>We can demonstrate how this procedure works using the neural network from
+    above.
+  </p>
+  <p>Let us assume that we receive a batch of inputs containing 3 samples.</p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{ X } = \begin{bmatrix}
+    0.50
+        &amp;0.50
+        
+      \\0.95
+        &amp;0.50
+        
+      \\0.75
+        &amp;0.50
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Whe first layer takes a <span class="placeholder svelte-1mpoqm2">3 \times 2</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> matrix as input and generates
+    a <span class="placeholder svelte-1mpoqm2">3 \times 4</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> matrix. For that we utilize the matrix<span class="placeholder svelte-1mpoqm2">\mathbf{W}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the vector <span class="placeholder svelte-1mpoqm2">\mathbf{b}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{ W ^{ &lt;1&gt; }} = \begin{bmatrix}
+    -0.48
+        &amp;0.12
+        
+      \\-0.32
+        &amp;0.01
+        
+      \\1.61
+        &amp;0.39
+        
+      \\-0.44
+        &amp;-0.60
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>,
+  <span class="placeholder svelte-1mpoqm2">\mathbf{b}^{&lt;1>} = \begin{bmatrix}
+    -0.51
+        \\0.78
+        \\-1.59
+        \\0.05
+        \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>After multiplying the input features <span class="placeholder svelte-1mpoqm2">\mathbf{X}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    with the weight matrix, adding the bias vector and applying the sigmoid <span class="placeholder svelte-1mpoqm2">\mathbf{A} = a(\mathbf{X}\mathbf{W}^T + \mathbf{b})</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> we end up with the outputs for the first layer.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{A}^{&lt;1>} = \begin{bmatrix}
+    0.33
+        &amp;0.65
+        &amp;0.36
+        &amp;0.39
+        
+      \\0.29
+        &amp;0.62
+        &amp;0.53
+        &amp;0.34
+        
+      \\0.31
+        &amp;0.63
+        &amp;0.45
+        &amp;0.36
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>We repeat the process taking the outputs from the first layer as input and
+    using the weights and biases from the second layer.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{ W ^{ &lt;2&gt; }} = \begin{bmatrix}
+    0.77
+        &amp;0.03
+        &amp;0.40
+        &amp;0.80
+        
+      \\-0.47
+        &amp;1.10
+        &amp;-0.74
+        &amp;0.36
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>,
+  <span class="placeholder svelte-1mpoqm2">\mathbf{b}^{&lt;2>} = \begin{bmatrix}
+    0.34
+        \\-1.79
+        \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Finally we use the weights and the bias from the third and final layer to
+    attain our predictions.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{ W ^{ &lt;3&gt; }} = \begin{bmatrix}
+    0.16
+        &amp;-1.14
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>,
+  <span class="placeholder svelte-1mpoqm2">\mathbf{b}^{&lt;3>} = \begin{bmatrix}
+    0.58
+        \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>The last activations <span class="placeholder svelte-1mpoqm2">\mathbf{A}^{&lt;3>}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> correspond
+    to the probabilities to belong to the category 1. Eventually these outputs are
+    used in the calculation of the loss function, the cross-entropy.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">\mathbf{\hat{y}} = \mathbf{A}^{&lt;3>} = \begin{bmatrix}
+    0.6150
+        
+      \\0.6219
+        
+      \\0.6189
+        
+      \\
+    \end{bmatrix} \\
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>You might wonder why the outputs are almost identical, even though in the
+    previous section those inputs would correspond to different categories. The
+    weights have not been adjusted through training yet, but we will tackle that
+    problem in the next section.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="tsxtb8">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="tsxtb8"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 47],
+				params: {},
+				routeId: "blocks/deep_learning/neural_network/forward_pass"
+			}
+		});
+	</script></div>
+	</body>
+</html>

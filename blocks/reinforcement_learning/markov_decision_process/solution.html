@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning | MDP Solution</title><meta name="description" content="A Markov decision process is considered to be solved once the agent found the optimal policy and the optimal value function." data-svelte="svelte-65dre6">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/solution-a93dfc1d.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Latex-251c78e5.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/markov_decision_process/solution.svelte-68055e88.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Latex-bf74aeea.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Trajectory-38c07054.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn selected">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>MDP Solution</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>Once a particular Markov decision process has been defined the next logical
+    step is to solve that MDP. In this chapter we are going to discuss <strong>what</strong>
+    it actually means to solve the MDP, while the coming chapters are going to focus
+    on <strong>how</strong> and <strong>if</strong> we can find a solution.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Return</h2>
+  <p>A return at timestep <span class="placeholder svelte-1mpoqm2">t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, denoted as <span class="placeholder svelte-1mpoqm2">G_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, is
+    simply the sum of rewards starting from timestep <span class="placeholder svelte-1mpoqm2">t+1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and going
+    either to terminal state <span class="placeholder svelte-1mpoqm2">T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (episodic tasks) or to infinity (continuing
+    tasks). The letter <span class="placeholder svelte-1mpoqm2">G</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> stands for
+    <em>Goal</em>, because in reinforcement learning the goal of the environment
+    is encoded in the rewards.
+  </p>
+  <p>In episodic tasks the return is the sum of rewards in a single episode from
+    time step <span class="placeholder svelte-1mpoqm2">t+1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> to the terminal time step <span class="placeholder svelte-1mpoqm2">T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">G_t = R_{t+1} + R_{t+2} + … + R_T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In continuing tasks the return is the sum of rewards starting at time step <span class="placeholder svelte-1mpoqm2">t+1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and going to possibly infinity.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">G_t = R_{t+1} + R_{t+2} + R_{t+3} + …  = \sum_{k=0}^\infty{R_{k+t+1}}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>In the exemplified episodic task below the Markov decision process plays
+    through the sequence of states, actions and rewards all the way to the
+    terminal state <span class="placeholder svelte-1mpoqm2">T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. This sequence of states, actions and
+    rewards of an episode is called a <em>trajectory</em>.
+  </p>
+  <svg viewBox="0 0 800 100"><rect x="10" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="32.5" y="42.5" stroke="none" fill="var(--text-color)">S<tspan x="47.5" y="52.5" font-size="10px">0</tspan>
+    </text><rect x="75" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="97.5" y="42.5" stroke="none" fill="var(--text-color)">A<tspan x="112.5" y="52.5" font-size="10px">0</tspan>
+    </text><rect x="140" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="162.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="177.5" y="52.5" font-size="10px">1</tspan>
+    </text><rect x="205" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="227.5" y="42.5" stroke="none" fill="var(--text-color)">S<tspan x="242.5" y="52.5" font-size="10px">1</tspan>
+    </text><rect x="270" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="292.5" y="42.5" stroke="none" fill="var(--text-color)">A<tspan x="307.5" y="52.5" font-size="10px">1</tspan>
+    </text><rect x="335" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="357.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="372.5" y="52.5" font-size="10px">2</tspan>
+    </text><rect x="400" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="422.5" y="42.5" stroke="none" fill="var(--text-color)">S<tspan x="437.5" y="52.5" font-size="10px">2</tspan>
+    </text><rect x="465" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="487.5" y="42.5" stroke="none" fill="var(--text-color)">A<tspan x="502.5" y="52.5" font-size="10px">2</tspan>
+    </text><rect x="530" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="552.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="567.5" y="52.5" font-size="10px">3</tspan>
+    </text><rect x="595" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="617.5" y="42.5" stroke="none" fill="var(--text-color)">S<tspan x="632.5" y="52.5" font-size="10px">3</tspan>
+    </text><rect x="660" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="682.5" y="42.5" stroke="none" fill="var(--text-color)">...<tspan x="697.5" y="52.5" font-size="10px">.</tspan>
+    </text><rect x="725" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="747.5" y="42.5" stroke="none" fill="var(--text-color)">S<tspan x="762.5" y="52.5" font-size="10px">T</tspan>
+    </text></svg>
+  <p>The episode goes from timestep
+    <span class="placeholder svelte-1mpoqm2">0</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> until the terminal timestep <span class="placeholder svelte-1mpoqm2">T = 8</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. For each
+    timestep taken, the agent receives a negative reward of -1 and a reward of
+    +10 when the agent reaches the terminal state <span class="placeholder svelte-1mpoqm2">S_T</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <svg viewBox="0 0 800 100"><rect x="10" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="32.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="47.5" y="52.5" font-size="10px">1</tspan>
+    </text><rect x="75" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="97.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="112.5" y="52.5" font-size="10px">2</tspan>
+    </text><rect x="140" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="162.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="177.5" y="52.5" font-size="10px">3</tspan>
+    </text><rect x="205" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="227.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="242.5" y="52.5" font-size="10px">4</tspan>
+    </text><rect x="270" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="292.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="307.5" y="52.5" font-size="10px">5</tspan>
+    </text><rect x="335" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="357.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="372.5" y="52.5" font-size="10px">6</tspan>
+    </text><rect x="400" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="422.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="437.5" y="52.5" font-size="10px">7</tspan>
+    </text><rect x="465" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="487.5" y="42.5" stroke="none" fill="var(--text-color)">R<tspan x="502.5" y="52.5" font-size="10px">8</tspan>
+    </text></svg>
+  <svg viewBox="0 0 800 100"><rect x="10" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="32.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="47.5" y="52.5" font-size="10px">1</tspan>
+    </text><rect x="75" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="97.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="112.5" y="52.5" font-size="10px">2</tspan>
+    </text><rect x="140" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="162.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="177.5" y="52.5" font-size="10px">3</tspan>
+    </text><rect x="205" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="227.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="242.5" y="52.5" font-size="10px">4</tspan>
+    </text><rect x="270" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="292.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="307.5" y="52.5" font-size="10px">5</tspan>
+    </text><rect x="335" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="357.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="372.5" y="52.5" font-size="10px">6</tspan>
+    </text><rect x="400" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="422.5" y="42.5" stroke="none" fill="var(--text-color)">-1<tspan x="437.5" y="52.5" font-size="10px">7</tspan>
+    </text><rect x="465" y="20" height="45" width="45" stroke="var(--main-color-1)" fill="none"></rect>
+    <text dominant-baseline="middle" text-anchor="middle" font-size="20px" x="487.5" y="42.5" stroke="none" fill="var(--text-color)">10<tspan x="502.5" y="52.5" font-size="10px">8</tspan>
+    </text></svg>
+  <p>Based on that trajectory the returns from the perspective of time step 0, 1,
+    and 2 look as follows.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+   G_0  = R_1 + R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 3
+</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <span class="placeholder svelte-1mpoqm2">
+   G_1 = R_2 + R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 4
+</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <span class="placeholder svelte-1mpoqm2">
+   G_2 = R_3 + R_4 + R_5 + R_6 + R_7 + R_8 \\
+   = (-1) + (-1) + (-1) + (-1) + (-1) + 10 = 5
+</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <div class="separator"></div>
+
+  <h2>Discounted Return</h2>
+  <p>Gamma <span class="placeholder svelte-1mpoqm2">\gamma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    (also called discount factor) is a value between 0 and 1 (usually between 0.9
+    and 0.99) that is used to reduce the value of future rewards, because future
+    rewards are considered of less value to the agent than present rewards.
+  </p>
+  <p class="info"><span class="placeholder svelte-1mpoqm2">\gamma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> (gamma) is the discount factor, where <span class="placeholder svelte-1mpoqm2">0 \leq \gamma \leq 1</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>Let us consider the following example to convince ourselves that future
+    rewards are indeed of less value than present rewards. If we have to choose
+    between getting 1000$ now and getting 1000$ in 10 years, we should
+    definetely choose the 1000$ in the present. The money could be invested in a
+    10 year risk free bond, so that at the end of the 10 year period the
+    investor gets back an amout that is larger than 1000$. In reinforcement
+    learning this concept called <em>&quot;time value of money&quot;</em> is extended to all
+    other types of rewards. Specificylly in reinforcement learning we use the geometric
+    series to calculate the current value of a future reward.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">S = 1 + \gamma + \gamma^2 + \gamma^3 + \gamma^4 + ...</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Therefore the discounted return looks as follows:</p>
+  <span class="placeholder svelte-1mpoqm2">G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Mathematically the discounting is necessary in continuing tasks. If for
+    example at each timestep the agent receives a reward of +1 and the episode
+    has no natural ending, the return <span class="placeholder svelte-1mpoqm2">G</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> could theoretically become
+    infinite. Due to the geometric progression of gamma (<span class="placeholder svelte-1mpoqm2">\gamma</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>)
+    the discounted returns approach 0 when they are far into the future.
+  </p>
+  <p>The interactive example below show how the discounting rate progresses
+    towards 0 (y-axis) depending on timesteps (x-axis) and the gamma. The lower
+    the gamma the faster the progression.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><div class="svg-container"><svg viewBox="0 0 500 200"><g class="axis y-axis" transform="translate(0, 20)"><g class="tick tick-0 svelte-1rq7oyg" transform="translate(0, 160)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0</text></g><g class="tick tick-0.1 svelte-1rq7oyg" transform="translate(0, 144)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.1</text></g><g class="tick tick-0.2 svelte-1rq7oyg" transform="translate(0, 128)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.2</text></g><g class="tick tick-0.3 svelte-1rq7oyg" transform="translate(0, 112)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.3</text></g><g class="tick tick-0.4 svelte-1rq7oyg" transform="translate(0, 96)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.4</text></g><g class="tick tick-0.5 svelte-1rq7oyg" transform="translate(0, 80)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.5</text></g><g class="tick tick-0.6 svelte-1rq7oyg" transform="translate(0, 64)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.6</text></g><g class="tick tick-0.7 svelte-1rq7oyg" transform="translate(0, 48)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.7</text></g><g class="tick tick-0.8 svelte-1rq7oyg" transform="translate(0, 31.999999999999993)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.8</text></g><g class="tick tick-0.9 svelte-1rq7oyg" transform="translate(0, 16)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">0.9</text></g><g class="tick tick-1 svelte-1rq7oyg" transform="translate(0, 0)"><line x2="100%" class="svelte-1rq7oyg"></line><text y="-4" class="svelte-1rq7oyg">1</text></g></g><g class="axis x-axis svelte-1rq7oyg"><g class="tick tick-0 svelte-1rq7oyg" transform="translate(25,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">0</text></g><g class="tick tick-10 svelte-1rq7oyg" transform="translate(71,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">10</text></g><g class="tick tick-20 svelte-1rq7oyg" transform="translate(117,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">20</text></g><g class="tick tick-30 svelte-1rq7oyg" transform="translate(163,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">30</text></g><g class="tick tick-40 svelte-1rq7oyg" transform="translate(209,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">40</text></g><g class="tick tick-50 svelte-1rq7oyg" transform="translate(255,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">50</text></g><g class="tick tick-60 svelte-1rq7oyg" transform="translate(301,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">60</text></g><g class="tick tick-70 svelte-1rq7oyg" transform="translate(347,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">70</text></g><g class="tick tick-80 svelte-1rq7oyg" transform="translate(393,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">80</text></g><g class="tick tick-90 svelte-1rq7oyg" transform="translate(439,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">90</text></g><g class="tick tick-100 svelte-1rq7oyg" transform="translate(485,200)"><line y1="-200" y2="-20" x1="0" x2="0" class="svelte-1rq7oyg"></line><text y="-2" class="svelte-1rq7oyg">100</text></g></g><path class="path-line svelte-1rq7oyg" d="M25,20L29.6,28.000000000000007L34.2,35.60000000000001L38.8,42.82000000000002L43.400000000000006,49.679000000000016L48,56.19505000000004L52.599999999999994,62.38529750000003L57.2,68.26603262500004L61.800000000000004,73.85273099375004L66.4,79.16009444406255L71,84.20208972185942L75.6,88.99198523576645L80.19999999999999,93.54238597397813L84.80000000000001,97.86526667527923L89.4,101.97200334151529L94,105.8734031744395L98.60000000000001,109.57973301571755L103.2,113.10074636493167L107.8,116.44570904668508L112.4,119.62342359435084L117,122.64225241463329L121.6,125.51013979390163L126.2,128.23463280420657L130.8,130.82290116399622L135.39999999999998,133.2817561057964L140,135.61766830050658L144.60000000000002,137.83678488548128L149.20000000000002,139.94494564120723L153.8,141.94769835914684L158.39999999999998,143.85031344118954L163,145.65779776913004L167.6,147.37490788067353L172.20000000000002,149.00616248663988L176.8,150.55585436230788L181.4,152.02806164419246L186,153.42665856198286L190.6,154.7553256338837L195.2,156.01755935218955L199.8,157.21668138458006L204.4,158.35584731535107L209,159.4380549495835L213.6,160.46615220210433L218.2,161.44284459199912L222.79999999999998,162.37070236239916L227.4,163.25216724427918L232,164.08955888206526L236.60000000000002,164.885080937962L241.2,165.64082689106388L245.79999999999998,166.3587855465107L250.4,167.04084626918515L255,167.6888039557259L259.6,168.3043637579396L264.20000000000005,168.88914557004261L268.8,169.4446882915405L273.40000000000003,169.97245387696347L278,170.4738311831153L282.6,170.95013962395953L287.2,171.40263264276155L291.79999999999995,171.83250101062347L296.4,172.2408759600923L301,172.6288321620877L305.59999999999997,172.9973905539833L310.2,173.34752102628414L314.8,173.68014497496995L319.40000000000003,173.99613772622146L324,174.29633083991038L328.6,174.58151429791488L333.20000000000005,174.85243858301908L337.8,175.10981665386814L342.4,175.35432582117474L347,175.586609530116L351.59999999999997,175.80727905361022L356.2,176.01691510092968L360.8,176.21606934588323L365.4,176.40526587858903L370,176.5850025846596L374.6,176.75575245542663L379.2,176.9179648326553L383.8,177.07206659102252L388.40000000000003,177.21846326147138L393,177.35754009839783L397.6,177.48966309347793L402.2,177.61517993880403L406.79999999999995,177.73442094186385L411.4,177.84769989477064L416,177.9553149000321L420.59999999999997,178.0575491550305L425.2,178.15467169727899L429.8,178.24693811241502L434.40000000000003,178.33459120679427L439,178.41786164645455L443.6,178.49696856413186L448.20000000000005,178.57212013592527L452.8,178.64351412912896L457.4,178.71133842267255L462,178.7757715015389L466.59999999999997,178.83698292646196L471.2,178.89513378013885L475.8,178.9503770911319L480.4,179.00285823657535L485,179.05271532474657"></path></svg></div></div>
+</div>
+<form><div><label for="gamma" class="svelte-1rq7oyg">Gamma:</label>
+    <select id="gamma" class="svelte-1rq7oyg"><option value="0.95">0.95</option><option value="0.99">0.99</option><option value="0.999">0.999</option></select></div>
+</form>
+  <div class="separator"></div>
+
+  <h2>Policy</h2>
+  <p>A policy is a mapping from states to either actions directly or a
+    probability of an action, depending on whether the policy is deterministic
+    or stochastic.
+  </p>
+  <p>If a policy is <em>deterministic</em> we define a policy as a mapping from
+    state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> to action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. In that case the notation
+    that we use for policy is <span class="placeholder svelte-1mpoqm2">\mu(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>. An action <span class="placeholder svelte-1mpoqm2">A_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is generated by using the state
+    <span class="placeholder svelte-1mpoqm2">S_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> as the input into the policy function: <span class="placeholder svelte-1mpoqm2">A_t = \mu(S_t)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>If a policy is <em>stochastic</em> we define a policy as a mapping from a
+    state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> to a probability of an action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, where
+    the mathematical notation is <span class="placeholder svelte-1mpoqm2">\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    . This notation can theoretically also be applied to a deterministic case, where
+    policy <span class="placeholder svelte-1mpoqm2">\pi{(a \mid s) = 1}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for for the selected
+    action and <span class="placeholder svelte-1mpoqm2">\pi{(a \mid s) = 0}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for the rest of the
+    legal actions. To generate an action using a stochastic policy we define <span class="placeholder svelte-1mpoqm2">\pi{(. \mid S_t)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    to be the distribution of actions given states, where actions are draws from
+    a policy distribution <span class="placeholder svelte-1mpoqm2">A_t \sim \pi{(. \mid S_t)}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Value Functions</h2>
+  <p>In reinforcement learning we often deal with stochastic environments and
+    with stochastic policies. That stochasticity produces different trajectories
+    and therefore different returns <span class="placeholder svelte-1mpoqm2">G_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    even when the starting state <span class="placeholder svelte-1mpoqm2">S_0</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    remain the same. But how can we measure how good it is for the agent to use a
+    certain policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, if the generated returns are not
+    consistent? By using value functions!
+  </p>
+  <p>For a given policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> value functions map states or state-action
+    pairs to “goodness” values, where goodness is calculated as the expected sum
+    of rewards and higher values mean more favorable states or state-action pairs.
+  </p>
+  <p class="info">In simple words value functions calculate the following: How much return <span class="placeholder svelte-1mpoqm2">G_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> does the agent expect to receive when it faces the state <span class="placeholder svelte-1mpoqm2">S_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and always follows the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p>The state-value function <span class="placeholder svelte-1mpoqm2">v_{\pi}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> calculates the
+    expected return when the agent is in the state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    and follows the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p><em>State-Value Function:</em>
+    <span class="placeholder svelte-1mpoqm2">v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p>The action-value function <span class="placeholder svelte-1mpoqm2">q_{\pi}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> calculates
+    the expected return when the agent faces the state <span class="placeholder svelte-1mpoqm2">s</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>, takes
+    the action <span class="placeholder svelte-1mpoqm2">a</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> at first and then keeps following the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p><em>Action-Value Function:</em>
+    <span class="placeholder svelte-1mpoqm2">q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <div class="separator"></div>
+
+  <h2>Optimality</h2>
+  <p>At the beginning of the chapter we asked ourselves what it means for an
+    agent to solve a Markov decision process. The solution of the MDP means that
+    the agent has learned an optimal policy function.
+  </p>
+  <p class="info">For the agent to solve the Markov decision process means to find the optimal
+    policy.
+  </p>
+  <p>Optimality implies that there is a way to compare different policies and to
+    determine which of the policies is better. In a Markov decision process
+    value functions are used as a metric of the goodness of a policy. The policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    is said to be better than the policy <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> if and
+    only if the value function of <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is larger or equal
+    to the value function of policy <span class="placeholder svelte-1mpoqm2">\pi'</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for all states
+    in the state set <span class="placeholder svelte-1mpoqm2">\mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>.
+  </p>
+  <p><span class="placeholder svelte-1mpoqm2">\pi \geq \pi’</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    if and only if <span class="placeholder svelte-1mpoqm2">v_{\pi}(s) \geq v_{\pi'}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+    for all <span class="placeholder svelte-1mpoqm2">s \in \mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p>The optimal policy <span class="placeholder svelte-1mpoqm2">\pi_*</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> is the policy that is better
+    (or at least not worse) than any other policy.
+  </p>
+  <p><span class="placeholder svelte-1mpoqm2">\pi_* \geq \pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for all <span class="placeholder svelte-1mpoqm2">\pi</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p>The state-value function and the action-value function that are based on the
+    optimal policy are called optimal state-value and optimal action-value
+    function respectively.
+  </p>
+  <p>The optimal state-value funtion:</p>
+  <p><span class="placeholder svelte-1mpoqm2">v_*(s) = \max_{\pi} v_{\pi}(s)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for all states <span class="placeholder svelte-1mpoqm2">s \in \mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p>The optimal action-value function:</p>
+  <p><span class="placeholder svelte-1mpoqm2">q_*(s, a) = \max_{\pi} q_{\pi}(s, a)</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> for all states
+    <span class="placeholder svelte-1mpoqm2">s \in \mathcal{S}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> and all actions <span class="placeholder svelte-1mpoqm2">a \in \mathcal{A}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span></p>
+  <p class="info">There might be several optimal policies, but there is always only one
+    optimal value function.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Bellman Equations</h2>
+  <p>An important property of returns is that they can be expressed in terms of
+    future returns to write a more compact definition.
+  </p>
+  <span class="placeholder svelte-1mpoqm2">
+      \begin{aligned}
+      G_t &amp; = R_{t+1} + \gamma{R_{t+2}} + \gamma^2{R_{t+3}} + … \\
+      &amp; = R_{t+1} + \gamma{(R_{t+2} + \gamma{R_{t+3}} + ...)} \\
+      &amp; = R_{t+1} + \gamma{G_{t+1}}
+      \end{aligned}</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+  <p>By using those properties we can arrive at recursive equations of value
+    functions, where a value of a state can be expressed in terms of future
+    state values.
+  </p>
+  <p>Bellman equation for the state-value function</p>
+  <span class="placeholder svelte-1mpoqm2">
+      \begin{aligned}
+      v_{\pi}(s) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s] \\
+      &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
+      &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s]
+      \end{aligned}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Bellman equation for the action-value function</p>
+  <span class="placeholder svelte-1mpoqm2">
+      \begin{aligned}
+      q_{\pi}(s, a) &amp; = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a] \\
+      &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
+      &amp; = \mathbb{E_{\pi}}[R_{t+1} + \gamma v_{\pi}(S_{t+1}) \mid S_t = s, A_t = a]
+      \end{aligned}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <p>Equations of the above form are called Bellman equations, named after the
+    mathematician Richard E. Bellman. At the very first glance it might not seem
+    like the equations add additional benefit to the definition of value
+    functions, but the recursive relationships is what makes many of the
+    reinforcement learning algorithms work. Think for example about the return <span class="placeholder svelte-1mpoqm2">G_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> in a continuing environment. The definition of <span class="placeholder svelte-1mpoqm2">G_t</span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span> implies that
+    we play for an infinite amount of timesteps before we can calculate a single
+    return. Bellman equations on the other hand will allow us to work with estimates
+    and to use a return from a single timestep to make improvements.
+  </p>
+  <p>Using the same recursive relationsships we can redefine optimal value
+    functions.
+  </p>
+  <p>Bellman Optimality Equation for the state-value function:</p>
+  <span class="placeholder svelte-1mpoqm2">
+      \begin{aligned}
+      v_*(s) &amp; = \max_{a} q_{{\pi}_*}(s, a) \\
+      &amp; = \max_{a} \mathbb{E_{\pi_{*}}}[G_t \mid S_t = s, A_t = a] \\
+      &amp; = \max_{a} \mathbb{E_{\pi_{*}}}[R_{t+1} + \gamma G_{t+1} \mid S_t = s, A_t = a] \\
+      &amp; = \max_{a} \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a]
+      \end{aligned}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+  <p>Bellman Optimality Equation for the action-value function:</p>
+  <span class="placeholder svelte-1mpoqm2">
+      \begin{aligned}
+      q_*(s, a) &amp; = \mathbb{E}[R_{t+1} + \gamma v_*(S_{t+1}) \mid S_t = s, A_t = a] \\
+      &amp; = \mathbb{E}[R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}, a') \mid S_t = s, A_t = a]
+      \end{aligned}
+  </span>
+<span class="result svelte-1mpoqm2"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="13sp6l6">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="13sp6l6"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 83],
+				params: {},
+				routeId: "blocks/reinforcement_learning/markov_decision_process/solution"
+			}
+		});
+	</script></div>
+	</body>
+</html>

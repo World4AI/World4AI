@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Reinforcement Learning Applications</title><meta name="description" content="Reinforcement learning is used in many different applications, like games, finance, robotics, healcare and autonomous vehicles." data-svelte="svelte-1hs7yk7">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-rl.svelte-d9952daa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/__layout@rl.svelte-4eac22ac.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/reinforcement_learning/intuition/applications.svelte-a0e7e2aa.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Interaction-aa3fe544.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/RandomAgent-d01f8d90.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/maps-4e6d9d32.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-13c6122f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-313c094f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/introduction" class="svelte-1et9jpn">Introduction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/intuition" class="svelte-1et9jpn  folder">Intuition</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/applications" class="svelte-1et9jpn selected">Applications</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/agent_and_environment" class="svelte-1et9jpn">Agent and Environment</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/definition" class="svelte-1et9jpn">Definition of Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/states_actions_rewards" class="svelte-1et9jpn">States, Actions, Rewards</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/exploration_vs_exploitation" class="svelte-1et9jpn">Exploration vs Exploitation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/value_policy_model" class="svelte-1et9jpn">Value, Policy, Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/intuition/terminology" class="svelte-1et9jpn">Reinforcement Learning Terminology</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/markov_decision_process" class="svelte-1et9jpn  folder">Markov Decision Process</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/sequential_interaction" class="svelte-1et9jpn">MDP as Sequential Interaction</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/stochastic_process" class="svelte-1et9jpn">MDP as Stochastic Process</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/tuple" class="svelte-1et9jpn">MDP as Tuple</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/markov_decision_process/solution" class="svelte-1et9jpn">Solution</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/dynamic_programming" class="svelte-1et9jpn  folder">Dynamic Programming</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration" class="svelte-1et9jpn">Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/value_iteration" class="svelte-1et9jpn">Value Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration" class="svelte-1et9jpn">Generalized Policy Iteration</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff" class="svelte-1et9jpn  folder">Exploration Exploitation</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/bandits" class="svelte-1et9jpn">Bandits</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/exploration_exploitation_tradeoff/epsilon_greedy" class="svelte-1et9jpn">Epsilon-Greedy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning" class="svelte-1et9jpn  folder">Tabular RL</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/monte_carlo" class="svelte-1et9jpn">Monte Carlo</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/temporal_difference" class="svelte-1et9jpn">Temporal Difference</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/bias_variance_tradeoff" class="svelte-1et9jpn">Bias-Variance Tradeoff</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/tabular_reinforcement_learning/double_q_learning" class="svelte-1et9jpn">Double Q-Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/approximative_value_function" class="svelte-1et9jpn  folder">Approximative Value Function</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/state_value_representation" class="svelte-1et9jpn">State and Value Representation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/evaluation_improvement" class="svelte-1et9jpn">Evaluation and Improvement</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/approximative_value_function/convergence_optimality" class="svelte-1et9jpn">Convergence and Optimality</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning" class="svelte-1et9jpn  folder">Value Based Deep Reinforcement Learning</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/dqn" class="svelte-1et9jpn">DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/double_dqn" class="svelte-1et9jpn">Double DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/duelling_dqn" class="svelte-1et9jpn">Duelling DQN</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/value_based_deep_reinforcement_learning/prioritized_experience_replay" class="svelte-1et9jpn">Prioritized Experience Replay</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods" class="svelte-1et9jpn  folder">Policy Gradient Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_intuition" class="svelte-1et9jpn">Policy Gradient Intuition</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/policy_gradient_derivation" class="svelte-1et9jpn">Policy Gradient Derivation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/reinforce" class="svelte-1et9jpn">REINFORCE</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/policy_gradient_methods/baseline" class="svelte-1et9jpn">Baseline</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/actor_critic_methods" class="svelte-1et9jpn  folder">Actor Critic Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/a3c_a2c" class="svelte-1et9jpn">A3C and A2C</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/actor_critic_methods/generalized_advantage_estimation" class="svelte-1et9jpn">Generalized Advantage Estimation (GAE)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/reinforcement_learning/trust_region_methods" class="svelte-1et9jpn  folder">Trust Region Methods</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/trust_region_policy_optimization" class="svelte-1et9jpn">Trust Region Policy Optimization (TRPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/reinforcement_learning/trust_region_methods/proximal_policy_optimization" class="svelte-1et9jpn">Proximal Policy Optimization (PPO)</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Applications</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>It is possible to introduce reinforcement learning using only formal
+    definitions and math, but we will start this journey by exploring what
+    reinforcement learning can actually achieve rather than what it is and how
+    you can apply it. The formalism will come soon enough.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Games</h2>
+
+  <h3>Grid Worlds</h3>
+  <p>Most beginner reinforcement learning problems are grid world problems. They
+    are easy enough to understand and do not require a lot of computational
+    power to solve. A grid world is a rectangular-shaped game with a certain
+    number of rows and columns, where an intersection of a row and a column is a
+    so-called cell in the grid world. A gridworld is (usually) a simple game.
+    You have some sort of a player that can move through the gridworld, some
+    obstacles to prevent the player from entering a certain cell and a goal the
+    player needs to achieve, which then terminates (or restarts) the game. But
+    of course there are grid worlds that are substantially more complex. These
+    can for example include powerups, enemies and many levels.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="0" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="100" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="10" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="110" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          <rect fill="var(--main-color-4)" stroke="black" stroke-width="3" x="210" y="210" width="80" height="80"></rect>
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="200" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="300" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="0" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon fill="#FFF" stroke="black" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="100" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="200" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="300" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect fill="#889" stroke-width="0.3" stroke="white" x="400" y="400" width="100" height="100"></rect>
+
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div>
+</div>
+  <p>In the above example the player has to move the circle from the top left
+    corner to the goal (represented by a triangle) in bottom left corner, while
+    avoiding the walls (represented by the three squares). This seems like a
+    trivial task for a human being, but it gets nontrivial if you are not
+    allowed to hardcode the solution. Instead you have to make your computer
+    learn the goal of the game and the strategy to achieve the goal.
+  </p>
+  <p>That is exactly where reinforcement learning comes into play. By applying
+    reinforcement learning algorithms it becomes possible to learn the optimal
+    behaviour, where the circle arrives at the goal in as few steps as possible.
+    In our example above the circle moves randomly and therefore it might take a
+    while for the circle to get to the goal. In a few chapter we will implement
+    our first algorithms and see how this simple task can be solved though
+    reinforcement learning.
+  </p>
+  <div class="separator"></div>
+
+  <h3>Atari 2600 Games</h3>
+  <p>Computer games have become a testing ground for reinforcement learning
+    algorithms. Most new algorithms are tested on the Atari 2600 games in order
+    to show how efficient the algorithms are. For a human it is not especially
+    hard to learn the rules of the game (although it might require some time to
+    master the game), but for computers it is an entirely different story. Due
+    to the vast number of possible pixel values on the screen the usual
+    strategies that are used to solve the grid worlds break down. Good solutions
+    require the use of neural networks.
+  </p>
+  <p>The most known atari game is probably pong. In pong for example you steer a
+    paddle at the right of the screen. The goal of the game is to prevent the
+    ball from reaching the right border by moving the paddle into the path of
+    the ball. The ball bounces off the paddle and if the ball to passes the
+    paddle of the enemy, then we have earned ourselve a point. The enemy on the
+    left can be controlled by a simple hardcoded AI or just a different player.
+    In reinfocement learning a trained AI is responsible for the control of the
+    right paddle.
+  </p>
+  <div class="flex-center"><canvas width="200" height="300">The game of Pong
+</canvas></div>
+  <p>The computer receives the current frames of the game and has to decide how
+    to act based on the pixel values. There are of course versions of the game,
+    where the computer receives the positions of the ball and the paddles as
+    coordinate values, but using that version would be essentially cheating.
+    Looking at the pictures and behaving accordingly is not unlike how humans
+    act. Therefore it is especially impressive that with the help of
+    reinforcement learning it is possible to create computer programs that are
+    able to beat human scores in all the Atari 2600 games while making decisions
+    on the basis of the screenshots of the game.
+  </p>
+  <div class="separator"></div>
+
+  <h3>Board Games</h3>
+  <p>Board games, like backgammon, chess and go used to be the frontier for AI.
+    There was an assumption that a computer would require creativity and
+    imagination to beat a professional player at backgammon, chess and go.
+    Essentially that meant that the computer needed to possess human
+    characteristics in order to win against a professional player. Nevertheless
+    in all three games professionals and even world champions were beaten by AI
+    systems.
+  </p>
+  <p>Even though all solutions were an unbelievable milestone for the AI
+    community, the win of DeepMind with their AlphaGo system against the go
+    world champion was most likely the most impressive and the hardest
+    achievement in AI thus far. For a number of years the challenge of winning
+    against the world champion was considered impossible. The number of legal
+    board positions in the game of go is far greater than there are atoms in the
+    observable universe. Iterating through all positions is therefore
+    impossible. Nevertheless, not only did the algorithm win against the world
+    champion Lee Sedol in the 4 of 5 games, but according to go experts AlphaGo
+    showed creativity. In the second of the five games AlphaGo shocked the world
+    with the now iconic move. This move has become known as <strong>Move 37</strong>.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g><g fill="none" stroke-width="2" stroke="black" stroke-opacity="0.2"><path d="m0.5 0.5v499"></path><path d="m28.222 0.5v499"></path><path d="m55.944 0.5v499"></path><path d="m83.667 0.5v499"></path><path d="m111.39 0.5v499"></path><path d="m139.11 0.5v499"></path><path d="m166.83 0.5v499"></path><path d="m194.56 0.5v499"></path><path d="m222.28 0.5v499"></path><path d="m250 0.5v499"></path><path d="m277.72 0.5v499"></path><path d="m305.44 0.5v499"></path><path d="m333.17 0.5v499"></path><path d="m360.89 0.5v499"></path><path d="m388.61 0.5v499"></path><path d="m416.33 0.5v499"></path><path d="m444.06 0.5v499"></path><path d="m471.78 0.5v499"></path><path d="m499.5 0.5v499"></path><path d="m0.5 0.5h499"></path><path d="m0.5 28.222h499"></path><path d="m0.5 55.944h499"></path><path d="m0.5 83.667h499"></path><path d="m0.5 111.39h499"></path><path d="m0.5 139.11h499"></path><path d="m0.5 166.83h499"></path><path d="m0.5 194.56h499"></path><path d="m0.5 222.28h499"></path><path d="m0.5 250h499"></path><path d="m0.5 277.72h499"></path><path d="m0.5 305.44h499"></path><path d="m0.5 333.17h499"></path><path d="m0.5 360.89h499"></path><path d="m0.5 388.61h499"></path><path d="m0.5 416.33h499"></path><path d="m0.5 444.06h499"></path><path d="m0.5 471.78h499"></path><path d="m0.5 499.5h499"></path></g><g fill-rule="evenodd" stroke-width="1" stroke-opacity="0.5" fill="white" stroke="var(--text-color)"><circle cx="416.33" cy="83.667" r="11.341" fill="var(--tint)"></circle><circle cx="83.667" cy="416.33" r="11.341" fill="var(--text-color)"></circle><circle cx="55.944" cy="83.667" r="11.341" fill="var(--tint)"></circle><circle cx="444.06" cy="416.33" r="11.341" fill="var(--text-color)"></circle><circle cx="388.61" cy="416.33" r="11.341" fill="var(--tint)"></circle><circle cx="388.61" cy="444.06" r="11.341" fill="var(--text-color)"></circle><circle cx="360.89" cy="444.06" r="11.341" fill="var(--tint)"></circle><circle cx="416.33" cy="444.06" r="11.341" fill="var(--text-color)"></circle><circle cx="55.944" cy="360.89" r="11.341" fill="var(--tint)"></circle><circle cx="139.11" cy="444.06" r="11.341" fill="var(--text-color)"></circle><circle cx="333.17" cy="416.33" r="11.341" fill="var(--tint)"></circle><circle cx="444.06" cy="360.89" r="11.341" fill="var(--text-color)"></circle><circle cx="222.28" cy="55.944" r="11.341" fill="var(--tint)"></circle><circle cx="83.667" cy="250" r="11.341" fill="var(--text-color)"></circle><circle cx="416.33" cy="388.61" r="11.341" fill="var(--tint)"></circle><circle cx="444.06" cy="388.61" r="11.341" fill="var(--text-color)"></circle><circle cx="55.944" cy="416.33" r="11.341" fill="var(--tint)"></circle><circle cx="55.944" cy="444.06" r="11.341" fill="var(--text-color)"></circle><circle cx="28.222" cy="444.06" r="11.341" fill="var(--tint)"></circle><circle cx="55.944" cy="388.61" r="11.341" fill="var(--text-color)"></circle><circle cx="28.222" cy="416.33" r="11.341" fill="var(--tint)"></circle><circle cx="28.222" cy="388.61" r="11.341" fill="var(--text-color)"></circle><circle cx="83.667" cy="388.61" r="11.341" fill="var(--tint)"></circle><circle cx="83.667" cy="444.06" r="11.341" fill="var(--tint)"></circle><circle cx="111.39" cy="416.33" r="11.341" fill="var(--text-color)"></circle><circle cx="83.667" cy="471.78" r="11.341" fill="var(--tint)"></circle><circle cx="55.944" cy="333.17" r="11.341" fill="var(--text-color)"></circle><circle cx="250" cy="416.33" r="11.341" fill="var(--tint)"></circle><circle cx="55.944" cy="166.83" r="11.341" fill="var(--text-color)"></circle><circle cx="111.39" cy="83.667" r="11.341" fill="var(--tint)"></circle><circle cx="444.06" cy="139.11" r="11.341" fill="var(--text-color)"></circle><circle cx="444.06" cy="111.39" r="11.341" fill="var(--tint)"></circle><circle cx="416.33" cy="139.11" r="11.341" fill="var(--text-color)"></circle><circle cx="360.89" cy="83.667" r="11.341" fill="var(--tint)"></circle><circle cx="416.33" cy="222.28" r="11.341" fill="var(--text-color)"></circle><circle cx="388.61" cy="250" r="11.341" fill="var(--tint)"></circle><circle cx="28.222" cy="360.89" r="11.341" fill="var(--text-color)"></circle></g><g fill="none"><path d="m2100 900 400 500" stroke-width="0"></path><g stroke="var(--text-color)"><path d="m363.94 226.16 12.614 12.752"></path><path d="m364.91 271.76 12.752-10.396"></path><path d="m412.73 274.26-11.921-13.307"></path><path d="m406.35 232.4-7.485 7.2078"></path><path d="m382.24 225.47 2.2178 10.396"></path><path d="m364.49 257.76 9.98-3.0495"></path><path d="m378.08 275.23 5.1286-10.673"></path><path d="m413.15 239.19-9.4256 5.5444"></path><path d="m403.17 254.99 9.0097 3.4653"></path></g></g></g></svg></div>
+</div>
+  <div class="separator"></div>
+
+  <h3>Modern Games</h3>
+  <p>Compared to Atari games, modern games have become a lot more complex and
+    even for human players there is a steep learning curve, especially if you
+    wish to become a professional player. In spite of that OpenAI and DeepMind
+    have beaten top players in two of the most famous esports games, Dota II and
+    StarCraft II. StarCraft II for example is a so-called rts (real time
+    strategy) game. In these types of games you have to collect resources, build
+    workers and different types of attack vehicles, construct buildings, improve
+    your technology, scout the area for opponents and to finally destroy the
+    buildings and units of your opponents. Many of these decisions have
+    tradeoffs and there is no single best strategy, the player has to adapt to
+    the current situation.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><defs fill="var(--tint)"><marker id="marker1804" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1706" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1225" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1147" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1671" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1605" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="marker1545" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker><marker id="Arrow2Lend" overflow="visible" orient="auto"><path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175-6e-7 8.0354z" fill-rule="evenodd" stroke-linejoin="round" stroke-width=".625"></path></marker></defs><g fill-opacity=".15663" fill="var(--tint)" fill-rule="evenodd"><rect x="2.6673e-5" y="1.9768e-10" width="499" height="249.5" ry="0"></rect><rect x="1.9768e-10" y="249.5" width="249.5" height="124.75" ry="0"></rect><rect x="249.5" y="249.5" width="249.5" height="74.85" ry="0"></rect></g><g fill="var(--text-color)" fill-rule="evenodd" stroke="var(--text-color)" stroke-linejoin="round" stroke-width="4.008"><path transform="matrix(.24116 .063986 -.063986 .24116 -117.47 -32.314)" d="m1688.9 1414.4-67.578-28.866 58.788-44.091z"></path><path transform="matrix(.24808 .026562 -.026562 .24808 183.77 -33.043)" d="m280.01 1889.4-67.578-28.866 58.788-44.091z"></path><path transform="matrix(.24283 .057312 -.057312 .24283 211.16 -64.4)" d="m280.01 1889.4-67.578-28.866 58.788-44.091z"></path><path transform="matrix(-.05959 -.24228 .24228 -.05959 -265.86 600.29)" d="m280.01 1889.4-67.578-28.866 58.788-44.091z"></path></g><g><g fill-rule="evenodd"><ellipse cx="314.38" cy="462.38" rx="6.7041" ry="6.7041"></ellipse><ellipse cx="442.69" cy="420.27" rx="6.7041" ry="6.7041"></ellipse><ellipse cx="114.79" cy="409.24" rx="6.7041" ry="6.7041"></ellipse><ellipse cx="323.78" cy="365.38" rx="6.7041" ry="6.7041"></ellipse><ellipse cx="463.53" cy="408.32" rx="6.7041" ry="6.7041"></ellipse><rect x="275" y="449.6" width="24.903" height="49.492"></rect></g><g stroke="none"><path d="m266.88 385.1 0.20209-14.428 14.166 0.20584-14.368 14.222"></path><path d="m263.89 410.05 0.20209-14.428 14.166 0.20584-14.368 14.222"></path><path d="m290.34 388.59 0.20209-14.428 14.166 0.20584-14.368 14.222"></path><path d="m287.34 408.05 0.20209-14.428 14.166 0.20584-14.368 14.222"></path></g></g><g id="resources" stroke="var(--text-color)" fill="none"><path d="m63.464 415.64a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m78.933 418.13a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m67.456 430.36a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m52.236 429.11a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m48.494 413.89a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m60.47 400.92a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m76.188 402.41a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m446.3 451.98a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m461.77 454.47a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0556 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m450.29 466.7a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0556 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m435.07 465.45a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0556 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m431.33 450.23a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0553-2.6923-4.5269z"></path><path d="m443.31 437.26a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m459.03 438.76a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.0616a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.0557 2.6923 4.5269-2.5955 4.5828-5.2879 0.0554-2.6923-4.5269z"></path><path d="m425.7 52.451a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m441.17 54.946a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m429.69 67.171a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m414.47 65.924a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m410.73 50.704a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m422.71 37.73a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m438.43 39.227a0.4987 0.50141 90 0 0-0.43137 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 5e-3 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43678 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43137-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-5e-3 -0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43678-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m42.469 32.99a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m57.938 35.485a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m46.461 47.71a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m31.242 46.463a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m27.499 31.243a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m39.475 18.269a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path><path d="m55.194 19.766a0.4987 0.50141 90 0 0-0.43136 0.25376l-2.8798 5.0842a0.4987 0.50141 90 0 0 0.0054 0.4985l2.9871 5.0226a0.4987 0.50141 90 0 0 0.43677 0.24472l5.8669-0.06161a0.4987 0.50141 90 0 0 0.43136-0.25378l2.8798-5.0842a0.4987 0.50141 90 0 0-0.0054-0.4985l-2.9871-5.0226a0.4987 0.50141 90 0 0-0.43677-0.24472zm0.30022 0.99416 5.2878-0.05565 2.6923 4.5269-2.5955 4.5828-5.2879 0.05535-2.6923-4.5269z"></path></g><rect transform="rotate(90)" x="324.85" y="-499.5" width="24.903" height="74.85" fill-rule="evenodd"></rect><rect x="25.497" y="449.6" width="24.903" height="49.492" fill="none" stroke="#000" stroke-dasharray="1,3" stroke-linejoin="round"></rect><path transform="matrix(-.096894 -.22992 .22992 -.096894 229.99 853.12)" d="m1688.9 1414.4-67.578-28.866 58.788-44.091z" fill="var(--text-color)" fill-rule="evenodd" stroke="none"></path><g id="directions" fill="none" stroke="var(--text-color)"><path d="m312.42 361.11s-87.506-23.994-52.221-63.512c35.285-39.519 122.79 26.111 123.5-50.81 0.70571-76.92 48.693-14.114 49.398-60.69 0.70572-46.576 0.70572-74.098 0.70572-74.098" marker-end="url(#Arrow2Lend)" stroke-width="1.0016"></path><path d="m332.18 463.43 84.683-0.70569" marker-end="url(#marker1545)"></path><path d="m434.5 416.15s-57.161-45.164-88.917-21.171c-31.756 23.994-52.927 46.576-52.927 46.576" marker-end="url(#marker1605)"></path><path d="m456.38 401.33s-57.867-62.101-103.74-28.228c-45.87 33.873-71.275 66.335-71.275 66.335" marker-end="url(#marker1671)"></path><path d="m177.63 390.04s-43.753-83.272 1.4114-127.02c45.164-43.753 105.85-33.168 77.626-67.746-28.228-34.579-9.8797-60.69-52.927-62.101" marker-end="url(#marker1147)"></path><path d="m203.74 392.16s-43.753-83.272 1.4114-127.02c45.164-43.753 105.85-33.168 77.626-67.746-28.228-34.579-23.288-81.86-66.335-83.272" marker-end="url(#marker1225)"></path><path d="m115 422.15s5.1163 19.23-1.7642 34.755c-6.8805 15.525-52.221 17.113-52.221 17.113" marker-end="url(#marker1706)"></path><path d="m423.99 337.57-28.376 0.2495" marker-end="url(#marker1804)"></path></g></svg></div>
+</div>
+  <p>The image above shows how an imagined rts game configuration might look
+    like. The picture indicates how a player has to balance several decisions at
+    the same time. What makes these types of games additionally hard is the
+    so-called “fog of war”. The grey areas are not visible to the player, so
+    that only a part of the map is observable. That creates an information
+    imbalance and requires scouting the area to gain information.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Finance</h2>
+  <p>Nowadays it seems that reinforcement learning is taking over the financial
+    industry in every aspect imaginable. From valuing financial products to
+    chatbots that communicate with prospective clients.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 200"><g transform="translate(0,200)"><text stroke="none" fill="var(--text-color)">1980</text></g><g transform="translate(125,200)"><text stroke="none" fill="var(--text-color)">1990</text></g><g transform="translate(250,200)"><text stroke="none" fill="var(--text-color)">2000</text></g><g transform="translate(375,200)"><text stroke="none" fill="var(--text-color)">2010</text></g><g fill="none" stroke="var(--text-color)"><path d="M0,100L12.5,98L25,96L37.5,99.6L50,89.99999999999999L62.5,88.00000000000001L75,94L87.5,85.99999999999999L100,76L112.5,80L125,84.00000000000001L137.5,74L150,72L162.5,73.6L175,76L187.5,77.60000000000001L200,80L212.5,69L225,71.39999999999999L237.5,75.6L250,65.99999999999999L262.5,58.00000000000001L275,60.00000000000001L287.5,64.00000000000001L300,56.00000000000001L312.5,52L325,60.00000000000001L337.5,50L350,55.60000000000001L362.5,49L375,41.99999999999999L387.5,38.000000000000014L400,39.99999999999999L412.5,31.400000000000006L425,20.199999999999996L437.5,16.000000000000014L450,26.00000000000002L462.5,27L475,39.99999999999999L487.5,30.000000000000004L500,28.999999999999982"></path><path d="M0,19.999999999999996L12.5,38.000000000000014L25,36.00000000000001L37.5,39.600000000000016L50,30.000000000000004L62.5,28.000000000000004L75,54L87.5,46L100,56.00000000000001L112.5,60.00000000000001L125,43.99999999999999L137.5,54L150,52L162.5,73.6L175,76L187.5,77.60000000000001L200,100L212.5,89.00000000000001L225,91.40000000000002L237.5,115.60000000000001L250,85.99999999999999L262.5,78L275,80L287.5,64.00000000000001L300,56.00000000000001L312.5,52L325,39.99999999999999L337.5,70L350,75.6L362.5,69L375,41.99999999999999L387.5,58.00000000000001L400,60.00000000000001L412.5,51.4L425,40.19999999999999L437.5,36.00000000000001L450,46L462.5,47L475,80L487.5,70L500,69"></path><path d="M0,140L12.5,138L25,136L37.5,139.6L50,130L62.5,128L75,134L87.5,126L100,136L112.5,140L125,124L137.5,134L150,132L162.5,133.6L175,136L187.5,137.6L200,140L212.5,129L225,131.4L237.5,135.6L250,126L262.5,138L275,140L287.5,124L300,156L312.5,152L325,160L337.5,150L350,155.6L362.5,149L375,142L387.5,158L400,160L412.5,151.4L425,140.2L437.5,156L450,146L462.5,147L475,160L487.5,150L500,149"></path></g></svg></div>
+</div>
+  <p>The most exciting part still seems to be portfolio management though.
+    Imagine an artificial intelligence that decides what financial instrument to
+    invest in and in what proportion. And the exact decisions could depend on
+    the risk aversion of the client. There is an abundance of financial data
+    (often free) going back sometimes a hundred of years. That data can be used
+    to train a reinforcement learning AI to potentially perform better than
+    humans over a long period of time. Even if the AI performs equally well to
+    human portfolio managers, the banks could cut costs, as automated trading
+    bots tend to be much cheaper than human portfolio managers.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Robotics</h2>
+  <p>The field of robotics is vast. We could talk about robots on assembly lines,
+    drones or bipedal robots. In all the above mentioned cases it is possible to
+    apply reinforcement learning to learn the desired task for the robot.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 100px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 84.72 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)"><g id="legs" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="189.87" y="-68.075" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="189.87" y="-26.273" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect></g><g id="body" stroke-linecap="round" stroke-linejoin="round"><rect x="13.448" y="62.557" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="45.977" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="29.396" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="18.801" y="79.137" width="47.11" height="20.333" style="paint-order:markers fill stroke"></rect></g><g id="arms" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="30.167" y="-10.136" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="matrix(0,1,1,0,0,0)" x="30.584" y="74.576" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect x="1.425" y="43.824" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="scale(-1,1)" x="-83.287" y="44.241" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="matrix(.99997 -.0075742 .0075215 .99997 0 0)" x=".85526" y="75.756" width="7.286" height="27.77" style="paint-order:markers fill stroke"></rect><rect transform="matrix(-.99999 .0041997 .0042671 .99999 0 0)" x="-82.846" y="75.723" width="7.3762" height="27.793" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-8.3844" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-82.751" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect></g><g id="head"><rect x="29.508" y=".5" width="25.696" height="25.684" ry="0" stroke-linecap="round" stroke-linejoin="round" style="paint-order:markers fill stroke"></rect><path d="m42.356 8.3955v10.702"></path></g></g></svg></div>
+</div>
+  <p>For example a bipedal robot can be taught to walk on two legs through the
+    means of reinforcement learning. Each good or bad step of the robot can be
+    used as a learning experience. In fact that is partially already actively
+    done but still remains an active research field. At the moment most
+    successful bipedal robots, like those made by Boston Dynamics, are not
+    actually trained through reinforcement learning, but are hardcoded to solve
+    their task. Therefore these are great feats of pure engineering and not AI,
+    but 10 years down the road and AI will probably replace a lot of hardcoded
+    parts.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Healthcare</h2>
+  <p>The possible advances in healthcare through the help of reinforcement
+    learning are probably the ones that are of the greatest benefit to the
+    general population. Several applications come to mind when I think about the
+    intersection of healthcare and reinforcement learning.
+  </p>
+  <p>Individual treatment plans for example, where drugs and treatments are
+    adjusted quickly depending on the reaction of the patient could be
+    developed. With each new patient the experience of the AI would increase.
+    Unlike human doctors that have to go through medical studies, practice and
+    have to eventually retire, the experience of AI could be centralized and
+    made available to newer systems without loss of data. Thus the amount of
+    mistakes and the cost of treatment should potentially decrease.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g stroke="var(--text-color)"><g id="ai"><g><rect x="54.849" y="76.115" width="47.848" height="47.848" ry="0" fill="none"></rect><rect x="59.634" y="80.899" width="38.277" height="38.277" ry="0" fill="none"></rect><circle fill="var(--background-color)" cx="78.773" cy="100.04" r="7.271" fill-rule="evenodd" stroke-linejoin="round" stroke-width="1"></circle></g><g fill="none" stroke-width="1px"><path d="m62.695 75v-10h-10v-10"></path><path d="m72.695 75v-20"></path><path d="m82.695 75v-20"></path><path d="m92.695 75v-10h10v-10"></path><path d="m102.7 85h10v-10h10"></path><path d="m102.7 95h20"></path><path d="m102.7 105h20"></path><path d="m102.7 115h10v10h10"></path><path d="m52.695 85h-10v-10h-10"></path><path d="m52.695 95h-20"></path><path d="m52.695 105h-20"></path><path d="m52.695 115h-10v10h-10"></path><path d="m62.695 125v10h-10v10"></path><path d="m72.695 125v20"></path><path d="m82.695 125v20"></path><path d="m92.695 125v10h10v10"></path></g></g><g id="molecule" fill="var(--background-color)"><g fill="none"><path d="m317.28 95.585-50.326 44.79" stroke-width="1px"></path><path transform="matrix(.52801 0 0 .52856 184.72 -63.192)" d="m293.3 225v50l-43.301 25-43.301-25v-50l43.301-25z" stroke-linejoin="round" stroke-width="1"></path><path d="m392.1 90.679 28.789-29.294" stroke-width="1px"></path><path d="m340.58 82.598 28.789 23.739" stroke-width="1px"></path></g><g fill-rule="evenodd" stroke-linejoin="round"><ellipse cx="294.85" cy="56.706" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="294.58" cy="82.269" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="316.72" cy="95.643" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="316.72" cy="42.253" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="339.76" cy="82.269" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="339.13" cy="57.246" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="316.72" cy="68.584" rx="5.6976" ry="5.7035"></ellipse></g><path transform="matrix(.52801 0 0 .52856 258.46 -14.199)" d="m293.3 225v50l-43.301 25-43.301-25v-50l43.301-25z" fill="none" stroke-linejoin="round" stroke-width="1"></path><g fill-rule="evenodd" stroke-linejoin="round"><ellipse cx="368.59" cy="105.7" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="368.32" cy="131.26" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="390.46" cy="144.64" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="390.46" cy="91.246" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="413.5" cy="131.26" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="412.87" cy="106.24" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="390.46" cy="117.58" rx="5.6976" ry="5.7035"></ellipse></g><path transform="matrix(.52801 0 0 .52856 309.47 -83.9)" d="m293.3 225v50l-43.301 25-43.301-25v-50l43.301-25z" fill="none" stroke-linejoin="round" stroke-width="1"></path><g fill-rule="evenodd" stroke-linejoin="round"><ellipse cx="419.6" cy="35.998" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="419.33" cy="61.56" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="441.47" cy="74.935" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="441.47" cy="21.545" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="464.52" cy="61.56" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="463.89" cy="36.538" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="441.47" cy="47.876" rx="5.6976" ry="5.7035"></ellipse></g><path transform="matrix(.52801 0 0 .52856 113.49 19.62)" d="m293.3 225v50l-43.301 25-43.301-25v-50l43.301-25z" fill="none" stroke-linejoin="round" stroke-width="1"></path><g fill-rule="evenodd" stroke-linejoin="round"><ellipse cx="223.61" cy="139.52" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="223.35" cy="165.08" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="245.49" cy="178.45" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="245.49" cy="125.06" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="268.53" cy="165.08" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="267.9" cy="140.06" rx="5.6976" ry="5.7035"></ellipse><ellipse cx="245.49" cy="151.4" rx="5.6976" ry="5.7035"></ellipse></g></g><g id="direction" fill="none" stroke-width="1px"><path d="m80 50.5v-40h300v60"></path><path d="m80 160v30h310v-30"></path></g></g></svg></div>
+</div>
+  <p>The development of new drugs is another exciting possible application of
+    reinforcement learning. The abundance of medical data should allow the AI to
+    learn to accelerate the drug discovery phase while making the overall
+    development process safer.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Autonomous Vehicles</h2>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="var(--text-color)"><g stroke-width="1px"><path d="m0 24.242h500"></path><path d="m500 175.76h-500"></path></g><g id="car" stroke-linejoin="round"><rect transform="rotate(90)" x="40.513" y="-451.64" width="23.368" height="80.823" ry="0"></rect><rect transform="rotate(90)" x="44.26" y="-438.68" width="15.873" height="54.901" ry="0" stroke-width=".67927"></rect></g><path id="stripes" d="m-11.924 100h533.36" stroke-dasharray="40,80" stroke-dashoffset="0" stroke-width="10"></path></g></svg></div>
+</div>
+  <p>Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing
+    the current frontier for reinforcement learning. There are many car
+    companies that invest in self-driving cars. Newer car companies like Tesla
+    and Google’s Waymo and old German car manufacturers like Volkswagen all
+    invest an enormous amount of time and money in the development of autonomous
+    vehicles. Research in the area has been going on since at least the 80’s,
+    with demonstrations by Daimler, but the behaviour of these vehicles in edge
+    cases made their use often dangerous for everyday use. Since the DARPA Grand
+    Challenge (2007) great leaps have been made and reinforcement learning
+    played a huge role in that success story. It is probably only a matter of
+    time until autonomous vehicles become fully legalized. The advantages are
+    tremendous. Expected lower mortality rates due to traffic accidents, lower
+    cost for taxi fares and more efficient logistics, as drivers won&#39;t have to
+    sleep on overnight journeys.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1ok29dc">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1ok29dc"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [3, 5, 75],
+				params: {},
+				routeId: "blocks/reinforcement_learning/intuition/applications"
+			}
+		});
+	</script></div>
+	</body>
+</html>

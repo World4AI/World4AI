@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>World4AI | Deep Learning | Gradient Clipping</title><meta name="description" content="Gradient clipping clips either individual gradient values or the norm of the gradient vector at a predetermined threshold, thereby reducing the likelihood of exploding gradients." data-svelte="svelte-q74rhf">
+	<link rel="stylesheet" href="/_app/immutable/assets/Header-dd345665.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/data-d665fc53.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Container-8d960f45.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/SvgContainer-ad529d07.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Slider-2b4fd518.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/PlayButton-14063fa2.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Path-9c42b51d.css">
+	<link rel="stylesheet" href="/_app/immutable/assets/Circle-31965c36.css">
+	<link rel="modulepreload" href="/_app/immutable/start-595a943f.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-caa95cd4.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/index-1ac4b6a2.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/__layout-dl.svelte-4cfe4964.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Header-ab1bbb24.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/data-1decf854.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/__layout@dl.svelte-21b57119.js">
+	<link rel="modulepreload" href="/_app/immutable/pages/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping.svelte-5603c1cd.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Container-5c6b7f6d.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/SvgContainer-cd77374a.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Slider-19e7021e.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/PlayButton-ea5f48d9.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Path-3729d76b.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/linear-352dff69.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/color-e32b0545.js">
+	<link rel="modulepreload" href="/_app/immutable/chunks/Circle-9f89f8c0.js">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-1jrdkw9"><div class="mx-3"><div class="flex-container svelte-1jrdkw9"><div class="clip-logo svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9"><img class="logo svelte-1jrdkw9" src="/logo/logo.svg" alt="World4AI Logo"></a></div>
+      <div class="hamburger svelte-1jrdkw9"><div class="line top svelte-1jrdkw9"></div>
+        <div class="line mid svelte-1jrdkw9"></div>
+        <div class="line bot svelte-1jrdkw9"></div></div>
+
+      <div class="links svelte-1jrdkw9"><nav class="svelte-1jrdkw9"><ul class="nav svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/" class="svelte-1jrdkw9">Home</a></li>
+
+            <li class="dropdown svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9 selected">Blocks</a>
+              <div class="dropdown-content svelte-1jrdkw9"><ul class="svelte-1jrdkw9"><li class="svelte-1jrdkw9"><a href="/blocks/introduction" class="svelte-1jrdkw9">Introduction</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/deep_learning/introduction" class="svelte-1jrdkw9 selecteddropdown">Deep Learning</a></li>
+                  <li class="svelte-1jrdkw9"><a href="/blocks/reinforcement_learning/introduction" class="svelte-1jrdkw9">Reinforcement Learning</a></li></ul></div></li>
+            <li class="svelte-1jrdkw9"><a href="/sponsor" class="svelte-1jrdkw9">Sponsor</a></li>
+            <li class="svelte-1jrdkw9"><a href="/about" class="svelte-1jrdkw9">About</a></li></ul></nav>
+        <div class="social-links svelte-1jrdkw9">
+          <a href="https://github.com/World4AI" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+          <a href="https://twitter.com" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured" target="_blank" class="svelte-1jrdkw9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--background-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div></div></div></div>
+</header>
+<aside class="svelte-14tulr5">
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/introduction" class="svelte-1et9jpn  folder">Introduction</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_definition" class="svelte-1et9jpn">Definition of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/machine_learning_categories" class="svelte-1et9jpn">Categories of Machine Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/deep_learning_definition" class="svelte-1et9jpn">Definition of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/history" class="svelte-1et9jpn">History Of Deep Learning</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/frameworks" class="svelte-1et9jpn">Deep Learning Frameworks</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/gpu_resources" class="svelte-1et9jpn">Deep Learning GPU Resources</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/education" class="svelte-1et9jpn">Deep Learning Education</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/introduction/mathematical_notation" class="svelte-1et9jpn">Mathematical Notation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/linear_regression" class="svelte-1et9jpn  folder">Linear Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_model" class="svelte-1et9jpn">Linear Model</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/mean_squared_error" class="svelte-1et9jpn">Mean Squared Error</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/numpy" class="svelte-1et9jpn">Linear Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/linear_regression/linear_neuron" class="svelte-1et9jpn">Linear Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/logistic_regression" class="svelte-1et9jpn  folder">Logistic Regression</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_softmax" class="svelte-1et9jpn">Sigmoid and Softmax</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood" class="svelte-1et9jpn">Cross-Entropy and Negative Log Likelihood</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/gradient_descent" class="svelte-1et9jpn">Gradient Descent</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/numpy" class="svelte-1et9jpn">Logistic Regression in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/logistic_regression/sigmoid_neuron" class="svelte-1et9jpn">Sigmoid Neuron</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/neural_network" class="svelte-1et9jpn  folder">Neural Network</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/nonlinear_problems" class="svelte-1et9jpn">Nonlinear Problems</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/forward_pass" class="svelte-1et9jpn">Forward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/backward_pass" class="svelte-1et9jpn">Backward Pass</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/numpy" class="svelte-1et9jpn">Backpropagation in NumPy</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/autodiff" class="svelte-1et9jpn">Automatic Differentiation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/neural_network/geometric_interpretation" class="svelte-1et9jpn">Geometric Interpretation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/pytorch_basics" class="svelte-1et9jpn  folder">PyTorch Basics</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/tensors" class="svelte-1et9jpn">Tensors</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/autograd" class="svelte-1et9jpn">Autograd</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/data" class="svelte-1et9jpn">Data</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/training_loop" class="svelte-1et9jpn">Training Loop</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/pytorch_basics/modules_optimizers_losses" class="svelte-1et9jpn">Modules, Optimizers, Losses</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn"><span><a href="/blocks/deep_learning/challenges_improvements" class="svelte-1et9jpn  folder">Challenges and Improvements</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/feature_scaling" class="svelte-1et9jpn">Feature Scaling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting" class="svelte-1et9jpn  folder intermediate">Overfitting</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate" class="svelte-1et9jpn">Train, Test, Validate</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation" class="svelte-1et9jpn">Data Augmentation</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/regularization" class="svelte-1et9jpn">Regularization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/dropout" class="svelte-1et9jpn">Dropout</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/overfitting/early_stopping" class="svelte-1et9jpn">Early Stopping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients" class="svelte-1et9jpn  folder intermediate">Vanishing and Exploding Gradients</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions" class="svelte-1et9jpn">Activation Functions</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization" class="svelte-1et9jpn">Weight Initialization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping" class="svelte-1et9jpn selected">Gradient Clipping</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup" class="svelte-1et9jpn  folder intermediate">Stability and Speedup</a></span>
+
+<ul class="svelte-1et9jpn"><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers" class="svelte-1et9jpn">Optimizers</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization" class="svelte-1et9jpn">Batch Normalization</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections" class="svelte-1et9jpn">Skip Connections</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li><li class="svelte-1et9jpn"><div class="svelte-1et9jpn box"><span><a href="/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling" class="svelte-1et9jpn">Learning Rate Scheduling</a></span>
+
+<ul class="svelte-1et9jpn">
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></div>
+    </li>
+</ul></aside>
+<div class="toc-control svelte-14tulr5"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="var(--background-color)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open toc svelte-14tulr5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<main><article>
+
+<h1>Gradient Clipping</h1>
+<div class="separator"></div>
+
+<div class="container svelte-e594hz" style="max-width: 1000px"><p>Exploding gradients is a problem where the backpropagation algorithm returns
+    larger and larger gradients. The algorithm gets increasingly more unstable
+    until the gradient values do not fit into memory.
+  </p>
+  <p>So why do we not just determine a gradient threshold and if the gradient
+    value moves beyond that threshold we cut the gradient? The technique we just
+    described is called gradient clipping, value clipping to be exact. At the
+    start of the training process we determine a value beyond which the absolute
+    value of the gradient is not allowed to move.
+  </p>
+  <p>The interactive example below demonstrates the process. You can use the
+    slider to move the threshold for the gradient clipping. When individual
+    gradients move outside the range, we clip them.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 400px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 150 200"><rect x="75" y="1" height="7" width="50" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="9" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="21" height="7" width="25" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="29" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="41" height="7" width="12.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="49" height="7" width="12.5" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="25" y="61" height="7" width="50" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="50" y="69" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="0" y="81" height="7" width="75" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="50" y="89" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="50" y="101" height="7" width="25" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="50" y="109" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="121" height="7" width="75" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="129" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="141" height="7" width="62.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="149" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="37.5" y="161" height="7" width="37.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="50" y="169" height="7" width="25" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="62.5" y="181" height="7" width="12.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="62.5" y="189" height="7" width="12.5" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><line x1="50" y1="0" x2="50" y2="200" stroke="var(--text-color)" stroke-width="0.5"></line><line x1="100" y1="0" x2="100" y2="200" stroke="var(--text-color)" stroke-width="0.5"></line></svg></div>
+</div>
+<input type="range" min="0.5" max="2" step="0.1" class="svelte-1tcoic2" value="1">
+  <p>Value clipping is problematic, because it basically changes the direction of
+    gradient descent. When you start the simulation, the gradients will start to
+    move randomly in the 2d coordinate system. If one of the gradients is larger
+    than one, we will clip that gradient to 1. So if one gradient is 3 and the
+    other is 1.5, we clip both to 1, thereby disregarding the relative magnitude
+    of the vector components and changing the direction of the vector. The
+    clipped vector will move along the circumference of the square.
+  </p>
+  <button class="svelte-mb92cp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle svelte-mb92cp"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+</button>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500" class="svelte-1sf1opq">
+<g class="axis y-axis svelte-1tr3h4r"><g class="tick tick--3 svelte-1tr3h4r" transform="translate(0, 460)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-3</text></g><g class="tick tick--2 svelte-1tr3h4r" transform="translate(0, 390.00000000000006)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-2</text></g><g class="tick tick--1 svelte-1tr3h4r" transform="translate(0, 320)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-1</text></g><g class="tick tick-0 svelte-1tr3h4r" transform="translate(0, 250)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">0</text></g><g class="tick tick-1 svelte-1tr3h4r" transform="translate(0, 180)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">1</text></g><g class="tick tick-2 svelte-1tr3h4r" transform="translate(0, 109.99999999999997)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">2</text></g><g class="tick tick-3 svelte-1tr3h4r" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">3</text></g></g>
+
+<g class="axis x-axis svelte-1tr3h4r"><g class="tick svelte-1tr3h4r" transform="translate(40,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-3</text></g><g class="tick svelte-1tr3h4r" transform="translate(110,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-2</text></g><g class="tick svelte-1tr3h4r" transform="translate(180,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-1</text></g><g class="tick svelte-1tr3h4r" transform="translate(250,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">0</text></g><g class="tick svelte-1tr3h4r" transform="translate(319.99999999999994,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">1</text></g><g class="tick svelte-1tr3h4r" transform="translate(390.00000000000006,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">2</text></g><g class="tick svelte-1tr3h4r" transform="translate(460,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">3</text></g></g>
+    <path d="M319.99999999999994,180L180,180L180,320L319.99999999999994,320L319.99999999999994,180" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path>
+    <path d="M250,250L376.8414027329374,405.67473877546814" stroke="black" stroke-width="1" stroke-dasharray="4,4" class="svelte-v0agli"></path>
+    <path d="M250,250L319.99999999999994,320" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path></svg></div>
+</div>
+  <p>A better solution is to use norm clipping. When we clip the norm, we clip
+    all the gradients proportialnally, such that the direction remains the same.
+    Below we specifically use the L2 norm.
+  </p>
+  <div class="container svelte-1sizmlt"><div style="max-width: 400px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 150 200"><rect x="75" y="1" height="7" width="50" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="9" height="7" width="8.219949365267864" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="21" height="7" width="25" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="29" height="7" width="4.109974682633932" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="41" height="7" width="12.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="49" height="7" width="2.054987341316966" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="25" y="61" height="7" width="50" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="66.78005063473213" y="69" height="7" width="8.219949365267864" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="0" y="81" height="7" width="75" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="62.6700759520982" y="89" height="7" width="12.329924047901796" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="50" y="101" height="7" width="25" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="70.89002531736607" y="109" height="7" width="4.109974682633932" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="121" height="7" width="75" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="129" height="7" width="12.329924047901796" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="75" y="141" height="7" width="62.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="75" y="149" height="7" width="10.27493670658483" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="37.5" y="161" height="7" width="37.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="68.83503797604911" y="169" height="7" width="6.164962023950898" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><rect x="62.5" y="181" height="7" width="12.5" fill="none" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <rect x="72.94501265868303" y="189" height="7" width="2.054987341316966" fill="var(--main-color-1)" stroke="var(--text-color)" stroke-width="0.5"></rect>
+      <line x1="75" y1="0" x2="75" y2="200" stroke="var(--text-color)"></line><line x1="50" y1="0" x2="50" y2="200" stroke="var(--text-color)" stroke-width="0.5"></line><line x1="100" y1="0" x2="100" y2="200" stroke="var(--text-color)" stroke-width="0.5"></line></svg></div>
+</div>
+<input type="range" min="0.5" max="2" step="0.1" class="svelte-1tcoic2" value="1">
+  <p>While the magnitude of the gradient vector is reduced to the threshold
+    value, the direction remains unchanged. The clipped vector moves along the
+    circumference of a circle.
+  </p>
+  <button class="svelte-mb92cp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle svelte-mb92cp"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+</button>
+  <div class="container svelte-1sizmlt"><div style="max-width: 500px;" class="svg-container svelte-1sizmlt"><svg viewBox="0 0 500 500" class="svelte-1sf1opq">
+<g class="axis y-axis svelte-1tr3h4r"><g class="tick tick--3 svelte-1tr3h4r" transform="translate(0, 460)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-3</text></g><g class="tick tick--2 svelte-1tr3h4r" transform="translate(0, 390.00000000000006)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-2</text></g><g class="tick tick--1 svelte-1tr3h4r" transform="translate(0, 320)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">-1</text></g><g class="tick tick-0 svelte-1tr3h4r" transform="translate(0, 250)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">0</text></g><g class="tick tick-1 svelte-1tr3h4r" transform="translate(0, 180)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">1</text></g><g class="tick tick-2 svelte-1tr3h4r" transform="translate(0, 109.99999999999997)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">2</text></g><g class="tick tick-3 svelte-1tr3h4r" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1tr3h4r"></line><text font-size="12" x="12" class="svelte-1tr3h4r">3</text></g></g>
+
+<g class="axis x-axis svelte-1tr3h4r"><g class="tick svelte-1tr3h4r" transform="translate(40,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-3</text></g><g class="tick svelte-1tr3h4r" transform="translate(110,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-2</text></g><g class="tick svelte-1tr3h4r" transform="translate(180,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">-1</text></g><g class="tick svelte-1tr3h4r" transform="translate(250,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">0</text></g><g class="tick svelte-1tr3h4r" transform="translate(319.99999999999994,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">1</text></g><g class="tick svelte-1tr3h4r" transform="translate(390.00000000000006,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">2</text></g><g class="tick svelte-1tr3h4r" transform="translate(460,0)"><line y1="460" y2="40" class="svelte-1tr3h4r"></line><text font-size="12" y="488" class="svelte-1tr3h4r">3</text></g></g>
+    <circle fill="none" cx="250" cy="250" r="70" class="svelte-hpnwqy"></circle>
+    <path d="M250,250L150.35174217346255,193.84049944321032" stroke="black" stroke-width="1" stroke-dasharray="4,4" class="svelte-v0agli"></path>
+    <path d="M250,250L189.01780591226904,215.63181697781636" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-v0agli"></path></svg></div>
+</div>
+  <p>This solution feels like a hack, but it is quite pracktical. You might not
+    be able to solve all your problems with gradient clipping, but it should be
+    part of your toolbox.
+  </p>
+  <div class="separator"></div>
+</div></article></main>
+
+
+		<script type="module" data-sveltekit-hydrate="1xl9zj2">
+		import { start } from "/_app/immutable/start-595a943f.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="1xl9zj2"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [2, 4, 20],
+				params: {},
+				routeId: "blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping"
+			}
+		});
+	</script></div>
+	</body>
+</html>
