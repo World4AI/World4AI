@@ -9,8 +9,8 @@
 <div class="hero-message">
   <div class="border-container">
     <h1>World4AI</h1>
-    <h2>Free and open source AI education</h2>
   </div>
+  <h2>Free and open source AI education</h2>
 </div>
 
 <style>

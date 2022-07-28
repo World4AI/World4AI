@@ -82,6 +82,15 @@
   .toc-control.move-left {
     transform: translateX(-280px);
   }
+  @media (max-width: 1000px) {
+    aside {
+      margin-top: 70px;
+      max-height: calc(100vh - 70px);
+    }
+    .toc-control {
+      margin-top: 70px;
+    }
+  }
   @media (max-width: 300px) {
     .toc-control {
       left: 210px;

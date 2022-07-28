@@ -306,12 +306,16 @@
   }
 
   @media (max-width: 1000px) {
+    .flex-container {
+      height: 70px;
+    }
+
     .links {
       padding-top: 50px;
       z-index: 999;
       position: fixed;
       right: 100%;
-      top: 100px;
+      top: 70px;
       background: var(--text-color);
       flex-direction: column;
       transition: all 0.5s;
@@ -327,7 +331,11 @@
       justify-content: flex-start;
       width: 100vw;
       height: 95vh;
-      padding-left: 10px;
+      margin: 0;
+    }
+
+    nav a {
+      font-size: 15px;
     }
 
     .nav::before,
@@ -344,7 +352,7 @@
       position: relative;
     }
     .dropdown-content li {
-      margin-top: 20px;
+      margin-top: 10px;
       margin-bottom: 10px;
       margin-left: 0px;
     }
@@ -353,6 +361,7 @@
       border: none;
       background-color: var(--aside-color);
       margin-left: 15px;
+      margin-bottom: 0;
     }
 
     .social-links {
