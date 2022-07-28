@@ -105,17 +105,17 @@
 
 <Container>
   <p>
-    In a previous chapter we have discussed the need to scale the input features
+    In a previous section we have discussed the need to scale the input features
     in order to speed up training of a neural network. And while standardizing
-    or normilizing the input features can speed up the training process
-    significantly, it makes sense to ask ourselve the following question. Should
-    we try to scale the intermediary features, that come out of hidden units?
-    Would that be in any form benefitary for trainig?
+    or normalizing the input features can speed up the training process
+    significantly, it makes sense to ask ourselves the following question.
+    Should we try to scale the intermediary features that come out of hidden
+    units? Would that be in any form benefitary for trainig?
   </p>
   <NeuralNetwork height={100} width={250} maxWidth={"700px"} {layers} />
   <p>
     Sergey Ioffe and Christian Szegedy answered the question with a definitive
-    yes <InternalLink type="reference" id="1" />. When we add so called <Highlight
+    yes<InternalLink type="reference" id="1" />. When we add so called <Highlight
       >batch normalizaton</Highlight
     >
     to hidden features, we can speed up the training process significantly, while
@@ -151,12 +151,15 @@
     >{String.raw`\bar{a}_j^{(i)} = \gamma_j \hat{a}_j^{(i)} + \beta_j`}</Latex
   >
   <p>
-    The parameters <Latex>\gamma</Latex> and <Latex>\beta</Latex> are learned by
-    the neural network. If the network decides to set <Latex>\gamma_j</Latex> to
+    The feature specific parameters <Latex>\gamma</Latex> and <Latex
+      >\beta</Latex
+    > are learned by the neural network. If the network decides to set <Latex
+      >\gamma_j</Latex
+    > to
     <Latex>\sigma_j</Latex> and <Latex>\beta_j</Latex> to <Latex>\mu_j</Latex> that
-    essentially neutralizes the normalization. If therefore normalization indeed
-    worsens the performance, the neural network has the option to produce the identity
-    function.
+    essentially neutralizes the normalization. If normalization indeed worsens the
+    performance, the neural network has the option to reverse the normalization and
+    thereby to produce the identity function.
   </p>
   <p>
     Our formulations above indicated that batch normalization is applied to
@@ -170,13 +173,13 @@
   </p>
   <NeuralNetwork height={50} width={250} maxWidth={"700px"} layers={batch2} />
   <p>
-    There is no true consensus about how you should apply batch normalization,
+    There is no real consensus about how you should apply batch normalization,
     but this decision in all likelihood should not make or break your project.
   </p>
   <p>
-    There is an additional caveat. In practice we often remove the bias <Latex
+    There is an additional caveat. In practice we often remove the bias term <Latex
       >b</Latex
-    > term from the calculation of the net input <Latex
+    > from the calculation of the net input <Latex
       >{String.raw`z = \mathbf{xw^T} + b`}</Latex
     >. This is done due to the assumption, that <Latex>\beta</Latex> essentially
     does the same operation. Both are used to shift the calculation by a constant
@@ -185,22 +188,23 @@
   <p>
     The authors observed several adantages that batch normalization provides.
     For once batch norm makes the model less sensitive to the choice of the
-    learning rate. This essentially allows us to increase the learning rate.
-    Second, the model is more forgiving when choosing bad initial weights and
-    seems to help with the vanishing gradients problem. Overall the authors
-    observed a significant increase in training speed, requiring less epochs to
-    arrive at the same performance. Finally batch norm seems to act as a
-    regularizer. When we train the neural network we calculate the mean <Latex
-      >\mu_j</Latex
-    > and the standard deviation <Latex>\sigma_j</Latex> one batch at a time. This
-    calculation is noisy and the neural network has to learn to tune out that noise
-    in order to achieve a reasonable performance. During inference this procedure
-    would cause problems, because different inference runs would create different
-    batches and therefore generate different outputs. But we want the neural network
-    to be deterministic during inference. The same inputs should always lead to the
-    same outputs. For that reason during training the batch norm layer calculates
-    a moving average of <Latex>\mu</Latex> and <Latex>\sigma</Latex> that can be
-    used at inference time.
+    learning rate, which allows us to increase the learning rate and thereby
+    increase the speed of learning. Second, the model is more forgiving when
+    choosing bad initial weights and seems to help with the vanishing gradients
+    problem. Overall the authors observed a significant increase in training
+    speed, requiring less epochs to arrive at the same performance. Finally
+    batch norm seems to act as a regularizer. When we train the neural network
+    we calculate the mean <Latex>\mu_j</Latex> and the standard deviation <Latex
+      >\sigma_j</Latex
+    > one batch at a time. This calculation is noisy and the neural network has to
+    learn to tune out that noise in order to achieve a reasonable performance. During
+    inference this procedure would cause problems, because different inference runs
+    would create different batches and therefore generate different outputs. But
+    we want the neural network to be deterministic during inference. The same inputs
+    should always lead to the same outputs. For that reason during training the batch
+    norm layer calculates a moving average of <Latex>\mu</Latex> and <Latex
+      >\sigma</Latex
+    > that can be used at inference time.
   </p>
   <p>
     Let us finish this chapter by mentioning that no one really seems to know
@@ -208,7 +212,7 @@
     years, but there seems to be no clear consensus on the matter. All you have
     to know is that batch normalization works well and is almost a requirement
     when training modern deep neural networks. This technique will become one of
-    your main tools when designing modern neural networks.
+    your main tools when designing modern neural network architectures.
   </p>
 </Container>
 <Footer {references} />
