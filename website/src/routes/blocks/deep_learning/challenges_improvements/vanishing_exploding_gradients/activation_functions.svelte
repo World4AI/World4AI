@@ -2,12 +2,27 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Footer from "$lib/Footer.svelte";
+  import InternalLink from "$lib/InternalLink.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
   import Path from "$lib/plt/Path.svelte";
   import XLabel from "$lib/plt/XLabel.svelte";
   import YLabel from "$lib/plt/YLabel.svelte";
+
+  let references = [
+    {
+      author: "Glorot, Xavier and Bordes, Antoine and Bengio, Yoshua",
+      title:
+        "Deep Sparse Rectifier Neural Networks, Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics",
+      journal: "",
+      year: "2011",
+      pages: "315-323",
+      volume: "15",
+      issue: "",
+    },
+  ];
 
   //1. sigmoid
   function sigmoid(z) {
@@ -211,7 +226,10 @@
   <p>
     The ReLU (rectified linear unit) is at the same time extremely simple and
     extremely powerful. The function returns the unchanged input as its output
-    when the input value is positive and 0 otherwise.
+    when the input value is positive and 0 otherwise <InternalLink
+      type={"reference"}
+      id="1"
+    />.
   </p>
   <Latex
     >{String.raw`
@@ -313,3 +331,4 @@
 
   <div class="separator" />
 </Container>
+<Footer {references} />
