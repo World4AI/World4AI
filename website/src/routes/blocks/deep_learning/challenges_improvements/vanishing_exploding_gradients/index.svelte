@@ -1,9 +1,52 @@
 <script>
   import Container from "$lib/Container.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import NeuralNetwork from "$lib/NeuralNetwork.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Legend from "$lib/plt/Legend.svelte";
+
+  // neural network parameters
+  export let layers = [
+    {
+      title: "Input",
+      nodes: [{ value: "x", fill: "none" }],
+    },
+    {
+      title: "Hidden 1",
+      nodes: [{ value: "z", fill: "none" }],
+    },
+    {
+      title: "",
+      nodes: [{ value: "a", fill: "none" }],
+    },
+    {
+      title: "Hidden 2",
+      nodes: [{ value: "z", fill: "none" }],
+    },
+    {
+      title: "",
+      nodes: [{ value: "a", fill: "none" }],
+    },
+    {
+      title: "Output",
+      nodes: [{ value: "z", fill: "none" }],
+    },
+    {
+      title: "",
+      nodes: [{ value: "a", fill: "none" }],
+    },
+    {
+      title: "Loss",
+      nodes: [{ value: "L", fill: "none" }],
+    },
+  ];
 
   //sigmoid
   function sigmoid(z) {
@@ -15,32 +58,13 @@
     return sigmoid(z) * (1 - sigmoid(z));
   }
 
-  let sigmoidPaths = [[], []];
+  let sigmoidPath = [];
+  let derivativePath = [];
 
   for (let i = -10; i <= 10; i += 0.1) {
-    sigmoidPaths[0].push({ x: i, y: sigmoid(i) });
-    sigmoidPaths[1].push({ x: i, y: sidmoidGrad(i) });
+    sigmoidPath.push({ x: i, y: sigmoid(i) });
+    derivativePath.push({ x: i, y: sidmoidGrad(i) });
   }
-
-  // neural network with 1 neuron
-  let width = 650;
-  let height = 200;
-  let nodeSize = 55;
-
-  const graph = [
-    [{ value: "x^{<1>}" }, { value: "w^{<1>}" }],
-    [{ value: "z^{<1>}" }],
-    [{ value: "a^{<1>}" }, { value: "w^{<2>}" }],
-    [{ value: "z^{<2>}" }],
-    [{ value: "a^{<2>}" }, { value: "w^{<3>}" }],
-    [{ value: "z^{<3>}" }],
-    [{ value: "a^{<3>}" }],
-    [{ value: "Loss" }],
-  ];
-
-  let xGap = (width - nodeSize - 2) / (graph.length - 1);
-
-  // exponential decline
 
   let exponentialShrink = [];
   for (let i = 1; i <= 5; i += 0.1) {
@@ -63,14 +87,16 @@
     We expect the performance of a neural network to improve when we add more
     layers to its architecture. A deep neural network has more degrees of
     freedom to fit to the data than a shallow neural network and should thereby
-    perform much better. Yet the opposite is the case. When you naively keep
-    adding more and more layers the neural network, the performance will start
-    to deterioarate until the network is not able to learn anything at all. This
-    has to do with so called <Highlight>vanishing gradients</Highlight> or <Highlight
-      >exploding gradients</Highlight
-    >. The vanishing gradient problem plagued the machine learning community for
-    a long period of time, but by now we have some excellent tools to deal with
-    those problems.
+    perform much better. In the very least the neural network should be able to
+    overfit to the training data and to display decent performance on the
+    training dataset. Yet the opposite is the case. When you naively keep adding
+    more and more layers to the neural network, the performance will start to
+    deterioarate until the network is not able to learn anything at all. This
+    has to do with the so called <Highlight>vanishing</Highlight> or <Highlight
+      >exploding</Highlight
+    > gradients. The vanishing gradient problem especially plagued the machine learning
+    community for a long period of time, but by now we have some excellent tools
+    to deal with those problems.
   </p>
   <p>
     To focus on the core idea of the problem, we are going to assume that each
@@ -79,60 +105,15 @@
     networks.
   </p>
 </Container>
-
-<SvgContainer maxWidth={"700px"}>
-  <svg viewBox="0 0 {width} {height}">
-    <!-- connections -->
-    {#each graph as nodes, nodesIdx}
-      {#each nodes as node, nodeIdx}
-        {#if nodesIdx !== graph.length - 1}
-          {#each graph[nodesIdx + 1] as nextNode, nextNodeIdx}
-            {#if nextNodeIdx !== 1}
-              <line
-                x1={1 + nodesIdx * xGap + nodeSize}
-                y1={(height / (nodes.length + 1)) * (nodeIdx + 1)}
-                x2={1 + (nodesIdx + 1) * xGap}
-                y2={(height / (graph[nodesIdx + 1].length + 1)) *
-                  (nextNodeIdx + 1) -
-                  nodeSize / 2 +
-                  nodeSize / 2}
-                stroke="black"
-              />
-            {/if}
-          {/each}
-        {/if}
-      {/each}
-    {/each}
-    <!-- nodes -->
-    {#each graph as nodes, nodesIdx}
-      {#each nodes as node, nodeIdx}
-        <rect
-          x={1 + nodesIdx * xGap}
-          y={(height / (nodes.length + 1)) * (nodeIdx + 1) - nodeSize / 2}
-          width={nodeSize}
-          height={nodeSize}
-          fill="var(--main-color-4)"
-          stroke="black"
-        />
-        <foreignObject
-          x={1 + nodesIdx * xGap + nodeSize / 2 - 21}
-          y={(height / (nodes.length + 1)) * (nodeIdx + 1) - nodeSize / 2 + 10}
-          width={nodeSize}
-          height={nodeSize}
-        >
-          <Latex>{node.value}</Latex>
-        </foreignObject>
-      {/each}
-    {/each}
-  </svg>
-</SvgContainer>
+<NeuralNetwork {layers} maxWidth={"600px"} />
 
 <Container>
   <p>
     The forward pass is straighforward. We iterate between the calculation of
     the net value <Latex>{String.raw`z^{<l>}`}</Latex> and the activation<Latex
       >{String.raw`a^{<l>}`}</Latex
-    > until we are able to calculate the final activation and the loss.
+    > until we are able to calculate the final activation <Latex>a_3</Latex> and
+    the loss <Latex>L</Latex>.
   </p>
   <Latex
     >{String.raw`
@@ -147,9 +128,10 @@
       `}</Latex
   >
   <p>
-    Afterwards we can calculate the derivative of the loss with respect to the
-    inintial weight <Latex>{String.raw`w^{<1>}`}</Latex> by using the chain rule
-    over and over again.
+    In the backward pass we calculate the derivative of the loss with respect to
+    weights of different layers by using the chain rule over and over again. For
+    the first weigth <Latex>{String.raw`w^{<1>}`}</Latex> the calculation of the
+    derivative would look as follows.
   </p>
   <Latex
     >{String.raw`\dfrac{d}{dw^{<1>}} Loss = 
@@ -175,32 +157,39 @@
   </p>
 
   <p>
-    So far we are exclusively dealing with the sigmoid activatoin function,
-    therefore our derivative <Latex
+    So far we have exclusively dealt with the sigmoid activation function <Latex
+      >{String.raw`\dfrac{1}{1 + e^{-z}}`}</Latex
+    >, therefore the derivative <Latex
       >{String.raw`\dfrac{da^{<l>}}{dz^{<l>}}`}</Latex
     > is <Latex>{String.raw`\sigma(1-\sigma)`}</Latex>. If we draw both
-    functions, the sigmoid as the red line and the derivative of the sigmoid as
-    the blue line, we will notice, that the derivative of the sigmoid approaches
-    0, when the net input gets too large or too small. In the best case
-    scenario, the derivative is exactly 0.25.
+    functions we will notice, that the derivative of the sigmoid approaches 0,
+    when the net input gets too large or too small. At its peak the derivative
+    is exactly 0.25.
   </p>
   <Plot
-    pathsData={sigmoidPaths}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: -10,
-      maxX: 10,
-      minY: 0,
-      maxY: 1,
-      xLabel: "x",
-      yLabel: "f(x)",
-      radius: 5,
-      pathsColors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 11,
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-10, 10]}
+    range={[0, 1]}
+  >
+    <Path data={sigmoidPath} />
+    <Path data={derivativePath} color="var(--main-color-2)" />
+    <Ticks
+      xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
+      yTicks={[0, 0.2, 0.25, 0.4, 0.6, 0.8, 1]}
+      xOffset={-18}
+      yOffset={15}
+    />
+    <XLabel text={"z"} type="latex" />
+    <YLabel text={"f(x)"} type="latex" x={0} />
+    <Legend text={"sigmoid"} coordinates={{ x: -9, y: 0.9 }} />
+    <Legend
+      text={"sigmoid derivative"}
+      coordinates={{ x: -9, y: 0.83 }}
+      legendColor="var(--main-color-2)"
+    />
+  </Plot>
   <p>
     If we assume the best case scenario, we can replace
     <Latex
@@ -224,45 +213,52 @@
   >
   <p>
     Each additional layer in the neural network forces the derivative to shrink
-    by at least 4. With just 5 layers we are dealing with the factor close to 0.
+    by at least 4. With just 5 layers we are dealing with the factor close to <Latex
+      >0</Latex
+    >,<Latex>{String.raw`0.25^{5}`}</Latex>
   </p>
   <Plot
-    pathsData={exponentialShrink}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 800,
-      minX: 1,
-      maxX: 5,
-      minY: 0,
-      maxY: 0.3,
-      xLabel: "Number of Layers",
-      yLabel: "Gradient Multiplicator",
-      xTicks: [0, 1, 2, 3, 4, 5],
-      yTicks: [0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.001],
-    }}
-  />
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[1, 5]}
+    range={[0, 0.3]}
+  >
+    <Path data={exponentialShrink} />
+    <Ticks
+      xTicks={[0, 1, 2, 3, 4, 5]}
+      yTicks={[0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0]}
+      xOffset={-18}
+      yOffset={15}
+    />
+    <XLabel text={"Layers"} />
+    <YLabel text={"Factor"} />
+    <Legend text={"sigmoid"} coordinates={{ x: -9, y: 0.9 }} />
+    <Legend
+      text={"sigmoid derivative"}
+      coordinates={{ x: -9, y: 0.83 }}
+      legendColor="var(--main-color-2)"
+    />
+  </Plot>
   <p>
-    Given that the derivative <Latex
+    Given that the sigmoid derivative <Latex
       >{String.raw`\dfrac{da^{<l>}}{dz^{<l>}}`}</Latex
-    > is going to be between 0.25 and 0, we have to assume, that the overall derivative
+    > is always between 0.25 and 0, we have to assume, that the overall derivative
     <Latex>{String.raw`\dfrac{d}{dw^{<1>}}Loss`}</Latex> approaches 0 when the number
     of layers starts to grow. Layers that are close to the last layer are still able
     to change their respective weights appropriately, but the farther the layers
     are removed from the loss, the closer the multiplicator gets to 0 and the closer
     the derivative gets to 0. The weights of the first layers remain virtually unchanged
     from their initial values, essentially preventing the neural network from learning.
-    That problem is called the vanishing gradient problem.
+    That is the vanishing gradient problem.
   </p>
   <p>
     The derivative <Latex>{String.raw`\dfrac{dz^{<l>}}{da^{<l-1>}}`}</Latex> on the
     other hand is just the corresponding weight <Latex
       >{String.raw`w^{<l>}`}</Latex
-    >. The gradient of the loss with respect to the weighs depends on all the
-    weights that come afterwards. Assuming for example that <Latex
-      >{String.raw`w^{<2>}`}</Latex
-    > and <Latex>{String.raw`w^{<3>}`}</Latex> are both 0.95, we would deal with
-    the following gradient.
+    >. Assuming for example that <Latex>{String.raw`w^{<2>}`}</Latex> and <Latex
+      >{String.raw`w^{<3>}`}</Latex
+    > are both 0.95, we would deal with the following gradient.
   </p>
   <Latex
     >{String.raw`\dfrac{d}{dw^{<1>}} Loss = 
@@ -287,9 +283,7 @@
     bounds. All weights could therefore be in the range <Latex
       >{String.raw`w > 1`}</Latex
     > and <Latex>{String.raw`w < - 1`}</Latex>. If each weight corresponds to
-    exactly 2, then the gradient will grow exponentially, <Latex
-      >{String.raw`2^L`}</Latex
-    >.
+    exactly 2, then the gradient will grow exponentially.
   </p>
   <Latex
     >{String.raw`\dfrac{d}{dw^{<1>}} Loss = 
@@ -312,8 +306,7 @@
   </p>
   <p class="info">
     Derivatives of activation functions and weights have a significant impact on
-    whether we can train a deep neural network successfully or not. Adjusting
-    those appropriately is key to success.
+    whether we can train a deep neural network successfully or not.
   </p>
   <div class="separator" />
 </Container>
