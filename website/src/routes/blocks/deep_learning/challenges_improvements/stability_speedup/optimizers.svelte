@@ -3,6 +3,8 @@
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
+  import Footer from "$lib/Footer.svelte";
+  import InternalLink from "$lib/InternalLink.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -14,6 +16,22 @@
   import Ellipse from "$lib/plt/Ellipse.svelte";
   import Legend from "$lib/plt/Legend.svelte";
   import * as d3 from "d3";
+
+  const references = [
+    {
+      author: "Diederik Kingma and Jimmy Ba",
+      title: "Adam: A Method for Stochastic Optimization",
+      journal: "",
+      year: "2014",
+      pages: "",
+      volume: "",
+      issue: "",
+    },
+  ];
+
+  const notes = [
+    "RMSProp was developed by Geoffrey Hinton for a deep learning course on the Coursera plattform. You can access the original materials at https://www.cs.toronto.edu/~hinton/. Lecture 6 is the relevant one.",
+  ];
 
   //parameters for function with local minimum
   let localPoint = [];
@@ -154,16 +172,8 @@
   let epochs = 250;
 
   //gradient descent
-  let vanillaCoordinates = calculatePath(epochs, f, grad, -120, 120, 0.01);
-  let momentumCoordinates = calculatePath(
-    epochs,
-    f,
-    grad,
-    120,
-    120,
-    0.01,
-    true
-  );
+  let vanillaCoordinates = calculatePath(epochs, f, grad, -20, 20, 0.01);
+  let momentumCoordinates = calculatePath(epochs, f, grad, 20, 20, 0.01, true);
 
   /*--------------------------------------------*/
   //squished contours and rmsprop
@@ -210,7 +220,7 @@
   <p>
     In deep learning the specific gradient descent algorithm is called an
     <Highlight>optimizer</Highlight>. So far we have only really looked at the
-    plain vanilla gradient descent optimizer. At each batch we use the
+    plain vanilla gradient descent optimizer. With each batch we use the
     backpropagation algorithm to calculate the gradient vector <Latex
       >{String.raw`\mathbf{\nabla}_w`}</Latex
     >. The gradient descent optimizer directly subtracts the gradient, scaled by
@@ -222,11 +232,9 @@
     >{String.raw`\mathbf{w}_{t+1} := \mathbf{w}_t - \alpha \mathbf{\nabla}_w`}</Latex
   >
   <p>
-    As you can imagine this is not the only and by far not the fastest approach
-    available. Other optimizers have been developed over time that generally
-    converge a lot faster. Also oftentimes the plain vanilla gradient descent
-    algorithm will get stuck in a saddle point, while modern approaches will
-    find a way to overcome the saddle point.
+    As you can probably guess this is not the only and by far not the fastest
+    approach available. Other optimizers have been developed over time that
+    generally converge a lot faster.
   </p>
   <div class="separator" />
 
@@ -235,12 +243,11 @@
     The plain vanilla gradient descent algorithm lacks any form of memory. If
     the derivative for a variable is +1 at timestep 1 and -1 at timestep 2, the
     optimizer will disregard the past direction and only move into the -1
-    direction of the variable.
+    direction.
   </p>
   <p>
     Momentum on the other hand keeps a moving average of the past directions and
-    uses those additionally to the current gradient when applying gradient
-    descent.
+    uses that average additionally to the current gradient.
   </p>
   <Latex
     >{String.raw`\mathbf{m_t} = \beta \mathbf{m}_{t-1} + (1 - \beta) \mathbf{\nabla}_w `}</Latex
@@ -255,7 +262,8 @@
     <Latex>\beta</Latex>. Usually this factor is around 0.9. We scale the
     current gradient vector <Latex>{String.raw`\mathbf{\nabla}_w`}</Latex> by <Latex
       >1-\beta</Latex
-    >. The sum is used in the calculation of gradient descent.
+    >. This sum and not the gradients directly is what we use to adjust the
+    weights.
   </p>
   <Latex
     >{String.raw`\mathbf{w}_{t+1} := \mathbf{w}_t - \alpha \mathbf{m}_t`}</Latex
@@ -294,8 +302,11 @@
 
   <p>
     But even given a direct path towards the minimum without any saddle points
-    and local minimuma, the momentum optimizer will build acceleration and
-    converge faster towards the minimum.
+    and local minima, the momentum optimizer will build acceleration and
+    converge faster towards the minimum. Below we compare the convergence speed
+    between simple stochastic gradient descent and momentum for <Latex
+      >{String.raw`x^2 + y^2`}</Latex
+    >. The momentum based approach arrives faster at the optimum.
   </p>
   <Plot
     width="600"
@@ -330,11 +341,11 @@
 
   <h2>RMSProp</h2>
   <p>
-    Adaptive optimizers, like RMSProp, do not focus on speed per se, but help to
-    determine a better direction for gradient descent. If we are dealing with a
-    bowl shaped loss function, the gradients will not be symmetrical. That means
-    that we will approach the optimal value not in a direct line, but rather in
-    a zig zagging manner.
+    Adaptive optimizers, like RMSProp<InternalLink type="note" id="1" />, do not
+    focus on speed per se, but help to determine a better direction for gradient
+    descent. If we are dealing with a bowl shaped loss function, the gradients
+    will not be symmetrical. That means that we will approach the optimal value
+    not in a direct line, but rather in a zig zagging manner.
   </p>
   <Plot
     width="1000"
@@ -404,9 +415,10 @@
   <p>
     Below we compare vanilla gradient descent, gradient descent with momentum
     and RMSProp on a loss function with an elongated form. While the simple
-    gradient descent and momentum gradient descent approach the optimum first
-    from the y direction and then from the x direction, RMSProp takes basically
-    a straight route.
+    gradient descent and momentum gradient descent approach the optimum in a
+    curved manner, RMSProp takes basically a straight route. Also notice, that
+    momentum can overshoot due to gained speed and needs some time to reverse
+    direction.
   </p>
   <Plot
     width="600"
@@ -452,10 +464,11 @@
 
   <h2>Adam</h2>
   <p>
-    It didn't take researchers too long to combine momentum and adaptive
-    learning. Adam (and its derivateives) is probably the most used optimizer.
-    If you don't have any specific reason to use a different optimizer, use
-    adam.
+    Adam<InternalLink id="1" type="reference" /> is the combination of momentum and
+    adaptive learning. If you look at the equations below, you will not find any
+    new concepts. We calculate moving averages of the gradients and the squared gradients.
+    The RMSProp style scaling is not applied directly to the gradient vector, instead
+    we scale the momentum vector and use the result to adjust the weights.
   </p>
   <Latex
     >{String.raw`
@@ -466,5 +479,11 @@
   \end{aligned}
     `}</Latex
   >
+  <p>
+    Adam (and its derivatives) is probably the most used optimizer at this point
+    in time. If you don't have any specific reason to use a different optimizer,
+    use adam.
+  </p>
   <div class="separator" />
 </Container>
+<Footer {references} {notes} />
