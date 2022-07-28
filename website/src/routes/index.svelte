@@ -1,16 +1,16 @@
 <svelte:head>
-  <title>World4AI | A Place To Learn AI</title>
+  <title>World4AI | Free and Open Source AI Education</title>
   <meta
     name="description"
-    content="World4AI is a learning resource for all AI related topics. This includes machine learning, reinforcement learning, ai related mathematics, programming and much more."
+    content="World4AI is a free and open source education plattform for all AI related topics. This includes machine learning, reinforcement learning, ai related mathematics, programming and much more."
   />
 </svelte:head>
 
 <div class="hero-message">
   <div class="border-container">
     <h1>World4AI</h1>
+    <h2>Free and open source AI education</h2>
   </div>
-  <h2>Learn AI block by block</h2>
 </div>
 
 <style>
@@ -18,27 +18,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .border-container {
-    position: relative;
-  }
-
-  .border-container::before,
-  .border-container::after {
-    content: "";
-    position: absolute;
-    width: 60px;
-    height: 3px;
-    background-color: var(--text-color);
-    top: 50%;
-  }
-  .border-container::before {
-    left: -90px;
-  }
-
-  .border-container::after {
-    right: -90px;
   }
 
   h1 {
