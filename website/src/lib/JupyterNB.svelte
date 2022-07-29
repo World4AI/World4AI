@@ -120,8 +120,6 @@
   img {
     display: block;
     margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
   }
 
   a {
