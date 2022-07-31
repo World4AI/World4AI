@@ -446,65 +446,29 @@ const dl = [
           },
         ]
     },
+    {
+      name: 'Computer Vision',
+      link: '/blocks/deep_learning/computer_vision',
+      links: [
+        {
+          name: 'Convolutional Neural Network: Basics',
+          link: '/blocks/deep_learning/computer_vision/convolutional_neural_network_basics',
+        },
+        {
+          name: 'Convolutional Neural Network: Architectures',
+          link: '/blocks/deep_learning/computer_vision/convolutional_neural_network_architectures'
+        },
+        {
+          name: 'Object Detection',
+          link: '/blocks/deep_learning/computer_vision/object_detection'
+        },
+        {
+          name: 'Segmentation',
+          link: '/blocks/deep_learning/computer_vision/segmentation'
+        },
+      ]
+   }
   /*
-    {
-        name: 'Convolutional Neural Networks',
-        link: '/blocks/deep_learning/convolutional_neural_networks',
-        links: [
-        ]
-    },
-    {
-        name: 'Convolutional Neural Networks Architectures',
-        link: '/blocks/deep_learning/convolutional_neural_networks_architectures',
-        links: [
-          {
-            name: 'LeNet',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/lenet',
-          },
-          {
-            name: 'AlexNet',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/alexnet',
-          },
-          {
-            name: 'VGG',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/vgg',
-          },
-          {
-            name: 'GoogleNet',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/googlenet',
-          },
-          {
-            name: 'ResNet',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/resnet',
-          },
-          {
-            name: 'EfficientNet',
-            link: '/blocks/deep_learning/convolutional_neural_networks_architectures/efficientnet',
-          },
-        ]
-    },
-    {
-        name: 'Convolutional Neural Networks Applications',
-        link: '/blocks/deep_learning/convolutional_neural_networks_applications',
-        links: [
-          {
-            name: 'Object Classification',
-            link: '/blocks/deep_learning/convolutional_neural_networks_applications/object_classification',
-          },
-          {
-            name: 'Object Detection',
-            link: '/blocks/deep_learning/convolutional_neural_networks_applications/object_detection',
-          },
-          {
-            name: 'Segmentation',
-            link: '/blocks/deep_learning/convolutional_neural_networks_applications/segmentation',
-          },
-          {
-            name: 'Neural Style Transfer',
-            link: '/blocks/deep_learning/convolutional_neural_networks_applications/neural_style_transfer',
-          },
-        ]
-    },
     {
         name: 'Word Embeddings',
         link: '/blocks/deep_learning/word_embeddings',
@@ -543,6 +507,10 @@ const dl = [
           },
           {
             name: 'Diffusion Models',
+            link: '/blocks/deep_learning/generative_models/diffusion_models',
+          },
+          {
+            name: 'Neural Style Transfer',
             link: '/blocks/deep_learning/generative_models/diffusion_models',
           },
         ]
