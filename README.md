@@ -13,12 +13,11 @@
 * The book is always work in progress, aim for continuous improvement 
 * Practical examples and exercises accompany the book 
 
-## Main Libraries
+## Used Libraries
 
+* [Svelte](https://svelte.dev/), [SvelteKit](https://kit.svelte.dev/), [Vite](https://vitejs.dev/) [D3.js](https://d3js.org/) and [KaTeX](https://katex.org/) for Front-End development
+* [Pyton](https://www.python.org/) and [PyTorch](https://pytorch.org/) for deep learning
 
-* [Svelte](https://svelte.dev/), [SvelteKit](https://kit.svelte.dev/) and [Vite](https://vitejs.dev/)
-* [D3.js](https://d3js.org/)
-* [KaTeX](https://katex.org/)
 
 ## World4AI Roadmap 2022 (and beyond)
 
@@ -31,15 +30,13 @@ Some of the sections have already reached a working state and can be used to stu
     - [x] Linear Regression
     - [x] Logistic Regression
     - [x] Neural Networks 
-    - [ ] Challenges and Improvement 
-    - [ ] Convolutional Neural Network 
-    - [ ] Convolutional Neural Networks: Architectures 
-    - [ ] Object Detection and Segmentation
-    - [ ] Time Series
-    - [ ] Word Embeddings
-    - [ ] Recurrent Neural Network 
+    - [x] Challenges and Improvement 
+    - [ ] Computer Vision
+    - [ ] Sequences and Recurrent Neural Networks
+    - [ ] Word Embeddings and Language
     - [ ] Transformer and Attention 
     - [ ] Generative Models 
+    - [ ] Energy Based Models
     - [ ] Graph Neural Networks
 
 Some of the sections in the reinforcement learning block have been already implemented, but a lot of refactoring still needs to be done. 
