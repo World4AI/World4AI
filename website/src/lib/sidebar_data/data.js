@@ -359,6 +359,12 @@ const dl = [
           {
             name: 'Feature Scaling',
             link:  '/blocks/deep_learning/challenges_improvements/feature_scaling',
+            links: [
+              {
+                name: 'Feature Scaling in PyTorch',
+                link:  '/blocks/deep_learning/challenges_improvements/feature_scaling/pytorch'
+              },
+            ]
           },
           {
             name: 'Overfitting',
@@ -384,6 +390,10 @@ const dl = [
                 name: 'Early Stopping',
                 link:  '/blocks/deep_learning/challenges_improvements/overfitting/early_stopping'
               },
+              {
+                name: 'Dealing with Overfitting in PyTorch',
+                link:  '/blocks/deep_learning/challenges_improvements/overfitting/pytorch'
+              },
             ]
           },
           {
@@ -401,6 +411,10 @@ const dl = [
               {
                 name: 'Gradient Clipping',
                 link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping'
+              },
+              {
+                name: 'Dealing with Problematic Gradients in PyTorch',
+                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/pytorch'
               },
             ]
           },
@@ -423,6 +437,10 @@ const dl = [
               {
                 name: 'Learning Rate Scheduling',
                 link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling'
+              },
+              {
+                name: 'Stability and Speedup in PyTorch',
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/pytorch'
               },
             ]
           },
