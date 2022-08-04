@@ -4,6 +4,8 @@
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
   import Flattening from "./_convolution/Flattening.svelte";
   import Convolution from "./_convolution/Convolution.svelte";
+  import Pooling from "./_convolution/Pooling.svelte";
+  import Hierarchy from "./_convolution/Hierarchy.svelte";
   import Latex from "$lib/Latex.svelte";
 
   const imageOrig = [
@@ -69,6 +71,14 @@
     },
   ];
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Convolutional Neural Network</title>
+  <meta
+    name="description"
+    content="A convolutional neural network is a more efficient neural network due to weight sharing and sparse connections. The network learns hierarchies of features by stacking more and more convolutional layers. That allows to go from local to global features."
+  />
+</svelte:head>
 
 <h1>The Fundamentals of Convolutional Neural Networks</h1>
 <div class="separator" />
@@ -139,7 +149,7 @@
     spatial information and requires much fewer learnable parameters at the same
     time. The neural network that would alleviate our problems is called a <Highlight
       >convolution neural network</Highlight
-    >, often abbreviated as CNN.
+    >, often abbreviated as CNN or ConvNet.
   </p>
   <div class="separator" />
 
@@ -163,7 +173,7 @@
     can only attend to that small patch. Below for example the first neuron in
     the first hidden layer would focus only on the top left corner.
   </p>
-  <Convolution maxWidth={200} kernel={2} />
+  <Convolution imageWidth={6} imageHeight={6} maxWidth={200} kernel={2} />
   <p>
     In a fully connected neural network a neuron had to be connected to all
     input pixels (therefore the name fully connected). If we limit the number of
@@ -187,21 +197,41 @@
     Notice also that the output image shrinks. This is expected, because a 2x2
     patch is required to construct a single neuron.
   </p>
-  <Convolution maxWidth={500} kernel={2} showOutput={true} />
+  <Convolution
+    imageWidth={6}
+    imageHeight={6}
+    maxWidth={500}
+    kernel={2}
+    showOutput={true}
+  />
   <p>
     You have a lot of control over the behaviour of the receptive field. You can
     for example control the size of the receptive field. Above we used the
     window of size 2x2, but 3x3 is also a common size for the receptive field.
   </p>
-  <Convolution maxWidth={500} kernel={3} stride={1} showOutput={true} />
+  <Convolution
+    imageWidth={6}
+    imageHeight={6}
+    maxWidth={500}
+    kernel={3}
+    stride={1}
+    showOutput={true}
+  />
   <p>
-    The <Highlight>stride</Highlight> is also a hyperparameter you wil be interested
+    The <Highlight>stride</Highlight> is also a hyperparameter you will be interested
     in. The stride controls the number of steps the window is moved. Above the window
     was moved 1 step to right and 1 step below, which corresponds to a stride of
     1. In the example below we use a stride of 2. A larger stride obviously makes
     the output image smaller.
   </p>
-  <Convolution maxWidth={450} kernel={2} stride={2} showOutput={true} />
+  <Convolution
+    imageWidth={6}
+    imageHeight={6}
+    maxWidth={500}
+    kernel={2}
+    stride={2}
+    showOutput={true}
+  />
   <p>
     As you have probability noticed, the output image is always smaller than the
     input image. If you want to keep the dimensionality between the input and
@@ -211,8 +241,8 @@
   </p>
   <Convolution
     maxWidth={650}
-    imageWidth={5}
-    imageHeight={5}
+    imageWidth={6}
+    imageHeight={6}
     kernel={3}
     stride={1}
     padding={1}
@@ -224,7 +254,7 @@
     asume we want to calculate the activation value for the patch in the upper
     left corner.
   </p>
-  <Convolution maxWidth={200} kernel={2} />
+  <Convolution imageWidth={6} imageHeight={6} maxWidth={200} kernel={2} />
   <p>
     The patch
     <Latex
@@ -372,36 +402,156 @@
     numChannels={3}
     showOutput={true}
   />
+
   <p>
-    The dimensionality of filters or better said the dimensionality of the
-    weight matrix in a convolution layer is (N, C, W, H).
+    Before we move on let us briefly mention, that the weights contained in a
+    filter are learned automatically through backpropagation. The autodiff
+    package will calculate those gradients for you, therefore you do not need to
+    implement backpropagation by hand, but we still would like to give you some
+    intuitition about how backpropagation when CNNs are involved.
   </p>
-  <ul>
-    <li>N is the number of feature maps we want to produce</li>
-    <li>C is the number of channels of the input image</li>
-    <li>W is the width of the image</li>
-    <li>H is the height of the image</li>
-  </ul>
   <p>
-    We can regard the number of produced feature maps as a channel dimension.
-    That allows us to stack several convolutional operation.
+    Let's assume our greyscale image is just 2x2 pixels and the kernel size is
+    1.
+  </p>
+  <Convolution
+    imageWidth={2}
+    imageHeight={2}
+    maxWidth={300}
+    kernel={1}
+    numChannels={1}
+    showOutput={true}
+  />
+  <p>
+    The net inputs can be calculated using the same weight <Latex>w</Latex> using
+    the four equations below.
+  </p>
+  <Latex
+    >{String.raw`
+  \begin{aligned}
+  z_1 &= x_1 * w \\
+  z_2 &= x_2 * w \\
+  z_3 &= x_3 * w \\
+  z_4 &= x_4 * w
+  \end{aligned}
+    `}</Latex
+  >
+  <p>
+    At a certain step of the backpropagation algorithm we will need to calculate
+    the partial derivatives of the net inputs with respect to the weight.
+  </p>
+
+  <Latex
+    >{String.raw`
+  \begin{aligned}
+  \dfrac{\partial z_1}{\partial w} &= x_1 \\
+  \dfrac{\partial z_2}{\partial w} &= x_2 \\
+  \dfrac{\partial z_3}{\partial w} &= x_3 \\
+  \dfrac{\partial z_4}{\partial w} &= x_4 \\
+  \end{aligned}
+    `}</Latex
+  >
+  <p>
+    When we apply the multivariate chain rule we will add those values together <Latex
+      >{String.raw`x_1 + x_2 + x_3 + x_4`}</Latex
+    > and multiply the sum by the backprop result of the next layer.
   </p>
   <div class="separator" />
 
   <h2>Pooling Layer</h2>
-  <p>Pooling - downsampling: lose information but more manageble</p>
-  <div class="separator" />
-
-  <h2>The Power Of ConvNets</h2>
-  <p>Hierarchy of features</p>
-  <p>Why do CNN's work - 1. local features and hierarchical features</p>
   <p>
-    We extact features, attention field grows, local features to global features
+    While a convolution layer is more efficient than a fully connected layer due
+    to sparse connectivity and weight sharing, you can still get into trouble
+    when you are dealing with images of high resolution. The requirements on
+    your computational resources can grow out of proportion. The pooling layer
+    is intended to alleviate the problem by downsampling the image. That means
+    that we use a pooling layer to reduce the resolution of an image.
   </p>
-  <p>How does the whole process look like</p>
+  <p>
+    The convolutional layer downsamples an image automatically. If you don't use
+    padding when you apply the convolutional operation, your image is going to
+    shrink, especially if you use a stride above 1. The pooling layer does that
+    in a different manner, while requiring no additional weights at all. That
+    makes the pooling operation extremely efficient.
+  </p>
+  <p>
+    Similar to a convolutional layer, a pooling layer has a receptive field and
+    a stride. Usually the size of the receptive field and the stride are
+    identical. If the receptive field is 2x2 the stride is also 2x2. That means
+    each output of the pooling layer attends to a unique patch of the input
+    image and there is never an overlap.
+  </p>
+  <p>
+    The pooling layer applies simple operations to the patch in order to
+    downsample the image. The average pooling layer for example calculates the
+    average of the receptive field. But the most common pooling layer is
+    probably the so called max pooling. As the name suggest, the pooling
+    operation only keeps the largest value of the receptive field. Below we
+    provide an interactive of max pooling in order to make the explanations more
+    intuitive.
+  </p>
+  <Pooling
+    imageNumbers={[
+      [9, 0, 3, 5],
+      [2, 1, 7, 2],
+      [0, 0, 1, 3],
+      [1, 2, 6, 0],
+    ]}
+  />
+  <p>
+    There is one downside to downsampling though. While you make your images
+    more managable by reducing the resolution, you also lose some spatial
+    information. The max pooling operation in the above example only keeps one
+    of the four values and it is impossible to determine at a later stage in
+    which location the value was stored. Pooling is often used for image
+    classification and works generally great, but if you can not afford to lose
+    spatial information, you should avoid the layer.
+  </p>
   <div class="separator" />
 
-  <h2>Backpropagation</h2>
-  <p>How does backprop work?</p>
+  <h2>Hierarchy of Features</h2>
+  <p>
+    A neural network architecture, that is based on convolutional layers often
+    has a very familiar procedure. First we take an image with a low number of
+    channels and apply a convolutional layer to it. That procedure results in a
+    stack of feature maps, let's say 16. We can regard the number of produced
+    feature maps as a channel dimension, so that now we are faced with an image
+    of dimension (16, W, H). As we know how to apply a convolution layer to an
+    image with many channels, we can stack several convolutional layers. The
+    dimension of channels grows (usually as of power of 2: 16, 32, 64, 128 ...)
+    as we move forward in the convolutional neural network, while the width and
+    height dimensions shrink either naturally by avoiding padding or through
+    pooling layers. Once the number of feature maps has grown sufficiently and
+    the width and height of images has shrunk dramatically, we can flatten all
+    the feature maps and use a fully connected neural network in a familar
+    manner.
+  </p>
+</Container>
+<Container maxWidth={"1400px"}>
+  <Hierarchy maxWidth={"1400"} />
+</Container>
+<Container>
+  <p>
+    This stacking of convolutional neural networks and the growing number of
+    feature maps is usually attributed the unbelievable success of ConvNets. In
+    the first layer the receptive field is limited to a small area, therefore
+    the network learns local features. As the number of layers grows, the
+    subsequent layers start to learn features of features. Even if we keep the
+    receptive field constand among all layers, the later layers will attend to a
+    larger area of the original image. If the first neuron in the first layer
+    attends to four pixels in the upper left corner, the first neuron in the
+    second layer will attend to features build on the 16 pixels of the original
+    image (assuming a stride of 2). This hierarchical structure of feature
+    detectors allows to find higher and higher level features, going for example
+    from edges and colors to distinct shapes to actual objects. By the time we
+    arrive at the last convolutional layer, we usually have more than 100
+    feature maps, each theoretically containing some higher level feature. Those
+    features would be able to answer questions like: "Is there a nose?" or "Is
+    there a tail?" or "Are there whiskers?". That is why the first part of a
+    convolutional neural network is often called a <Highlight
+      >feature extractor</Highlight
+    >. The last fully connected layers leverage those features to predict a
+    class of an image.
+  </p>
   <div class="separator" />
 </Container>
