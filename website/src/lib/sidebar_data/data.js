@@ -451,8 +451,18 @@ const dl = [
       link: '/blocks/deep_learning/computer_vision',
       links: [
         {
-          name: 'Convolutional Neural Network: Basics',
-          link: '/blocks/deep_learning/computer_vision/convolutional_neural_network_basics',
+          name: 'Image Classification',
+          link: '/blocks/deep_learning/computer_vision/image_classification',
+          links: [
+            {
+              name: 'Fundamentals of Convolutional Neural Network',
+              link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals',
+            },
+            {
+              name: 'Convolutional Neural Networks in PyTorch',
+              link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_pytorch',
+            },
+          ]
         },
         {
           name: 'Convolutional Neural Network: Architectures',
