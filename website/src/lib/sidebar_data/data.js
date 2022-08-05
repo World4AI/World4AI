@@ -455,7 +455,7 @@ const dl = [
           link: '/blocks/deep_learning/computer_vision/image_classification',
           links: [
             {
-              name: 'Fundamentals of Convolutional Neural Network',
+              name: 'Fundamentals of Convolutional Neural Networks',
               link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals',
             },
             {
@@ -465,16 +465,48 @@ const dl = [
           ]
         },
         {
-          name: 'Convolutional Neural Network: Architectures',
-          link: '/blocks/deep_learning/computer_vision/convolutional_neural_network_architectures'
+          name: 'CNN Architectures',
+          link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures',
+          links: [
+            /*
+            {
+              name: 'LeNet-5',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5',
+            },
+            {
+              name: 'AlexNet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/alexnet',
+            },
+            {
+              name: 'VGG',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/vgg',
+            },
+            {
+              name: 'GoogLeNet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/googlenet',
+            },
+            {
+              name: 'ResNet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/resnet',
+            },
+            {
+              name: 'MobileNet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/efficientnet',
+            },
+            {
+              name: 'EfficientNet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/efficientnet',
+            },
+            */
+          ]
         },
         {
           name: 'Object Detection',
           link: '/blocks/deep_learning/computer_vision/object_detection'
         },
         {
-          name: 'Segmentation',
-          link: '/blocks/deep_learning/computer_vision/segmentation'
+          name: 'Image Segmentation',
+          link: '/blocks/deep_learning/computer_vision/image_segmentation'
         },
       ]
    }
