@@ -468,7 +468,6 @@ const dl = [
           name: 'CNN Architectures',
           link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures',
           links: [
-            /*
             {
               name: 'LeNet-5',
               link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5',
@@ -491,13 +490,12 @@ const dl = [
             },
             {
               name: 'MobileNet',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/efficientnet',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/mobilenet',
             },
             {
               name: 'EfficientNet',
               link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/efficientnet',
             },
-            */
           ]
         },
         {
