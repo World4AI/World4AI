@@ -18,14 +18,14 @@
     },
     {
       date: "2014",
-      title: "GoogLeNet",
-      description: "This architecture introduced the inception block.",
-    },
-    {
-      date: "2014",
       title: "VGG",
       description:
         "The architecture took a simple architecture similar to AlexNet and LeNet and increased the number of layers to the limit.",
+    },
+    {
+      date: "2014",
+      title: "GoogLeNet",
+      description: "This architecture introduced the inception block.",
     },
     {
       date: "2015",
