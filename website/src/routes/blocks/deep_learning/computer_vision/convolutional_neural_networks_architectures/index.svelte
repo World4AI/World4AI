@@ -5,7 +5,7 @@
 
   let timeline = [
     {
-      date: "1989",
+      date: "1998",
       title: "LeNet",
       description:
         "The LeNet architecture by Yann LeCun is probably the most fundamental architecture in computer vision. Everything else is just an improvement of this basic design.",
