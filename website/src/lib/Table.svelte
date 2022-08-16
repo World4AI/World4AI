@@ -4,6 +4,7 @@
   export let idxHighlight = null;
 </script>
 
+<div class="table-container">
 <table>
   <thead>
     <tr>
@@ -22,22 +23,30 @@
     {/each}
   </tbody>
 </table>
+</div>
 
 <style>
+  .table-container {
+    overflow-x: auto;
+  }
+
   table {
+    border-collapse: collapse;
     width: 100%;
   }
 
   th {
     text-transform: uppercase;
+    background-color: var(--main-color-4);
   }
 
   td,
   th {
     border: 1px double var(--text-color);
-    padding: 7px;
+    padding: 3px;
     text-align: center;
   }
+
   td {
     font-style: italic;
   }
