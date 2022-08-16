@@ -4,7 +4,7 @@
   import { marked } from "marked";
   import { Highlight } from "svelte-highlight";
   import python from "svelte-highlight/languages/python";
-  import a11yDark from "svelte-highlight/styles/a11y-dark";
+  import a11yLight from "svelte-highlight/styles/a11y-light";
   import { onMount } from "svelte";
   import JupyterLatex from "$lib/JupyterLatex.svelte";
 
@@ -20,7 +20,7 @@
 
     notebook.cells.forEach((cell) => {
       if (cell.cell_type === "code") {
-        cells.push({ type: cell.cell_type, content: cell.source.join("") });
+        cells.push({ type: cell.cell_type, count: cell.execution_count, content: cell.source.join("") });
         if (cell.outputs.length > 0) {
           if (cell.outputs[0].output_type === "stream") {
             cells.push({
@@ -73,7 +73,7 @@
 </script>
 
 <svelte:head>
-  {@html a11yDark}
+  {@html a11yLight}
 </svelte:head>
 
 <Container>
@@ -87,6 +87,7 @@
     {#if cell.type === "code"}
       <div class="code-container">
         <Highlight language={python} code={cell.content} />
+      	<span class="execution-count">[ {cell.count} ]: </span>
       </div>
     {:else if cell.type === "result"}
       <div class="result-container">
@@ -104,12 +105,21 @@
 <style>
   .code-container {
     margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .code-container .execution-count {
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    font-size: 12px;
+    opacity: 0.6;
   }
 
   .result-container {
     padding: 10px;
     overflow-x: auto;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     margin: 10px 0;
   }
 
@@ -127,5 +137,12 @@
     display: block;
     width: 120px;
     margin-bottom: 30px;
+  }
+
+  @media(max-width: 1100px) {
+  .code-container .execution-count {
+    display: none;
+  }
+
   }
 </style>
