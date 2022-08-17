@@ -32,7 +32,8 @@
               type: "result",
               content: cell.outputs[0].data["text/plain"].join(""),
             });
-          } else if (cell.outputs[0].output_type === "display_data") {
+          } else if (cell.outputs[0].output_type === "display_data" && 
+	  	     cell.outputs[0].data["image/png"]) {
             cells.push({
               type: "image",
               content: cell.outputs[0].data["image/png"],
