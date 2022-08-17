@@ -31,13 +31,13 @@
 	     ]
 
   let references = [{
-      author: "Y. Lecun, L. Bottou, Y. Bengio and P. Haffner",
-      title: "Gradient-based learning applied to document recognition",
-      journal: "Proceedings of the IEEE",
-      year: "1998",
-      pages: "2278-2324",
-      volume: "86",
-      issue: "11",
+      author: "Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E",
+      title: "ImageNet Classification with Deep Convolutional Neural Networks",
+      journal: "Advances in Neural Information Processing Systems",
+      year: "2012",
+      pages: "",
+      volume: "25",
+      issue: "",
   }]
 </script>
 
