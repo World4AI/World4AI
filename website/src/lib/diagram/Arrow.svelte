@@ -11,6 +11,9 @@
   export let dashed = false;
   export let moving = false;
   export let color = "black";
+  export let strokeWidth = 1;
+  let markerWidth = 4; 
+  let markerHeight = 3;
 
   let offset = 0;
   onMount(() => {
@@ -40,8 +43,8 @@
   refX="0"
   refY="5"
   markerUnits="strokeWidth"
-  markerWidth="4"
-  markerHeight="3"
+  markerWidth={markerWidth}
+  markerHeight={markerHeight}
   orient="auto"
   fill={color}
   stroke={color}
@@ -56,6 +59,7 @@
     stroke-dasharray={dashed ? "2 1" : "none"}
     stroke-dashoffset={offset}
     fill="none"
+    stroke-width={strokeWidth}
     marker-end="url(#triangle)"
   />
 {/if}
