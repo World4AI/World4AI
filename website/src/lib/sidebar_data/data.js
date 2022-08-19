@@ -432,7 +432,7 @@ const dl = [
               },
               {
                 name: 'Skip Connections',
-                link:  '/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/skip_connections'
+                link:  '/blocks/deep_learning/challenges_improvements/stability_speedup/skip_connections'
               },
               {
                 name: 'Learning Rate Scheduling',
