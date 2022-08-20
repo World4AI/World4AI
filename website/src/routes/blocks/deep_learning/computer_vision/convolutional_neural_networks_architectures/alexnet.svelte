@@ -26,9 +26,15 @@
   		["Convolution", "13x13x384", "3x3", "1", "1", "256", "13x13x256"],
   		["Max Pooling", "13x13x256", "3x3", "2", "-", "-", "6x6x256"],
   		["ReLU", "-", "-", "-", "-", "-", "-"],
+  		["Dropout", "-", "-", "-", "-", "-", "-"],
   		["Fully Connected", "9219", "-", "-", "-", "-", "4096"],
+  		["ReLU", "-", "-", "-", "-", "-", "-"],
+  		["Dropout", "-", "-", "-", "-", "-", "-"],
+  		["Fully Connected", "4096", "-", "-", "-", "-", "4096"],
+  		["ReLU", "-", "-", "-", "-", "-", "-"],
   		["Fully Connected", "4096", "-", "-", "-", "-", "1000"],
-	     ]
+  		["Softmax", "-", "-", "-", "-", "-", "-"]
+	]
 
   let references = [{
       author: "Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E",
