@@ -9,16 +9,21 @@
   const url = notebookUrl;
   const fileName = "convolutional_neural_networks\\lenet_5.ipynb";
 
-  let header = ["Type", "Input Size", "Output Size", "Kernel Size", "Stride", "Padding"];
+  let header = ["Type", "Input Size",  "Kernel Size", "Stride", "Padding", "Feature Maps", "Output Size"];
   let data = [
-  		["Convolution", "28x28x1", "28x28x6", "5x5", "1", "2"],
-              	["Average Pooling", "28x28x6", "14x14x6", "2x2", "2", "0"],
-              	["Convolution", "14x14x6", "10x10x16", "5x5", "1", "0"],
-              	["Average Pooling", "10x10x16", "5x5x16", "2x2", "2", "0"],
-              	["Convolution", "5x5x6", "1x1x120", "5x5", "1", "0"],
-              	["Fully Connected", "120", "84", "-", "-", "-"],
-              	["Fully Connected", "84", "10", "-", "-", "-"],
-	     ]
+  		["Convolution", "28x28x1", "5x5", "1", "2", "6", "28x28x6"],
+  		["Tanh", "-", "-", "-", "-", "-", "-"],
+      ["Average Pooling", "28x28x6", "2x2", "2", "0", "-", "14x14x6"],
+      ["Convolution", "14x14x6", "5x5", "1", "0", 16, "10x10x16"],
+  		["Tanh", "-", "-", "-", "-", "-", "-"],
+      ["Average Pooling", "10x10x16", "2x2", "2", "0", "-", "5x5x16", ],
+      ["Convolution", "5x5x6", "5x5", "1", "0", "120", "1x1x120"],
+  		["Tanh", "-", "-", "-", "-", "-", "-"],
+      ["Fully Connected", "120", "-", "-", "-", "-", "84"],
+  		["Tanh", "-", "-", "-", "-", "-", "-"],
+      ["Fully Connected", "84", "-", "-", "-", "-", "10" ],
+      ["Softmax", "10", "-", "-", "-", "-", "10" ],
+	]
 
   let references = [{
       author: "Y. Lecun, L. Bottou, Y. Bengio and P. Haffner",
