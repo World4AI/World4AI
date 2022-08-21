@@ -492,7 +492,21 @@ const dl = [
         },
         {
           name: 'Object Detection',
-          link: '/blocks/deep_learning/computer_vision/object_detection'
+          link: '/blocks/deep_learning/computer_vision/object_detection',
+          links: [
+            {
+              name: 'Intersection over Union',
+              link: '/blocks/deep_learning/computer_vision/object_detection/intersection_over_union',
+            },
+            {
+              name: 'Non-max Supression',
+              link: '/blocks/deep_learning/computer_vision/object_detection/non_max_supression',
+            },
+            {
+              name: 'YOLO',
+              link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
+            },
+          ]
         },
         {
           name: 'Image Segmentation',
