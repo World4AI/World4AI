@@ -499,12 +499,16 @@ const dl = [
               link: '/blocks/deep_learning/computer_vision/object_detection/intersection_over_union',
             },
             {
+              name: 'YOLO',
+              link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
+            },
+            {
               name: 'Non-max Supression',
               link: '/blocks/deep_learning/computer_vision/object_detection/non_max_supression',
             },
             {
-              name: 'YOLO',
-              link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
+              name: 'Mean Average Precision',
+              link: '/blocks/deep_learning/computer_vision/object_detection/mean_average_precision',
             },
           ]
         },
