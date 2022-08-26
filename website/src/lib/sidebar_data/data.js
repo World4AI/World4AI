@@ -469,6 +469,10 @@ const dl = [
           link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures',
           links: [
             {
+              name: 'Saving and Loading',
+              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/saving_loading',
+            },
+            {
               name: 'LeNet-5',
               link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5',
             },
