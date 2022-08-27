@@ -495,6 +495,24 @@ const dl = [
           ]
         },
         {
+          name: 'Performance Tuning',
+          link: '/blocks/deep_learning/computer_vision/performance_tuning',
+          links: [
+            {
+              name: 'Measuring Performance',
+              link: '/blocks/deep_learning/computer_vision/performance_tuning/measuring_performance',
+            },
+            {
+              name: 'Mixed Precision Training',
+              link: '/blocks/deep_learning/computer_vision/performance_tuning/mixed_precision_training',
+            },
+            {
+              name: 'TPU Training',
+              link: '/blocks/deep_learning/computer_vision/performance_tuning/tpu_training',
+            },
+          ]
+        },
+        {
           name: 'Object Detection',
           link: '/blocks/deep_learning/computer_vision/object_detection',
           links: [
