@@ -499,10 +499,6 @@ const dl = [
           link: '/blocks/deep_learning/computer_vision/performance_tuning',
           links: [
             {
-              name: 'Measuring Performance',
-              link: '/blocks/deep_learning/computer_vision/performance_tuning/measuring_performance',
-            },
-            {
               name: 'Mixed Precision Training',
               link: '/blocks/deep_learning/computer_vision/performance_tuning/mixed_precision_training',
             },
