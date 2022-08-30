@@ -532,7 +532,13 @@ const dl = [
         },
         {
           name: 'Image Segmentation',
-          link: '/blocks/deep_learning/computer_vision/image_segmentation'
+          link: '/blocks/deep_learning/computer_vision/image_segmentation',
+          links: [
+            {
+              name: 'U-Net',
+              link: '/blocks/deep_learning/computer_vision/image_segmentation/u_net',
+            },
+          ]
         },
       ]
    }
