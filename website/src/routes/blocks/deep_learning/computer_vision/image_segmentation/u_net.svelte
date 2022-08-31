@@ -24,10 +24,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | CNNs in PyTorch</title>
+  <title>World4AI | Deep Learning | U-Net</title>
   <meta
     name="description"
-    content="To change a fully connected neural network into a convolutional neural network in PyTorch does not require a lot of work. We only need to add a couple of additional modules."
+    content="U-net is a convolutional neural network architecture, that uses a series of contractions and expansion in order to generate segmentation masks."
   />
 </svelte:head>
 
