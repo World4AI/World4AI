@@ -520,14 +520,6 @@ const dl = [
               name: 'YOLO',
               link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
             },
-            {
-              name: 'Non-max Supression',
-              link: '/blocks/deep_learning/computer_vision/object_detection/non_max_supression',
-            },
-            {
-              name: 'Mean Average Precision',
-              link: '/blocks/deep_learning/computer_vision/object_detection/mean_average_precision',
-            },
           ]
         },
         {
