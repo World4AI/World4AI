@@ -13,6 +13,7 @@
   export let maxWidth = 1000;
   export let blockSize = 20;
   export let gap = 5;
+  export let layerDistance = 300;
 
   let height = 400;
   let width = 1600;
@@ -22,7 +23,7 @@
   <svg viewBox="0 0 {width} {height}">
     {#each layers as layer, layerIdx}
       <!-- move layers to the right -->
-      <g transform="translate({layerIdx * 300}, 0)">
+      <g transform="translate({layerIdx * layerDistance}, 0)">
         {#each Array(layer.channels) as _, channelIdx}
           <!-- move channels slightly to the bottom and right -->
           <g transform="translate({channelIdx * 5}, {channelIdx * 5})">

@@ -527,6 +527,10 @@ const dl = [
           link: '/blocks/deep_learning/computer_vision/image_segmentation',
           links: [
             {
+              name: 'Transposed Convolutions',
+              link: '/blocks/deep_learning/computer_vision/image_segmentation/transposed_convolutions',
+            },
+            {
               name: 'U-Net',
               link: '/blocks/deep_learning/computer_vision/image_segmentation/u_net',
             },
