@@ -446,117 +446,122 @@ const dl = [
           },
         ]
     },
+  {
+    name: 'Computer Vision',
+    link: '/blocks/deep_learning/computer_vision',
+    links: [
+      {
+        name: 'Image Classification',
+        link: '/blocks/deep_learning/computer_vision/image_classification',
+        links: [
+          {
+            name: 'Fundamentals of Convolutional Neural Networks',
+            link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals',
+          },
+          {
+            name: 'Convolutional Neural Networks in PyTorch',
+            link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_pytorch',
+          },
+        ]
+      },
+      {
+        name: 'CNN Architectures',
+        link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures',
+        links: [
+          {
+            name: 'Saving and Loading',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/saving_loading',
+          },
+          {
+            name: 'LeNet-5',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5',
+          },
+          {
+            name: 'AlexNet',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/alexnet',
+          },
+          {
+            name: 'VGG',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/vgg',
+          },
+          {
+            name: 'GoogLeNet',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/googlenet',
+          },
+          {
+            name: 'ResNet',
+            link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/resnet',
+          },
+        ]
+      },
+      {
+        name: 'Performance Tuning',
+        link: '/blocks/deep_learning/computer_vision/performance_tuning',
+        links: [
+          {
+            name: 'Mixed Precision Training',
+            link: '/blocks/deep_learning/computer_vision/performance_tuning/mixed_precision_training',
+          },
+          {
+            name: 'TPU Training',
+            link: '/blocks/deep_learning/computer_vision/performance_tuning/tpu_training',
+          },
+        ]
+      },
+      {
+        name: 'Object Detection',
+        link: '/blocks/deep_learning/computer_vision/object_detection',
+        links: [
+          {
+            name: 'Intersection over Union',
+            link: '/blocks/deep_learning/computer_vision/object_detection/intersection_over_union',
+          },
+          {
+            name: 'YOLO',
+            link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
+          },
+        ]
+      },
+      {
+        name: 'Image Segmentation',
+        link: '/blocks/deep_learning/computer_vision/image_segmentation',
+        links: [
+          {
+            name: 'Transposed Convolutions',
+            link: '/blocks/deep_learning/computer_vision/image_segmentation/transposed_convolutions',
+          },
+          {
+            name: 'U-Net',
+            link: '/blocks/deep_learning/computer_vision/image_segmentation/u_net',
+          },
+        ]
+      },
+    ]
+ },
+
     {
-      name: 'Computer Vision',
-      link: '/blocks/deep_learning/computer_vision',
-      links: [
-        {
-          name: 'Image Classification',
-          link: '/blocks/deep_learning/computer_vision/image_classification',
-          links: [
-            {
-              name: 'Fundamentals of Convolutional Neural Networks',
-              link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals',
-            },
-            {
-              name: 'Convolutional Neural Networks in PyTorch',
-              link: '/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_pytorch',
-            },
-          ]
-        },
-        {
-          name: 'CNN Architectures',
-          link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures',
-          links: [
-            {
-              name: 'Saving and Loading',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/saving_loading',
-            },
-            {
-              name: 'LeNet-5',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5',
-            },
-            {
-              name: 'AlexNet',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/alexnet',
-            },
-            {
-              name: 'VGG',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/vgg',
-            },
-            {
-              name: 'GoogLeNet',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/googlenet',
-            },
-            {
-              name: 'ResNet',
-              link: '/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/resnet',
-            },
-          ]
-        },
-        {
-          name: 'Performance Tuning',
-          link: '/blocks/deep_learning/computer_vision/performance_tuning',
-          links: [
-            {
-              name: 'Mixed Precision Training',
-              link: '/blocks/deep_learning/computer_vision/performance_tuning/mixed_precision_training',
-            },
-            {
-              name: 'TPU Training',
-              link: '/blocks/deep_learning/computer_vision/performance_tuning/tpu_training',
-            },
-          ]
-        },
-        {
-          name: 'Object Detection',
-          link: '/blocks/deep_learning/computer_vision/object_detection',
-          links: [
-            {
-              name: 'Intersection over Union',
-              link: '/blocks/deep_learning/computer_vision/object_detection/intersection_over_union',
-            },
-            {
-              name: 'YOLO',
-              link: '/blocks/deep_learning/computer_vision/object_detection/yolo',
-            },
-          ]
-        },
-        {
-          name: 'Image Segmentation',
-          link: '/blocks/deep_learning/computer_vision/image_segmentation',
-          links: [
-            {
-              name: 'Transposed Convolutions',
-              link: '/blocks/deep_learning/computer_vision/image_segmentation/transposed_convolutions',
-            },
-            {
-              name: 'U-Net',
-              link: '/blocks/deep_learning/computer_vision/image_segmentation/u_net',
-            },
-          ]
-        },
-      ]
-   }
+        name: 'Sequence Modelling',
+        link: '/blocks/deep_learning/sequence_modelling',
+        links: [
+          {
+            name: 'Fundamentals of Recurrent Neural Networks',
+            link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_fundamentals',
+          },
+          {
+            name: 'Layer Normalization',
+            link: '/blocks/deep_learning/sequence_modelling/layer_normalization',
+          },
+          {
+            name: 'LSTM',
+            link: '/blocks/deep_learning/sequence_modelling/lstm',
+          },
+        ]
+    },
   /*
     {
         name: 'Word Embeddings',
         link: '/blocks/deep_learning/word_embeddings',
         links: [
-        ]
-    },
-    {
-        name: 'Recurrent Neural Networks',
-        link: '/blocks/deep_learning/recurrent_neural_networks',
-        links: [
-          {
-            name: 'Long Short-Term Memory',
-            link: '/blocks/deep_learning/recurrent_neural_networks/long_short_term_memory',
-          },
-          {
-            name: 'Gated Recurrent Units',
-            link: '/blocks/deep_learning/recurrent_neural_networks/gated_recurrent_units',
-          },
         ]
     },
     {
