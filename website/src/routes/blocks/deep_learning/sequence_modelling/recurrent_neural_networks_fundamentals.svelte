@@ -108,7 +108,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Recurrent Neural Networsk Fundamentals</title>
+  <title>World4AI | Deep Learning | Recurrent Neural Networks Fundamentals</title>
   <meta
     name="description"
     content="A recurrent neural network is very well suited to process sequential data. The RNN processes one piece at a time and keeps the outputs from the previous parts of the sequence in the memory which is used as an additional input in the next step."
