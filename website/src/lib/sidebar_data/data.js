@@ -552,12 +552,16 @@ const dl = [
             link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types',
           },
           {
-            name: 'Layer Normalization',
-            link: '/blocks/deep_learning/sequence_modelling/layer_normalization',
-          },
-          {
             name: 'LSTM',
             link: '/blocks/deep_learning/sequence_modelling/lstm',
+          },
+          {
+            name: 'Biderectional Recurrent Neural Networks',
+            link: '/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks',
+          },
+          {
+            name: 'Word Embeddings',
+            link: '/blocks/deep_learning/sequence_modelling/word_embeddings',
           },
         ]
     },
