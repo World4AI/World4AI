@@ -548,6 +548,10 @@ const dl = [
             link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_fundamentals',
           },
           {
+            name: 'Types Of Recurrent Neural Networks',
+            link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types',
+          },
+          {
             name: 'Layer Normalization',
             link: '/blocks/deep_learning/sequence_modelling/layer_normalization',
           },
