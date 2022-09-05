@@ -3,7 +3,7 @@
   export let height;
   export let x;
   export let y;
-  export let text;
+  export let text = "";
 
   export let color = "none";
   export let fontSize = 7;

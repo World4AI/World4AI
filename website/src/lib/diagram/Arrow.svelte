@@ -12,15 +12,19 @@
   export let moving = false;
   export let color = "black";
   export let strokeWidth = 1;
-  let markerWidth = 4; 
-  let markerHeight = 3;
+  export let strokeDashArray = "2 1";
+  export let speed = 200;
+
+  export let showMarker = true;
+  export let markerWidth = 4; 
+  export let markerHeight = 3;
 
   let offset = 0;
   onMount(() => {
     if (moving) {
       const interval = setInterval(() => {
         offset -= 0.5;
-      }, 200);
+      }, speed);
 
       return () => {
         clearInterval(interval);
@@ -56,10 +60,10 @@
   <path
     d={path}
     stroke={color}
-    stroke-dasharray={dashed ? "2 1" : "none"}
+    stroke-dasharray={dashed ? strokeDashArray : "none"}
     stroke-dashoffset={offset}
     fill="none"
     stroke-width={strokeWidth}
-    marker-end="url(#triangle)"
+    marker-end={showMarker ? "url(#triangle)" : "none"}
   />
 {/if}
