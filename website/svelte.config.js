@@ -13,9 +13,6 @@ const config = {
     alias: {
       $notebooks: 'src/notebooks'
     },
-    prerender: {
-      default: true
-    }
 	}
 };
 
