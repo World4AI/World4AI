@@ -33,8 +33,7 @@ Some of the sections have already reached a working state and can be used to stu
     - [x] Challenges and Improvement 
     - [ ] Computer Vision
     - [x] Sequences and Recurrent Neural Networks
-    - [ ] Word Embeddings and Language
-    - [ ] Transformer and Attention 
+    - [ ] Attention and Transformers
     - [ ] Generative Models 
     - [ ] Energy Based Models
     - [ ] Graph Neural Networks
