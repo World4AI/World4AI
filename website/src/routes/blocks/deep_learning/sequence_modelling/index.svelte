@@ -29,11 +29,6 @@
   />
 </svelte:head>
 
-<div class="danger">
- The whole chapter on sequence modelling and the corresponding subsections is very early work in progress. 
-</div>
-<div class="separator" />
-
 <h1>Sequence Modelling</h1>
 <div class="separator" />
 
