@@ -548,20 +548,46 @@ const dl = [
             link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_fundamentals',
           },
           {
-            name: 'Types Of Recurrent Neural Networks',
-            link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types',
+            name: 'Recurrent Neural Networks in PyTorch',
+            link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_pytorch',
           },
           {
-            name: 'LSTM',
-            link: '/blocks/deep_learning/sequence_modelling/lstm',
+            name: 'Types Of Recurrent Neural Networks',
+            link: '/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types',
           },
           {
             name: 'Biderectional Recurrent Neural Networks',
             link: '/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks',
           },
           {
+            name: 'Biderectional Recurrent Neural Networks in PyTorch',
+            link: '/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks_pytorch',
+          },
+          {
+            name: 'LSTM',
+            link: '/blocks/deep_learning/sequence_modelling/lstm',
+          },
+          {
+            name: 'LSTM in PyTorch',
+            link: '/blocks/deep_learning/sequence_modelling/lstm_pytorch',
+          },
+          {
             name: 'Word Embeddings',
             link: '/blocks/deep_learning/sequence_modelling/word_embeddings',
+          },
+          {
+            name: 'Word Embeddings in PyTorch',
+            link: '/blocks/deep_learning/sequence_modelling/word_embeddings_pytorch',
+          },
+          {
+            name: 'PyTorch Projects',
+            link: '/blocks/deep_learning/sequence_modelling/pytorch_projects',
+            links: [
+              {
+                name: 'Sentiment Analysis ',
+                link: '/blocks/deep_learning/sequence_modelling/pytorch_projects/sentiment_analysis',
+              }
+            ]
           },
         ]
     },
