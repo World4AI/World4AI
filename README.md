@@ -32,7 +32,7 @@ Some of the sections have already reached a working state and can be used to stu
     - [x] Neural Networks 
     - [x] Challenges and Improvement 
     - [ ] Computer Vision
-    - [ ] Sequences and Recurrent Neural Networks
+    - [x] Sequences and Recurrent Neural Networks
     - [ ] Word Embeddings and Language
     - [ ] Transformer and Attention 
     - [ ] Generative Models 
