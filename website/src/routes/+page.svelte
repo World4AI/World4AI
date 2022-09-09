@@ -6,12 +6,16 @@
   />
 </svelte:head>
 
-<div class="hero-message">
-  <div class="border-container">
-    <h1>World4AI</h1>
-  </div>
-  <h2>Free and open source AI education</h2>
-</div>
+<main>
+  <article>
+    <div class="hero-message">
+      <div class="border-container">
+        <h1>World4AI</h1>
+      </div>
+      <h2>Free and open source AI education</h2>
+    </div>
+  </article>
+</main>
 
 <style>
   .hero-message {

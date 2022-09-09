@@ -4,8 +4,4 @@
 </script>
 
 <Header />
-<main>
-  <article>
-    <slot />
-  </article>
-</main>
+<slot />
