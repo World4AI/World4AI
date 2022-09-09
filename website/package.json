@@ -11,18 +11,18 @@
   "type": "module",
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.39",
-    "@sveltejs/kit": "^1.0.0-next.405",
-    "@tensorflow/tfjs": "^3.19.0",
-    "@tensorflow/tfjs-backend-webgl": "^3.19.0",
+    "@sveltejs/adapter-static": "^1.0.0-next.42",
+    "@sveltejs/kit": "^1.0.0-next.480",
+    "@tensorflow/tfjs": "^3.20.0",
+    "@tensorflow/tfjs-backend-webgl": "^3.20.0",
     "d3": "^7.6.1",
     "d3-contour": "^4.0.0",
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
-    "katex": "^0.16.0",
-    "svelte": "^3.49.0",
+    "katex": "^0.16.2",
+    "svelte": "^3.50.1",
     "svelte-highlight": "^6.2.1",
     "svelte-markdown": "^0.2.3",
-    "vite": "^3.0.7"
+    "vite": "^3.1.0"
   }
 }
