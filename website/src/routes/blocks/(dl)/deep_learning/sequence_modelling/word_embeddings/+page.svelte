@@ -1,6 +1,5 @@
 <script>  
   import Container from "$lib/Container.svelte";
-  import SvgContainer from "$lib/SvgContainer.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
 
@@ -20,6 +19,14 @@
     dictionary[word] = idx; 
   });
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Word Embeddings</title>
+  <meta
+    name="description"
+    content="It is not possible to train a neural network directly on text. Word embeddings are dense vectors, that represent a word in vector space."
+  />
+</svelte:head>
 
 <h1>Word Embeddings</h1>
 <div class="separator" />
