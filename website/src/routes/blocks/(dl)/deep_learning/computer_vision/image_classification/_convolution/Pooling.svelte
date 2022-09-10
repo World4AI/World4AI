@@ -1,5 +1,6 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
   export let imageWidth = 4;
@@ -73,7 +74,9 @@
   });
 </script>
 
-<PlayButton f={slideWindow} delta={500} />
+<ButtonContainer>
+  <PlayButton f={slideWindow} delta={500} />
+</ButtonContainer>
 
 <SvgContainer maxWidth={maxWidth + "px"}>
   <svg viewBox="0 0 {width} {height}">

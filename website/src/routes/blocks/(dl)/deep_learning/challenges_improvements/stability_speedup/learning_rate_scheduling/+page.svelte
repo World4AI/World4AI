@@ -9,6 +9,7 @@
   import Circle from "$lib/plt/Circle.svelte";
   import Title from "$lib/plt/Title.svelte";
 
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
   let data = [];
@@ -77,7 +78,9 @@
     use gradient descent with momentum. The gradient descent algorithm
     overshoots and keeps oscilating for a while, before settling on the minimum.
   </p>
-  <PlayButton f={gradientDescentStepFixed} delta={50} />
+  <ButtonContainer>
+    <PlayButton f={gradientDescentStepFixed} delta={50} />
+  </ButtonContainer>
   <Plot domain={[-8, 8]} range={[0, 60]}>
     <Ticks
       xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
@@ -105,7 +108,9 @@
     learning rate on plateau, which makes the ball "glide" into the optimal
     value.
   </p>
-  <PlayButton f={gradientDescentStepMoving} delta={50} />
+  <ButtonContainer>
+    <PlayButton f={gradientDescentStepMoving} delta={50} />
+  </ButtonContainer>
   <Plot domain={[-8, 8]} range={[0, 60]}>
     <Ticks
       xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}

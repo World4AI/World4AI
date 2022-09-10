@@ -1,6 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Clipping from "../_gradient_clipping/Clipping.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
@@ -104,7 +105,9 @@
     of the vector components and changing the direction of the vector. The
     clipped vector will move along the circumference of the square.
   </p>
-  <PlayButton f={recalculateValue} delta={800} />
+  <ButtonContainer>
+    <PlayButton f={recalculateValue} delta={800} />
+  </ButtonContainer>
   <Plot
     width={500}
     height={500}
@@ -140,7 +143,9 @@
     value, the direction remains unchanged. The clipped vector moves along the
     circumference of a circle.
   </p>
-  <PlayButton f={recalculateNorm} delta={800} />
+  <ButtonContainer>
+    <PlayButton f={recalculateNorm} delta={800} />
+  </ButtonContainer>
   <Plot
     width={500}
     height={500}

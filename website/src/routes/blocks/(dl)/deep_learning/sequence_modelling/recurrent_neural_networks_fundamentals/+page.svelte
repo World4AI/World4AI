@@ -7,10 +7,10 @@
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Block from "$lib/diagram/Block.svelte";
   import Arrow from "$lib/diagram/Arrow.svelte";
-  import Plus from "$lib/diagram/Plus.svelte";
   import Circle from "$lib/diagram/Circle.svelte";
 
   // button
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
   // coordinates of the circles in the fc diagram
@@ -122,7 +122,9 @@
   <p>Let's start this section by contrasting and comparing a plain vanilla feed forward neural network with a recurrent neural network. We assume that we are dealing with a single neuron (yellow box) that receives two inputs (blue boxes): either from a previous layer or as the raw inputs.</p>
   <p>The feedforward neural network processes the two inputs and sends the output directly to the next layer. Once the inputs have left the neuron, they are forgotten. There is no residiual memory, that those inputs have been processed.</p>
   <!-- fc diagram -->
-  <PlayButton f={simulateFc} delta={5}/>
+  <ButtonContainer>
+    <PlayButton f={simulateFc} delta={5}/>
+  </ButtonContainer>
   <SvgContainer maxWidth={"500px"}>
     <svg viewBox="0 0 400 200">
       <!-- connections -->
@@ -147,7 +149,9 @@
   <p>A recurrent neural network (RNN) processes each piece of a sequence at a time. At each time step the neuron takes a part of the sequence and its own output from the previous timestep as input. In the very first time step there is no output from the previous step, so it is common to use 0 instead. 
   <p>Below for example we are dealing with a sequence of size 4. Once the sequence is exhaused, the output is sent to the next processing unit.</p>
   <!-- rnn diagram -->
-  <PlayButton f={simulateRnn} delta={5}/>
+  <ButtonContainer>
+    <PlayButton f={simulateRnn} delta={5}/>
+  </ButtonContainer>
   <SvgContainer maxWidth={"500px"}>
     <svg viewBox="0 0 400 250">
       {#each Array(4) as _, idx}

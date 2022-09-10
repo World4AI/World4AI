@@ -1,7 +1,7 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import Container from "$lib/Container.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
 
   export let width = 500;
   export let height = 250;
@@ -21,7 +21,9 @@
   }
 </script>
 
-<StepButton on:click={changeFold} />
+<ButtonContainer>
+  <StepButton on:click={changeFold} />
+</ButtonContainer>
 <br />
 <SvgContainer maxWidth="800px">
   <svg viewBox="0 0 {width} {height + gap}">

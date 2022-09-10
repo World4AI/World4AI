@@ -1,5 +1,6 @@
 <script>
   import SvgContainer from "$lib/SvgContainer.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
   import { tweened } from "svelte/motion";
 
@@ -39,9 +40,9 @@
   }
 </script>
 
-<div class="button-container">
+<ButtonContainer>
   <StepButton on:click={clickHandler} />
-</div>
+</ButtonContainer>
 <SvgContainer maxWidth={"1000px"}>
   <svg viewBox="0 0 {width} {height}">
     {#each image as row, rowIdx}
@@ -65,9 +66,3 @@
     {/each}
   </svg>
 </SvgContainer>
-
-<style>
-  .button-container {
-    margin-bottom: 20px;
-  }
-</style>

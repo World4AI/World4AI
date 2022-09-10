@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
@@ -281,7 +282,9 @@
     momentum on the other has a chance to escape the local minimum.
   </p>
 
-  <StepButton on:click={localGradientDescent} />
+  <ButtonContainer>
+    <StepButton on:click={localGradientDescent} />
+  </ButtonContainer>
   <Plot
     width="450"
     height="450"

@@ -1,5 +1,6 @@
 <script>
   import Plot from "$lib/Plot.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
   import { tweened } from "svelte/motion";
 
@@ -76,7 +77,9 @@
   }
 </script>
 
-<StepButton {disabled} on:click={tranform} />
+<ButtonContainer>
+  <StepButton {disabled} on:click={tranform} />
+</ButtonContainer>
 <Plot
   pointsData={$store}
   {pathsData}

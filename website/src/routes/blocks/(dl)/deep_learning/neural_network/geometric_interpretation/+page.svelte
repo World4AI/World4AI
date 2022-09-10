@@ -3,6 +3,7 @@
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import Plot from "$lib/Plot.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import Architecture from "../_geometric/Architecture.svelte";
   import Transformation from "../_geometric/Transformation.svelte";
   import Latex from "$lib/Latex.svelte";
@@ -323,7 +324,9 @@
 </Container>
 
 <Container maxWidth="1900px">
-  <PlayButton f={train} delta={0} />
+  <ButtonContainer>
+    <PlayButton f={train} delta={0} />
+  </ButtonContainer>
   <div class="flex-container">
     <div class="left-container">
       <Plot {pointsData} {heatmapData} {config} />

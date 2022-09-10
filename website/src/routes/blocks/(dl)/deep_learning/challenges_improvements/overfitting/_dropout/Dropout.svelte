@@ -1,5 +1,5 @@
 <script>
-  import SvgContainer from "$lib/SvgContainer.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
 
@@ -63,5 +63,7 @@
   }
 </script>
 
-<PlayButton f={recalculateDropout} delta={800} />
+<ButtonContainer>
+  <PlayButton f={recalculateDropout} delta={800} />
+</ButtonContainer>
 <NeuralNetwork {width} {maxWidth} {height} {rectSize} {layers} />

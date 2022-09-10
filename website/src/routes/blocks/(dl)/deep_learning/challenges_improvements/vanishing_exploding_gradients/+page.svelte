@@ -1,8 +1,5 @@
 <script>
-  throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
   import Container from "$lib/Container.svelte";
-  import SvgContainer from "$lib/SvgContainer.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";

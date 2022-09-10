@@ -4,6 +4,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Plot from "$lib/Plot.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import BackwardPass from "../_backward/BackwardPass.svelte";
 
@@ -561,7 +562,9 @@
   </p>
 </Container>
 <Container maxWidth="1900px">
-  <PlayButton f={train} delta={0} />
+  <ButtonContainer>
+    <PlayButton f={train} delta={0} />
+  </ButtonContainer>
   <div class="flex-container">
     <div class="left-container">
       <Plot {pointsData} {heatmapData} {config} />

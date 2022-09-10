@@ -3,6 +3,7 @@
   import Latex from "$lib/Latex.svelte";
   import Plot from "$lib/Plot.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
 
   //Difference in Gradients Demonstration
   let graphDataLoss = [];
@@ -395,14 +396,14 @@
     to solve manually in a previous chapter. Start the algorithm and observe how
     the loss decreases over time.
   </p>
-  <div class="flex-container">
+  <ButtonContainer>
     <PlayButton f={train} delta={100} />
-    <div class="parameters yellow">
-      <p><Latex>L</Latex>: {crossEntropy.toFixed(2)}</p>
-      <p><Latex>w_1</Latex>: {w1.toFixed(2)}</p>
-      <p><Latex>w_2</Latex>: {w2.toFixed(2)}</p>
-      <p><Latex>b</Latex>: {b.toFixed(2)}</p>
-    </div>
+  </ButtonContainer>
+  <div class="parameters yellow">
+    <p><Latex>L</Latex>: {crossEntropy.toFixed(2)}</p>
+    <p><Latex>w_1</Latex>: {w1.toFixed(2)}</p>
+    <p><Latex>w_2</Latex>: {w2.toFixed(2)}</p>
+    <p><Latex>b</Latex>: {b.toFixed(2)}</p>
   </div>
   <Plot
     {pointsData}

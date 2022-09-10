@@ -5,6 +5,8 @@
   import Highlight from "$lib/Highlight.svelte";
   import Mse from "../_loss/Mse.svelte";
   import Slider from "$lib/Slider.svelte";
+
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
@@ -264,7 +266,9 @@
     descent step, based on the parameters that you can change with the sliders.
   </p>
 
-  <StepButton on:click={gradientDescentStep} />
+  <ButtonContainer>
+    <StepButton on:click={gradientDescentStep} />
+  </ButtonContainer>
   <Plot
     pathsData={parabolaWithSlopeData}
     pointsData={parabolaPoint}
@@ -355,7 +359,9 @@
     could move the slider below the graph and place the ball to the left of 0 and
     observe that the ball will keep going and going further down.
   </p>
-  <StepButton on:click={localGradientDescent} />
+  <ButtonContainer>
+    <StepButton on:click={localGradientDescent} />
+  </ButtonContainer>
   <Plot
     pathsData={localMinimumData}
     pointsData={localPoint}
@@ -621,7 +627,9 @@ x_2
     4 datapoints, batch gradient descent is a fine choice.
   </p>
 
-  <PlayButton f={train} delta={1} />
+  <ButtonContainer>
+    <PlayButton f={train} delta={1} />
+  </ButtonContainer>
   <Mse data={dataMse} {w} {b} />
 
   <h3>Stochastic Gradient Descent</h3>

@@ -5,6 +5,7 @@
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Hightlight from "$lib/Highlight.svelte";
 
@@ -308,8 +309,9 @@
     polygon and pulls the polygons apart. The program could for example look as
     shown in the interactive example below.
   </p>
-
-  <StepButton on:click={handleNormalProgramming} disabled={disabledNormal} />
+  <ButtonContainer>
+    <StepButton on:click={handleNormalProgramming} disabled={disabledNormal} />
+  </ButtonContainer>
   <SvgContainer maxWidth={"800px"}>
     <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -493,7 +495,9 @@
     third iteration the program produces the desired results (after that the
     example is reset).
   </p>
-  <StepButton on:click={handleMLProgramming} disabled={disabledML} />
+  <ButtonContainer>
+    <StepButton on:click={handleMLProgramming} disabled={disabledML} />
+  </ButtonContainer>
   <svg version="1.1" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
     <text x="10" y="20" style="line-height:1.25" xml:space="preserve"
       ><tspan x="0" y="160">Iteration Nr. {step}</tspan></text

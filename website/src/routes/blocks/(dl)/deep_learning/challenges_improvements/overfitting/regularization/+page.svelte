@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
+  import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import Slider from "$lib/Slider.svelte";
   import L2Polynomial from "../_regularization/L2Polynomial.svelte";
@@ -200,7 +201,9 @@
       >{String.raw`\displaystyle \sqrt{x_1^2 + x_2^2} = 1`}</Latex
     >.
   </p>
-  <PlayButton f={moveCircular} delta={100} />
+  <ButtonContainer>
+    <PlayButton f={moveCircular} delta={100} />
+  </ButtonContainer>
   <Plot
     width={500}
     height={500}
@@ -373,7 +376,9 @@
     diamond have a <Latex>L_1</Latex> norm of exactly 1.
   </p>
 
-  <PlayButton f={moveDiamond} delta={100} />
+  <ButtonContainer>
+    <PlayButton f={moveDiamond} delta={100} />
+  </ButtonContainer>
   <Plot
     width={500}
     height={500}
