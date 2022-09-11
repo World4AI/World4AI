@@ -7,6 +7,7 @@
   import YLabel from "$lib/plt/YLabel.svelte"; 
   import Path from "$lib/plt/Path.svelte"; 
   import Legend from "$lib/plt/Legend.svelte"; 
+  import Latex from "$lib/Latex.svelte";
 
   export let data = [
       { x: 5, y: 20 },
@@ -75,7 +76,33 @@
   {#each rectangles as rectangle}
     <Path data={rectangle} />
   {/each}
-  <Legend text="Weight {w.toFixed(2)}" coordinates={{x: 3, y:58}} />
-  <Legend text="Bias {b.toFixed(2)}" coordinates={{x: 3, y:55}} />
-  <Legend text="MSE {mse.toFixed(2)}" coordinates={{x: 3, y:52}} />
+  <Legend text="Weight {w.toFixed(2)}" coordinates={{x: 3, y:55}} />
+  <Legend text="Bias {w.toFixed(2)}" coordinates={{x: 3, y:50}} />
 </Plot>
+<span class="plot-container">
+  <div class="calculations">
+    <p><Latex>{String.raw`w`}</Latex>: {w.toFixed(2)}</p>
+    <p><Latex>{String.raw`b`}</Latex>: {b.toFixed(2)}</p>
+    <p><Latex>{String.raw`MSE`}</Latex>: {mse.toFixed(2)}</p>
+  </div>
+</span>
+
+<style>
+  .plot-container {
+    position: relative;
+  }
+
+  .calculations {
+    padding: 10px 15px;
+    position: absolute;
+    left: 10px;
+    width: 150px;
+    background-color: var(--main-color-4);
+    z-index: 1;
+  }
+
+  .calculations > p {
+    margin: 0;
+    font-size: 15px;
+  }
+</style>

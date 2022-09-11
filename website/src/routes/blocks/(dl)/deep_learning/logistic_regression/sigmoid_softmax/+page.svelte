@@ -1,9 +1,16 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Slider from "$lib/Slider.svelte";
   import Highlight from "$lib/Highlight.svelte";
+
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
 
   const regressionData = [
     [
@@ -186,32 +193,21 @@
     higher probability to belong to the "blue" category and lower values of the
     same feature correspond to a lower probability.
   </p>
-  <Plot
-    pointsData={limitedRegressionData}
-    pathsData={[
-      { x: 0, y: 0 },
-      { x: 10, y: 1 },
-    ]}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 10,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Feature",
-      yLabel: "Label",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: [
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--text-color)",
-      ],
-      numTicks: 6,
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 10]} range={[0, 1]}>
+    <Ticks xTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 
+           yTicks={[0, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15} />
+    <YLabel text="Label" fontSize={15} />
+    <Circle data={limitedRegressionData[0]} />
+    <Circle data={limitedRegressionData[1]} color={"var(--main-color-2)"} />
+    <Path data={
+      [
+        { x: 0, y: 0 },
+        { x: 10, y: 1 },
+      ]} />
+  </Plot>
   <p>
     We could also get into trouble with linear regression and our regression
     line could produce results that are above 1 or below 0, values that can not
@@ -219,28 +215,21 @@
     contains new unforseen features, the linear regression model would break
     apart.
   </p>
-  <Plot
-    pointsData={regressionData}
-    pathsData={[
-      { x: -2, y: -0.2 },
-      { x: 12, y: 1.2 },
-    ]}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -2,
-      maxX: 12,
-      minY: -0.2,
-      maxY: 1.2,
-      xLabel: "Feature",
-      yLabel: "Label",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      xTicks: [-1, 1, 3, 5, 7, 9, 11],
-      yTicks: [-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[-2, 12]} range={[0, 1]}>
+    <Ticks xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} 
+           yTicks={[0, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15} />
+    <YLabel text="Label" fontSize={15} />
+    <Circle data={regressionData[0]} />
+    <Circle data={regressionData[1]} color={"var(--main-color-2)"} />
+    <Path data={
+      [
+        { x: -2, y: -0.2 },
+        { x: 12, y: 1.2 },
+      ]} />
+  </Plot>
   <div class="separator" />
 
   <h2>Threshold Activation</h2>
@@ -265,20 +254,17 @@
       \right.
     `}</Latex
   >
-  <Plot
-    pathsData={threshholdData}
-    pointsData={regressionData}
-    config={{
-      minX: -2,
-      maxX: 12,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Feature",
-      yLabel: "Label",
-      xTicks: [-1, 1, 3, 5, 7, 9, 11],
-      yTicks: [0, 0.2, 0.4, 0.6, 0.8, 1],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[-2, 12]} range={[0, 1]}>
+    <Ticks xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} 
+           yTicks={[0, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15} />
+    <YLabel text="Label" fontSize={15} />
+    <Circle data={regressionData[0]} />
+    <Circle data={regressionData[1]} color={"var(--main-color-2)"} />
+    <Path data={threshholdData} />
+  </Plot>
   <p>
     While this rule perfectly separates the data into the two categories, the
     threshold function is not differentiable. A non differentiable function
@@ -296,19 +282,15 @@
     we faced with the two approaches above.
   </p>
 
-  <Plot
-    pathsData={logisticData}
-    config={{
-      minX: -6,
-      maxX: 6,
-      minY: 0,
-      maxY: 1,
-      xLabel: "x",
-      yLabel: "f(x)",
-      xTicks: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6],
-      yTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[-6, 6]} range={[0, 1]}>
+    <Ticks xTicks={[-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="x" fontSize={10} type="latex" />
+    <YLabel text="f(x)" fontSize={10} x={-2} type="latex"/>
+    <Path data={logisticData} />
+  </Plot>
   <p>
     <Latex>\sigma(x)</Latex> is always bounded between 0 and 1, no matter how large
     or how negative the inputs are. This allows us to interpret the results as probabilities.
@@ -343,22 +325,17 @@
     sliders you can move and rotate the probabilities as much as you want. Try
     to find parameters that would fit the data.
   </p>
-  <Plot
-    pathsData={movingSigmoidData}
-    pointsData={regressionData}
-    config={{
-      minX: -16,
-      maxX: 16,
-      minY: 0,
-      maxY: 1,
-      xLabel: "x",
-      yLabel: "f(x)",
-      xTicks: [
-        -16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16,
-      ],
-      yTicks: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[-16, 16]} range={[0, 1]}>
+    <Ticks xTicks={[-16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="x" fontSize={10} type="latex" />
+    <YLabel text="f(x)" fontSize={10} x={-2} type="latex"/>
+    <Path data={movingSigmoidData} />
+    <Circle data={regressionData[0]} />
+    <Circle data={regressionData[1]} color="var(--main-color-2)" />
+  </Plot>
   <div class="flex-container">
     <div><Latex>w</Latex>: {weight}</div>
     <Slider bind:value={weight} min={-5} max={5} step={0.1} />
@@ -384,28 +361,18 @@
     >. By changing the weights and the bias you can rotate and move the decision
     boundary respectively.
   </p>
-  <Plot
-    pointsData={decisionData}
-    pathsData={decisionPathsData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Feature 1",
-      yLabel: "Feature 2",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: [
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--text-color)",
-      ],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={10}  />
+    <YLabel text="Feature 2" fontSize={10} />
+    <Path data={decisionPathsData} />
+    <Circle data={decisionData[0]} />
+    <Circle data={decisionData[1]} color="var(--main-color-2)" />
+  </Plot>
+
   <div class="flex-container">
     <div><Latex>w_1</Latex>: {decisionW1}</div>
     <Slider bind:value={decisionW1} min={-5} max={5} step={0.01} />

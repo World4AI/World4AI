@@ -4,11 +4,18 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Coin from "../_entropy/Coin.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Entropy from "../_entropy/Entropy.svelte";
   import CrossEntropy from "../_entropy/CrossEntropy.svelte";
   import Slider from "$lib/Slider.svelte";
   import Highlight from "$lib/Highlight.svelte";
+
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte"; 
 
   const notes = [
     "The properties that make the mean squared error a bad choice for classification tasks are discussed in the next section.",
@@ -176,23 +183,16 @@
     information measured in bits. The lower the probability the higher the
     surprise and the information in bits when the event occurs.
   </p>
-  <Plot
-    pathsData={informationData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 10,
-      xLabel: "Probability",
-      yLabel: "Number of Bits",
-      padding: { top: 20, right: 40, bottom: 40, left: 40 },
-      xTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      yTicks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    }}
-  />
+
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 10]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Probability" fontSize={15} />
+    <YLabel text="Number Of Bits" fontSize={15} />
+    <Path data={informationData} />
+  </Plot>
 
   <p>
     Often we are not only interested in the amount of bits that is provided by a
@@ -595,23 +595,16 @@ y^{(1)}, y^{(1)},\cdots y^{(n)}
       >{String.raw`\mathcal{L}`}</Latex
     >: {likelihood.toFixed(5)}
   </p>
-  <Plot
-    pointsData={[{ x: theta, y: likelihood }]}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: 0.00001,
-      maxY: 0.04,
-      xLabel: "Theta",
-      yLabel: "Likelihood",
-      padding: { top: 20, right: 40, bottom: 40, left: 55 },
-      xTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-      yTicks: [0, 0.01, 0.02, 0.03, 0.04],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0.00001, 0.04]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.01, 0.02, 0.03, 0.04]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Theta" fontSize={15} />
+    <YLabel text="Likelihood" fontSize={15} />
+    <Circle data={[{x: theta, y: likelihood}]} />
+  </Plot>
+
   <Slider min={0} max={1} step={0.01} bind:value={theta} />
   <p>
     When you increase <Latex>\theta</Latex> by moving the slider to the right, you
@@ -667,30 +660,16 @@ y^{(1)}, y^{(1)},\cdots y^{(n)}
       >{String.raw`g(f(x)) = \log(f(x))`}</Latex
     >.
   </p>
-  <Plot
-    pathsData={transformData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -7,
-      maxX: 7,
-      minY: -1,
-      maxY: 20,
-      xLabel: "x",
-      yLabel: "Output",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: [
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--text-color)",
-      ],
-      xTicks: [],
-      yTicks: [],
-      numTicks: 5,
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[-7, 7]} range={[-1, 20]}>
+    <Ticks xTicks={[-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]} 
+           yTicks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="x" fontSize={15} />
+    <YLabel text="Output" fontSize={15} />
+    <Path data={transformData[0]}/>
+    <Path data={transformData[1]}/>
+  </Plot>
   <p>
     The original function is the parabola at the top and the transformed
     function is the one at the bottom. As you can see the same x value of 0

@@ -2,26 +2,33 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Slider from "$lib/Slider.svelte";
 
-  let linearData = [[]];
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
+
+  let linearData = [];
   let b = 0;
   let w = 5;
   for (let i = -100; i < 100; i++) {
     let x = i;
     let y = b + w * (x + Math.random() * 20 - 10);
-    linearData[0].push({ x, y });
+    linearData.push({ x, y });
   }
 
-  let nonlinearData = [[]];
+  let nonlinearData = [];
   for (let i = -100; i < 100; i++) {
     let x = i + 1;
     let y = (x + Math.random() * 10 - 10) ** 2;
-    nonlinearData[0].push({ x, y });
+    nonlinearData.push({ x, y });
   }
 
-  let lines = [
+  let line = [
     { x: -100, y: 0 },
     { x: 100, y: 0 },
   ];
@@ -30,11 +37,11 @@
   let estimatedWeight = -100;
 
   function calculatePoints(estimatedBias, estimatedWeight) {
-    let y1 = estimatedBias + estimatedWeight * lines[0].x;
-    let y2 = estimatedBias + estimatedWeight * lines[1].x;
-    lines[0].y = y1;
-    lines[1].y = y2;
-    lines = lines;
+    let y1 = estimatedBias + estimatedWeight * line[0].x;
+    let y2 = estimatedBias + estimatedWeight * line[1].x;
+    line[0].y = y1;
+    line[1].y = y2;
+    line = line;
   }
 
   $: calculatePoints(estimatedBias, estimatedWeight);
@@ -71,24 +78,13 @@
     use the line to predict the target and be relatively confident regarding the
     outcome.
   </p>
-  <Plot
-    pointsData={linearData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -100,
-      maxX: 100,
-      minY: -500,
-      maxY: 500,
-      xLabel: "Feature",
-      yLabel: "Target",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 3,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 11,
-    }}
-  />
+  <Plot maxWidth={800} domain={[-100, 100]} range={[-500, 500]}>
+    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={linearData} radius={3} />
+  </Plot>
+
   <p>
     In contrast the data in the following scatterplot represents a nonlinear
     relationship between the feature and the target. Theoretically there is
@@ -96,24 +92,12 @@
     but there are better alternatives (like neural networks) for non linear
     problems.
   </p>
-  <Plot
-    pointsData={nonlinearData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -100,
-      maxX: 100,
-      minY: 0,
-      maxY: 10000,
-      xLabel: "Feature",
-      yLabel: "Target",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 3,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 11,
-    }}
-  />
+  <Plot maxWidth={800} domain={[-100, 100]} range={[0, 10000]}>
+    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={nonlinearData} radius={3} />
+  </Plot>
   <p>
     From basic math we know, that in the two dimensional space we can draw a
     line using the equation <Latex>y = xw + b</Latex>, where <Latex>x</Latex> is
@@ -155,25 +139,14 @@
     Try to position the line, such that it <Highlight>fits</Highlight> the data as
     good as possible.
   </p>
-  <Plot
-    pointsData={linearData}
-    pathsData={lines}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: -100,
-      maxX: 100,
-      minY: -500,
-      maxY: 500,
-      xLabel: "Feature",
-      yLabel: "Label",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 3,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 11,
-    }}
-  />
+  <Plot maxWidth={800} domain={[-100, 100]} range={[-500, 500]}>
+    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={linearData} radius={3} />
+    <Path data={line} stroke={2}/>
+  </Plot>
+
   <div class="flex-container">
     <div>
       <p><Latex>w</Latex>: {estimatedWeight}</p>

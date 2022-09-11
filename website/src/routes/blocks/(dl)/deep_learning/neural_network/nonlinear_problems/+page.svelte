@@ -1,11 +1,17 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Highlight from "$lib/Highlight.svelte";
   import NeuralNetwork from "../_nonlinear/NeuralNetwork.svelte";
+
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte"; 
+  import Rectangle from "$lib/plt/Rectangle.svelte"; 
 
   let numbers = 50;
   let notes = [
@@ -26,53 +32,34 @@
     }
   }
 
-  let heatmapData = [];
+  let heatmapData = [[], []];
   for (let i = 0; i < numbers; i++) {
     for (let j = 0; j < numbers; j++) {
       let x = i / numbers;
       let y = j / numbers;
-      let classification;
+      let coordinate = {x, y};
       if (x + y > 1) {
-        classification = 0;
+        heatmapData[0].push(coordinate);
       } else {
-        classification = 1;
+        heatmapData[1].push(coordinate);
       }
-      let coordinate = { x, y, class: classification };
-      heatmapData.push(coordinate);
     }
   }
 
-  let heatmapData2 = [];
+  let heatmapData2 = [[], []];
   for (let i = 0; i < numbers; i++) {
     for (let j = 0; j < numbers; j++) {
       let x = i / numbers;
       let y = j / numbers;
-      let classification;
+      let coordinate = {x, y};
       if ((x - 0.5) ** 2 + (y - 0.5) ** 2 > 0.12) {
-        classification = 0;
+        heatmapData2[0].push(coordinate);
       } else {
-        classification = 1;
+        heatmapData2[1].push(coordinate);
       }
-      let coordinate = { x, y, class: classification };
       heatmapData2.push(coordinate);
     }
   }
-
-  let config = {
-    width: 500,
-    height: 500,
-    maxWidth: 600,
-    minX: 0,
-    maxX: 1,
-    minY: 0,
-    maxY: 1,
-    xLabel: "Feature 1",
-    yLabel: "Feature 2",
-    padding: { top: 20, right: 40, bottom: 40, left: 60 },
-    radius: 5,
-    colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
-    heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
-  };
 </script>
 
 <svelte:head>
@@ -105,7 +92,16 @@
     two features. By visually inspecting the dataset, the human brain can
     quickly separate the data by imagining a circle between the two classes.
   </p>
-  <Plot {pointsData} {config} />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <Circle data={pointsData[0]} />
+    <Circle data={pointsData[1]} color="var(--main-color-2)" />
+    <XLabel text="Feature 1" fontSize={15} />
+    <YLabel text="Feature 2" fontSize={15} />
+  </Plot>
   <p>
     If you go back to the logistic regression lecture, you will remember that
     logistic regression produces a linear decision boundary<InternalLink
@@ -117,12 +113,34 @@
     problems. The data below on the other hand clearly depicts a nonlinear
     problem.
   </p>
-  <Plot {pointsData} {heatmapData} {config} />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
+    <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
+    <Circle data={pointsData[0]} />
+    <Circle data={pointsData[1]} color="var(--main-color-2)" />
+    <XLabel text="Feature 1" fontSize={15} />
+    <YLabel text="Feature 2" fontSize={15} />
+  </Plot>
   <p>
     A neural network on the other hand can theoretically generate an adequate
     decision boundary for nonlinear problems.
   </p>
-  <Plot {pointsData} heatmapData={heatmapData2} {config} />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <Rectangle data={heatmapData2[0]} size={9} color="var(--main-color-3)" />
+    <Rectangle data={heatmapData2[1]} size={9} color="var(--main-color-4)" />
+    <Circle data={pointsData[0]} />
+    <Circle data={pointsData[1]} color="var(--main-color-2)" />
+    <XLabel text="Feature 1" fontSize={15} />
+    <YLabel text="Feature 2" fontSize={15} />
+  </Plot>
   <p>
     Most interesting problems in machine learning are nonlinear. Computer vision
     for example is highly nonlinear. Linear and logistic regression are

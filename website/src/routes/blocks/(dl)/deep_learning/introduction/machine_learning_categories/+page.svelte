@@ -1,10 +1,15 @@
 <script>
   import Highlight from "$lib/Highlight.svelte";
   import Table from "$lib/Table.svelte";
-  import Plot from "$lib/Plot.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
   import CartPole from "$lib/reinforcement_learning/CartPole.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
 
   let header = ["Location", "Size", "Price"];
   let data = [
@@ -14,8 +19,7 @@
   ];
 
   //data for unsupervised learning scatterplot
-  let unsupervisedData = [
-    [
+  const category1 = [
       { x: 10, y: 15000 },
       { x: 20, y: 35000 },
       { x: 20, y: 25000 },
@@ -26,8 +30,8 @@
       { x: 33, y: 23000 },
       { x: 40, y: 37000 },
       { x: 27, y: 40000 },
-    ],
-    [
+    ];
+  const category2 =  [
       { x: 110, y: 250000 },
       { x: 100, y: 235000 },
       { x: 90, y: 200000 },
@@ -38,8 +42,7 @@
       { x: 133, y: 723000 },
       { x: 140, y: 457000 },
       { x: 127, y: 440000 },
-    ],
-  ];
+    ];
 </script>
 
 <svelte:head>
@@ -323,25 +326,13 @@
     In the below example we divide the houses into two categories based on size
     and price.
   </p>
-  <Plot
-    pointsData={unsupervisedData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 150,
-      minY: 0,
-      maxY: 1000000,
-      xLabel: "Size",
-      yLabel: "Price",
-      padding: { top: 20, right: 40, bottom: 40, left: 80 },
-      radius: 5,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      xTicks: [0, 50, 100, 150],
-      yTicks: [0, 200000, 400000, 600000, 800000, 1000000],
-    }}
-  />
+  <Plot maxWidth={700} domain={[0, 150]} range={[0, 1000000]} padding={{top: 40, right:10, left: 80, bottom:40 }}>
+    <Ticks xTicks={[0, 50, 100, 150]} yOffset={30} yTicks={[0, 200000, 400000, 600000, 800000, 1000000]}/>
+    <XLabel text="Size" fontSize={15}></XLabel>
+    <YLabel text="Price" fontSize={15}></YLabel>
+    <Circle data={category1} />
+    <Circle data={category2} color={"var(--main-color-2)"} />
+  </Plot>
   <div class="separator" />
 
   <h2>Semi-supervised Learning</h2>

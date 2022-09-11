@@ -13,9 +13,16 @@
   import ForwardBackward from "../_history/ForwardBackward.svelte";
   import Cnn from "../_history/Cnn.svelte";
   import Rnn from "../_history/Rnn.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Table from "$lib/Table.svelte";
   import Relu from "../_history/Relu.svelte";
+  
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
 
   const notes = [
     "The idea and the drawings below were popularized by Andrew Ng in his deep learning coursera course.",
@@ -146,7 +153,7 @@
     },
   ];
 
-  const data = [
+  const category1 =
     [
       { x: 10, y: 12.04 },
       { x: 8, y: 6.95 },
@@ -162,8 +169,8 @@
       { x: 9, y: 9.9 },
       { x: 7, y: 8.2 },
       { x: 6, y: 7.3 },
-    ],
-    [
+    ];
+   const category2 = [
       { x: 10, y: 2.04 },
       { x: 18, y: 6.95 },
       { x: 13, y: 7.58 },
@@ -175,8 +182,7 @@
       { x: 12, y: 6.84 },
       { x: 17, y: 4.82 },
       { x: 15, y: 5.68 },
-    ],
-  ];
+    ];
 
   let andTableData = [
     [0, 0, 0],
@@ -213,46 +219,7 @@
   ];
   let mlpTableHeader = ["Input 1", "Input 2", "OR Output", "AND Output", "XOR"];
 
-  const orData = [
-    [{ x: 0, y: 0 }],
-    [
-      { x: 0, y: 1 },
-      { x: 1, y: 0 },
-      { x: 1, y: 1 },
-    ],
-  ];
-  const andData = [
-    [
-      { x: 0, y: 0 },
-      { x: 0, y: 1 },
-      { x: 1, y: 0 },
-    ],
-    [{ x: 1, y: 1 }],
-  ];
-
-  const xorData = [
-    [
-      { x: 1, y: 1 },
-      { x: 0, y: 0 },
-    ],
-    [
-      { x: 0, y: 1 },
-      { x: 1, y: 0 },
-    ],
-  ];
-  const mlpData = [
-    [
-      { x: 0, y: 0 },
-      { x: 1, y: 1 },
-    ],
-    [
-      { x: 1, y: 0 },
-      { x: 1, y: 0 },
-    ],
-  ];
-
   // data to show performance of dl dependent on amount of data
-
   let commonAlgorithms = [];
   for (let i = 0; i < 100; i++) {
     let x = i;
@@ -486,41 +453,30 @@
     Imagine we have a labeled dataset with two features and two possible
     classes, as indicated in the scatterplot below.
   </p>
-  <Plot
-    pointsData={data}
-    config={{
-      minX: 0,
-      maxX: 20,
-      minY: 0,
-      maxY: 15,
-      xLabel: "Feature 1",
-      yLabel: "Feature 2",
-      xTicks: [0, 5, 10, 15, 20],
-      yTicks: [0, 5, 10, 15],
-    }}
-  />
+  <Plot maxWidth={700} domain={[0, 20]} range={[0, 15]}>
+    <Ticks xTicks={[0, 5, 10, 15, 20]} yTicks={[0, 5, 10, 15]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15}/>
+    <YLabel text="Feature 2" fontSize={15}/>
+    <Circle data={category1} />
+    <Circle data={category2} color={"var(--main-color-2)"} />
+  </Plot>
   <p>
     It is a relatively easy task for a human being to separate the colored
     circles into the two categories. All we have to do is to draw a line that
     perfectly separates the two groups.
   </p>
-  <Plot
-    pointsData={data}
-    pathsData={[
+  <Plot maxWidth={700} domain={[0, 20]} range={[0, 15]}>
+    <Ticks xTicks={[0, 5, 10, 15, 20]} yTicks={[0, 5, 10, 15]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15}/>
+    <YLabel text="Feature 2" fontSize={15}/>
+    <Circle data={category1} />
+    <Circle data={category2} color={"var(--main-color-2)"} />
+    <Path data={[
       { x: 0, y: 0 },
       { x: 20, y: 15 },
-    ]}
-    config={{
-      minX: 0,
-      maxX: 20,
-      minY: 0,
-      maxY: 15,
-      xLabel: "Feature 1",
-      yLabel: "Feature 2",
-      xTicks: [0, 5, 10, 15, 20],
-      yTicks: [0, 5, 10, 15],
-    }}
-  />
+    ]} />
+  </Plot>
+
   <p>
     The perceptron algorithm is designed to find such a line in an automated
     way. In machine learning lingo we also call such a line a <Highlight
@@ -550,23 +506,23 @@
     We can use the perceptron algorithm to draw a decision boundary between the
     two classes.
   </p>
-  <Plot
-    pointsData={orData}
-    pathsData={[
+
+  <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15}/>
+    <YLabel text="Feature 2" fontSize={15}/>
+    <Circle data={[{ x: 0, y: 0 }]} />
+    <Circle data={[
+      { x: 0, y: 1 },
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+    ]} color={"var(--main-color-2)"} />
+    <Path data={[
       { x: 0, y: 0.8 },
       { x: 0.9, y: 0 },
-    ]}
-    config={{
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Input 1",
-      yLabel: "Input 2",
-      xTicks: [0, 1],
-      yTicks: [0, 1],
-    }}
-  />
+    ]} />
+  </Plot>
+
   <p>
     The <Highlight>and</Highlight> gate on the other hand produces an output of 1
     when input 1 <Highlight>and</Highlight>
@@ -574,23 +530,24 @@
   </p>
   <Table data={andTableData} header={andTableHeader} />
   <p>The decision boundary is easily implemented.</p>
-  <Plot
-    pointsData={andData}
-    pathsData={[
+  <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15}/>
+    <YLabel text="Feature 2" fontSize={15}/>
+    <Circle data={
+      [
+        { x: 0, y: 0 },
+        { x: 0, y: 1 },
+        { x: 1, y: 0 },
+      ]
+    } />
+    <Circle data={[{ x: 1, y: 1 }]} color={"var(--main-color-2)"} />
+    <Path data={[
       { x: 0.2, y: 1 },
       { x: 1, y: 0.2 },
-    ]}
-    config={{
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Input 1",
-      yLabel: "Input 2",
-      xTicks: [0, 1],
-      yTicks: [0, 1],
-    }}
-  />
+    ]} />
+  </Plot>
+
   <p>
     Marvin Minsky and Seymour Papert published a book named "Perceptrons" <InternalLink
       type="reference"
@@ -605,19 +562,23 @@
     If you try to separate the data by drawing a single line, you will come to
     the conclusion, that it is impossible.
   </p>
-  <Plot
-    pointsData={xorData}
-    config={{
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Input 1",
-      yLabel: "Input 2",
-      xTicks: [0, 1],
-      yTicks: [0, 1],
-    }}
-  />
+  <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15}/>
+    <YLabel text="Feature 2" fontSize={15}/>
+    <Circle data={
+      [
+        { x: 1, y: 1 },
+        { x: 0, y: 0 },
+      ]
+    } />
+    <Circle data={
+      [
+        { x: 0, y: 1 },
+        { x: 1, y: 0 },
+      ]
+    } color={"var(--main-color-2)"} />
+  </Plot>
   <p>
     Yet you can separate the data by using a hidden layer. Essentially you
     combine the output from the <em>or</em> gate with the output from the
@@ -625,23 +586,29 @@
   </p>
   <Table data={mlpTableData} header={mlpTableHeader} />
   <p>That makes the data separable with a single line.</p>
-  <Plot
-    pointsData={mlpData}
-    pathsData={[
+
+  <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
+    <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15}/>
+    <XLabel text="OR Output" fontSize={15}/>
+    <YLabel text="AND Output" fontSize={15}/>
+    <Circle data={
+      [
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+      ]
+    } />
+    <Circle data={
+      [
+        { x: 1, y: 0 },
+        { x: 1, y: 0 },
+      ]
+    } color={"var(--main-color-2)"} />
+    <Path data={[
       { x: 0.2, y: 0 },
-      { x: 1, y: 0.5 },
-    ]}
-    config={{
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "OR Output",
-      yLabel: "AND Output",
-      xTicks: [0, 1],
-      yTicks: [0, 1],
-    }}
-  />
+      { x: 1, y: 0.5 }
+    ]} />
+  </Plot>
+
   <div class="separator" />
 
   <h2>First AI Winter</h2>
@@ -799,7 +766,9 @@
     the activation function retains positive signals, while the function does not
     become active for negative signals.
   </p>
-  <Relu />
+  <SvgContainer maxWidth={"700px"}>
+    <Relu />
+  </SvgContainer>
 
   <p>
     Why this type of function is advantageous will be discussed in a dedicated
@@ -830,47 +799,23 @@
     improvement is almost flat.
   </p>
 
-  <Plot
-    pathsData={commonAlgorithms}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 600,
-      minX: 0,
-      maxX: 100,
-      minY: 0,
-      maxY: 6,
-      xLabel: "Amount Of Data",
-      yLabel: "ML Performance",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      xTicks: [0],
-      yTicks: [0],
-    }}
-  />
+  <Plot maxWidth={700} domain={[0, 100]} range={[0, 6]}>
+    <Ticks xTicks={[0]} yTicks={[0]} />
+    <XLabel text="Amount Of Data" fontSize={15}/>
+    <YLabel text="ML Performance" fontSize={15}/>
+    <Path data={commonAlgorithms} />
+  </Plot>
   <p>
     Deep learning algorithms on the other hand have a much steeper curve. The
     more data you provide, the better the overall performance of the algorithm.
     Deep learning scales extremely well with the amount of data.
   </p>
-  <Plot
-    pathsData={dlAlgorithms}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 600,
-      minX: 0,
-      maxX: 100,
-      minY: 0,
-      maxY: 6,
-      xLabel: "Amount Of Data",
-      yLabel: "DL Performance",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      xTicks: [0],
-      yTicks: [0],
-    }}
-  />
+  <Plot maxWidth={700} domain={[0, 100]} range={[0, 6]}>
+    <Ticks xTicks={[0]} yTicks={[0]} />
+    <XLabel text="Amount Of Data" fontSize={15}/>
+    <YLabel text="DL Performance" fontSize={15}/>
+    <Path data={dlAlgorithms} />
+  </Plot>
 
   <p>
     When ImageNet became publicly available to researchers, that potential to

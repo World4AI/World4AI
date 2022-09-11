@@ -1,15 +1,22 @@
 <script>
   import Container from "$lib/Container.svelte";
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
-  import Plot from "$lib/Plot.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import Architecture from "../_geometric/Architecture.svelte";
   import Transformation from "../_geometric/Transformation.svelte";
   import Latex from "$lib/Latex.svelte";
 
-  // transformations
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte"; 
+  import Rectangle from "$lib/plt/Rectangle.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
 
+  // transformations
   const alpha = 0.5;
   const sizes = [2, 4, 2, 1];
 
@@ -113,23 +120,20 @@
     }
   }
 
-  let heatmapData = [];
+  let heatmapData = [[], []];
   //recalculate the heatmap based on the current weights of the neural network
   function calculateHeatmap() {
-    heatmapData = [];
+    heatmapData = [[], []];
     let outputs = nn.predict(heatmapCoordinates);
     heatmapCoordinates.forEach((inputs, idx) => {
-      let label;
+      let point = { x: inputs[0], y: inputs[1] };
       if (outputs[idx] >= 0.5) {
-        label = 1;
+        heatmapData[0].push(point);
       } else {
-        label = 0;
+        heatmapData[1].push(point);
       }
-      let point = { x: inputs[0], y: inputs[1], class: label };
-      heatmapData.push(point);
     });
   }
-
   calculateHeatmap();
 
   //generate graphs
@@ -145,21 +149,6 @@
       lossData = lossData;
     }
   }
-  let config = {
-    width: 500,
-    height: 500,
-    maxWidth: 600,
-    minX: 0,
-    maxX: 1,
-    minY: 0,
-    maxY: 1,
-    xLabel: "Feature 1",
-    yLabel: "Feature 2",
-    padding: { top: 20, right: 40, bottom: 40, left: 60 },
-    radius: 5,
-    colors: ["var(--main-color-1)", "var(--main-color-2)", "var(--text-color)"],
-    heatmapColors: ["var(--main-color-3)", "var(--main-color-4)"],
-  };
 
   let runs = 0;
 
@@ -329,10 +318,30 @@
   </ButtonContainer>
   <div class="flex-container">
     <div class="left-container">
-      <Plot {pointsData} {heatmapData} {config} />
+      <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+        <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               xOffset={-15} 
+               yOffset={15}/>
+        <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
+        <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
+        <Circle data={pointsData[0]} />
+        <Circle data={pointsData[1]} color="var(--main-color-2)" />
+        <XLabel text="Feature 1" fontSize={15} />
+        <YLabel text="Feature 2" fontSize={15} />
+      </Plot>
     </div>
     <div class="right-container">
-      <Plot pointsData={pointsData2} {config} />
+      <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+        <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               xOffset={-15} 
+               yOffset={15}/>
+        <Circle data={pointsData2[0]} />
+        <Circle data={pointsData2[1]} color="var(--main-color-2)" />
+        <XLabel text="Feature 1" fontSize={15} />
+        <YLabel text="Feature 2" fontSize={15} />
+      </Plot>
     </div>
   </div>
 </Container>

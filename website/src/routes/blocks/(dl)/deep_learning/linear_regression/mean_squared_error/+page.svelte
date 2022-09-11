@@ -1,26 +1,27 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Plot from "$lib/Plot.svelte";
   import Slider from "$lib/Slider.svelte";
   import Latex from "$lib/Latex.svelte";
   import Mse from "../_loss/Mse.svelte";
   import Highlight from "$lib/Highlight.svelte";
 
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
+
   let data = [
-    [
-      { x: 5, y: 20 },
-      { x: 10, y: 40 },
-      { x: 35, y: 15 },
-      { x: 45, y: 59 },
-    ],
+    { x: 5, y: 20 },
+    { x: 10, y: 40 },
+    { x: 35, y: 15 },
+    { x: 45, y: 59 },
   ];
 
   let w = 1;
   let b = 0;
-  let mse = 0;
-  let regressionLine = [];
-  let lines = [];
-  let rectangles = [];
 
   let staticRegressionLine = [];
   let staticLines = [];
@@ -31,15 +32,11 @@
     let y1 = b + w * x1;
     let x2 = 60;
     let y2 = b + w * x2;
-    let line = [
-      { x: x1, y: y1 },
-      { x: x2, y: y2 },
-    ];
 
-    staticRegressionLine.push(line);
-    staticLines.push(line);
+    staticRegressionLine.push({x: x1, y: y1});
+    staticRegressionLine.push({x: x2, y: y2});
 
-    data[0].forEach((point) => {
+    data.forEach((point) => {
       //lines
       let x1 = point.x;
       let x2 = point.x;
@@ -81,54 +78,30 @@
     To justify the use of a particular loss function, we will use only a dataset
     with 4 samples, as shown in the illustration below.
   </p>
-  <Plot
-    pointsData={data}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 600,
-      minX: 0,
-      maxX: 60,
-      minY: 0,
-      maxY: 60,
-      xLabel: "Feature",
-      yLabel: "Target",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: [
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--text-color)",
-      ],
-      xTicks: [],
-      yTicks: [],
-      numTicks: 7,
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 60]} range={[0, 60]}>
+    <Ticks xTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           yTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={data} radius={5} />
+  </Plot>
   <p>
     We will start by drawing a 45 degree regression line from the (0,0) to the
     (60, 60) position. While this looks "OK", we do not have a way to compare
     that particular line with any other lines.
   </p>
-  <Plot
-    pointsData={data}
-    pathsData={staticRegressionLine}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 600,
-      minX: 0,
-      maxX: 60,
-      minY: 0,
-      maxY: 60,
-      xLabel: "Feature",
-      yLabel: "Target",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 7,
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 60]} range={[0, 60]}>
+    <Ticks xTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           yTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={data} radius={5} />
+    <Path data={staticRegressionLine} />
+  </Plot>
 
   <p>
     The first step is to calculate the error between the actual target
@@ -140,25 +113,19 @@
     > as the error. Visually we can draw that error as the vertical line that connects
     the regression line with the true target.
   </p>
-  <Plot
-    pointsData={data}
-    pathsData={staticLines}
-    config={{
-      width: 500,
-      height: 500,
-      maxWidth: 600,
-      minX: 0,
-      maxX: 60,
-      minY: 0,
-      maxY: 60,
-      xLabel: "Feature",
-      yLabel: "Target",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: ["var(--main-color-1)", "var(--main-color-2)"],
-      numTicks: 7,
-    }}
-  />
+  <Plot width={500} height={500} maxWidth={600} domain={[0, 60]} range={[0, 60]}>
+    <Ticks xTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           yTicks={[0, 10, 20, 30, 40, 50, 60]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature" fontSize={15}/>
+    <YLabel text="Target" fontSize={15}/>
+    <Circle data={data} radius={5} />
+    <Path data={staticRegressionLine} />
+    {#each staticLines as line}
+      <Path data={line} />
+    {/each}
+  </Plot>
   <p>
     Depending on the location and rotation of the regression line <Latex
       >{String.raw`\hat{y} = xw + b`}</Latex

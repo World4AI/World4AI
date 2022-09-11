@@ -1,9 +1,18 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Plot from "$lib/Plot.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
+
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte"; 
+  import Legend from "$lib/plt/Legend.svelte"; 
+  import Text from "$lib/plt/Text.svelte"; 
 
   //Difference in Gradients Demonstration
   let graphDataLoss = [];
@@ -218,31 +227,21 @@
     squared error, while the blue plot depicts the cross-entropy. There are two
     plots for each of the losses, one for each value of the target.
   </p>
-  <Plot
-    pathsData={graphDataLoss}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 3,
-      xLabel: "Predicted Probability",
-      yLabel: "Error",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      xTicks: [],
-      yTicks: [0, 0.5, 1, 1.5, 2, 2.5, 3],
-      numTicks: 5,
-      pathsColors: [
-        "var(--main-color-1)",
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--main-color-2)",
-      ],
-    }}
-  />
+
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 3]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 1, 2, 3]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Predicted Probability" fontSize={15} />
+    <YLabel text="Error" fontSize={15} />
+    <Path data={graphDataLoss[0]} color="var(--main-color-1)" />
+    <Path data={graphDataLoss[1]} color="var(--main-color-1)"/>
+    <Path data={graphDataLoss[2]} color="var(--main-color-2)"/>
+    <Path data={graphDataLoss[3]} color="var(--main-color-2)"/>
+    <Legend coordinates={{x: 0.3, y: 2.8}} legendColor="var(--main-color-2)" text="Cross Entropy"/>
+    <Legend coordinates={{x: 0.3, y: 2.5}} legendColor="var(--main-color-1)" text="Mean Squared Error"/>
+  </Plot>
   <p>
     The mean squared error and the cross-entropy start at the same position, but
     the difference in errors starts to grow as the predicted probability starts
@@ -259,31 +258,20 @@
     mean squared error are linear, the cross-entropy derivatives grow
     exponentially when the quality of predictions deteriorates.
   </p>
-  <Plot
-    pathsData={graphGradLoss}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: -10,
-      maxY: 10,
-      xLabel: "Predicted Probability",
-      yLabel: "Derivative",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      xTicks: [],
-      yTicks: [],
-      numTicks: 5,
-      pathsColors: [
-        "var(--main-color-1)",
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--main-color-2)",
-      ],
-    }}
-  />
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[-10, 10]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Predicted Probability" fontSize={15} />
+    <YLabel text="Derivative" fontSize={15} />
+    <Path data={graphGradLoss[0]} color="var(--main-color-1)" />
+    <Path data={graphGradLoss[1]} color="var(--main-color-1)"/>
+    <Path data={graphGradLoss[2]} color="var(--main-color-2)"/>
+    <Path data={graphGradLoss[3]} color="var(--main-color-2)"/>
+    <Legend coordinates={{x: 0.3, y: 8}} legendColor="var(--main-color-2)" text="Cross Entropy"/>
+    <Legend coordinates={{x: 0.3, y: 6}} legendColor="var(--main-color-1)" text="Mean Squared Error"/>
+  </Plot>
   <p>
     The exponential growth of derivatives implies, that the gradient descent
     algorithm will take much larger steps, when the classification predictions
@@ -399,56 +387,25 @@
   <ButtonContainer>
     <PlayButton f={train} delta={100} />
   </ButtonContainer>
-  <div class="parameters yellow">
-    <p><Latex>L</Latex>: {crossEntropy.toFixed(2)}</p>
-    <p><Latex>w_1</Latex>: {w1.toFixed(2)}</p>
-    <p><Latex>w_2</Latex>: {w2.toFixed(2)}</p>
-    <p><Latex>b</Latex>: {b.toFixed(2)}</p>
-  </div>
-  <Plot
-    {pointsData}
-    {pathsData}
-    config={{
-      width: 500,
-      height: 250,
-      maxWidth: 1000,
-      minX: 0,
-      maxX: 1,
-      minY: 0,
-      maxY: 1,
-      xLabel: "Feature 1",
-      yLabel: "Feature 2",
-      padding: { top: 20, right: 40, bottom: 40, left: 60 },
-      radius: 5,
-      colors: [
-        "var(--main-color-1)",
-        "var(--main-color-2)",
-        "var(--text-color)",
-      ],
-    }}
-  />
+
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1.2]}>
+    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+           xOffset={-15} 
+           yOffset={15}/>
+    <XLabel text="Feature 1" fontSize={15} />
+    <YLabel text="Feature 2" fontSize={15} />
+    <Path data={pathsData} />
+    <Circle data={pointsData[0]}/>
+    <Circle data={pointsData[1]} color={"var(--main-color-2)"}/>
+    <Text text="L: {crossEntropy.toFixed(2)}" x={0} y={1.4} />
+    <Text text="w1: {w1.toFixed(2)}" x={0} y={1.3} />
+    <Text text="w2: {w1.toFixed(2)}" x={0} y={1.2} />
+    <Text text="b: {b.toFixed(2)}" x={0} y={1.1} />
+  </Plot>
   <p>
     The gradient descent algorithm learns to separate the data in a matter of
     seconds.
   </p>
   <div class="separator" />
 </Container>
-
-<style>
-  .parameters {
-    width: 20%;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-  }
-
-  .parameters p {
-    margin: 0;
-    border-bottom: 1px dashed black;
-  }
-
-  .flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-</style>

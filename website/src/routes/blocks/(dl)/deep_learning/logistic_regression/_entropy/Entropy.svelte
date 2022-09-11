@@ -1,7 +1,13 @@
 <script>
-  import Plot from "$lib/Plot.svelte";
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
+  import Text from "$lib/plt/Text.svelte"; 
   import Slider from "$lib/Slider.svelte";
-  import Latex from "$lib/Latex.svelte";
+
   export let p = 0.5;
   let entropy = 0;
   $: if (p === 0 || p === 1) {
@@ -20,59 +26,17 @@
   }
 </script>
 
-<Plot
-  {pathsData}
-  {pointsData}
-  config={{
-    minX: 0,
-    maxX: 1,
-    minY: 0,
-    maxY: 1.05,
-    xLabel: "p(x)",
-    yLabel: "Entropy",
-    padding: { top: 20, right: 40, bottom: 40, left: 50 },
-    xTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    yTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-  }}
-/>
-<div class="parameters yellow">
-  <div class="flex">
-    <div class="left">
-      <p><strong>Probability Heads</strong> <Latex>p(x)</Latex>:</p>
-      <p><strong>Probability Tails</strong> <Latex>1-p(x)</Latex>:</p>
-      <p><strong>Entropy</strong> <Latex>H(x)</Latex>:</p>
-    </div>
-    <div class="right">
-      <p><strong>{p.toFixed(3)}</strong></p>
-      <p><strong>{(1 - p).toFixed(3)}</strong></p>
-      <p><strong>{entropy.toFixed(5)}</strong></p>
-    </div>
-  </div>
-</div>
+<Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1]}>
+ <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+        yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+        xOffset={-15} 
+        yOffset={15}/>
+ <XLabel text="Probability" fontSize={15} />
+ <YLabel text="Entropy" fontSize={15} />
+ <Path data={pathsData} />
+ <Circle data={pointsData} />
+ <Text text="Probability Heads: {p.toFixed(3)}" x=0.2 y=0.6/>
+ <Text text="Probability Tails: {(1-p).toFixed(3)}" x=0.2 y=0.5/>
+ <Text text="Entropy: {entropy.toFixed(5)}" x=0.2 y=0.4/>
+</Plot>
 <Slider min={0} max={1} step={0.001} bind:value={p} />
-
-<style>
-  .parameters {
-    width: 50%;
-    padding: 5px 10px;
-  }
-
-  div p {
-    margin: 0;
-    border-bottom: 1px solid black;
-  }
-
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    flex-grow: 1;
-    margin-right: 20px;
-  }
-
-  .right {
-    flex-basis: 40px;
-  }
-</style>

@@ -2,11 +2,20 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
-  import Plot from "$lib/Plot.svelte";
+  
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import BackwardPass from "../_backward/BackwardPass.svelte";
+
+  //plotting library
+  import Plot from "$lib/plt/Plot.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte"; 
+  import XLabel from "$lib/plt/XLabel.svelte"; 
+  import YLabel from "$lib/plt/YLabel.svelte"; 
+  import Circle from "$lib/plt/Circle.svelte"; 
+  import Rectangle from "$lib/plt/Rectangle.svelte"; 
+  import Path from "$lib/plt/Path.svelte"; 
 
   const alpha = 0.5;
   const sizes = [2, 4, 2, 1];
@@ -95,20 +104,18 @@
     }
   }
 
-  let heatmapData = [];
+  let heatmapData = [[], []];
   //recalculate the heatmap based on the current weights of the neural network
   function calculateHeatmap() {
-    heatmapData = [];
+    heatmapData = [[], []];
     let outputs = nn.predict(heatmapCoordinates);
     heatmapCoordinates.forEach((inputs, idx) => {
-      let label;
+      let point = { x: inputs[0], y: inputs[1] };
       if (outputs[idx] >= 0.5) {
-        label = 1;
+        heatmapData[0].push(point);
       } else {
-        label = 0;
+        heatmapData[1].push(point);
       }
-      let point = { x: inputs[0], y: inputs[1], class: label };
-      heatmapData.push(point);
     });
   }
 
@@ -538,7 +545,16 @@
     Remember that our original goal was to solve the non linear problem of the
     below kind.
   </p>
-  <Plot {pointsData} {config} />
+   <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+     <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+            yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+            xOffset={-15} 
+            yOffset={15}/>
+     <Circle data={pointsData[0]} />
+     <Circle data={pointsData[1]} color="var(--main-color-2)" />
+     <XLabel text="Feature 1" fontSize={15} />
+     <YLabel text="Feature 2" fontSize={15} />
+   </Plot>
   <p>
     In the example below you can observe how the decision boundary moves when
     you use backpropagation. Before you move to that example, we have to warn
@@ -567,34 +583,29 @@
   </ButtonContainer>
   <div class="flex-container">
     <div class="left-container">
-      <Plot {pointsData} {heatmapData} {config} />
+      <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
+        <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               xOffset={-15} 
+               yOffset={15}/>
+        <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
+        <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
+        <Circle data={pointsData[0]} />
+        <Circle data={pointsData[1]} color="var(--main-color-2)" />
+        <XLabel text="Feature 1" fontSize={15} />
+        <YLabel text="Feature 2" fontSize={15} />
+      </Plot>
     </div>
     <div class="right-container">
-      <Plot
-        pathsData={lossData}
-        config={{
-          width: 500,
-          height: 500,
-          maxWidth: 600,
-          minX: 0,
-          maxX: 10000,
-          minY: 0,
-          maxY: 1,
-          xLabel: "Epochs",
-          yLabel: "Cross-Entropy Loss",
-          padding: { top: 20, right: 40, bottom: 40, left: 60 },
-          radius: 5,
-          colors: [
-            "var(--main-color-1)",
-            "var(--main-color-2)",
-            "var(--text-color)",
-          ],
-          xTicks: [
-            0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000,
-          ],
-          yTicks: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-        }}
-      />
+      <Plot width={500} height={500} maxWidth={600} domain={[0, 10000]} range={[0, 1]}>
+        <Ticks xTicks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]} 
+               yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
+               xOffset={-15} 
+               yOffset={15}/>
+        <XLabel text="Feature 1" fontSize={15} />
+        <YLabel text="Feature 2" fontSize={15} />
+        <Path data={lossData} />
+      </Plot>
     </div>
   </div>
   <div class="separator" />
