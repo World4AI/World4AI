@@ -591,13 +591,33 @@ const dl = [
           },
         ]
     },
-  /*
     {
-        name: 'Word Embeddings',
-        link: '/blocks/deep_learning/word_embeddings',
-        links: [
+        name: 'Attention',
+        link: '/blocks/deep_learning/attention',
+        links: [ 
+          {
+            name: 'Bahdanau Attention',
+            link: '/blocks/deep_learning/attention/bahdanau_attention',
+          },
+          {
+            name: 'Transformer',
+            link: '/blocks/deep_learning/attention/transformer',
+          },
+          {
+            name: 'BERT',
+            link: '/blocks/deep_learning/attention/bert',
+          },
+          {
+            name: 'GPT',
+            link: '/blocks/deep_learning/attention/gpt',
+          },
+          {
+            name: 'Vision Transformer',
+            link: '/blocks/deep_learning/attention/vision_transformer',
+          },
         ]
     },
+  /*
     {
         name: 'Generative Models',
         link: '/blocks/deep_learning/generative_models',
@@ -621,28 +641,6 @@ const dl = [
           {
             name: 'Neural Style Transfer',
             link: '/blocks/deep_learning/generative_models/diffusion_models',
-          },
-        ]
-    },
-    {
-        name: 'Attention',
-        link: '/blocks/deep_learning/attention',
-        links: [ 
-          {
-            name: 'RNNs with Attention',
-            link: '/blocks/deep_learning/attention/rnn_attention',
-          },
-          {
-            name: 'Transformer',
-            link: '/blocks/deep_learning/attention/transformer',
-          },
-          {
-            name: 'BERT',
-            link: '/blocks/deep_learning/attention/bert',
-          },
-          {
-            name: 'GPT',
-            link: '/blocks/deep_learning/attention/gpt',
           },
         ]
     },
