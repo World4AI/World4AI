@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import {draw} from "svelte/transition";
   /* data should have the format 
   [
     { x: 50, y: 10 },
@@ -10,6 +11,7 @@
   export let data;
   export let dashed = false;
   export let moving = false;
+  export let drawLine = false;
   export let color = "black";
   export let strokeWidth = 1;
   export let strokeDashArray = "2 1";
@@ -18,6 +20,8 @@
   export let showMarker = true;
   export let markerWidth = 4; 
   export let markerHeight = 3;
+
+  export let inDrawParams = {delay: 0};
 
   let offset = 0;
   onMount(() => {
@@ -57,13 +61,26 @@
 </marker>
 
 {#if path}
-  <path
-    d={path}
-    stroke={color}
-    stroke-dasharray={dashed ? strokeDashArray : "none"}
-    stroke-dashoffset={offset}
-    fill="none"
-    stroke-width={strokeWidth}
-    marker-end={showMarker ? "url(#triangle)" : "none"}
-  />
+  {#if drawLine}
+    <path
+      d={path}
+      in:draw={inDrawParams}
+      stroke={color}
+      stroke-dasharray={dashed ? strokeDashArray : "none"}
+      stroke-dashoffset={offset}
+      fill="none"
+      stroke-width={strokeWidth}
+      marker-end={showMarker ? "url(#triangle)" : "none"}
+    />
+  {:else}
+    <path
+      d={path}
+      stroke={color}
+      stroke-dasharray={dashed ? strokeDashArray : "none"}
+      stroke-dashoffset={offset}
+      fill="none"
+      stroke-width={strokeWidth}
+      marker-end={showMarker ? "url(#triangle)" : "none"}
+    />
+  {/if}
 {/if}
