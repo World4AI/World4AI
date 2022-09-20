@@ -6,6 +6,7 @@
   import Latex from "$lib/Latex.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte" 
+  import PlayButton from "$lib/button/PlayButton.svelte";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -21,19 +22,36 @@
         pages: "",
         volume: "30",
         issue: "",
+    }, 
+    {
+        author: "Ba, Jimmy and Kiros, Jamie and Hinton, Geoffrey",
+        title: "Layer Normalization",
+        year: "2016",
     }
   ]
   
   const sentence = ["what", "is", "your", "name"];
   let showRnnMovement = false;
   let showTransformerMovement = false;
+
+  let positionwiseFFIdxActive = 0;
+  let f = () => {
+      positionwiseFFIdxActive = (positionwiseFFIdxActive+1) % 4;
+    }
 </script>
+
+<svelte:head>
+  <title>World4AI | Deep Learning | Transformer</title>
+  <meta
+    name="description"
+    content="The transformer architecture has produce state of the art results in natural language processing, computer vision and much more. The idea of the transformer is a so called self-attention, without using any reccurence."
+  />
+</svelte:head>
 
 <h1>Transformer</h1>
 <div class="separator" />
 
 <Container>
-  <p>inspired by https://jalammar.github.io/illustrated-transformer/</p>
   <p>Most deep learning researchers and practitioners know the importance of the year 2017. In this year one of the most seminal papers in natural language processing was released by a team at Google<InternalLink type="reference" id={1} />. The title of the paper was "Attention is All you Need". We can start to guess some of the contents of the paper without actually reading the paper. At the time of release most state of the art nlp models used recurrent neural networks with attention mechanisms. The authors argued that recurrent neural networks are actually unnecessary, attention on the other hand is key.
   <p>But why was it so important to get rid of recurrence? Think about how recurrent neural networks work. In order for the model to process the next token in a sequence, it has to have access to the hidden state that is based on all the previous tokens. The tokens in a sequence are processed one at a time. That makes it really hard to parallelize the computations on the GPU. </p>
   <ButtonContainer>
@@ -263,30 +281,179 @@
   <div class="separator" />
 
   <h2>Position-wise Feed-Forward Networks</h2>
+  <p>The encoder and decoder apply a so called position-wise feed-forward neural network. In essence that means that the same network, with the same weights is applied to each position (each embedding vector in the sequence) individually. Each embedded word in the sequence is passed though the network without interacting with any other word.</p>
+  <p>The position-wise network is a two-layer neural network, that takes an embedding of size 512, increases the dimensionality to 2048 in the first linear layer, applies a ReLU activation function, followed again by a linear layer that transforms the embeddings back to lengths 512.</p>
+
+  <ButtonContainer><PlayButton {f}></PlayButton></ButtonContainer>
+  <SvgContainer maxWidth={"600px"}>
+    <svg viewBox="0 0 500 250"> 
+      {#each sentence as word, idx}
+        <!-- words -->
+        <Block x={70 + 120*idx} y={230} width={90} height={30} fontSize={20} text={word} color="var(--main-color-2)" />
+        <!-- embeddings -->
+        {#each Array(5) as  _, embeddingIdx}
+          {#if idx === positionwiseFFIdxActive}
+            <Arrow data={[{x: 40 + 120*idx + embeddingIdx*15, y: 195}, {x: 220+embeddingIdx*15, y: 130}]} dashed={true} strokeDashArray="2 2" /> 
+          {/if}
+          <Block x={40 + 120*idx + embeddingIdx*15} y={200} width={10} height={10} fontSize={20} text={""} color="var(--main-color-2)" />
+        {/each}
+      {/each}
+      <!-- neural network -->
+      {#each Array(5) as  _, neuronIdx1}
+        <Block x={220 + neuronIdx1*15} y={125} width={10} height={10} fontSize={20} text={""} color="var(--main-color-1)" />
+        <Block x={220 + neuronIdx1*15} y={15} width={10} height={10} fontSize={20} text={""} color="var(--main-color-1)" />
+      {/each}
+      {#each Array(8) as  _, neuronIdx1}
+        <Block x={195 + neuronIdx1*15} y={70} width={10} height={10} fontSize={20} text={""} color="var(--main-color-1)" />
+      {/each}
+    </svg>
+  </SvgContainer>
   <div class="separator" />
 
-  <h2>Encoding Layer</h2>
+  <h2>Encoder Layer</h2>
+  <p>The encoder layer is essentially just a comination of a multihead attention and position-wise feed-forward neural network. Both sublayers make up an encoder layer, that is repeated N times. Each encoder layer has its own weights and biases, so more layers requires more vram. In the original implementation 6 stacked encoder layers were used.</p>
+
+  <SvgContainer  maxWidth="500px">
+    <svg viewBox="0 0 400 400">
+      <Block x={200} y={200} width={200}  height={350} text={""} fontSize={20} color="var(--main-color-1)" />
+      <Block x={350} y={130} width={30}  height={30} text={"Nx"} fontSize={20} color="var(--main-color-1)" />
+
+      <!-- 3 arrows -->
+      <Arrow data={[{x: 200, y: 400}, {x: 200, y: 325}]} strokeWidth={2}/>
+      <Arrow data={[{x: 200, y: 400}, {x: 200, y: 340}, {x: 140, y: 340}, {x: 140, y: 325}]} strokeWidth={2}/>
+      <Arrow data={[{x: 200, y: 400}, {x: 200, y: 340}, {x: 260, y: 340}, {x: 260, y: 325}]} strokeWidth={2}/>
+
+      <!-- first skip connection -->
+      <Arrow data={[{x: 200, y: 400}, {x: 200, y: 360}, {x: 50, y: 360}, {x: 50, y: 250}, {x: 115, y: 250}]} strokeWidth={2}/>
+
+      <!-- connect attention to feed forward -->
+      <Arrow data={[{x: 200, y: 300}, {x: 200, y: 175}]} strokeWidth={2}/>
+
+      <!-- second skip connection -->
+      <Arrow data={[{x: 200, y: 200}, {x: 50, y: 200}, {x: 50, y: 100}, {x: 115, y: 100}]} strokeWidth={2}/>
+
+      <!-- connect fc to next layer-->
+      <Arrow data={[{x: 200, y: 150}, {x: 200, y: 10}]} strokeWidth={2}/>
+
+      <!-- encoder components -->
+      <Block x={200} y={100} width={150}  height={30} text={"Add & Norm"} fontSize={15} color="var(--main-color-1)" />
+      <Block x={200} y={150} width={150}  height={30} text={"P.w. Feed Forward"} fontSize={15} color="var(--main-color-1)" />
+
+      <Block x={200} y={250} width={150}  height={30} text={"Add & Norm"} fontSize={15} color="var(--main-color-1)" />
+      <Block x={200} y={300} width={150}  height={30} text={"Multihead Atention"} fontSize={15} color="var(--main-color-1)" />
+    </svg>
+  </SvgContainer>
+
+  <p>After both sublayers we use an "Add & Norm" block. The "Add" component indicates that we are using skip connections in order to mitigate vanishing gradients and stabilize training. The "Norm" part indicates, that we normalize the values, before we send the results to the next layer or sub-layer. In the original paper the authors used a so called layer normalization <InternalLink type="reference" id={2}/>. Unlike batch normalization, when we use layer norm we do not calculate the mean and the standard deviation for the same features over the different batches, but over the different features within the same batch.</p>
+  <p>Assuming we use a batch size of 5 and 10 features, the two approaches would differ in the following way.</p>
+  <SvgContainer  maxWidth="500px">
+    <svg viewBox="0 0 270 100">
+      <Block x={30} y={10} width={50} height={10} text="Batch Norm"/>  
+      {#each Array(5) as _, batchIdx}
+        {#each Array(10) as _, featureIdx}
+          <Block x={10+12*featureIdx} y={40+12*batchIdx} width={10} height={10} color={featureIdx===0 ? "var(--main-color-1)" : "none"} />  
+        {/each}
+      {/each}
+
+      <Block x={170} y={10} width={50} height={10} text="Layer Norm"/>  
+      {#each Array(5) as _, batchIdx}
+        {#each Array(10) as _, featureIdx}
+          <Block x={150+12*featureIdx} y={40+12*batchIdx} width={10} height={10} color={batchIdx===0 ? "var(--main-color-1)" : "none"}/>  
+        {/each}
+      {/each}
+    </svg>
+  </SvgContainer>
+  <p>Batch normalization does not work very well with text (for example due to different sentence length), so layer normalization is usually preferred in that case. For computer vision batch norm is still king.</p>
   <div class="separator" />
   
-  <h2>Decoding Layer</h2>
+  <h2>Decoder Layer</h2>
+  <p>The decoder layer is also stacks mulihead-attention and positoin-wise feed forward, but the implementation details are different. </p>
+  <SvgContainer  maxWidth="500px">
+    <svg viewBox="0 0 400 500">
+      <Block x={200} y={250} width={200}  height={450} text={""} fontSize={20} color="var(--main-color-2)" />
+      <Block x={380} y={20} width={30}  height={30} text={"Nx"} fontSize={20} color="var(--main-color-2)" />
+
+      <!-- 3 bottom arrows -->
+      <Arrow data={[{x: 200, y: 500}, {x: 200, y: 425}]} strokeWidth={2}/>
+      <Arrow data={[{x: 200, y: 500}, {x: 200, y: 440}, {x: 140, y: 440}, {x: 140, y: 425}]} strokeWidth={2}/>
+      <Arrow data={[{x: 200, y: 500}, {x: 200, y: 440}, {x: 260, y: 440}, {x: 260, y: 425}]} strokeWidth={2}/>
+
+      <!-- first skip connection -->
+      <Arrow data={[{x: 200, y: 500}, {x: 200, y: 460}, {x: 50, y: 460}, {x: 50, y: 350}, {x: 115, y: 350}]} strokeWidth={2}/>
+
+      <!-- connect attention to second attention -->
+      <Arrow data={[{x: 200, y: 400}, {x: 200, y: 300}, {x: 140, y: 300}, {x: 140, y: 275}]} strokeWidth={2}/>
+      <!-- from encoder to decoder -->
+      <Arrow data={[{x: 350, y: 295 }, {x: 200, y: 295}, {x: 200, y: 275}]} strokeWidth={2} dashed={true} strokeDashArray="4, 4"/>
+      <Arrow data={[{x: 350, y: 290 }, {x: 260, y: 290}, {x: 260, y: 275}]} strokeWidth={2} dashed={true} strokeDashArray="4, 4"/>
+
+
+      <!-- second skip connection -->
+      <Arrow data={[{x: 200, y: 320}, {x: 50, y: 320}, {x: 50, y: 200}, {x: 115, y: 200}]} strokeWidth={2}/>
+
+      <!-- connect attention to feed forward -->
+      <Arrow data={[{x: 200, y: 250}, {x: 200, y: 125}]} strokeWidth={2}/>
+
+      <!-- third skip connection -->
+      <Arrow data={[{x: 200, y: 170}, {x: 50, y: 170}, {x: 50, y: 50}, {x: 115, y: 50}]} strokeWidth={2}/>
+
+      <!-- connect fc to next layer-->
+      <Arrow data={[{x: 200, y: 100}, {x: 200, y: 10}]} strokeWidth={2}/>
+
+      <!-- decoder components -->
+      <Block x={200} y={50} width={150}  height={30} text={"Add & Norm"} fontSize={15} color="var(--main-color-2)" />
+      <Block x={200} y={100} width={150}  height={30} text={"P.w. Feed Forward"} fontSize={15} color="var(--main-color-2)" />
+
+      <Block x={200} y={200} width={150}  height={30} text={"Add & Norm"} fontSize={15} color="var(--main-color-2)" />
+      <Block x={200} y={250} width={150}  height={30} text={"Multihead Atention"} fontSize={15} color="var(--main-color-2)" />
+
+      <Block x={200} y={350} width={150}  height={30} text={"Add & Norm"} fontSize={15} color="var(--main-color-2)" />
+      <Block x={200} y={400} width={150}  height={30} text={"Multihead Atention"} fontSize={15} color="var(--main-color-2)" />
+      <Block x={90} y={400} width={60}  height={30} text={"Masked"} fontSize={15} color="var(--main-color-2)" />
+
+      <!-- encoder outputs -->
+      <Block x={355} y={295} width={80}  height={30} text={"Encoder"} fontSize={15} color="var(--main-color-1)" />
+    </svg>
+  </SvgContainer>
+  <p>The embeddings from the target text are masked. This means that when we use multihead attention, the attention mechanism is only allowed to pay attention to words that came before. If that wouldn't be the case, the transformer would be allowed to cheat. When the transformer produces a translation, it can only look at the encoder outputs and the words it has already generated. Because the word one position ahead is essentially the one we want our transformer to produce.</p>
+  
+  <p>So when we are trying to translate a sentence from a different language and the result should "what is your name", we would face the following situation.</p>
+  <SvgContainer maxWidth={"600px"}>
+    <svg viewBox="0 0 650 150"> 
+      {#each ["<SOS>", ... sentence] as word, idx}
+        <Block x={80 + 120*idx} y={125} width={90} height={30} fontSize={20} text={word} color="var(--main-color-2)" />
+      {/each}
+      {#each [... sentence, "<EOS>"] as word, idx}
+        <Block x={80 + 120*idx} y={25} width={90} height={30} fontSize={20} text={word} color="var(--main-color-2)" />
+      {/each}
+    </svg>
+  </SvgContainer>
+  <p>When we are about to produce the first word, the transformer is only allowed to see the start of sequence token. If it is about to produce the word "is", it is only allowed to additionally see the word "what". The transformer can pay attention to the words that came before, but never ahead.</p>
+  <p>To accomplish that practically we create a so called mask. A mask is a triangular matrix of the following form.</p>
+  <Latex>{String.raw`
+    \begin{bmatrix}
+      0 & -\infty & -\infty & -\infty & \infty \\ 
+      0 & 0 & -\infty & -\infty & \infty \\ 
+      0 & 0 & 0 & -\infty & \infty \\ 
+      0 & 0 & 0 & 0 & \infty \\ 
+      0 & 0 & 0 & 0 & 0 \\ 
+    \end{bmatrix}
+  `}</Latex>
+  <p>When you add this mask to the result of <Latex>{String.raw`QK^T`}</Latex>, you make sure that the softmax will produce an attention weight of 0 for the words, that are not allowed to be seen by the model.</p>
+
+  <p>The second multi-head attention layer combines the encoder with the decoder. Unlike previously the queries, values and keys do not come from the same embeddings. The query is based on the decoder embeddings, while the key and the value are based on the output of the last encoder layer. The rest of the computation is identical.</p>
   <div class="separator" />
-
-
-  <h2>Softmax</h2>
-  <div class="separator" />
-
-  <h2>Training Details</h2>
-  <div class="separator" />
-
+  
+  <h2>Further Sources</h2>
+  <p>Understanding the transformer will all the details is not an easy task. It is unlikely that the section above will be sufficient for you, so here are some additional reccomendations. 
+  <p>You have to read the original payer by Vasvani et. al. We had to omit some of the implementation details, so if you want to implement the transformer on your own, reading this paper is a must.</p>
+  <p><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">"The Illustrated Transformer"</a> by Jay Alamar is a great resource if you need additional intuitive illustrations and explanations.</p>
+  <p>We will provide a simple implementation of the transformer in the next section. <a href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank">The Annotated Transformer"</a> from the Harvard University is a great choice if you a more in depths PyTorch implementation.</p>
 </Container>
 
 <Footer {references} />
 
 <style>
-  .debug {
-      border: 1px solid black;
-    }
-
   .text-center {
       text-align: center;
     }
