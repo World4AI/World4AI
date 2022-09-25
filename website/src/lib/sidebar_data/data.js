@@ -586,6 +586,10 @@ const dl = [
               {
                 name: 'Sentiment Analysis ',
                 link: '/blocks/deep_learning/sequence_modelling/pytorch_projects/sentiment_analysis',
+              },
+              {
+                name: 'Encoder-Decoder Translation',
+                link: '/blocks/deep_learning/sequence_modelling/pytorch_projects/encoder_decoder_translation',
               }
             ]
           },
