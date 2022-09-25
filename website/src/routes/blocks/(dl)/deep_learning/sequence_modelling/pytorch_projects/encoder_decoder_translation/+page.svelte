@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | PyTorch IMDB Sentiment Analysis</title>
+  <title>World4AI | Deep Learning | PyTorch Encoder Decoder Translation</title>
   <meta
     name="description"
     content="In this section we implement an encoder-decoder translation model in PyTorch using the english-german text pairs." 

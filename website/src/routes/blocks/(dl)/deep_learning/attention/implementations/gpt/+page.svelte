@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | PyTorch IMDB Sentiment Analysis</title>
+  <title>World4AI | Deep Learning | GPT-2 with Transformers by HuggingFace</title>
   <meta
     name="description"
     content="In this section we use GPT-2 for text generation, based on a starting input sequence. The pipeline function from the HuggingFace transformer library make the inference part exceptionally easy."

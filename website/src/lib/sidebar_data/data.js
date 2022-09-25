@@ -616,12 +616,30 @@ const dl = [
             link: '/blocks/deep_learning/attention/gpt',
           },
           {
-            name: 'GPT with HuggingFace',
-            link: '/blocks/deep_learning/attention/gpt_huggingface',
-          },
-          {
             name: 'Vision Transformer',
             link: '/blocks/deep_learning/attention/vision_transformer',
+          },
+          {
+            name: 'Implementations',
+            link: '/blocks/deep_learning/attention/implementations',
+            links: [
+              {
+                name: 'Bahdanau Attention',
+                link: '/blocks/deep_learning/attention/implementations/bahdanau_attention',
+              },
+              {
+                name: 'Original Transformer',
+                link: '/blocks/deep_learning/attention/implementations/transformer',
+              },
+              {
+                name: 'BERT',
+                link: '/blocks/deep_learning/attention/implementations/bert',
+              },
+              {
+                name: 'GPT',
+                link: '/blocks/deep_learning/attention/implementations/gpt',
+              }
+            ]
           },
         ]
     },
