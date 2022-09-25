@@ -612,6 +612,10 @@ const dl = [
             link: '/blocks/deep_learning/attention/gpt',
           },
           {
+            name: 'GPT with HuggingFace',
+            link: '/blocks/deep_learning/attention/gpt_huggingface',
+          },
+          {
             name: 'Vision Transformer',
             link: '/blocks/deep_learning/attention/vision_transformer',
           },
