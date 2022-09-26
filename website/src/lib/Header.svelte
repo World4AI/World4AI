@@ -23,10 +23,11 @@
 <header>
   <div class="mx-3">
     <div class="flex-container">
-      <div class="clip-logo">
+      <div class="logo-container">
         <a href="/"
           ><img class="logo" src="/logo/logo.svg" alt="World4AI Logo" /></a
         >
+        <span class="logo-text">World4AI</span>
       </div>
       <div
         class="hamburger"
@@ -151,15 +152,21 @@
 </header>
 
 <style>
-  .clip-logo {
-    clip-path: polygon(35% 0, 100% 0, 65% 100%, 0 100%);
-    background: var(--background-color);
+  .logo-container {
     height: 100%;
-    width: 80px;
+    width: 180px;
     flex-shrink: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
+  }
+
+  .logo-text {
+    color: var(--background-color);
+    text-transform: uppercase;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 5px;
   }
 
   header {
