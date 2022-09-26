@@ -643,7 +643,6 @@ const dl = [
           },
         ]
     },
-  /*
     {
         name: 'Generative Models',
         link: '/blocks/deep_learning/generative_models',
@@ -653,10 +652,6 @@ const dl = [
             link: '/blocks/deep_learning/generative_models/autoencoders',
           },
           {
-            name: 'Variational Autoencoders',
-            link: '/blocks/deep_learning/generative_models/variational_autoencoders',
-          },
-          {
             name: 'Generative Adversarial Networks',
             link: '/blocks/deep_learning/generative_models/generative_adversarial_networks',
           },
@@ -664,18 +659,7 @@ const dl = [
             name: 'Diffusion Models',
             link: '/blocks/deep_learning/generative_models/diffusion_models',
           },
-          {
-            name: 'Neural Style Transfer',
-            link: '/blocks/deep_learning/generative_models/diffusion_models',
-          },
         ]
     },
-    {
-        name: 'Graph Neural Networks',
-        link: '/blocks/deep_learning/graph_neural_networks',
-        links: [
-        ]
-    },
-    */
 ]
 export {dl, rl}
