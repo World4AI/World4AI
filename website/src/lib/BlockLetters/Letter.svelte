@@ -1,13 +1,10 @@
 <script>
+  import LetterBlock from "$lib/BlockLetters/LetterBlock.svelte";
+
   export let letter = " ";
   export let translateX = 0;
   export let translateY = 0;
   export let letterIdx = 0;
-  export let letterDelay = 1000;
-  export let blockDelay = 100;
-
-	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
 
 
   let letterMap = {
@@ -198,20 +195,11 @@
     " ": [],
   };
 
-  const progressCollection = [];
-  for (let i = 0; i < letterMap[letter].length; i++) {
-    let progress = tweened(-10, {
-      duration: 400,
-      easing: cubicOut
-    })
-    progressCollection.push(progress);
-  }
+
 </script>
 
 <g id="letter-{letter}" transform="translate({translateX}, {translateY})">
   {#each letterMap[letter] as rect, idx}
-    <g transform="translate(0, {$progressCollection[idx]})">
-      <rect x={rect.x} y={rect.y} width={rect.width} height={rect.height} />
-    </g>
+    <LetterBlock x={rect.x} y={rect.y} width={rect.width} height={rect.height} letterId={letterIdx} blockId={idx} />
   {/each}
 </g>
