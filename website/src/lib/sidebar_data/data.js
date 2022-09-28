@@ -564,6 +564,10 @@ const dl = [
             link: '/blocks/deep_learning/sequence_modelling/word_embeddings',
           },
           {
+            name: 'Language Model',
+            link: '/blocks/deep_learning/sequence_modelling/language_model',
+          },
+          {
             name: 'PyTorch Implementations',
             link: '/blocks/deep_learning/sequence_modelling/pytorch_implementations',
             links: [
