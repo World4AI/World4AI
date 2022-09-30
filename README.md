@@ -37,22 +37,11 @@ Some of the sections have already reached a working state and can be used to stu
     - [ ] Generative Models 
     - [ ] Energy Based Models
     - [ ] Graph Neural Networks
+    - [ ] Reinforcement Learning and Deep Reinforcement Learning
 
-Some of the sections in the reinforcement learning block have been already implemented, but a lot of refactoring still needs to be done. 
-- [ ] Reinforcement Learning Block
-    - [ ] Introduction 
-    - [ ] Intuition 
-    - [ ] Markov Decisoin Process
-    - [ ] Dynamic Programming 
-    - [ ] Exploration/Exploitation
-    - [ ] Tabular Reinforcement Learning 
-    - [ ] Approximative Value Functions
-    - [ ] Value Based Deep RL
-    - [ ] Policy Gradient Methods
-    - [ ] Actor Critic Methods
-    - [ ] Trust Region Methods
-    - [ ] AlphaGo Zero and Variants
+- [ ] Symbolic and Neurosymbolic AI Block
 
+- [ ] Neuroscience
 
 ## Contributions
 
