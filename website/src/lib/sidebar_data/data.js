@@ -654,6 +654,16 @@ const dl = [
           {
             name: 'Autoencoders',
             link: '/blocks/deep_learning/generative_models/autoencoders',
+            links: [
+              {
+                name: 'Variational Autoencoder',
+                link: '/blocks/deep_learning/generative_models/autoencoders/variational_autoencoder',
+              },
+              {
+                name: 'VQ-VAE',
+                link: '/blocks/deep_learning/generative_models/autoencoders/vq_vae',
+              },
+            ]
           },
           {
             name: 'Generative Adversarial Networks',
