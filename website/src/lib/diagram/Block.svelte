@@ -1,9 +1,11 @@
 <script>
+  import Latex from "$lib/Latex.svelte";
   export let width;
   export let height;
   export let x;
   export let y;
   export let text = "";
+  export let type = "text";
 
   export let color = "none";
   export let fontSize = 7;
@@ -19,12 +21,26 @@
 />
 
 {#if text}
-  <text font-size={fontSize} {x} {y}>{text}</text>
+  {#if type === "text"}
+    <text font-size={fontSize} {x} {y}>{text}</text>
+  {:else if type === "latex"}
+    <foreignObject x={x - width/2} y={y-height/2} {width} {height}>
+      <div style="font-size: {fontSize}px; height: {height}px">
+        <Latex>{text}</Latex>
+      </div>
+    </foreignObject>
+  {/if}
 {/if}
 
 <style>
   text {
     dominant-baseline: middle;
     text-anchor: middle;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
