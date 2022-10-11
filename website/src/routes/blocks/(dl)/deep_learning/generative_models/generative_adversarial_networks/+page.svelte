@@ -17,6 +17,11 @@
         journal: "Advances in Neural Information Processing Systems",
         year: "2014",
         volume: "27",
+    },
+    {
+        author: "A. Radford, L. Metz, and S. Chintala",
+        title: "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks",
+        year: "2016",
     }
   ]
 </script>
@@ -68,6 +73,7 @@
   <p>Now let's see why this is the case starting with the discriminator. If the discriminator faces real data <Latex>{String.raw`\mathbf{x}`}</Latex>, it makes sense to maximize <Latex>{String.raw`D(x)`}</Latex> indicates the probability of the data to be real. If the discriminator faces fake data <Latex>{String.raw`G(\mathbf{z})`} </Latex>, the discriminator will try to reduce the probability <Latex>{String.raw`D(G(\mathbf{z}))`} </Latex>, thereby increasing <Latex>{String.raw`\log(1 - D(G(\mathbf{z})))`} </Latex>. The generator does the exact opposite. Its goal is to fool the discriminator and to increase the probability of the fake data to be seen as real, which can be achieved by maximizing <Latex>{String.raw`D(G(\mathbf{z}))`}</Latex>.</p>
   <div class="separator"></div>
   <h2>DCGAN</h2>
+  <p>The original GAN implementation was developed using fully connected neural networks. As you know, convolutional neural networks work much better with image data, therefore researchers tried to implement a convolutional GAN architecture to generate better quality images. DCGAN<InternalLink id={2} type="reference" /> (Deep Convolutional GAN) was one of the first successful convolutional GAN implementations. The architecture is relatively straightforward from todays perspective. The authors combined several state of the art research results to form their convolutioanl GAN. They used batch normalization, relu and leaky relu, replaced pooling layers with strided convolutions and utilized the Adam optimizer.</p>
   <div class="separator"></div>
 </Container>
 <Footer {references} />
