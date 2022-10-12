@@ -652,6 +652,20 @@ const dl = [
         link: '/blocks/deep_learning/generative_models',
         links: [
           {
+            name: 'Autoregressive Generative Models',
+            link: '/blocks/deep_learning/generative_models/autoregressive',
+            links: [
+              {
+                name: 'PixelRNN',
+                link: '/blocks/deep_learning/generative_models/autoregressive/pixel_rnn',
+              },
+              {
+                name: 'PixelCNN',
+                link: '/blocks/deep_learning/generative_models/autoregressive/pixel_cnn',
+              },
+            ]
+          },
+          {
             name: 'Autoencoders',
             link: '/blocks/deep_learning/generative_models/autoencoders',
             links: [
