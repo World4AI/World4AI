@@ -21,8 +21,6 @@
   />
 </svelte:head>
 
-<p class="warning">The block needs a lot of refactoring.</p>
-
 <h1>Reinforcement Learning</h1>
 <div class="separator" />
 
