@@ -5,6 +5,8 @@
   import ButtonContainer from "$lib/button/ButtonContainer.svelte"; 
   import PlayButton from "$lib/button/PlayButton.svelte"; 
 
+  import Latex from "$lib/Latex.svelte";
+
   const imageLength = 10;
   const pixelSize = 25;
 
@@ -36,7 +38,7 @@
 <div class="separator"></div>
 
 <Container>
-  <p>We have already encountered autoregressive models, when we were dealing with language models, like GPT. Simply put an autoregressive model relies on its previous values to generate the next value. So if you want to produce the fifth word in a sentence, you provide the model with the previous four words. In this section we will deal mostly with autoregressive generative models to generate images, therefore we will generate one pixel at a time.</p>
+  <p>We have already encountered autoregressive models, when we were dealing with language models, like GPT. Simply put an autoregressive model relies on its previous values to generate the next value. So if you want to produce the fifth word in a sentence, you provide the model with the previous four words. In this section we will generate images one pixel at a time using autoregressive generative models, but you can apply the same ideas to text, audio and much more.</p>
   <ButtonContainer>
     <PlayButton {f} delta={70} />
   </ButtonContainer>
@@ -56,7 +58,14 @@
       {/each}
     </svg>
   </SvgContainer>
-  <p>The example above shows how pixel generation looks like. To generate the red pixel, the model is allowed to look at all previous (yellow) pixels. Looking ahead is obviously not allowed.</p>
+  <p>The interactive example above shows how pixel generation looks like. To generate the red pixel, the model is allowed to look at all previous (yellow) pixels. Looking ahead is obviously not allowed, as this would allow the model to look at future pixels that were not produced yet, which would prevent the model from learning to generate pixels based on the past.</p>
+
+  <p>In mathematical terms an autoregressive model calculates the probability  of some image vector <Latex>{String.raw`\mathbf{x}`}</Latex> (like an image), by using the chain rule of probabilities. If we assume that an image consists of n pixels, we can calculate the joint distribution of an image by calculating the product of conditional probabilities.</p>
+  <Latex>{String.raw`p(\mathbf{x}) = p(x_1) * p(x_2 | x_1) * p(x_2 | x_1, x_2) * \cdots * p(x_n | x_1, \cdots, x_{n-1})`}</Latex>  
+  <p>We can also express the same idea using the more convenient product notation.</p>
+  <Latex>{String.raw`p(\mathbf{x}) = \prod_i^n p(x_i | x_1, \cdots x_{i-1})`}</Latex>  
+  <p>Learning the conditional distribution is often much easier, that learning the joint distribution. Imagine you have been provided with a half finished image, filling in the blanks should be relatively straightforward. Even though you do not know how the image looks like exactly, you can manage this task quite easily. Even if you are not an artist, if we give you an image, where only the last pixel is missing, you will be able to fill in the blanks. If on the other hand you need to draw a new image from scratch, you will have a much harder time.</p>
+  <p>In the following sections we will study and implement two related autoregressive generative models: PixelRNN and PixelCNN.</p>
 </Container>
 
 <div class="separator"></div>
