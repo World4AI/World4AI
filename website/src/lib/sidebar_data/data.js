@@ -660,8 +660,8 @@ const dl = [
                 link: '/blocks/deep_learning/generative_models/autoregressive/pixel_rnn',
               },
               {
-                name: 'PixelCNN',
-                link: '/blocks/deep_learning/generative_models/autoregressive/pixel_cnn',
+                name: 'Gated PixelCNN',
+                link: '/blocks/deep_learning/generative_models/autoregressive/gated_pixel_cnn',
               },
             ]
           },
