@@ -3,11 +3,11 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
+  import Latex from "$lib/Latex.svelte";
 
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
-  import Border from "$lib/diagram/Border.svelte";
   import Block from "$lib/diagram/Block.svelte";
   import Plus from "$lib/diagram/Plus.svelte";
   import Arrow from "$lib/diagram/Arrow.svelte";
@@ -120,15 +120,25 @@
   }
 </script>
 
+<svelte:head>
+  <title>World4AI | Deep Learning | Gated PixelCNN</title>
+  <meta
+    name="description"
+    content="The gated PixelCNN model was developed by DeepMind to improve the generative quality of the common PixelCNN. The model utilizes two stacks of masked convolutions and a gated architecture to improve the performance."
+  />
+</svelte:head>
+
 <h1>Gated PixelCNN</h1>
 <div class="separator"></div>
 
 <Container>
-  <p>In this section we will continue our discussion of autoregressive generative models. Specificylly we will improve the PixelCNN model by introducing gated PixelCNNs<InternalLink id={1} type="reference" />. Additionally we will introduce conditional models that will allow us to produce images with specific labels.</p>
+  <p>In this section we will continue our discussion of autoregressive generative models. Specificylly we will improve the PixelCNN model by introducing gated PixelCNNs<InternalLink id={1} type="reference" />.</p>
   <div class="separator"></div>
 
-  <h2>PixelCNN Blindspot</h2>
+  <h2>Vertical and horizontal Stacks</h2>
+  <p>There are several reasons why we would like to improve the PixelCNN model from the previous section. The most obvious reason is the computational performance advantage of convolutional networks over recurrent networks due to parallelization. RowLSTM on the other hand produced better quality images. Our goal is therefore to keep the computational performance of PixelCNN, while trying to improve the generative performance.</p>
   <p>Let's start by remembering how a convolutional neural network usually works. The very first layer applies convolutions to a very tight receptive field. If we apply a 3x3 convolution, then the neural network can only look at the immediate surrounding of a particular pixel. But as we stack more and more convolutional layers on top of each other, the receptive field starts to grow.</p>
+  <p>In this interactive example we assume all calculations are considered from the perspective of the black pixel, the kernel size is 3x3 and the padding is always 1 in order to keep the size of the image constant.</p>
   <ButtonContainer>
     <PlayButton f={fCommon} />
   </ButtonContainer>
@@ -149,7 +159,7 @@
     </svg>
   </SvgContainer>
 
-  <p>Let's start by discussing one not so obvious problem that we have to face, when we apply masked convolutions over and over again.</p>
+  <p>Now let's see how the receptive field grows, once we incorporate masked convolutions. There is a less obvious problem that we have to face.</p>
   <ButtonContainer>
     <PlayButton f={fMasked} />
   </ButtonContainer>
@@ -169,7 +179,10 @@
       {/each}
     </svg>
   </SvgContainer>
+  <p>While the receptive field grows, we are left with a blind spot. Many pixels above the black dot are not taken into the account, which will most likely deteriorate the performance.</p>
 
+  <p>To deal with this problem the researchers at DeepMind separated the convolution into two distinct stacks: the vertical stack, which processes the pixels above the black pixel and the horizontal stack, which processes the pixels to the left.</p>
+  <p>You can think about the vertical stack as a regular convolution, that can only access the upper half of the image.</p>
   <ButtonContainer>
     <PlayButton f={fVertical} />
   </ButtonContainer>
@@ -190,6 +203,7 @@
     </svg>
   </SvgContainer>
 
+  <p>The horizontal stack is a 1d convolution that processes the pixels to the left.</p>
   <ButtonContainer>
     <PlayButton f={fHorizontal} />
   </ButtonContainer>
@@ -209,9 +223,11 @@
       {/each}
     </svg>
   </SvgContainer>
+  <p>The combination of both produces the desired output. The model is theoretically able to incorporate information from all previously generated pixels to the left and above.</p>
   <div class="separator"></div>
 
   <h2>Gated Architecture</h2>
+  <p>The gated PixelCNN architecture was developed in order to close the performance gap between the PixelCNN and the RowLSTM. The researcher hypothesised, that the multiplicative units from an LSTM can help the model to learn more complex patterns and introduced similar units to the convolutional layers.</p>
   <SvgContainer maxWidth="700px">
     <svg viewBox="0 0 700 400">
       <!-- left part -->
@@ -241,7 +257,7 @@
       </g>
       <!-- right part -->
       <g transform="translate(370 0)">
-        <Arrow data={[{x: 120, y:400}, {x: 120, y: 245}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
+        <Arrow data={[{x: 120, y:320}, {x: 120, y: 245}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
         <Arrow data={[{x: 120, y:230}, {x: 190, y: 230}, {x: 190, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
         <Arrow data={[{x: 120, y:230}, {x: 50, y: 230}, {x: 50, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
         <Arrow data={[{x: 190, y:160}, {x: 190, y: 130}, {x:150 , y: 130}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
@@ -272,16 +288,20 @@
 
       <!-- skip connection -->
       <Arrow data={[{x: 670, y:400}, {x: 670, y: 10}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-      <Arrow data={[{x: 530, y:320}, {x: 660, y: 320}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
+      <Arrow data={[{x: 660, y: 320}, {x: 540, y:320}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
       <Arrow data={[{x: 530, y:40}, {x: 660, y: 40}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
       <Plus x={670} y={40} radius={15} offset={6} color="var(--main-color-1)"/>
       <Block x={655} y={320} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
       <Block x={600} y={25} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
     </svg>
   </SvgContainer>
+  <p>Let's start our discussion with the left side of the graph, the vertical stack. The vertical layer receives the output from the previous vertical stack and applies an nxn masked convolution of type 'B', where the mask allows the model to only look at the above pixels. The convolution takes in p feature maps and produces twice that amount as the output. This is done because one half goes into the <Latex>\tanh</Latex> and the other goes into the sigmoid activation <Latex>\sigma</Latex>. We multiply both results positionwise. In essence we can interpret the sigmoid output as a sort of gate, that decides which part of the <Latex>\tanh</Latex> output is allowed to flow and which is closed.</p>
+  <p>The right side of the graph is the horizontal stack. The calculation is similar to the left side, but with slightly more complexity. First we process the output from the vertical convolution through a 1x1 convolution and add that result to the output of the horizontal convolution. We can't do the addition the other way around, otherwise the vertical stack would get access to future pixels. Second we use skip connections in the vertical stack in order to facilitate training.</p>
+  <p>It is ok if you don't fully grasp all the details of the image above. This calculation should get much clearer once we start to implement it in PyTorch. Return to this drawing when you start working through the code.</p>
   <div class="separator"></div>
 
   <h2>Conditioning</h2>
+  <p>Lastly we would like to condition the model on the label we would like to produce. If we are dealing with MNIST for example, we could use the numbers 0-9 as an additional input to the model, so that it can learn to generate specific numbers on demand.</p>
   <div class="separator"></div>
 </Container>
 
