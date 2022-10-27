@@ -663,6 +663,24 @@ const dl = [
                 name: 'Gated PixelCNN',
                 link: '/blocks/deep_learning/generative_models/autoregressive/gated_pixel_cnn',
               },
+              {
+                name: 'Implementations',
+                link: '/blocks/deep_learning/generative_models/autoregressive/implementations',
+                links: [
+                  {
+                    name: 'RowLSTM',
+                    link: '/blocks/deep_learning/generative_models/autoregressive/implementations/row_lstm',
+                  },
+                  {
+                    name: 'PixelCNN',
+                    link: '/blocks/deep_learning/generative_models/autoregressive/implementations/pixel_cnn',
+                  },
+                  {
+                    name: 'Gated PixelCNN',
+                    link: '/blocks/deep_learning/generative_models/autoregressive/implementations/gated_pixel_cnn',
+                  }
+                ]
+              }
             ]
           },
           {
