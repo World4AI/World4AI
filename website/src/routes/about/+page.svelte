@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -21,7 +22,9 @@
         <img width="50px" src="./logo/logo.svg" alt="World4AI Logo" />
       </div>
       <p>The logo of World4AI represents this idea of different blocks that come together to form a knowledge base in AI. </p>
-      <p class="warning">At the moment only a few sections have been written. The whole website is still a work in progress.</p>
+      <Alert type="warning">
+        At the moment only a few sections have been written. The whole website is still a work in progress.
+      </Alert>
       <div class="separator" />
     </Container>
   </article>
