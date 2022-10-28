@@ -157,7 +157,7 @@
     mention the origin of machine learning, the name Arthur Lee Samuel is surely
     to come up. Arthur Samuel was one of the pioneers in the area of artificial
     intelligence, who coined the term
-    <strong>Machine Learning</strong>
+    <Hightlight>Machine Learning</Hightlight>
     <InternalLink type={"reference"} id={1} />
     and is responsible for its' most famous definition:
   </p>
