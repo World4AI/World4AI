@@ -92,7 +92,7 @@
     advanced users.
   </p>
   <p>
-    <a href="https://fast.ai" target="_blank">fast.ai</a> is several things at the
+    <a href="https://fast.ai" target="_blank" rel="noreferrer">fast.ai</a> is several things at the
     same time. It is a non-profit with the goal of democratizing deep learning, a
     deep learning library based on PyTorch, a book called 'Deep Learning for Coders
     With Fasai and Pytorch' and an online course that teaches you deep learning.
@@ -103,7 +103,7 @@
   <p>
     The deep learning <a
       href="https://www.deeplearning.ai/program/deep-learning-specialization/"
-      target="_blank">coursera</a
+      target="_blank" rel="noreferrer">coursera</a
     > course by Andrew Ng is probably the most famous and the most acknowledged course
     in deep learning. The course starts with the basic building blocks of deep learning
     and steadily moves towards the state of the art. The course is not free, but
@@ -111,7 +111,7 @@
   </p>
 
   <p>
-    The <a href="https://cds.nyu.edu/deep-learning/" target="_blank"
+    The <a href="https://cds.nyu.edu/deep-learning/" target="_blank" rel="noreferrer"
       >NYU deep learning course</a
     > by Yann LeCun and Alfredo Canziani has become one of the most acknowledged
     courses over the last couple of years. The course is very in-depth and very engaging,
@@ -129,7 +129,7 @@
     project to GitHub. A popular alternative is to compete in machine learning
     challenges. The most popular plattform that host competitions is <a
       href="https://www.kaggle.com"
-      target="_blank">Kaggle</a
+      target="_blank" rel="noreferrer">Kaggle</a
     >. There you can take part in discussions, upload datasets, create notebooks
     and take part in competitions. The plattform has a ranking system in the
     four mentioned categories and allows you to grow in the ranks and gain

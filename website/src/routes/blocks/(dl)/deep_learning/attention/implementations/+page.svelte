@@ -14,6 +14,6 @@
 <div class="separator" />
 
 <Container>
-  <p>In this section we will implement several transformer architectures that we have previously discussed. We will first implement Bahdanau attention and the original transformer from scratch and then move to more practical examples with the transformers library by <a href="https://huggingface.co/" target="_blank">HuggingFace</a>.</p>
+  <p>In this section we will implement several transformer architectures that we have previously discussed. We will first implement Bahdanau attention and the original transformer from scratch and then move to more practical examples with the transformers library by <a href="https://huggingface.co/" target="_blank" rel="noreferrer">HuggingFace</a>.</p>
   <div class="separator" />
 </Container>

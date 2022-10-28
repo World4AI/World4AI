@@ -50,11 +50,6 @@
     opacity: 0.4;
   }
 
-  line.zero {
-    stroke-dasharray: none;
-    opacity: 1;
-  }
-
   .axis {
     dominant-baseline: middle;
     text-anchor: middle;

@@ -26,7 +26,7 @@
     In this chapter we will outline some common pitfalls and discuss approaches
     to deal with those. We will often demonstrate solutions to those problems
     using
-    <a href="http://yann.lecun.com/exdb/mnist/" target="_blank">MNIST</a> (Modified
+    <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noreferrer">MNIST</a> (Modified
     National Institute of Standards and Technology database). While some of the improvements
     we are going to cover are not strictly necessary to get good results for MNIST,
     using MNIST at this point in our deep learning journey will facilitate the explanations.

@@ -96,6 +96,6 @@
   <div class="separator" />
 
   <h2>BERT in Practice</h2>
-  <p>BERT is designed for fine-tuning, so it makes no sense to train the model from scratch. Instead we will use the pre-trained BERT weights to solve our task at hand. Nowadays the most efficient way to use BERT and its cousins is to use the <a href="https://huggingface.co/" target="_blank">🤗HuggingFace library</a>. This library contains models, pretrained weights, datasets and much more. We will make heavy use of it in future, and not only for natural language processing.</p>
+  <p>BERT is designed for fine-tuning, so it makes no sense to train the model from scratch. Instead we will use the pre-trained BERT weights to solve our task at hand. Nowadays the most efficient way to use BERT and its cousins is to use the <a href="https://huggingface.co/" target="_blank" rel="noreferrer">🤗HuggingFace library</a>. This library contains models, pretrained weights, datasets and much more. We will make heavy use of it in future, and not only for natural language processing.</p>
 </Container>
 <Footer {references} />

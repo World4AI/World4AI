@@ -158,6 +158,7 @@
     already existing autodiff packages. You will save a lot of time and
     headaches if you rely on mature implementations like <a
       target="_blank"
+      rel="noreferrer"
       href="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
       >autograd</a
     > from PyTorch.

@@ -151,9 +151,4 @@
     text-anchor: middle;
     font-size: 14px;
   }
-
-  .kernel-number {
-    font-size: 10px;
-    font-weight: bold;
-  }
 </style>

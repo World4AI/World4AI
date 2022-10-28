@@ -448,8 +448,8 @@
   <h2>Further Sources</h2>
   <p>Understanding the transformer will all the details is not an easy task. It is unlikely that the section above will be sufficient for you, so here are some additional reccomendations. 
   <p>You have to read the original payer by Vasvani et. al. We had to omit some of the implementation details, so if you want to implement the transformer on your own, reading this paper is a must.</p>
-  <p><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">"The Illustrated Transformer"</a> by Jay Alamar is a great resource if you need additional intuitive illustrations and explanations.</p>
-  <p>We will provide a simple implementation of the transformer in the next section. <a href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank">The Annotated Transformer"</a> from the Harvard University is a great choice if you a more in depths PyTorch implementation.</p>
+  <p><a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noreferrer">"The Illustrated Transformer"</a> by Jay Alamar is a great resource if you need additional intuitive illustrations and explanations.</p>
+  <p>We will provide a simple implementation of the transformer in the next section. <a href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank" rel="noreferrer">The Annotated Transformer"</a> from the Harvard University is a great choice if you a more in depths PyTorch implementation.</p>
 </Container>
 
 <Footer {references} />

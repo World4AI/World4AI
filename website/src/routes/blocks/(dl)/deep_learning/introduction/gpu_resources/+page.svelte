@@ -61,7 +61,7 @@
         />
       </g></svg
     >
-    <a href="https://colab.research.google.com" target="_blank">Google Colab</a>
+    <a href="https://colab.research.google.com" target="_blank" rel="noreferrer">Google Colab</a>
     (Colaboratory) provides you with free cloud compute in the form of Jupyter Notebooks.
     You can switch between CPU, GPU and TPU resources. If you use the platform extensively
     without a break they might switch you to a lower tier server or give you a time
@@ -71,7 +71,7 @@
   </p>
 
   <p>
-    <a href="https://www.kaggle.com" target="_blank">
+    <a href="https://www.kaggle.com" target="_blank" rel="noreferrer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 163 63.2"
@@ -105,7 +105,7 @@
 
   <p>
     If you are looking for alternatives free of Google,
-    <a href="https://www.paperspace.com" target="_blank">Paperspace</a>
+    <a href="https://www.paperspace.com" target="_blank" rel="noreferrer">Paperspace</a>
     might be it. Similar to Google Colab, Paperspace provides free cloud GPU notebooks
     for beginners and payed tiers for advanced users.
   </p>
@@ -119,7 +119,7 @@
     should provide you with a more budget friedly experience.
   </p>
   <p>
-    <a href="https://lambdalabs.com" target="_blank">
+    <a href="https://lambdalabs.com" target="_blank" rel="noreferrer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 569.03 131.61"
@@ -133,7 +133,7 @@
   </p>
 
   <p>
-    <a href="https://www.linode.com" target="_blank">
+    <a href="https://www.linode.com" target="_blank" rel="noreferrer">
       <svg
         viewBox="0 0 506.94 131.5"
         height="30px"

@@ -45,11 +45,3 @@
     {/each}
   </svg>
 </SvgContainer>
-
-<style>
-  text {
-    dominant-baseline: middle;
-    text-anchor: middle;
-    font-size: 14px;
-  }
-</style>

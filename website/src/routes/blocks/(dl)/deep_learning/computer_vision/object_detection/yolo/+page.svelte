@@ -174,7 +174,7 @@
     </svg>
   </SvgContainer>
 
-  <p>The last 20 elements contain probabilities for the box to contain any of the 20 possible classes. The original YOLO algorithm was trained on the <a href="http://host.robots.ox.ac.uk/pascal/VOC/" target="_blank">PASCAL Visual Object Classes (VOC)</a> dataset that contained 20 classes like person, bird, aeroplan and bottle. This part of the vector is required for the object classification task.</p>
+  <p>The last 20 elements contain probabilities for the box to contain any of the 20 possible classes. The original YOLO algorithm was trained on the <a href="http://host.robots.ox.ac.uk/pascal/VOC/" target="_blank" rel="noreferrer">PASCAL Visual Object Classes (VOC)</a> dataset that contained 20 classes like person, bird, aeroplan and bottle. This part of the vector is required for the object classification task.</p>
   <div class="vector">
     <div class="cell">
       <Latex>...</Latex>      

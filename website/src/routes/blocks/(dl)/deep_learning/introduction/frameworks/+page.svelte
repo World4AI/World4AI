@@ -150,10 +150,10 @@
     </svg>
   </h2>
   <p>
-    <a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a> is
+    <a href="https://www.tensorflow.org/" target="_blank" rel="noreferrer">TensorFlow</a> is
     Google's flagship deep learning framework. The framework was first released
     in the year 2015, which makes it the oldest in the list.
-    <a href="https://keras.io/" target="_blank">Keras</a> is a higher level api that
+    <a href="https://keras.io/" target="_blank" rel="noreferrer">Keras</a> is a higher level api that
     sits on top of TensorFlow and provides a lot of convenience for developers by
     reducing a lot of overhead. Keras was actually developed independently by François
     Chollet in order to facilitate fast and easy deep learning development. Originally
@@ -231,7 +231,7 @@
     </svg>
   </h2>
   <p>
-    <a href="https://pytorch.org/" target="_blank">PyTorch</a> is Meta's
+    <a href="https://pytorch.org/" target="_blank" rel="noreferrer">PyTorch</a> is Meta's
     flagship deep learning framework, which was originally inspired by Torch, a
     Lua based deep learning library. In the years after the initial release in
     2016, PyTorch has become a favorite among deep learning researchers and has
@@ -243,7 +243,7 @@
 
   <h2>JAX</h2>
   <p>
-    <a href="https://github.com/google/jax" target="_blank">JAX</a> is the new kid
+    <a href="https://github.com/google/jax" target="_blank" rel="noreferrer">JAX</a> is the new kid
     on the block. Like Keras and TensorFlow, JAX is developed by Google. The first
     release appeard in the year 2020 on github. JAX has been gaining a lot of traction
     over the last couple of years and there are even rumors that over time TensorFlow

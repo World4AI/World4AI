@@ -89,7 +89,7 @@
         </nav>
         <div class="social-links">
           <!-- Feather icons -->
-          <a href="https://github.com/World4AI" target="_blank">
+          <a href="https://github.com/World4AI" target="_blank" rel="noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -106,7 +106,7 @@
               /></svg
             >
           </a>
-          <a href="https://twitter.com" target="_blank">
+          <a href="https://twitter.com" target="_blank" rel="noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -126,6 +126,7 @@
           <a
             href="https://www.youtube.com/channel/UCARDap4Qtr6Jsus1Ke53uaQ/featured"
             target="_blank"
+            rel="noreferrer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
