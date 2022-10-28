@@ -2,6 +2,7 @@
   import { tweened } from 'svelte/motion';
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   let sentence = [
     "the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"
@@ -35,7 +36,9 @@
 <Container>
   <p>This chapter is dedicated to sequence modelling, a series of techniques that are very well suited to deal with <Highlight>sequential data</Highlight>.</p>
   <p>Most data that humans are dealing with and use for learning in their day to day life is sequential. The texts we are reading, the language we are hearing and the visual input we are processing are all sequential. A lot of structured data, like stock prices and weather data, also tends also to be sequential.</p>
-  <p class="info">Sequential data is any type of data that needs to be organized in an ordered fashion (order matters) and there is most likely a correlation with previous data points.</p>
+  <Alert type="info">
+    Sequential data is any type of data that needs to be organized in an ordered fashion (order matters) and there is most likely a correlation with previous data points.
+  </Alert>
   <p>The feature of sequential data that separates it from other types of data is the importance of its order. When we were dealing with images of cats and dogs, our algorithm did not depend on the images to be sorted in any particular way. Sequential data on the other hand needs to be processed in a strictly sequential way.</p> 
   <p>Look for example at the below sentence. You have probably seen this sentence before and it makes sense to you. If you click on any of the words the sequence will reshuffle.</p>
   <svg viewBox="0 0 630 100">

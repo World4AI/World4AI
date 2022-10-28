@@ -3,6 +3,7 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Alert from "$lib/Alert.svelte";
   import NeuralNetwork from "../_nonlinear/NeuralNetwork.svelte";
 
   //plotting library
@@ -83,10 +84,10 @@
 
   <h2>Usefulness of Neural Networks</h2>
   <p>We will start with the most obvious question.</p>
-  <div class="info">
+  <Alert type="info">
     Why do we need neural network when we can solve regression tasks using
     linear regression and classification tasks using logistic regression?
-  </div>
+  </Alert>
   <p>
     In the example below we have a classification problem with two classes and
     two features. By visually inspecting the dataset, the human brain can
@@ -151,10 +152,10 @@
   <p>
     From our previous question and answer the next question follows naturally.
   </p>
-  <div class="info">
+  <Alert type="info">
     What components and properties should a neural network exhibit to solve
     nonlinear problems?
-  </div>
+  </Alert>
   <p>
     A neural network must utilize nonlinear activation functions in order to
     solve nonlinear problems. If for example we used an identity function as our

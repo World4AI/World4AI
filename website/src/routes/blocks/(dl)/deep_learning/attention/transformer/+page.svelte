@@ -3,6 +3,7 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
   import Latex from "$lib/Latex.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte" 
@@ -158,7 +159,7 @@
   <Latex>{String.raw`\overline{x}_i = \sum_j w_{ij}x_j`}</Latex>
   <p>Where <Latex>i</Latex> is the index of the word that pays attention, <Latex>j</Latex> is the index of the word that receives attention, <Latex>w</Latex> is the attention weight, <Latex>x</Latex> is the embedding of a token and <Latex>{String.raw`\overline{x}`}</Latex> is the weighted average of all embeddings.</p>
   <p>You will notice that we end up with the same amount of embeddings, that we started with, so if your input sentence consists of 10 embeddings, self-attention also proces 10 embeddings. That is all well and good, but what is the point of self-attention? </p>
-  <p class="info">The purpose of self attention is to produce context-aware embeddings.</p>
+  <Alert type="info">The purpose of self attention is to produce context-aware embeddings.</Alert>
   <p>The easiest way to explain what that means is to look at so called homonyms. Words that are written the same, but have a different meaning. Let's for example look the meaning of the word date.</p>
   <p class="red text-center">What is your <span class="yellow">date</span> of <span class="yellow">birthday</span>?</p>
   <p class="blue text-center">The <span class="yellow">date</span> is my favourite <span class="yellow">fruit</span>.</p>

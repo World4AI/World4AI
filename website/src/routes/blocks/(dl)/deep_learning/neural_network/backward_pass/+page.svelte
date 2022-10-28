@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
   
   import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
@@ -217,12 +218,12 @@
       >backpropagation algorithm</Highlight
     > is used for.
   </p>
-  <p class="warning">
+  <Alert type="warning">
     The backpropagation algorithm calculates the gradients of the loss with
     respect to weights and biases for each layer and neuron of the neural
     network. Gradient descent on the other hand utilizes those gradients to
     adjust the weights and biases to reduce the loss.
-  </p>
+  </Alert>
   <p>
     The backpropagation algorithm makes extensive use of the chain rule, which
     allows us to find derivatives of composite functions of the form <Latex

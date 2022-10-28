@@ -3,6 +3,7 @@
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -303,9 +304,9 @@
     start to diverge and at some point our program will throw an error, as the
     gradient will overflow.
   </p>
-  <p class="info">
+  <Alert type="info">
     Derivatives of activation functions and weights have a significant impact on
     whether we can train a deep neural network successfully or not.
-  </p>
+  </Alert>
   <div class="separator" />
 </Container>

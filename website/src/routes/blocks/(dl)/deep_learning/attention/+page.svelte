@@ -1,9 +1,12 @@
 <script>
   import Container from "$lib/Container.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
-<p class="danger">This chapter is in active development. Expect many changes in the next couple of weeks.</p>
+<Alert type="danger">
+  This chapter is in active development. Expect many changes in the next couple of weeks.
+</Alert>
 
 <svelte:head>
   <title>World4AI | Deep Learning | Attention</title>

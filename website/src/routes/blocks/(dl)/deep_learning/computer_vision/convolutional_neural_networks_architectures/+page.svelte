@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Timeline from "$lib/Timeline.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   let timeline = [
     {
@@ -82,11 +83,11 @@
     There is obviously a problem that we are going to face, when we try to
     impelement those architectures from scratch.
   </p>
-  <p />
-  <p class="info">
+
+  <Alert type="info">
     We do not have the necessary computational power at our disposal to train
     large models from scratch
-  </p>
+  </Alert>
   <p>
     The amount of data and the number of parameters is just outside of our
     reach. We are therefore going to follow a two-fold strategy. First we will

@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -10,7 +11,7 @@
   />
 </svelte:head>
 
-<p class="danger">Very early work in progress!!!</p>
+<Alert type="danger">Very early work in progress!!!</Alert>
 <h1>Generative Models</h1>
 <div class="separator"></div>
 

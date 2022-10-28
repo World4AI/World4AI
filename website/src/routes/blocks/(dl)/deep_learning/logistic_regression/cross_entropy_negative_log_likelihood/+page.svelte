@@ -8,6 +8,7 @@
   import CrossEntropy from "../_entropy/CrossEntropy.svelte";
   import Slider from "$lib/Slider.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   //plotting library
   import Plot from "$lib/plt/Plot.svelte"; 
@@ -104,9 +105,9 @@
     because information theory and the loss function for classification tasks
     should't have a lot in common. Yet the opposite is the case.
   </p>
-  <p class="info">
+  <Alert type="info">
     To understand cross-entropy loss is to understand information theory!
-  </p>
+  </Alert>
   <p>
     We measure information using specific information units. The most common
     unit of information is the so called bit<InternalLink id={2} type="note" />
@@ -200,11 +201,11 @@
     of bits) that is contained in the whole probability distribution. This
     measure is called entropy.
   </p>
-  <p class="info">
+  <Alert type="info">
     The entropy <Latex>H(p)</Latex> of the probability distrubution <Latex
       >p</Latex
     > is defined as the expected level of information or the expected number of bits.
-  </p>
+  </Alert>
   <Latex
     >{String.raw`
     H(p) = -\sum_x p(x) * log_2(p(x))
@@ -277,9 +278,10 @@
     average message lengths is known as cross-entropy.
   </p>
 
-  <p class="info">
+  <Alert type="info">
     The cross-entropy is defined as the average message length.
-  </p>
+  </Alert>
+
   <p>
     Given two distributions <Latex>p(x)</Latex> and <Latex>q(x)</Latex> we can calculate
     the cross-entropy <Latex>H(p, q)</Latex> by calculating the expected value with
@@ -700,9 +702,9 @@ y^{(1)}, y^{(1)},\cdots y^{(n)}
     >{String.raw`- \log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = - \dfrac{1}{n} \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)`}</Latex
   >
   <p>At this point you might have already made the following discovery.</p>
-  <p class="info">
+  <Alert type="info">
     Minimizing the cross-entropy equals maximizing the log likelihood.
-  </p>
+  </Alert>
   <div class="separator" />
 </Container>
 

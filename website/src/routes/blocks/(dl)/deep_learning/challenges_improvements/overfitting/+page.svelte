@@ -1,6 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -107,11 +108,10 @@
       >generalization</Highlight
     >.
   </p>
-  <p>
-    <span class="info"
-      >A model that generalizes well is good at modelling new unforseen data.</span
-    >
-  </p>
+  <Alert type="info">
+    A model that generalizes well is good at modelling new unforseen data.
+  </Alert>
+  <p></p>
   <p>
     When the two models are faced with new data, the neural network will
     underperform, while the simpler linear regression model will do just fine.
@@ -138,10 +138,10 @@
     As you might imagine <Highlight>underfitting</Highlight> can also be a potential
     problem in deep learning.
   </p>
-  <p class="info">
+  <Alert type="info">
     A model that does not have enough expressiveness or parameters to fit to the
     data will underfit the data.
-  </p>
+  </Alert>
   <p>
     In the example below we face data produced by a quadratic function, yet we
     attempt to use linear regression to fit the data. No matter how hard we try,

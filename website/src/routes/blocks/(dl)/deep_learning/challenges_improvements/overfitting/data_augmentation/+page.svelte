@@ -1,6 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -33,11 +34,11 @@
       >data augmentation</Highlight
     >.
   </p>
-  <p class="info">
+  <Alert type="info">
     Data augmentation is a techinque that applies transformations to the
     original dataset, thereby creating synthetic data, that can be used in
     training.
-  </p>
+  </Alert>
   <p>
     We could for example rotate, blur or flip the images, but there are many
     more options available, that we will cover in our practical PyTorch

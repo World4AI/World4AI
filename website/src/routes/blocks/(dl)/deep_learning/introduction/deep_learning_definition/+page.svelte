@@ -5,6 +5,7 @@
   import Container from "$lib/Container.svelte";
   import Neuron from "../_dl_definition/Neuron.svelte";
   import NeuralNetwork from "../_dl_definition/NeuralNetwork.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   const header = ["Location", "Size", "Price"];
 
@@ -202,11 +203,11 @@
     the following question. What makes a machine learning algorithm a deep
     learning algorithm?
   </p>
-  <p class="info">
+  <Alert type="info">
     <Highlight>Neural networks</Highlight>, a <Highlight
       >"deep" architecture</Highlight
     > and <Highlight>representation learning</Highlight> are all traits of deep learning.
-  </p>
+  </Alert>
   <div class="separator" />
 
   <h2>Neural Networks</h2>
@@ -232,10 +233,10 @@
     recognition, text generation and other fairly complex tasks? We have the
     ability to stack neurons and thus creating a network of artificial neurons.
   </p>
-  <p class="info">
+  <Alert type="info">
     An artificial neural network is a set of interconnected neurons, where the
     output of one neuron is used as the input of the next neuron.
-  </p>
+  </Alert>
 
   <NeuralNetwork />
 
@@ -514,11 +515,11 @@
   <h2>Representation Learning</h2>
 
   <p>Traditional machine learning relies heavily on feature engineering.</p>
-  <p class="info">
+  <Alert type="info">
     Feature engineering is the process of creating new features out of other
     (less relevant) data using human domain knowledge. This process tends to
     improve the performance of a traditional machine learning algorithms.
-  </p>
+  </Alert>
 
   <p>
     Let us consider a regression task, where we try to predict the price of a

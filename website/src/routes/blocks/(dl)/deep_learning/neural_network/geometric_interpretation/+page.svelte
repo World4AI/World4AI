@@ -6,6 +6,7 @@
   import Architecture from "../_geometric/Architecture.svelte";
   import Transformation from "../_geometric/Transformation.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   //plotting library
   import Plot from "$lib/plt/Plot.svelte"; 
@@ -14,7 +15,6 @@
   import YLabel from "$lib/plt/YLabel.svelte"; 
   import Circle from "$lib/plt/Circle.svelte"; 
   import Rectangle from "$lib/plt/Rectangle.svelte"; 
-  import Path from "$lib/plt/Path.svelte"; 
 
   // transformations
   const alpha = 0.5;
@@ -365,12 +365,13 @@
     what the neural network does. But generally speaking we can state the
     folllowing.
   </p>
-  <p class="info">
+  <Alert type="info">
     Matrix multiplications move, scale, rotate the data and move it between
     different dimensions. Activation functions squish or restraint the data to
     deal with nonlinearity. The last layers contain the hidden features, that
     can be linearly separated to solve a particular problem.
-  </p>
+  </Alert>
+
   <p>
     Try to keep this intuition in mind while you move forward with your studies.
     It is easy to forget.

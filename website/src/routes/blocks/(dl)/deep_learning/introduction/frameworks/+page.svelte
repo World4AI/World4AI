@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -250,14 +251,14 @@
   </p>
   <div class="separator" />
 
-  <p class="warning">
+  <Alert type="warning">
     It is up to you which framework you choose. Especially when it comes to
     studying deep learning, all of the above frameworks are fine choices and are
     highly recommended. Keras and PyTorch have a much larger community and
     provide many more books and tutorials, but this might change within a couple
     of years. At the moment of writing most of our code examples are implemented
     in PyTorch.
-  </p>
+  </Alert>
   <div class="separator" />
 </Container>
 

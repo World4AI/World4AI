@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   const sentence1 = "Henry VIII was king of England.";
   const sentence2 = "Elizabeth II is queen of the United Kingdom.";
@@ -33,7 +34,9 @@
 
 <Container>
   <p>In the previous sections we have learned how we can use recurrent neural networks to learn sequence models. Yet we still face a problem that we need to solve, before we can train those models on text.</p>
-  <p class="info">A neural network takes only numerical values as input, while text is represented as a sequence of characters or words. In order to make text compatible for training and inference, it needs to be transformed into a numerical representation. In other words text needs to be vectorized.</p>
+  <Alert type="info">
+    A neural network takes only numerical values as input, while text is represented as a sequence of characters or words. In order to make text compatible for training and inference, it needs to be transformed into a numerical representation. In other words text needs to be vectorized.
+  </Alert>
   <p>In order to get a good intuition for the vectorization process let's work through a dummy example. The whole time we will assume that our dataset consists of these two sentences.</p>
   <!-- original sentences -->
   <p class="yellow text-center">{sentence1}</p>

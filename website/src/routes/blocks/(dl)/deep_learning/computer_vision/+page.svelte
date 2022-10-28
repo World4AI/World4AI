@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -10,7 +11,9 @@
   />
 </svelte:head>
 
-<p class="danger">This chapter is very early work in progress</p>
+<Alert type="danger">
+  This chapter is work in progress
+</Alert>
 <h1>Computer Vision</h1>
 <div class="separator" />
 <Container>

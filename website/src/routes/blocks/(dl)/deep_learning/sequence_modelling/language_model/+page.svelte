@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";  
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -24,10 +25,14 @@
 <Container>
   <p>So far we have discussed different types of recurrent neural networks that can produce text, like the encoder-decoder architecture that is useful to translate sentences from one language into a different language. But we have not yet discussed how we can actually produce a word or a whole sentence.</p>
   <p>To understand how we can generate text, we need to discuss what a language model is.</p>
-  <p class="info">A language model calculates the probability P for a sequence of words <Latex>w_1, w_2, ..., w_T</Latex>: <Latex>P(w_1, w_2, ..., w_T) </Latex></p>
+  <Alert type="info">
+      A language model calculates the probability P for a sequence of words <Latex>w_1, w_2, ..., w_T</Latex>: <Latex>P(w_1, w_2, ..., w_T) </Latex>
+  </Alert>
   <p>In a translation task we do not create the sentence from thin air, but condition the translation on the original language sentence, <Latex>P(w_1, w_2, ..., w_T | o_1, o_2, ... , o_T)</Latex>.</p>
   <p>Generating the whole translation in a single go is infeasable, but we can transform that model into one that generates one word at a time: using the so called chain rule of probability.</p>
-  <p class="info">The chain rule of prabability, also called the product rule, rearanges the conditional probability <Latex>{String.raw`P(A | B) = \dfrac{P(A,B)}{B}`}</Latex> into the product form <Latex>{String.raw`P(A,B) = P(B \mid A) \cdot P(A)`}</Latex></p>
+  <Alert type="info">
+      The chain rule of prabability, also called the product rule, rearanges the conditional probability <Latex>{String.raw`P(A | B) = \dfrac{P(A,B)}{B}`}</Latex> into the product form <Latex>{String.raw`P(A,B) = P(B \mid A) \cdot P(A)`}</Latex>
+  </Alert>
   <p>If we apply this rule to a two word sentence we end up with the following: <Latex>{String.raw`P(w_1, w_2|o_1, ..., o_T) = P(w_1 | o_1, ..., o_t)P(w_2 | w_1, o_1, ..., o_t)`}</Latex></p>
   <p>This allows us to generate one word at a time and to condition the probability of the next word on the previously generated words.</p>
   <Latex>{String.raw`P(w_1, ..., w_T) = \prod_i^T P(w_i | w_1, ..., w_{i-1}, o_1, ..., o_T)`}</Latex>

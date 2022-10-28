@@ -49,9 +49,10 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 10px;
+      gap: 25px;
       padding: 15px 20px;
       border-radius: 7px;
+      margin: 15px 0;
   }
 
   .content {

@@ -4,6 +4,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -143,10 +144,10 @@
     > in the last layer of the neural network, to determine the probability to belong
     to a particular class.
   </p>
-  <p class="info">
+  <Alert type="info">
     Use the sigmoid and the softmax as activations if you need to scale values
     between 0 and 1.
-  </p>
+  </Alert>
   <div class="separator" />
 
   <h2>Hyperbolic Tangent</h2>
@@ -216,10 +217,11 @@
     over tanh, but in case you actually desire outputs between -1 and 1, you
     should use the tanh.
   </p>
-  <p class="info">
+  
+  <Alert type="info">
     Use the tanh as your activation function if you need to scale values between
     -1 and 1.
-  </p>
+  </Alert>
   <div class="separator" />
 
   <h2>ReLU</h2>
@@ -324,10 +326,10 @@
     vanilla ReLU, because the mentioned improvements generally do not provide
     significant advantages.
   </p>
-  <p class="info">
+  <Alert type="info">
     You should use the ReLU as your main activation function. Deviate only from
     this activation, if you have any specific reason to do so.
-  </p>
+  </Alert>
 
   <div class="separator" />
 </Container>

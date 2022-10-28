@@ -1,6 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
   import Latex from "$lib/Latex.svelte";
   import Footer from "$lib/Footer.svelte";
@@ -98,9 +98,9 @@
     zero, the network will always have dead neurons, always staying at the 0
     value.
   </p>
-  <p class="danger">
+  <Alert type="danger">
     Never initialize your weights uniformly. Break the symmetry!
-  </p>
+  </Alert>
   <p>
     For a long time researchers were using either a normal distribution (e.g. <Latex
       >\mu = 0
@@ -134,13 +134,13 @@
       type="reference"
     />. This is the standard initialization mode used in PyTorch.
   </p>
-  <p class="info">
+  <Alert type="info">
     For the most part you will not spend a lot of time dealing with weight
     initializations. Libraries like PyTorch and Keras have good common sense
     initialization values and allow you to switch between the initialization
     modes relatively easy. You do not nead to memorize those formulas. If you
     implement backpropagation on your own don't forget to at least break the
     symmetry.
-  </p>
+  </Alert>
 </Container>
 <Footer {references} />

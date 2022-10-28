@@ -4,6 +4,7 @@
   import InternalLink from "$lib/InternalLink.svelte";
   import Latex from "$lib/Latex.svelte";
   import Table from "$lib/Table.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   let header = ["Distance to City Centre", "Size", "Price"];
   let data = [
@@ -174,12 +175,12 @@
   \end {bmatrix}
   `}</Latex
   >
-  <p class="warning">
+  <Alert type="info">
     We do not expect you to learn the above notation by heart. The intention is
     to have a reference that can be used to return to, if this becomes
     necessary. Nor do we assume the notation to be complete. The notation above
     is the foundation that is fundamental to all machine learning topics. Each
     section will enhance the notation to suit the needs of the section.
-  </p>
+  </Alert>
   <Footer {references} />
 </Container>

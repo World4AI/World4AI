@@ -8,6 +8,7 @@
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Hightlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   import Function from "../_ml_definition/Function.svelte";
   import TraditionalParadigm from "../_ml_definition/TraditionalParadigm.svelte";
@@ -161,20 +162,20 @@
     <InternalLink type={"reference"} id={1} />
     and is responsible for its' most famous definition:
   </p>
-  <p class="info">
+  <Alert type="info">
     "Machine learning is the field of study that gives computers the ability to
     learn without being explicitly programmed
     <InternalLink type="note" id={1} />".
-  </p>
+  </Alert>
   <p>
     While the above definition is commonly used, it is not the one that we find
     most useful. Throughout the deep learning block we will rely on a more
     programming oriented definition of machine learning.
   </p>
-  <p class="info">
+  <Alert type="info">
     Machine learning is a programming paradigm where the solution to a problem
     is automatically learned from data.
-  </p>
+  </Alert>
 
   <div class="separator" />
   <h2>Programming Paradigms</h2>
@@ -221,13 +222,13 @@
     between the actual outputs (spam or not) and the produced outputs the weights
     are adjusted automatically to improve the outputs of the function.
   </p>
-  <p class="info">
+  <Alert type="info">
     If you have trouble understanding the weights of a function, just imagine
     that those weights somehow correspond to the logic of the function. In
     machine learning the weights can be changed automatically by measureing some
     error and trying to redice that error. The adjustment of those weights is
     what we refer to as learning.
-  </p>
+  </Alert>
   <MlParadigm />
 
   <p>
@@ -571,13 +572,13 @@
     The general intuition about machine learning that you should keep in mind is
     as follows.
   </p>
-  <p class="info">
+  <Alert type="info">
     In classical programming and machine learning we try to solve a problem by
     generating computer functions. In classical programming the programmer
     hardcodes the logic of that function. In machine learning the programmer
     chooses the algorithm and the parameters that are used to learn the
     function.
-  </p>
+  </Alert>
 
   <p>
     One final question that we should ask ourselves before we move on to the

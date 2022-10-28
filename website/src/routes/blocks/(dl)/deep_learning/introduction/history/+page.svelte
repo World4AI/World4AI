@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import Alert from "$lib/Alert.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import BiologicalNeuron from "../_history/BiologicalNeuron.svelte";
   import StepFunction from "../_history/StepFunction.svelte";
@@ -302,12 +303,12 @@
     and 1 the input signal is dampened. The strength of the signal can also be
     reversed by multiplying the signal with a negative number.
   </p>
-  <p class="info">
-    Inside the artificial neuron the strenght of the input <Latex>x</Latex> is adjusted
+  <Alert type="info">
+    Inside the artificial neuron the strength of the input <Latex>x</Latex> is adjusted
     through the weight <Latex>w</Latex> by multiplying the input by the weight: <Latex
       >x*w</Latex
     >.
-  </p>
+  </Alert>
   <p>
     Below is a simple interactive example that allows you to vary the weight and
     observe how the output signal changes. The color of the output signal is
@@ -359,12 +360,12 @@
       \right.
     `}</Latex
   >
-  <p class="info">
+  <Alert type="info">
     A function that takes the weighted sum as input and determines the
     activation status of a neuron is commonly refered to as the <Highlight
       >activation function</Highlight
     >.
-  </p>
+  </Alert>
 
   <p>
     Below is a step function with a <Latex>\theta</Latex> of 0. You can move the
@@ -436,12 +437,12 @@
     McCulloch and Pitts provided an architecture for an artificial neuron that
     is still used today. Yet they did not provide a way for a neuron to learn.
   </p>
-  <p class="info">
+  <Alert type="info">
     Learning in machine learning means changing weights <Latex>w</Latex> and the
     bias
     <Latex>b</Latex>, such that the neuron gets better and better at a
     particular task.
-  </p>
+  </Alert>
   <p>
     The perceptron developed by Frank Rosenblatt<InternalLink
       type="reference"

@@ -3,6 +3,7 @@
   import Footer from "$lib/Footer.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
 
   // imports for the diagram
@@ -132,7 +133,9 @@
   `}</Latex>
 
   <p>This is obviously a silly example and it should be clear, that actual latent variables have many more dimensions and are much smoother, but the following general idea holds. </p>
-  <p class="info">Latent variables are encoded characteristics that are contained in the data.</p>
+  <Alert type="info">
+    Latent variables are encoded characteristics that are contained in the data.
+  </Alert>
   <p>So when we are building an average latent variable for the number two, we create a number with average characteristics and the decoder knows how to map those characteristics to an actual image.</p>
   <p>While it is useful to cover this simple autoencoder architecture in order to understand more complex autoencoder networks, we have to mention that it is generally a bad idea to use this architecture for image generation. A variational autoencoder on the other hand is much better suited as a generative model. We will study and utilze this architecture in the next section.</p>
 </Container>

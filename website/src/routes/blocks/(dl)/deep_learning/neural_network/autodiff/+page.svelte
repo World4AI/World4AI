@@ -4,6 +4,7 @@
   import Graph from "../_graph/Graph.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Footer from "$lib/Footer.svelte";
+  import Alert from "$lib/Alert.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
 
   let references = [
@@ -151,7 +152,7 @@
     can calculate partial derivatives for those atomic functions.
   </p>
 
-  <p class="warning">
+  <Alert type="warning">
     Backpropagation can be efficiently implemented using automatic
     differentiation. Do not reimplement backpropagation from scratch, but use
     already existing autodiff packages. You will save a lot of time and
@@ -160,7 +161,7 @@
       href="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
       >autograd</a
     > from PyTorch.
-  </p>
+  </Alert>
 
   <Footer {references} />
 </Container>
