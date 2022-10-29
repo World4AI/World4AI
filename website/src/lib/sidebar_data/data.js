@@ -684,6 +684,12 @@ const dl = [
             ]
           },
           {
+            name: 'Latent Variables',
+            link: '/blocks/deep_learning/generative_models/latent_variables',
+            links: [
+            ]
+          },
+          {
             name: 'Autoencoders',
             link: '/blocks/deep_learning/generative_models/autoencoders',
             links: [
