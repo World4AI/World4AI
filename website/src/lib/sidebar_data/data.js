@@ -701,6 +701,24 @@ const dl = [
                 name: 'VQ-VAE',
                 link: '/blocks/deep_learning/generative_models/autoencoders/vq_vae',
               },
+              {
+                name: 'Implementations',
+                link: '/blocks/deep_learning/generative_models/autoencoders/implementations',
+                links: [
+                  {
+                    name: 'Autoencoders',
+                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/autoencoders',
+                  },
+                  {
+                    name: 'VAE',
+                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/vae',
+                  },
+                  {
+                    name: 'VQ-VAE',
+                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/vq_vae',
+                  }
+                ]
+              },
             ]
           },
           {
