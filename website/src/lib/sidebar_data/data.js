@@ -684,23 +684,50 @@ const dl = [
             ]
           },
           {
-            name: 'Latent Variables',
-            link: '/blocks/deep_learning/generative_models/latent_variables',
+            name: 'Latent Variable Models',
+            link: '/blocks/deep_learning/generative_models/latent_variable_models',
             links: [
+              {
+                name: 'Normalizing Flows',
+                link:   '/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows',
+                links: []
+              },
+              {
+                name: 'Autoencoders',
+                link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders',
+                links: [
+                  {
+                    name: 'Variational Autoencoder',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/variational_autoencoder',
+                  },
+                  {
+                    name: 'VQ-VAE',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/vq_vae',
+                  },
+                ]
+              },
+              {
+                name: 'Implementations',
+                link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/implementations',
+                links: [
+                  {
+                    name: 'Autoencoders',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/implementations/autoencoders',
+                  },
+                  {
+                    name: 'VAE',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/implementations/vae',
+                  },
+                  {
+                    name: 'VQ-VAE',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/implementations/vq_vae',
+                  }
+                ]
+              }
             ]
           },
+          /*
           {
-            name: 'Autoencoders',
-            link: '/blocks/deep_learning/generative_models/autoencoders',
-            links: [
-              {
-                name: 'Variational Autoencoder',
-                link: '/blocks/deep_learning/generative_models/autoencoders/variational_autoencoder',
-              },
-              {
-                name: 'VQ-VAE',
-                link: '/blocks/deep_learning/generative_models/autoencoders/vq_vae',
-              },
               {
                 name: 'Implementations',
                 link: '/blocks/deep_learning/generative_models/autoencoders/implementations',
@@ -721,6 +748,7 @@ const dl = [
               },
             ]
           },
+          */
           {
             name: 'Generative Adversarial Networks',
             link: '/blocks/deep_learning/generative_models/generative_adversarial_networks',
