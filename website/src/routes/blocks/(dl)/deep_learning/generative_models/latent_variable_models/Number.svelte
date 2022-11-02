@@ -18,9 +18,3 @@
     {/each}
   <svg>
 </SvgContainer>
-
-<style>
-  svg {
-      border: 1px solid black;
-    }
-</style>
