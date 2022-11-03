@@ -690,7 +690,20 @@ const dl = [
               {
                 name: 'Normalizing Flows',
                 link:   '/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows',
-                links: []
+                links: [
+                  {
+                    name: 'NICE',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/nice',
+                  },
+                  {
+                    name: 'RealNVP',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/real_nvp',
+                  },
+                  {
+                    name: 'Glow',
+                    link: '/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/glow',
+                  }
+                ]
               },
               {
                 name: 'Autoencoders',
