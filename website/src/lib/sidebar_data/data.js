@@ -739,29 +739,6 @@ const dl = [
               }
             ]
           },
-          /*
-          {
-              {
-                name: 'Implementations',
-                link: '/blocks/deep_learning/generative_models/autoencoders/implementations',
-                links: [
-                  {
-                    name: 'Autoencoders',
-                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/autoencoders',
-                  },
-                  {
-                    name: 'VAE',
-                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/vae',
-                  },
-                  {
-                    name: 'VQ-VAE',
-                    link: '/blocks/deep_learning/generative_models/autoencoders/implementations/vq_vae',
-                  }
-                ]
-              },
-            ]
-          },
-          */
           {
             name: 'Generative Adversarial Networks',
             link: '/blocks/deep_learning/generative_models/generative_adversarial_networks',
@@ -769,6 +746,16 @@ const dl = [
           {
             name: 'Diffusion Models',
             link: '/blocks/deep_learning/generative_models/diffusion_models',
+            links: [
+              {
+                name: 'GLIDE',
+                link: '/blocks/deep_learning/generative_models/diffusion_models/glide',
+              },
+              {
+                name: 'Latent Diffusion',
+                link: '/blocks/deep_learning/generative_models/diffusion_models/latent_diffusion',
+              }
+            ]
           },
         ]
     },
