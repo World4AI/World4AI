@@ -2,6 +2,7 @@
   import Container from "$lib/Container.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Sentence from "$lib/BlockLetters/Sentence.svelte";
+  import Alert from "$lib/Alert.svelte";
 </script>
 
 <svelte:head>
@@ -27,7 +28,16 @@
     <p>We intend to cover the basics of deep learning, symbolic ai, neurosciece and much more, but at the moment only a few sections have been started and none is considered finalized. More chapters will be published in the next weeks and months. But the overall process will most likely take many years.</p>
     <div class="separator" />
 
+    <h2>Mathematics</h2>
+    <Alert type="danger">
+      Block not yet started
+    </Alert>
+
+    <div class="separator" />
     <h2>Deep Learning</h2>
+    <Alert type="info">
+      Still work in progress, but many chapters, especially early chapters, can be studied.
+    </Alert>
     <p>Most of the recent success in artificial intelligence is due to deep learning.</p>
     <SvgContainer maxWidth="300px">
     <svg version="1.1" viewBox="0 0 350 400" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +82,23 @@
     </SvgContainer>
     <p>This block is very practical and will teach you image recognition, text understanding and image generation. This is a good starting point, if you don't have any prior AI knowledge.</p>
       <div class="action">
-      <a href="/blocks/deep_learning/introduction">
+        <a href="/blocks/deep_learning/introduction">
+           <!-- feather icon -->
+           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="var(--main-color-3)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
+             <circle cx="12" cy="12" r="10"></circle>
+             <polyline points="12 16 16 12 12 8">
+             </polyline><line x1="8" y1="12" x2="16" y2="12"></line>
+           </svg>
+        </a>
+      </div>
+    <div class="separator" />
+
+    <h2>Reinforcement Learning</h2>
+    <Alert type="warning">
+      The reinforcement learning block needs to be refactored.
+    </Alert>
+    <div class="action">
+      <a href="/blocks/reinforcement_learning/introduction">
          <!-- feather icon -->
          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="var(--main-color-3)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
            <circle cx="12" cy="12" r="10"></circle>
@@ -80,15 +106,19 @@
            </polyline><line x1="8" y1="12" x2="16" y2="12"></line>
          </svg>
       </a>
-      </div>
+    </div>
     <div class="separator" />
 
     <h2>Symbolic and Neurosymbolic AI</h2>
-    <p class="danger">Block not yet started!!!</p>
+    <Alert type="danger">
+      Block not yet started
+    </Alert>
     <div class="separator" />
  
     <h2>Neurosciece</h2>
-    <p class="danger">Block not yet started!!!</p>
+    <Alert type="danger">
+      Block not yet started
+    </Alert>
     <div class="separator" />
   </Container>
 </article>
