@@ -37,6 +37,7 @@
     left: 0px;
     top: 0px;
     max-width: 350px;
+    min-height: 90vh;
     background-color: var(--main-color-3);
     padding: 20px;
     max-height: calc(100vh - 100px);
