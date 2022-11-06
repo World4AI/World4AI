@@ -63,6 +63,12 @@
                   </li>
                   <li>
                     <a
+                      class:selecteddropdown={path === "/blocks/mathematics"}
+                      href="/blocks/mathematics/introduction">Mathematics</a
+                    >
+                  </li>
+                  <li>
+                    <a
                       class:selecteddropdown={path === "/blocks/deep_learning"}
                       href="/blocks/deep_learning/introduction">Deep Learning</a
                     >

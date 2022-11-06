@@ -32,6 +32,16 @@
     <Alert type="danger">
       Block not yet started
     </Alert>
+    <div class="action">
+      <a href="/blocks/mathematics/introduction">
+         <!-- feather icon -->
+         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="var(--main-color-3)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
+           <circle cx="12" cy="12" r="10"></circle>
+           <polyline points="12 16 16 12 12 8">
+           </polyline><line x1="8" y1="12" x2="16" y2="12"></line>
+         </svg>
+      </a>
+    </div>
 
     <div class="separator" />
     <h2>Deep Learning</h2>
