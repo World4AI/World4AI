@@ -69,8 +69,14 @@
                   </li>
                   <li>
                     <a
-                      class:selecteddropdown={path === "/blocks/deep_learning"}
+                      class:selecteddropdown={path === "/blocks/deep_learning" && path !== "/blocks/deep_learning/generative_models"}
                       href="/blocks/deep_learning/introduction">Deep Learning</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class:selecteddropdown={path === "/blocks/generative_models"}
+                      href="/blocks/deep_learning/generative_models">Generative Models</a
                     >
                   </li>
                   <li>
