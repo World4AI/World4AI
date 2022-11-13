@@ -1,4 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
+import preprocess from "svelte-preprocess";
+
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,10 +12,15 @@ const config = {
 			fallback: null,
 			precompress: false
 		}),
-    alias: {
-      $notebooks: 'src/notebooks'
-    },
-	}
+    	alias: {
+    	  $notebooks: 'src/notebooks'
+    	},
+	},
+  	preprocess: [
+  	  preprocess({
+  	    postcss: true,
+  	  }),
+  	],
 };
 
 export default config;
