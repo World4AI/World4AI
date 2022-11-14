@@ -1,23 +1,23 @@
-datasets
-weights
-temp
-runs
-.vscode
-/node_modules
-package-lock.json
-node_modules
+# old files
+archive
+
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
 .DS_Store
-dist
-dist-ssr
-*.local
-build
-.svelte-kit
-/package
-testing
-.*.swp
-.*.swo
-venv
-__pycache__
-.ipynb_checkpoints
-*.py[cod]
-*$py.class

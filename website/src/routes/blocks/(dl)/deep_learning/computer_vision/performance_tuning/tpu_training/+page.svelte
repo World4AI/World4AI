@@ -1,7 +1,0 @@
-<script>
-  import Alert from "$lib/Alert.svelte";
-</script>
-
-<Alert type="danger">
-  So far TPU trainig with PyTorch has been unstable on Google Colab. We will revisit this chapter somewhere in the future.   
-</Alert>
