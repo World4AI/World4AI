@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/svelte": "^1.0.2",
     "@astrojs/tailwind": "^2.1.2",
+    "@fontsource/montserrat": "^4.5.13",
     "astro": "^1.6.7",
     "daisyui": "^2.40.1",
     "svelte": "^3.53.1",
