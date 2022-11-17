@@ -30,17 +30,17 @@ const navigation = [
       <span id="mid" class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"></span>
       <span id="bot" class="pointer-events-none block w-5 h-[1px] bg-white transition duration-300"></span>
     </div>
-    <nav class="flex-none tracking-[5px] text-sm">
+    <nav class="flex-none tracking-[2px] text-sm">
       <!-- desktop menu -->
       <ul class="hidden md:flex space-x-6" >
         {navigation.map((nav) => 
-          <li class="group relative ">
+          <li class="group relative">
             <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
             {nav.children && 
-              <ul class="hidden group-hover:block  absolute -left-2 text-left bg-w4-dark whitespace-nowrap border border-red-100/25">
+              <ul class="hidden group-hover:block absolute -left-2 text-left bg-w4-dark whitespace-nowrap border border-red-100/25">
                 {nav.children.map((child) => 
-                  <li class="mx-8 my-4">
-                    <a href={child.link}>{child.name}</a>
+                  <li class="mx-2 my-4">
+                    <a class="hover:bg-w4-dark-highlight p-2" href={child.link}>{child.name}</a>
                   </li>
             )}</ul>}
           </li> )}
@@ -57,7 +57,7 @@ const navigation = [
           {nav.children && 
             <ul class=" -left-2 text-left bg-w4-dark whitespace-nowrap">
               {nav.children.map((child) => 
-                <li class="mx-8 my-4">
+                <li class="mx-0 my-0">
                   <a href={child.link}>{child.name}</a>
                 </li>
           )}</ul>}
