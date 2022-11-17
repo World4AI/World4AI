@@ -1,7 +1,96 @@
 ---
 import logo from '/logo.svg';
 const navigation = [
-    {name: 'Home', link: ''},
-    {name: 'Blocks', link: ''},
-]
+    {name: 'Home', link: '/'},
+    {name: 'Blocks', link: '/blocks/introduction', children: 
+      [
+        {name: "Introduction", link: '/blocks/intorduction'},
+        {name: "Mathematics", link: '/blocks/mathematics'},
+        {name: "Deep Learning", link: '/blocks/deep_learning'},
+        {name: "Gofai", link: '/blocks/gofai'},
+      ]
+    },
+    {name: 'Donate', link: '/donate'},
+    {name: 'About', link: '/about'},
+];
 ---
+
+<header class="bg-w4-dark text-white select-none uppercase py-3 md:py-4">
+  <div class="flex justify-center items-center text-center mx-4 md:mx-10">
+    <div class="flex items-center flex-1 space-x-3">
+      <a class="block max-w-[30px]" href="/"
+        ><img src={logo} alt="World4AI Logo" /></a
+      >
+      <span class="font-bold tracking-[5px]">World4AI</span>
+    </div>
+
+    <!-- hamburger menu -->
+    <div id="hamburger" class="md:hidden cursor-pointer">
+      <span id="top" class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"></span>
+      <span id="mid" class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"></span>
+      <span id="bot" class="pointer-events-none block w-5 h-[1px] bg-white transition duration-300"></span>
+    </div>
+    <nav class="flex-none tracking-[5px] text-sm">
+      <!-- desktop menu -->
+      <ul class="hidden md:flex space-x-6" >
+        {navigation.map((nav) => 
+          <li class="group relative ">
+            <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
+            {nav.children && 
+              <ul class="hidden group-hover:block  absolute -left-2 text-left bg-w4-dark whitespace-nowrap border border-red-100/25">
+                {nav.children.map((child) => 
+                  <li class="mx-8 my-4">
+                    <a href={child.link}>{child.name}</a>
+                  </li>
+            )}</ul>}
+          </li> )}
+      </ul>
+    </nav>
+  </div>
+
+  <!-- mobile menu -->
+  <nav id="mobile-links" class="hidden md:hidden tracking-[5px] text-sm ml-2 mt-5">
+    <ul class="flex flex-col" >
+      {navigation.map((nav) => 
+        <li>
+          <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
+          {nav.children && 
+            <ul class=" -left-2 text-left bg-w4-dark whitespace-nowrap">
+              {nav.children.map((child) => 
+                <li class="mx-8 my-4">
+                  <a href={child.link}>{child.name}</a>
+                </li>
+          )}</ul>}
+        </li> )}
+    </ul>
+  </nav>
+</header>
+
+
+<script>
+  document.querySelector('#hamburger').addEventListener('click', (e) => {
+    e.target.classList.toggle('active');
+
+    document.querySelector('#mobile-links').classList.toggle('hidden');
+  });
+</script>
+
+<style>
+    .active {
+      transform: translateX(-10px);
+    }
+
+    .active #top {
+      transform: rotate(45deg) translate(4px, 6px);
+    }
+
+    .active #bot {
+      transform: rotate(-45deg) translate(4px, -6px);
+    }
+
+    .active #mid {
+      transform: translate(-27px, 0);
+      opacity: 0;
+    }
+
+</style>

@@ -5,6 +5,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'w4-dark': 'hsl(260, 5%, 20%)',
+				'w4-dark-highlight': 'hsl(260, 5%, 25%)',
 				'w4-red': '#FF683C',
 				'w4-yellow': '#FAE49E',
 				'w4-blue': '#4EB6D7',
