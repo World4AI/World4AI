@@ -15,8 +15,8 @@ const navigation = [
 ];
 ---
 
-<header class="bg-w4-dark text-white select-none uppercase py-3 md:py-4">
-  <div class="flex justify-center items-center text-center mx-4 md:mx-10">
+<header class="bg-w4-dark text-white select-none uppercase py-3 md:py-4 px-4">
+  <div class="flex justify-center items-center text-center container mx-auto">
     <div class="flex items-center flex-1 space-x-3">
       <a class="block max-w-[30px]" href="/"
         ><img src={logo} alt="World4AI Logo" /></a
@@ -32,12 +32,12 @@ const navigation = [
     </div>
     <nav class="flex-none tracking-[2px] text-sm">
       <!-- desktop menu -->
-      <ul class="hidden md:flex space-x-6" >
+      <ul class="hidden md:flex space-x-10 lg:space-x-20 font-bold" >
         {navigation.map((nav) => 
           <li class="group relative">
             <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
             {nav.children && 
-              <ul class="hidden group-hover:block absolute -left-2 text-left bg-w4-dark whitespace-nowrap border border-red-100/25">
+              <ul class="hidden bg-w4-dark group-hover:block absolute -left-2 text-left whitespace-nowrap">
                 {nav.children.map((child) => 
                   <li class="mx-2 my-4">
                     <a class="hover:bg-w4-dark-highlight p-2" href={child.link}>{child.name}</a>
@@ -53,9 +53,9 @@ const navigation = [
     <ul class="flex flex-col" >
       {navigation.map((nav) => 
         <li>
-          <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
+          <a class="inline-block p-2 hover:bg-gray-50" href={nav.link}>{nav.name}</a>
           {nav.children && 
-            <ul class=" -left-2 text-left bg-w4-dark whitespace-nowrap">
+            <ul class=" -left-2 text-left  whitespace-nowrap">
               {nav.children.map((child) => 
                 <li class="mx-4 my-2">
                   <a href={child.link}>{child.name}</a>
@@ -66,11 +66,9 @@ const navigation = [
   </nav>
 </header>
 
-
 <script>
   document.querySelector('#hamburger').addEventListener('click', (e) => {
     e.target.classList.toggle('active');
-
     document.querySelector('#mobile-links').classList.toggle('hidden');
   });
 </script>
@@ -92,5 +90,4 @@ const navigation = [
       transform: translate(-27px, 0);
       opacity: 0;
     }
-
 </style>
