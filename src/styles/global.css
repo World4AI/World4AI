@@ -5,3 +5,15 @@
 body {
     font-family: Montserrat;
 }
+
+article {
+    @apply mt-32 max-w-4xl mx-auto px-4;
+}
+
+h1 {
+    @apply text-5xl font-bold text-center my-6;
+}
+
+p {
+    @apply my-2;
+}
