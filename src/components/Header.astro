@@ -1,93 +1,111 @@
 ---
-import logo from '/logo.svg';
+import logo from "/logo.svg";
 const navigation = [
-    {name: 'Home', link: '/'},
-    {name: 'Blocks', link: '/blocks/introduction', children: 
-      [
-        {name: "Introduction", link: '/blocks/introduction'},
-        {name: "Mathematics", link: '/blocks/mathematics'},
-        {name: "Deep Learning", link: '/blocks/deep_learning'},
-        {name: "Gofai", link: '/blocks/gofai'},
-      ]
-    },
-    {name: 'Donate', link: '/donate'},
-    {name: 'About', link: '/about'},
+  { name: "Home", link: "/" },
+  {
+    name: "Blocks",
+    link: "/blocks/introduction",
+    children: [
+      { name: "Introduction", link: "/blocks/introduction" },
+      { name: "Mathematics", link: "/blocks/mathematics" },
+      { name: "Deep Learning", link: "/blocks/deep_learning" },
+      { name: "Gofai", link: "/blocks/gofai" },
+    ],
+  },
+  { name: "Donate", link: "/donate" },
+  { name: "About", link: "/about" },
 ];
 ---
 
-<header class="fixed left-0 top-0 right-0 bg-w4-dark text-white select-none uppercase py-3 md:py-4 px-4">
-  <div class="flex justify-center items-center text-center container mx-auto">
-    <div class="flex items-center flex-1 space-x-3">
-      <a class="block max-w-[30px]" href="/"
-        ><img src={logo} alt="World4AI Logo" /></a
-      >
-      <span class="font-bold tracking-[5px]">World4AI</span>
-    </div>
-
-    <!-- hamburger menu -->
-    <div id="hamburger" class="md:hidden cursor-pointer">
-      <span id="top" class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"></span>
-      <span id="mid" class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"></span>
-      <span id="bot" class="pointer-events-none block w-5 h-[1px] bg-white transition duration-300"></span>
-    </div>
-    <nav class="flex-none tracking-[2px] text-sm">
-      <!-- desktop menu -->
-      <ul class="hidden md:flex space-x-10 lg:space-x-20 font-bold" >
-        {navigation.map((nav) => 
-          <li class="group relative">
-            <a class="inline-block p-2 hover:bg-w4-dark-highlight" href={nav.link}>{nav.name}</a>
-            {nav.children && 
-              <ul class="hidden bg-w4-dark group-hover:block absolute -left-2 text-left whitespace-nowrap">
-                {nav.children.map((child) => 
-                  <li class="mx-2 my-4">
-                    <a class="hover:bg-w4-dark-highlight p-2" href={child.link}>{child.name}</a>
-                  </li>
-            )}</ul>}
-          </li> )}
-      </ul>
-    </nav>
+<header
+  class="flex justify-center items-center bg-w4-dark fixed z-50 top-0 left-0 w-full text-white uppercase select-none py-3 md:py-4 px-4"
+>
+  <div class="flex items-center flex-1 space-x-3">
+    <a class="block max-w-[30px]" href="/"
+      ><img src={logo} alt="World4AI Logo" />
+    </a>
+    <span class="font-bold tracking-[5px]">World4AI</span>
   </div>
+  <input type="checkbox" id="nav-toggle" class="peer hidden" />
 
-  <!-- mobile menu -->
-  <nav id="mobile-links" class="hidden md:hidden tracking-[5px] text-sm ml-2 mt-5">
-    <ul class="flex flex-col" >
-      {navigation.map((nav) => 
-        <li>
-          <a class="inline-block p-2 hover:bg-gray-50" href={nav.link}>{nav.name}</a>
-          {nav.children && 
-            <ul class=" -left-2 text-left  whitespace-nowrap">
-              {nav.children.map((child) => 
-                <li class="mx-4 my-2">
-                  <a href={child.link}>{child.name}</a>
-                </li>
-          )}</ul>}
-        </li> )}
+  <!-- desktop menu -->
+  <nav class="hidden md:block flex-none tracking-[2px] text-sm">
+    <ul class="flex space-x-10 lg:space-x-20 font-bold">
+      {
+        navigation.map((nav) => (
+          <li class="group relative">
+            <a
+              class="inline-block p-2 hover:bg-w4-dark-highlight"
+              href={nav.link}
+            >
+              {nav.name}
+            </a>
+            {nav.children && (
+              <ul class="hidden bg-w4-dark group-hover:block absolute -left-2 text-left whitespace-nowrap">
+                {nav.children.map((child) => (
+                  <li class="mx-2 my-4">
+                    <a class="hover:bg-w4-dark-highlight p-2" href={child.link}>
+                      {child.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </nav>
+  <!-- mobile menu -->
+  <nav
+    class="md:hidden bg-w4-dark absolute top-full left-0 w-full transition-transform origin-top scale-x-100 scale-y-0 peer-checked:scale-y-100 [&_a]:opacity-0 peer-checked:[&_a]:opacity-100 [&_a]:duration-200 [&_a]:delay-200"
+  >
+    <ul class="flex flex-col">
+      {
+        navigation.map((nav) => (
+          <li class="ml-4 mb-4 ">
+            <a
+              class="inline-block p-2 hover:bg-w4-dark-highlight"
+              href={nav.link}
+            >
+              {nav.name}
+            </a>
+            {nav.children && (
+              <ul class="-left-2 text-left whitespace-nowrap">
+                {nav.children.map((child) => (
+                  <li class="mx-4">
+                    <a
+                      class="inline-block p-2 hover:bg-w4-dark-highlight"
+                      href={child.link}
+                    >
+                      {child.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <!-- hamburger menu -->
+  <label
+    for="nav-toggle"
+    class="md:hidden cursor-pointer peer-checked:-translate-x-3 peer-checked:[&_#top]:rotate-45 peer-checked:[&_#top]:translate-x-[4px] peer-checked:[&_#top]:translate-y-[6px] peer-checked:[&_#bot]:-rotate-45 peer-checked:[&_#bot]:translate-x-1 peer-checked:[&_#bot]:-translate-y-2 peer-checked:[&_#mid]:-translate-x-8 peer-checked:[&_#mid]:opacity-0"
+  >
+    <span
+      id="top"
+      class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"
+    ></span>
+    <span
+      id="mid"
+      class="pointer-events-none block w-5 h-[1px] mb-1.5 bg-white transition duration-300"
+    ></span>
+    <span
+      id="bot"
+      class="pointer-events-none block w-5 h-[1px] bg-white transition duration-300"
+    ></span>
+  </label>
 </header>
-
-<script>
-  document.querySelector('#hamburger').addEventListener('click', (e) => {
-    e.target.classList.toggle('active');
-    document.querySelector('#mobile-links').classList.toggle('hidden');
-  });
-</script>
-
-<style>
-    .active {
-      transform: translateX(-10px);
-    }
-
-    .active #top {
-      transform: rotate(45deg) translate(4px, 6px);
-    }
-
-    .active #bot {
-      transform: rotate(-45deg) translate(4px, -6px);
-    }
-
-    .active #mid {
-      transform: translate(-27px, 0);
-      opacity: 0;
-    }
-</style>
