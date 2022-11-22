@@ -4,6 +4,7 @@ archive
 # build output
 dist/
 .output/
+.svelte-kit
 
 # dependencies
 node_modules/
