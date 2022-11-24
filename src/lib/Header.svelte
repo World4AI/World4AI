@@ -6,9 +6,7 @@
       link: "/blocks/introduction",
       children: [
         { name: "Introduction", link: "/blocks/introduction" },
-        { name: "Mathematics", link: "/blocks/mathematics" },
-        { name: "Deep Learning", link: "/blocks/deep_learning" },
-        { name: "GOFAI", link: "/blocks/gofai" },
+        { name: "Deep Learning", link: "/blocks/deep_learning/introduction" },
       ],
     },
     { name: "Donate", link: "/donate" },
