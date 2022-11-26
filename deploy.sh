@@ -3,9 +3,6 @@
 # abort on errors
 set -e
 
-# navigate into the docs directory
-cd website
-
 # build
 npm run build
 npx svelte-sitemap --domain https://www.world4ai.org
