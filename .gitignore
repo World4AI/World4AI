@@ -2,6 +2,7 @@
 archive
 
 # build output
+build
 dist/
 .output/
 .svelte-kit
