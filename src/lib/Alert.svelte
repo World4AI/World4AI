@@ -15,7 +15,7 @@
 </script>
 
 <div
-  class={`flex flex-col justify-start items-start gap-3 px-6 py-4 ${background}`}
+  class={`flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 ${background}`}
   style:color
 >
   <div
