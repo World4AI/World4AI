@@ -1,3 +1,7 @@
+<script>
+  import Button from "$lib/Button.svelte";
+</script>
+
 <svelte:head>
   <title>World4AI | Free and Open Source AI Education</title>
   <meta
@@ -6,80 +10,32 @@
   />
 </svelte:head>
 
-<main>
-  <article>
-    <div class="hero-message">
-      <div>
-        <h2>Free and Open Source</h2>
-        <h1><span>AI</span> Education</h1>
-      </div>
-    </div>
-    <div class="action light-blue">
-      <h2>Start building your knowledge</h2>
-      <a href="/blocks/introduction">
-        <!-- feather icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="var(--main-color-3)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 16 16 12 12 8">
-          </polyline><line x1="8" y1="12" x2="16" y2="12"></line>
-        </svg>
-        </a>
-    </div>
-  </article>
+<main class="container mx-auto flex gap-2 flex-col md:flex-row mt-4 w-full">
+  <div
+    class="bg-white border drop-shadow-md py-10 md:py-20 w-full md:w-1/2 h-[50vh] flex flex-col justify-around items-center"
+  >
+    <h1 class="text-2xl md:text-3xl lg:text-6xl xl:text-8xl font-semibold">
+      <span class="border-2 border-black p-2">AI</span> Education
+    </h1>
+    <h2 class="italic text-xl md:text-4xl">Free and Open Source</h2>
+    <a
+      href="/blocks/introduction"
+      class="bg-red-500 hover:bg-red-400 text-white rounded-md text-sm uppercase font-bold py-3 px-4"
+      >Get Started</a
+    >
+  </div>
+  <div
+    class="bg-white border drop-shadow-md w-full md:w-1/2 h-[50vh] md:relative md:top-52"
+  />
 </main>
 
-<style>
-  .hero-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--main-color-1);
-  }
-
-  h1 {
-    font-size: 90px;
-    font-weight: 600;
-    position: relative;
-    letter-spacing: 7px;
-    margin-bottom: 0;
-    color: var(--background-color);
-  }
-
-  h1 span {
-    border: 3px solid black; 
-    display: inline-block;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-
-  h2 {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 40px;
-    letter-spacing: 3px;
-    color: var(--background-color);
-  }
-
-  .action {
-      margin-top: 100px;
-      padding: 20px 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .action h2 {
-    color: var(--text-color)
-  }
-
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 30px;
-    }
-
-    h2 {
-      font-size: 15px;
-    }
-  }
-</style>
+<!--
+<main class="mt-1">
+  <div class="bg-red-500 py-20">
+    <h1 class="text-8xl mb-10 font-semibold">
+      <span class="border-4 border-black p-3">AI</span> Education
+    </h1>
+    <h2 class="italic text-4xl m-0">Free and Open Source</h2>
+  </div>
+</main>
+-->

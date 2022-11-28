@@ -8,9 +8,7 @@
     <h1>Support the Project</h1>
     <div class="separator" />
     <Container>
-      <Alert type="info">
-        <p>Coming Soon ...</p>
-      </Alert>
+      <Alert type="info">Coming Soon ...</Alert>
     </Container>
   </article>
 </main>
