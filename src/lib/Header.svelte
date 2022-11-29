@@ -23,7 +23,7 @@
 </script>
 
 <header
-  class="sticky top-0 left-0 w-full z-50 select-none py-2 px-4 bg-white border-b"
+  class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"
 >
   <div class="container mx-auto flex flex-row justify-between items-center">
     <div class="flex items-center space-x-3">

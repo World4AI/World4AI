@@ -11,7 +11,7 @@
 </script>
 
 <div class="container mx-auto mb-2">
-  <div class="py-2 border-b px-4 xl:hidden">
+  <div class="py-2 border-b xl:hidden">
     <button on:click={() => (showSidebar = !showSidebar)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
   <div class:hidden={!showSidebar} class="xl:hidden">
     <Sidebar data={nav} />
   </div>
-  <div class:hidden={showSidebar} class="xl:grid xl:grid-cols-5  gap-2">
+  <div class:hidden={showSidebar} class="xl:grid xl:grid-cols-5 gap-2">
     <div class="hidden xl:block">
       <Sidebar data={nav} />
     </div>
