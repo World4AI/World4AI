@@ -1,5 +1,6 @@
 <script>
   import Sidebar from "$lib/Sidebar.svelte";
+  import QuickNav from "$lib/QuickNav.svelte";
   import { page } from "$app/stores";
 
   export let data;
@@ -8,6 +9,16 @@
   $: path = $page.url.pathname;
   $: block = path.split("/")[2];
   $: nav = data[block];
+
+  let links;
+  $: {
+    links = [];
+    data[block].forEach((chapter) => {
+      chapter.links.forEach((link) => {
+        links.push(link.link);
+      });
+    });
+  }
 </script>
 
 <div class="container mx-auto mb-2">
@@ -45,6 +56,7 @@
       <article>
         <slot />
       </article>
+      <QuickNav {links} />
     </main>
   </div>
 </div>
