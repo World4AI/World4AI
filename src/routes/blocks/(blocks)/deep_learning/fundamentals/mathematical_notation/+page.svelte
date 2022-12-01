@@ -182,5 +182,5 @@
     is the foundation that is fundamental to all machine learning topics. Each
     section will enhance the notation to suit the needs of the section.
   </Alert>
-  <Footer {references} />
 </Container>
+<Footer {references} />

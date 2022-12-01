@@ -594,9 +594,7 @@
   </p>
 </Container>
 
-<Container>
-  <Footer {notes} {references} />
-</Container>
+<Footer {notes} {references} />
 
 <style>
   .background-yellow {
