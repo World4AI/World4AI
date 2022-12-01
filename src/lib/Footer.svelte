@@ -18,13 +18,13 @@
 </script>
 
 <div class="separator" />
-<footer>
-  <section class="notes">
+<footer class="container mx-auto">
+  <section>
     {#if notes.length > 0}
       <h4 class="mb-2">Notes</h4>
       <ol class="mb-4">
         {#each notes as note, idx}
-          <li id="note-{idx + 1}" class="text-sm leading-3 opacity-50">
+          <li id="note-{idx + 1}" class="text-sm leading-3 opacity-50 mb-3">
             {note}
             <a href="#note-origin-{idx + 1}" class="inline-block">
               <!-- svg is from feather icons -->
@@ -54,7 +54,10 @@
       <h4 class="mb-2">References</h4>
       <ol class="references">
         {#each references as reference, idx}
-          <li id="reference-{idx + 1}" class="text-sm leading-3 opacity-50">
+          <li
+            id="reference-{idx + 1}"
+            class="text-sm leading-3 opacity-50 mb-3"
+          >
             {#if reference.author}
               {reference.author}.
             {/if}
