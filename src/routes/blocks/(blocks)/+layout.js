@@ -212,16 +212,8 @@ export function load() {
             link: "/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals",
           },
           {
-            name: "Convolutional Neural Networks in PyTorch",
-            link: "/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_pytorch",
-          },
-          {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures",
-          },
-          {
-            name: "Saving and Loading",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/saving_loading",
           },
           {
             name: "LeNet-5",

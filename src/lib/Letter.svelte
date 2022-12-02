@@ -2,13 +2,9 @@
   export let letter = " ";
   export let translateX = 0;
   export let translateY = 0;
-  export let letterIdx = 0;
-  export let letterDelay = 1000;
-  export let blockDelay = 100;
 
-	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
-
+  import { tweened } from "svelte/motion";
+  import { cubicOut } from "svelte/easing";
 
   let letterMap = {
     a: [
@@ -202,8 +198,8 @@
   for (let i = 0; i < letterMap[letter].length; i++) {
     let progress = tweened(-10, {
       duration: 400,
-      easing: cubicOut
-    })
+      easing: cubicOut,
+    });
     progressCollection.push(progress);
   }
 </script>

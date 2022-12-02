@@ -1,7 +1,3 @@
-<script>
-  import Button from "$lib/Button.svelte";
-</script>
-
 <svelte:head>
   <title>World4AI | Free and Open Source AI Education</title>
   <meta
@@ -28,14 +24,3 @@
     class="bg-white border drop-shadow-md w-full md:w-1/2 h-[50vh] md:relative md:top-52"
   />
 </main>
-
-<!--
-<main class="mt-1">
-  <div class="bg-red-500 py-20">
-    <h1 class="text-8xl mb-10 font-semibold">
-      <span class="border-4 border-black p-3">AI</span> Education
-    </h1>
-    <h2 class="italic text-4xl m-0">Free and Open Source</h2>
-  </div>
-</main>
--->
