@@ -123,75 +123,86 @@ export function load() {
         ],
       },
       {
-        name: "Challenges and Improvements",
+        name: "Feature Scaling",
         links: [
           {
             name: "Introduction",
-            link: "/blocks/deep_learning/challenges_improvements/introduction",
+            link: "/blocks/deep_learning/feature_scaling/introduction",
           },
+        ],
+      },
+      {
+        name: "Overfitting",
+        links: [
           {
-            name: "Feature Scaling",
-            link: "/blocks/deep_learning/challenges_improvements/feature_scaling",
-          },
-          {
-            name: "Overfitting",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting",
+            name: "Introduction",
+            link: "/blocks/deep_learning/overfitting/introduction",
           },
           {
             name: "Train, Test, Validate",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting/train_test_validate",
+            link: "/blocks/deep_learning/overfitting/train_test_validate",
           },
           {
             name: "Data Augmentation",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting/data_augmentation",
+            link: "/blocks/deep_learning/overfitting/data_augmentation",
           },
           {
             name: "Regularization",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting/regularization",
+            link: "/blocks/deep_learning/overfitting/regularization",
           },
           {
             name: "Dropout",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting/dropout",
+            link: "/blocks/deep_learning/overfitting/dropout",
           },
           {
             name: "Early Stopping",
-            link: "/blocks/deep_learning/challenges_improvements/overfitting/early_stopping",
+            link: "/blocks/deep_learning/overfitting/early_stopping",
           },
+        ],
+      },
+      {
+        name: "Vanishing and Exploding Gradients",
+        links: [
           {
-            name: "Vanishing and Exploding Gradients",
-            link: "/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients",
+            name: "Introduction",
+            link: "/blocks/deep_learning/vanishing_exploding_gradients/introduction",
           },
           {
             name: "Activation Functions",
-            link: "/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/activation_functions",
+            link: "/blocks/deep_learning/vanishing_exploding_gradients/activation_functions",
           },
           {
             name: "Weight Initialization",
-            link: "/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/weight_initialization",
+            link: "/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization",
           },
           {
             name: "Gradient Clipping",
-            link: "/blocks/deep_learning/challenges_improvements/vanishing_exploding_gradients/gradient_clipping",
+            link: "/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping",
           },
+        ],
+      },
+      {
+        name: "Stability and Speedup",
+        links: [
           {
-            name: "Stability and Speedup",
-            link: "/blocks/deep_learning/challenges_improvements/stability_speedup",
+            name: "Introduction",
+            link: "/blocks/deep_learning/stability_speedup/introduction",
           },
           {
             name: "Optimizers",
-            link: "/blocks/deep_learning/challenges_improvements/stability_speedup/optimizers",
+            link: "/blocks/deep_learning/stability_speedup/optimizers",
           },
           {
             name: "Batch Normalization",
-            link: "/blocks/deep_learning/challenges_improvements/stability_speedup/batch_normalization",
+            link: "/blocks/deep_learning/stability_speedup/batch_normalization",
           },
           {
             name: "Skip Connections",
-            link: "/blocks/deep_learning/challenges_improvements/stability_speedup/skip_connections",
+            link: "/blocks/deep_learning/stability_speedup/skip_connections",
           },
           {
             name: "Learning Rate Scheduling",
-            link: "/blocks/deep_learning/challenges_improvements/stability_speedup/learning_rate_scheduling",
+            link: "/blocks/deep_learning/stability_speedup/learning_rate_scheduling",
           },
         ],
       },
@@ -304,72 +315,92 @@ export function load() {
         ],
       },
       {
-        name: "Generative Models",
+        name: "Autoregressive Generative Models",
         links: [
           {
             name: "Introduction",
-            link: "/blocks/deep_learning/generative_models/introduction",
-          },
-          {
-            name: "Autoregressive Generative Models",
-            link: "/blocks/deep_learning/generative_models/autoregressive",
+            link: "/blocks/deep_learning/autoregressive_generative_models/introduction",
           },
           {
             name: "PixelRNN",
-            link: "/blocks/deep_learning/generative_models/autoregressive/pixel_rnn",
+            link: "/blocks/deep_learning/autoregressive_generative_models/pixel_rnn",
           },
           {
             name: "Gated PixelCNN",
-            link: "/blocks/deep_learning/generative_models/autoregressive/gated_pixel_cnn",
+            link: "/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn",
           },
+        ],
+      },
+      {
+        name: "Latent Variable Models",
+        links: [
           {
-            name: "Latent Variable Models",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models",
+            name: "Introduction",
+            link: "/blocks/deep_learning/latent_variable_models/introduction",
           },
+        ],
+      },
+      {
+        name: "Normalizing Flows",
+        links: [
           {
-            name: "Normalizing Flows",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows",
+            name: "Introduction",
+            link: "/blocks/deep_learning/normalizing_flows",
           },
           {
             name: "NICE",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/nice",
+            link: "/blocks/deep_learning/normalizing_flows/nice",
           },
           {
             name: "RealNVP",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/real_nvp",
+            link: "/blocks/deep_learning/normalizing_flows/real_nvp",
           },
           {
             name: "Glow",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/normalizing_flows/glow",
+            link: "/blocks/deep_learning/normalizing_flows/glow",
           },
+        ],
+      },
+      {
+        name: "Autoencoders",
+        links: [
           {
-            name: "Autoencoders",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/autoencoders",
+            name: "Introduction",
+            link: "/blocks/deep_learning/autoencoders/introduction",
           },
           {
             name: "Variational Autoencoder",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/variational_autoencoder",
+            link: "/blocks/deep_learning/autoencoders/variational_autoencoder",
           },
           {
             name: "VQ-VAE",
-            link: "/blocks/deep_learning/generative_models/latent_variable_models/autoencoders/vq_vae",
+            link: "/blocks/deep_learning/autoencoders/vq_vae",
           },
-
+        ],
+      },
+      {
+        name: "Generative Adversarial Networks",
+        links: [
           {
-            name: "Generative Adversarial Networks",
-            link: "/blocks/deep_learning/generative_models/generative_adversarial_networks",
+            name: "Introduction",
+            link: "/blocks/deep_learning/generative_adversarial_networks/introduction",
           },
+        ],
+      },
+      {
+        name: "Diffusion Models",
+        links: [
           {
-            name: "Diffusion Models",
-            link: "/blocks/deep_learning/generative_models/diffusion_models",
+            name: "Introduction",
+            link: "/blocks/deep_learning/diffusion_models/introduction",
           },
           {
             name: "GLIDE",
-            link: "/blocks/deep_learning/generative_models/diffusion_models/glide",
+            link: "/blocks/deep_learning/diffusion_models/glide",
           },
           {
             name: "Latent Diffusion",
-            link: "/blocks/deep_learning/generative_models/diffusion_models/latent_diffusion",
+            link: "/blocks/deep_learning/diffusion_models/latent_diffusion",
           },
         ],
       },
