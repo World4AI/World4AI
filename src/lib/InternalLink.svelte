@@ -4,23 +4,9 @@
 </script>
 
 <sup>
-  <a href="#{type}-{id}"
-    ><sup id="{type}-origin-{id}">
+  <a class="text-black text-base font-bold" href="#{type}-{id}"
+    ><sup id="{type}-origin-{id}" class="scroll-mt-24">
       [{id}]
     </sup></a
   >
 </sup>
-
-<style>
-  sup {
-    scroll-margin-top: 100px;
-    vertical-align: 2px;
-  }
-
-  a {
-    color: var(--text-color);
-    font-size: 15px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-</style>
