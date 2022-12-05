@@ -1,4 +1,17 @@
 <script>
+  import { onMount } from "svelte";
+
+  let offset = 0;
+  onMount(() => {
+    const interval = setInterval(() => {
+      offset -= 0.5;
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Latex from "$lib/Latex.svelte";
 
@@ -11,30 +24,24 @@
   export let verticalGap = 15;
   export let padding = { left: 0, right: 0 };
 
-  export let layers = [
+  export let layers = [];
+  /*
+    The layers list should contain the following
     {
       title: "Input",
       nodes: [
-        { value: "x_1", fill: "none" },
-        { value: "x_2", fill: "none" },
+        { value: "x_1", class: "fill-gray-500" },
+        { value: "x_2", class: "fill-gray-500" },
       ],
     },
     {
       title: "Hidden Layer",
       nodes: [
-        { value: "a_1", fill: "none" },
-        { value: "a_2", fill: "none" },
+        { value: "a_1", class: "fill-gray-500" },
+        { value: "a_2", class: "fill-gray-500" },
       ],
     },
-    {
-      title: "Output",
-      nodes: [{ value: "o", fill: "none" }],
-    },
-    {
-      title: "Loss",
-      nodes: [{ value: "L", fill: "none" }],
-    },
-  ];
+  */
 
   // calculate the centers of nodes for reusability
   const centers = [];
@@ -71,7 +78,7 @@
           height={rectSize}
           stroke-width={border}
           stroke="var(--text-color)"
-          fill={node.fill}
+          class={`${node.class}`}
         />
         <!-- Text Inside Box -->
         <foreignObject
@@ -97,6 +104,7 @@
               stroke="var(--text-color)"
               stroke-dasharray="2 2"
               stroke-width="0.3"
+              stroke-dashoffset={offset}
             />
           {/each}
         {/if}
