@@ -3,6 +3,13 @@
   import Slider from "$lib/Slider.svelte";
   import Latex from "$lib/Latex.svelte";
 
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+
   // offset for stroke-dashoffset to emulate movement
   let offset = 0;
   // weight that scales the input
@@ -45,61 +52,42 @@
     />
   </g>
 </svg>
-<div class="flex-container">
+<div class="flex justify-center items-center gap-3">
   <div><Latex>w</Latex></div>
   <Slider min={-5} max={5} bind:value={weight} step={0.1} />
 </div>
-<div class="parameters yellow">
-  <div class="flex">
-    <div class="left">
-      <p><strong>Input</strong> <Latex>x</Latex>:</p>
-      <p><strong>Weight</strong> <Latex>w</Latex>:</p>
-      <p><strong>Scaled Value</strong> <Latex>x*w</Latex>:</p>
-    </div>
-    <div class="right">
-      <p><strong>{input}</strong></p>
-      <p><strong>{weight}</strong></p>
-      <p><strong>{input * weight}</strong></p>
-    </div>
-  </div>
-</div>
 
-<style>
-  .parameters {
-    width: 50%;
-    padding: 5px 10px;
-  }
-
-  div p {
-    margin: 0;
-    border-bottom: 1px solid black;
-  }
-
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    flex-grow: 1;
-    margin-right: 20px;
-  }
-
-  .right {
-    flex-basis: 40px;
-  }
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flex-container div {
-    width: 30px;
-  }
-
-  @media (max-width: 1000px) {
-    .parameters {
-      width: 100%;
-    }
-  }
-</style>
+<Table>
+  <TableHead>
+    <Row>
+      <HeaderEntry>Variable</HeaderEntry>
+      <HeaderEntry>Value</HeaderEntry>
+    </Row>
+  </TableHead>
+  <TableBody>
+    <Row>
+      <DataEntry>
+        Input <Latex>x</Latex>
+      </DataEntry>
+      <DataEntry>
+        {input}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Weight <Latex>w</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Scaled Value <Latex>x * w</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight * input}
+      </DataEntry>
+    </Row>
+  </TableBody>
+</Table>

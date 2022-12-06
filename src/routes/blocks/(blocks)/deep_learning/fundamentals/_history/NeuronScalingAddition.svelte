@@ -2,6 +2,14 @@
   import { onMount } from "svelte";
   import Latex from "$lib/Latex.svelte";
   import Slider from "$lib/Slider.svelte";
+
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+
   // offset for stroke-dashoffset to emulate movement
   let offset = 0;
   let weight1 = 1;
@@ -81,78 +89,78 @@
     </g>
   </g>
 </svg>
-<div class="flex-container">
+<div class="flex justify-center items-center gap-2">
   <div><Latex>w_1</Latex></div>
   <Slider min={-5} max={5} step={0.1} bind:value={weight1} />
 </div>
-<div class="flex-container">
+<div class="flex justify-center items-center gap-2">
   <div><Latex>w_2</Latex></div>
   <Slider min={-5} max={5} step={0.1} bind:value={weight2} />
 </div>
 
-<div class="parameters yellow">
-  <div class="flex">
-    <div class="left">
-      <p><strong>Input</strong> <Latex>x_1</Latex>:</p>
-      <p><strong>Weight</strong> <Latex>w_1</Latex>:</p>
-      <p><strong>Scaled Value</strong> <Latex>x_1*w_1</Latex>:</p>
-      <p><strong>Input</strong> <Latex>x_2</Latex>:</p>
-      <p><strong>Weight</strong> <Latex>w_2</Latex>:</p>
-      <p><strong>Scaled Value</strong> <Latex>x_2*w_2</Latex>:</p>
-      <p>
-        <strong>Weighted Sum</strong>
-        <Latex>\sum_j x_j w_j</Latex>:
-      </p>
-    </div>
-    <div class="right">
-      <p><strong>{input1}</strong></p>
-      <p><strong>{weight1}</strong></p>
-      <p><strong>{scaled1}</strong></p>
-      <p><strong>{input2}</strong></p>
-      <p><strong>{weight2}</strong></p>
-      <p><strong>{scaled2}</strong></p>
-      <p><strong>{sum.toFixed(2)}</strong></p>
-    </div>
-  </div>
-</div>
-
-<style>
-  .parameters {
-    width: 50%;
-    padding: 5px 10px;
-  }
-
-  div p {
-    margin: 0;
-    border-bottom: 1px solid black;
-  }
-
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .left {
-    flex-grow: 1;
-    margin-right: 20px;
-  }
-
-  .right {
-    flex-basis: 40px;
-  }
-
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flex-container div {
-    width: 30px;
-  }
-
-  @media (max-width: 1000px) {
-    .parameters {
-      width: 100%;
-    }
-  }
-</style>
+<Table>
+  <TableHead>
+    <Row>
+      <HeaderEntry>Variable</HeaderEntry>
+      <HeaderEntry>Value</HeaderEntry>
+    </Row>
+  </TableHead>
+  <TableBody>
+    <Row>
+      <DataEntry>
+        Input <Latex>x_1</Latex>
+      </DataEntry>
+      <DataEntry>
+        {input1}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Weight <Latex>w_1</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight1}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Scaled Value <Latex>x_1 * w_1</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight1 * input1}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Input <Latex>x_2</Latex>
+      </DataEntry>
+      <DataEntry>
+        {input2}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Weight <Latex>w_2</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight2}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Scaled Value <Latex>x_2 * w_2</Latex>
+      </DataEntry>
+      <DataEntry>
+        {weight1 * input1}
+      </DataEntry>
+    </Row>
+    <Row>
+      <DataEntry>
+        Weighted Sum <Latex>\sum_j x_j w_j</Latex>
+      </DataEntry>
+      <DataEntry>
+        {sum.toFixed(2)}
+      </DataEntry>
+    </Row>
+  </TableBody>
+</Table>
