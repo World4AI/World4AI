@@ -11,8 +11,8 @@
   "type": "module",
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
-    "@sveltejs/adapter-static": "^1.0.0-next.48",
-    "@sveltejs/kit": "^1.0.0-next.573",
+    "@sveltejs/adapter-static": "^1.0.0-next.49",
+    "@sveltejs/kit": "^1.0.0-next.582",
     "@tensorflow/tfjs": "^4.1.0",
     "@tensorflow/tfjs-backend-webgl": "^4.1.0",
     "autoprefixer": "^10.4.13",
@@ -21,12 +21,12 @@
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
     "katex": "^0.16.4",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.20",
     "svelte": "^3.54.0",
     "svelte-highlight": "^6.2.1",
     "svelte-markdown": "^0.2.3",
-    "svelte-preprocess": "^4.10.7",
+    "svelte-preprocess": "^5.0.0",
     "tailwindcss": "^3.2.4",
-    "vite": "^3.2.5"
+    "vite": "^4.0.0"
   }
 }
