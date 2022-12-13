@@ -20,24 +20,26 @@
   }
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 12px;
+    height: 1px;
     cursor: pointer;
-    box-shadow: 1px 1px 1px #000000;
-    background: var(--text-color);
+    box-shadow: none;
+    background: black;
     border: 1px solid #000000;
   }
   input[type="range"]::-webkit-slider-thumb {
     border: 1px solid #000000;
+    border-radius: 3px;
     height: 28px;
-    width: 18px;
-    background: var(--main-color-1);
+    width: 15px;
+    background: var(--main-color-4);
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -9px;
+    margin-top: -14px;
   }
   input[type="range"]:focus::-webkit-slider-runnable-track {
     background: var(--text-color);
   }
+
   input[type="range"]::-moz-range-track {
     width: 100%;
     height: 12px;
