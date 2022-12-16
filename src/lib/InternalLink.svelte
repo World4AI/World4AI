@@ -3,10 +3,10 @@
   export let id;
 </script>
 
-<sup>
-  <a class="text-black text-base font-bold" href="#{type}-{id}"
-    ><sup id="{type}-origin-{id}" class="scroll-mt-24">
-      [{id}]
-    </sup></a
-  >
-</sup>
+<a
+  id="{type}-origin-{id}"
+  class="text-black text-xs align-top font-bold scroll-mt-24"
+  href="#{type}-{id}"
+>
+  [{id}]
+</a>
