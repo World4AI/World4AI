@@ -61,9 +61,8 @@
     </g>
     <g
       id="neuron"
+      class="fill-w4ai-yellow stroke-black"
       transform="matrix(3.2411 0 0 3.2411 -280.62 72.732)"
-      fill="var(--main-color-3)"
-      stroke="#000"
       stroke-width="1.2645"
     >
       <rect
