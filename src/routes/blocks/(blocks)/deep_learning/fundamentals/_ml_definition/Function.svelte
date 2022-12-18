@@ -29,36 +29,34 @@
       </marker>
     </defs>
     <text
+      class="text-5xl"
       x="7.7187953"
       y="212.79494"
       fill="#000000"
       font-family="sans-serif"
-      font-size="40px"
       style="line-height:1.25"
       xml:space="preserve"
       ><tspan x="7.7187953" y="212.79494">Inputs</tspan></text
     >
     <text
+      class="text-5xl"
       x="632.1347"
       y="213.05861"
       fill="#000000"
       font-family="sans-serif"
-      font-size="40px"
       style="line-height:1.25"
       xml:space="preserve"
       ><tspan x="632.1347" y="213.05861">Outputs</tspan></text
     >
-    <g>
-      <text
-        x="314.66797"
-        y="52.91214"
-        fill="#000000"
-        font-family="sans-serif"
-        font-size="40px"
-        style="line-height:1.25"
-        xml:space="preserve"><tspan x="323" y="52">Function</tspan></text
-      >
-    </g>
+    <text
+      class="text-5xl"
+      x="314.66797"
+      y="52.91214"
+      fill="#000000"
+      font-family="sans-serif"
+      style="line-height:1.25"
+      xml:space="preserve"><tspan x="323" y="52">Function</tspan></text
+    >
     <g
       id="neuron"
       class="fill-w4ai-yellow stroke-black"
