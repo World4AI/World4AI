@@ -58,9 +58,7 @@
       class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0"
       class:hidden={!isHamburgerClicked}
     >
-      <ul
-        class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 font-bold"
-      >
+      <ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm">
         {#each navigation as nav}
           <li class="group relative">
             <a class="inline-block p-2 hover:bg-gray-100" href={nav.link}>
