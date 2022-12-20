@@ -1,3 +1,7 @@
+<script>
+  import { ArrowRight } from "lucide-svelte";
+</script>
+
 <svelte:head>
   <title>World4AI | Free and Open Source AI Education</title>
   <meta
@@ -6,21 +10,25 @@
   />
 </svelte:head>
 
-<main class="container mx-auto flex gap-2 flex-col md:flex-row mt-4 w-full">
+<main class="container mx-auto mt-4 w-full h-[90vh]">
   <div
-    class="bg-white border drop-shadow-md py-10 md:py-20 w-full md:w-1/2 h-[50vh] flex flex-col justify-around items-center"
+    class="bg-white py-10 md:py-20 w-full flex flex-col justify-between items-center"
   >
-    <h1 class="text-2xl md:text-3xl lg:text-6xl xl:text-8xl font-semibold">
-      <span class="border-2 border-black p-2">AI</span> Education
+    <h1
+      class="flex flex-col lg:flex-row text-6xl sm:text-8xl xl:text-8xl font-bold mb-10"
+    >
+      <span> Intuition.</span>
+      <span> Math.</span>
+      <span> Code.</span>
     </h1>
-    <h2 class="italic text-xl md:text-4xl">Free and Open Source</h2>
+    <h2 class="text-lg md:text-2xl font-normal m-10 max-w-3xl text-gray-600">
+      World4AI is a free and open source AI education plattform, that takes you
+      from an absolute beginner to an intermediary level.
+    </h2>
     <a
       href="/blocks/introduction"
-      class="bg-red-500 hover:bg-red-400 text-white rounded-md text-sm uppercase font-bold py-3 px-4"
-      >Get Started</a
+      class="flex gap-2 transition border border-red-500 hover:border-black bg-white hover:bg-black hover:text-white rounded-md py-3 px-12 m-10 font-bold text-center"
+      ><span>Start Learning</span> <ArrowRight /></a
     >
   </div>
-  <div
-    class="bg-white border drop-shadow-md w-full md:w-1/2 h-[50vh] md:relative md:top-52"
-  />
 </main>
