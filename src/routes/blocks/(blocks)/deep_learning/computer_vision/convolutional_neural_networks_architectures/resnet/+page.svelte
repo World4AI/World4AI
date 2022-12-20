@@ -264,7 +264,7 @@
 <Container>
   <p>
     We have introduced and discussed <a
-      href="/blocks/deep_learning/challenges_improvements/stability_speedup/skip_connections"
+      href="/blocks/deep_learning/stability_speedup/skip_connections"
       >skip connections</a
     >
     in a previous chapter. This time around we will discuss the ResNet <InternalLink

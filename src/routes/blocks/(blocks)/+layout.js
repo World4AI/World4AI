@@ -246,10 +246,6 @@ export function load() {
             name: "ResNet",
             link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/resnet",
           },
-          {
-            name: "Performance Tuning",
-            link: "/blocks/deep_learning/computer_vision/performance_tuning",
-          },
         ],
       },
       {
