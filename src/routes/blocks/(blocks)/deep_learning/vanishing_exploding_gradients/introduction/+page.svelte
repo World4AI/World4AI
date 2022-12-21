@@ -16,35 +16,35 @@
   export let layers = [
     {
       title: "Input",
-      nodes: [{ value: "x", fill: "none" }],
+      nodes: [{ value: "x", class: "fill-white" }],
     },
     {
       title: "Hidden 1",
-      nodes: [{ value: "z", fill: "none" }],
+      nodes: [{ value: "z", class: "fill-white" }],
     },
     {
       title: "",
-      nodes: [{ value: "a", fill: "none" }],
+      nodes: [{ value: "a", class: "fill-white" }],
     },
     {
       title: "Hidden 2",
-      nodes: [{ value: "z", fill: "none" }],
+      nodes: [{ value: "z", class: "fill-white" }],
     },
     {
       title: "",
-      nodes: [{ value: "a", fill: "none" }],
+      nodes: [{ value: "a", class: "fill-white" }],
     },
     {
       title: "Output",
-      nodes: [{ value: "z", fill: "none" }],
+      nodes: [{ value: "z", class: "fill-white" }],
     },
     {
       title: "",
-      nodes: [{ value: "a", fill: "none" }],
+      nodes: [{ value: "a", class: "fill-white" }],
     },
     {
       title: "Loss",
-      nodes: [{ value: "L", fill: "none" }],
+      nodes: [{ value: "L", class: "fill-white" }],
     },
   ];
 

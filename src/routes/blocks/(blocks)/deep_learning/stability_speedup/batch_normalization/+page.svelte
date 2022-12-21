@@ -23,33 +23,33 @@
     {
       title: "Input",
       nodes: [
-        { value: "x_1", fill: "none" },
-        { value: "x_2", fill: "none" },
-        { value: "x_3", fill: "none" },
+        { value: "x_1", class: "fill-white" },
+        { value: "x_2", class: "fill-white" },
+        { value: "x_3", class: "fill-white" },
       ],
     },
     {
       title: "Hidden Layer 1",
       nodes: [
-        { value: "a_1", fill: "var(--main-color-3)" },
-        { value: "a_2", fill: "var(--main-color-3)" },
-        { value: "a_3", fill: "var(--main-color-3)" },
+        { value: "a_1", class: "fill-w4ai-yellow" },
+        { value: "a_2", class: "fill-w4ai-yellow" },
+        { value: "a_3", class: "fill-w4ai-yellow" },
       ],
     },
     {
       title: "Hidden Layer 2",
       nodes: [
-        { value: "a_1", fill: "var(--main-color-3)" },
-        { value: "a_2", fill: "var(--main-color-3)" },
-        { value: "a_3", fill: "var(--main-color-3)" },
+        { value: "a_1", class: "fill-w4ai-yellow" },
+        { value: "a_2", class: "fill-w4ai-yellow" },
+        { value: "a_3", class: "fill-w4ai-yellow" },
       ],
     },
     {
       title: "Out",
       nodes: [
-        { value: "a_1", fill: "none" },
-        { value: "a_2", fill: "none" },
-        { value: "a_3", fill: "none" },
+        { value: "a_1", class: "fill-white" },
+        { value: "a_2", class: "fill-white" },
+        { value: "a_3", class: "fill-white" },
       ],
     },
   ];
@@ -57,37 +57,37 @@
   let batch = [
     {
       title: "",
-      nodes: [{ value: "\\mathbf{z}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "Activations",
-      nodes: [{ value: "\\mathbf{a}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{a}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "Batch Norm",
-      nodes: [{ value: "\\mathbf{\\bar{a}}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{\\bar{a}}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "",
-      nodes: [{ value: "\\mathbf{z}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
   ];
   let batch2 = [
     {
       title: "",
-      nodes: [{ value: "\\mathbf{z}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "Batch Norm",
-      nodes: [{ value: "\\mathbf{\\bar{z}}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{\\bar{z}}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "Activations",
-      nodes: [{ value: "\\mathbf{a}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{a}", class: "fill-w4ai-yellow" }],
     },
     {
       title: "",
-      nodes: [{ value: "\\mathbf{z}", fill: "var(--main-color-3)" }],
+      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
   ];
 </script>

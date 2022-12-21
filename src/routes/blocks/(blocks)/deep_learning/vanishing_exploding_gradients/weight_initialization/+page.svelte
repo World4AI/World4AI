@@ -6,6 +6,31 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
 
+  const layers = [
+    {
+      title: "Input",
+      nodes: [
+        { value: "x_1", class: "fill-gray-300" },
+        { value: "x_2", class: "fill-gray-300" },
+      ],
+    },
+    {
+      title: "Hidden Layer",
+      nodes: [
+        { value: "a_1", class: "fill-gray-300" },
+        { value: "a_2", class: "fill-gray-300" },
+      ],
+    },
+    {
+      title: "Output",
+      nodes: [{ value: "o", class: "fill-gray-300" }],
+    },
+    {
+      title: "Loss",
+      nodes: [{ value: "L", class: "fill-gray-300" }],
+    },
+  ];
+
   let references = [
     {
       author: "Glorot, Xavier and Bengio Yoshua",
@@ -61,7 +86,7 @@
     initialization. All we need to do is to work through a single forward and
     backward pass to realize the problem.
   </p>
-  <NeuralNetwork />
+  <NeuralNetwork {layers} />
   <p>
     If we have the same weight <Latex>w</Latex> for all nodes and layers, then in
     the very first forward pass all the neurons from the same layer will produce

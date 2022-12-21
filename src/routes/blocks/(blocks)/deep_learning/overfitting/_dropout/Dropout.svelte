@@ -12,37 +12,37 @@
     {
       title: "",
       nodes: [
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
       ],
     },
     {
       title: "",
       nodes: [
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
       ],
     },
     {
       title: "",
       nodes: [
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
-        { value: "", fill: "none" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
+        { value: "", class: "fill-white" },
       ],
     },
     {
       title: "",
-      nodes: [{ value: "", fill: "none" }],
+      nodes: [{ value: "", class: "fill-white" }],
     },
   ];
 
@@ -53,9 +53,9 @@
       if (layerIdx !== layers.length - 1) {
         layer.nodes.forEach((node, nodeIdx) => {
           if (Math.random() >= p) {
-            layers[layerIdx].nodes[nodeIdx].fill = "none";
+            layers[layerIdx].nodes[nodeIdx].class = "fill-white";
           } else {
-            layers[layerIdx].nodes[nodeIdx].fill = "var(--main-color-1)";
+            layers[layerIdx].nodes[nodeIdx].class = "fill-w4ai-red";
           }
         });
       }
