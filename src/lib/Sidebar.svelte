@@ -6,7 +6,7 @@
 </script>
 
 <aside
-  class="bg-gray-100 select-none border-r sticky top-16 left-0 max-h-[92vh] overflow-y-auto z-40"
+  class="bg-gray-100 select-none border-r sticky left-0 max-h-[92vh] overflow-y-auto z-40"
 >
   <nav class="p-4">
     {#each data as folder}
