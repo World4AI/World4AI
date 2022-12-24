@@ -10,9 +10,9 @@
   />
 </svelte:head>
 
-<main class="container mx-auto mt-4 w-full h-[90vh]">
+<main class="polka container mx-auto mt-4 w-full h-[90vh]">
   <div
-    class="bg-white py-10 md:py-20 w-full flex flex-col justify-between items-center"
+    class="polka bg-white py-10 md:py-20 w-full flex flex-col justify-between items-center"
   >
     <h1
       class="flex flex-col lg:flex-row text-6xl sm:text-8xl xl:text-8xl font-bold mb-10"
@@ -32,3 +32,10 @@
     >
   </div>
 </main>
+
+<style>
+  .polka {
+    background-image: radial-gradient(#dadada 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+</style>
