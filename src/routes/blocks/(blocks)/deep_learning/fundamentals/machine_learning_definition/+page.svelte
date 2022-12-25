@@ -7,16 +7,12 @@
   import StepButton from "$lib/button/StepButton.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
-  import Hightlight from "$lib/Highlight.svelte";
+  import Highlight from "$lib/Highlight.svelte";
   import Alert from "$lib/Alert.svelte";
 
   import Function from "../_ml_definition/Function.svelte";
   import TraditionalParadigm from "../_ml_definition/TraditionalParadigm.svelte";
   import MlParadigm from "../_ml_definition/MlParadigm.svelte";
-
-  let notes = [
-    "This definition is supposedly based on Arthur Samuel (1959). The exact quote is not contained in any of his papers, only the general sentiment regarding that definition.",
-  ];
 
   let references = [
     {
@@ -150,49 +146,47 @@
   />
 </svelte:head>
 
-<h1>Machine Learning</h1>
+<h1>Machine Learning Definition</h1>
 <div class="separator" />
 <Container>
   <p>
-    When books and university lectures on the topic of artificial intelligence
-    mention the origin of machine learning, the name Arthur Lee Samuel is surely
-    to come up. Arthur Samuel was one of the pioneers in the area of artificial
-    intelligence, who coined the term
-    <Hightlight>Machine Learning</Hightlight>
-    <InternalLink type={"reference"} id={1} />
-    and is responsible for its' most famous definition:
+    Let's start this section at the very beginning and define the term <Highlight
+      >machine mearning</Highlight
+    >.
   </p>
   <Alert type="info">
     "Machine learning is the field of study that gives computers the ability to
-    learn without being explicitly programmed
-    <InternalLink type="note" id={1} />".
+    learn without being explicitly programmed<InternalLink
+      type="reference"
+      id={1}
+    />".
   </Alert>
   <p>
-    While the above definition is commonly used, it is not the one that we find
-    most useful. Throughout the deep learning block we will rely on a more
-    programming oriented definition of machine learning.
+    The above definition is inspired by Arthur Samuel, one of the pioneers in
+    the area of artificial intelligence, who coined the term machine learning.
+    While this definition is commonly used, it is not the one that we will rely
+    on. Throughout the deep learning block we will rely on a much more simple,
+    more programming oriented definition of machine learning.
   </p>
-  <Alert type="info">
-    Machine learning is a programming paradigm where the solution to a problem
-    is automatically learned from data.
-  </Alert>
-
-  <div class="separator" />
-  <h2>Programming Paradigms</h2>
+  <Alert type="info">Machine learning is a programming paradigm.</Alert>
+  <p>
+    Let's take some time and figure out what that definition actually means.
+  </p>
   <p>
     The task of the programmer is to find a function, that can generate desired
-    outputs, based on the inputs of the function. For example a programmer might
-    be assigned a task to write a spam filter, where the function would classify
-    the email as spam or ham based on the contents of the email, the email
-    address, the email subject and some additional metadata. It does not matter
-    whether the programmer uses a traditional programming paradigm or machine
-    learning, the result of the task is essentially the same: a function that
-    takes those inputs and produces the classification as the output.
+    outputs, based on the inputs to the function.
   </p>
   <Function />
   <p>
-    The big difference between the classical and the machine learning progamming
-    paradigm is the way that function is derived.
+    For example a programmer might be assigned the task to write a spam filter,
+    where the function would classify the email as spam or ham based on the
+    contents of the email, the email address, the email subject and some
+    additional metadata. It does not matter whether the programmer uses a
+    traditional programming paradigm or machine learning, the result of the task
+    is essentially the same: a function that takes those inputs and produces
+    email classification as the output. The big difference between the classical
+    and the machine learning progamming paradigm is the way that function is
+    derived.
   </p>
   <p>
     When programmers apply a traditional programming paradigm to create a spam
@@ -207,7 +201,6 @@
     an accuracy of 95%.
   </p>
   <TraditionalParadigm />
-
   <p>
     The machine learning approach is different in several aspects. While the
     programmer still needs to write some parts of the function explicitly, many
@@ -217,8 +210,8 @@
     basically needs a dataset with the corresponding flags that show if the text
     (input) corresponds to a spam email (output). The function takes those
     inputs in, uses so called
-    <Hightlight>weights</Hightlight> to transform the inputs into the outputs and
-    compares the expected outputs to those produced by the function. Using the differences
+    <Highlight>weights</Highlight> to transform the inputs into the outputs and compares
+    the expected outputs to those produced by the function. Using the differences
     between the actual outputs (spam or not) and the produced outputs the weights
     are adjusted automatically to improve the outputs of the function.
   </p>
@@ -230,33 +223,31 @@
     what we refer to as learning.
   </Alert>
   <MlParadigm />
-
   <p>
     While both paradigms produce a function, in machine learing we commonly tend
-    to use the word <Hightlight>model</Hightlight> instead of function.
+    to use the word <Highlight>model</Highlight> instead of function.
   </p>
-  <div class="separator" />
-  <h2>Example</h2>
   <p>
     Let us use a stylized geometric example to further demonstrate how classical
     programming paradigms differ from machine learning programming. Let us
     assume we are assigned a task to transform a triangle into a rectangle of
     same height.
   </p>
-</Container>
-
-<div class="background-yellow">
-  <SvgContainer maxWidth={"900px"}>
-    <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="var(--text-color)">
-        <path d="m30.784 21.587 24.216 48.404h-48.433z" />
-        <rect x="345.98" y="20.98" width="49.02" height="49.02" />
-        <path d="m60 45.49h275" stroke-dasharray="2, 2" />
-      </g>
-    </svg>
-  </SvgContainer>
-</div>
-<Container>
+  <div>
+    <SvgContainer maxWidth={"900px"}>
+      <svg
+        version="1.1"
+        viewBox="0 0 400 100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" stroke="var(--text-color)">
+          <path d="m30.784 21.587 24.216 48.404h-48.433z" />
+          <rect x="345.98" y="20.98" width="49.02" height="49.02" />
+          <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+        </g>
+      </svg>
+    </SvgContainer>
+  </div>
   <p>
     In classical programming the programmer could for example notice, that both
     shapes are polygons. The input (the triangle) has 3 connected points while
@@ -265,45 +256,45 @@
     to add an additional point at the tip of the triangle and to pull the two
     points apart.
   </p>
-</Container>
-
-<div class="background-blue">
-  <SvgContainer maxWidth={"900px"}>
-    <svg version="1.1" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="marker2143" overflow="visible" orient="auto">
+  <div>
+    <SvgContainer maxWidth={"900px"}>
+      <svg
+        version="1.1"
+        viewBox="0 0 400 100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <marker id="marker2143" overflow="visible" orient="auto">
+            <path
+              transform="scale(.4) translate(7.4 1)"
+              d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
+              fill="var(--main-color-1)"
+              fill-rule="evenodd"
+              stroke="context-stroke"
+              stroke-width="1pt"
+            />
+          </marker>
+        </defs>
+        <g fill="none" stroke="#000">
           <path
-            transform="scale(.4) translate(7.4 1)"
-            d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"
-            fill="var(--main-color-1)"
-            fill-rule="evenodd"
-            stroke="context-stroke"
-            stroke-width="1pt"
+            d="m30.784 21.587 24.216 48.404h-48.433z"
+            marker-end="url(#marker2143)"
+            marker-mid="url(#marker2143)"
+            marker-start="url(#marker2143)"
+            stroke-width=".96837"
           />
-        </marker>
-      </defs>
-      <g fill="none" stroke="#000">
-        <path
-          d="m30.784 21.587 24.216 48.404h-48.433z"
-          marker-end="url(#marker2143)"
-          marker-mid="url(#marker2143)"
-          marker-start="url(#marker2143)"
-          stroke-width=".96837"
-        />
-        <path d="m60 45.49h275" stroke-dasharray="2, 2" />
-        <path
-          d="m345 20h50v49.991l-50 0.008767z"
-          marker-end="url(#marker2143)"
-          marker-mid="url(#marker2143)"
-          marker-start="url(#marker2143)"
-          stroke-width=".96837"
-        />
-      </g>
-    </svg>
-  </SvgContainer>
-</div>
-
-<Container>
+          <path d="m60 45.49h275" stroke-dasharray="2, 2" />
+          <path
+            d="m345 20h50v49.991l-50 0.008767z"
+            marker-end="url(#marker2143)"
+            marker-mid="url(#marker2143)"
+            marker-start="url(#marker2143)"
+            stroke-width=".96837"
+          />
+        </g>
+      </svg>
+    </SvgContainer>
+  </div>
   <p>
     The developer would then use a traditional programming language like
     JavaSript, C or Python and hardcode the logic that creates the additional
@@ -352,13 +343,12 @@
       </g>
     </svg>
   </SvgContainer>
-
   <p>
     In machine learning on the other hand the role of a developer is not to find
     the logic that can transform triangles into squares, but to design a program
     that can learn the logic which can transform triangles into squares. In
-    machine learning this logic is represented by so called <Hightlight
-      >weights</Hightlight
+    machine learning this logic is represented by so called <Highlight
+      >weights</Highlight
     >. Each of the weights is simply a number that is used in the function
     internally to process the inputs (the triangle in our case) in order to
     generate the output of the function. Learning then means in our case:
@@ -452,7 +442,6 @@
       </g>
     </svg>
   </SvgContainer>
-
   <p>
     The inintial logic (first set of weights) of the program is going to be very
     far off from the correct logic. The programmer feeds the program with data
@@ -465,7 +454,6 @@
     error measurement and weight adjustment leads to better and better
     performance until the error is less than some threshold.
   </p>
-
   <SvgContainer maxWidth={"500px"}>
     <svg
       version="1.1"
@@ -594,16 +582,4 @@
   </p>
 </Container>
 
-<Footer {notes} {references} />
-
-<style>
-  .background-yellow {
-    background-color: var(--main-color-3);
-    margin: 15px 0;
-  }
-
-  .background-blue {
-    background-color: var(--main-color-4);
-    margin: 15px 0;
-  }
-</style>
+<Footer {references} />
