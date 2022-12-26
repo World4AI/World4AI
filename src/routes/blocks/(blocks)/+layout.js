@@ -207,44 +207,39 @@ export function load() {
         ],
       },
       {
-        name: "Computer Vision",
-        link: "/blocks/deep_learning/computer_vision",
+        name: "Image Classification",
         links: [
           {
             name: "Introduction",
-            link: "/blocks/deep_learning/computer_vision",
-          },
-          {
-            name: "Image Classification",
-            link: "/blocks/deep_learning/computer_vision/image_classification",
+            link: "/blocks/deep_learning/image_classification/introduction",
           },
           {
             name: "Fundamentals of Convolutional Neural Networks",
-            link: "/blocks/deep_learning/computer_vision/image_classification/convolutional_neural_networks_fundamentals",
+            link: "/blocks/deep_learning/image_classification/convolutional_neural_networks_fundamentals",
           },
           {
             name: "CNN Architectures",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures",
+            link: "/blocks/deep_learning/image_classification/architectures",
           },
           {
             name: "LeNet-5",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/lenet_5",
+            link: "/blocks/deep_learning/image_classification/lenet_5",
           },
           {
             name: "AlexNet",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/alexnet",
+            link: "/blocks/deep_learning/image_classification/alexnet",
           },
           {
             name: "VGG",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/vgg",
+            link: "/blocks/deep_learning/image_classification/vgg",
           },
           {
             name: "GoogLeNet",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/googlenet",
+            link: "/blocks/deep_learning/image_classification/googlenet",
           },
           {
             name: "ResNet",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_architectures/resnet",
+            link: "/blocks/deep_learning/image_classification/resnet",
           },
         ],
       },
