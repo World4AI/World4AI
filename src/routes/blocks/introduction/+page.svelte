@@ -35,6 +35,10 @@
     </p>
     <div class="separator" />
 
+    <h2>Mathematics</h2>
+    <Alert type="danger">Block not yet started</Alert>
+    <div class="separator" />
+
     <h2>Deep Learning</h2>
     <Alert type="info">
       Still work in progress, but many chapters, especially early chapters, can
@@ -168,7 +172,7 @@
     </div>
     <div class="separator" />
 
-    <h2>Symbolic and Neurosymbolic AI</h2>
+    <h2>GOFAI</h2>
     <Alert type="danger">Block not yet started</Alert>
     <div class="separator" />
 
