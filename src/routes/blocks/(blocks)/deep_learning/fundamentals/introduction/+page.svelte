@@ -54,10 +54,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Introduction</title>
+  <title>Deep Learning Fundamentals - World4AI</title>
   <meta
     name="description"
-    content="Deep learning is the main contributer of the recent success of machine learning. This block is dedicated to the study of deep learning."
+    content="This chapter introduces the fundamentals of deep learning. We cover theory of AI in an intuitive fashion and thereby provide a solid foundation required in future chapters."
   />
 </svelte:head>
 
@@ -69,8 +69,11 @@
   <p>
     This chapter is designed as a gateway into the world of deep learning. We
     will get our feet wet by introducing basic concepts and studying the history
-    of deep learning. We will mostly focus on intuition in this chapter and only
-    touch mathematics when absolutely necessary.
+    of deep learning. Additionally we will talk about development environments,
+    deep learning libraries, GPU resources and continuous education in the field
+    of deep learning: topics that are fundamental to know if you are an absolute
+    beginner.
   </p>
+  <p />
   <div class="separator" />
 </Container>
