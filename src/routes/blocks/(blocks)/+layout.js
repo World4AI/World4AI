@@ -10,6 +10,10 @@ export function load() {
             link: "/blocks/deep_learning/fundamentals/introduction",
           },
           {
+            name: "Artificial Intelligence",
+            link: "/blocks/deep_learning/fundamentals/artificial_intelligence",
+          },
+          {
             name: "Definition of Machine Learning",
             link: "/blocks/deep_learning/fundamentals/machine_learning_definition",
           },
