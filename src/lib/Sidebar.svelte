@@ -16,7 +16,7 @@
           <li>
             <a
               class:border-red-400={path === section.link}
-              class="border-l inline-block py-2 px-4 w-full hover:bg-gray-200"
+              class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200"
               href={section.link}>{section.name}</a
             >
           </li>

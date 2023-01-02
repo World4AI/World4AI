@@ -61,7 +61,10 @@
       <ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm">
         {#each navigation as nav}
           <li class="group relative">
-            <a class="inline-block p-2 hover:bg-gray-100" href={nav.link}>
+            <a
+              class="no-underline inline-block p-2 hover:bg-gray-100"
+              href={nav.link}
+            >
               {nav.name}
             </a>
             {#if nav.children}
@@ -71,7 +74,7 @@
                 {#each nav.children as child}
                   <li>
                     <a
-                      class="inline-block py-2 px-4 w-full hover:bg-gray-100"
+                      class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100"
                       href={child.link}
                     >
                       {child.name}
