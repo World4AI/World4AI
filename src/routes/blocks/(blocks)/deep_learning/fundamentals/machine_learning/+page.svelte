@@ -1,15 +1,46 @@
 <script>
-  import Highlight from "$lib/Highlight.svelte";
-  import Table from "$lib/Table.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Container from "$lib/Container.svelte";
+  import Footer from "$lib/Footer.svelte";
+  import InternalLink from "$lib/InternalLink.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
+
+  // table
+  import Table from "$lib/base/table/Table.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+
+  import Plot from "$lib/plt/Plot.svelte";
+  import Circle from "$lib/plt/Circle.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+
+  import Function from "../_ml_definition/Function.svelte";
   import CartPole from "$lib/reinforcement_learning/CartPole.svelte";
 
-  import Plot from "$lib/plt/Plot.svelte"; 
-  import Circle from "$lib/plt/Circle.svelte";
-  import Ticks from "$lib/plt/Ticks.svelte"; 
-  import XLabel from "$lib/plt/XLabel.svelte"; 
-  import YLabel from "$lib/plt/YLabel.svelte"; 
+  let references = [
+    {
+      title: "Some Studies in Machine Learning Using the Game of Checkers",
+      author: "Samuel A.L",
+      journal: "IBM Journal of Research and Development",
+      volume: 44,
+      pages: "206-226",
+      year: 1959,
+    },
+  ];
+
+  let spamHeader = ["ID", "Address", "Subject", "Expected Output"];
+  let spamData = [
+    [1, "nigerian.prince@ng-gov.ng", "Help Me", "spam"],
+    [2, "marta.smith@gmail.com", "Tax Report", "ham"],
+    ["...", "...", "...", "..."],
+    [1000, "no-reply@info.o2.com", "New Contract", "ham"],
+  ];
 
   let header = ["Location", "Size", "Price"];
   let data = [
@@ -20,53 +51,162 @@
 
   //data for unsupervised learning scatterplot
   const category1 = [
-      { x: 10, y: 15000 },
-      { x: 20, y: 35000 },
-      { x: 20, y: 25000 },
-      { x: 25, y: 35000 },
-      { x: 45, y: 50000 },
-      { x: 15, y: 20000 },
-      { x: 22, y: 25000 },
-      { x: 33, y: 23000 },
-      { x: 40, y: 37000 },
-      { x: 27, y: 40000 },
-    ];
-  const category2 =  [
-      { x: 110, y: 250000 },
-      { x: 100, y: 235000 },
-      { x: 90, y: 200000 },
-      { x: 120, y: 700000 },
-      { x: 135, y: 1000000 },
-      { x: 140, y: 800000 },
-      { x: 122, y: 325000 },
-      { x: 133, y: 723000 },
-      { x: 140, y: 457000 },
-      { x: 127, y: 440000 },
-    ];
+    { x: 10, y: 15000 },
+    { x: 20, y: 35000 },
+    { x: 20, y: 25000 },
+    { x: 25, y: 35000 },
+    { x: 45, y: 50000 },
+    { x: 15, y: 20000 },
+    { x: 22, y: 25000 },
+    { x: 33, y: 23000 },
+    { x: 40, y: 37000 },
+    { x: 27, y: 40000 },
+  ];
+  const category2 = [
+    { x: 110, y: 250000 },
+    { x: 100, y: 235000 },
+    { x: 90, y: 200000 },
+    { x: 120, y: 700000 },
+    { x: 135, y: 1000000 },
+    { x: 140, y: 800000 },
+    { x: 122, y: 325000 },
+    { x: 133, y: 723000 },
+    { x: 140, y: 457000 },
+    { x: 127, y: 440000 },
+  ];
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Machine Learning Categories</title>
+  <title>World4AI | Deep Learning | Machine Learning</title>
   <meta
     name="description"
-    content="Machine learning can be divided into different categories: supervised learning, unsupervised learning, self-supervised learning, semi-supervised learning and reinforcement learning."
+    content="Machine learning is a programming paradigm, where the logic of a program is learned from data."
   />
 </svelte:head>
 
-<Container>
-  <h1>Categories of Machine Learning</h1>
-</Container>
+<h1>Machine Learning</h1>
 <div class="separator" />
 <Container>
+  <h2>ML Definition</h2>
   <p>
-    Machine learning is often divided into specific categories. Those
-    classifications are usually done based on the level of human supervision
-    that is required for the algorithm to work. Those classifications are
-    ubiquitous nowadays, so knowing at least some basic terminology is a must.
+    Let's start this section at the very beginning and define the term <Highlight
+      >machine mearning</Highlight
+    >.
+  </p>
+  <Alert type="info">
+    "Machine learning is the field of study that gives computers the ability to
+    learn without being explicitly programmed<InternalLink
+      type="reference"
+      id={1}
+    />".
+  </Alert>
+  <p>
+    The above definition is inspired by Arthur Samuel, one of the pioneers in
+    the area of artificial intelligence, who coined the term machine learning.
+    While this definition is commonly used, it is not the one that we will rely
+    on. Throughout the deep learning block we will rely on a much more simple,
+    more programming oriented definition of machine learning.
+  </p>
+  <Alert type="info">Machine learning is a programming paradigm.</Alert>
+  <p>
+    Let's take some time and figure out what that definition actually means.
+  </p>
+  <p>
+    In simplified terms we can say, that the task of the programmer is to write
+    a function, that can generate desired outputs based on the inputs to the
+    function.
+  </p>
+  <Function />
+  <p>
+    For example a programmer might be assigned the task to write a spam filter,
+    where the function would classify the email as spam or ham based on the
+    contents of the email, the email address, the email subject and some
+    additional metadata. It does not matter whether the programmer uses a
+    traditional programming paradigm or machine learning, the result of the task
+    is essentially the same: a function that takes those inputs and produces
+    email classification as the output. The big difference between the classical
+    and the machine learning progamming paradigm is the way that this function
+    is derived.
+  </p>
+  <p>
+    When programmers apply a traditional programming paradigm to create a spam
+    filter, they will study the problem at hand and look at the inputs of the
+    function. They could for example recognize that the words <em
+      >money, rich and quick</em
+    > are common in spam emails and write the first draft of the the function using
+    a programming language like JavaScript or C++. If the output of the function
+    corresponds to the expectations of the programmers, the job is done. If not,
+    the programmers would keep improving the code of the function until the outputs
+    of the function are satisfactory. For example the programmers might be satisfied,
+    once the produced function is able to classify spam emails with an accuracy of
+    95%.
+  </p>
+  <p>
+    The machine learning paradigm is a different approach. While both paradigms
+    produce a function, in machine learing we commonly tend to use the word <Highlight
+      >model</Highlight
+    > instead of function. The programmer still needs to write some parameters of
+    the model explicitly, but the logic of the function is configured in an automated
+    procedure called <Highlight>model training</Highlight>. For that purpose the
+    programmer needs to have access to a <Highlight>dataset</Highlight>that
+    contains the inputs to the function and the correct desired outputs.
+  </p>
+  <Table>
+    <TableHead>
+      <Row>
+        {#each spamHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each spamData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
+  <p>
+    The model takes in the inputs from the dataset (address and subject) and
+    predicts the outputs (spam or ham). Using the difference between the actual
+    outputs and the outputs produced by the model, the logic of the model is
+    adjusted automatically. That procedure keeps repeating in a loop until some
+    metric is met. As the performance of the model is generally expected to
+    improve over time, we also tend to call this procedure <Highlight
+      >learning</Highlight
+    >.
+  </p>
+  <Alert type="info">
+    In classical programming and machine learning we try to solve a problem by
+    generating computer functions. In classical programming the programmer codes
+    the logic of that function explicitly. In machine learning the programmer
+    provides the dataset and chooses the algorithm and model parameters that are
+    used to learn the function.
+  </Alert>
+  <p>
+    One final question remains: "When do we use machine learning and when do we
+    use classical programming?". Machine learning is usually used when the
+    complexity of the program would get out of hand if we implemented the logic
+    manually. A program that is able to recognize digits is almost impossible to
+    implement by hand. How would you for example implement a program that is
+    able to differentiate between an 8 and a 9? This is an especially hard
+    problem when the location of the numbers is scattered and not centered in
+    the middle of an image. The same problem can be solved relatively
+    straightforward using neural networks, provided we have the necessary data.
   </p>
   <div class="separator" />
 
-  <h2>Supervised Learning</h2>
+  <h2>ML Categories</h2>
+  <p>
+    Machine learning is often divided into specific categories. Those
+    classifications are ubiquitous nowadays, so knowing at least some basic
+    terminology is a must.
+  </p>
+
+  <h3>Supervised Learning</h3>
   <p>
     As the name supervised learning suggests, there is a human supervisor who
     labels the input data with the corresponding correct output. The different
@@ -78,7 +218,24 @@
     based on the location and the size of the house. In that case the location
     and the size are the features, while the price is the target.
   </p>
-  <Table {header} {data} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each header as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each data as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>
     The two common tasks that we try to solve with supervised learning are <Highlight
       >regression</Highlight
@@ -92,7 +249,7 @@
     needs to decide whether the email is ham or spam.
   </p>
 
-  <div class="light-blue">
+  <div class="bg-slate-100">
     <SvgContainer maxWidth={"700px"}>
       <svg
         version="1.1"
@@ -222,7 +379,7 @@
     is a regression task.
   </p>
 
-  <div class="yellow">
+  <div class="bg-slate-100">
     <SvgContainer maxWidth={"700px"}>
       <svg
         version="1.1"
@@ -312,9 +469,8 @@
     we deal with classification tasks and the term target when we deal with
     regression tasks, but some authors might use those terms interchangebly.
   </p>
-  <div class="separator" />
 
-  <h2>Unsupervised Learning</h2>
+  <h3>Unsupervised Learning</h3>
   <p>
     In unsupervised learning the dataset contains only features and no labels.
     The overall task is to find some hidden structure in the data. We could for
@@ -326,16 +482,25 @@
     In the below example we divide the houses into two categories based on size
     and price.
   </p>
-  <Plot maxWidth={700} domain={[0, 150]} range={[0, 1000000]} padding={{top: 40, right:10, left: 80, bottom:40 }}>
-    <Ticks xTicks={[0, 50, 100, 150]} yOffset={30} yTicks={[0, 200000, 400000, 600000, 800000, 1000000]}/>
-    <XLabel text="Size" fontSize={15}></XLabel>
-    <YLabel text="Price" fontSize={15}></YLabel>
+  <Plot
+    maxWidth={600}
+    domain={[0, 150]}
+    range={[0, 1000000]}
+    padding={{ top: 40, right: 10, left: 72, bottom: 40 }}
+  >
+    <Ticks
+      xTicks={[0, 50, 100, 150]}
+      xOffset={-15}
+      yOffset={35}
+      yTicks={[0, 250000, 500000, 750000, 1000000]}
+    />
+    <XLabel text="Size" fontSize={20} />
+    <YLabel text="Price" fontSize={20} />
     <Circle data={category1} />
     <Circle data={category2} color={"var(--main-color-2)"} />
   </Plot>
-  <div class="separator" />
 
-  <h2>Semi-supervised Learning</h2>
+  <h3>Semi-supervised Learning</h3>
   <p>
     Labeling your dataset is costly, therefore companies and researchers try to
     get away with labeling as few samples as possible. In semi-supervised
@@ -343,48 +508,38 @@
     The labeled data is used to train the algorithm and to label the remaining
     data. After that step the whole dataset can be used for training.
   </p>
-  <div class="separator" />
 
-  <h2>Self-supervised Learning</h2>
+  <h3>Self-supervised Learning</h3>
   <p>
     Self-supervised learning can be seen as supervised learning, where the
     labels are not determined by a human supervisor, but are derived directly
     from the features of the data.
   </p>
   <p>Let us look for example at the sentence below.</p>
-  <div class="sentence">
-    <span class="word">What</span>
-    <span class="word">is</span>
-    <span class="word">your</span>
-    <span class="word">name</span>
+  <div class="flex gap-1 justify-center">
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">What</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">is</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">your</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">name</span>
   </div>
   <p>
     We could design a natural language processing task by masking a part of the
     sentence.
   </p>
-  <div class="sentence">
-    <span class="word">What</span>
-    <span class="word">is</span>
-    <span class="word">your</span>
-    <span class="word">...</span>
+  <div class="flex gap-1 justify-center">
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">What</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">is</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">your</span>
+    <span class="bg-w4ai-yellow p-1 text-xl border border-black">...</span>
   </div>
   <p>
     The algorithm needs to learn to predict the masked word, which essentially
     becomes the label in our task. We feed the model with millions of such
     examples during the training process. Over time the model gets better and
     better at this task, which would indicate some knowledge about the structure
-    of the english language. That pretrained model and by extension that
-    knowledge about the english language can eventually be used in a supervised
-    learning task like sentiment analysis, where you have only limited amount
-    data.
-  </p>
-  <p>
-    The process of learning a general task with a huge amount of data and using
-    the same trained model which is recalibrated for a more specific task is
-    called <Highlight>transfer learning</Highlight>. Self-supervised learning
-    excels at transfer learning. Companies spend often millions of dollars to
-    train such language models and in many cases they provide those to the
-    general public, which can reuse them for their particular tasks.
+    of the english language. That model and by extension that language can
+    eventually be used in a supervised learning task like sentiment analysis,
+    where you have only limited amount data.
   </p>
   <p>
     Self supervised learning is not limited to natural language processing.
@@ -392,24 +547,23 @@
     self-supervised learning has also been applied successfully to computer
     vision.
   </p>
-  <div class="separator" />
 
-  <h2>Reinforcement Learning</h2>
+  <h3>Reinforcement Learning</h3>
   <p>
     Reinforcemnt learning deals with sequential decisions, where an agent
-    interacts with the environment and receives rewards based on the preceding
-    actions.
+    interacts with the environment and receives rewards based on its actions.
   </p>
   <CartPole showState={false} />
   <p>
     The cartpole is probably the most well known reinforcement learning task.
-    The agent needs to learn to balance the pole by moving the cart left and
+    The agent needs to learn to balance the pole by moving the cart left or
     right. Each single step the agent succeeds, the agent gets a reward of 1. If
     the pole gets below a certain angle or the cart moves outside the screen the
     agent fails and doesn't get any more rewards.
   </p>
-  <div class="separator" />
 </Container>
+
+<Footer {references} />
 
 <style>
   .word {

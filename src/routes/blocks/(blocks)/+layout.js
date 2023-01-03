@@ -14,12 +14,8 @@ export function load() {
             link: "/blocks/deep_learning/fundamentals/artificial_intelligence",
           },
           {
-            name: "Definition of Machine Learning",
-            link: "/blocks/deep_learning/fundamentals/machine_learning_definition",
-          },
-          {
-            name: "Categories of Machine Learning",
-            link: "/blocks/deep_learning/fundamentals/machine_learning_categories",
+            name: "Machine Learning",
+            link: "/blocks/deep_learning/fundamentals/machine_learning",
           },
           {
             name: "Definition of Deep Learning",
