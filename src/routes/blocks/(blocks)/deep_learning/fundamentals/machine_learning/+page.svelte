@@ -77,7 +77,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Machine Learning</title>
+  <title>Machine Learning - World4AI</title>
   <meta
     name="description"
     content="Machine learning is a programming paradigm, where the logic of a program is learned from data."
@@ -562,15 +562,4 @@
     agent fails and doesn't get any more rewards.
   </p>
 </Container>
-
 <Footer {references} />
-
-<style>
-  .word {
-    font-size: 26px;
-    border: 1px solid var(--text-color);
-    margin-right: 10px;
-    padding: 0 5px;
-    background-color: var(--main-color-3);
-  }
-</style>
