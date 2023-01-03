@@ -2,17 +2,8 @@
   export let maxWidth;
 </script>
 
-<div class="container">
-  <div style="max-width: {maxWidth};" class="svg-container">
+<div class="w-full">
+  <div style="max-width: {maxWidth};" class="my-0 mx-auto">
     <slot />
   </div>
 </div>
-
-<style>
-  .container {
-    width: 100%;
-  }
-  .svg-container {
-    margin: 0 auto;
-  }
-</style>
