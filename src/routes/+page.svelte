@@ -27,7 +27,7 @@
     </h2>
     <a
       href="/blocks/introduction"
-      class="flex gap-2 transition border border-red-500 hover:border-black bg-white hover:bg-black hover:text-white rounded-md py-3 px-12 m-10 font-bold text-center"
+      class="flex gap-2 transition border border-red-500 hover:border-black bg-white hover:bg-black hover:text-white rounded-md py-3 px-12 m-10 font-bold text-center no-underline"
       ><span>Start Learning</span> <ArrowRight /></a
     >
   </div>
