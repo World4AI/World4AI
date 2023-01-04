@@ -18,8 +18,8 @@ export function load() {
             link: "/blocks/deep_learning/fundamentals/machine_learning",
           },
           {
-            name: "Definition of Deep Learning",
-            link: "/blocks/deep_learning/fundamentals/deep_learning_definition",
+            name: "Deep Learning",
+            link: "/blocks/deep_learning/fundamentals/definition",
           },
           {
             name: "History Of Deep Learning",

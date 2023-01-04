@@ -57,7 +57,7 @@
     </marker>
   </defs>
   <g stroke="#000">
-    <g id="neuron" fill="var(--main-color-3)">
+    <g id="neuron" class="fill-w4ai-yellow">
       <rect x="186.67" y="16.667" width="46.667" height="46.667" ry="5.8333" />
       <g id="neuron-lines" stroke-width="1px">
         <path d="m192.5 16.667v-11.667" marker-end="url(#DotS)" />

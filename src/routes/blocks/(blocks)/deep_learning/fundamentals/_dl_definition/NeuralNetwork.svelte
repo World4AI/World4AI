@@ -27,7 +27,7 @@
     </marker>
   </defs>
   <g fill="none" stroke="#000">
-    <g id="neuron-left-top" fill="var(--main-color-2)">
+    <g id="neuron-left-top" class="fill-w4ai-blue">
       <rect x="186.67" y="16.667" width="46.667" height="46.667" ry="5.8333" />
       <g id="neuron-lines" stroke-width="1px">
         <path d="m192.5 16.667v-11.667" marker-end="url(#DotS)" />
@@ -107,7 +107,7 @@
     <g
       id="neuron-left-bot"
       transform="translate(0 117.9)"
-      fill="var(--main-color-1)"
+      class="fill-w4ai-red"
     >
       <rect x="186.67" y="16.667" width="46.667" height="46.667" ry="5.8333" />
       <g stroke-width="1px">
@@ -184,7 +184,7 @@
     <g
       id="neuron-right"
       transform="translate(163.55 60)"
-      fill="var(--main-color-3)"
+      class="fill-w4ai-yellow"
     >
       <rect x="186.67" y="16.667" width="46.667" height="46.667" ry="5.8333" />
       <g stroke-width="1px">
