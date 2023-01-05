@@ -23,6 +23,8 @@
 For the time being we are focusing on deep learning.
 Some of the sections have already reached a working state and can be used to study.
 
+- [ ] Math Block
+
 - [ ] Deep Learning Block
 
   - [x] Fundamentals
@@ -45,9 +47,9 @@ Some of the sections have already reached a working state and can be used to stu
   - [ ] Graph Neural Networks
   - [ ] Reinforcement Learning and Deep Reinforcement Learning
 
-- [ ] Symbolic and Neurosymbolic AI Block
+- [ ] GOFAI Block
 
-- [ ] Neuroscience
+- [ ] Neuroscience Block
 
 ## Contributions
 
