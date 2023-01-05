@@ -26,16 +26,12 @@ export function load() {
             link: "/blocks/deep_learning/fundamentals/history",
           },
           {
-            name: "Deep Learning Frameworks",
-            link: "/blocks/deep_learning/fundamentals/frameworks",
+            name: "Applications",
+            link: "/blocks/deep_learning/fundamentals/applications",
           },
           {
-            name: "Deep Learning GPU Resources",
-            link: "/blocks/deep_learning/fundamentals/gpu_resources",
-          },
-          {
-            name: "Deep Learning Education",
-            link: "/blocks/deep_learning/fundamentals/education",
+            name: "Setup",
+            link: "/blocks/deep_learning/fundamentals/setup",
           },
           {
             name: "Mathematical Notation",
