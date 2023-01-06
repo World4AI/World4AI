@@ -36,7 +36,7 @@
     />
     <path
       id="output"
-      stroke={weight >= 0 ? "var(--main-color-2)" : "var(--main-color-1)"}
+      class={weight >= 0 ? "stroke-w4ai-blue" : "stroke-w4ai-red"}
       d="m150 12.5h90"
       stroke-dasharray="8, 8"
       stroke-dashoffset={offset}
@@ -48,7 +48,7 @@
       y="5"
       width="50"
       height="15"
-      fill="var(--main-color-3)"
+      class="fill-w4ai-yellow"
     />
   </g>
 </svg>

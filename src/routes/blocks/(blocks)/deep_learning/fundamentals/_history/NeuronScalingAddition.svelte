@@ -32,22 +32,9 @@
 
 <svg version="1.1" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg">
   <g fill="none" stroke="#000">
-    <g id="sum-sign">
-      <rect
-        fill="var(--main-color-4)"
-        x="141.37"
-        y="43.695"
-        width="12.609"
-        height="12.609"
-        ry="0"
-        stroke-linejoin="bevel"
-      />
-      <path d="m147.67 45v10" stroke-width="1px" />
-      <path d="m142.67 50h10" stroke-width="1px" />
-    </g>
-    <g id="weights" fill="var(--main-color-3)">
-      <rect id="weight" x="61" y="5" width="50" height="15" />
-      <rect x="61" y="80" width="50" height="15" />
+    <g id="weights" class="fill-w4ai-yellow">
+      <rect x="63" y="6.5" width="45" height="10" stroke-width={0.5} />
+      <rect x="63" y="82.5" width="45" height="10" stroke-width={0.5} />
     </g>
     <g id="flow">
       <path
@@ -68,14 +55,14 @@
         stroke-dasharray="4, 2"
         stroke-dashoffset={offset}
         stroke-width={Math.abs(sum)}
-        stroke={sum >= 0 ? "var(--main-color-2)" : "var(--main-color-1)"}
+        class={sum >= 0 ? "stroke-w4ai-blue" : "stroke-w4ai-red"}
       />
       <path
         id="output-top"
         d="m111 10s60-5 60 40"
         stroke-dasharray="4, 2"
         stroke-dashoffset={offset}
-        stroke={weight1 >= 0 ? "var(--main-color-2)" : "var(--main-color-1)"}
+        class={weight1 >= 0 ? "stroke-w4ai-blue" : "stroke-w4ai-red"}
         stroke-width={Math.abs(weight1)}
       />
       <path
@@ -83,9 +70,23 @@
         d="m111 90s60 5 60-40"
         stroke-dasharray="4, 2"
         stroke-dashoffset={offset}
-        stroke={weight2 >= 0 ? "var(--main-color-2)" : "var(--main-color-1)"}
+        class={weight2 >= 0 ? "stroke-w4ai-blue" : "stroke-w4ai-red"}
         stroke-width={Math.abs(weight2)}
       />
+    </g>
+
+    <g id="sum-sign">
+      <rect
+        class="fill-blue-200"
+        x="165"
+        y="43.695"
+        width="12"
+        height="12"
+        ry="0"
+        stroke-linejoin="bevel"
+      />
+      <path d="m171 45.7v8" stroke-width="1px" />
+      <path d="m167 50h8" stroke-width="1px" />
     </g>
   </g>
 </svg>
