@@ -30,8 +30,8 @@ export function load() {
             link: "/blocks/deep_learning/fundamentals/applications",
           },
           {
-            name: "Setup",
-            link: "/blocks/deep_learning/fundamentals/setup",
+            name: "FAQ",
+            link: "/blocks/deep_learning/fundamentals/faq",
           },
           {
             name: "Mathematical Notation",
