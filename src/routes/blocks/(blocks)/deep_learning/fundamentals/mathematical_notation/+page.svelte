@@ -3,8 +3,14 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Latex from "$lib/Latex.svelte";
-  import Table from "$lib/Table.svelte";
   import Alert from "$lib/Alert.svelte";
+
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
 
   let header = ["Distance to City Centre", "Size", "Price"];
   let data = [
@@ -28,7 +34,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Mathematical Notation</title>
+  <title>Mathematical Notation - World4AI</title>
   <meta
     name="description"
     content="Mathematical notation in machine learning can be confusing especially if not kept consistent. Here we introduce notation, that is going to be kept consistent throughout the deep learning block."
@@ -72,7 +78,24 @@
     dataset that contains the features of a house and the corresponding target
     (price).
   </p>
-  <Table {data} {header} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each header as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each data as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>
     We start with the representation of the feature dataset
     <Latex>{String.raw`\mathbf{X} \in \mathbb{R}^{n\times m}`}</Latex>
