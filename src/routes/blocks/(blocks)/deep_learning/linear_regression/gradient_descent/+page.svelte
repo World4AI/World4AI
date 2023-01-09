@@ -2,17 +2,18 @@
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
-  import Mse from "../_loss/Mse.svelte";
   import Slider from "$lib/Slider.svelte";
 
+  import Mse from "../_loss/Mse.svelte";
+
   //plotting library
-  import Plot from "$lib/plt/Plot.svelte"; 
+  import Plot from "$lib/plt/Plot.svelte";
   import Circle from "$lib/plt/Circle.svelte";
-  import Ticks from "$lib/plt/Ticks.svelte"; 
-  import XLabel from "$lib/plt/XLabel.svelte"; 
-  import YLabel from "$lib/plt/YLabel.svelte"; 
-  import Path from "$lib/plt/Path.svelte"; 
-  import Legend from "$lib/plt/Legend.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import Legend from "$lib/plt/Legend.svelte";
 
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
@@ -67,8 +68,8 @@
     slope = [];
     let m = 2 * pointX;
     let t = pointY - m * pointX;
-    slope.push({x: -100, y: m * -100 + t})
-    slope.push({x: 100, y: m * 100 + t})
+    slope.push({ x: -100, y: m * -100 + t });
+    slope.push({ x: 100, y: m * 100 + t });
   }
 
   function gradientDescentStep() {
@@ -87,10 +88,10 @@
 
   // gradient descent mse
   const dataMse = [
-      { x: 5, y: 20 },
-      { x: 10, y: 40 },
-      { x: 35, y: 15 },
-      { x: 45, y: 59 },
+    { x: 5, y: 20 },
+    { x: 10, y: 40 },
+    { x: 35, y: 15 },
+    { x: 45, y: 59 },
   ];
 
   let w = 1;
@@ -157,13 +158,21 @@
     >.
   </p>
 
-  <Plot width={500} height={250} maxWidth={600} domain={[-80, 80]} range={[0, 3000]}>
-    <Ticks xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]} 
-           yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]} 
-           xOffset={-15} 
-           yOffset={45}/>
-    <XLabel text="x" fontSize={15} type="latex"/>
-    <YLabel text="f(x)" fontSize={15} type="latex"/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={600}
+    domain={[-80, 80]}
+    range={[0, 3000]}
+  >
+    <Ticks
+      xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
+      yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
+      xOffset={-15}
+      yOffset={45}
+    />
+    <XLabel text="x" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" />
     <Path data={parabolaData} />
   </Plot>
 
@@ -176,15 +185,23 @@
     below we picked 55.
   </p>
 
-  <Plot width={500} height={250} maxWidth={600} domain={[-80, 80]} range={[0, 3000]}>
-    <Ticks xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]} 
-           yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]} 
-           xOffset={-15} 
-           yOffset={45}/>
-    <XLabel text="x" fontSize={15} type="latex"/>
-    <YLabel text="f(x)" fontSize={15} type="latex"/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={600}
+    domain={[-80, 80]}
+    range={[0, 3000]}
+  >
+    <Ticks
+      xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
+      yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
+      xOffset={-15}
+      yOffset={45}
+    />
+    <XLabel text="x" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" />
     <Path data={parabolaData} />
-    <Circle data={parabolaStartingPoint}/>
+    <Circle data={parabolaStartingPoint} />
   </Plot>
 
   <p>
@@ -196,16 +213,24 @@
     line at the starting point to visualize the derivative.
   </p>
 
-  <Plot width={500} height={250} maxWidth={600} domain={[-80, 80]} range={[0, 3000]}>
-    <Ticks xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]} 
-           yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]} 
-           xOffset={-15} 
-           yOffset={45}/>
-    <XLabel text="x" fontSize={15} type="latex"/>
-    <YLabel text="f(x)" fontSize={15} type="latex"/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={600}
+    domain={[-80, 80]}
+    range={[0, 3000]}
+  >
+    <Ticks
+      xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
+      yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
+      xOffset={-15}
+      yOffset={45}
+    />
+    <XLabel text="x" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" />
     <Path data={parabolaData} />
     <Path data={slope} />
-    <Circle data={parabolaStartingPoint}/>
+    <Circle data={parabolaStartingPoint} />
   </Plot>
 
   <p>
@@ -241,17 +266,28 @@
   <ButtonContainer>
     <StepButton on:click={gradientDescentStep} />
   </ButtonContainer>
-  <Plot width={500} height={250} maxWidth={600} domain={[-80, 80]} range={[0, 3000]}>
-    <Ticks xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]} 
-           yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]} 
-           xOffset={-15} 
-           yOffset={45}/>
-    <XLabel text="x" fontSize={15} type="latex"/>
-    <YLabel text="f(x)" fontSize={15} type="latex"/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={600}
+    domain={[-80, 80]}
+    range={[0, 3000]}
+  >
+    <Ticks
+      xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
+      yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
+      xOffset={-15}
+      yOffset={45}
+    />
+    <XLabel text="x" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" />
     <Path data={parabolaData} />
     <Path data={slope} />
-    <Legend text="Derivative: {m.toFixed(2)}" coordinates={{x: -0, y: 2500}} />
-    <Circle data={parabolaPoint}/>
+    <Legend
+      text="Derivative: {m.toFixed(2)}"
+      coordinates={{ x: -0, y: 2500 }}
+    />
+    <Circle data={parabolaPoint} />
   </Plot>
 
   <div class="flex-container">
@@ -321,15 +357,23 @@
   <ButtonContainer>
     <StepButton on:click={localGradientDescent} />
   </ButtonContainer>
-  <Plot width={500} height={250} maxWidth={600} domain={[-3, 6]} range={[-40, 50]}>
-    <Ticks xTicks={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6]} 
-           yTicks={[-40, -30, -20, -10, 0, 10, 20, 30, 40, 50]} 
-           xOffset={-15} 
-           yOffset={45}/>
-    <XLabel text="x" fontSize={15} type="latex"/>
-    <YLabel text="f(x)" fontSize={15} type="latex"/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={600}
+    domain={[-3, 6]}
+    range={[-40, 50]}
+  >
+    <Ticks
+      xTicks={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6]}
+      yTicks={[-40, -30, -20, -10, 0, 10, 20, 30, 40, 50]}
+      xOffset={-15}
+      yOffset={45}
+    />
+    <XLabel text="x" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" />
     <Path data={localMinimumData} />
-    <Circle data={localPoint}/>
+    <Circle data={localPoint} />
   </Plot>
 
   <div class="flex-container">
