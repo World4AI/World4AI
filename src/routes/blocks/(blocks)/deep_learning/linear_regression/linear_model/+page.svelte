@@ -3,14 +3,15 @@
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Slider from "$lib/Slider.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   //plotting library
-  import Plot from "$lib/plt/Plot.svelte"; 
+  import Plot from "$lib/plt/Plot.svelte";
   import Circle from "$lib/plt/Circle.svelte";
-  import Ticks from "$lib/plt/Ticks.svelte"; 
-  import XLabel from "$lib/plt/XLabel.svelte"; 
-  import YLabel from "$lib/plt/YLabel.svelte"; 
-  import Path from "$lib/plt/Path.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Path from "$lib/plt/Path.svelte";
 
   let linearData = [];
   let b = 0;
@@ -48,7 +49,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Linear Model</title>
+  <title>Linear Model - World4AI</title>
   <meta
     name="description"
     content="A linear model allows us to model the data using a line (or a hyperplane) in the coordinate system."
@@ -65,23 +66,34 @@
     >. The "regression" part signifies that our model predicts a numeric target
     variable based on given features and we are not dealing with a
     classification task. The "linear" part suggests that linear regression can
-    only model the relationship between features and targets in a linear
-    fashion. To clarify what the words "linear relationship" mean we present two
-    examples below.
+    only model a linear relationship between features and targets. To clarify
+    what the words "linear relationship" mean we present two examples below.
   </p>
 
   <p>
     In the first scatterplot we could plot a line that goes from the coordinates
-    of (-100, -500) and goes to coordinates of (100, 500). While there is some
-    randomness in the data, the line would depict the relationship between the
-    feature and the target relatively well. When we get new data points we can
-    use the line to predict the target and be relatively confident regarding the
-    outcome.
+    of (-100, -500) to coordinates (100, 500). While there is some randomness in
+    the data, the line would depict the relationship between the feature and the
+    target relatively well. When we get new data points we can use the line to
+    predict the target and be relatively confident regarding the outcome.
   </p>
-  <Plot maxWidth={800} domain={[-100, 100]} range={[-500, 500]}>
-    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]} xOffset={-15} yOffset={15}/>
-    <XLabel text="Feature" fontSize={15}/>
-    <YLabel text="Target" fontSize={15}/>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-100, 100]}
+    range={[-500, 500]}
+    padding={{ top: 40, right: 15, bottom: 65, left: 65 }}
+  >
+    <Ticks
+      xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]}
+      yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]}
+      fontSize={18}
+      xOffset={-25}
+      yOffset={30}
+    />
+    <XLabel text="Feature" fontSize={30} x={280} />
+    <YLabel text="Target" fontSize={30} x={15} />
     <Circle data={linearData} radius={3} />
   </Plot>
 
@@ -92,10 +104,23 @@
     but there are better alternatives (like neural networks) for non linear
     problems.
   </p>
-  <Plot maxWidth={800} domain={[-100, 100]} range={[0, 10000]}>
-    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]} xOffset={-15} yOffset={15}/>
-    <XLabel text="Feature" fontSize={15}/>
-    <YLabel text="Target" fontSize={15}/>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-100, 100]}
+    range={[0, 10000]}
+    padding={{ top: 40, right: 14, bottom: 65, left: 100 }}
+  >
+    <Ticks
+      xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]}
+      yTicks={[0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]}
+      fontSize={18}
+      xOffset={-25}
+      yOffset={45}
+    />
+    <XLabel text="Feature" fontSize={30} />
+    <YLabel text="Target" fontSize={30} x={15} />
     <Circle data={nonlinearData} radius={3} />
   </Plot>
   <p>
@@ -121,41 +146,57 @@
       >y = x*5cm + 50cm</Latex
     > would indicate that on average a human grows by 5cm for each year in life.
     At this point you would hopefully interject that this relation is out of touch
-    with reality. For once the equation does not reflect that a human being growth
-    up to a certain length or that a child growth at a higher rate, than a young
-    adult. At a certain age people even start to shrink. While all these points are
-    valid, the assumtion that we always make, when we model the world using linear
-    regression is: there is a linear relationship between the inputs and the output.
-    If you apply linear regression to data that is nonlinear in nature, you might
-    get illogical results.
+    with reality. For once the equation does not reflect that a human being grows
+    up to a certain length or that a child grows at a higher rate, than a young adult.
+    At a certain age people even start to shrink. While all these points are valid,
+    we make specific assumtions, when we model the world using linear regression.
   </p>
+  <Alert type="warning">
+    When we use a linear regression model, we assume a linear relationship
+    between the inputs and the output. If you apply linear regression to data
+    that is nonlinear in nature, you might get illogical results.
+  </Alert>
   <p>
     When on the other hand we look at the equation <Latex>y = xw + b</Latex> from
     the geometric perspective, we should realize, that weight determines the rotation
     (slope) of the line while the bias determines the horizontal position. Below
     we present an interactive example to demonstrate the impact of the weight and
-    the bias on the form of the line. You can move the two sliders to change the
+    the bias on the the regression line. You can move the two sliders to change the
     weight and the bias. Observe what we mean when we say rotation and position.
     Try to position the line, such that it <Highlight>fits</Highlight> the data as
     good as possible.
   </p>
-  <Plot maxWidth={800} domain={[-100, 100]} range={[-500, 500]}>
-    <Ticks xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]} yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]} xOffset={-15} yOffset={15}/>
-    <XLabel text="Feature" fontSize={15}/>
-    <YLabel text="Target" fontSize={15}/>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[-100, 100]}
+    range={[-500, 500]}
+    padding={{ top: 40, right: 15, bottom: 65, left: 65 }}
+  >
+    <Ticks
+      xTicks={[-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]}
+      yTicks={[-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]}
+      fontSize={18}
+      xOffset={-25}
+      yOffset={30}
+    />
+    <XLabel text="Feature" fontSize={30} x={280} />
+    <YLabel text="Target" fontSize={30} x={15} />
     <Circle data={linearData} radius={3} />
-    <Path data={line} stroke={2}/>
+    <Path data={line} stroke={2} />
   </Plot>
-
-  <div class="flex-container">
-    <div>
-      <p><Latex>w</Latex>: {estimatedWeight}</p>
+  <div class="flex justify-center items-center bg-slate-300 p-2 my-2">
+    <div class="w-28">
+      <p class="bg-slate-200 p-2 m-0 mr-2">
+        <Latex>w</Latex>: {estimatedWeight}
+      </p>
     </div>
     <Slider bind:value={estimatedWeight} min={-200} max={200} />
   </div>
-  <div class="flex-container">
-    <div>
-      <p><Latex>b</Latex>: {estimatedBias}</p>
+  <div class="flex justify-start items-center bg-slate-300 p-2">
+    <div class="w-28">
+      <p class="bg-slate-200 p-2 m-0 mr-2"><Latex>b</Latex>: {estimatedBias}</p>
     </div>
     <Slider bind:value={estimatedBias} min={-500} max={500} />
   </div>
@@ -210,20 +251,9 @@
     > value on the other hand represents an actual target, the so called ground truth.
   </p>
   <p>
-    In the next lectures we are going to cover how the learning procedure works.
+    In the next sections we are going to cover how the learning procedure works.
     For now the main takeaway from this chapter should be the visual intuition
     of weights and biases.
   </p>
   <div class="separator" />
 </Container>
-
-<style>
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flex-container div {
-    width: 100px;
-  }
-</style>
