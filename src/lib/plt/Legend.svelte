@@ -7,6 +7,7 @@
   //in the form {x, y}
   export let coordinates = {};
   export let size = 5;
+  export let fontSize = 12;
 
   const xScale = getContext("xScale");
   const yScale = getContext("yScale");
@@ -26,12 +27,13 @@
 <text
   fill={textColor}
   x={size * 2 + xScale(coordinates.x)}
-  y={yScale(coordinates.y)}>{text}</text
->
+  y={yScale(coordinates.y)}
+  font-size={fontSize}
+  >{text}
+</text>
 
 <style>
   text {
-    font-size: 12px;
     dominant-baseline: middle;
   }
 </style>
