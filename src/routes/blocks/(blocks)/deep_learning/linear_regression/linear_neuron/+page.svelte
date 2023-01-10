@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Linear Neuron</title>
+  <title>Linear Neuron - World4AI</title>
   <meta
     name="description"
     content="Linear regression constitutes the simplest neuron imaginable: a neuron with a linear activation function."
@@ -19,7 +19,6 @@
     will observe that linear regression is just a neuron with a linear
     activation function.
   </p>
-
   <p>
     Let us remind ourselves, that a neuron is a computational unit. The output
     of the neuron is based on three distinct calculations: scaling of inputs <Latex
@@ -35,20 +34,20 @@
   </p>
   <Latex
     >{String.raw`
-z = 
-\begin{bmatrix}
-x_1 & x_2 & x_3 & \cdots & x_n 
-\end{bmatrix}
-\begin{bmatrix}
-w_1 \\ 
-w_2 \\  
-w_3 \\ 
-\vdots \\ 
-w_n
-\end{bmatrix}
-+ b
-=
-x_1w_1 + x_2w_2+ x_3w_3+ \cdots + x_nw_n + b
+      z = 
+      \begin{bmatrix}
+      x_1 & x_2 & x_3 & \cdots & x_n 
+      \end{bmatrix}
+      \begin{bmatrix}
+      w_1 \\ 
+      w_2 \\  
+      w_3 \\ 
+      \vdots \\ 
+      w_n
+      \end{bmatrix}
+      + b
+      =
+      x_1w_1 + x_2w_2+ x_3w_3+ \cdots + x_nw_n + b
 `}</Latex
   >
   <p>
