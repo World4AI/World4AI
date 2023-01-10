@@ -3,6 +3,7 @@
   import Latex from "$lib/Latex.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Slider from "$lib/Slider.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   import Mse from "../_loss/Mse.svelte";
 
@@ -132,10 +133,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Linear Regression Gradient Descent</title>
+  <title>Linear Regression Gradient Descent - World4AI</title>
   <meta
     name="description"
-    content="Gradient descent is the algorithm that is most commonly used to find the optimal weights and biases in linear regression."
+    content="Gradient descent is the algorithm that is most commonly used to find the optimal weights and biases in linear regression. In this section we discuss the basics of gradiennt descent and apply the algorithm to linear regression."
   />
 </svelte:head>
 
@@ -145,61 +146,65 @@
 
   <h2>The Mechanics of Gradient Descent</h2>
   <p>
-    Before we discuss how we can use gradient descent to find the optimal
-    weights and the optimal bias for linear regression, let us take a step back
-    and consider how we can find the value for <Latex>x</Latex> that minimizes
-    <Latex>f(x) = x^2</Latex>.
+    Before we discuss how we can find the optimal weights and the optimal bias
+    in a linear regression setting, let us take a step back and consider how we
+    can find the value of variable <Latex>x</Latex> that minimizes the function <Latex
+      >f(x) = x^2</Latex
+    >.
   </p>
 
   <p>
     The equation <Latex>f(x) = x^2</Latex> depicts a parabola. From visual inspection
-    we can determine, that the <Latex>x</Latex> value of 0 produces the minimum <Latex
-      >f(x)</Latex
-    >.
+    we can determine, that the <Latex>f(x)</Latex> is lowest when <Latex
+      >x</Latex
+    >. is exactly 0.
   </p>
 
   <Plot
     width={500}
-    height={250}
-    maxWidth={600}
+    height={500}
+    maxWidth={500}
     domain={[-80, 80]}
     range={[0, 3000]}
+    padding={{ top: 40, right: 10, bottom: 40, left: 60 }}
   >
     <Ticks
       xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
       yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
-      xOffset={-15}
-      yOffset={45}
+      xOffset={-10}
+      yOffset={25}
     />
     <XLabel text="x" fontSize={15} type="latex" />
-    <YLabel text="f(x)" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" x={-3} />
     <Path data={parabolaData} />
+    <Circle data={[{ x: 0, y: 0 }]} />
   </Plot>
 
   <p>
     In machine learning we rarely have the luxury of being able to visually find
-    the optimal solution. Our functions are usually dependend on thousand or
-    million of features and that is not something that we can visualize. We need
-    to apply an algorithmic procedure, that finds the minimum automatically. We
-    start the algorithm by assigning <Latex>x</Latex> a random value. In the example
-    below we picked 55.
+    the optimal solution. Our function is usually dependend on thousands or
+    millions of features and that is not something that we can visualize. We
+    need to apply an algorithmic procedure, that finds the minimum
+    automatically. We start the algorithm by assigning <Latex>x</Latex> a random
+    value. In the example below we picked 55.
   </p>
 
   <Plot
     width={500}
-    height={250}
-    maxWidth={600}
+    height={500}
+    maxWidth={500}
     domain={[-80, 80]}
     range={[0, 3000]}
+    padding={{ top: 40, right: 10, bottom: 40, left: 60 }}
   >
     <Ticks
       xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
       yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
-      xOffset={-15}
-      yOffset={45}
+      xOffset={-10}
+      yOffset={25}
     />
     <XLabel text="x" fontSize={15} type="latex" />
-    <YLabel text="f(x)" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" x={-3} />
     <Path data={parabolaData} />
     <Circle data={parabolaStartingPoint} />
   </Plot>
@@ -215,52 +220,64 @@
 
   <Plot
     width={500}
-    height={250}
-    maxWidth={600}
+    height={500}
+    maxWidth={500}
     domain={[-80, 80]}
     range={[0, 3000]}
+    padding={{ top: 40, right: 10, bottom: 40, left: 60 }}
   >
     <Ticks
       xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
       yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
-      xOffset={-15}
-      yOffset={45}
+      xOffset={-10}
+      yOffset={25}
     />
     <XLabel text="x" fontSize={15} type="latex" />
-    <YLabel text="f(x)" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" x={-3} />
     <Path data={parabolaData} />
     <Path data={slope} />
     <Circle data={parabolaStartingPoint} />
   </Plot>
-
   <p>
-    The derivative shows us the direction of steepest descent and ascent. We can
-    use that direction to determine how we can shift <Latex>x</Latex>. When we
-    want to minimize <Latex>f(x)</Latex> we use gradient descent and subtract
+    The derivative shows us the direction of steepest descent, or simply put the
+    derivative tells us in what direction we have to change <Latex>x</Latex>
+    if we want to reduce <Latex>f(x)</Latex>. The <Highlight
+      >gradient descent</Highlight
+    > algorithm utilizes that directions and simply subtract the derivative
     <Latex>{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex> from <Latex
       >x</Latex
-    >.
+    >. Gradient descent is an iterative algorithm. That means that we keep
+    calculating the derivative <Latex
+      >{String.raw`\dfrac{\mathrm{d}}{\mathrm{d}x}f(x)`}</Latex
+    > and updating the variable <Latex>x</Latex> until some criterion is met. For
+    example once the change in <Latex>x</Latex> is below a certain threshhold, we
+    can assume that we are very close to the minimum.
   </p>
   <p>
-    At each timestep we update the variable <Latex>x</Latex> by subtracting the derivative
-    until we get close to the minimum, 0 in our case. While the derivative gives
-    us the direction in which should take a step, the derivative does not give us
-    the size of the step. For that purpose we use a variable <Latex
-      >\alpha</Latex
-    > also called the
+    While the derivative gives us the direction in which should take a step, the
+    derivative does not give us the size of the step. For that purpose we use a
+    variable <Latex>\alpha</Latex>, also called the
     <Highlight>learning rate</Highlight>. The learning rate scales the
     derivative by multiplying the direction with a value that usually lies
     between 0.1 and 0.001. Larger values of the learning rate could make the
-    algorithm diverge. That would mean that the <Latex>f(x)</Latex> would get larger
-    and larger and never get close to the minimum.
+    algorithm diverge. That would mean that <Latex>f(x)</Latex> would get larger
+    and larger and never get close to the minimum. While too low values would slow
+    down the trainig process dramatically.
   </p>
-  <Latex
-    >{String.raw`x_{t+1} \coloneqq x_t - \alpha \dfrac{\mathrm{d}}{\mathrm{d}x}f(x_t)`}</Latex
-  >
+  <Alert type="info">
+    <p>
+      At each time step <Latex>t</Latex> of the gradient descent algorithm we update
+      the variable <Latex>x</Latex>, until <Latex>f(x)</Latex> converges to the miminum.
+    </p>
+    <Latex
+      >{String.raw`x_{t+1} \coloneqq x_t - \alpha \dfrac{\mathrm{d}}{\mathrm{d}x}f(x_t)`}</Latex
+    >
+  </Alert>
   <p>
-    Below you can utilize an interactive example to get some intuition for
-    gradient descent. Each click on the play button takes a single gradient
-    descent step, based on the parameters that you can change with the sliders.
+    Below you can play with an interactive example to get some intuition
+    regarding the gradient descent algorithm. Each click on the play button
+    takes a single gradient descent step, based on the parameters that you can
+    change with the sliders.
   </p>
 
   <ButtonContainer>
@@ -268,73 +285,83 @@
   </ButtonContainer>
   <Plot
     width={500}
-    height={250}
-    maxWidth={600}
+    height={500}
+    maxWidth={500}
     domain={[-80, 80]}
     range={[0, 3000]}
+    padding={{ top: 40, right: 10, bottom: 40, left: 60 }}
   >
     <Ticks
       xTicks={[-80, -60, -40, -20, 0, 20, 40, 60, 80]}
       yTicks={[0, 500, 1000, 1500, 2000, 2500, 3000]}
-      xOffset={-15}
-      yOffset={45}
+      xOffset={-10}
+      yOffset={25}
     />
     <XLabel text="x" fontSize={15} type="latex" />
-    <YLabel text="f(x)" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" x={-3} />
     <Path data={parabolaData} />
     <Path data={slope} />
     <Legend
       text="Derivative: {m.toFixed(2)}"
-      coordinates={{ x: -0, y: 2500 }}
+      coordinates={{ x: -30, y: 2800 }}
+      fontSize={20}
     />
     <Circle data={parabolaPoint} />
   </Plot>
-
-  <div class="flex-container">
-    <div class="flex-container left">
+  <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center w-28">
       <Latex>\alpha</Latex>
-      <p>{alpha}</p>
+      <p class="m-0 ml-2">{alpha}</p>
     </div>
     <Slider min={0.01} max={1.05} bind:value={alpha} step={0.01} />
   </div>
-  <div class="flex-container">
-    <div class="flex-container left">
+  <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center w-28">
       <Latex>x</Latex>
-      <p>{pointX.toFixed(2)}</p>
+      <p class="m-0 ml-2">{pointX.toFixed(2)}</p>
     </div>
     <Slider min={-60} max={60} bind:value={pointX} step={0.1} />
   </div>
 
   <p>
-    You can learn several things if you play with the example. If you try
-    positive and negative <Latex>x</Latex> values you will observe that the sign
-    of the derivative changes based on the sign of the location of <Latex
-      >x</Latex
-    >. That behaviour makes sure that we distract negative values from <Latex
-      >x</Latex
-    > when <Latex>x</Latex> is negative and we distract positive values from <Latex
-      >x</Latex
-    > when <Latex>x</Latex> is positive. You could also try gradient descent with
-    an <Latex>\alpha</Latex> of 1.01 and observe that the algorithm starts to diverge.
-    Picking the correct learning rate is an extremely usefull skill and is generally
-    on of the first things to tweak when you want your algorithm to perform better.
-    In fact <Latex>\alpha</Latex> is one of the so called <Highlight
-      >hyperparameters</Highlight
-    >. A hyperparamter is a parameter that is set by the programmer that
-    influences the learning of the parameters that you are truly interested in
-    (like <Latex>w</Latex> and <Latex>b</Latex>). A third thing that you should
-    notice is the decrease of the derivative when we start getting closer and
-    closer to the optimal value. You can also observe that the slope of the
-    tangent gets flatter and flatter. This natural behaviour makes sure that we
-    take smaller and smaller steps as we start approaching the optimum. This
-    also means that gradient descent does not find an optimal value for <Latex
-      >x</Latex
-    > but an approximative one. In many cases it is sufficient to be close enought
-    to the optimal value. At this point the question might arise: "how do we know
-    when to stop if we never hit the actual optimal value?". A common approach in
-    machine learning is to take a predetermined number of steps. We will discuss
-    the topic in more detail throughout this book.
+    You can learn several things about gradient descent if you play with the
+    example.
   </p>
+  <ol class="list-decimal list-inside">
+    <li class="mb-2">
+      If you try positive and negative <Latex>x</Latex> values you will observe that
+      the sign of the derivative changes based on the sign of the location of <Latex
+        >x</Latex
+      >. That behaviour makes sure that we distract negative values from <Latex
+        >x</Latex
+      > when <Latex>x</Latex> is negative and we distract positive values from <Latex
+        >x</Latex
+      > when <Latex>x</Latex> is positive. No matter where we start, the algorithm
+      always pushes the variable towards the minimum.
+    </li>
+    <li class="mb-2">
+      If you try gradient descent with an <Latex>\alpha</Latex> of 1.01 you will
+      observe that the algorithm starts to diverge. Picking the correct learning
+      rate is an extremely usefull skill and is generally on of the first things
+      to tweak when you want your algorithm to perform better. In fact <Latex
+        >\alpha</Latex
+      > is one of the so called
+      <Highlight>hyperparameters</Highlight>. A hyperparamter is a parameter
+      that is set by the programmer that influences the learning of the
+      parameters that you are truly interested in (like <Latex>w</Latex> and <Latex
+        >b</Latex
+      >).
+    </li>
+    <li class="mb-2">
+      You should also notice the decrease of the magnitude of the derivative
+      when we start getting closer and closer to the optimal value, whiel the
+      slope of the tangent gets flatter and flatter. This natural behaviour
+      makes sure that we take smaller and smaller steps as we start approaching
+      the optimum. This also means that gradient descent does not find an
+      optimal value for <Latex>x</Latex> but an approximative one. In many cases
+      it is sufficient to be close enough to the optimal value.
+    </li>
+  </ol>
   <p>
     While the gradient descent algorithm is the de facto standard in deep
     learning, it has some limitations. Only when we are dealing with a <Highlight
@@ -346,13 +373,13 @@
   </p>
   <p>
     Below is the graph for the function <Latex>f(x) = x^3 - 5x^2 + 10</Latex>, a
-    non convex function. We start at the <Latex>x</Latex> position of 6. If you apply
-    gradient several times (play button) you will notice that the ball gets stuck
-    in the local minimum and will thus never keep going into the direction of the
-    global minimum. This is due to the fact, that at that local minimum point the
-    derivative corresponds to 0 and the gradient descent algorithm breaks down. You
-    could move the slider below the graph and place the ball to the left of 0 and
-    observe that the ball will keep going and going further down.
+    non convex function. We start at the <Latex>x</Latex> position with a value of
+    6. If you apply gradient several times (arrow button) you will notice that the
+    ball gets stuck in the local minimum and will thus never keep going into the
+    direction of the global minimum. This is due to the fact, that at that local
+    minimum point the derivative corresponds to 0 and the gradient descent algorithm
+    breaks down. You could move the slider below the graph and place the ball to
+    the left of 0 and observe that the ball will keep going and going further down.
   </p>
   <ButtonContainer>
     <StepButton on:click={localGradientDescent} />
@@ -363,38 +390,39 @@
     maxWidth={600}
     domain={[-3, 6]}
     range={[-40, 50]}
+    padding={{ top: 40, right: 10, bottom: 40, left: 50 }}
   >
     <Ticks
       xTicks={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6]}
       yTicks={[-40, -30, -20, -10, 0, 10, 20, 30, 40, 50]}
       xOffset={-15}
-      yOffset={45}
+      yOffset={25}
     />
     <XLabel text="x" fontSize={15} type="latex" />
-    <YLabel text="f(x)" fontSize={15} type="latex" />
+    <YLabel text="f(x)" fontSize={15} type="latex" x={0} />
     <Path data={localMinimumData} />
     <Circle data={localPoint} />
   </Plot>
-
-  <div class="flex-container">
-    <div class="flex-container left">
+  <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center w-24">
       <Latex>x</Latex>
-      <p>{localX.toFixed(2)}</p>
+      <p class="m-0 ml-2">{localX.toFixed(2)}</p>
     </div>
     <Slider min={-3} max={6} bind:value={localX} step={0.1} />
   </div>
   <p>
     This behaviour has several implications that we should discuss. First, the
     starting position of the variable matters and might have an impact on the
-    performance. Second, why do deep learning researchers and practicioners use
-    gradient descent, if the neural network function is not convex and there is
-    a chance that the algorithm will get stuck in a local minimum? Simply put,
-    because it works exceptionally well in practice. Additionally, we rarely use
-    the "traditional" gradient descent algorithm in practice. Over time,
-    researchers discovered that the algorithm can be improved by such ideas as
-    "momentum", which keeps the speed of gradient descent over many iterations
-    and might thus jump over the local minimum. We will cover those ideas later,
-    for now lets focus on the basic algorithm.
+    performance. Second, the following question arises: "why do deep learning
+    researchers and practicioners use gradient descent, if the neural network
+    function is not convex and there is a chance that the algorithm will get
+    stuck in a local minimum?". Simply put, because it works exceptionally well
+    in practice. Additionally, we rarely use the "traditional" gradient descent
+    algorithm in practice. Over time, researchers discovered that the algorithm
+    can be improved by such ideas as "momentum", which keeps the speed of
+    gradient descent over many iterations and might thus jump over the local
+    minimum. We will cover those ideas later, for now lets focus on the basic
+    algorithm.
   </p>
   <p>
     Before we move on to the part where we discuss how we can apply this
@@ -414,20 +442,20 @@
   </p>
   <Latex>
     {String.raw`
-\mathbf{x} = 
-\begin{bmatrix}
-x_1 \\
-x_2
-\end{bmatrix}
+      \mathbf{x} = 
+      \begin{bmatrix}
+      x_1 \\
+      x_2
+      \end{bmatrix}
   `},
   </Latex>
   <Latex>
     {String.raw`
-\mathbf{\nabla} = 
-\begin{bmatrix}
-\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_1}f \\[8pt] 
-\dfrac{\mathrm{\partial}}{\mathrm{\partial}x_2}f
-\end{bmatrix}
+      \mathbf{\nabla} = 
+      \begin{bmatrix}
+      \dfrac{\mathrm{\partial}}{\mathrm{\partial}x_1}f \\[8pt] 
+      \dfrac{\mathrm{\partial}}{\mathrm{\partial}x_2}f
+      \end{bmatrix}
   `}
   </Latex>
   <p>
@@ -450,32 +478,23 @@ x_2
   <p>
     Let us remind ourselves that our goal is to minimize the mean squared error
     <Latex
-      >{String.raw`MSE=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)})^2`}</Latex
-    >. In the definition of <Latex>MSE</Latex> we use the upperscript notation <Latex
-      >{String.raw`(i)`}</Latex
-    > to indicate that there are <Latex>n</Latex> samples in the dataset and <Latex
-      >i</Latex
-    > is the index of a particular sample. Yet before we move on to discussing how
-    we can use gradient descent with multiple data points, let us ease into the calculations
-    by assuming that we have one single sample <Latex>n=1</Latex>. That reduces
-    the mean squared error to a much simpler form
-    <Latex>{String.raw` MSE=(y - \hat{y})^2`}</Latex>. Generally speaking we
-    want to find the weight vector <Latex>{String.raw`\mathbf{w}`}</Latex> and the
-    bias scalar <Latex>b</Latex> that minimize the mean squared error.
+      >{String.raw`MSE=\dfrac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)})^2`}</Latex
+    >. We use the upperscript notation <Latex>{String.raw`(i)`}</Latex> to indicate
+    that there are <Latex>n</Latex> samples in the dataset and <Latex>i</Latex> is
+    the index of a particular sample. To make our journey easier, let us for now
+    assume that we have one single sample. That reduces the mean squared error to
+    a much simpler form
+    <Latex>{String.raw` MSE=(y - \hat{y})^2`}</Latex>.
+  </p>
+  <p>
+    Generally speaking we want to find the weight vector <Latex
+      >{String.raw`\mathbf{w}`}</Latex
+    > and the bias scalar <Latex>b</Latex> that minimize the mean squared error using
+    gradient descent.
   </p>
   <Latex
     >{String.raw`\underset{\mathbf{w}, b} {\arg\min}(y - (\mathbf{xw^T} + b))^2`}</Latex
   >
-  <p>
-    Just as in the examples above we will use gradient descent to find the
-    minimim of the mean squared error. Yet there is a significant difference in
-    the notation. What we need to optimize are the weights <Latex
-      >{String.raw`\mathbf{w}`}</Latex
-    > and the bias<Latex>{String.raw`b`}</Latex> and not the inputs <Latex
-      >{String.raw`\mathbf{x}`}</Latex
-    >. The <Latex>{String.raw`\mathbf{x}`}</Latex> vector contains the fixed features
-    of a single sample.
-  </p>
   <p>
     The computation of the gradient is slighly more complicated than the one we
     covered above, because we have to apply the chain rule. To simplify notation
@@ -488,8 +507,7 @@ x_2
     In order to be able to apply gradient descent we need to calculate partial
     derivatives with respect to each weight <Latex>w_j</Latex> and the bias <Latex
       >b</Latex
-    >. We will not calculate the derivatives directly, but apply the chain rule
-    by utilizing <Latex>z</Latex>.
+    >. Using the chain rule we get the following derivatives.
   </p>
   <Latex
     >{String.raw`\dfrac{\partial MSE}{\partial w_j} = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial w_j}`}</Latex
@@ -566,7 +584,10 @@ x_2
     derivative we do not change the direction. The size of the derivative on the
     other hand will be determined by the learning rate.
   </p>
-  <p>The gradient descent algorithm works as expected.</p>
+  <p>
+    Once we have the gradients, the gradient descent algorithm works as
+    expected.
+  </p>
   <Latex
     >{String.raw`\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w `}</Latex
   >
@@ -593,7 +614,6 @@ x_2
   <Latex
     >{String.raw`
 \begin{aligned}
-\large 
 & \mathbf{\nabla}_{w} = \dfrac{1}{n} \sum_i^n\mathbf{\nabla}^{(i)}_w \\
 & \dfrac{\partial}{\partial b} = \dfrac{1}{n}\sum^n_i\dfrac{\partial}{\partial b}^{(i)}
 \end{aligned}
@@ -681,24 +701,7 @@ x_2
   <p>
     Even if computation was not a major bottleneck, neural networks do not
     provide an explicit solution, therefore we are dependent on gradient
-    descent. This algorithm will follow us until the end of this block and even
-    beyond.
+    descent.
   </p>
   <div class="separator" />
 </Container>
-
-<style>
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .left p {
-    margin-left: 10px;
-  }
-  .left {
-    min-width: 110px;
-    margin-right: 10px;
-  }
-</style>
