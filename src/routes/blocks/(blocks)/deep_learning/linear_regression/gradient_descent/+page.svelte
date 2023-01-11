@@ -4,6 +4,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Slider from "$lib/Slider.svelte";
   import Alert from "$lib/Alert.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Mse from "../_loss/Mse.svelte";
 
@@ -631,18 +632,31 @@
     The alternatives described below are more practical and usually converge a lot
     faster.
   </p>
-
   <p>
-    Below is the interactive example from the last section. This time we use
-    batch gradient descent to find the optimal weight and bias. As we have only
-    4 datapoints, batch gradient descent is a fine choice.
+    If we wanted to implement batch gradient descent with Python and NumPy to
+    find the minimum squared error, we could implement the algorithm in just 6
+    lines of code.
+  </p>
+  <PythonCode
+    code={`for epoch in range(epochs):
+    # 1. calculate output of linear regression
+    y_hat = X @ w.T + b
+    # 2. calculate the gradients 
+    grad_w = (-X * (y - y_hat)).mean(axis=0) 
+    grad_b = -(y - y_hat).mean()
+    # 3. apply batch gradient descent
+    w = w - alpha * grad_w
+    b = b - alpha * grad_b`}
+  />
+  <p>
+    Below you can use the example from the last section to get a visual
+    intuition for how the algorithm works.
   </p>
 
   <ButtonContainer>
     <PlayButton f={train} delta={1} />
   </ButtonContainer>
   <Mse data={dataMse} {w} {b} />
-
   <h3>Stochastic Gradient Descent</h3>
   <p>
     In stochastic gradient descent we introduce some stochasticity by shuffling
@@ -680,6 +694,7 @@
     training dataset can be as large as we want it to be.
   </p>
   <div class="separator" />
+
   <h2>The Case for Gradient Descent</h2>
   <p>
     If you have taken a statistics course, you might remember, that there is an
