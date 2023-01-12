@@ -3,14 +3,15 @@
   import Latex from "$lib/Latex.svelte";
   import Slider from "$lib/Slider.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
 
   //plotting library
-  import Plot from "$lib/plt/Plot.svelte"; 
+  import Plot from "$lib/plt/Plot.svelte";
   import Circle from "$lib/plt/Circle.svelte";
-  import Ticks from "$lib/plt/Ticks.svelte"; 
-  import XLabel from "$lib/plt/XLabel.svelte"; 
-  import YLabel from "$lib/plt/YLabel.svelte"; 
-  import Path from "$lib/plt/Path.svelte"; 
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Path from "$lib/plt/Path.svelte";
 
   const regressionData = [
     [
@@ -156,10 +157,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Sigmoid and Softmax</title>
+  <title>Sigmoid and Softmax - World4AI</title>
   <meta
     name="description"
-    content="The sigmoid activation function bounds the outputs between 0 and 1, allowing the results to be interpreted as probabilities."
+    content="The sigmoid activation function bounds the outputs between 0 and 1, allowing the results to be interpreted as probabilities. The softmax activation function works in a similar manner, but unlike the sigmoid works for more than 2 categories."
   />
 </svelte:head>
 
@@ -167,25 +168,28 @@
   <h1>Sigmoid and Softmax</h1>
   <div class="separator" />
   <p>
-    Let us start from the basic assumption, that we want to come up with a
-    classification algorithm. Similar to linear regression there should be
-    learnable parameters <Latex>{String.raw`\mathbf{w}`}</Latex> and <Latex
-      >b</Latex
-    >, but unlike with linear regression the output of the algorithm should be
-    the probability to belong to a particular category.
+    Let us assume that no classification algorithms have been invented yet and
+    that we want to come up with the first classification algorithm. We are
+    assuming that there should be learnable parameters <Latex
+      >{String.raw`\mathbf{w}`}</Latex
+    > and <Latex>b</Latex> and the output of the model should correspond the probability
+    to belong to one of two categories. We will expand our ideas to more categories
+    at a later step.
   </p>
   <div class="separator" />
 
   <h2>Linear Regression</h2>
   <p>
-    We might start by implementing simple linear regression without any
-    adjustments. Let us assume that at the moment we face two possible
-    categories and therefore the output <Latex>y</Latex> is either 0 or 1. We therefore
-    need to train a model that produces values between 0 and 1. These values can
-    be regarded as probabilities to belong to the category 1. If the output is 0.3
-    for example, the model predicts that based on the features we are dealing with
-    category 1 with 30% probability and with 70% probability we are dealing with
-    category 0.
+    Let's see what happens when we simply use linear regression for
+    classification tasks.
+  </p>
+  <p>
+    Our dataset contains two classes. We assign each of the classes eather the
+    label 0 or 1 and we need to train a model that produces values between 0 and
+    1. These values can be regarded as probabilities to belong to the category
+    1. If the output is 0.3 for example, the model predicts that we are dealing
+    with category 1 with 30% probability and with 70% probability we are dealing
+    with category 0.
   </p>
   <p>
     We could draw a line just like the one below and at first glance this seems
@@ -194,49 +198,65 @@
     same feature correspond to a lower probability.
   </p>
   <Plot width={500} height={250} maxWidth={800} domain={[0, 10]} range={[0, 1]}>
-    <Ticks xTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 
-           yTicks={[0, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+    <Ticks
+      xTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      yTicks={[0, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="Feature" fontSize={15} />
     <YLabel text="Label" fontSize={15} />
-    <Circle data={limitedRegressionData[0]} />
-    <Circle data={limitedRegressionData[1]} color={"var(--main-color-2)"} />
-    <Path data={
-      [
+    <Path
+      data={[
         { x: 0, y: 0 },
         { x: 10, y: 1 },
-      ]} />
+      ]}
+    />
+    <Circle data={limitedRegressionData[0]} />
+    <Circle data={limitedRegressionData[1]} color={"var(--main-color-2)"} />
   </Plot>
   <p>
-    We could also get into trouble with linear regression and our regression
-    line could produce results that are above 1 or below 0, values that can not
-    be interpreted as probabilities. Especially when our model faces data that
-    contains new unforseen features, the linear regression model would break
-    apart.
+    While linear regression might work during training, when we start facing new
+    datapoints we might get into trouble, because our model can theoretically
+    produce results that are above 1 or below 0, values that can not be
+    interpreted as probabilities.
   </p>
-  <Plot width={500} height={250} maxWidth={800} domain={[-2, 12]} range={[0, 1]}>
-    <Ticks xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} 
-           yTicks={[0, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-2, 12]}
+    range={[0, 1]}
+  >
+    <Ticks
+      xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+      yTicks={[0, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="Feature" fontSize={15} />
     <YLabel text="Label" fontSize={15} />
-    <Circle data={regressionData[0]} />
-    <Circle data={regressionData[1]} color={"var(--main-color-2)"} />
-    <Path data={
-      [
+    <Path
+      data={[
         { x: -2, y: -0.2 },
         { x: 12, y: 1.2 },
-      ]} />
+      ]}
+    />
+    <Circle data={regressionData[0]} />
+    <Circle data={regressionData[1]} color={"var(--main-color-2)"} />
   </Plot>
+  <Alert type="warning">
+    Never use linear regression for classification tasks. There is no built-in
+    mechanism that prevents linear regression from producing nonsencical
+    probabiilty results.
+  </Alert>
   <div class="separator" />
 
   <h2>Threshold Activation</h2>
   <p>
     In our second attempt to construct a classification algorithm we could the
-    original threshold activation function that was used in the McCulloch and
-    Pitts neuron.
+    use original threshold activation function that was used in the McCulloch
+    and Pitts neuron.
   </p>
   <p>
     We could use the threshold of 5, which would mean that each sample with a
@@ -254,16 +274,24 @@
       \right.
     `}</Latex
   >
-  <Plot width={500} height={250} maxWidth={800} domain={[-2, 12]} range={[0, 1]}>
-    <Ticks xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} 
-           yTicks={[0, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-2, 12]}
+    range={[0, 1]}
+  >
+    <Ticks
+      xTicks={[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+      yTicks={[0, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="Feature" fontSize={15} />
     <YLabel text="Label" fontSize={15} />
+    <Path data={threshholdData} />
     <Circle data={regressionData[0]} />
     <Circle data={regressionData[1]} color={"var(--main-color-2)"} />
-    <Path data={threshholdData} />
   </Plot>
   <p>
     While this rule perfectly separates the data into the two categories, the
@@ -275,138 +303,170 @@
 
   <h2>Sigmoid</h2>
   <p>
-    The sigmoid function <Latex
+    The <Highlight>sigmoid</Highlight> function <Latex
       >{String.raw`\sigma(x) = \dfrac{1}{1 + e^{-x}}`}</Latex
     > is an S shaped function that is commonly used in machine learning to produce
-    probabilites, because the function does not display any of the problems that
-    we faced with the two approaches above.
+    probabilites.
   </p>
 
   <Plot width={500} height={250} maxWidth={800} domain={[-6, 6]} range={[0, 1]}>
-    <Ticks xTicks={[-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]} 
-           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+    <Ticks
+      xTicks={[-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]}
+      yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="x" fontSize={10} type="latex" />
-    <YLabel text="f(x)" fontSize={10} x={-2} type="latex"/>
+    <YLabel text="f(x)" fontSize={10} x={-2} type="latex" />
     <Path data={logisticData} />
   </Plot>
   <p>
+    The sigmoid does not display problems that we faced with the two approaches
+    above.
     <Latex>\sigma(x)</Latex> is always bounded between 0 and 1, no matter how large
     or how negative the inputs are. This allows us to interpret the results as probabilities.
-  </p>
-  <p>
-    The sigmoid is a softer version of the threshold function. It smoothly
-    changes between the probabilities. The function is therefore differentiable,
-    which allows us to use gradient descent to learn the weights and biases.
+    The sigmoid is also a softer version of the threshold function. It smoothly changes
+    between the probabilities. The function is therefore differentiable, which allows
+    us to use gradient descent to learn the weights and biases.
   </p>
   <p>
     Usually the output of 0.5 (50%) is regarded as the cutoff point. That would
-    mean that inputs above 0 would be classified as category one and inputs
-    below 0 would be classified as category 0.
+    mean that inputs above 0.5 would be classified as category one and inputs
+    below 0.5 would be classified as category 0.
   </p>
   <p>
     In practice we combine linear regression with a sigmoid function, which
     forms the basis for logistic regression. The output of logistic regression
     is used as the input into the sigmoid.
   </p>
-  <Latex
-    >{String.raw`\hat{y} = \sigma(\mathbf{w}, x) = \dfrac{1}{1 + e^{-z}}`}</Latex
-  >, where <Latex>{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex>
+  <Alert type="info">
+    Logistic regression uses linear regression
+    <Latex>{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex> as an input into
+    the sigmoid
+    <Latex>{String.raw`\hat{y} = \dfrac{1}{1 + e^{-z}}`}</Latex>
+  </Alert>
   <p>
-    This procedure allows to learn parameters <Latex
+    This procedure allows us to learn parameters <Latex
       >{String.raw`\mathbf{w}`}</Latex
     > and <Latex>b</Latex> which align the true categories <Latex
       >{String.raw`\mathbf{y}`}</Latex
     >
-    with the probabilities <Latex>{String.raw`\mathbf{\hat{y}}`}</Latex>. Below
-    is an interactive example that lets you change the weight and the bias and
-    observe how the probabilities would change based on the inputs. Using both
+    with predicted probabilities <Latex>{String.raw`\mathbf{\hat{y}}`}</Latex>.
+    Below is an interactive example that lets you change the weight and the
+    bias. Observe how probabilities change based on the inputs. Using both
     sliders you can move and rotate the probabilities as much as you want. Try
     to find parameters that would fit the data.
   </p>
-  <Plot width={500} height={250} maxWidth={800} domain={[-16, 16]} range={[0, 1]}>
-    <Ticks xTicks={[-16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16]} 
-           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+  <Plot
+    width={500}
+    height={250}
+    maxWidth={800}
+    domain={[-16, 16]}
+    range={[0, 1]}
+  >
+    <Ticks
+      xTicks={[
+        -16, -14, -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16,
+      ]}
+      yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="x" fontSize={10} type="latex" />
-    <YLabel text="f(x)" fontSize={10} x={-2} type="latex"/>
+    <YLabel text="f(x)" fontSize={10} x={-2} type="latex" />
     <Path data={movingSigmoidData} />
     <Circle data={regressionData[0]} />
     <Circle data={regressionData[1]} color="var(--main-color-2)" />
   </Plot>
-  <div class="flex-container">
-    <div><Latex>w</Latex>: {weight}</div>
+  <div class="mt-4">
+    <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
+      Weight: {weight}
+    </div>
     <Slider bind:value={weight} min={-5} max={5} step={0.1} />
   </div>
-  <div class="flex-container">
-    <div><Latex>b</Latex>: {bias}</div>
+  <div class="mt-4">
+    <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
+      Bias: {bias}
+    </div>
     <Slider bind:value={bias} min={-30} max={30} step={0.1} />
-  </div>
+    <div />
 
-  <p>
-    When we are dealing with a classification problem, we are trying to draw a
-    decision boundary between the different classes in order to separate the
-    data as good as possible. In the below example we have a classification
-    problem with two features and two classes. We utilize logistic regression
-    (the sigmoid function) with two weights <Latex>w_1</Latex>, <Latex
-      >w_2</Latex
-    > and the bias <Latex>b</Latex> to draw a boundary. The boundary represents the
-    exact cutoff, the 50% probability. On the one side of the boundary you would
-    have
-    <Latex>{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} > 0.5`}</Latex
-    >, while on the other side of the boundary you have <Latex
-      >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} < 0.5`}</Latex
-    >. By changing the weights and the bias you can rotate and move the decision
-    boundary respectively.
-  </p>
-  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1]}>
-    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
-    <XLabel text="Feature 1" fontSize={10}  />
-    <YLabel text="Feature 2" fontSize={10} />
-    <Path data={decisionPathsData} />
-    <Circle data={decisionData[0]} />
-    <Circle data={decisionData[1]} color="var(--main-color-2)" />
-  </Plot>
+    <p>
+      When we are dealing with a classification problem, we are trying to draw a
+      decision boundary between the different classes in order to separate the
+      data as good as possible. In the below example we have a classification
+      problem with two features and two classes. We utilize logistic regression
+      (the sigmoid function) with two weights <Latex>w_1</Latex>, <Latex
+        >w_2</Latex
+      > and the bias <Latex>b</Latex> to draw a boundary. The boundary represents
+      the exact cutoff, the 50% probability. On the one side of the boundary you
+      would have
+      <Latex
+        >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} > 0.5`}</Latex
+      >, while on the other side of the boundary you have <Latex
+        >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} < 0.5`}</Latex
+      >. By changing the weights and the bias you can rotate and move the
+      decision boundary respectively.
+    </p>
+    <Plot
+      width={500}
+      height={250}
+      maxWidth={800}
+      domain={[0, 1]}
+      range={[0, 1]}
+    >
+      <Ticks
+        xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+        yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+        xOffset={-15}
+        yOffset={15}
+      />
+      <XLabel text="Feature 1" fontSize={15} />
+      <YLabel text="Feature 2" fontSize={15} />
+      <Path data={decisionPathsData} />
+      <Circle data={decisionData[0]} />
+      <Circle data={decisionData[1]} color="var(--main-color-2)" />
+    </Plot>
 
-  <div class="flex-container">
-    <div><Latex>w_1</Latex>: {decisionW1}</div>
-    <Slider bind:value={decisionW1} min={-5} max={5} step={0.01} />
-  </div>
-  <div class="flex-container">
-    <div><Latex>w_2</Latex>: {decisionW2}</div>
-    <Slider bind:value={decisionW2} min={-5} max={5} step={0.01} />
-  </div>
-  <div class="flex-container">
-    <div><Latex>b</Latex>: {decisionB}</div>
-    <Slider bind:value={decisionB} min={-5} max={5} step={0.01} />
-  </div>
-  <p>
-    When we apply gradient descent to logistic regression, essentially we are
-    adjusting the weights and the bias to separate the data.
-  </p>
-  <div class="separator" />
-  <h2>Softmax</h2>
-  <p>
-    Before we move on to the next chapter, let us shortly discuss what function
-    can be used if we are faced with more than two categories. The explanations
-    below will not make full sense until we reach the chapter that covers the
-    artificial neural networks, but this is a good place to make a short
-    introduction.
-  </p>
-  <p>
-    Let us assume, that we face a classification problem with d possible
-    categories. Our goal is to calculate the probabilities to belong to each of
-    these categories. The softmax function takes a <Latex>d</Latex> dimensional vector
-    <Latex>{String.raw`\mathbf{z}`}</Latex> and returns a vector of the same size
-    that contains the corresponding probabilities.
-  </p>
-  <Latex
-    >{String.raw`
+    <div class="mt-4">
+      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
+        Weight 1: {decisionW1}
+      </div>
+      <Slider bind:value={decisionW1} min={-5} max={5} step={0.01} />
+    </div>
+    <div class="mt-4">
+      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
+        Weight 2: {decisionW2}
+      </div>
+      <Slider bind:value={decisionW2} min={-5} max={5} step={0.01} />
+    </div>
+    <div class="mt-4">
+      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
+        Bias : {decisionB}
+      </div>
+      <Slider bind:value={decisionB} min={-5} max={5} step={0.01} />
+    </div>
+    <p>
+      When we apply gradient descent to logistic regression, essentially we are
+      adjusting the weights and the bias to shift the decision boundary.
+    </p>
+    <div class="separator" />
+
+    <h2>Softmax</h2>
+    <p>
+      Before we move on to the next section, let us shortly discuss what
+      function can be used if we are faced with more than two categories.
+    </p>
+    <p>
+      Let us assume, that we face a classification problem with <Latex>d</Latex>
+      possible categories. Our goal is to calculate the probabilities to belong to
+      each of these categories. The <Highlight>softmax</Highlight> function takes
+      a <Latex>d</Latex> dimensional vector
+      <Latex>{String.raw`\mathbf{z}`}</Latex> and returns a vector of the same size
+      that contains the corresponding probabilities.
+    </p>
+    <Latex
+      >{String.raw`
 softmax(\mathbf{z}) = 
 softmax
 \begin{pmatrix}
@@ -428,12 +488,12 @@ softmax
 \end{bmatrix}
 \\
     `}</Latex
-  >
-  <p>
-    If we had four categories for example, the results might look as follows.
-  </p>
-  <Latex
-    >{String.raw`
+    >
+    <p>
+      If we had four categories for example, the results might look as follows.
+    </p>
+    <Latex
+      >{String.raw`
 softmax(\mathbf{z}) = 
 
 \begin{bmatrix}
@@ -444,46 +504,30 @@ softmax(\mathbf{z}) =
 \end{bmatrix}
 \\
     `}</Latex
-  >
-  <p>
-    Given these numbers, we would assume that it is most likely that the
-    features belong to the category Nr. 3.
-  </p>
-  <p>
-    The values <Latex>{String.raw`\mathbf{z}`}</Latex> that are used as input into
-    the softmax function are called <Highlight>logits</Highlight>. You can
-    imagine that each of the logits is a separate linear regression of the form <Latex
-      >{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex
-    > and that we have <Latex>d</Latex> linear regressions, as many as there are
-    categories. The weights and the biases for each of the logits are independent
-    of each other, which means that each of the linear regressions produces different
-    results, which leads to a different probability.
-  </p>
-  <p>
-    We calculate the probability for the <Latex>k</Latex> of <Latex>d</Latex> categories
-    using the following softmax equation.
-  </p>
-  <Latex
-    >{String.raw`\large softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex
-  >
-  <p>
-    Similar to sigmoid function, the softmax function has several advantageous
-    properties. The equation for example guarantees, that the sum of
-    probabilities is exactly 1, thus avoiding any violations of the law of
-    probabilities. Additionally as the name suggest the function is "soft",
-    which indicates that it is differentiable and can be used in gradient
-    descent.
-  </p>
-  <div class="separator" />
-</Container>
-
-<style>
-  .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flex-container div {
-    width: 100px;
-  }
-</style>
+    >
+    <p>
+      Given these numbers, we would assume that it is most likely that the
+      features belong to the category Nr. 3.
+    </p>
+    <p>
+      The values <Latex>{String.raw`\mathbf{z}`}</Latex> that are used as input into
+      the softmax function are called <Highlight>logits</Highlight>. You can
+      imagine that each of the <Latex>d</Latex> logits is a separate linear regression
+      of the form <Latex>{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex>.
+    </p>
+    <p>
+      We calculate the probability for the <Latex>k</Latex> of <Latex>d</Latex> categories
+      using the following softmax equation.
+    </p>
+    <Latex>{String.raw`softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex>
+    <p>
+      Similar to the sigmoid function, the softmax function has several
+      advantageous properties. The equation for example guarantees, that the sum
+      of probabilities is exactly 1, thus avoiding any violations of the law of
+      probabilities. Additionally as the name suggest the function is "soft",
+      which indicates that it is differentiable and can be used in gradient
+      descent.
+    </p>
+    <div class="separator" />
+  </div></Container
+>
