@@ -6,7 +6,6 @@
   import Coin from "./_entropy/Coin.svelte";
   import Entropy from "./_entropy/Entropy.svelte";
   import CrossEntropy from "./_entropy/CrossEntropy.svelte";
-  import Slider from "$lib/Slider.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Alert from "$lib/Alert.svelte";
 
@@ -16,7 +15,6 @@
   import XLabel from "$lib/plt/XLabel.svelte";
   import YLabel from "$lib/plt/YLabel.svelte";
   import Path from "$lib/plt/Path.svelte";
-  import Circle from "$lib/plt/Circle.svelte";
 
   const notes = [
     "The properties that make the mean squared error a bad choice for classification tasks are discussed in the next section.",
@@ -71,7 +69,7 @@
 </script>
 
 <svelte:head>
-  <title>Cross Entropy and Negative Log Likelihood - World4AI</title>
+  <title>Cross Entropy Loss - World4AI</title>
   <meta
     name="description"
     content="Cross-entropy, also called negative log likelihood, is the loss function that is used in classification tasks."
@@ -79,22 +77,16 @@
 </svelte:head>
 
 <Container>
-  <h1>Cross-Entropy and Negative Log Likelihood</h1>
+  <h1>Cross-Entropy Loss</h1>
   <div class="separator" />
   <p>
-    The mean squared error tends to be problematic, when used as the loss
+    The mean squared error loss tends to be problematic, when used as the loss
     function for classification tasks<InternalLink type="note" id={1} />. The
-    loss that is usually used in classification tasks is either called
-    <Highlight>cross-entropy</Highlight> or <Highlight
-      >negative log likelihood</Highlight
-    >. Both names are used in the literature and the standard machine learning
-    libraries. While the calculation is the same, the motivation and the
-    derivation are different. We will introduce both explanations in order to
-    get a better understanding and intuition for this type of loss.
+    loss that is usually used in classification tasks is called the <Highlight
+      >cross-entropy</Highlight
+    > (or the negative log likelihood loss).
   </p>
-  <div class="separator" />
 
-  <h2>Entropy and Cross-Entropy</h2>
   <p>
     In 1948 Claude Shanon published an article called "A Mathematical Theory of
     Communication"<InternalLink type="reference" id={1} />. This paper
@@ -491,259 +483,6 @@
   `}</Latex
     >
   </Alert>
-  <div class="separator" />
-
-  <h2>Negative Log Likelihood</h2>
-  <p>
-    There is a second approach to cover the loss function that is used in
-    classification tasks. This is done by following the path of maximum
-    likelihood estimation.
-  </p>
-  <p>
-    Let us start with a small revision of probability theory and statistics and
-    answer the following question: <span class="light-blue"
-      >"What is the difference between probability and likelihood?"<span
-        >.
-      </span></span
-    >
-    We will demonstrate the difference using our trusted coin toss example.
-  </p>
-  <p>
-    The result of the coin toss <Latex>{String.raw`y^{(i)}`}</Latex> has a Bernoulli
-    distribution, <Latex>{String.raw`y^{(i)} \sim Ber(\theta)`}</Latex>. With a
-    probability of <Latex>\theta</Latex> we toss heads and with probability of <Latex
-      >{String.raw`1-\theta`}</Latex
-    > we toss tails. If we define the results of heads as 1 and the results of tails
-    as 0, we can define the parameter
-    <Latex>\theta</Latex> as <Latex>{String.raw`\Pr(y^{(i)} = 1)`}</Latex> and <Latex
-      >1 - \theta</Latex
-    > as <Latex>{String.raw`\Pr(y^{(i)} = 0)`}</Latex>. The PMF (probability
-    mass function) is therefore <Latex
-      >{String.raw`p(y^{(i)} | \theta) = \theta^{y^{(i)}} (1 - \theta)^{1 - y^{(i)}}`}</Latex
-    >. To understand the PMF imagine the following. In case we need to calculate
-    the probability for heads, we replace <Latex>{String.raw`y^{(i)}`}</Latex> by
-    1 and end up with just <Latex>\theta</Latex>. On the other hand we can use
-    the PMF to calculate the probability for tails by replacing <Latex
-      >{String.raw`y^{(i)}`}</Latex
-    > by 0. In that case we end up with <Latex>1-\theta</Latex>. Lets clarify
-    those definitions with a simple example.
-  </p>
-  <Coin probHead={0.3} probTail={0.7} />
-  <p>
-    We are faced with an unfair coin, where <Latex>\theta</Latex> is 0.3 and <Latex
-      >1 - \theta</Latex
-    > is 0.7. The PMF is <Latex>{String.raw`p(y^{(i)}|\theta)`}</Latex> resolves
-    to <Latex>{String.raw`p(1 | 0.3) = 0.3`}</Latex> and <Latex
-      >{String.raw`p(0 | 0.3) = 0.7`}</Latex
-    > respectively. Often we are interested in the probability of a particular sequence
-    of coin tosses,
-    <Latex>{String.raw`p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta)`}</Latex>
-    . All coin tosses are independently distributed, it does not matter what coin
-    tosses came before. That means we can express the probability of the sequence
-    as the product of probabilities.
-  </p>
-  <p>
-    <Latex
-      >{String.raw`
- \begin{aligned}
- & p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) = \\
-& = p(y^{(1)} | \theta) * p(y^{(2)}|\theta)  * \cdots * p(y^{(n)}|\theta) \\
-& = \prod_{i=1}^n p(y^{(i)}|\theta)
-  \end{aligned}
- `}</Latex
-    >
-  </p>
-  <p>
-    For example: "What is the probability to get the sequence of Heads, Heads,
-    Tails, Heads, Tails, when <Latex>\theta</Latex> equals 0.3? Or expressed mathematically:
-    <Latex>{String.raw`p(1, 1, 0, 1, 0 | 0.3)`}</Latex>.
-  </p>
-  <Latex
-    >{String.raw`
- \begin{aligned}
- & p(y^{(1)}, y^{(2)},  y^{(3)},y^{(4)},y^{(5)} | \theta)= \\
- & = p(1, 1, 0, 1, 0 | 0.3) \\ 
-& = 0.3 * 0.3 * 0.7 * 0.3 * 0.7 \\
-& = 0.01323 \\  
-& = 1.323 \%
-  \end{aligned}
- `}</Latex
-  >
-  <p>
-    When we are dealing with probabilities, the function<Latex
-      >{String.raw`
-p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) 
-      `}</Latex
-    > has a fixed parameter <Latex>\theta</Latex> and expects observations (e.g.
-    coin tosses) as inputs to the function. The PMF <Latex>p</Latex> returns the
-    corresponding probability.
-  </p>
-  <p>
-    Now imagine we do not know the parameter <Latex>\theta</Latex>, instead we
-    toss a coin many times to gain access to observations <Latex
-      >{String.raw`y^{(1)}, y^{(2)}, \cdots, y^{(n)}`}</Latex
-    >. The likelihood function
-    <Latex
-      >{String.raw`\mathcal{L}(\mathbf{\theta} | y^{(1)}, y^{(1)},\cdots y^{(n)})`}</Latex
-    > returns the likelihood that the parameter <Latex>\theta</Latex> is the parameter
-    of the PMF, given that we collected the samples <Latex
-      >{String.raw`y^{(1)}, y^{(2)}, \cdots, y^{(n)}`}</Latex
-    >.
-  </p>
-  <p>
-    There is a straightforward relatinoship between the likelihood <Latex
-      >{String.raw`\mathcal{L}`}</Latex
-    > and the probability <Latex>p</Latex>. Given the same parameter values <Latex
-      >{String.raw`\theta`}</Latex
-    > and the same observations
-    <Latex
-      >{String.raw`
-y^{(1)}, y^{(1)},\cdots y^{(n)}
-        `}</Latex
-    > the probability and the likelihood are equal.
-  </p>
-
-  <Latex
-    >{String.raw`
-\mathcal{L}(\mathbf{\theta} | y^{(1)}, y^{(1)},\cdots y^{(n)})
-= p(y^{(1)}, y^{(2)}, \cdots, y^{(n)}|\theta) = \prod_{i=1}^n p(y^{(i)}|\theta)
-
-`}
-  </Latex>
-  <p>
-    We can change <Latex>\theta</Latex> and observe how the likelihood changes. Lets
-    assume we tossed the coin and got Heads, Heads, Tails, Heads and Tails.
-  </p>
-  <p class="blue">
-    Parameter <Latex>\theta</Latex>: {theta}, Likelihood <Latex
-      >{String.raw`\mathcal{L}`}</Latex
-    >: {likelihood.toFixed(5)}
-  </p>
-  <Plot
-    width={500}
-    height={250}
-    maxWidth={800}
-    domain={[0, 1]}
-    range={[0.00001, 0.04]}
-  >
-    <Ticks
-      xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-      yTicks={[0, 0.01, 0.02, 0.03, 0.04]}
-      xOffset={-15}
-      yOffset={15}
-    />
-    <XLabel text="Theta" fontSize={15} />
-    <YLabel text="Likelihood" fontSize={15} />
-    <Circle data={[{ x: theta, y: likelihood }]} />
-  </Plot>
-
-  <Slider min={0} max={1} step={0.01} bind:value={theta} />
-  <p>
-    When you increase <Latex>\theta</Latex> by moving the slider to the right, you
-    will notice that the likelihood will increase up to a point and start decreasing
-    again. At roughly <Latex>\theta = 0.6</Latex> the likelihood will reach the maximum.
-    This is called the <Highlight>maximum likelihood</Highlight> and the parameters
-    that produce the maximum likelihood is exactly what we are looking for.
-  </p>
-  <p>
-    In logistic regression we are looking for weights<Latex
-      >{String.raw`\mathbf{w}`}</Latex
-    > and the bias <Latex>b</Latex> that maximize the likelihood, provided we are
-    faced with the features matrix <Latex>{String.raw`\mathbf{X}`}</Latex> and the
-    labels vector <Latex>{String.raw`\mathbf{y}`}</Latex>.
-  </p>
-  <Latex
-    >{String.raw`\underset{\mathbf{w}, b}{\arg\max}  \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})}`}</Latex
-  >
-  <p>
-    Given a binary classification problem, we can use logistic regression and
-    calculate the probability of a class <Latex>{String.raw`y^{(i)}`}</Latex> using
-    the sigmoid function <Latex>\sigma</Latex>. Recognizing that the likelihood
-    and the probability are the same, we can rewrite the likelihood in terms of
-    probabilities.
-  </p>
-  <Latex
-    >{String.raw`\mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \prod_{i=1}^n \sigma^{y^{(i)}} (1 - \sigma)^{1 - y^{(i)}}`}</Latex
-  >
-  <p>
-    In practice it is difficult to use gradient descent when we are dealing with
-    a product. For once we would prefer to work with sums rather than products
-    when taking derivatives. This makes the calculation easier, because the
-    derivative of the sum is the sum of derivatives, which enables us to
-    separately calculate the derivatives for individual samples. The derivative
-    of a product on the other hand would involve the product rule, which would
-    overcomplicate things. Additionally, when we calculate the product of small
-    numbers, like probabilities, the number will get smaller and smaller and
-    might get to a point where it would underflow. Instead in practice we
-    maximize the natural log of the likelihood. This turns products into sums
-    and exponents into products.
-  </p>
-  <Latex
-    >{String.raw`\log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)`}</Latex
-  >
-  <p>
-    A question that often occurs the first time you apply a logarithm to a
-    function you want to optimize: "do the optimal values of <Latex
-      >{String.raw`\mathbf{w}`}</Latex
-    > and <Latex>b</Latex> change by applying the natural logarithm?" The answer
-    is no. Below are depicted 2 functions, the original function <Latex
-      >{String.raw`f(x) = x^2 + 0.5`}</Latex
-    > and the transformed function <Latex
-      >{String.raw`g(f(x)) = \log(f(x))`}</Latex
-    >.
-  </p>
-  <Plot
-    width={500}
-    height={250}
-    maxWidth={800}
-    domain={[-7, 7]}
-    range={[-1, 20]}
-  >
-    <Ticks
-      xTicks={[-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]}
-      yTicks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]}
-      xOffset={-15}
-      yOffset={15}
-    />
-    <XLabel text="x" fontSize={15} />
-    <YLabel text="Output" fontSize={15} />
-    <Path data={transformData[0]} />
-    <Path data={transformData[1]} />
-  </Plot>
-  <p>
-    The original function is the parabola at the top and the transformed
-    function is the one at the bottom. As you can see the same x value of 0
-    leads to the minimum function output. Therefore it does not matter that we
-    optimize <Latex>{String.raw`\log(f(x))`}</Latex> instead of <Latex
-      >f(x)</Latex
-    >.
-  </p>
-  <p>
-    Often we calculate the mean of the log likelihood. This is perfectly legal,
-    because this procedure also does not change the parameters <Latex
-      >{String.raw`\mathbf{w}`}</Latex
-    >
-    and <Latex>b</Latex> which maximize the log likelihood.
-  </p>
-  <Latex
-    >{String.raw`\log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = \dfrac{1}{n} \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)`}</Latex
-  >
-  <p>
-    If we wanted to maximize the log likelihood function, we would need to apply
-    gradient ascent. Most deep learning libraries only implement gradient
-    descent though. Maximizing <Latex>f(x)</Latex> is the same as minimizing <Latex
-      >-f(x)</Latex
-    >. For that reason we change the sign of the log likelihood and minimize the
-    negative log likelihood.
-  </p>
-  <Latex
-    >{String.raw`- \log \mathcal{L(\mathbf{w}, b | \mathbf{X}, \mathbf{y})} = - \dfrac{1}{n} \sum_{i=1}^n {y^{(i)}} \log(\sigma) + ({1 - y^{(i)}}) \log(1 - \sigma)`}</Latex
-  >
-  <p>At this point you might have already made the following discovery.</p>
-  <Alert type="info">
-    Minimizing the cross-entropy equals maximizing the log likelihood.
-  </Alert>
-  <div class="separator" />
 </Container>
 
 <Footer {notes} {references} />
