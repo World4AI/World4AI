@@ -3,80 +3,25 @@
   import Latex from "$lib/Latex.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+  import Alert from "$lib/Alert.svelte";
+
+  // table library
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
 
   //plotting library
-  import Plot from "$lib/plt/Plot.svelte"; 
-  import Ticks from "$lib/plt/Ticks.svelte"; 
-  import XLabel from "$lib/plt/XLabel.svelte"; 
-  import YLabel from "$lib/plt/YLabel.svelte"; 
-  import Path from "$lib/plt/Path.svelte"; 
-  import Circle from "$lib/plt/Circle.svelte"; 
-  import Legend from "$lib/plt/Legend.svelte"; 
-  import Text from "$lib/plt/Text.svelte"; 
-
-  //Difference in Gradients Demonstration
-  let graphDataLoss = [];
-  let mseData0 = [];
-  let mseData1 = [];
-  let ceData0 = [];
-  let ceData1 = [];
-
-  let graphGradLoss = [];
-  let mseGrad0 = [];
-  let mseGrad1 = [];
-  let ceGrad0 = [];
-  let ceGrad1 = [];
-
-  for (let i = 0; i <= 1; i += 0.01) {
-    let dataPoint;
-    let gradPoint;
-    let grad;
-    //mse
-    // target is 0
-    let mse;
-    mse = (0 - i) ** 2;
-    grad = -2 * (0 - i);
-    dataPoint = { x: i, y: mse };
-    gradPoint = { x: i, y: grad };
-    mseData0.push(dataPoint);
-    mseGrad0.push(gradPoint);
-
-    //target is 1
-    mse = (1 - i) ** 2;
-    grad = -2 * (1 - i);
-    dataPoint = { x: i, y: mse };
-    mseData1.push(dataPoint);
-    gradPoint = { x: i, y: grad };
-    mseGrad1.push(gradPoint);
-
-    //cross-entropy
-    let ce;
-    if (i !== 0 && i !== 1) {
-      // target is 0
-      ce = -Math.log(1 - i);
-      grad = 1 / (1 - i);
-      dataPoint = { x: i, y: ce };
-      gradPoint = { x: i, y: grad };
-      ceData0.push(dataPoint);
-      ceGrad0.push(gradPoint);
-      // target = 1
-      ce = -Math.log(i);
-      grad = -1 / i;
-      dataPoint = { x: i, y: ce };
-      gradPoint = { x: i, y: grad };
-      ceData1.push(dataPoint);
-      ceGrad1.push(gradPoint);
-    }
-  }
-  graphDataLoss.push(mseData0);
-  graphDataLoss.push(mseData1);
-  graphDataLoss.push(ceData0);
-  graphDataLoss.push(ceData1);
-
-  graphGradLoss.push(mseGrad0);
-  graphGradLoss.push(mseGrad1);
-  graphGradLoss.push(ceGrad0);
-  graphGradLoss.push(ceGrad1);
+  import Plot from "$lib/plt/Plot.svelte";
+  import Ticks from "$lib/plt/Ticks.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
+  import Path from "$lib/plt/Path.svelte";
+  import Circle from "$lib/plt/Circle.svelte";
+  import Text from "$lib/plt/Text.svelte";
 
   // Gradient Descent Demonstrations
   let w1 = -0.15;
@@ -190,7 +135,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Logistic Regression Gradient Descent</title>
+  <title>Logistic Regression Gradient Descent - World4AI</title>
   <meta
     name="description"
     content="The optimal weights and biases for logistic regression can be obtained by the means of gradient descent. The gradients are calcualted using the chain rule."
@@ -201,108 +146,42 @@
 <div class="separator" />
 
 <Container>
-  <h2>Cross-Entropy vs Mean Squared Error</h2>
   <p>
-    The cross-entropy is almost exclusively used as the loss function for
-    classification tasks, but it is not obvious why we can not use the mean
-    squared error. Actually we can, but as we will see shortly, the
-    cross-entropy is a more convenient measure of loss for classification tasks.
+    We finally have the means to find weights <Latex
+      >{String.raw`\mathbf{w}`}</Latex
+    > and the bias
+    <Latex>b</Latex> that minimize the binary cross-entropy loss.
   </p>
   <p>
-    For this discusson we will deal with a single sample and distinquish between
-    two cases: the label <Latex>y</Latex> is either 0 or 1. If the label equals to
-    0, the mean squared error is <Latex>{String.raw`(0 - \sigma)^2`}</Latex> while
-    the cross-entropy is<Latex>{String.raw`-\log(1 - \sigma)`}</Latex>. Both
-    losses increase as the predicted probability <Latex>\sigma</Latex> grows. If
-    the true label <Latex>1</Latex> is 1 on the other hand the mean squared error
-    is <Latex>{String.raw`(1 - \sigma)^2`}</Latex> and the cross-entropy is<Latex
-      >{String.raw`-\log(\sigma)`}</Latex
-    >. In both cases the error decreases when the predicted probability <Latex
-      >{String.raw`\sigma`}</Latex
-    > grows.
-  </p>
-  <p>
-    Below we plot the mean squared error and the cross-entropy based on the
-    predicted probability <Latex>\sigma</Latex>. The red plot depicts the mean
-    squared error, while the blue plot depicts the cross-entropy. There are two
-    plots for each of the losses, one for each value of the target.
-  </p>
-
-  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 3]}>
-    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           yTicks={[0, 1, 2, 3]} 
-           xOffset={-15} 
-           yOffset={15}/>
-    <XLabel text="Predicted Probability" fontSize={15} />
-    <YLabel text="Error" fontSize={15} />
-    <Path data={graphDataLoss[0]} color="var(--main-color-1)" />
-    <Path data={graphDataLoss[1]} color="var(--main-color-1)"/>
-    <Path data={graphDataLoss[2]} color="var(--main-color-2)"/>
-    <Path data={graphDataLoss[3]} color="var(--main-color-2)"/>
-    <Legend coordinates={{x: 0.3, y: 2.8}} legendColor="var(--main-color-2)" text="Cross Entropy"/>
-    <Legend coordinates={{x: 0.3, y: 2.5}} legendColor="var(--main-color-1)" text="Mean Squared Error"/>
-  </Plot>
-  <p>
-    The mean squared error and the cross-entropy start at the same position, but
-    the difference in errors starts to grow as the predicted probability starts
-    to deviate from the true label. The cross-entropy punishes
-    misclassifications with a much higher loss, than the mean squared error.
-    When we deal with probabilities the difference between the label and the
-    predicted probability can not be larger than 1. That means that the mean
-    squared error also can not grow beyond 1. The logarithm on the other hand
-    literally explodes when the value starts approaching 0.
-  </p>
-  <p>
-    This behaviour can also be observed when we draw the predicted probability
-    against the derivative of the loss function. While the derivatives of the
-    mean squared error are linear, the cross-entropy derivatives grow
-    exponentially when the quality of predictions deteriorates.
-  </p>
-  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[-10, 10]}>
-    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           yTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]} 
-           xOffset={-15} 
-           yOffset={15}/>
-    <XLabel text="Predicted Probability" fontSize={15} />
-    <YLabel text="Derivative" fontSize={15} />
-    <Path data={graphGradLoss[0]} color="var(--main-color-1)" />
-    <Path data={graphGradLoss[1]} color="var(--main-color-1)"/>
-    <Path data={graphGradLoss[2]} color="var(--main-color-2)"/>
-    <Path data={graphGradLoss[3]} color="var(--main-color-2)"/>
-    <Legend coordinates={{x: 0.3, y: 8}} legendColor="var(--main-color-2)" text="Cross Entropy"/>
-    <Legend coordinates={{x: 0.3, y: 6}} legendColor="var(--main-color-1)" text="Mean Squared Error"/>
-  </Plot>
-  <p>
-    The exponential growth of derivatives implies, that the gradient descent
-    algorithm will take much larger steps, when the classification predictions
-    are way off, thereby converging at a higher rate.
-  </p>
-
-  <div class="separator" />
-  <h2>The Algorithm</h2>
-  <p>
-    Our goal is to find weights <Latex>{String.raw`\mathbf{w}`}</Latex> and the bias
-    <Latex>b</Latex> that minimize the cross-entropy loss in a binary classification
-    problem.
-  </p>
-
-  <Latex
-    >{String.raw`
-      \underset{\mathbf{w}, b} {\arg\min} L \\ 
-      L =  - \dfrac{1}{n} \sum_i \Big[y^{(i)} \log \sigma + (1 - y^{(i)}) \log(1 - \sigma) \Big] \\
+    Let's remind ourselves, that calculation the cross-entropy loss requires
+    several steps. In the first step we calculate the so called <Highlight
+      >net input</Highlight
+    ><Latex>z</Latex>, where
+    <Latex>{String.raw`z = \mathbf{xw^T}+b`}</Latex>. The net input is used as
+    an input into the sigmoid function <Latex>\sigma</Latex>, where <Latex
+      >{String.raw`\sigma(z) = \dfrac{1}{1 + e^{-z}}`}</Latex
+    >. The output of the sigmoid is the probability that the features belong to
+    the class with the label <Latex>1</Latex>. Finally we use the output of the
+    sigmoid as an input into the cross-entropy loss <Latex>L</Latex>, where
+    <Latex
+      >{String.raw`
+      L =  - \dfrac{1}{n} \sum_i \Big[y^{(i)} \log \sigma(z^{(i)}) + (1 - y^{(i)}) \log(1 - \sigma(z^{(i)})) \Big] \\
   `}</Latex
-  >
+    >
+  </p>
   <p>
     Similar to linear regression, logistic regression relies on gradient
     descent. While the derivative is slightly more complex, the chain rule still
-    allows us to relatively easily find the optimum. Ultimately we are
-    interested in the gradient of the loss function <Latex>L</Latex> with respect
-    to the weight vector <Latex>{String.raw`\nabla_{\mathbf{w}}`}</Latex> and the
-    derivative with respect to the bias <Latex
-      >{String.raw`\dfrac{\partial}{\partial b} L`}</Latex
-    >. Once we have those we can use the same gradient descent procedure that we
-    used in linear regression.
+    allows us to relatively easily find the optimum. Given the three composed
+    functions describe above, we can use the chain rule the following way.
   </p>
+  <Latex
+    >{String.raw`
+    \dfrac{\partial L}{\partial w_j} = \dfrac{1}{n} \sum_i^n \dfrac{\partial L}{\partial \sigma^{(i)}} \dfrac{\partial \sigma^{(i)}}{\partial z^{(i)}} \dfrac{\partial z^{(i)}}{\partial w_j^{(i)}} \\
+    \dfrac{\partial L}{\partial b} = \dfrac{1}{n} \sum_i^n \dfrac{\partial L}{\partial \sigma^{(i)}} \dfrac{\partial \sigma^{(i)}}{\partial z^{(i)}} \dfrac{\partial z^{(i)}}{\partial b} \\
+    `}</Latex
+  >
+  <p>Once we have those gradients we can use the gradient descent procedure.</p>
   <Latex
     >{String.raw`\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w `}</Latex
   >
@@ -311,41 +190,46 @@
     >{String.raw`b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} `}</Latex
   >
   <p>
-    We can calculate gradients for individual samples and calculate the mean
-    afterwards. That reduces the loss of an individual sample to the following
-    equation.
+    Let's once again assume, that we are dealing with a single sample to
+    simplify notation. As the derivative of the sum is the sum of derivatives,
+    you can easily extend our explanations to a whole dataset.
   </p>
   <Latex
     >{String.raw`
-    L = - \Big[y \log \sigma + (1 - y) \log(1 - \sigma)\Big] \\
+    L = - \Big[y \log(z) \sigma + (1 - y) \log(1 - \sigma(z))\Big] \\
   `}</Latex
   >
   <p>
     We start by calculating the derivative of the loss with respect to the
-    sigmoid output.
+    sigmoid output <Latex>\sigma</Latex>. Using basic rules of calculus we get
+    the following result.
   </p>
-  <Latex
-    >{String.raw`
-    \dfrac{\partial}{\partial \sigma}L = - \Big[y^{(i)} \dfrac{1}{\sigma}  - (1 - y^{(i)}) \dfrac{1}{(1 - \sigma)}\Big] \\
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`
+    \dfrac{\partial}{\partial \sigma}L = - \Big[y \dfrac{1}{\sigma(z)}  - (1 - y) \dfrac{1}{(1 - \sigma(z))}\Big] \\
   `}</Latex
-  >
+    >
+  </div>
   <p>
     Next we calculate the derivative of the sigmoid <Latex
       >{String.raw`\sigma(z) = \dfrac{1}{1 + e^{-z}}`}</Latex
     > with respect to the net input <Latex>z</Latex>.
   </p>
-
-  <Latex
-    >{String.raw`\dfrac{\partial}{\partial z}\sigma = \sigma(z) (1 - \sigma(z)) `}</Latex
-  >
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`\dfrac{\partial}{\partial z}\sigma = \sigma(z) (1 - \sigma(z)) `}</Latex
+    >
+  </div>
   <p>
     The derivative of the sigmoid function is relatively straightforward, but
     the derivation process is somewhat mathematically involved. It is not
     necessary to know the exact steps how we arrive at the derivative, but if
     you are interested, below we provide the necessary steps.
   </p>
-  <Latex
-    >{String.raw`
+  <Alert type="info">
+    <Latex
+      >{String.raw`
     \begin{aligned}
     \dfrac{\partial}{\partial z}\sigma &= \dfrac{\partial}{\partial z} \dfrac{1}{1 + e^{-z}} \\
     &= \dfrac{\partial}{\partial z} ({1 + e^{-z}})^{-1} \\
@@ -358,26 +242,20 @@
     &= \sigma(z) (1 - \sigma(z)) 
     \end{aligned}
     `}</Latex
-  >
+    >
+  </Alert>
   <p>
-    The rest of derivations are do not differ from those that we used in linear
+    The rest of derivations do not differ from those that we used in linear
     regression. We calculate the gradients of the net input <Latex
       >{String.raw`z = \mathbf{xw^T}+b`}</Latex
-    > with respect to the individual weights and the bias applying the chain rule.
+    > with respect to the individual weights and the bias.
   </p>
-  <Latex>{String.raw`\dfrac{\partial}{\partial w_j} z = x_j`}</Latex>
-  <br />
-  <Latex>{String.raw`\dfrac{\partial}{\partial b} z = 1`}</Latex>
-  <p>
-    Finally we can utilize the chain rule to calculate the derivatives of the
-    loss with respect to the weights and the bias. When we are dealing with
-    batch or minibatch gradient descent we collect the gradients for several
-    samples <Latex>n</Latex> and calculate the mean, which is utilized in gradient
-    descent.
+  <p class="flex justify-center items-center">
+    <Latex
+      >{String.raw`\dfrac{\partial}{\partial w_j} z = x_j \\
+    \dfrac{\partial}{\partial b} z = 1`}</Latex
+    >
   </p>
-  <Latex
-    >{String.raw`\dfrac{\partial L}{\partial w_j} = \dfrac{1}{n} \sum_i^n \dfrac{\partial L}{\partial \sigma^{(i)}} \dfrac{\partial \sigma^{(i)}}{\partial z^{(i)}} \dfrac{\partial z^{(i)}}{\partial w_j^{(i)}}`}</Latex
-  >
   <p>
     In the interactive example below we demonstrate the gradient descent
     algorithm for logistic regression. This is the same example that you tried
@@ -387,21 +265,60 @@
   <ButtonContainer>
     <PlayButton f={train} delta={100} />
   </ButtonContainer>
-
-  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1.2]}>
-    <Ticks xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
-           xOffset={-15} 
-           yOffset={15}/>
+  <Table>
+    <TableHead>
+      <Row>
+        <HeaderEntry>Variable</HeaderEntry>
+        <HeaderEntry>Value</HeaderEntry>
+      </Row>
+    </TableHead>
+    <TableBody>
+      <Row>
+        <DataEntry>
+          <Latex>L</Latex>
+        </DataEntry>
+        <DataEntry>
+          {crossEntropy.toFixed(2)}
+        </DataEntry>
+      </Row>
+      <Row>
+        <DataEntry>
+          <Latex>w_1</Latex>
+        </DataEntry>
+        <DataEntry>
+          {w1.toFixed(2)}
+        </DataEntry>
+      </Row>
+      <Row>
+        <DataEntry>
+          <Latex>w_2</Latex>
+        </DataEntry>
+        <DataEntry>
+          {w2.toFixed(2)}
+        </DataEntry>
+      </Row>
+      <Row>
+        <DataEntry>
+          <Latex>b</Latex>
+        </DataEntry>
+        <DataEntry>
+          {b.toFixed(2)}
+        </DataEntry>
+      </Row>
+    </TableBody>
+  </Table>
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1]}>
+    <Ticks
+      xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
     <XLabel text="Feature 1" fontSize={15} />
     <YLabel text="Feature 2" fontSize={15} />
     <Path data={pathsData} />
-    <Circle data={pointsData[0]}/>
-    <Circle data={pointsData[1]} color={"var(--main-color-2)"}/>
-    <Text text="L: {crossEntropy.toFixed(2)}" x={0} y={1.4} />
-    <Text text="w1: {w1.toFixed(2)}" x={0} y={1.3} />
-    <Text text="w2: {w1.toFixed(2)}" x={0} y={1.2} />
-    <Text text="b: {b.toFixed(2)}" x={0} y={1.1} />
+    <Circle data={pointsData[0]} />
+    <Circle data={pointsData[1]} color={"var(--main-color-2)"} />
   </Plot>
   <p>
     The gradient descent algorithm learns to separate the data in a matter of
