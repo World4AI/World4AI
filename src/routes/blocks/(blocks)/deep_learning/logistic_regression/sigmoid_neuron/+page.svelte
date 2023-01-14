@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Sigmoid Neuron</title>
+  <title>Sigmoid Neuron - World4AI</title>
   <meta
     name="description"
     content="Logistic regression constitutes the simplest non-linear neuron: a neuron with the sigmoid activation function."
@@ -17,7 +17,7 @@
   <p>
     Let us make the same exercise we did with linear regression. We can look at
     logistic regression from the perspective of a neural network. If we do, we
-    will observe that logistic regression is a neuron with a sigmoid activation
+    will realize that logistic regression is a neuron with a sigmoid activation
     function.
   </p>
 
