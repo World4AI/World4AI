@@ -76,8 +76,12 @@ export function load() {
             link: "/blocks/deep_learning/logistic_regression/sigmoid_softmax",
           },
           {
-            name: "Cross-Entropy and Negative Log Likelihood",
-            link: "/blocks/deep_learning/logistic_regression/cross_entropy_negative_log_likelihood",
+            name: "Cross-Entropy",
+            link: "/blocks/deep_learning/logistic_regression/cross_entropy",
+          },
+          {
+            name: "Cross-Entropy vs Mean Squared Error",
+            link: "/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error",
           },
           {
             name: "Gradient Descent",
