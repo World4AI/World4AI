@@ -5,6 +5,7 @@
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Alert from "$lib/Alert.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   // table library
   import Table from "$lib/base/table/Table.svelte";
@@ -21,7 +22,6 @@
   import YLabel from "$lib/plt/YLabel.svelte";
   import Path from "$lib/plt/Path.svelte";
   import Circle from "$lib/plt/Circle.svelte";
-  import Text from "$lib/plt/Text.svelte";
 
   // Gradient Descent Demonstrations
   let w1 = -0.15;
@@ -256,6 +256,32 @@
     \dfrac{\partial}{\partial b} z = 1`}</Latex
     >
   </p>
+  <p>
+    If we wanted use NumPy and Python to implement logistic regression the
+    result might look as our example below.
+  </p>
+  <PythonCode
+    code={`for epoch in range(epochs):
+    # 1. calculate predicted probabilities
+    z = X @ w.T + b
+    sigma = 1 / (1 + np.exp(-z))
+    
+    # 2. calculate the partial derivatives 
+    dH_dsigma = -(y * (1 / sigma) - (1 - y) * (1 / (1 - sigma)))
+    dsigma_dz = sigma * (1 - sigma)
+    dz_dx = X
+    dz_db = 1
+    
+    # 3. apply the chain rule
+    grad_w = (dH_dsigma * dsigma_dz * dz_dx).mean(axis=0)
+    grad_b = (dH_dsigma * dsigma_dz * dz_db).mean()
+    
+    # 4. apply batch gradient descent
+    w = w - alpha * grad_w
+    b = b - alpha * grad_b`}
+  />
+  `
+
   <p>
     In the interactive example below we demonstrate the gradient descent
     algorithm for logistic regression. This is the same example that you tried
