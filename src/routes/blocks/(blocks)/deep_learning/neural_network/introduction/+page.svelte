@@ -1,15 +1,42 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Network from "../_intro/Network.svelte";
-  import SvgContainer from "$lib/SvgContainer.svelte";
   import Highlight from "$lib/Highlight.svelte";
+
+  import NeuralNetwork from "$lib/NeuralNetwork.svelte";
+  const layers = [
+    {
+      title: "Features",
+      nodes: [
+        { value: "x_1", class: "fill-gray-200" },
+        { value: "x_2", class: "fill-gray-200" },
+        { value: "x_3", class: "fill-gray-200" },
+        { value: "x_3", class: "fill-gray-200" },
+      ],
+    },
+    {
+      title: "Hidden Layer",
+      nodes: [
+        { value: "a_1", class: "fill-blue-400" },
+        { value: "a_2", class: "fill-blue-400" },
+        { value: "a_3", class: "fill-blue-400" },
+      ],
+    },
+    {
+      title: "Output Layer",
+      nodes: [{ value: "o_1", class: "fill-yellow-400" }],
+    },
+    {
+      title: "Loss",
+      nodes: [{ value: "L", class: "fill-red-500" }],
+    },
+  ];
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Neural Network</title>
+  <title>Neural Network Introduction - World4AI</title>
   <meta
     name="description"
-    content="The training process of a neural network consists of a forward and a backward pass."
+    content="The training process of a neural network consists of a forward and a backward pass. In the forward pass the features are used to calculate the loss of the function. In the backward pass the loss is distributed among individual neurons."
   />
 </svelte:head>
 
@@ -20,22 +47,30 @@
     We can train neural networks that can classify images, generate text or play
     computer games. No matter what task we are trying to accomplish, the
     training process of neural networks is always done using the same procedure
-    consisting of two major steps: the <Highlight>forward pass</Highlight> and the
-    <Highlight>backward pass</Highlight>. In the forward pass a mini batch is
-    used to calculate the loss of the neural network. In the backward pass the
-    loss is distributed among all neurons, from the last neurons to the first
-    neurons, and the weights and biases are adjusted proportional to their
-    contribution to the loss. The forward and the backward pass run
-    back-to-back, until some condition is met and the training process is
-    terminated.
+    consisting of two major steps.
   </p>
-  <SvgContainer maxWidth="700px">
-    <Network />
-  </SvgContainer>
   <p>
-    No matter how complicated the neural network looks like on the surface, the
-    forward and the backward pass are always present in modern day deep
-    learning.
+    In the <Highlight>forward pass</Highlight>
+    the features are processed layer by layer and neuron by neuron to finally determine
+    the loss of the neural network.
+  </p>
+  <NeuralNetwork {layers} height={150} />
+  <p>
+    In the <Highlight>backward pass</Highlight> the loss is distributed among all
+    neurons and the weights and biases are adjusted proportional to their contribution
+    to the loss.
+  </p>
+  <NeuralNetwork
+    {layers}
+    height={150}
+    speed={0.5}
+    connectionStyle={"stroke-red-500"}
+  />
+  <p>
+    The forward and the backward pass run back-to-back, until some condition is
+    met and the training process is terminated. No matter how complicated the
+    neural network looks like on the surface, the forward and the backward pass
+    are always present in modern day deep learning.
   </p>
   <div class="separator" />
 </Container>
