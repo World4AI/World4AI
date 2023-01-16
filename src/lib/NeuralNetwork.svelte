@@ -1,17 +1,5 @@
 <script>
   import { onMount } from "svelte";
-
-  let offset = 0;
-  onMount(() => {
-    const interval = setInterval(() => {
-      offset -= 0.5;
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
-    };
-  });
-
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Latex from "$lib/Latex.svelte";
 
@@ -24,7 +12,11 @@
   export let verticalGap = 15;
   export let padding = { left: 0, right: 0 };
 
+  // style of connections
+  export let connectionStyle = "stroke-black";
+
   export let layers = [];
+
   /*
     The layers list should contain the following
     {
@@ -42,6 +34,19 @@
       ],
     },
   */
+
+  /*Connections are moving */
+  export let speed = -0.5;
+  let offset = 0;
+  onMount(() => {
+    const interval = setInterval(() => {
+      offset += speed;
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   // calculate the centers of nodes for reusability
   const centers = [];
@@ -101,7 +106,7 @@
               y1={centers[layerIdx][nodeIdx].y + rectSize / 2}
               x2={centers[layerIdx + 1][nextNodeIdx].x}
               y2={centers[layerIdx + 1][nextNodeIdx].y + rectSize / 2}
-              stroke="var(--text-color)"
+              class={connectionStyle}
               stroke-dasharray="2 2"
               stroke-width="0.3"
               stroke-dashoffset={offset}
