@@ -52,17 +52,17 @@
   >
   <p>
     At this point you might interject, that we do not have an activation
-    function <Latex>a(z)</Latex>, so let us introduce one that does not change
+    function <Latex>f(z)</Latex>, so let us introduce one that does not change
     the nature of linear regression. We are going to use the so called identity
-    function, where the input equals the output <Latex>a(z) = z</Latex>. When we
+    function, where the input equals the output <Latex>f(z) = z</Latex>. When we
     apply the identity function as an activation, we end up with a linear
     neuron, where
-    <Latex>{String.raw`\hat{y} = a(\mathbf{x} \mathbf{w}^T  + b)`}</Latex>. This
-    might seem like an unnecessary step, but by enforcing the usage of an
-    identity function, we put ourselves into a position where we can start to
-    understand different types of neurons. All we have to do is to replace the
-    identity function by any other activation function <Latex>a(z)</Latex> to describe
-    any other type of neuron.
+    <Latex>{String.raw`a = f(\mathbf{x} \mathbf{w}^T  + b)`}</Latex>. This might
+    seem like an unnecessary step, but by enforcing the usage of an identity
+    function, we put ourselves into a position where we can start to understand
+    different types of neurons. All we have to do is to replace the identity
+    function by any other activation function <Latex>f(z)</Latex> to describe any
+    other type of neuron.
   </p>
   <div class="separator" />
 </Container>

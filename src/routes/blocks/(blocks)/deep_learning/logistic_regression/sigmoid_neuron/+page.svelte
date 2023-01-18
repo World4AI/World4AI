@@ -27,11 +27,11 @@
       >{String.raw`\mathbf{x}`}</Latex
     > are scaled by weights <Latex>{String.raw`\mathbf{w}`}</Latex>. Second: the
     scaled inputs (plus bias <Latex>b</Latex>) are aggregated via a sum. Third:
-    an activation function <Latex>a</Latex> is applied to the sum.
+    an activation function <Latex>f</Latex> is applied to the sum.
   </p>
   <p>
     In logistic regression all three steps can be described by
-    <Latex>{String.raw`a(z)`}</Latex>, where <Latex>a</Latex> is the sigmoid activation
+    <Latex>{String.raw`f(z)`}</Latex>, where <Latex>f</Latex> is the sigmoid activation
     function <Latex>\sigma</Latex> and <Latex>z</Latex> is the net input <Latex
       >{String.raw`\mathbf{xw}^T + b`}</Latex
     > . Written in a more familiar manner the output of the neuron amounts to: <Latex
