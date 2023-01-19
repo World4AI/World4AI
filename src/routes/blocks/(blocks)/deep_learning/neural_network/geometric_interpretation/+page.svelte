@@ -1,6 +1,5 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import { NeuralNetwork } from "$lib/NeuralNetwork.js";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import Architecture from "../_geometric/Architecture.svelte";
@@ -16,42 +15,6 @@
   import Circle from "$lib/plt/Circle.svelte"; 
   import Rectangle from "$lib/plt/Rectangle.svelte"; 
 
-  // transformations
-  const alpha = 0.5;
-  const sizes = [2, 4, 2, 1];
-
-  //good starting weights for faster convergence
-  let weights = [
-    [
-      [-0.44947513937950134, -2.1187565326690674],
-      [0.24469861388206482, 1.4741417169570923],
-      [-0.8196889758110046, 1.3501536846160889],
-      [0.15400901436805725, -0.35472017526626587],
-    ],
-    [
-      [
-        -1.3636902570724487, -1.169247031211853, 0.29788315296173096,
-        -1.699813961982727,
-      ],
-      [
-        -1.0098611116409302, 1.1693042516708374, -0.011132504791021347,
-        -0.6532079577445984,
-      ],
-    ],
-    [[0.8470180034637451, -1.2319238185882568]],
-  ];
-
-  let biases = [
-    [
-      [
-        0.6538878083229065, -1.1869943141937256, -1.317667841911316,
-        0.8878940939903259,
-      ],
-    ],
-    [[1.6244404315948486, -0.7040465474128723]],
-    [[-0.12584348022937775]],
-  ];
-
   // create the data to draw the svg
   let pointsData = [[], []];
   let radius = [0.45, 0.25];
@@ -65,97 +28,6 @@
       let y = r * Math.sin(angle) + centerY;
       pointsData[i].push({ x, y });
     }
-  }
-
-  //these are the X and the y values
-  let features = [];
-  let labels = [];
-
-  // create the data for the neural network
-  function createData() {
-    pointsData.forEach((label, labelIdx) => {
-      label.forEach((dataPoint) => {
-        let feature = [];
-        feature.push(dataPoint.x);
-        feature.push(dataPoint.y);
-        features.push(feature);
-        let label = [];
-        label.push(labelIdx);
-        labels.push(label);
-      });
-    });
-  }
-  createData();
-
-  let nn = new NeuralNetwork(alpha, sizes, features, labels);
-  nn.setWeights(weights);
-  nn.setBiases(biases);
-
-  const activationsStore = nn.activationsStore;
-
-  let pointsData2 = [[], []];
-  $: {
-    pointsData2 = [[], []];
-    try {
-      $activationsStore[$activationsStore.length - 2].forEach((output, idx) => {
-        let x = output[0];
-        let y = output[1];
-        let labelClass = labels[idx][0];
-        pointsData2[labelClass].push({ x, y });
-      });
-    } catch {}
-  }
-
-  // determine the x and y coordinates that are going to be used for heatmap
-  let numbers = 50;
-  let heatmapCoordinates = [];
-  for (let i = 0; i < numbers; i++) {
-    for (let j = 0; j < numbers; j++) {
-      let x = i / numbers;
-      let y = j / numbers;
-      let coordinate = [];
-      coordinate.push(x);
-      coordinate.push(y);
-      heatmapCoordinates.push(coordinate);
-    }
-  }
-
-  let heatmapData = [[], []];
-  //recalculate the heatmap based on the current weights of the neural network
-  function calculateHeatmap() {
-    heatmapData = [[], []];
-    let outputs = nn.predict(heatmapCoordinates);
-    heatmapCoordinates.forEach((inputs, idx) => {
-      let point = { x: inputs[0], y: inputs[1] };
-      if (outputs[idx] >= 0.5) {
-        heatmapData[0].push(point);
-      } else {
-        heatmapData[1].push(point);
-      }
-    });
-  }
-  calculateHeatmap();
-
-  //generate graphs
-  let lossStore = nn.lossStore;
-  let lossData = [];
-  $: {
-    let losses = $lossStore;
-    let idx = losses.length - 1;
-    let loss = losses[idx];
-    if (idx !== -1) {
-      let point = { x: idx, y: loss };
-      lossData.push(point);
-      lossData = lossData;
-    }
-  }
-
-  let runs = 0;
-
-  function train() {
-    nn.epoch();
-    calculateHeatmap();
-    runs++;
   }
 </script>
 
@@ -287,7 +159,6 @@
     classification problem was not picked randomly, but to show some magic that
     is hidden under the hood of a neural network.
   </p>
-  <Architecture {sizes} />
   <p>
     Let us remember that logistic regression is able to deal with classification
     problems, but only if the data is linearly separable. The last layer of the
@@ -313,9 +184,6 @@
 </Container>
 
 <Container maxWidth="1900px">
-  <ButtonContainer>
-    <PlayButton f={train} delta={0} />
-  </ButtonContainer>
   <div class="flex-container">
     <div class="left-container">
       <Plot width={500} height={500} maxWidth={600} domain={[0, 1]} range={[0, 1]}>
@@ -323,8 +191,6 @@
                yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
                xOffset={-15} 
                yOffset={15}/>
-        <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
-        <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
         <Circle data={pointsData[0]} />
         <Circle data={pointsData[1]} color="var(--main-color-2)" />
         <XLabel text="Feature 1" fontSize={15} />
@@ -337,8 +203,6 @@
                yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]} 
                xOffset={-15} 
                yOffset={15}/>
-        <Circle data={pointsData2[0]} />
-        <Circle data={pointsData2[1]} color="var(--main-color-2)" />
         <XLabel text="Feature 1" fontSize={15} />
         <YLabel text="Feature 2" fontSize={15} />
       </Plot>
