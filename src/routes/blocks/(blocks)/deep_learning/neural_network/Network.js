@@ -55,7 +55,7 @@ class Value {
     let out = new Value(this.data ** other, [this], `**${other}`);
 
     let _backward = () => {
-      this.grad += (other * this.data) ** (other - 1) * out.grad;
+      this.grad += other * this.data ** (other - 1) * out.grad;
     };
     out._backward = _backward;
 
@@ -87,7 +87,7 @@ class Value {
     let out = new Value(Math.log(this.data), [this], "log");
 
     let _backward = () => {
-      this.grad += (1 / out.data) * out.grad;
+      this.grad += (1 / this.data) * out.grad;
     };
     out._backward = _backward;
 
