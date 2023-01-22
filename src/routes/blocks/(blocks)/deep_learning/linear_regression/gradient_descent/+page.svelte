@@ -5,6 +5,7 @@
   import Slider from "$lib/Slider.svelte";
   import Alert from "$lib/Alert.svelte";
   import PythonCode from "$lib/PythonCode.svelte";
+  import { Value } from "$lib/Network.js";
 
   import Mse from "../_loss/Mse.svelte";
 
@@ -96,40 +97,23 @@
     { x: 45, y: 59 },
   ];
 
-  let w = 1;
-  let b = 1;
-  let numSamples = dataMse.length;
-  let mse;
+  let w = new Value(1);
+  let b = new Value(1);
   let mseAlpha = 0.001;
 
-  function calculateMse() {
-    mse = 0;
-    dataMse.forEach((sample) => {
-      mse += (w * sample.x + b - sample.y) ** 2;
-    });
-    mse /= numSamples;
-  }
-  calculateMse();
-
-  function mseGradientDescentStep() {
-    let db = 0;
-    let dw = 0;
-
-    dataMse.forEach((sample) => {
-      db += w * sample.x + b - sample.y;
-      dw += sample.x * (w * sample.x + b - sample.y);
-    });
-    db /= numSamples;
-    dw /= numSamples;
-    w = w - mseAlpha * dw;
-    b = b - mseAlpha * db;
-    calculateMse();
-  }
-
-  let runs = 0;
   function train() {
-    mseGradientDescentStep();
-    runs++;
+    let mse = new Value(0);
+    dataMse.forEach((point) => {
+      let pred = w.mul(point.x).add(b);
+      mse = mse.add(pred.sub(new Value(point.y)).pow(2));
+    });
+    mse = mse.div(4);
+    mse.backward();
+    w.data -= mseAlpha * w.grad;
+    b.data -= mseAlpha * b.grad;
+    w.grad = 0;
+    b.grad = 0;
+    mse = new Value(0);
   }
 </script>
 
@@ -656,7 +640,7 @@
   <ButtonContainer>
     <PlayButton f={train} delta={1} />
   </ButtonContainer>
-  <Mse data={dataMse} {w} {b} />
+  <Mse data={dataMse} w={w.data} b={b.data} />
   <h3>Stochastic Gradient Descent</h3>
   <p>
     In stochastic gradient descent we introduce some stochasticity by shuffling

@@ -7,6 +7,8 @@
   import Alert from "$lib/Alert.svelte";
   import PythonCode from "$lib/PythonCode.svelte";
 
+  import { Value, Neuron } from "$lib/Network.js";
+
   // table library
   import Table from "$lib/base/table/Table.svelte";
   import TableHead from "$lib/base/table/TableHead.svelte";
@@ -24,17 +26,6 @@
   import Circle from "$lib/plt/Circle.svelte";
 
   // Gradient Descent Demonstrations
-  let w1 = -0.15;
-  let w2 = 0.2;
-  let b = -0.01;
-  let alpha = 0.5;
-
-  let dw1 = 0;
-  let dw2 = 0;
-  let db = 0;
-  let crossEntropy = 0;
-  let numPoints = 30;
-
   let pointsData = [
     [
       { x: 0, y: 0 },
@@ -72,8 +63,48 @@
     ],
   ];
 
+  //the same data, but better suited for training
+  let data = [
+    { X: [0, 0], y: 0 },
+    { X: [0.1, 0.23], y: 0 },
+    { X: [0.25, 0.93], y: 0 },
+    { X: [0.15, 0.63], y: 0 },
+    { X: [0.25, 0.13], y: 0 },
+    { X: [0.1, 0.93], y: 0 },
+    { X: [0.12, 0.53], y: 0 },
+    { X: [0.32, 0.23], y: 0 },
+    { X: [0.22, 0.5], y: 0 },
+    { X: [0.49, 0.1], y: 0 },
+    { X: [0.45, 0.3], y: 0 },
+    { X: [0.4, 0.7], y: 0 },
+    { X: [0.35, 0.5], y: 0 },
+    { X: [0.25, 0.7], y: 0 },
+    { X: [0.2, 0.2], y: 0 },
+    { X: [1, 1], y: 1 },
+    { X: [0.75, 0.89], y: 1 },
+    { X: [0.75, 0.75], y: 1 },
+    { X: [0.95, 0.7], y: 1 },
+    { X: [0.85, 0.7], y: 1 },
+    { X: [0.65, 0.8], y: 1 },
+    { X: [0.85, 0.4], y: 1 },
+    { X: [0.75, 0.25], y: 1 },
+    { X: [0.75, 0.55], y: 1 },
+    { X: [0.95, 0.35], y: 1 },
+    { X: [0.85, 0.15], y: 1 },
+    { X: [0.85, 0.95], y: 1 },
+    { X: [0.9, 0.55], y: 1 },
+    { X: [0.9, 0.28], y: 1 },
+    { X: [0.98, 0.95], y: 1 },
+  ];
+  let ce = new Value(0);
+  let crossEntropy = 0;
+  let neuron = new Neuron(2, "sigmoid");
+  $: w1 = neuron.w[0].data;
+  $: w2 = neuron.w[1].data;
+  $: b = neuron.b.data;
+
   let pathsData = [];
-  function updatePathsData() {
+  $: {
     let x1 = 0;
     let x2 = 1;
 
@@ -85,52 +116,24 @@
     ];
   }
 
-  function sigmoid(x) {
-    return 1 / (1 + Math.exp(-x));
-  }
-
-  function calculateGradients() {
-    dw1 = 0;
-    dw2 = 0;
-    db = 0;
-    crossEntropy = 0;
-
-    pointsData.forEach((category, idx) => {
-      category.forEach((point) => {
-        let dzdw1 = point.x;
-        let dzdw2 = point.y;
-        let z = point.x * w1 + point.y * w2 + b;
-        let a = sigmoid(z);
-        crossEntropy += -(idx * Math.log(a) + (1 - idx) * Math.log(1 - a));
-
-        let dadz = a * (1 - a);
-        let dHda = -(idx * (1 / a) - (1 - idx) * (1 / (1 - a)));
-
-        dw1 += dHda * dadz * dzdw1;
-        dw2 += dHda * dadz * dzdw2;
-        db += dHda * dadz;
-      });
-    });
-    dw1 /= numPoints;
-    dw2 /= numPoints;
-    db /= numPoints;
-  }
-
-  function gradientDescentStep() {
-    //take gradient descent step
-    w1 -= alpha * dw1;
-    w2 -= alpha * dw2;
-    b -= alpha * db;
-
-    updatePathsData();
-    calculateGradients();
-  }
-
-  calculateGradients();
-  updatePathsData();
-
   function train() {
-    gradientDescentStep();
+    ce = new Value(0);
+    data.forEach((point) => {
+      let pred = neuron.forward(point.X);
+      if (point.y === 0) {
+        let one = new Value(1);
+        ce = ce.add(one.sub(pred).log().neg());
+      } else if (point.y === 1) {
+        ce = ce.add(pred.log().neg());
+      }
+    });
+    crossEntropy = ce.data;
+    ce.backward();
+    neuron.parameters().forEach((param) => {
+      param.data -= 0.01 * param.grad;
+    });
+    neuron.zeroGrad();
+    neuron = neuron;
   }
 </script>
 
