@@ -1,12 +1,13 @@
 // Here we create an autodiff package
 //based on micrograd by Andrej Karpathy
 class Value {
-  constructor(data, _children = [], _op = "") {
+  constructor(data, _children = [], _op = "", _name = "") {
     this.data = data;
     this.grad = 0;
     this._backward = () => {};
     this._prev = _children;
     this._op = _op;
+    this._name = _name;
   }
 
   add(other) {
