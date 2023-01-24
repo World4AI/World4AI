@@ -41,7 +41,16 @@ class Value {
   }
 
   sub(other) {
-    return this.add(other.neg());
+    other = other instanceof Value ? other : new Value(other);
+    let out = new Value(this.data - other.data, [this, other], "-");
+
+    let _backward = () => {
+      this.grad += out.grad;
+      other.grad += -out.grad;
+    };
+    out._backward = _backward;
+
+    return out;
   }
 
   div(other) {
@@ -141,10 +150,12 @@ class Neuron extends Module {
 
     this.w = [];
     this.b = new Value(init());
+    this.b._name = "bias";
     this.activation = activation;
 
     for (let i = 0; i < nin; i++) {
       let w = new Value(init());
+      w._name = `w_${i}`;
       this.w.push(w);
     }
   }
