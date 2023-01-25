@@ -59,6 +59,10 @@ export function load() {
             link: "/blocks/deep_learning/linear_regression/gradient_descent",
           },
           {
+            name: "Minimizing MSE",
+            link: "/blocks/deep_learning/linear_regression/minimizing_mean_squared_error",
+          },
+          {
             name: "Linear Neuron",
             link: "/blocks/deep_learning/linear_regression/linear_neuron",
           },
