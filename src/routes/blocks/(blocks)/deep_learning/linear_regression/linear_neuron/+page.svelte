@@ -1,6 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Highlight from "$lib/Highlight.svelte";
 </script>
 
 <svelte:head>
@@ -15,20 +16,20 @@
   <h1>Linear Neuron</h1>
   <div class="separator" />
   <p>
-    If we look at linear regression from the perspective of a neural network, we
-    will observe that linear regression is just a neuron with a linear
-    activation function.
+    If we look at linear regression from a different perspective, we will
+    realize that linear regression is just a neuron with a linear activation
+    function.
   </p>
   <p>
     Let us remind ourselves, that a neuron is a computational unit. The output
-    of the neuron is based on three distinct calculations: scaling of inputs <Latex
-      >{String.raw`\mathbf{x}`}</Latex
-    > with weights <Latex>{String.raw`\mathbf{w}`}</Latex>, summation of the
-    scaled inputs (plus bias <Latex>b</Latex>) and the application of an
-    activation function.
+    of the neuron is based on three distinct calculation steps: scaling of
+    inputs <Latex>{String.raw`\mathbf{x}`}</Latex> with weights <Latex
+      >{String.raw`\mathbf{w}`}</Latex
+    >, summation of the scaled inputs (plus bias <Latex>b</Latex>) and the
+    application of an activation function.
   </p>
   <p>
-    The calculation from linear regression
+    Linear regression
     <Latex>{String.raw`z = \mathbf{x} \mathbf{w^T} + b`}</Latex>
     essentially performs all three parts in a single step.
   </p>
@@ -52,11 +53,13 @@
   >
   <p>
     At this point you might interject, that we do not have an activation
-    function <Latex>f(z)</Latex>, so let us introduce one that does not change
-    the nature of linear regression. We are going to use the so called identity
-    function, where the input equals the output <Latex>f(z) = z</Latex>. When we
-    apply the identity function as an activation, we end up with a linear
-    neuron, where
+    function <Latex>f(z)</Latex>. Instead we end up with <Latex>z</Latex>, the
+    so called <Highlight>net input</Highlight>. So let us introduce one that
+    does not change the nature of linear regression. We are going to use the so
+    called identity function, where the input equals the output <Latex
+      >f(z) = z</Latex
+    >. When we apply the identity function as an activation, we end up with a
+    linear neuron, where
     <Latex>{String.raw`a = f(\mathbf{x} \mathbf{w}^T  + b)`}</Latex>. This might
     seem like an unnecessary step, but by enforcing the usage of an identity
     function, we put ourselves into a position where we can start to understand
