@@ -4,10 +4,6 @@
   import Highlight from "$lib/Highlight.svelte";
   import Slider from "$lib/Slider.svelte";
   import Alert from "$lib/Alert.svelte";
-  import PythonCode from "$lib/PythonCode.svelte";
-  import { Value } from "$lib/Network.js";
-
-  import Mse from "../_loss/Mse.svelte";
 
   //plotting library
   import Plot from "$lib/plt/Plot.svelte";
@@ -20,7 +16,6 @@
 
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
-  import PlayButton from "$lib/button/PlayButton.svelte";
 
   let parabolaData = [];
   let parabolaPoint = [];
@@ -88,40 +83,13 @@
   $: pointX && recalculatePoints();
   $: pointX && calculateSlope();
   $: localY && recalculateLocalMinimumPoints();
-
-  // gradient descent mse
-  const dataMse = [
-    { x: 5, y: 20 },
-    { x: 10, y: 40 },
-    { x: 35, y: 15 },
-    { x: 45, y: 59 },
-  ];
-
-  let w = new Value(1);
-  let b = new Value(1);
-  let mseAlpha = 0.001;
-
-  function train() {
-    let mse = new Value(0);
-    dataMse.forEach((point) => {
-      let pred = w.mul(point.x).add(b);
-      mse = mse.add(pred.sub(new Value(point.y)).pow(2));
-    });
-    mse = mse.div(4);
-    mse.backward();
-    w.data -= mseAlpha * w.grad;
-    b.data -= mseAlpha * b.grad;
-    w.grad = 0;
-    b.grad = 0;
-    mse = new Value(0);
-  }
 </script>
 
 <svelte:head>
-  <title>Linear Regression Gradient Descent - World4AI</title>
+  <title>Gradient Descent - World4AI</title>
   <meta
     name="description"
-    content="Gradient descent is the algorithm that is most commonly used to find the optimal weights and biases in linear regression. In this section we discuss the basics of gradiennt descent and apply the algorithm to linear regression."
+    content="Gradient descent is the algorithm that utilizes caclulus to find the parameters, that minimize the function. The algorithm works in an iterative fashion, where we change the parameters until a certain stop criterion is met."
   />
 </svelte:head>
 
@@ -129,7 +97,6 @@
   <h1>Gradient Descent</h1>
   <div class="separator" />
 
-  <h2>The Mechanics of Gradient Descent</h2>
   <p>
     Before we discuss how we can find the optimal weights and the optimal bias
     in a linear regression setting, let us take a step back and consider how we
@@ -455,252 +422,6 @@
     <Latex>\nabla</Latex> (pronounced <em>nabla</em>) is called the <Highlight
       >gradient</Highlight
     >, giving its name to the gradient descent algorithm.
-  </p>
-  <div class="separator" />
-
-  <h2>Mean Squared Error Gradient Descent</h2>
-  <h3>Single Training Sample</h3>
-  <p>
-    Let us remind ourselves that our goal is to minimize the mean squared error
-    <Latex
-      >{String.raw`MSE=\dfrac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)})^2`}</Latex
-    >. We use the upperscript notation <Latex>{String.raw`(i)`}</Latex> to indicate
-    that there are <Latex>n</Latex> samples in the dataset and <Latex>i</Latex> is
-    the index of a particular sample. To make our journey easier, let us for now
-    assume that we have one single sample. That reduces the mean squared error to
-    a much simpler form
-    <Latex>{String.raw` MSE=(y - \hat{y})^2`}</Latex>.
-  </p>
-  <p>
-    Generally speaking we want to find the weight vector <Latex
-      >{String.raw`\mathbf{w}`}</Latex
-    > and the bias scalar <Latex>b</Latex> that minimize the mean squared error using
-    gradient descent.
-  </p>
-  <Latex
-    >{String.raw`\underset{\mathbf{w}, b} {\arg\min}(y - (\mathbf{xw^T} + b))^2`}</Latex
-  >
-  <p>
-    The computation of the gradient is slighly more complicated than the one we
-    covered above, because we have to apply the chain rule. To simplify notation
-    let us define the expression <Latex>z</Latex> as
-    <Latex>{String.raw`z = y - (\mathbf{xw^T} + b)`}</Latex>. That way we can
-    define <Latex>MSE</Latex> as <Latex>{String.raw`z^2`}</Latex>.
-  </p>
-
-  <p>
-    In order to be able to apply gradient descent we need to calculate partial
-    derivatives with respect to each weight <Latex>w_j</Latex> and the bias <Latex
-      >b</Latex
-    >. Using the chain rule we get the following derivatives.
-  </p>
-  <Latex
-    >{String.raw`\dfrac{\partial MSE}{\partial w_j} = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial w_j}`}</Latex
-  >,
-  <br />
-  <Latex
-    >{String.raw`\dfrac{\partial MSE}{\partial b} = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial b}`}</Latex
-  >
-  <p>
-    Using basic rules of calculus we derive the following partial derivatives.
-  </p>
-  <Latex>{String.raw`\dfrac{\partial MSE}{\partial z} = 2z`}</Latex>,
-  <br />
-  <Latex>{String.raw`\dfrac{\partial z}{\partial w_j} = -x_j`}</Latex>,
-  <br />
-  <Latex>{String.raw`\dfrac{\partial z}{\partial b} = -1`}</Latex>
-  <p>
-    By applying the chain rule we end up with the desired partial derivatives.
-  </p>
-  <Latex
-    >{String.raw`
-  \begin{aligned}
-  \dfrac{\partial MSE}{\partial w_j} & = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial w_j} \\
-& = -2zx_j \\
-& = -2x_j (y - (\mathbf{xw^T} + b))
-  \end{aligned}
-  `}</Latex
-  >
-  <br />
-  <Latex
-    >{String.raw`
-  \begin{aligned}
-  \dfrac{\partial MSE}{\partial b} & = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial b} \\
-& = -2z\\
-& = -2 (y - (\mathbf{xw^T} + b))
-  \end{aligned}
-  `}</Latex
-  >
-  <p>
-    Often you will see a slighly different definition of the mean squared error,
-    where the MSE is divided by 2.
-  </p>
-  <Latex
-    >{String.raw`MSE=\dfrac{1}{2n}\sum_i^n (y^{(i)} - \hat{y}^{(i)})^2`}</Latex
-  >
-  <p>
-    This is done for convenience. If you look at the partial derivatives above
-    you will notice, that all of them contain the number 2. The division by 2
-    therefore cancels the 2 in the derivative and makes the results more
-    compact.
-  </p>
-  <Latex
-    >{String.raw`
-  \begin{aligned}
-  \dfrac{\partial MSE}{\partial w_j} & = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial w_j} \\
-& = -\dfrac{1}{2}2z * x_j \\
-& = -x_j (y - (\mathbf{xw^T} + b))
-  \end{aligned}
-  `}</Latex
-  >
-  <br />
-  <Latex
-    >{String.raw`
-  \begin{aligned}
-  \dfrac{\partial MSE}{\partial b} & = \dfrac{\partial MSE}{\partial z} \dfrac{\partial z}{\partial b} \\
-& = -\dfrac{1}{2}2z \\
-& =  -(y - (\mathbf{xw^T} + b))
-  \end{aligned}
-  `}</Latex
-  >
-  <p>
-    This adjustent is perfectly legal. Remember that the derivatives merely
-    determine the direction and not the size of our step. By scaling the
-    derivative we do not change the direction. The size of the derivative on the
-    other hand will be determined by the learning rate.
-  </p>
-  <p>
-    Once we have the gradients, the gradient descent algorithm works as
-    expected.
-  </p>
-  <Latex
-    >{String.raw`\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w `}</Latex
-  >
-  <br />
-  <Latex
-    >{String.raw`b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} `}</Latex
-  >
-  <p>
-    While didactically it makes sense to learn how we can calculate the gradient
-    for a single sample first, practically we always deal with much larger
-    datasets, often consiting of many thousands or even millions of samples. In
-    practice we use <Highlight>batch</Highlight>, <Highlight
-      >stochastic</Highlight
-    > or <Highlight>mini-batch</Highlight> gradient descent.
-  </p>
-  <h3>Batch Gradient Descent</h3>
-  <p>
-    As it turns out making a jump from one to several samples is not that
-    complicated. You should remember from calculus that the derivative of a sum
-    is the sum of derivatives. In other words in order to calculate the gradient
-    of the mean squared error, we need to calculate the individual gradients for
-    each sample and calculate the mean.
-  </p>
-  <Latex
-    >{String.raw`
-\begin{aligned}
-& \mathbf{\nabla}_{w} = \dfrac{1}{n} \sum_i^n\mathbf{\nabla}^{(i)}_w \\
-& \dfrac{\partial}{\partial b} = \dfrac{1}{n}\sum^n_i\dfrac{\partial}{\partial b}^{(i)}
-\end{aligned}
-    `}</Latex
-  >
-  <p>
-    The approach of using the whole dataset to calculate the gradient is called <Highlight
-      >batch</Highlight
-    > gradient descent. Using the whole dataset has the advantage that we get a good
-    estimation for the gradients, yet in many cases batch gradient descent is not
-    used in practice. We often have to deal with datasets consisting of thousands
-    of features and millions of samples. It is not possible to load all that data
-    on the GPU's. Even if it was possible, it would take a lot of time to calculate
-    the gradients for all the samples in order to take just a single training step.
-    The alternatives described below are more practical and usually converge a lot
-    faster.
-  </p>
-  <p>
-    If we wanted to implement batch gradient descent with Python and NumPy to
-    find the minimum squared error, we could implement the algorithm in just 6
-    lines of code.
-  </p>
-  <PythonCode
-    code={`for epoch in range(epochs):
-    # 1. calculate output of linear regression
-    y_hat = X @ w.T + b
-    # 2. calculate the gradients 
-    grad_w = (-X * (y - y_hat)).mean(axis=0) 
-    grad_b = -(y - y_hat).mean()
-    # 3. apply batch gradient descent
-    w = w - alpha * grad_w
-    b = b - alpha * grad_b`}
-  />
-  <p>
-    Below you can use the example from the last section to get a visual
-    intuition for how the algorithm works.
-  </p>
-
-  <ButtonContainer>
-    <PlayButton f={train} delta={1} />
-  </ButtonContainer>
-  <Mse data={dataMse} w={w.data} b={b.data} />
-  <h3>Stochastic Gradient Descent</h3>
-  <p>
-    In stochastic gradient descent we introduce some stochasticity by shuffling
-    the dataset randomly and using one sample at a time to calculate the
-    gradient and to take a gradient descent step until we have used all samples
-    in the dataset. This period of time, in which we exhaust all samples in the
-    training dataset is called an <Highlight>epoch</Highlight>. After each epoch
-    we reshuffle the data and start over. The advantage of stochastic gradient
-    descent is that we do not have to wait for the calculation of gradients for
-    all samples, but in the process we lose the advantages of parallelization
-    that we get with batch gradient descent.
-  </p>
-  <p>
-    When we calculate the gradient based on one sample the calculation is going
-    to be off. By iterating over the whole dataset the sum of the directions is
-    going to move the weights and biases towards the optimum. In fact this
-    behaviour is often seen as advantageous, because theoretically the imprecise
-    gradient could potentially push a variable from a local minimum.
-  </p>
-
-  <h3>Mini-Batch Gradient Descent</h3>
-  <p>
-    Mini-batch gradient descent combines the advantages of the stochastic and
-    batch gradient descent. At the start of each epoch the dataset is shuffled
-    randomly, but insdead of using one sample at a time in mini-batch gradient
-    descent several samples are taken. Similar to the learning rate the size of
-    the mini-batch is a hyperparameter and needs to be determined by the
-    developer. Usually the size is calculated as a power of 2, for example 32,
-    64, 128 and so on. You just need to remember that the batch needs to fit
-    into the memory of your graphics card.
-  </p>
-  <p>
-    Mini-batch gradient descent can be parallelized, because we use several
-    samples at a time. Additionally it has the advantage that theoretically our
-    training dataset can be as large as we want it to be.
-  </p>
-  <div class="separator" />
-
-  <h2>The Case for Gradient Descent</h2>
-  <p>
-    If you have taken a statistics course, you might remember, that there is an
-    explicit solution to the linear regression problem, which does not involve
-    gradient descent.
-  </p>
-  <Latex
-    >{String.raw`\mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}`}</Latex
-  >
-  <p>
-    While it is true that we could use that equation to find the exact weights
-    and biases that minimize the mean squared error, this approach does not
-    scale well. If you look at the equation, you will notice that the
-    calculation of the inverse of a matrix is required, which would slow down
-    the calculation significantly as the number of training samples grows. In
-    deep learning, where millions and millions of samples are required, this is
-    not a feasible solution.
-  </p>
-  <p>
-    Even if computation was not a major bottleneck, neural networks do not
-    provide an explicit solution, therefore we are dependent on gradient
-    descent.
   </p>
   <div class="separator" />
 </Container>
