@@ -88,8 +88,8 @@ export function load() {
             link: "/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error",
           },
           {
-            name: "Gradient Descent",
-            link: "/blocks/deep_learning/logistic_regression/gradient_descent",
+            name: "Minimizing Cross-Entropy",
+            link: "/blocks/deep_learning/logistic_regression/minimizing_cross_entropy",
           },
           {
             name: "Sigmoid Neuron",
