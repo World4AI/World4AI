@@ -15,19 +15,12 @@
       ],
     },
     {
-      title: "Hidden 1",
+      title: "Hidden",
       nodes: [
         { value: "a_1", class: "fill-w4ai-yellow" },
         { value: "a_2", class: "fill-w4ai-yellow" },
         { value: "a_3", class: "fill-w4ai-yellow" },
         { value: "a_4", class: "fill-w4ai-yellow" },
-      ],
-    },
-    {
-      title: "Hidden 2",
-      nodes: [
-        { value: "a_1", class: "fill-w4ai-yellow" },
-        { value: "a_2", class: "fill-w4ai-yellow" },
       ],
     },
     {
@@ -60,7 +53,7 @@
   </p>
   <p>
     In our circular data example we take the two features as input, process them
-    through two hidden layers and produce the probability to belong to one of
+    through the hidden layer and produce the probability to belong to one of
     the two categories as an output. This probability is used to measure the
     cross-entropy loss.
   </p>
