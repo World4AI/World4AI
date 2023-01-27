@@ -15,12 +15,14 @@
   }
 </script>
 
-<path
-  d={path}
-  stroke={color}
-  stroke-width={stroke}
-  stroke-dasharray={strokeDashArray}
-/>
+{#if data.length > 0}
+  <path
+    d={path}
+    stroke={color}
+    stroke-width={stroke}
+    stroke-dasharray={strokeDashArray}
+  />
+{/if}
 
 <style>
   path {
