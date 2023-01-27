@@ -80,13 +80,6 @@
       ],
     },
     {
-      title: "Hidden 2",
-      nodes: [
-        { value: "a_1", class: "fill-w4ai-yellow" },
-        { value: "a_2", class: "fill-w4ai-yellow" },
-      ],
-    },
-    {
       title: "Output",
       nodes: [{ value: "o_1", class: "fill-w4ai-blue" }],
     },
@@ -221,8 +214,8 @@
     hidden layer.
   </Alert>
   <p>
-    The below architecture of a neural network with two inputs, two hidden
-    layers, one output and the sigmoid activation function will be utilized to
+    The below architecture with two inputs, one hidden
+    layer with four neurons and the sigmoid activation function will be utilized to
     learn to solve the circular problem above.
   </p>
   <NeuralNetwork {layers} height={150} padding={{ left: 0, right: 10 }} />
