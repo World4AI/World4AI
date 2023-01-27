@@ -144,8 +144,8 @@ class Neuron extends Module {
     super();
 
     //uniformly initialize weights and bias between -0.5 and 0.5
-    let max = 0.5;
-    let min = -0.5;
+    let max = 1;
+    let min = -1;
     const init = () => Math.random() * (max - min) + min;
 
     this.w = [];
@@ -206,8 +206,8 @@ class MLP extends Module {
     const sz = [nin, ...nouts];
     this.layers = [];
     for (let i = 0; i < sz.length - 1; i++) {
-      let activation = i === sz.length - 2 ? "sigmoid" : "relu";
-      let layer = new Layer(sz[i], sz[i + 1], activation);
+      //let activation = i === sz.length - 2 ? "sigmoid" : "relu";
+      let layer = new Layer(sz[i], sz[i + 1], "sigmoid");
       this.layers.push(layer);
     }
   }
