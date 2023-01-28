@@ -186,20 +186,8 @@
     <Circle data={linearData} radius={3} />
     <Path data={line} stroke={2} />
   </Plot>
-  <div class="flex justify-center items-center bg-slate-300 p-2 my-2">
-    <div class="w-28">
-      <p class="bg-slate-200 p-2 m-0 mr-2">
-        <Latex>w</Latex>: {estimatedWeight}
-      </p>
-    </div>
-    <Slider bind:value={estimatedWeight} min={-200} max={200} />
-  </div>
-  <div class="flex justify-start items-center bg-slate-300 p-2">
-    <div class="w-28">
-      <p class="bg-slate-200 p-2 m-0 mr-2"><Latex>b</Latex>: {estimatedBias}</p>
-    </div>
-    <Slider bind:value={estimatedBias} min={-500} max={500} />
-  </div>
+  <Slider label="Weight" labelId="weight" showValue={true} bind:value={estimatedWeight} min={-200} max={200} />
+  <Slider label="Bias" labelId="bias" showValue={true} bind:value={estimatedBias} min={-500} max={500} />
   <p>
     We used the weight <Latex>w</Latex> of 5 and the bias <Latex>b</Latex> of 0 plus
     some randomness to generate the data above. When you played with sliders you

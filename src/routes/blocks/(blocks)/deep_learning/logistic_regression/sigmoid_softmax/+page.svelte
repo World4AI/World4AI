@@ -378,18 +378,8 @@
     <Circle data={regressionData[0]} />
     <Circle data={regressionData[1]} color="var(--main-color-2)" />
   </Plot>
-  <div class="mt-4">
-    <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
-      Weight: {weight}
-    </div>
-    <Slider bind:value={weight} min={-5} max={5} step={0.1} />
-  </div>
-  <div class="mt-4">
-    <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
-      Bias: {bias}
-    </div>
-    <Slider bind:value={bias} min={-30} max={30} step={0.1} />
-    <div />
+  <Slider label="Weight" labelId="weight" showValue={true} bind:value={weight} min={-5} max={5} step={0.1} />
+  <Slider label="Bias" labelId="bias" showValue={true} bind:value={bias} min={-30} max={30} step={0.1} />
 
     <p>
       When we are dealing with a classification problem, we are trying to draw a
@@ -428,24 +418,9 @@
       <Circle data={decisionData[1]} color="var(--main-color-2)" />
     </Plot>
 
-    <div class="mt-4">
-      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
-        Weight 1: {decisionW1}
-      </div>
-      <Slider bind:value={decisionW1} min={-5} max={5} step={0.01} />
-    </div>
-    <div class="mt-4">
-      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
-        Weight 2: {decisionW2}
-      </div>
-      <Slider bind:value={decisionW2} min={-5} max={5} step={0.01} />
-    </div>
-    <div class="mt-4">
-      <div class=" font-bold bg-w4ai-lightblue p-2 text-center">
-        Bias : {decisionB}
-      </div>
-      <Slider bind:value={decisionB} min={-5} max={5} step={0.01} />
-    </div>
+    <Slider label={"Weight 1"} labelId={'w1'} showValue={true} bind:value={decisionW1} min={-5} max={5} step={0.01} />
+    <Slider label={"Weight 2"} labelId={'w2'} showValue={true} bind:value={decisionW2} min={-5} max={5} step={0.01} />
+    <Slider label={"Bias"} labelId={'b'} showValue={true} bind:value={decisionB} min={-5} max={5} step={0.01} />
     <p>
       When we apply gradient descent to logistic regression, essentially we are
       adjusting the weights and the bias to shift the decision boundary.
@@ -529,5 +504,5 @@ softmax(\mathbf{z}) =
       descent.
     </p>
     <div class="separator" />
-  </div></Container
+  </Container
 >

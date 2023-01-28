@@ -109,10 +109,7 @@
     </g>
   </svg>
 </SvgContainer>
-<div class="cross-entropy">
-  <span>Cross-Entropy: </span>{crossEntropy.toFixed(4)}
-</div>
-<Slider min="0" max="1" step="0.01" bind:value={fraction} />
+<Slider label={'Cross-Entropy'} showValue={true} labelId={'crossentropy'} min="0" max="1" step="0.01" bind:value={fraction} />
 
 <style>
   .tick {

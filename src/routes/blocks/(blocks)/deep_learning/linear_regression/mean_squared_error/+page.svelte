@@ -193,20 +193,8 @@
     Observe how the mean squared error changes based on the parameters.
   </p>
   <Mse {data} {w} {b} />
-  <div class="flex justify-center items-center bg-slate-300 p-2 my-2">
-    <div class="w-28">
-      <p class="bg-slate-200 p-2 m-0 mr-2">
-        <Latex>w</Latex>: {w}
-      </p>
-    </div>
-    <Slider bind:value={w} min={-20} max={20} step={0.1} />
-  </div>
-  <div class="flex justify-start items-center bg-slate-300 p-2">
-    <div class="w-28">
-      <p class="bg-slate-200 p-2 m-0 mr-2"><Latex>b</Latex>: {b}</p>
-    </div>
-    <Slider bind:value={b} min={-50} max={50} />
-  </div>
+  <Slider label="Weight" labelId="weight" showValue={true} bind:value={w} min={-20} max={20} step={0.1} />
+  <Slider label="Bias" labelId="bias" showValue={true} bind:value={b} min={-50} max={50} />
 
   <p>
     Different combination of the weight <Latex>w</Latex> and the bias <Latex

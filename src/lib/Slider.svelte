@@ -1,90 +1,74 @@
 <script>
+  // for reference the following codepen was used
+  // https://codepen.io/tippingpointdev/pen/bGgLqLY?editors=0110
   export let value;
   export let min;
   export let max;
+  export let showValue = false;
   export let step = 1;
+  export let label = null;
+  export let labelId = '';
+  $: percent = `${(value - min) / (max - min) * 100}%`;
 </script>
 
-<input type="range" bind:value {min} {max} {step} />
+{#if label}
+  <label for={labelId}>{label}</label>
+  {#if showValue}
+  <span class="inline-block bg-blue-100 px-2 rounded-lg">{value}</span>
+  {/if}
+{/if}
+<input id={labelId} class="inline-block align-middle" style:background-size='{percent} 100%' type="range" bind:value {min} {max} {step} />
 
 <style>
   input[type="range"] {
-    height: 36px;
+    appearance: none;
     -webkit-appearance: none;
-    margin: 10px 0;
+    margin-right: 15px;
     width: 100%;
-    background-color: var(--background-color);
-  }
-  input[type="range"]:focus {
-    outline: none;
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 1px;
-    cursor: pointer;
-    box-shadow: none;
-    background: black;
-    border: 1px solid #000000;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-    border: 1px solid #000000;
-    border-radius: 3px;
-    height: 28px;
-    width: 15px;
+    height: 8px;
     background: var(--main-color-4);
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -14px;
-  }
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-    background: var(--text-color);
+    border-radius: 5px;
+    background-image: linear-gradient(var(--main-color-1), var(--main-color-1));
+    background-repeat: no-repeat;
+    border: 2px solid black;
   }
 
-  input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 12px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000;
-    background: var(--text-color);
-    border: 1px solid #000000;
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid black;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .3s ease-in-out;
   }
+  
   input[type="range"]::-moz-range-thumb {
-    border: 1px solid #000000;
-    height: 28px;
-    width: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
     background: var(--main-color-1);
-    cursor: pointer;
+    border: 1px solid black;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .3s ease-in-out;
   }
-  input[type="range"]::-ms-track {
-    width: 100%;
-    height: 12px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-  }
-  input[type="range"]::-ms-fill-lower {
-    background: var(--text-color);
-    border: 1px solid #000000;
-    box-shadow: 1px 1px 1px #000000;
-  }
-  input[type="range"]::-ms-fill-upper {
-    background: var(--text-color);
-    border: 1px solid #000000;
-    box-shadow: 1px 1px 1px #000000;
-  }
-  input[type="range"]::-ms-thumb {
-    margin-top: 1px;
-    border: 1px solid #000000;
-    height: 28px;
-    width: 18px;
+
+
+input[type="range"]::-ms-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
     background: var(--main-color-1);
-    cursor: pointer;
-  }
-  input[type="range"]:focus::-ms-fill-lower {
-    background: var(--text-color);
-  }
-  input[type="range"]:focus::-ms-fill-upper {
-    background: var(--text-color);
-  }
+    border: 1px solid black;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .3s ease-in-out;
+}
 </style>
