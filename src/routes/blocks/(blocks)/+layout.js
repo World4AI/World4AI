@@ -117,10 +117,6 @@ export function load() {
             link: "/blocks/deep_learning/neural_network/backward_pass",
           },
           {
-            name: "Automatic Differentiation",
-            link: "/blocks/deep_learning/neural_network/autodiff",
-          },
-          {
             name: "Geometric Interpretation",
             link: "/blocks/deep_learning/neural_network/geometric_interpretation",
           },
