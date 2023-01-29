@@ -166,7 +166,7 @@
       <div class="my-2" />
       <Latex
         >{String.raw`
-             \hat{y} = \mathbf{x} \mathbf{w}^T + b 
+             \hat{y}^{(i)} = \mathbf{x}^{(i)} \mathbf{w}^T + b 
      `}</Latex
       >
     </Alert>
@@ -296,7 +296,7 @@
     the chain rule for <Highlight>automatic differentiation</Highlight>.
   </Alert>
   <p>
-    So let construct the computational graph for the mean squared error step by
+    So let's construct the computational graph for the mean squared error step by
     step and see how automatic differentiation looks like.
   </p>
   <p>
@@ -347,7 +347,7 @@
   <p>
     This might seem to be an unnecessary step, but the chain rule in the
     computational graph relies on multiplying intermediary derivatives by the
-    derivative of the above node and if we left the value of 1, the algorithm
+    derivative of the above node and if we left the value of 0, the algorithm
     would not have worked.
   </p>
   <p>
@@ -411,6 +411,9 @@
     algorithm allows us to efficiently distribute gradients, thus saving a lot
     of computational time.
   </p>
+  <p>At this point we should mention, that in deep learning the graph construction phase and the gradient calculation phase have distinct names, that you will hear over and over again. The so called <Highlight>forward pass</Highlight> is essentially the graph constructon phase. In the <Highlight>backward pass</Highlight> we start to propagate the gradients from the the mean squared error to the weights and bias using automatic differentiation. This algorithm of finding the gradients of individual nodes, by utilizing the chain rule and a computational graph is also called <Highlight>backpropagation</Highlight>. Backpropagation is the bread and butter of modern deep learning.
+  </p>
+
   <div class="separator" />
 
   <h2>Multiple Training Samples</h2>
@@ -449,6 +452,7 @@
     <PlayButton f={train} delta={1} />
   </ButtonContainer>
   <Mse data={dataMse} w={w.data} b={b.data} />
+  <p>As mentioned before, in modern deep learning we do not iterate over individual samples to construct a graph, but work with tensors to parallelize the computations. When we utilize any of the modern deep learning packages and use the provided tensor objects, we get parallelisation and automatic differentiation out of the box. We do not need to explicitly construct a graph and make sure that all nodes are connected. We will see shortly how this can be accomplished with PyTorch.</p>
   <div class="separator" />
 
   <h2>Batch Gradient Descent</h2>
