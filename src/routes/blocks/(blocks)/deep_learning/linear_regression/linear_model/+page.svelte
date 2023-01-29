@@ -94,6 +94,7 @@
     />
     <XLabel text="Feature" fontSize={30} x={280} />
     <YLabel text="Target" fontSize={30} x={15} />
+    <Path data={[{x: -100, y: -500}, {x: 100 , y: 500}]}/>
     <Circle data={linearData} radius={3} />
   </Plot>
 
@@ -122,6 +123,7 @@
     <XLabel text="Feature" fontSize={30} />
     <YLabel text="Target" fontSize={30} x={15} />
     <Circle data={nonlinearData} radius={3} />
+    <Path data={[{x: -100, y: 10000}, {x: 100 , y: 0}]}/>
   </Plot>
   <p>
     From basic math we know, that in the two dimensional space we can draw a
@@ -204,26 +206,24 @@
     In practice we rarely deal with a dataset where we only have one feature. In
     that case our equation looks as follows.
   </p>
-  <Latex>y = x_1w_1 + x_2w_2 + ... + x_nw_n+ b</Latex>
+  <Latex>y = x_1w_1 + x_2w_2 + ... + x_mw_m+ b</Latex>
   <p>
     We can also use a more compact form and write the equation in vector form.
   </p>
-  <Latex>{String.raw` y = \mathbf{x} \mathbf{w}^T + b \text{, where}`}</Latex>
-  <Latex
-    >{String.raw`
+  <Latex>{String.raw`
+    y = \mathbf{x} \mathbf{w}^T + b \\
     \mathbf{x} = 
-\begin{bmatrix}
-   x_1 & x_2 & \cdots & x_n
-\end{bmatrix}, 
-\mathbf{w} = 
-\begin{bmatrix}
-   w_1 & 
-   w_2 & 
-   \cdots &
-   w_n
-\end{bmatrix}
-`}
-  </Latex>
+    \begin{bmatrix}
+       x_1 & x_2 & \cdots & x_n
+    \end{bmatrix} \\
+    \mathbf{w} = 
+    \begin{bmatrix}
+      w_1 & 
+      w_2 & 
+      \cdots &
+      w_m
+    \end{bmatrix}
+`}</Latex>
   <p>
     In a three dimensional space we calculate a two dimensional plane that
     divides the coordinate system into two regions. This procedure is harder to
@@ -232,16 +232,51 @@
     the bias moves the plane.
   </p>
   <p>
-    Usually we draw a "hat" over the <Latex>y</Latex> value to indicate that we are
+    When we use linear regression to make predictions based on features, we draw a "hat" over the <Latex>y</Latex> value to indicate that we are
     dealing with a prediction from a model,
     <Latex>{String.raw`\hat{y} = \mathbf{x} \mathbf{w}^T + b`}</Latex>. The <Latex
       >y</Latex
-    > value on the other hand represents an actual target, the so called ground truth.
-  </p>
+    > value on the other hand represents the actual target from the dataset, the so called ground truth.
+    Usually we want to create predictions not for a single sample <Latex>{String.raw`\mathbf{x}`}</Latex>, but for a whole dataset  
+    <Latex
+      >{String.raw`\mathbf{X}`}</Latex
+    >. 
+  </p> 
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`
+      \mathbf{X} =
+      \begin{bmatrix}
+      x_1^{(1)} & x_2^{(1)} & x_3^{(1)} & \cdots & x_m^{(1)} \\
+      x_1^{(2)} & x_2^{(2)} & x_3^{(2)} & \cdots & x_m^{(2)} \\
+      x_1^{(3)} & x_2^{(3)} & x_3^{(/3)} & \cdots & x_m^{(3)} \\
+      \vdots & \vdots & \vdots & \cdots & \vdots \\
+      x_1^{(n)} & x_2^{(n)} & x_3^{(n)} & \cdots & x_m^{(n)} \\
+      \end{bmatrix}
+    `}</Latex
+    >
+  </div>
   <p>
-    In the next sections we are going to cover how the learning procedure works.
+    <Latex>{String.raw`\mathbf{X}`}</Latex> is an <Latex>n \times m</Latex> matrix, where <Latex>n</Latex> (rows) is the number of samples and <Latex>m</Latex> (columns) is the number of input features.
+    We can multiply the dataset matrix <Latex>{String.raw`\mathbf{X}`}</Latex> with the transposed weight vector<Latex>{String.raw`\mathbf{w}`}</Latex> and add the bias <Latex>b</Latex> to generate a prediction vector <Latex>{String.raw`\mathbf{\hat{y}}`}</Latex>.
+  </p>
+  <div class="flex justify-center">
+    <Latex>{String.raw`
+      \mathbf{\hat{y}} = \mathbf{X}\mathbf{w}^T + b
+    `}</Latex>
+  </div>
+  <p>The advantage of the above procedure is not only due to a more compact representation, but has also practical implications. Matrix operations in all modern deep learning frameworks can be parallelized. Therefore when you utilize matrix notation in your code, you actually make use of that parallelism and can speed up your code tremendously. Think about it. Each row of the dataset can be multiplied with the weight vector independently. By outsourcing the calculations to different CPU or GPU cores, a lot of computation time can be saved.</p>
+  <p>By this point you might have noticed, that there is something fishy about the expression.</p>
+  <div class="flex justify-center">
+    <Latex>{String.raw`
+      \mathbf{\hat{y}} = \mathbf{X}\mathbf{w}^T + b
+    `}</Latex>
+  </div>
+  <p>On the one side we have a vector that results from <Latex>{String.raw`\mathbf{Xw}^T`}</Latex>, on the other side we have a scalar <Latex>b</Latex>. From a mathematical standpoint adding a scalar to a vector is techincally not allowed. From the programming standpoint this procedure is valid, because NumPy and all deep leanring frameworks utilize a technique called <Highlight>broadcasting</Highlight>. We will have a closer look at broadcasting in our practical sessions, for now it is sufficient to know, that broadcasting expands scalars, vectors and matrices in order for the calculations to make sense. In our example above for example, the scalar would be expanded into a vector, which would be of the same size as the vector that results from <Latex>{String.raw`\mathbf{Xw}^T`}</Latex>. We will often include notation that incorporates broadcasting in order to make the notation more similar to our Python code.</p>
+  <p>
+    In the next sections we are going to cover how the learning procedure actually works.
     For now the main takeaway from this chapter should be the visual intuition
-    of weights and biases.
+    of weights and biases and the mathematical notation.
   </p>
   <div class="separator" />
 </Container>
