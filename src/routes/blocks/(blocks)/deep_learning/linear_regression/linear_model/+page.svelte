@@ -4,6 +4,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Slider from "$lib/Slider.svelte";
   import Alert from "$lib/Alert.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   //plotting library
   import Plot from "$lib/plt/Plot.svelte";
@@ -273,10 +274,38 @@
     `}</Latex>
   </div>
   <p>On the one side we have a vector that results from <Latex>{String.raw`\mathbf{Xw}^T`}</Latex>, on the other side we have a scalar <Latex>b</Latex>. From a mathematical standpoint adding a scalar to a vector is techincally not allowed. From the programming standpoint this procedure is valid, because NumPy and all deep leanring frameworks utilize a technique called <Highlight>broadcasting</Highlight>. We will have a closer look at broadcasting in our practical sessions, for now it is sufficient to know, that broadcasting expands scalars, vectors and matrices in order for the calculations to make sense. In our example above for example, the scalar would be expanded into a vector, which would be of the same size as the vector that results from <Latex>{String.raw`\mathbf{Xw}^T`}</Latex>. We will often include notation that incorporates broadcasting in order to make the notation more similar to our Python code.</p>
+  <p>Now let's see how we can impelemnt this idea of a linear model in PyTorch.</p>
+  <PythonCode code={
+String.raw`import torch
+import sklearn.datasets as datasets
+`}>
+  </PythonCode>
+  <p>We make use of the <code>make_regression()</code> function from the sklearn library to make a dataset with 100 samples and 2 features.</p>
+  <PythonCode code={
+String.raw`X, y = datasets.make_regression(n_samples=100, n_features=2, n_informative=2, noise=0.01)
+`}>
+  </PythonCode>
+  <p>The above function returns numpy arrays <Latex>{String.raw`\mathbf{X}`}</Latex> and <Latex>{String.raw`\mathbf{y}`}</Latex> and we transform those into PyTorch tensors.</p>
+  <PythonCode code={
+String.raw`X = torch.from_numpy(X).to(torch.float32)
+y = torch.from_numpy(y).to(torch.float32)
+`}>
+  </PythonCode>
+  <p>We initialze the two weights and the bias randomly, using the <code>torch.randn()</code> function. This function returns random variables, that are drawn from the standard normal distribution.</p>
+  <PythonCode code={
+String.raw`w = torch.randn(1, 2)
+b = torch.randn(1, 1)
+`}>
+  </PythonCode>
+  <p>The actual model predictions can be calculated using a one liner.</p>
+  <PythonCode code={
+String.raw`y_hat = X @ w.T + b
+y_hat.shape
+`}>
+  </PythonCode>
+  <pre class="text-sm">torch.Size([100, 1])</pre>
   <p>
-    In the next sections we are going to cover how the learning procedure actually works.
-    For now the main takeaway from this chapter should be the visual intuition
-    of weights and biases and the mathematical notation.
+    While it is relatively easy to use a linear model in PyTorch, we have still not encountered any methods to generate predictions that are as close to the true labels in the dataset as possible. In the next sections we are going to cover how the learning procedure actually works.
   </p>
   <div class="separator" />
 </Container>
