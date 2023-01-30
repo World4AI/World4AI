@@ -47,6 +47,10 @@ export function load() {
             link: "/blocks/deep_learning/linear_regression/introduction",
           },
           {
+            name: "PyTorch Tensors",
+            link: "/blocks/deep_learning/linear_regression/pytorch_tensors",
+          },
+          {
             name: "Linear Model",
             link: "/blocks/deep_learning/linear_regression/linear_model",
           },
