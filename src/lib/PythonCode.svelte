@@ -10,6 +10,6 @@
   {@html github}
 </svelte:head>
 
-<div class="border my-2">
+<div class="border my-2 text-sm">
   <Highlight language={python} {code} />
 </div>
