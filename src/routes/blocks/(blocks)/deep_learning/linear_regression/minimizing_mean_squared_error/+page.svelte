@@ -5,6 +5,7 @@
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
   import Alert from "$lib/Alert.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Mse from "../_loss/Mse.svelte";
   import BackpropGraph from "$lib/backprop/BackpropGraph.svelte";
@@ -113,30 +114,61 @@
   }
 
   steps();
+  
+  let var1 = new Value(500);
+  var1._name = 'Branch 1';
+  let var2 = new Value(196);
+  var2._name = 'Branch 2';
+  let sum = var1.add(var2);
+  sum._name = 'Sum';
+  let mse2 = sum.mul(0.5);
+  mse2._name = 'MSE';
+  mse2.backward();
 
-  // several samples
-  let mse2;
-  function linearRegression2() {
-    let w = new Value(1);
-    let b = new Value(1);
-    let mse;
-    w.grad = 0;
-    b.grad = 0;
-    mse = null;
-    dataMse.forEach((point) => {
-      let pred = w.mul(point.x).add(b);
-
-      if (!mse) {
-        mse = pred.sub(new Value(point.y)).pow(2);
-      } else {
-        mse = mse.add(pred.sub(new Value(point.y)).pow(2));
-      }
-    });
-    mse = mse.div(dataMse.length);
-    mse.backward();
-    mse2 = mse;
-  }
-  linearRegression2();
+  // code examples
+  let code1 = `import torch
+import sklearn.datasets as datasets`;
+  let code2 = `X, y = datasets.make_regression(n_samples=100, n_features=2, n_informative=2, noise=0.01)`;
+  let code3 = `X = torch.from_numpy(X).to(torch.float32);
+y = torch.from_numpy(y).to(torch.float32).unsqueeze(1)`
+  let code4 = `def init_weights():
+    w = torch.randn(1, 2, requires_grad=True)
+    b = torch.randn(1, 1, requires_grad=True)
+    return w, b
+w, b = init_weights()`;
+  let code5 = `def print_all():
+    print(f'Weight: {w.data}, Grad: {w.grad}')
+    print(f'Bias: {b.data}, Grad: {b.grad}')
+print_all()`;
+  let code6 = `def forward(w, b):
+    y_hat = X @ w.T + b
+    return ((y - y_hat)**2).sum() / 100.0
+mse = forward(w, b)`;
+  let code7 = `print_all()`;
+  let code8 = `mse.backward()
+print_all()`;
+  let code9 = `mse = forward(w, b)
+mse.backward()
+print_all()`;
+  let code10 = `w.grad.zero_()
+print(w.grad)`;
+  let code11 = `lr = 0.1
+w, b = init_weights()
+for _ in range(10):
+    # forward pass
+    mse = forward(w, b)
+    
+    print(f'Mean squared error: {mse.data}')
+    
+    # backward pass
+    mse.backward()
+    
+    # gradient descent
+    with torch.inference_mode():
+        w.data.sub_(w.grad * lr)
+        b.data.sub_(b.grad * lr)
+        w.grad.zero_()
+        b.grad.zero_()`;
 </script>
 
 <svelte:head>
@@ -419,32 +451,18 @@
   <h2>Multiple Training Samples</h2>
   <p>
     As it turns out making a jump from one to several samples is not that
-    complicated. You should remember from calculus that the derivative of a sum
-    is the sum of derivatives. In other words in order to calculate the gradient
-    of the mean squared error, we need to calculate the individual gradients for
-    each sample and calculate the mean.
+    complicated. Let's for example assume that we have two samples. This creates two branches in our computational graph.
   </p>
-  <Latex
-    >{String.raw`
-    \begin{aligned}
-    & \mathbf{\nabla}_{w} = \dfrac{1}{n} \sum_i^n\mathbf{\nabla}^{(i)}_w \\
-    & \dfrac{\partial}{\partial b} = \dfrac{1}{n}\sum^n_i\dfrac{\partial}{\partial b}^{(i)}
-    \end{aligned}
-    `}</Latex
-  >
-  <p>
-    The computation graph below deals with just four samples, but it already
-    becomes hard to visualize the procedure.
+  <BackpropGraph graph={mse2} maxWidth={300} height={500} width={280} />
+  <p>The branch nr. 2 that amounts to 196.0 is essentially the same path that we calulated above. For the other branch we would have to do the same calculations that we did above, but using the features from the other sample. To finish the calculations of the mean squared error, we would have to sum up the two branches and calculate the average. When we initiate the backward pass, the gradients are propagated into the individual branches. You should remember the the same weights and the same bias exist in the different branches. That means that those parameters receive different gradient signals. In that case the gradients are accumulated through a sum. This is the same as saying: "the derivative of a sum is the sum of derivatives". You should also observe, that the mean squared error scales each of the gradient signals by the number of samples that we use for training. If we have two samples, each of the gradients is divided by 2 (or multiplied by 0.5).
   </p>
-  <BackpropGraph graph={mse2} maxWidth={500} width={1300} height={1800} />
   <p>
-    Yet calculations remain very similar: construct the graph and distribute the
+    So the calculations remain very similar: construct the graph and distribute the
     gradients to the weight and bias using automatic differentiation. When we
-    use the procedures described above it does not make a huge difference
-    whether we use 1, 4 or 100 samples.
+    use the procedures described above it does not make a huge difference whether we use 1, 4 or 100 samples.
   </p>
   <p>
-    To convince ourselves that the procedure actually works, below we present
+    To convince ourselves that automatic differentiation actually works, below we present
     the example from the last section, that we solve by implementing a custom
     autodiff package in JavaScript.
   </p>
@@ -452,9 +470,69 @@
     <PlayButton f={train} delta={1} />
   </ButtonContainer>
   <Mse data={dataMse} w={w.data} b={b.data} />
-  <p>As mentioned before, in modern deep learning we do not iterate over individual samples to construct a graph, but work with tensors to parallelize the computations. When we utilize any of the modern deep learning packages and use the provided tensor objects, we get parallelisation and automatic differentiation out of the box. We do not need to explicitly construct a graph and make sure that all nodes are connected. We will see shortly how this can be accomplished with PyTorch.</p>
+  <div class="separator"></div>
+
+  <h2>Autograd</h2>
+  <p>As mentioned before, in modern deep learning we do not iterate over individual samples to construct a graph, but work with tensors to parallelize the computations. When we utilize any of the modern deep learning packages and use the provided tensor objects, we get parallelisation and automatic differentiation out of the box. We do not need to explicitly construct a graph and make sure that all nodes are connected. PyTorch for example has a built in automatic differentiation library, called <Highlight>autograd</Highlight>, so let's see how we can utilize the package. 
+  </p>
+  <PythonCode code={code1}></PythonCode>
+  <p>
+   We start by creating the features <Latex>{String.raw`\mathbf{X}`}</Latex> and the labels <Latex>{String.raw`\mathbf{y}`}</Latex>.</p>
+  <PythonCode code={code2}></PythonCode>
+  <p>We transorm the generated numpy arrays into PyTorch Tensors. For the labels Tensor we use the <code>unsqueeze(dim)</code> method. This adds an additional dimension, transforming the labels from a (100,) into a (100, 1) dimensional Tensor. This makes sure that the predictions that are generated in the the forward pass and the actual labels have identical dimensions.</p>
+  <PythonCode code={code3}></PythonCode>
+  <p>We generate the <code>init_weights()</code> function, which initializes the weights and the biases randomly using the standard normal distribution. This time around we set the <code>requires_grad</code> property to <code>True</code> in order to track the gradients. We didn't do that for the features and the label tensors, as those are fixed and should not be adjusted.</p>
+  <PythonCode code={code4}></PythonCode>
+  <p>For the sake of making our explanations easier let us introduce the <code>print_all()</code> function. This function makes use of the two imortant properties that each Tensor object posesses. The <code>data</code> and the <code>grad</code> property. Those properties are probaly self explanatory: data contains the actual values of a tensor, while grad contains the gradiens with respect to each value in the data list.</p>
+  <PythonCode code={code5}></PythonCode>
+  <pre class="text-sm">
+    Weight: tensor([[-0.6779,  0.4228]]), Grad: None
+    Bias: tensor([[0.2107]]), Grad: None
+  </pre>
+  <p>When we print the data and the grad right after initializing the tensors, the objects posess a randomized value, but gradients amount to <code>None</code>.</p>
+  <PythonCode code={code6}></PythonCode>
+  <p>Even when we calculate the mean squared error, by running through the forward pass, the gradients remain empty.</p>
+  <PythonCode code={code7}></PythonCode>
+  <pre class='text-sm'>
+    Weight: tensor([[-0.6779,  0.4228]]), Grad: None
+    Bias: tensor([[0.2107]]), Grad: None
+  </pre>
+  <p>To actually run the backward pass, we have to call the <code>backward()</code> method on the loss function. The gradients are always based on the tensor that initiated the backward pass. So if we run the backward pass on the mean squared error tensor, the gradients tell us how we should shift the weights and the bias to reduce the loss. This is exactly what we are looking for.</p>
+  <PythonCode code={code8}></PythonCode>
+  <pre class='text-sm'>
+    Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-102.5140,  -98.1595]])
+    Bias: tensor([[0.2107]]), Grad: tensor([[4.4512]])
+  </pre>
+  <p>If we run the forward and the backward passes again, you will notice, that the weights and the bias gradients are twice as large. Each time we calculate the gradients, the gradients are accumulated. The old gradient values are not erased, as one might assume.</p>
+  <PythonCode code={code9}></PythonCode>
+  <pre class='text-sm'>
+    Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-205.0279, -196.3191]])
+    Bias: tensor([[0.2107]]), Grad: tensor([[8.9024]])
+  </pre>
+  <p>Each time we are done with a gradient descent step, we should clear the gradients. We can do that by using the <code>zero_()</code> method, which zeroes out the gradients inplace.</p>
+  <PythonCode code={code10}></PythonCode>
+  <pre class='text-sm'>
+    tensor([[0., 0.]])
+  </pre>
+  <p>Below we show the full implementation of gradiet descent. Most of the implementation was already discussed before, but the context manager <code>torch.inference_mode()</code> might be new to you. This part tells PyTorch to not include the following parts in the computational graph. The actual gradient descent step is not part of the forward pass and should therefore not be tracked.</p>
+  <PythonCode code={code11}></PythonCode>
+  <pre class='flex justify-center text-sm'>
+Mean squared error: 6125.7783203125
+Mean squared error: 4322.3662109375
+Mean squared error: 3054.9150390625
+Mean squared error: 2162.31787109375
+Mean squared error: 1532.5537109375
+Mean squared error: 1087.494873046875
+Mean squared error: 772.5029907226562
+Mean squared error: 549.2703857421875
+Mean squared error: 390.8788757324219
+Mean squared error: 278.37469482421875
+  </pre>
+  <p>We iterate over the forward pass, the backward pass and the gradient descent step for 10 iterations and the mean squared error decreases dramatically. This iteration process is called the <Highlight>training loop</Highlight> in deep learning lingo. We will encounter those loops over and over again.</p>
+
   <div class="separator" />
 
+  <!-- 
   <h2>Batch Gradient Descent</h2>
   <p>
     The approach of using the whole dataset to calculate the gradient is called <Highlight
@@ -532,4 +610,5 @@
     descent.
   </p>
   <div class="separator" />
+  -->
 </Container>
