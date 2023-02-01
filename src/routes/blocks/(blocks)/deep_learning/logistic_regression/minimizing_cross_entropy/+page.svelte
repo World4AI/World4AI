@@ -174,6 +174,39 @@
     step4 = JSON.parse(JSON.stringify(loss));
   }
   steps();
+
+  const code1 = `import torch
+import sklearn.datasets as datasets`;
+  const code2 = `X, y = datasets.make_classification(n_samples=4, n_features=4)`;
+  const code3 = `X = torch.from_numpy(X).to(torch.float32)
+y = torch.from_numpy(y).to(torch.float32).unsqueeze(1)`;
+  const code4 = `def init_weights():
+    w = torch.randn(1, 4, requires_grad=True)
+    b = torch.randn(1, 1, requires_grad=True)
+    return w, b`;
+  const code5 = `def forward(w, b):
+    z = X @ w.T + b
+    sigma = torch.sigmoid(z)
+    loss = y * torch.log(sigma) + (1 - y) * torch.log(1 - sigma)
+    loss = -loss.mean()
+    return loss`;
+  const code6 = `lr = 0.1
+w, b = init_weights()`;
+  const code7 = `for _ in range(10):
+    # forward pass
+    cross_entropy = forward(w, b)
+    
+    print(f'Cross Entropy: {cross_entropy.data}')
+    
+    # backward pass
+    cross_entropy.backward()
+    
+    # gradient descent
+    with torch.inference_mode():
+        w.data.sub_(w.grad * lr)
+        b.data.sub_(b.grad * lr)
+        w.grad.zero_()
+        b.grad.zero_()`;
 </script>
 
 <svelte:head>
@@ -453,5 +486,29 @@
     The gradient descent algorithm learns to separate the data in a matter of
     seconds.
   </p>
+  <div class="separator"></div>
+  <p>We can implement logistic regression in PyTorch, using the same techniques that we used with linear regression. Hardly any parts of the code need to change.</p>
+  <PythonCode code={code1} />
+  <PythonCode code={code2} />
+  <PythonCode code={code3} />
+  <PythonCode code={code4} />
+  <p>The only code snippet, that is truly different is the forward pass. Here we calculate the cross-entropy loss, using some of the built-in PyTorch functionalities.</p>
+  <PythonCode code={code5} />
+  <PythonCode code={code6} />
+  <p>The training loop remains basically the same.</p>
+  <PythonCode code={code7} />
+  <pre class="text-sm">
+Cross Entropy: 1.1454823017120361
+Cross Entropy: 1.0852206945419312
+Cross Entropy: 1.0285975933074951
+Cross Entropy: 0.9757254123687744
+Cross Entropy: 0.9266657829284668
+Cross Entropy: 0.8814209699630737
+Cross Entropy: 0.8399296402931213
+Cross Entropy: 0.8020696640014648
+Cross Entropy: 0.7676653861999512
+Cross Entropy: 0.7365001440048218
+
+  </pre>
   <div class="separator" />
 </Container>
