@@ -113,12 +113,8 @@ export function load() {
             link: "/blocks/deep_learning/neural_network/nonlinear_problems",
           },
           {
-            name: "Forward Pass",
-            link: "/blocks/deep_learning/neural_network/forward_pass",
-          },
-          {
-            name: "Backward Pass",
-            link: "/blocks/deep_learning/neural_network/backward_pass",
+            name: "Training",
+            link: "/blocks/deep_learning/neural_network/training",
           },
           {
             name: "Geometric Interpretation",
