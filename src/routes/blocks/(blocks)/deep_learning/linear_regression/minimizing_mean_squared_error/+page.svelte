@@ -360,7 +360,7 @@ for _ in range(10):
     the graph keeps growing. We do that until we reach the final node, in our
     case the mean squared error.
   </p>
-  <BackpropGraph graph={step3} maxWidth={250} width={300} height={910} />
+  <BackpropGraph graph={step3} maxWidth={350} width={450} height={910} />
   <p>
     Once we have created our comutational graph, we can start calculating the
     gradients and applying the chain rule. This time around we start with the
@@ -406,7 +406,7 @@ for _ in range(10):
     If we continue doing these calculations we will eventually end up with the
     below graph.
   </p>
-  <BackpropGraph graph={step4} maxWidth={250} width={300} height={910} />
+  <BackpropGraph graph={step4} maxWidth={350} width={450} height={910} />
   <p>
     Once we have the gradients, we can apply the gradient descent algorithm. The
     below example iterates between constructing the graph, calculating the
@@ -416,7 +416,7 @@ for _ in range(10):
   <ButtonContainer>
     <PlayButton f={trainLoop} delta={200} />
   </ButtonContainer>
-  <BackpropGraph graph={mse} maxWidth={250} width={300} height={910} />
+  <BackpropGraph graph={mse} maxWidth={350} width={450} height={910} />
   <p>
     The best part about the calculations above is that we do not have to track
     the nodes manually or to calculate the gradients ourselves. The connections
@@ -453,7 +453,7 @@ for _ in range(10):
     As it turns out making a jump from one to several samples is not that
     complicated. Let's for example assume that we have two samples. This creates two branches in our computational graph.
   </p>
-  <BackpropGraph graph={mse2} maxWidth={300} height={500} width={280} />
+  <BackpropGraph graph={mse2} maxWidth={350} height={500} width={450} />
   <p>The branch nr. 2 that amounts to 196.0 is essentially the same path that we calulated above. For the other branch we would have to do the same calculations that we did above, but using the features from the other sample. To finish the calculations of the mean squared error, we would have to sum up the two branches and calculate the average. When we initiate the backward pass, the gradients are propagated into the individual branches. You should remember the the same weights and the same bias exist in the different branches. That means that those parameters receive different gradient signals. In that case the gradients are accumulated through a sum. This is the same as saying: "the derivative of a sum is the sum of derivatives". You should also observe, that the mean squared error scales each of the gradient signals by the number of samples that we use for training. If we have two samples, each of the gradients is divided by 2 (or multiplied by 0.5).
   </p>
   <p>

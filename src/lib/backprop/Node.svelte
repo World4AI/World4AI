@@ -16,6 +16,14 @@
     levels[level] = 0;
   }
 
+  if ((level+1) in levels) {
+    let newLevel = levels[level+1]+1;
+    if (newLevel > column) {
+      column = newLevel;
+      levels[level] = column;
+    }
+  }
+
   //sizes
   let nameHeight = 30;
   let nameWidth = 120;
@@ -39,7 +47,7 @@
   <Arrow
     data={[
       {
-        x: nodeStartXData + parentColumn * columnOffset + columnOffset / 2,
+        x: nodeStartXData + nodeSize/2 + parentColumn * columnOffset,
         y:
           nodeStartYData +
           (level - 1) * levelOffset +
@@ -47,8 +55,8 @@
           opSize / 2,
       },
       {
-        x: nodeStartXData + column * columnOffset,
-        y: nodeStartYData + level * levelOffset - nodeSize / 2,
+        x: nodeStartXData + nodeSize/2 + column * columnOffset,
+        y: nodeStartYData + level * levelOffset - nodeSize,
       },
     ]}
     strokeWidth={2}
@@ -94,9 +102,9 @@
 <!-- operation rectangle -->
 {#if root._op}
   <Block
-    x={nodeStartXData + column * columnOffset + columnOffset / 2}
+    x={nodeStartXData + nodeSize/2 + column * columnOffset}
     y={nodeStartYData + level * levelOffset + levelOffset / 2}
-    width={opSize}
+    width={root._op === 'sigmoid' ? opSize*3 : opSize}
     height={opSize}
     text={root._op}
     fontSize={20}
@@ -105,11 +113,11 @@
   <Arrow
     data={[
       {
-        x: nodeStartXData + column * columnOffset,
+        x: nodeStartXData + nodeSize/2 + column * columnOffset,
         y: nodeStartYData + level * levelOffset + nodeSize / 2,
       },
       {
-        x: nodeStartXData + column * columnOffset + columnOffset / 2,
+        x: nodeStartXData + nodeSize/2 + column * columnOffset,
         y: nodeStartYData + level * levelOffset + levelOffset / 2 - opSize / 2,
       },
     ]}
