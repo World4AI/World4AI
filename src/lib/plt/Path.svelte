@@ -5,6 +5,7 @@
   export let strokeDashArray = "none";
   export let color = "black";
   export let stroke = "1";
+  export let isClosed = false;
 
   const xScale = getContext("xScale");
   const yScale = getContext("yScale");
@@ -12,6 +13,9 @@
   let path;
   $: {
     path = `M${data.map((p) => `${xScale(p.x)},${yScale(p.y)}`).join("L")}`;
+    if (isClosed){
+      path += ' Z';
+    }
   }
 </script>
 
