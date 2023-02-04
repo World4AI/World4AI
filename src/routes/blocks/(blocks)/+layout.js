@@ -206,6 +206,7 @@ export function load() {
           },
         ],
       },
+      /*
       {
         name: "Image Classification",
         links: [
@@ -395,6 +396,7 @@ export function load() {
           },
         ],
       },
+      */
     ],
   };
 }
