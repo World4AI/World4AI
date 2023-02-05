@@ -120,6 +120,10 @@ export function load() {
             name: "Geometric Interpretation",
             link: "/blocks/deep_learning/neural_network/geometric_interpretation",
           },
+          {
+            name: "Data, Modules, Optimizers, Losses",
+            link: "/blocks/deep_learning/neural_network/data_modules_optimizers_losses",
+          },
         ],
       },
       {
