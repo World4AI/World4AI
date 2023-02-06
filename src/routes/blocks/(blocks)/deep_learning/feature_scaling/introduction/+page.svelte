@@ -101,7 +101,7 @@
     muWeight = muWeight + (1 / (idx + 1)) * (weight - muWeight);
   });
 
-  data.forEach((point, idx) => {
+  data.forEach((point) => {
     let height = point[0];
     let weight = point[1];
 
@@ -133,7 +133,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Feature Scaling</title>
+  <title>Feature Scaling - World4AI</title>
   <meta
     name="description"
     content="When we encounter features with different scales, there is chance that either training will be slow or that gradient descent will not converge. To avoid those problems we scale input features either though normalization or standardization."
@@ -289,7 +289,7 @@
 
   <h2>Standardization</h2>
   <p>
-    The standardization procedure produces feature values that have a mean <Latex
+    The standardization procedure, also called z-score normalization, produces feature values that have a mean <Latex
       >\mu</Latex
     > of 0 and a standard deviation <Latex>\sigma</Latex> of 1.
   </p>
