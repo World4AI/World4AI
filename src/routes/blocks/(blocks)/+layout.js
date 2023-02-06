@@ -133,6 +133,10 @@ export function load() {
             name: "Introduction",
             link: "/blocks/deep_learning/feature_scaling/introduction",
           },
+          {
+            name: "Solving MNIST",
+            link: "/blocks/deep_learning/feature_scaling/solving_mnist",
+          },
         ],
       },
       {
