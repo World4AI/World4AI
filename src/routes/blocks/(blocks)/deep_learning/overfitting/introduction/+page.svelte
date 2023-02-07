@@ -7,6 +7,8 @@
   import Ticks from "$lib/plt/Ticks.svelte";
   import Circle from "$lib/plt/Circle.svelte";
   import Path from "$lib/plt/Path.svelte";
+  import XLabel from "$lib/plt/XLabel.svelte";
+  import YLabel from "$lib/plt/YLabel.svelte";
 
   let pointsData1 = [
     { x: 0, y: 0.05 },
@@ -38,8 +40,8 @@
   let pointsData3 = [];
   let pathsData3 = [];
   for (let i = -3; i <= 3.1; i += 0.05) {
-    let noiseMin = -0.8;
-    let noiseMax = 0.8;
+    let noiseMin = -0.4;
+    let noiseMax = 0.4;
     let noise = Math.random() * (noiseMax - noiseMin) + noiseMin;
     let x = i;
     let y = i ** 2;
@@ -50,10 +52,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Overfitting</title>
+  <title>Overfitting - World4AI</title>
   <meta
     name="description"
-    content="Overfitting and underfitting are two common problems in machine learning. When the model overfits the data, it tracks the training data too closely and does not generalize well to new data. Underfitting on the other hand means that the model is not powerfull enought to fit the data."
+    content="Overfitting and underfitting are two common problems in machine learning. When the model overfits the data, it tracks the training data too closely and does not generalize well to new data. Underfitting on the other hand means that the model is not powerfull enough to fit the data."
   />
 </svelte:head>
 
@@ -61,41 +63,55 @@
 <div class="separator" />
 <Container>
   <p>
-    Let us assume that we face the data below and we contemplate how we are
-    going to fit some model to the data.
+    Let us assume that we face data with a single feature and we contemplate how we are going to fit some model to the data.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]} 
+    padding={{top: 10, left: 40, right:10, bottom:40}}>
     <Circle data={pointsData1} radius={3} />
     <Ticks
       xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
       yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     There seems to be a linear relationship between the feature and the target,
     even though there is quite a bit of noise. So we might decide to use linear
     regression for our task.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
+    padding={{top: 10, left: 40, right:10, bottom:40}}>
     <Circle data={pointsData1} radius={3} />
     <Path data={pathsData1} />
     <Ticks
       xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
       yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     The results looks quite reasonable, but we could also train a neural
     network. In that case we would end up with a model that fits the data very
     closely.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
+    padding={{top: 10, left: 40, right:10, bottom:40}}>
     <Circle data={pointsData1} radius={3} />
     <Path data={pointsData1} />
     <Ticks
       xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
       yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     While linear regression can only model linear relationships, a neural
@@ -117,7 +133,8 @@
     underperform, while the simpler linear regression model will do just fine.
     In other words the linear model generalizes much better in this example.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
+  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
+    padding={{top: 10, left: 40, right:10, bottom:40}}>
     <Circle data={pointsData1} radius={3} />
     <Path data={pathsData1} />
     <Circle data={pointsData2} radius={3} color={"var(--main-color-2)"} />
@@ -125,14 +142,18 @@
     <Ticks
       xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
       yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     This problem when the model fits too closely to the training data and does
     not generalize well to previously unforseen data is called <Highlight
       >overfitting</Highlight
     >. Overfitting is a common problem in deep learning and we are going to
-    spend this entire section discussing different remedies.
+    spend this entire chapter discussing different remedies.
   </p>
   <p>
     As you might imagine <Highlight>underfitting</Highlight> can also be a potential
@@ -140,7 +161,7 @@
   </p>
   <Alert type="info">
     A model that does not have enough expressiveness or parameters to fit to the
-    data will underfit the data.
+    data, will underfit the data.
   </Alert>
   <p>
     In the example below we face data produced by a quadratic function, yet we
@@ -153,6 +174,7 @@
     maxWidth={500}
     domain={[-4, 4]}
     range={[0, 11]}
+    padding={{top: 10, left: 40, right:10, bottom:40}}
   >
     <Circle data={pointsData3} radius={3} />
     <Path
@@ -164,12 +186,16 @@
     <Ticks
       xTicks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
       yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     Solving underfitting is usually a much easier problem, because it is often
-    (but not always) sufficient to increase the parameters of the model. We
-    could for example use a neural network to train a model that fits better.
+    sufficient to increase the parameters of the model. We
+    could for example use a neural network to train a model that fits the data better.
     Increasing the number of layers and/or the number of neurons usually solves
     the problem of underfitting.
   </p>
@@ -179,17 +205,18 @@
     maxWidth={500}
     domain={[-4, 4]}
     range={[0, 11]}
+    padding={{top: 10, left: 40, right:10, bottom:40}}
   >
     <Circle data={pointsData3} radius={3} />
-    <Path data={pathsData3} />
+    <Path data={pathsData3} stroke={3} />
     <Ticks
       xTicks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
       yTicks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      xOffset={-15}
+      yOffset={15}
     />
+    <XLabel text="Feature" fontSize={15} y={490}/>
+    <YLabel text="Target" fontSize={15} />
   </Plot>
-  <p>
-    To combat overfitting and uderfitting we need to be able to identify the
-    problem. This is going to be our starting point.
-  </p>
   <div class="separator" />
 </Container>
