@@ -10,8 +10,6 @@
   let gap = 2;
 
   let numbers = [];
-  let randomCategories = [];
-  let stratifiedCategories = [];
 
   for (let i = 0; i < numCategories; i++) {
     let category = [];
@@ -43,8 +41,7 @@
       <rect
         x={numIdx * boxWidth + numIdx * gap + gap}
         y={catIdx * boxWidth + catIdx * gap + gap}
-        fill="var(--main-color-3)"
-        stroke="black"
+        class="fill-slate-600 stroke-black"
         width={boxWidth}
         height={boxWidth}
       />
@@ -52,6 +49,7 @@
       <text
         x={numIdx * boxWidth + numIdx * gap + boxWidth / 2 + gap}
         y={catIdx * boxWidth + catIdx * gap + boxWidth / 2 + gap + 1}
+        class="fill-white"
         >{number.value}
       </text>
     {/each}
@@ -61,10 +59,7 @@
       <rect
         x={width - boxWidth - (numIdx * boxWidth + numIdx * gap + gap)}
         y={catIdx * boxWidth + catIdx * gap + gap}
-        fill={number.splitIndex === 0
-          ? "var(--main-color-1)"
-          : "var(--main-color-2)"}
-        stroke="black"
+        class={`stroke-black ${number.splitIndex === 0 ? 'fill-red-300' : 'fill-blue-300'}`}
         width={boxWidth}
         height={boxWidth}
       />
@@ -84,6 +79,5 @@
     text-anchor: middle;
     font-size: 15px;
     vertical-align: middle;
-    display: inline-block;
   }
 </style>
