@@ -2,13 +2,13 @@
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import Alert from "$lib/Alert.svelte";
-  import PythonCode from '$lib/PythonCode.svelte';
+  import PythonCode from "$lib/PythonCode.svelte";
 
-  import overfitting from './overfitting.png';
-  import mnistOrig from './mnist_orig.png';
-  import mnistBlur from './mnist_blur.png';
-  import mnistFlipped from './mnist_flipped.png';
-  import mnistRotated from './mnist_rotated.png';
+  import overfitting from "./overfitting.png";
+  import mnistOrig from "./mnist_orig.png";
+  import mnistBlur from "./mnist_blur.png";
+  import mnistFlipped from "./mnist_flipped.png";
+  import mnistRotated from "./mnist_rotated.png";
 
   const code1 = `# function to loop over a list of images and to draw them using matplotlib
 def draw_images(images, name):
@@ -81,7 +81,14 @@ Epoch: 50/50|Train Loss: 0.1265 |Val Loss: 0.1209 |Train Acc: 0.9635 |Val Acc: 0
 
 <Container>
   <p>
-    One of the best ways to reduce the chances of overfitting is to gather more data. Let's assume that we are dealing with MNIST and want to teach a neural net to recognize handwritten digits. If we provide the neural network with just ten images for training, one for each category, there is a very little chance, that the network will generalize and actually learn to recognize the digits. Instead it will memorize the specific samples. If we provide the network with millions of images on the other hand, the network has a smaller chance to memorize all those images.
+    One of the best ways to reduce the chances of overfitting is to gather more
+    data. Let's assume that we are dealing with MNIST and want to teach a neural
+    net to recognize handwritten digits. If we provide the neural network with
+    just ten images for training, one for each category, there is a very little
+    chance, that the network will generalize and actually learn to recognize the
+    digits. Instead it will memorize the specific samples. If we provide the
+    network with millions of images on the other hand, the network has a smaller
+    chance to memorize all those images.
   </p>
   <p>
     MNIST provides 60,000 training images and 10,000 test images. This data is
@@ -98,7 +105,12 @@ Epoch: 50/50|Train Loss: 0.1265 |Val Loss: 0.1209 |Train Acc: 0.9635 |Val Acc: 0
     training.
   </Alert>
   <p>
-    We can for example rotate, blur or flip the images, but there are many more options available. You can have a look at the <a href='https://pytorch.org/vision/stable/transforms.html' rel='noreferrer' target="_blank">PyTorch documentation</a> to study the available options.
+    We can for example rotate, blur or flip the images, but there are many more
+    options available. You can have a look at the <a
+      href="https://pytorch.org/vision/stable/transforms.html"
+      rel="noreferrer"
+      target="_blank">PyTorch documentation</a
+    > to study the available options.
   </p>
   <p>
     It is not always the case that we would take the 60,000 MNIST training
@@ -109,33 +121,55 @@ Epoch: 50/50|Train Loss: 0.1265 |Val Loss: 0.1209 |Train Acc: 0.9635 |Val Acc: 0
     our neural network never encounters the exact same image twice and has to
     learn to generalize. This the approach we are going to take with PyTorch.
   </p>
-  <p>We are going to use the exact same model and training loop, that we used in the previous section, so let us focus on the parts that acutally change.</p>
+  <p>
+    We are going to use the exact same model and training loop, that we used in
+    the previous section, so let us focus on the parts that acutally change.
+  </p>
   <p>We create a simple function, that saves and displays MNIST images.</p>
   <PythonCode code={code1} />
   <p>First we generate 6 non-augmented images from the training dataset.</p>
   <PythonCode code={code2} />
-  <img src={mnistOrig} alt='Original MMNIST images' />
-  <p>We can rotate the images by using <code>T.RandomRotation</code>. We use an angle between -30 and 30 degrees to get the following results.</p>
+  <img src={mnistOrig} alt="Original MMNIST images" />
+  <p>
+    We can rotate the images by using <code>T.RandomRotation</code>. We use an
+    angle between -30 and 30 degrees to get the following results.
+  </p>
   <PythonCode code={code3} />
-  <img src={mnistRotated} alt='Rotated MMNIST images' />
-  <p>We can blur the images by using <code>T.GaussianBlur</code>.
-  <PythonCode code={code4} />
-  <img src={mnistBlur} alt='Blurred MMNIST images' />
-  <p>Or we can randomly flip the images by using <code>T.RandomHorizontalFlip</code>.
-  <PythonCode code={code5} />
-  <img src={mnistFlipped} alt='Flipped MMNIST images' />
-  <p>There are many more different augmentation transforms available, but in this example we will only apply one. First apply gaussian blur to the PIL image and then we transform the result into a PyTorch tensor.</p>
+  <img src={mnistRotated} alt="Rotated MMNIST images" />
+  <p>
+    We can blur the images by using <code>T.GaussianBlur</code>.
+    <PythonCode code={code4} />
+    <img src={mnistBlur} alt="Blurred MMNIST images" />
+  </p>
+  <p>
+    Or we can randomly flip the images by using <code
+      >T.RandomHorizontalFlip</code
+    >.
+    <PythonCode code={code5} />
+    <img src={mnistFlipped} alt="Flipped MMNIST images" />
+  </p>
+  <p>
+    There are many more different augmentation transforms available, but in this
+    example we will only apply one. First apply gaussian blur to the PIL image
+    and then we transform the result into a PyTorch tensor.
+  </p>
   <PythonCode code={code6} />
-  <p>As we have created new transforms, we have to to create a new training dataset and dataloader.</p>
+  <p>
+    As we have created new transforms, we have to to create a new training
+    dataset and dataloader.
+  </p>
   <PythonCode code={code7} />
-  <p>It turns out that the learning rate that we used before is too large if we apply augmentations, so we use a reduced learning rate.</p>
+  <p>
+    It turns out that the learning rate that we used before is too large if we
+    apply augmentations, so we use a reduced learning rate.
+  </p>
   <PythonCode code={code8} />
   <p>By using augmentation we reduce overfitting significantly.</p>
   <PythonCode code={code9} />
   <PythonCode code={output9} isOutput={true} />
   <p>The validation plot follows the trainig plot very closely.</p>
   <PythonCode code={code10} />
-  <img src={overfitting} alt='Overfitting after augmentation' />
+  <img src={overfitting} alt="Overfitting after augmentation" />
   <p>
     It is relatively easy to augment image data, but it is not always easy to
     augment text or time series data. To augment text data on Kaggle for

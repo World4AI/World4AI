@@ -186,7 +186,11 @@
       >{String.raw`MSE=\dfrac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2`}</Latex
     >
   </Alert>
-  <p>Remember that we should try to express all operations in matrix notation in order to make use of parallelization. For the mean squared error that would look as follows.</p>
+  <p>
+    Remember that we should try to express all operations in matrix notation in
+    order to make use of parallelization. For the mean squared error that would
+    look as follows.
+  </p>
   <Alert type="info">
     <Latex
       >{String.raw`
@@ -195,7 +199,17 @@ MSE=mean\Big(\big[\mathbf{y} - \mathbf{\hat{y}}\big]^2\Big) \\
 `}</Latex
     >
   </Alert>
-  <p>In the first step we calculate many predictions  <Latex>{String.raw`\mathbf{\hat{y}}`}</Latex> simultaneously and calculate the vector of errors <Latex>{String.raw`\mathbf{y - \hat{y}}`}</Latex>. When we square the resulting vector, that implies that each individual unit within the vector is multiplied by itself in parallel. Finally we calculate the mean of the vector. For that purpose deep learning libraries provide a <em>mean()</em> operation, that takes a vector as input and generates a mean from all individual scalars within that vector.</p>
+  <p>
+    In the first step we calculate many predictions <Latex
+      >{String.raw`\mathbf{\hat{y}}`}</Latex
+    > simultaneously and calculate the vector of errors <Latex
+      >{String.raw`\mathbf{y - \hat{y}}`}</Latex
+    >. When we square the resulting vector, that implies that each individual
+    unit within the vector is multiplied by itself in parallel. Finally we
+    calculate the mean of the vector. For that purpose deep learning libraries
+    provide a <em>mean()</em> operation, that takes a vector as input and generates
+    a mean from all individual scalars within that vector.
+  </p>
   <p>
     We can visuallize the mean squared error by drawing actual squares. Each
     data point has a corresponding square and the larger the area of that
@@ -203,8 +217,23 @@ MSE=mean\Big(\big[\mathbf{y} - \mathbf{\hat{y}}\big]^2\Big) \\
     Observe how the mean squared error changes based on the parameters.
   </p>
   <Mse {data} {w} {b} />
-  <Slider label="Weight" labelId="weight" showValue={true} bind:value={w} min={-20} max={20} step={0.1} />
-  <Slider label="Bias" labelId="bias" showValue={true} bind:value={b} min={-50} max={50} />
+  <Slider
+    label="Weight"
+    labelId="weight"
+    showValue={true}
+    bind:value={w}
+    min={-20}
+    max={20}
+    step={0.1}
+  />
+  <Slider
+    label="Bias"
+    labelId="bias"
+    showValue={true}
+    bind:value={b}
+    min={-50}
+    max={50}
+  />
 
   <p>
     Different combination of the weight <Latex>w</Latex> and the bias <Latex

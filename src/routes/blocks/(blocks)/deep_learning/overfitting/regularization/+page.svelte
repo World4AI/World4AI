@@ -6,7 +6,7 @@
   import PlayButton from "$lib/button/PlayButton.svelte";
   import Slider from "$lib/Slider.svelte";
   import L2Polynomial from "../_regularization/L2Polynomial.svelte";
-  import PythonCode from '$lib/PythonCode.svelte';
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Path from "$lib/plt/Path.svelte";
@@ -16,8 +16,8 @@
   import YLabel from "$lib/plt/YLabel.svelte";
   import Text from "$lib/plt/Text.svelte";
 
-  import l1_overfitting from './l1_overfitting.png';
-  import l2_overfitting from './l2_overfitting.png';
+  import l1_overfitting from "./l1_overfitting.png";
+  import l2_overfitting from "./l2_overfitting.png";
 
   // circles of different size
   function generateUnit(len) {
@@ -215,7 +215,10 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
 <div class="separator" />
 <Container>
   <p>
-    The goal of regularization is to encourage simpler models. Simpler models can not fit the data exactly and are therefore less prone to overfitting. While there are several techniques to achieve that goal, in this section we focus on techniques that modify the loss function.
+    The goal of regularization is to encourage simpler models. Simpler models
+    can not fit the data exactly and are therefore less prone to overfitting.
+    While there are several techniques to achieve that goal, in this section we
+    focus on techniques that modify the loss function.
   </p>
   <p>
     We will start this section by reminding ourselves of a term usually learned
@@ -227,10 +230,11 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
       >{String.raw`||\mathbf{v}||_p = \large\sqrt{\sum_{i=1}^n |v_i|^p}`}</Latex
     >. By changing the parameter <Latex>p</Latex> from 1 to infinity we get different
     types of norms. In machine learning and deep learning we are especially interested
-    in the <Latex>{String.raw`L_1`}</Latex> and the<Latex>{String.raw`L_2`}</Latex
+    in the <Latex>{String.raw`L_1`}</Latex> and the<Latex
+      >{String.raw`L_2`}</Latex
     > norm.
   </p>
-  
+
   <div class="separator" />
 
   <h2>L2 Norm</h2>
@@ -260,9 +264,9 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
     />
     <Circle data={[{ x: 5, y: 4 }]} />
     <Ticks xTicks={[0, 1, 2, 3, 4, 5]} yTicks={[0, 1, 2, 3, 4, 5]} />
-    <Text text='a' x={2.5} y={0.2} fontSize={20} /> 
-    <Text text='b' x={4.7} y={2} fontSize={20} /> 
-    <Text text='c' x={2.5} y={2.5} fontSize={20} /> 
+    <Text text="a" x={2.5} y={0.2} fontSize={20} />
+    <Text text="b" x={4.7} y={2} fontSize={20} />
+    <Text text="c" x={2.5} y={2.5} fontSize={20} />
   </Plot>
   <p>
     While the the Pythagorean theorem is used to calculate the length of a
@@ -277,7 +281,15 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
   </p>
   <p />
   <p>
-    Now let's assume we want to find all vectors on a two dimensional plane that have a specific <Latex>L_2</Latex> norm of size <Latex>l</Latex>. When we are given a specific vector length <Latex>l</Latex> such that <Latex>{String.raw`\displaystyle \sqrt{x_1^2 + x_2^2} = l`}</Latex>, we will find that there is whole set of vectors that satisfy that condition and that this set has a circular shape. In the interactive example below we assume that the norm is 1, <Latex>{String.raw`\displaystyle \sqrt{x_1^2 + x_2^2} = 1`}</Latex>. If we draw all the vectors with the norm of 1 we get a unit circle.
+    Now let's assume we want to find all vectors on a two dimensional plane that
+    have a specific <Latex>L_2</Latex> norm of size <Latex>l</Latex>. When we
+    are given a specific vector length <Latex>l</Latex> such that <Latex
+      >{String.raw`\displaystyle \sqrt{x_1^2 + x_2^2} = l`}</Latex
+    >, we will find that there is whole set of vectors that satisfy that
+    condition and that this set has a circular shape. In the interactive example
+    below we assume that the norm is 1, <Latex
+      >{String.raw`\displaystyle \sqrt{x_1^2 + x_2^2} = 1`}</Latex
+    >. If we draw all the vectors with the norm of 1 we get a unit circle.
   </p>
   <ButtonContainer>
     <PlayButton f={moveCircular} delta={100} />
@@ -385,11 +397,15 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
     If we are able to find solutions that have a comparatively low <Latex
       >L_2</Latex
     > how does this apply to machine learning and why is this useful to avoid overfitting?
-    We can add the <Highlight>squared</Highlight> <Latex>L_2</Latex> norm to the loss function as a regularizer. We do not use the <Latex>||L||_2</Latex> norm directly, but calculate the square
-    of the norm, <Latex>||L||_2^2</Latex>, because the root makes the calculation of the derivative more complicarted than it needs to be.
+    We can add the <Highlight>squared</Highlight>
+    <Latex>L_2</Latex> norm to the loss function as a regularizer. We do not use
+    the <Latex>||L||_2</Latex> norm directly, but calculate the square of the norm,
+    <Latex>||L||_2^2</Latex>, because the root makes the calculation of the
+    derivative more complicarted than it needs to be.
   </p>
   <p>
-    If we are dealing with the mean squared error for example, our new loss function looks as below.
+    If we are dealing with the mean squared error for example, our new loss
+    function looks as below.
   </p>
   <Latex
     >{String.raw`L=\dfrac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2 + \lambda \sum_j^m w_j^2`}</Latex
@@ -397,7 +413,15 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
   <p>
     The overall intention is to find the solution that reduces the mean squared
     error without creating large weights. When the size of one of the weights
-    increses disproportionatly, the regularization term will increase and the loss function will rise sharply. In order to avoid a large loss, gradient descent will push the weights closer to 0. Therefore by using the regularization term we reduce the size of the weights and the overemphasis on any particular feature, thereby reducing the complexity of the model. The <Latex>\lambda</Latex> (lambda) is the hyperparameter that we can tune to determine how much emphasis we would like to put on the <Latex>L_2</Latex> norm. It is the lever that lets you control the size of the weights.
+    increses disproportionatly, the regularization term will increase and the
+    loss function will rise sharply. In order to avoid a large loss, gradient
+    descent will push the weights closer to 0. Therefore by using the
+    regularization term we reduce the size of the weights and the overemphasis
+    on any particular feature, thereby reducing the complexity of the model. The <Latex
+      >\lambda</Latex
+    > (lambda) is the hyperparameter that we can tune to determine how much emphasis
+    we would like to put on the <Latex>L_2</Latex> norm. It is the lever that lets
+    you control the size of the weights.
   </p>
   <p>
     Below we have the same model trained with and without the <Latex>L_2</Latex>
@@ -406,20 +430,29 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
     line.
   </p>
   <L2Polynomial />
-  <p>We can implement <Latex>L_2</Latex> regularization in PyTorch, by adding a couple more lines to our calculation of the loss function. Esentially we loop over all weights and biases, square those and calculate a sum. Autograd does the rest.</p>
+  <p>
+    We can implement <Latex>L_2</Latex> regularization in PyTorch, by adding a couple
+    more lines to our calculation of the loss function. Esentially we loop over all
+    weights and biases, square those and calculate a sum. Autograd does the rest.
+  </p>
   <PythonCode code={code1} />
   <PythonCode code={code2} />
   <p>Our regularization procedure does a fine job reducing overfitting.</p>
   <PythonCode code={code3} />
   <PythonCode code={output3} isOutput={true} />
-  <img src={l2_overfitting} alt='Overfitting with L2 training' />
-  <p>PyTorch actually provides a much easier way to implement <Latex>L_2</Latex> regularization. When you define your optimizer, you can pass the <code>weight_decay</code> parameter. This is essentially the <Latex>\lambda</Latex> from our equation above.</p>
+  <img src={l2_overfitting} alt="Overfitting with L2 training" />
+  <p>
+    PyTorch actually provides a much easier way to implement <Latex>L_2</Latex> regularization.
+    When you define your optimizer, you can pass the <code>weight_decay</code>
+    parameter. This is essentially the <Latex>\lambda</Latex> from our equation above.
+  </p>
   <PythonCode code={code4} />
   <div class="separator" />
 
   <h2>L1 Norm</h2>
   <p>
-    The <Latex>L_1</Latex> norm, also called the Manhattan distance, simply adds absolute values of each element of the vector,
+    The <Latex>L_1</Latex> norm, also called the Manhattan distance, simply adds
+    absolute values of each element of the vector,
     <Latex
       >{String.raw`
       ||\mathbf{v}||_1 = \sum_{i=1}^n |v_i|
@@ -543,12 +576,15 @@ Epoch: 50/50|Train Loss: 0.1604 |Val Loss: 0.1656 |Train Acc: 0.9541 |Val Acc: 0
   <Latex
     >{String.raw`L=\frac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)} )^2 + \lambda \sum_j^m |w_j|`}</Latex
   >
-  <p>We can implement <Latex>L_1</Latex> regularization, but adjusting our loss function slightly. The rest of the implementation is the same.</p>
+  <p>
+    We can implement <Latex>L_1</Latex> regularization, but adjusting our loss function
+    slightly. The rest of the implementation is the same.
+  </p>
   <PythonCode code={code5} />
   <PythonCode code={code6} />
   <PythonCode code={code7} />
   <PythonCode code={output7} isOutput={true} />
   <PythonCode code={code8} />
-  <img src={l1_overfitting} alt='overfitting with l1 norm' /> 
+  <img src={l1_overfitting} alt="overfitting with l1 norm" />
   <div class="separator" />
 </Container>

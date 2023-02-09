@@ -13,7 +13,7 @@
   import YLabel from "$lib/plt/YLabel.svelte";
   import Legend from "$lib/plt/Legend.svelte";
 
-  import overfitting from './overfitting.png';
+  import overfitting from "./overfitting.png";
 
   let path1 = [];
   let path2 = [];
@@ -54,9 +54,9 @@ from torchvision import transforms as T
 from sklearn.model_selection import train_test_split
 
 import matplotlib.pyplot as plt`;
- const code2 = `train_validation_dataset = MNIST(root="../datasets/", train=True, download=True, transform=T.ToTensor())
+  const code2 = `train_validation_dataset = MNIST(root="../datasets/", train=True, download=True, transform=T.ToTensor())
 test_dataset = MNIST(root="../datasets", train=False, download=False, transform=T.ToTensor())`;
- const code3 = `stratify = train_validation_dataset.targets.numpy()
+  const code3 = `stratify = train_validation_dataset.targets.numpy()
 train_idxs, val_idxs = train_test_split(
                                 range(len(train_validation_dataset)),
                                 stratify=stratify,
@@ -283,20 +283,32 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
     generalize well to new unforseen data, but we would also like to have some
     tools that would allow us to measure the level of overfitting during the
     training process. It turns out that splitting the dataset into different
-    buckets, called sets is essential to achieve the goal of measuring overfitting.
+    buckets, called sets is essential to achieve the goal of measuring
+    overfitting.
   </p>
   <div class="separator" />
 
   <h2>Data Splitting</h2>
   <p>
-    All examples that we covered so far assumed that we have a training dataset. In practice we split the dataset into preferably 3 sets. The training set, the validation set and the test set.
+    All examples that we covered so far assumed that we have a training dataset.
+    In practice we split the dataset into preferably 3 sets. The training set,
+    the validation set and the test set.
   </p>
   <p>
-    The <Highlight>training</Highlight> set contians the vast majority of available data. It is the part of the data that is actually used to train a neural network. The other sets are never used to directly adjust the weights and biases of a neural network.
+    The <Highlight>training</Highlight> set contians the vast majority of available
+    data. It is the part of the data that is actually used to train a neural network.
+    The other sets are never used to directly adjust the weights and biases of a
+    neural network.
   </p>
   <p>
     The <Highlight>validation</Highlight> set is also used in the training process,
-    but only during the performance measurement step. The validation set allows us to simulate a situation, where the neural network encounters new data. After each epoch (or batch) we use the training and the validation sets separately to measure the loss. At first both losses will decline, but after a while the validation loss might start to increase again, while the training loss keeps decreasing. This is a strong indication that our model overfits to the training data. The larger the divergence, the larger the level of overfitting. 
+    but only during the performance measurement step. The validation set allows us
+    to simulate a situation, where the neural network encounters new data. After
+    each epoch (or batch) we use the training and the validation sets separately
+    to measure the loss. At first both losses will decline, but after a while the
+    validation loss might start to increase again, while the training loss keeps
+    decreasing. This is a strong indication that our model overfits to the training
+    data. The larger the divergence, the larger the level of overfitting.
   </p>
   <Plot
     width={500}
@@ -324,13 +336,21 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
     />
   </Plot>
   <p>
-    When we encounter overfitting we will most likely change several hyperparameters of the neural network and apply some  techniques in order to reduce overfitting. It is not unlikely that we will continue doing that until we are satisfied with the performance. While we are not using the validation dataset directly in training, we are still observing the performance of the validation data and adjust accordingly, thus injecting our knowledge about the validation dataset into the training of the weights and biases. At some point it becomes hard to argue that the validation dataset represents completely unforseen data. The <Highlight>test</Highlight> set on the other hand is neither
-    touched nor seen during the training process at all. The intention of having
-    this additional dataset is to provide a method to test the performance of our
-    model when it encounters truly never before seen data. We only use the data once.
-    If we find out that we overfitted to the training and the validation dataset,
-    we can not go back to tweak the parameters, because we would require a completely
-    new test dataset, which we might not posess.
+    When we encounter overfitting we will most likely change several
+    hyperparameters of the neural network and apply some techniques in order to
+    reduce overfitting. It is not unlikely that we will continue doing that
+    until we are satisfied with the performance. While we are not using the
+    validation dataset directly in training, we are still observing the
+    performance of the validation data and adjust accordingly, thus injecting
+    our knowledge about the validation dataset into the training of the weights
+    and biases. At some point it becomes hard to argue that the validation
+    dataset represents completely unforseen data. The <Highlight>test</Highlight
+    > set on the other hand is neither touched nor seen during the training process
+    at all. The intention of having this additional dataset is to provide a method
+    to test the performance of our model when it encounters truly never before seen
+    data. We only use the data once. If we find out that we overfitted to the training
+    and the validation dataset, we can not go back to tweak the parameters, because
+    we would require a completely new test dataset, which we might not posess.
   </p>
   <p>
     While there are no hard rules when it comes to the proportions of your
@@ -353,7 +373,13 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
     keep roughly 10 percent for validation and 10 percent for testing.
   </p>
   <p>
-    We have a couple of options, when we split the dataset. The simplest approach would be to separate the data randomly. While this type of split is easy to implement, it might pose some problems. In the example below we are faced with a dataset consisting of 10 classes (numbers 0 to 9) with 10 samples each. In the random procedure that we use below we generate a random number between 0 and 1. If the number is below 0.5 we assign the number to the blue split, otherwise the number is assigned to the red split.
+    We have a couple of options, when we split the dataset. The simplest
+    approach would be to separate the data randomly. While this type of split is
+    easy to implement, it might pose some problems. In the example below we are
+    faced with a dataset consisting of 10 classes (numbers 0 to 9) with 10
+    samples each. In the random procedure that we use below we generate a random
+    number between 0 and 1. If the number is below 0.5 we assign the number to
+    the blue split, otherwise the number is assigned to the red split.
   </p>
   <Split type="random" />
   <p>
@@ -368,36 +394,73 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
     proportions of the different classes consistent.
   </p>
   <Split type="stratified" />
-  <p>Now let's see how we can create and utilize the three datasets in PyTorch and whether theory matches the practice.</p>
+  <p>
+    Now let's see how we can create and utilize the three datasets in PyTorch
+    and whether theory matches the practice.
+  </p>
   <PythonCode code={code1} />
-  <p>The <code>MNIST</code> object does not provide any functionality to get a validation dataset out of the box. We will download the training and testing datasets first and divide the training dataset into two parts: one for training one for validation.</p>
+  <p>
+    The <code>MNIST</code> object does not provide any functionality to get a validation
+    dataset out of the box. We will download the training and testing datasets first
+    and divide the training dataset into two parts: one for training one for validation.
+  </p>
   <PythonCode code={code2} />
-  <p>We use the <code>train_test_split</code> function from sklearn to generate indices. Those indices indicate if a particular sample is going to be used for training or testing. We conduct a stratified split to keep the distribution of labels consistent. 90% of the data is going to be used for training and 10% for validation.</p>
+  <p>
+    We use the <code>train_test_split</code> function from sklearn to generate indices.
+    Those indices indicate if a particular sample is going to be used for training
+    or testing. We conduct a stratified split to keep the distribution of labels
+    consistent. 90% of the data is going to be used for training and 10% for validation.
+  </p>
   <PythonCode code={code3} />
-  <p>To separate the dataset we use the <code>Subset</code> class which takes the original dataset and the indices and returns the modified dataset, where the samples that are not contained in the index list have been filtered out.</p>
+  <p>
+    To separate the dataset we use the <code>Subset</code> class which takes the
+    original dataset and the indices and returns the modified dataset, where the
+    samples that are not contained in the index list have been filtered out.
+  </p>
   <PythonCode code={code4} />
-  <p>We keep the parameters similar to those in the previous section, but increase the number of epochs to show the effect of overfitting.</p>
+  <p>
+    We keep the parameters similar to those in the previous section, but
+    increase the number of epochs to show the effect of overfitting.
+  </p>
   <PythonCode code={code5} />
-  <p>Now we have everything that we require to create the three dataloaders: one for training, one for validating, one for testing.</p>
+  <p>
+    Now we have everything that we require to create the three dataloaders: one
+    for training, one for validating, one for testing.
+  </p>
   <PythonCode code={code6} />
-  <p>We create the <code>track_performance()</code> function to calculate the average loss and the accuracy of the model.</p>
+  <p>
+    We create the <code>track_performance()</code> function to calculate the average
+    loss and the accuracy of the model.
+  </p>
   <PythonCode code={code7} />
-  <p>The <code>train_epoch()</code> function trains the model for a single epoch.</p>
+  <p>
+    The <code>train_epoch()</code> function trains the model for a single epoch.
+  </p>
   <PythonCode code={code8} />
-  <p>The <code>train()</code> function simply loops over the number of epochs and puts measures the performance after each iteration. The results are saved in the <code>history</code> dictionary.</p>
+  <p>
+    The <code>train()</code> function simply loops over the number of epochs and
+    puts measures the performance after each iteration. The results are saved in
+    the <code>history</code> dictionary.
+  </p>
   <PythonCode code={code9} />
   <p>The model is identical to the one we have used over the last sections.</p>
   <PythonCode code={code10} />
   <PythonCode code={code11} />
-  <p>We print our metrics for the training and the valdiation dataset. You can see that the model starts to overfit relatively fast.</p>
+  <p>
+    We print our metrics for the training and the valdiation dataset. You can
+    see that the model starts to overfit relatively fast.
+  </p>
   <PythonCode code={code12} />
   <PythonCode code={output12} isOutput={true} />
   <p>To reinforce our results, we draw the progression for the two datasets.</p>
   <PythonCode code={code13} />
   <p>The divergence due to overfitting is obvious.</p>
   <PythonCode code={code14} />
-  <img src={overfitting} alt='Signs of overfitting' />
-  <p>The metrics for the test dataset are relatively close to those based on the validation dataset.</p>
+  <img src={overfitting} alt="Signs of overfitting" />
+  <p>
+    The metrics for the test dataset are relatively close to those based on the
+    validation dataset.
+  </p>
   <PythonCode code={code15} />
   <PythonCode code={output15} isOutput={true} />
   <div class="separator" />
@@ -413,8 +476,8 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
     by using <Highlight>k-fold cross-validation</Highlight>.
   </p>
   <p>
-    We divide the data (excluding the test set) into k equal sets, called folds. k is a
-    hyperparameter, but usually we construct 5 or 10 folds. Each fold is
+    We divide the data (excluding the test set) into k equal sets, called folds.
+    k is a hyperparameter, but usually we construct 5 or 10 folds. Each fold is
     basically a bucket of data that can be used either for trainig or
     validation. We use one of the folds for validation and the rest (k-1 folds)
     for training and we repeat the trainig process k times, switching the fold
@@ -423,22 +486,45 @@ Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
   </p>
   <Kfold />
   <p>
-    K-Fold cross-validation provides a much more robust measure of performance. At
-    the end of the trainig process we average over the results of the k-folds to
-    get a more accurate estimate of how our model performs. Once we are
+    K-Fold cross-validation provides a much more robust measure of performance.
+    At the end of the trainig process we average over the results of the k-folds
+    to get a more accurate estimate of how our model performs. Once we are
     satisfied with the choise of our hyperparameters, we could retrain the model
-    on the full k folds.</p>
+    on the full k folds.
+  </p>
   <p>
     There is obviously also a downside to using k models. Training a neural
     network just once requires a lot of computaional resources. By using k folds
     we will more or less increase the training time by a factor of k-1.
   </p>
-  <p>To implement k-fold cross-validation with PyTorch we will mostly reuse the code from above, but we still require a couple more components. PyTorch does not offer k-fold out of the box, but once again sklearn is the perfect companion for that purpose. Additionally we import the <code>SubsetRandomSampler</code>. A sampler can be used as an input into the <code>DataLoader</code> object, in order to determine how the samples in a dataset are going to be drawn. A random subset sampler specifically allows us to determine a subset, like a fold and the data is going to be sampled in a random fashion. We could have used the <code>Subset</code> object from above to accomplish the same, but we wanted to teach you different approaches.</p>
+  <p>
+    To implement k-fold cross-validation with PyTorch we will mostly reuse the
+    code from above, but we still require a couple more components. PyTorch does
+    not offer k-fold out of the box, but once again sklearn is the perfect
+    companion for that purpose. Additionally we import the <code
+      >SubsetRandomSampler</code
+    >. A sampler can be used as an input into the <code>DataLoader</code>
+    object, in order to determine how the samples in a dataset are going to be
+    drawn. A random subset sampler specifically allows us to determine a subset,
+    like a fold and the data is going to be sampled in a random fashion. We
+    could have used the <code>Subset</code> object from above to accomplish the same,
+    but we wanted to teach you different approaches.
+  </p>
   <PythonCode code={code16} />
-  <p>We use the <code>seed</code> variable as input into <code>KFold</code> and <code>torch.maual_seed</code>. A seed is variable that is used as input into the random number generator. The initial weights and biases of a neural network are generated randomly. By providing a seed into the function <code>torch.manual_seed()</code> we make the parameters of the neural network identical for each of the folds and make our results reproduceble.</p>
+  <p>
+    We use the <code>seed</code> variable as input into <code>KFold</code> and
+    <code>torch.maual_seed</code>. A seed is variable that is used as input into
+    the random number generator. The initial weights and biases of a neural
+    network are generated randomly. By providing a seed into the function
+    <code>torch.manual_seed()</code> we make the parameters of the neural network
+    identical for each of the folds and make our results reproduceble.
+  </p>
   <PythonCode code={code17} />
   <PythonCode code={output17} isOutput={true} />
-  <p>There is some variability in the folds, but that is not too bad for our first attempt.</p>
+  <p>
+    There is some variability in the folds, but that is not too bad for our
+    first attempt.
+  </p>
   <div class="separator" />
 </Container>
 

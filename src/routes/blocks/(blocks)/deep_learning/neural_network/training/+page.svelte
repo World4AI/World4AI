@@ -4,7 +4,7 @@
   import NeuralNetwork from "$lib/NeuralNetwork.svelte";
   import Alert from "$lib/Alert.svelte";
   import PythonCode from "$lib/PythonCode.svelte";
-  import BackpropGraph from '$lib/backprop/BackpropGraph.svelte';
+  import BackpropGraph from "$lib/backprop/BackpropGraph.svelte";
 
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
@@ -19,58 +19,58 @@
   import Rectangle from "$lib/plt/Rectangle.svelte";
 
   import { Value, MLP } from "$lib/Network.js";
-  import circular from './circular.png';
+  import circular from "./circular.png";
 
   // computational graph
   let x1 = new Value(0.9);
-  x1._name = 'Feature 1';
+  x1._name = "Feature 1";
   let x2 = new Value(0.3);
-  x2._name = 'Feature 2';
+  x2._name = "Feature 2";
 
-  let w1 = new Value(0.2);  
-  w1._name = 'L1 N1 W1';
+  let w1 = new Value(0.2);
+  w1._name = "L1 N1 W1";
   let w2 = new Value(0.5);
-  w2._name = 'L1 N1 W2';
+  w2._name = "L1 N1 W2";
   let b1 = new Value(1);
-  b1._name = 'L1 N1 B';
+  b1._name = "L1 N1 B";
 
-  let w3 = new Value(0.3);  
-  w3._name = 'L1 N2 W1';
+  let w3 = new Value(0.3);
+  w3._name = "L1 N2 W1";
   let w4 = new Value(0.7);
-  w4._name = 'L1 N2 W2';
+  w4._name = "L1 N2 W2";
   let b2 = new Value(0);
-  b2._name = 'L1 N2 B';
+  b2._name = "L1 N2 B";
 
   let mul1 = x1.mul(w1);
   let mul2 = x2.mul(w2);
   let add1 = mul1.add(mul2);
   let add2 = add1.add(b1);
   let neuron1 = add2.sigmoid();
-  neuron1._name = 'a_1';
+  neuron1._name = "a_1";
 
   let mul3 = x1.mul(w3);
   let mul4 = x2.mul(w4);
   let add3 = mul3.add(mul4);
   let add4 = add3.add(b2);
   let neuron2 = add4.sigmoid();
-  neuron2._name = 'a_2';
+  neuron2._name = "a_2";
 
   let w5 = new Value(0.22);
-  w5._name = 'L2 N1 W1';
+  w5._name = "L2 N1 W1";
   let w6 = new Value(0.42);
-  w6._name = 'L2 N1 W2';
+  w6._name = "L2 N1 W2";
   let b3 = new Value(0.2);
-  b3._name = 'L2 N1 B';
+  b3._name = "L2 N1 B";
 
   let mul5 = neuron1.mul(w5);
   let mul6 = neuron2.mul(w6);
   let add5 = mul5.add(mul6);
   let add6 = add5.add(b3);
   let neuron3 = add6.sigmoid();
-  neuron3._name = 'O';
- 
+  neuron3._name = "O";
+
   neuron3.backward();
-  let out = JSON.parse(JSON.stringify(neuron3)); 
+  let out = JSON.parse(JSON.stringify(neuron3));
   neuron2._prev = [];
   neuron1._prev = [];
 
@@ -94,7 +94,7 @@
       title: "Output",
       nodes: [{ value: "o", class: "fill-w4ai-blue" }],
     },
-  ]
+  ];
 
   // nn that is actually used to solve the circular problem
   const layers = [
@@ -123,8 +123,6 @@
       nodes: [{ value: "L", class: "fill-w4ai-red" }],
     },
   ];
-
-
 
   // create the data to draw the svg
   let pointsData = [[], []];
@@ -177,15 +175,15 @@
   const nin = 2;
   const nouts = [4, 1];
   let lossData = [];
-  let heatmapData = [[],[]];
+  let heatmapData = [[], []];
 
   function train() {
     let mlp = new MLP(nin, nouts);
     let loss = new Value(0);
     let epoch = 0;
 
-    function step() { 
-      epoch+=1;
+    function step() {
+      epoch += 1;
       //shuffle(Xs, ys);
       for (let i = 0; i < Xs.length; i++) {
         let out = mlp.forward(Xs[i]);
@@ -200,7 +198,7 @@
 
       //calculate cross entropy
       loss = loss.neg().div(Xs.length);
-      lossData.push({x: epoch, y: loss.data}); 
+      lossData.push({ x: epoch, y: loss.data });
       lossData = lossData;
 
       //backprop
@@ -218,13 +216,13 @@
       let class0 = [];
       let class1 = [];
       heatmapCoordinates.forEach((coordinates) => {
-        let pred = mlp.forward(coordinates); 
-        if (pred.data < 0.5) { 
-          class0.push({x : coordinates[0], y: coordinates[1]});
+        let pred = mlp.forward(coordinates);
+        if (pred.data < 0.5) {
+          class0.push({ x: coordinates[0], y: coordinates[1] });
         } else {
-          class1.push({x : coordinates[0], y: coordinates[1]});
+          class1.push({ x: coordinates[0], y: coordinates[1] });
         }
-      })
+      });
       heatmapData = [];
       heatmapData.push(class0);
       heatmapData.push(class1);
@@ -232,7 +230,7 @@
     return step;
   }
   let takeStep = train();
-  
+
   const code1 = `import torch
 import numpy as np
 import matplotlib.pyplot as plt`;
@@ -325,20 +323,57 @@ for i in range(50_000):
 <h1>Neural Network Training</h1>
 <div class="separator" />
 
-
 <Container>
-  <p>Training a neural network is not much different from training logistic regression. We have to construct a computational graph first, which will allow us to apply the chain rule while propagating the the gradients from the loss function all the way to the weights and biases.</p>
-  <p>To emphasise this idea again, we are going to use an example of a neural network with two neurons in the hidden layer and a single output neuron. As usual we will assume a single training sample to avoid overcomplicated computational graphs.</p>
-  <NeuralNetwork layers={graphLayers} height={80} padding={{ left: 0, right: 10 }} />
-  <p>Let's first zoom into the output neuron of the neural network. We disregard the loss function for the moment to keep things simple, but keep in mind, that the full graph would contain cross-entropy or the mean squared error.</p>
-  <p>We use the (L)ayer (N)euron (W)eight/(B)ias notation for weights and biases. L2 N1 W2 for example stands for weight 2 of the first neuron in the second layer of the neural network.</p>
-  <BackpropGraph graph={neuron3} width={580} height={900} maxWidth={400} /> 
-  <p>If you look at the above graph, you should notice, that this neuron is not different from a plain vanilla logistic regression graph. Yet instead of using the input features to calculate the output, we use the hidden features <Latex>a_1</Latex> and <Latex>a_2</Latex>. Each of the hidden features is based on a different logistic regression with its own set of weights and a bias. So when we use backpropagation we do not stop at <Latex>a_1</Latex> or <Latex>a_2</Latex>, but keep moving towards the earlier weights and biases.</p>
-  <BackpropGraph graph={out} width={1200} height={1800} maxWidth={700} /> 
-  <p>The above graph only includes two hidden sigmoid neurons, but theoretically a graph can contains hundreds of layers with hundreds of neurons each. Automatic differentiation libraries will automatically construct a computational graph and calculate the gradients, no matter the size of the neural network.</p>
   <p>
-    Now let's remember that our original goal is to solve a non linear problem of the
-    below kind.
+    Training a neural network is not much different from training logistic
+    regression. We have to construct a computational graph first, which will
+    allow us to apply the chain rule while propagating the the gradients from
+    the loss function all the way to the weights and biases.
+  </p>
+  <p>
+    To emphasise this idea again, we are going to use an example of a neural
+    network with two neurons in the hidden layer and a single output neuron. As
+    usual we will assume a single training sample to avoid overcomplicated
+    computational graphs.
+  </p>
+  <NeuralNetwork
+    layers={graphLayers}
+    height={80}
+    padding={{ left: 0, right: 10 }}
+  />
+  <p>
+    Let's first zoom into the output neuron of the neural network. We disregard
+    the loss function for the moment to keep things simple, but keep in mind,
+    that the full graph would contain cross-entropy or the mean squared error.
+  </p>
+  <p>
+    We use the (L)ayer (N)euron (W)eight/(B)ias notation for weights and biases.
+    L2 N1 W2 for example stands for weight 2 of the first neuron in the second
+    layer of the neural network.
+  </p>
+  <BackpropGraph graph={neuron3} width={580} height={900} maxWidth={400} />
+  <p>
+    If you look at the above graph, you should notice, that this neuron is not
+    different from a plain vanilla logistic regression graph. Yet instead of
+    using the input features to calculate the output, we use the hidden features <Latex
+      >a_1</Latex
+    > and <Latex>a_2</Latex>. Each of the hidden features is based on a
+    different logistic regression with its own set of weights and a bias. So
+    when we use backpropagation we do not stop at <Latex>a_1</Latex> or <Latex
+      >a_2</Latex
+    >, but keep moving towards the earlier weights and biases.
+  </p>
+  <BackpropGraph graph={out} width={1200} height={1800} maxWidth={700} />
+  <p>
+    The above graph only includes two hidden sigmoid neurons, but theoretically
+    a graph can contains hundreds of layers with hundreds of neurons each.
+    Automatic differentiation libraries will automatically construct a
+    computational graph and calculate the gradients, no matter the size of the
+    neural network.
+  </p>
+  <p>
+    Now let's remember that our original goal is to solve a non linear problem
+    of the below kind.
   </p>
   <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}>
     <Ticks
@@ -353,71 +388,73 @@ for i in range(50_000):
     <YLabel text="Feature 2" fontSize={15} />
   </Plot>
   <p>
-    Our neural network will take the two features as input, process them
-    through the hidden layer with four neurons and finally produce the output neuron, which contains the probability to belong to one of the two categories. This probability is used to measure the
-    cross-entropy loss.
+    Our neural network will take the two features as input, process them through
+    the hidden layer with four neurons and finally produce the output neuron,
+    which contains the probability to belong to one of the two categories. This
+    probability is used to measure the cross-entropy loss.
   </p>
   <NeuralNetwork {layers} height={150} padding={{ left: 0, right: 10 }} />
   <p>
     In the example below you can observe how the decision boundary moves when
-    you use backpropagation. Usually 10000 steps are sufficient to find weights for a good decision
-    boundary, this might take a couple of minutes. Try to observe how the cross-entropy and the shape of the decision boundary change over time. At a certain point you will most likely see a
-    sharp drop in cross entropy, this is when things will start to improve significantly.
+    you use backpropagation. Usually 10000 steps are sufficient to find weights
+    for a good decision boundary, this might take a couple of minutes. Try to
+    observe how the cross-entropy and the shape of the decision boundary change
+    over time. At a certain point you will most likely see a sharp drop in cross
+    entropy, this is when things will start to improve significantly.
   </p>
   <ButtonContainer>
-    <PlayButton f={takeStep} delta={0}/>
+    <PlayButton f={takeStep} delta={0} />
   </ButtonContainer>
   <div class="flex flex-col md:flex-row">
-      <Plot
-        width={500}
-        height={500}
-        maxWidth={600}
-        domain={[0, 1]}
-        range={[0, 1]}
-      >
-        <Ticks
-          xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-          yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-          xOffset={-15}
-          yOffset={15}
-        />
-        <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
-        <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
-        <Circle data={pointsData[0]} />
-        <Circle data={pointsData[1]} color="var(--main-color-2)" />
-        <XLabel text="Feature 1" fontSize={15} />
-        <YLabel text="Feature 2" fontSize={15} />
-      </Plot>
-      <Plot
-        width={500}
-        height={500}
-        maxWidth={600}
-        domain={[0, 12000]}
-        range={[0, 1]}
-      >
-        <Ticks
-          xTicks={[
-            0, 2000, 4000, 6000, 8000, 10000, 12000
-          ]}
-          yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-          xOffset={-15}
-          yOffset={15}
-        />
-        <Path data={lossData} />
-        <XLabel text="Number of Steps" fontSize={15} />
-        <YLabel text="Cross-Entropy Loss" fontSize={15} />
-      </Plot>
+    <Plot
+      width={500}
+      height={500}
+      maxWidth={600}
+      domain={[0, 1]}
+      range={[0, 1]}
+    >
+      <Ticks
+        xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+        yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+        xOffset={-15}
+        yOffset={15}
+      />
+      <Rectangle data={heatmapData[0]} size={9} color="var(--main-color-3)" />
+      <Rectangle data={heatmapData[1]} size={9} color="var(--main-color-4)" />
+      <Circle data={pointsData[0]} />
+      <Circle data={pointsData[1]} color="var(--main-color-2)" />
+      <XLabel text="Feature 1" fontSize={15} />
+      <YLabel text="Feature 2" fontSize={15} />
+    </Plot>
+    <Plot
+      width={500}
+      height={500}
+      maxWidth={600}
+      domain={[0, 12000]}
+      range={[0, 1]}
+    >
+      <Ticks
+        xTicks={[0, 2000, 4000, 6000, 8000, 10000, 12000]}
+        yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+        xOffset={-15}
+        yOffset={15}
+      />
+      <Path data={lossData} />
+      <XLabel text="Number of Steps" fontSize={15} />
+      <YLabel text="Cross-Entropy Loss" fontSize={15} />
+    </Plot>
   </div>
 
-  <div class="separator"></div>
+  <div class="separator" />
   <p>
     While the example above provides an intuitive introduction into the world of
     neural networks we need a way to formalize these calculations through
     mathematical notation.
   </p>
   <p>
-    As we have covered in previous chapters can calculate the value of a neuron <Latex>a</Latex> in a two step process. In the first step we calculate
-    the net input
+    As we have covered in previous chapters can calculate the value of a neuron <Latex
+      >a</Latex
+    > in a two step process. In the first step we calculate the net input
     <Latex>z</Latex> by multiplying the feature vector <Latex
       >{String.raw`\mathbf{x}`}</Latex
     > with the transpose of the weight vector <Latex
@@ -453,9 +490,8 @@ for i in range(50_000):
     </div>
   </Alert>
   <p>
-    In practice we utilize a dataset <Latex
-      >{String.raw`\mathbf{X}`}</Latex
-    > consisting of many samples. . As usual <Latex>{String.raw`\mathbf{X}`}</Latex> is an <Latex
+    In practice we utilize a dataset <Latex>{String.raw`\mathbf{X}`}</Latex> consisting
+    of many samples. . As usual <Latex>{String.raw`\mathbf{X}`}</Latex> is an <Latex
       >n \times m</Latex
     > matrix, where <Latex>n</Latex> (rows) is the number of samples and <Latex
       >m</Latex
@@ -589,31 +625,47 @@ for i in range(50_000):
   </div>
   <p>
     We keep iterating over matrix multiplications and activation functions,
-    until we reach the output layer <Latex>L</Latex>, that is used as input into a loss function. 
+    until we reach the output layer <Latex>L</Latex>, that is used as input into
+    a loss function.
   </p>
-  <p>
-    We can implement a neural network relatively easy using PyTorch.
-  </p>
-  <PythonCode code={code1}/>
+  <p>We can implement a neural network relatively easy using PyTorch.</p>
+  <PythonCode code={code1} />
   <p>We first create a circular dataset and plot the results.</p>
-  <PythonCode code={code2}/>
-  <PythonCode code={code3}/>
-  <PythonCode code={code4}/>
-  <img src={circular} alt='circular data'/>
-  <p>We implement the logic of the neural network by creating a <code>NeuralNetwork</code> object. WE assume a network with two input neurons, two hidden layers with 4 and 2 neurons respectively and an output neuron.</p>
-  <PythonCode code={code5}/>
-  <p>The code is relatively self explanatory. The <code>forward()</code> method multiplies the weight matrix of a layer with the features matrix from the previous layer and add the bias vector. The <code>loss()</code> method calculates the binary cross-entropy and the <code>step()</code> method applies gradient descent and zeroes out the gradients.</p>
-  <PythonCode code={code6}/>
-  <p>Finally we run the forward pass, the backward pass and the gradient descent steps in a loop of 50,000 iterations.</p>
-  <PythonCode code={code7}/>
-  <pre class='text-sm'>
+  <PythonCode code={code2} />
+  <PythonCode code={code3} />
+  <PythonCode code={code4} />
+  <img src={circular} alt="circular data" />
+  <p>
+    We implement the logic of the neural network by creating a <code
+      >NeuralNetwork</code
+    > object. WE assume a network with two input neurons, two hidden layers with
+    4 and 2 neurons respectively and an output neuron.
+  </p>
+  <PythonCode code={code5} />
+  <p>
+    The code is relatively self explanatory. The <code>forward()</code> method
+    multiplies the weight matrix of a layer with the features matrix from the
+    previous layer and add the bias vector. The <code>loss()</code> method
+    calculates the binary cross-entropy and the <code>step()</code> method applies
+    gradient descent and zeroes out the gradients.
+  </p>
+  <PythonCode code={code6} />
+  <p>
+    Finally we run the forward pass, the backward pass and the gradient descent
+    steps in a loop of 50,000 iterations.
+  </p>
+  <PythonCode code={code7} />
+  <pre class="text-sm">
 tensor(0.8799)
 tensor(0.6817)
 tensor(0.0222)
 tensor(0.0038)
 tensor(0.0019)
   </pre>
-  <p>The cross-entropy loss reduces drastically and unlike our custom implementation above, the PyTorch implementation runs only for a couple of seconds.</p>
+  <p>
+    The cross-entropy loss reduces drastically and unlike our custom
+    implementation above, the PyTorch implementation runs only for a couple of
+    seconds.
+  </p>
   <div class="separator" />
 </Container>
-

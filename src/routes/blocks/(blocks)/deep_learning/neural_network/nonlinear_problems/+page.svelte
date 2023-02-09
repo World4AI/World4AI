@@ -214,9 +214,9 @@
     hidden layer.
   </Alert>
   <p>
-    The below architecture with two inputs, one hidden
-    layer with four neurons and the sigmoid activation function will be utilized to
-    learn to solve the circular problem above.
+    The below architecture with two inputs, one hidden layer with four neurons
+    and the sigmoid activation function will be utilized to learn to solve the
+    circular problem above.
   </p>
   <NeuralNetwork {layers} height={150} padding={{ left: 0, right: 10 }} />
   <p>

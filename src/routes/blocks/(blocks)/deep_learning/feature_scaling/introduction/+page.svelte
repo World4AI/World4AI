@@ -289,9 +289,9 @@
 
   <h2>Standardization</h2>
   <p>
-    The standardization procedure, also called z-score normalization, produces feature values that have a mean <Latex
-      >\mu</Latex
-    > of 0 and a standard deviation <Latex>\sigma</Latex> of 1.
+    The standardization procedure, also called z-score normalization, produces
+    feature values that have a mean <Latex>\mu</Latex> of 0 and a standard deviation
+    <Latex>\sigma</Latex> of 1.
   </p>
   <Latex>{String.raw`x^{(i)}_j = \dfrac{x_j^{(i)} - \mu_j}{\sigma_j}`}</Latex>
   <p>

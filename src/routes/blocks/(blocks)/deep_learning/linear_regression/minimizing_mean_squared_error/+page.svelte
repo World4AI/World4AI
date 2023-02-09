@@ -114,15 +114,15 @@
   }
 
   steps();
-  
+
   let var1 = new Value(500);
-  var1._name = 'Branch 1';
+  var1._name = "Branch 1";
   let var2 = new Value(196);
-  var2._name = 'Branch 2';
+  var2._name = "Branch 2";
   let sum = var1.add(var2);
-  sum._name = 'Sum';
+  sum._name = "Sum";
   let mse2 = sum.mul(0.5);
-  mse2._name = 'MSE';
+  mse2._name = "MSE";
   mse2.backward();
 
   // code examples
@@ -130,7 +130,7 @@
 import sklearn.datasets as datasets`;
   let code2 = `X, y = datasets.make_regression(n_samples=100, n_features=2, n_informative=2, noise=0.01)`;
   let code3 = `X = torch.from_numpy(X).to(torch.float32);
-y = torch.from_numpy(y).to(torch.float32).unsqueeze(1)`
+y = torch.from_numpy(y).to(torch.float32).unsqueeze(1)`;
   let code4 = `def init_weights():
     w = torch.randn(1, 2, requires_grad=True)
     b = torch.randn(1, 1, requires_grad=True)
@@ -328,8 +328,8 @@ for _ in range(10):
     the chain rule for <Highlight>automatic differentiation</Highlight>.
   </Alert>
   <p>
-    So let's construct the computational graph for the mean squared error step by
-    step and see how automatic differentiation looks like.
+    So let's construct the computational graph for the mean squared error step
+    by step and see how automatic differentiation looks like.
   </p>
   <p>
     A computational graph basically tracks all atomic calculatios and their
@@ -443,7 +443,18 @@ for _ in range(10):
     algorithm allows us to efficiently distribute gradients, thus saving a lot
     of computational time.
   </p>
-  <p>At this point we should mention, that in deep learning the graph construction phase and the gradient calculation phase have distinct names, that you will hear over and over again. The so called <Highlight>forward pass</Highlight> is essentially the graph constructon phase. In the <Highlight>backward pass</Highlight> we start to propagate the gradients from the the mean squared error to the weights and bias using automatic differentiation. This algorithm of finding the gradients of individual nodes, by utilizing the chain rule and a computational graph is also called <Highlight>backpropagation</Highlight>. Backpropagation is the bread and butter of modern deep learning.
+  <p>
+    At this point we should mention, that in deep learning the graph
+    construction phase and the gradient calculation phase have distinct names,
+    that you will hear over and over again. The so called <Highlight
+      >forward pass</Highlight
+    > is essentially the graph constructon phase. In the <Highlight
+      >backward pass</Highlight
+    > we start to propagate the gradients from the the mean squared error to the
+    weights and bias using automatic differentiation. This algorithm of finding the
+    gradients of individual nodes, by utilizing the chain rule and a computational
+    graph is also called <Highlight>backpropagation</Highlight>. Backpropagation
+    is the bread and butter of modern deep learning.
   </p>
 
   <div class="separator" />
@@ -451,72 +462,151 @@ for _ in range(10):
   <h2>Multiple Training Samples</h2>
   <p>
     As it turns out making a jump from one to several samples is not that
-    complicated. Let's for example assume that we have two samples. This creates two branches in our computational graph.
+    complicated. Let's for example assume that we have two samples. This creates
+    two branches in our computational graph.
   </p>
   <BackpropGraph graph={mse2} maxWidth={350} height={500} width={450} />
-  <p>The branch nr. 2 that amounts to 196.0 is essentially the same path that we calulated above. For the other branch we would have to do the same calculations that we did above, but using the features from the other sample. To finish the calculations of the mean squared error, we would have to sum up the two branches and calculate the average. When we initiate the backward pass, the gradients are propagated into the individual branches. You should remember the the same weights and the same bias exist in the different branches. That means that those parameters receive different gradient signals. In that case the gradients are accumulated through a sum. This is the same as saying: "the derivative of a sum is the sum of derivatives". You should also observe, that the mean squared error scales each of the gradient signals by the number of samples that we use for training. If we have two samples, each of the gradients is divided by 2 (or multiplied by 0.5).
+  <p>
+    The branch nr. 2 that amounts to 196.0 is essentially the same path that we
+    calulated above. For the other branch we would have to do the same
+    calculations that we did above, but using the features from the other
+    sample. To finish the calculations of the mean squared error, we would have
+    to sum up the two branches and calculate the average. When we initiate the
+    backward pass, the gradients are propagated into the individual branches.
+    You should remember the the same weights and the same bias exist in the
+    different branches. That means that those parameters receive different
+    gradient signals. In that case the gradients are accumulated through a sum.
+    This is the same as saying: "the derivative of a sum is the sum of
+    derivatives". You should also observe, that the mean squared error scales
+    each of the gradient signals by the number of samples that we use for
+    training. If we have two samples, each of the gradients is divided by 2 (or
+    multiplied by 0.5).
   </p>
   <p>
-    So the calculations remain very similar: construct the graph and distribute the
-    gradients to the weight and bias using automatic differentiation. When we
-    use the procedures described above it does not make a huge difference whether we use 1, 4 or 100 samples.
+    So the calculations remain very similar: construct the graph and distribute
+    the gradients to the weight and bias using automatic differentiation. When
+    we use the procedures described above it does not make a huge difference
+    whether we use 1, 4 or 100 samples.
   </p>
   <p>
-    To convince ourselves that automatic differentiation actually works, below we present
-    the example from the last section, that we solve by implementing a custom
-    autodiff package in JavaScript.
+    To convince ourselves that automatic differentiation actually works, below
+    we present the example from the last section, that we solve by implementing
+    a custom autodiff package in JavaScript.
   </p>
   <ButtonContainer>
     <PlayButton f={train} delta={1} />
   </ButtonContainer>
   <Mse data={dataMse} w={w.data} b={b.data} />
-  <div class="separator"></div>
+  <div class="separator" />
 
   <h2>Autograd</h2>
-  <p>As mentioned before, in modern deep learning we do not iterate over individual samples to construct a graph, but work with tensors to parallelize the computations. When we utilize any of the modern deep learning packages and use the provided tensor objects, we get parallelisation and automatic differentiation out of the box. We do not need to explicitly construct a graph and make sure that all nodes are connected. PyTorch for example has a built in automatic differentiation library, called <Highlight>autograd</Highlight>, so let's see how we can utilize the package. 
-  </p>
-  <PythonCode code={code1}></PythonCode>
   <p>
-   We start by creating the features <Latex>{String.raw`\mathbf{X}`}</Latex> and the labels <Latex>{String.raw`\mathbf{y}`}</Latex>.</p>
-  <PythonCode code={code2}></PythonCode>
-  <p>We transorm the generated numpy arrays into PyTorch Tensors. For the labels Tensor we use the <code>unsqueeze(dim)</code> method. This adds an additional dimension, transforming the labels from a (100,) into a (100, 1) dimensional Tensor. This makes sure that the predictions that are generated in the the forward pass and the actual labels have identical dimensions.</p>
-  <PythonCode code={code3}></PythonCode>
-  <p>We generate the <code>init_weights()</code> function, which initializes the weights and the biases randomly using the standard normal distribution. This time around we set the <code>requires_grad</code> property to <code>True</code> in order to track the gradients. We didn't do that for the features and the label tensors, as those are fixed and should not be adjusted.</p>
-  <PythonCode code={code4}></PythonCode>
-  <p>For the sake of making our explanations easier let us introduce the <code>print_all()</code> function. This function makes use of the two imortant properties that each Tensor object posesses. The <code>data</code> and the <code>grad</code> property. Those properties are probaly self explanatory: data contains the actual values of a tensor, while grad contains the gradiens with respect to each value in the data list.</p>
-  <PythonCode code={code5}></PythonCode>
+    As mentioned before, in modern deep learning we do not iterate over
+    individual samples to construct a graph, but work with tensors to
+    parallelize the computations. When we utilize any of the modern deep
+    learning packages and use the provided tensor objects, we get
+    parallelisation and automatic differentiation out of the box. We do not need
+    to explicitly construct a graph and make sure that all nodes are connected.
+    PyTorch for example has a built in automatic differentiation library, called <Highlight
+      >autograd</Highlight
+    >, so let's see how we can utilize the package.
+  </p>
+  <PythonCode code={code1} />
+  <p>
+    We start by creating the features <Latex>{String.raw`\mathbf{X}`}</Latex> and
+    the labels <Latex>{String.raw`\mathbf{y}`}</Latex>.
+  </p>
+  <PythonCode code={code2} />
+  <p>
+    We transorm the generated numpy arrays into PyTorch Tensors. For the labels
+    Tensor we use the <code>unsqueeze(dim)</code> method. This adds an additional
+    dimension, transforming the labels from a (100,) into a (100, 1) dimensional
+    Tensor. This makes sure that the predictions that are generated in the the forward
+    pass and the actual labels have identical dimensions.
+  </p>
+  <PythonCode code={code3} />
+  <p>
+    We generate the <code>init_weights()</code> function, which initializes the
+    weights and the biases randomly using the standard normal distribution. This
+    time around we set the <code>requires_grad</code> property to
+    <code>True</code> in order to track the gradients. We didn't do that for the
+    features and the label tensors, as those are fixed and should not be adjusted.
+  </p>
+  <PythonCode code={code4} />
+  <p>
+    For the sake of making our explanations easier let us introduce the <code
+      >print_all()</code
+    >
+    function. This function makes use of the two imortant properties that each
+    Tensor object posesses. The <code>data</code> and the <code>grad</code> property.
+    Those properties are probaly self explanatory: data contains the actual values
+    of a tensor, while grad contains the gradiens with respect to each value in the
+    data list.
+  </p>
+  <PythonCode code={code5} />
   <pre class="text-sm">
     Weight: tensor([[-0.6779,  0.4228]]), Grad: None
     Bias: tensor([[0.2107]]), Grad: None
   </pre>
-  <p>When we print the data and the grad right after initializing the tensors, the objects posess a randomized value, but gradients amount to <code>None</code>.</p>
-  <PythonCode code={code6}></PythonCode>
-  <p>Even when we calculate the mean squared error, by running through the forward pass, the gradients remain empty.</p>
-  <PythonCode code={code7}></PythonCode>
-  <pre class='text-sm'>
+  <p>
+    When we print the data and the grad right after initializing the tensors,
+    the objects posess a randomized value, but gradients amount to <code
+      >None</code
+    >.
+  </p>
+  <PythonCode code={code6} />
+  <p>
+    Even when we calculate the mean squared error, by running through the
+    forward pass, the gradients remain empty.
+  </p>
+  <PythonCode code={code7} />
+  <pre class="text-sm">
     Weight: tensor([[-0.6779,  0.4228]]), Grad: None
     Bias: tensor([[0.2107]]), Grad: None
   </pre>
-  <p>To actually run the backward pass, we have to call the <code>backward()</code> method on the loss function. The gradients are always based on the tensor that initiated the backward pass. So if we run the backward pass on the mean squared error tensor, the gradients tell us how we should shift the weights and the bias to reduce the loss. This is exactly what we are looking for.</p>
-  <PythonCode code={code8}></PythonCode>
-  <pre class='text-sm'>
+  <p>
+    To actually run the backward pass, we have to call the <code
+      >backward()</code
+    > method on the loss function. The gradients are always based on the tensor that
+    initiated the backward pass. So if we run the backward pass on the mean squared
+    error tensor, the gradients tell us how we should shift the weights and the bias
+    to reduce the loss. This is exactly what we are looking for.
+  </p>
+  <PythonCode code={code8} />
+  <pre class="text-sm">
     Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-102.5140,  -98.1595]])
     Bias: tensor([[0.2107]]), Grad: tensor([[4.4512]])
   </pre>
-  <p>If we run the forward and the backward passes again, you will notice, that the weights and the bias gradients are twice as large. Each time we calculate the gradients, the gradients are accumulated. The old gradient values are not erased, as one might assume.</p>
-  <PythonCode code={code9}></PythonCode>
-  <pre class='text-sm'>
+  <p>
+    If we run the forward and the backward passes again, you will notice, that
+    the weights and the bias gradients are twice as large. Each time we
+    calculate the gradients, the gradients are accumulated. The old gradient
+    values are not erased, as one might assume.
+  </p>
+  <PythonCode code={code9} />
+  <pre class="text-sm">
     Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-205.0279, -196.3191]])
     Bias: tensor([[0.2107]]), Grad: tensor([[8.9024]])
   </pre>
-  <p>Each time we are done with a gradient descent step, we should clear the gradients. We can do that by using the <code>zero_()</code> method, which zeroes out the gradients inplace.</p>
-  <PythonCode code={code10}></PythonCode>
-  <pre class='text-sm'>
+  <p>
+    Each time we are done with a gradient descent step, we should clear the
+    gradients. We can do that by using the <code>zero_()</code> method, which zeroes
+    out the gradients inplace.
+  </p>
+  <PythonCode code={code10} />
+  <pre class="text-sm">
     tensor([[0., 0.]])
   </pre>
-  <p>Below we show the full implementation of gradiet descent. Most of the implementation was already discussed before, but the context manager <code>torch.inference_mode()</code> might be new to you. This part tells PyTorch to not include the following parts in the computational graph. The actual gradient descent step is not part of the forward pass and should therefore not be tracked.</p>
-  <PythonCode code={code11}></PythonCode>
-  <pre class='flex justify-center text-sm'>
+  <p>
+    Below we show the full implementation of gradiet descent. Most of the
+    implementation was already discussed before, but the context manager <code
+      >torch.inference_mode()</code
+    > might be new to you. This part tells PyTorch to not include the following parts
+    in the computational graph. The actual gradient descent step is not part of the
+    forward pass and should therefore not be tracked.
+  </p>
+  <PythonCode code={code11} />
+  <pre class="flex justify-center text-sm">
 Mean squared error: 6125.7783203125
 Mean squared error: 4322.3662109375
 Mean squared error: 3054.9150390625
@@ -528,6 +618,11 @@ Mean squared error: 549.2703857421875
 Mean squared error: 390.8788757324219
 Mean squared error: 278.37469482421875
   </pre>
-  <p>We iterate over the forward pass, the backward pass and the gradient descent step for 10 iterations and the mean squared error decreases dramatically. This iteration process is called the <Highlight>training loop</Highlight> in deep learning lingo. We will encounter those loops over and over again.</p>
+  <p>
+    We iterate over the forward pass, the backward pass and the gradient descent
+    step for 10 iterations and the mean squared error decreases dramatically.
+    This iteration process is called the <Highlight>training loop</Highlight> in
+    deep learning lingo. We will encounter those loops over and over again.
+  </p>
   <div class="separator" />
 </Container>

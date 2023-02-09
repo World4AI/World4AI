@@ -378,70 +378,103 @@
     <Circle data={regressionData[0]} />
     <Circle data={regressionData[1]} color="var(--main-color-2)" />
   </Plot>
-  <Slider label="Weight" labelId="weight" showValue={true} bind:value={weight} min={-5} max={5} step={0.1} />
-  <Slider label="Bias" labelId="bias" showValue={true} bind:value={bias} min={-30} max={30} step={0.1} />
+  <Slider
+    label="Weight"
+    labelId="weight"
+    showValue={true}
+    bind:value={weight}
+    min={-5}
+    max={5}
+    step={0.1}
+  />
+  <Slider
+    label="Bias"
+    labelId="bias"
+    showValue={true}
+    bind:value={bias}
+    min={-30}
+    max={30}
+    step={0.1}
+  />
 
-    <p>
-      When we are dealing with a classification problem, we are trying to draw a
-      decision boundary between the different classes in order to separate the
-      data as good as possible. In the below example we have a classification
-      problem with two features and two classes. We utilize logistic regression
-      (the sigmoid function) with two weights <Latex>w_1</Latex>, <Latex
-        >w_2</Latex
-      > and the bias <Latex>b</Latex> to draw a boundary. The boundary represents
-      the exact cutoff, the 50% probability. On the one side of the boundary you
-      would have
-      <Latex
-        >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} > 0.5`}</Latex
-      >, while on the other side of the boundary you have <Latex
-        >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} < 0.5`}</Latex
-      >. By changing the weights and the bias you can rotate and move the
-      decision boundary respectively.
-    </p>
-    <Plot
-      width={500}
-      height={250}
-      maxWidth={800}
-      domain={[0, 1]}
-      range={[0, 1]}
-    >
-      <Ticks
-        xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-        yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
-        xOffset={-15}
-        yOffset={15}
-      />
-      <XLabel text="Feature 1" fontSize={15} />
-      <YLabel text="Feature 2" fontSize={15} />
-      <Path data={decisionPathsData} />
-      <Circle data={decisionData[0]} />
-      <Circle data={decisionData[1]} color="var(--main-color-2)" />
-    </Plot>
+  <p>
+    When we are dealing with a classification problem, we are trying to draw a
+    decision boundary between the different classes in order to separate the
+    data as good as possible. In the below example we have a classification
+    problem with two features and two classes. We utilize logistic regression
+    (the sigmoid function) with two weights <Latex>w_1</Latex>, <Latex
+      >w_2</Latex
+    > and the bias <Latex>b</Latex> to draw a boundary. The boundary represents the
+    exact cutoff, the 50% probability. On the one side of the boundary you would
+    have
+    <Latex>{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} > 0.5`}</Latex
+    >, while on the other side of the boundary you have <Latex
+      >{String.raw`\dfrac{1}{1 + e^{-(x_1w_1 + x_2w_2 + b)}} < 0.5`}</Latex
+    >. By changing the weights and the bias you can rotate and move the decision
+    boundary respectively.
+  </p>
+  <Plot width={500} height={250} maxWidth={800} domain={[0, 1]} range={[0, 1]}>
+    <Ticks
+      xTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      yTicks={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]}
+      xOffset={-15}
+      yOffset={15}
+    />
+    <XLabel text="Feature 1" fontSize={15} />
+    <YLabel text="Feature 2" fontSize={15} />
+    <Path data={decisionPathsData} />
+    <Circle data={decisionData[0]} />
+    <Circle data={decisionData[1]} color="var(--main-color-2)" />
+  </Plot>
 
-    <Slider label={"Weight 1"} labelId={'w1'} showValue={true} bind:value={decisionW1} min={-5} max={5} step={0.01} />
-    <Slider label={"Weight 2"} labelId={'w2'} showValue={true} bind:value={decisionW2} min={-5} max={5} step={0.01} />
-    <Slider label={"Bias"} labelId={'b'} showValue={true} bind:value={decisionB} min={-5} max={5} step={0.01} />
-    <p>
-      When we apply gradient descent to logistic regression, essentially we are
-      adjusting the weights and the bias to shift the decision boundary.
-    </p>
-    <div class="separator" />
+  <Slider
+    label={"Weight 1"}
+    labelId={"w1"}
+    showValue={true}
+    bind:value={decisionW1}
+    min={-5}
+    max={5}
+    step={0.01}
+  />
+  <Slider
+    label={"Weight 2"}
+    labelId={"w2"}
+    showValue={true}
+    bind:value={decisionW2}
+    min={-5}
+    max={5}
+    step={0.01}
+  />
+  <Slider
+    label={"Bias"}
+    labelId={"b"}
+    showValue={true}
+    bind:value={decisionB}
+    min={-5}
+    max={5}
+    step={0.01}
+  />
+  <p>
+    When we apply gradient descent to logistic regression, essentially we are
+    adjusting the weights and the bias to shift the decision boundary.
+  </p>
+  <div class="separator" />
 
-    <h2>Softmax</h2>
-    <p>
-      Before we move on to the next section, let us shortly discuss what
-      function can be used if we are faced with more than two categories.
-    </p>
-    <p>
-      Let us assume, that we face a classification problem with <Latex>d</Latex>
-      possible categories. Our goal is to calculate the probabilities to belong to
-      each of these categories. The <Highlight>softmax</Highlight> function takes
-      a <Latex>d</Latex> dimensional vector
-      <Latex>{String.raw`\mathbf{z}`}</Latex> and returns a vector of the same size
-      that contains the corresponding probabilities.
-    </p>
-    <Latex
-      >{String.raw`
+  <h2>Softmax</h2>
+  <p>
+    Before we move on to the next section, let us shortly discuss what function
+    can be used if we are faced with more than two categories.
+  </p>
+  <p>
+    Let us assume, that we face a classification problem with <Latex>d</Latex>
+    possible categories. Our goal is to calculate the probabilities to belong to
+    each of these categories. The <Highlight>softmax</Highlight> function takes a
+    <Latex>d</Latex> dimensional vector
+    <Latex>{String.raw`\mathbf{z}`}</Latex> and returns a vector of the same size
+    that contains the corresponding probabilities.
+  </p>
+  <Latex
+    >{String.raw`
 softmax(\mathbf{z}) = 
 softmax
 \begin{pmatrix}
@@ -463,12 +496,12 @@ softmax
 \end{bmatrix}
 \\
     `}</Latex
-    >
-    <p>
-      If we had four categories for example, the results might look as follows.
-    </p>
-    <Latex
-      >{String.raw`
+  >
+  <p>
+    If we had four categories for example, the results might look as follows.
+  </p>
+  <Latex
+    >{String.raw`
 softmax(\mathbf{z}) = 
 
 \begin{bmatrix}
@@ -479,30 +512,29 @@ softmax(\mathbf{z}) =
 \end{bmatrix}
 \\
     `}</Latex
-    >
-    <p>
-      Given these numbers, we would assume that it is most likely that the
-      features belong to the category Nr. 3.
-    </p>
-    <p>
-      The values <Latex>{String.raw`\mathbf{z}`}</Latex> that are used as input into
-      the softmax function are called <Highlight>logits</Highlight>. You can
-      imagine that each of the <Latex>d</Latex> logits is a separate linear regression
-      of the form <Latex>{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex>.
-    </p>
-    <p>
-      We calculate the probability for the <Latex>k</Latex> of <Latex>d</Latex> categories
-      using the following softmax equation.
-    </p>
-    <Latex>{String.raw`softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex>
-    <p>
-      Similar to the sigmoid function, the softmax function has several
-      advantageous properties. The equation for example guarantees, that the sum
-      of probabilities is exactly 1, thus avoiding any violations of the law of
-      probabilities. Additionally as the name suggest the function is "soft",
-      which indicates that it is differentiable and can be used in gradient
-      descent.
-    </p>
-    <div class="separator" />
-  </Container
->
+  >
+  <p>
+    Given these numbers, we would assume that it is most likely that the
+    features belong to the category Nr. 3.
+  </p>
+  <p>
+    The values <Latex>{String.raw`\mathbf{z}`}</Latex> that are used as input into
+    the softmax function are called <Highlight>logits</Highlight>. You can
+    imagine that each of the <Latex>d</Latex> logits is a separate linear regression
+    of the form <Latex>{String.raw`z = \mathbf{x} \mathbf{w}^T + b`}</Latex>.
+  </p>
+  <p>
+    We calculate the probability for the <Latex>k</Latex> of <Latex>d</Latex> categories
+    using the following softmax equation.
+  </p>
+  <Latex>{String.raw`softmax(z_k) = \dfrac{e^{z_k}}{\sum_d e^{z_d}}`}</Latex>
+  <p>
+    Similar to the sigmoid function, the softmax function has several
+    advantageous properties. The equation for example guarantees, that the sum
+    of probabilities is exactly 1, thus avoiding any violations of the law of
+    probabilities. Additionally as the name suggest the function is "soft",
+    which indicates that it is differentiable and can be used in gradient
+    descent.
+  </p>
+  <div class="separator" />
+</Container>

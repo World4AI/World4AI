@@ -486,13 +486,21 @@ w, b = init_weights()`;
     The gradient descent algorithm learns to separate the data in a matter of
     seconds.
   </p>
-  <div class="separator"></div>
-  <p>We can implement logistic regression in PyTorch, using the same techniques that we used with linear regression. Hardly any parts of the code need to change.</p>
+  <div class="separator" />
+  <p>
+    We can implement logistic regression in PyTorch, using the same techniques
+    that we used with linear regression. Hardly any parts of the code need to
+    change.
+  </p>
   <PythonCode code={code1} />
   <PythonCode code={code2} />
   <PythonCode code={code3} />
   <PythonCode code={code4} />
-  <p>The only code snippet, that is truly different is the forward pass. Here we calculate the cross-entropy loss, using some of the built-in PyTorch functionalities.</p>
+  <p>
+    The only code snippet, that is truly different is the forward pass. Here we
+    calculate the cross-entropy loss, using some of the built-in PyTorch
+    functionalities.
+  </p>
   <PythonCode code={code5} />
   <PythonCode code={code6} />
   <p>The training loop remains basically the same.</p>

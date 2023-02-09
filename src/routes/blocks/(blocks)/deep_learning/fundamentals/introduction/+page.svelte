@@ -74,6 +74,5 @@
     of deep learning: topics that are fundamental to know if you are an absolute
     beginner.
   </p>
-  <p />
   <div class="separator" />
 </Container>

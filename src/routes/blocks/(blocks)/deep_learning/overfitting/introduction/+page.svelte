@@ -63,10 +63,17 @@
 <div class="separator" />
 <Container>
   <p>
-    Let us assume that we face data with a single feature and we contemplate how we are going to fit some model to the data.
+    Let us assume that we face data with a single feature and we contemplate how
+    we are going to fit some model to the data.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]} 
-    padding={{top: 10, left: 40, right:10, bottom:40}}>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[0, 1]}
+    range={[0, 1]}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
+  >
     <Circle data={pointsData1} radius={3} />
     <Ticks
       xTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
@@ -74,7 +81,7 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
@@ -82,8 +89,14 @@
     even though there is quite a bit of noise. So we might decide to use linear
     regression for our task.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
-    padding={{top: 10, left: 40, right:10, bottom:40}}>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[0, 1]}
+    range={[0, 1]}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
+  >
     <Circle data={pointsData1} radius={3} />
     <Path data={pathsData1} />
     <Ticks
@@ -92,7 +105,7 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
@@ -100,8 +113,14 @@
     network. In that case we would end up with a model that fits the data very
     closely.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
-    padding={{top: 10, left: 40, right:10, bottom:40}}>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[0, 1]}
+    range={[0, 1]}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
+  >
     <Circle data={pointsData1} radius={3} />
     <Path data={pointsData1} />
     <Ticks
@@ -110,7 +129,7 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
@@ -127,14 +146,20 @@
   <Alert type="info">
     A model that generalizes well is good at modelling new unforseen data.
   </Alert>
-  <p></p>
+  <p />
   <p>
     When the two models are faced with new data, the neural network will
     underperform, while the simpler linear regression model will do just fine.
     In other words the linear model generalizes much better in this example.
   </p>
-  <Plot width={500} height={500} maxWidth={500} domain={[0, 1]} range={[0, 1]}
-    padding={{top: 10, left: 40, right:10, bottom:40}}>
+  <Plot
+    width={500}
+    height={500}
+    maxWidth={500}
+    domain={[0, 1]}
+    range={[0, 1]}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
+  >
     <Circle data={pointsData1} radius={3} />
     <Path data={pathsData1} />
     <Circle data={pointsData2} radius={3} color={"var(--main-color-2)"} />
@@ -145,7 +170,7 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
@@ -174,7 +199,7 @@
     maxWidth={500}
     domain={[-4, 4]}
     range={[0, 11]}
-    padding={{top: 10, left: 40, right:10, bottom:40}}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
   >
     <Circle data={pointsData3} radius={3} />
     <Path
@@ -189,15 +214,15 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <p>
     Solving underfitting is usually a much easier problem, because it is often
-    sufficient to increase the parameters of the model. We
-    could for example use a neural network to train a model that fits the data better.
-    Increasing the number of layers and/or the number of neurons usually solves
-    the problem of underfitting.
+    sufficient to increase the parameters of the model. We could for example use
+    a neural network to train a model that fits the data better. Increasing the
+    number of layers and/or the number of neurons usually solves the problem of
+    underfitting.
   </p>
   <Plot
     width={500}
@@ -205,7 +230,7 @@
     maxWidth={500}
     domain={[-4, 4]}
     range={[0, 11]}
-    padding={{top: 10, left: 40, right:10, bottom:40}}
+    padding={{ top: 10, left: 40, right: 10, bottom: 40 }}
   >
     <Circle data={pointsData3} radius={3} />
     <Path data={pathsData3} stroke={3} />
@@ -215,7 +240,7 @@
       xOffset={-15}
       yOffset={15}
     />
-    <XLabel text="Feature" fontSize={15} y={490}/>
+    <XLabel text="Feature" fontSize={15} y={490} />
     <YLabel text="Target" fontSize={15} />
   </Plot>
   <div class="separator" />
