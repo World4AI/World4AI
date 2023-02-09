@@ -1,6 +1,5 @@
 <script>
   import Slider from "$lib/Slider.svelte";
-  import Latex from "$lib/Latex.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -131,7 +130,6 @@
   }
 </script>
 
-<span class="yellow"><Latex>\lambda</Latex>: {lambda}</span>
 <Plot
   width={800}
   height={300}
@@ -144,4 +142,4 @@
   <Path data={overfittedPath} />
   <Path data={l2Path} />
 </Plot>
-<Slider min="0.001" max="0.1" step="0.001" bind:value={lambda} />
+<Slider label='Lambda' showValue={true} min="0.001" max="0.1" step="0.001" bind:value={lambda} />
