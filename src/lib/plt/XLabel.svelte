@@ -16,24 +16,18 @@
 </script>
 
 {#if type === "text"}
-  <text class="label" font-size={fontSize} {x} {y}>{text}</text>
+  <text font-size={fontSize} {x} {y}>{text}</text>
 {:else if type === "latex"}
   <foreignObject x={0} y={y - fontSize} {width} height="100%">
-    <div style="font-size: {fontSize}px">
+    <div class="flex justify-center" style="font-size: {fontSize}px">
       <Latex>{text}</Latex>
     </div>
   </foreignObject>
 {/if}
 
 <style>
-  text.label {
-    fill: var(--text-color);
+  text {
     text-anchor: middle;
     dominant-baseline: middle;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
   }
 </style>

@@ -6,7 +6,7 @@
 
   export let x;
   export let y;
-  export let size = 5;
+  export let fontSize = 12;
 
   const xScale = getContext("xScale");
   const yScale = getContext("yScale");
@@ -14,14 +14,14 @@
 </script>
 
 <text
+  font-size={fontSize}
   fill={textColor}
-  x={size * 2 + xScale(x)}
+  x={xScale(x)}
   y={yScale(y)}>{text}</text
 >
 
 <style>
   text {
-    font-size: 12px;
     dominant-baseline: middle;
   }
 </style>
