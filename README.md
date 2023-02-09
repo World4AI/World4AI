@@ -18,7 +18,7 @@
 - [Svelte](https://svelte.dev/), [SvelteKit](https://kit.svelte.dev/), [Vite](https://vitejs.dev/) [D3.js](https://d3js.org/) and [KaTeX](https://katex.org/) for Front-End development
 - [Pyton](https://www.python.org/) and [PyTorch](https://pytorch.org/) for deep learning
 
-## World4AI Roadmap 2022 (and beyond)
+## World4AI Roadmap 2023 (and beyond)
 
 For the time being we are focusing on deep learning.
 Some of the sections have already reached a working state and can be used to study.
@@ -46,6 +46,7 @@ Some of the sections have already reached a working state and can be used to stu
   - [ ] Energy Based Models
   - [ ] Graph Neural Networks
   - [ ] Reinforcement Learning and Deep Reinforcement Learning
+  - [ ] MLOps 
 
 - [ ] GOFAI Block
 
