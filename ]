@@ -6,7 +6,7 @@
   const width = 500;
   const maxWidth = "700px";
   const height = 450;
-  const rectSize = 20;
+  const rectSize = 25;
 
   let layers = [
     {
@@ -20,8 +20,6 @@
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
       ],
     },
     {
@@ -33,20 +31,11 @@
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
       ],
     },
     {
       title: "",
       nodes: [
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
-        { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
         { value: "", class: "fill-white" },
@@ -64,7 +53,7 @@
   //apply dropout
   function recalculateDropout() {
     layers.forEach((layer, layerIdx) => {
-      if (layerIdx !== layers.length - 1 && layerIdx !== 0) {
+      if (layerIdx !== layers.length - 1) {
         layer.nodes.forEach((node, nodeIdx) => {
           if (Math.random() >= p) {
             layers[layerIdx].nodes[nodeIdx].class = "fill-white";
