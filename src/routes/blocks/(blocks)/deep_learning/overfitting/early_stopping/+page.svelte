@@ -1,6 +1,7 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Highlight from "$lib/Highlight.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -42,10 +43,30 @@
     { x: 65, y: 0 },
     { x: 65, y: 1 },
   ];
+
+  const code1 = `import torch
+from torch import nn, optim`;
+  const code2 = `t = torch.ones(3, 3)
+torch.save(t, f="tensor.pt")
+loaded_t = torch.load(f="tensor.pt")`;
+
+  const code3 = `model = nn.Sequential(
+    nn.Linear(10, 50), nn.Sigmoid(), nn.Linear(50, 10), nn.Sigmoid(), nn.Linear(10, 1)
+)
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+model_state = model.state_dict()
+optim_state = optimizer.state_dict()
+
+torch.save({"model": model_state, "optmim": optim_state}, f="state.py")
+state = torch.load(f="state.py")
+
+model.load_state_dict(state["model"])
+optimizer.load_state_dict(state["optim"])`;
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Early Stopping</title>
+  <title>Early Stopping - World4AI</title>
   <meta
     name="description"
     content="Early stopping is a simple technique to reduce overfitting by stopping the trainig process when the validation loss starts growing."
@@ -95,4 +116,34 @@
       legendColor={"var(--main-color-1)"}
     />
   </Plot>
+  <p>
+    PyTorch does not support early stopping out of the box, but if you know how
+    to save and restore a model, you can easily implement this logic.
+  </p>
+  <PythonCode code={code1} />
+  <p>
+    The two functions that PyTorch provides are <code>torch.save()</code> and
+    <code>torch.load()</code>. Below for example we save and load a simple
+    Tensor.
+  </p>
+  <PythonCode code={code2} />
+  <p>
+    Usually we are not interested in saving just tensors, but whole internal
+    states. Modul states for example include all the weights and biases, but
+    also layer specific parameters, like the dropout probability. Often we also
+    need to save the state of the optimizer so that we can resume training at a
+    later time. To retrieve a state, modules and optimizers provide a <code
+      >state_dict()</code
+    >
+    method. A state can be restored, by utilizing the
+    <code>load_state_dict()</code> method.
+  </p>
+  <PythonCode code={code3} />
+  <p>
+    We will not be using early stopping in the deep learning module, as this
+    technique is generally considered a bad practice. Other techniques, like
+    learning rate schedulers, that we will encounter in future chapters, will
+    give us better options to decide if we found a good set of weights.
+  </p>
+  <div class="separator" />
 </Container>
