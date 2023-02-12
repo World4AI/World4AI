@@ -73,10 +73,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Exploding/Vanishing Gradients</title>
+  <title>Vanishing and Exploding Gradients - World4AI</title>
   <meta
     name="description"
-    content="Exploding and vanishing gradients are two common problems in deep learning. By using the chain rule we constantly multiply values below zero, which leads to vanishing gradients or values above zero, which leads to exploding gradients."
+    content="Exploding and vanishing gradients are two common problems in deep learning. By using the chain rule we constantly multiply values in order to calculate gradients. When we have many layers this multiplication procedure might lead to vanishing gradients if the values are between 0 and 1 or to exploding gradinents when the numbers are above 1."
   />
 </svelte:head>
 
@@ -105,28 +105,30 @@
     networks.
   </p>
 </Container>
-<NeuralNetwork {layers} maxWidth={"600px"} />
+<NeuralNetwork {layers} height={50} maxWidth={"500px"} />
 
 <Container>
   <p>
     The forward pass is straighforward. We iterate between the calculation of
-    the net value <Latex>{String.raw`z^{<l>}`}</Latex> and the activation<Latex
+    the net value <Latex>{String.raw`z^{<l>}`}</Latex> and the neuron output <Latex
       >{String.raw`a^{<l>}`}</Latex
-    > until we are able to calculate the final activation <Latex>a_3</Latex> and
+    > until we are able to calculate the final activation <Latex>a^3</Latex> and
     the loss <Latex>L</Latex>.
   </p>
-  <Latex
-    >{String.raw`
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`
     \begin{aligned}
     z^{<1>} &= x^{<1>}w^{<1>} \\
-    a^{<1>} &= a(z^{<1>}) \\
+    a^{<1>} &= f(z^{<1>}) \\
     z^{<2>} &= a^{<1>}w^{<2>} \\
-    a^{<2>} &= a(z^{<2>}) \\
+    a^{<2>} &= f(z^{<2>}) \\
     z^{<3>} &= a^{<2>}w^{<3>} \\
-    a^{<3>} &= a(z^{<3>}) \\
+    a^{<3>} &= f(z^{<3>}) \\
     \end{aligned}
       `}</Latex
-  >
+    >
+  </div>
   <p>
     In the backward pass we calculate the derivative of the loss with respect to
     weights of different layers by using the chain rule over and over again. For
@@ -159,12 +161,12 @@
   <p>
     So far we have exclusively dealt with the sigmoid activation function <Latex
       >{String.raw`\dfrac{1}{1 + e^{-z}}`}</Latex
-    >, therefore the derivative <Latex
+    >, therefore the derivative of <Latex
       >{String.raw`\dfrac{da^{<l>}}{dz^{<l>}}`}</Latex
-    > is <Latex>{String.raw`\sigma(1-\sigma)`}</Latex>. If we draw both
-    functions we will notice, that the derivative of the sigmoid approaches 0,
-    when the net input gets too large or too small. At its peak the derivative
-    is exactly 0.25.
+    > is <Latex>{String.raw`a^{<l>}(1-a^{<l>})`}</Latex>. When we draw both the
+    activation functions and the derivative, we notice, that the derivative of
+    the sigmoid approaches 0, when the net input gets too large or too small. At
+    its peak the derivative is exactly 0.25.
   </p>
   <Plot
     width={500}
@@ -172,17 +174,16 @@
     maxWidth={800}
     domain={[-10, 10]}
     range={[0, 1]}
+    padding={{ top: 10, right: 10, bottom: 15, left: 30 }}
   >
     <Path data={sigmoidPath} />
     <Path data={derivativePath} color="var(--main-color-2)" />
     <Ticks
       xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
-      yTicks={[0, 0.2, 0.25, 0.4, 0.6, 0.8, 1]}
-      xOffset={-18}
-      yOffset={15}
+      yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
+      xOffset={6}
+      yOffset={5}
     />
-    <XLabel text={"z"} type="latex" />
-    <YLabel text={"f(x)"} type="latex" x={0} />
     <Legend text={"sigmoid"} coordinates={{ x: -9, y: 0.9 }} />
     <Legend
       text={"sigmoid derivative"}
@@ -215,7 +216,7 @@
     Each additional layer in the neural network forces the derivative to shrink
     by at least 4. With just 5 layers we are dealing with the factor close to <Latex
       >0</Latex
-    >,<Latex>{String.raw`0.25^{5}`}</Latex>
+    >.
   </p>
   <Plot
     width={500}
@@ -244,19 +245,22 @@
     Given that the sigmoid derivative <Latex
       >{String.raw`\dfrac{da^{<l>}}{dz^{<l>}}`}</Latex
     > is always between 0.25 and 0, we have to assume, that the overall derivative
-    <Latex>{String.raw`\dfrac{d}{dw^{<1>}}Loss`}</Latex> approaches 0 when the number
-    of layers starts to grow. Layers that are close to the last layer are still able
-    to change their respective weights appropriately, but the farther the layers
+    <Latex>{String.raw`\dfrac{dL}{dw^{<1>}}`}</Latex> approaches 0 when the number
+    of layers starts to grow. Layers that are close to the output layer are still
+    able to change their respective weights appropriately, but the farther the layers
     are removed from the loss, the closer the multiplicator gets to 0 and the closer
     the derivative gets to 0. The weights of the first layers remain virtually unchanged
-    from their initial values, essentially preventing the neural network from learning.
-    That is the vanishing gradient problem.
+    from their initial values, preventing the neural network from learning. That
+    is the vanishing gradient problem.
   </p>
   <p>
     The derivative <Latex>{String.raw`\dfrac{dz^{<l>}}{da^{<l-1>}}`}</Latex> on the
     other hand is just the corresponding weight <Latex
       >{String.raw`w^{<l>}`}</Latex
-    >. Assuming for example that <Latex>{String.raw`w^{<2>}`}</Latex> and <Latex
+    >.
+  </p>
+  <p>
+    Assuming for example that <Latex>{String.raw`w^{<2>}`}</Latex> and <Latex
       >{String.raw`w^{<3>}`}</Latex
     > are both 0.95, we would deal with the following gradient.
   </p>
@@ -275,8 +279,8 @@
   >
   <p>
     Here we can make a similar argument that we did with the derivative of the
-    sigmoid. Given that the majority of weights are between -1 and 1 and the
-    number of layer grows, we will face vanishing gradients.
+    sigmoid. When the derivatives of weights are between 0 and 1, the gradients
+    in the first layers will approach 0.
   </p>
   <p>
     Obviously unlike with the sigmoid, weights do not have any lower or higher
@@ -308,5 +312,9 @@
     Derivatives of activation functions and weights have a significant impact on
     whether we can train a deep neural network successfully or not.
   </Alert>
+  <p>
+    The remedies to those problems will for the most part deal with adjustmens
+    to weights and activation functions. This will be the topic of this chapter.
+  </p>
   <div class="separator" />
 </Container>
