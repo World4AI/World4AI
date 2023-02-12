@@ -5,12 +5,16 @@
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
   import Alert from "$lib/Alert.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
   import Path from "$lib/plt/Path.svelte";
   import XLabel from "$lib/plt/XLabel.svelte";
   import YLabel from "$lib/plt/YLabel.svelte";
+
+  import reluMetrics from "./relu_metrics.png";
+  import sigmoidMetrics from "./sigmoid_metrics.png";
 
   let references = [
     {
@@ -66,10 +70,6 @@
     return z <= 0 ? 0 : z;
   }
 
-  function reluPrime(z) {
-    return z <= 0 ? 0 : 1;
-  }
-
   // fill the ReLU function data
   const reluPath = [];
   for (let i = -10; i <= 10; i += 0.1) {
@@ -90,10 +90,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Activation Functions</title>
+  <title>Activation Functions - World4AI</title>
   <meta
     name="description"
-    content="There are many different activation functions out there, but not all are of equal value. We use sigmoid to scale the values between 0 and 1, we use tanh to scale values between -1 and 1 and we use ReLU almost exclusiviely for all hidden units."
+    content="There are many different activation functions out there, but many encourage vanishing gradients. The sigmoid activation function is one of the main drivers of the vanishing gradients problem. The tanh is a slighly better option, but can still lead to vanishing gradients. ReLU (and its variants) is better suited for hidden units and is therefore the most popular activation function."
   />
 </svelte:head>
 
@@ -102,7 +102,7 @@
 
 <Container>
   <p>
-    The sigmoid activation fuction is one of the causes of the vanishing
+    The sigmoid activation function is one of the main causes of the vanishing
     gradients problem. Because of that researchers have tried to come up with
     activation functions with better properties. In this section we are going to
     compare and contrast some of the most popular activation functions, while
@@ -140,7 +140,7 @@
     implemented logistic regression still applies. We can use the sigmoid and
     the softmax to turn logits into probabilities. Nowadays we primarily use the
     sigmoid <Latex>{String.raw`\dfrac{1}{1+e^{-z}}`}</Latex> and the softmax <Latex
-      >{String.raw`\dfrac{e^{z}}{\sum_d e^{z}}`}</Latex
+      >{String.raw`\dfrac{e^{z}}{\sum e^{z}}`}</Latex
     > in the last layer of the neural network, to determine the probability to belong
     to a particular class.
   </p>
@@ -148,6 +148,27 @@
     Use the sigmoid and the softmax as activations if you need to scale values
     between 0 and 1.
   </Alert>
+  <p>
+    There are generally two ways to implement activation functions. We can use
+    PyTorch in a functional way and apply <code>torch.sigmoid(X)</code> in the
+    <code>forward()</code>
+    function of the model or as we have done so far, we can use the object-oriented
+    way and use the <code>torch.nn.Sigmoid()</code> as part of
+    <code>nn.Sequential()</code>.
+  </p>
+  <PythonCode
+    code={`# functional way
+sigmoid_output = torch.sigmoid(X)
+# object-oriented way
+sigmoid_layer = torch.nn.Sigmoid()
+`}
+  />
+  <p>
+    If we can fit the whole logic of the model into <code>nn.Sequential</code>,
+    we will generally do that and use the object-oriented way. Sometimes, when
+    the code gets more complicated, this will not possible and we will resort to
+    the functional approach. The choice is generally yours.
+  </p>
   <div class="separator" />
 
   <h2>Hyperbolic Tangent</h2>
@@ -201,8 +222,8 @@
     >
       <Path data={sigmoidTanhPrimePath[0]} strokeDashArray={[2, 4]} />
       <Path data={sigmoidTanhPrimePath[1]} />
-      <XLabel text={"z"} type="latex" />
-      <YLabel text={"f(z)`"} type="latex" x={0} />
+      <XLabel text={"z"} type="latex" y={240} />
+      <YLabel text={"f(z)'"} type="latex" x={0} />
       <Ticks
         xTicks={[-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10]}
         yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
@@ -217,25 +238,33 @@
     over tanh, but in case you actually desire outputs between -1 and 1, you
     should use the tanh.
   </p>
-  
+
   <Alert type="info">
     Use the tanh as your activation function if you need to scale values between
     -1 and 1.
   </Alert>
+  <p>
+    Once again there are two broad approaches to activation functions: the
+    functional and the object-oriented one.
+  </p>
+  <PythonCode
+    code={`tanh_output = torch.tanh(X)
+tanh_layer = torch.nn.Tanh()`}
+  />
   <div class="separator" />
 
   <h2>ReLU</h2>
   <p>
     The ReLU (rectified linear unit) is at the same time extremely simple and
-    extremely powerful. The function returns the unchanged input as its output
-    when the input value is positive and 0 otherwise <InternalLink
+    extremely powerful. The function returns the unchanged input <Latex>z</Latex
+    > as its output when the input value is positive and 0 otherwise <InternalLink
       type={"reference"}
       id="1"
     />.
   </p>
   <Latex
     >{String.raw`
-    \text{ReLU} = 
+    \text{ReLU}(z) = 
         \begin{cases}
         z & \text{if } z > 0 \\
             0 & \text{ otherwise }
@@ -280,12 +309,18 @@
     Hopefully you will interject at this point and point out, that while the
     derivative of exactly 1 will help to fight the problem of vanishing
     gradients, a derivative of 0 will push the product in the chain rule to
-    exactly 0. Given there is even a single neuron in the chain with a negative
-    net input, the whole derivative will amount to 0. This is true and is known
-    as the <Highlight>dying relu problem</Highlight>, but in practice you will
-    not encounter the problem too often. Given that you have a large amount of
-    neurons in each layer, there should be enough paths to propagate the signal.
+    exactly 0. This is true and is known as the <Highlight
+      >dying relu problem</Highlight
+    >, but in practice you will not encounter the problem too often. Given that
+    you have a large amount of neurons in each layer, there should be enough
+    paths to propagate the signal.
   </p>
+  <p>PyTorch offers the two approaches for ReLU as well.</p>
+  <PythonCode
+    code={`relu_output = torch.relu(X)
+relu_layer = torch.nn.ReLU()
+`}
+  />
   <p>
     Over time researchers tried to come up with improvements for the ReLU
     activation. The leaky ReLU for example does not completely kill off the
@@ -321,16 +356,89 @@
     />
   </Plot>
   <p>
+    When activation functions start to get slighly more exotic, you will often
+    not find the in the <code>torch</code> namespace directly, but in the
+    <code>torch.nn.functional</code> namespace.
+  </p>
+  <PythonCode
+    code={`lrelu_output = torch.nn.functional.leaky_relu(X, negative_slope=0.01)
+lrelu_layer = torch.nn.LeakyReLU(negative_slope=0.01)
+`}
+  />
+  <p>
     There are many more activation functions out there, expecially those that
     try to improve the original ReLU. For the most part we will use the plain
     vanilla ReLU, because the mentioned improvements generally do not provide
     significant advantages.
   </p>
   <Alert type="info">
-    You should use the ReLU as your main activation function. Deviate only from
-    this activation, if you have any specific reason to do so.
+    You should use the ReLU (or its relatives) as your main activation function.
+    Deviate only from this activation, if you have any specific reason to do so.
   </Alert>
 
-  <div class="separator" />
+  <p>
+    Now let's have a peak at the difference in the performance between the
+    sigmoid and the ReLU activation functions. Once again we are dealing with
+    the MNIST dataset, but this time around we create two models, each with a
+    different set of activation functions. Both models are larger, than they
+    need to be, in order to demonstrate the vanishing gradient problem.
+  </p>
+  <PythonCode
+    code={`class SigmoidModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(NUM_FEATURES, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, NUM_LABELS)
+        )
+        
+    def forward(self, features):
+        return self.layers(features)
+    
+class ReluModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(NUM_FEATURES, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, NUM_LABELS)
+        )
+        
+    def forward(self, features):
+        return self.layers(features)`}
+  />
+
+  <p>
+    The sigmoid model starts out very slowly and even after 30 iterations has
+    not managed to decrease the training loss significantly. If you train the
+    same sigmoid model several times, you will notice, that sometimes the loss
+    does not decrease at all. It all depends on the starting weights.
+  </p>
+  <img src={sigmoidMetrics} alt="Metrics with sigmoid activation" />
+  <p>
+    The loss of the ReLU model on the other hand decreases significantly, thus
+    indicating that the gradients propagate much better with this type of
+    activation function.
+  </p>
+  <img src={reluMetrics} alt="Metrics with relu activation" />
 </Container>
 <Footer {references} />
