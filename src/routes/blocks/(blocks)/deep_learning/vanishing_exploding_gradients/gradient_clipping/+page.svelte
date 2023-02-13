@@ -1,13 +1,30 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Clipping from "../_gradient_clipping/Clipping.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
   import Path from "$lib/plt/Path.svelte";
   import Circle from "$lib/plt/Circle.svelte";
+
+  // table
+  import Table from "$lib/base/table/Table.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+
+  const valueHeader = ["Original Gradient", "Clipped Gradient"];
+  const valueData = [
+    [1, 1],
+    [0.5, 0.5],
+    [2, 1],
+    [-3, -1],
+  ];
 
   let valuePaths = [];
   function recalculateValue() {
@@ -67,7 +84,7 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Gradient Clipping</title>
+  <title>Gradient Clipping - World4AI</title>
   <meta
     name="description"
     content="Gradient clipping clips either individual gradient values or the norm of the gradient vector at a predetermined threshold, thereby reducing the likelihood of exploding gradients."
@@ -79,31 +96,50 @@
 
 <Container>
   <p>
-    Exploding gradients is a problem where the backpropagation algorithm returns
-    larger and larger gradients. The algorithm gets increasingly more unstable
-    until the gradient values do not fit into memory.
+    The exploding gradients problem arises when the gradients get larger and
+    larger, until they get larger than the maximum permitted value for the
+    tensor datatype.
   </p>
   <p>
-    So why do we not just determine a gradient threshold and if the gradient
-    value moves beyond that threshold we cut the gradient? The technique we just
-    described is called gradient clipping, value clipping to be exact. At the
-    start of the training process we determine a value beyond which the absolute
-    value of the gradient is not allowed to move.
+    We could remedy the problem with a simple solution. We could determine the
+    maximum allowed gradient and if the gradient value moves beyond that
+    threshold we cut the gradient to the allowed value. The technique we just
+    described is called <Highlight>gradient clipping</Highlight>, value clipping
+    to be exact.
   </p>
   <p>
-    The interactive example below demonstrates the process. You can use the
-    slider to move the threshold for the gradient clipping. When individual
-    gradients move outside the range, we clip them.
+    The below table demonstrates how value clipping works in theory. We set the
+    threshold value to 1 and if the absolute value of the gradient moves beyond
+    the threshold, we clip it to the max value.
   </p>
-  <Clipping type="value" />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each valueHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each valueData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>
     Value clipping is problematic, because it basically changes the direction of
-    gradient descent. When you start the simulation, the gradients will start to
-    move randomly in the 2d coordinate system. If one of the gradients is larger
-    than one, we will clip that gradient to 1. So if one gradient is 3 and the
-    other is 1.5, we clip both to 1, thereby disregarding the relative magnitude
-    of the vector components and changing the direction of the vector. The
-    clipped vector will move along the circumference of the square.
+    gradient descent. Below is a simulation to demonstrate the problem. When you
+    start the simulation, the gradient vector (dashed line) will start to move
+    randomly in the 2d coordinate system. If one of of the two gradients is
+    larger than one, we will clip that gradient to 1 and thus create a new
+    gradient vector (red line). So if one gradient is 3 and the other is 1.5, we
+    clip both to 1, thereby disregarding the relative magnitude of the vector
+    components and changing the direction of the vector. This is not what we
+    actually desire.
   </p>
   <ButtonContainer>
     <PlayButton f={recalculateValue} delta={800} />
@@ -129,19 +165,17 @@
       ]}
       color="var(--main-color-1)"
     />
-    <Path data={valuePaths[0]} strokeDashArray={[4, 4]} />
     <Path data={valuePaths[1]} color="var(--main-color-1)" />
+    <Path data={valuePaths[0]} strokeDashArray={[4, 4]} />
   </Plot>
   <p>
-    A better solution is to use norm clipping. When we clip the norm, we clip
-    all the gradients proportialnally, such that the direction remains the same.
-    Below we specifically use the L2 norm.
+    A better solution is to use norm clipping. When we clip the norm of the
+    gradient vector, we clip all the gradients proportionally, such that the
+    direction remains the same.
   </p>
-  <Clipping type="norm" />
   <p>
-    While the magnitude of the gradient vector is reduced to the threshold
-    value, the direction remains unchanged. The clipped vector moves along the
-    circumference of a circle.
+    Below is a simulation of norm clipping. When the magnitude of the gradient
+    vector is reduced to the threshold value, the direction remains unchanged.
   </p>
   <ButtonContainer>
     <PlayButton f={recalculateNorm} delta={800} />
@@ -162,9 +196,24 @@
     <Path data={normPaths[1]} color="var(--main-color-1)" />
   </Plot>
   <p>
-    This solution feels like a hack, but it is quite pracktical. You might not
-    be able to solve all your problems with gradient clipping, but it should be
-    part of your toolbox.
+    Norm clipping often feels like a hack, but it is actually quite practical.
+    You might not be able to solve all your problems with gradient clipping, but
+    it should be part of your toolbox.
+  </p>
+  <p>
+    The implementation of gradient clipping is PyTorch is astonishingly simple.
+    All we have to do is to add the following line of code after we call <code
+      >loss.backward()</code
+    >
+    but before we call <code>optimizer.step()</code>.
+  </p>
+  <PythonCode
+    code={`nn.utils.clip_grad_norm_(model.parameters(), max_norm=1)`}
+  />
+  <p>
+    The above line concatenates all parameter gradients into a single vector,
+    calculates the norm for that vector and eventually clips the gradients
+    in-place, if the norm is above 1.
   </p>
   <div class="separator" />
 </Container>
