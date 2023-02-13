@@ -349,9 +349,9 @@ Epoch: 30/30 | Train Loss: 0.04259131510365781 | Val Loss: 0.1637446080291023
     alt="Performance metrics with Xavier initialization"
   />
   <p>
-    You should still use the ReLU activation function for deep learning
-    networks, but be aware that weight initialization might have a significant
-    impact on the performance of your model.
+    You should still use the ReLU activation function for deep neural networks,
+    but be aware that weight initialization might have a significant impact on
+    the performance of your model.
   </p>
 </Container>
 <Footer {references} />
