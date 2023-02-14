@@ -5,6 +5,7 @@
   import Latex from "$lib/Latex.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   let references = [
     {
@@ -56,7 +57,7 @@
 
   let batch = [
     {
-      title: "",
+      title: "Net Input",
       nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
     {
@@ -67,14 +68,10 @@
       title: "Batch Norm",
       nodes: [{ value: "\\mathbf{\\bar{a}}", class: "fill-w4ai-yellow" }],
     },
-    {
-      title: "",
-      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
-    },
   ];
   let batch2 = [
     {
-      title: "",
+      title: "Net Input",
       nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
     {
@@ -84,10 +81,6 @@
     {
       title: "Activations",
       nodes: [{ value: "\\mathbf{a}", class: "fill-w4ai-yellow" }],
-    },
-    {
-      title: "",
-      nodes: [{ value: "\\mathbf{z}", class: "fill-w4ai-yellow" }],
     },
   ];
 </script>
@@ -105,14 +98,12 @@
 
 <Container>
   <p>
-    In a previous section we have discussed the need to scale the input features
-    in order to speed up training of a neural network. And while standardizing
-    or normalizing the input features can speed up the training process
-    significantly, it makes sense to ask ourselves the following question.
-    Should we try to scale the intermediary features that come out of hidden
-    units? Would that be in any form benefitary for trainig?
+    In a previous chapter we have discussed feature scaling. Feature scaling
+    only applies to the input layer, so should we try to scale the intermediary
+    features that are produced by hidden units? Would that be in any form
+    benefitiary for trainig?
   </p>
-  <NeuralNetwork height={100} width={250} maxWidth={"700px"} {layers} />
+  <NeuralNetwork height={100} width={250} maxWidth={"500px"} {layers} />
   <p>
     Sergey Ioffe and Christian Szegedy answered the question with a definitive
     yes<InternalLink type="reference" id="1" />. When we add so called <Highlight
@@ -122,34 +113,43 @@
     gaining other additional advantages.
   </p>
   <p>
-    Consider a particular layer <Latex>l</Latex> to which output we would like to
-    apply batch normalization. With each new batch for each hidden feature <Latex
-      >j</Latex
-    > we calculate the mean
-    <Latex>{String.raw`\mu_j`}</Latex> and the variance
-    <Latex>{String.raw`\sigma_j^2`}</Latex>.
+    Consider a particular layer <Latex>l</Latex>, to which output we would like
+    to apply batch normalization. Using a batch of data we calculate the mean <Latex
+      >{String.raw`\mu_j`}</Latex
+    > and the variance
+    <Latex>{String.raw`\sigma_j^2`}</Latex> for each hidden unit <Latex>j</Latex
+    > in the layer.
   </p>
-  <Latex
-    >{String.raw`
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`
   \begin{aligned}
     \mu_j &= \dfrac{1}{n}\sum_{i=1}^n a_j^{(i)} \\
     \sigma_j^2 &= \dfrac{1}{n}\sum_{i=1}^n (a_j^{(i)} - \mu_j)
   \end{aligned}
     `}</Latex
-  >
-  <p>Given those parameters we normalize the hidden features.</p>
-  <Latex
-    >{String.raw`\hat{a}_j^{(i)} = \dfrac{a_j^{(i)} - \mu_j}{\sqrt{\sigma_j^2 + \epsilon}}`}</Latex
-  >
+    >
+  </div>
+  <p>
+    Given those parameters we can normalize the hidden features, using the same
+    procedure we used for feature scaling.
+  </p>
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`\hat{a}_j^{(i)} = \dfrac{a_j^{(i)} - \mu_j}{\sqrt{\sigma_j^2 + \epsilon}}`}</Latex
+    >
+  </div>
   <p>
     The authors argued that this normalization procedure might theoretically be
-    detremental to the performance, because it might change what the layer is
-    able represent. To combat that they introduced an additional step that
-    allowed the neural network to reverse the standardization.
+    detremental to the performance, because it might reduce the expressiveness
+    of the neural network. To combat that they introduced an additional step
+    that allowed the neural network to reverse the standardization.
   </p>
-  <Latex
-    >{String.raw`\bar{a}_j^{(i)} = \gamma_j \hat{a}_j^{(i)} + \beta_j`}</Latex
-  >
+  <div class="flex justify-center">
+    <Latex
+      >{String.raw`\bar{a}_j^{(i)} = \gamma_j \hat{a}_j^{(i)} + \beta_j`}</Latex
+    >
+  </div>
   <p>
     The feature specific parameters <Latex>\gamma</Latex> and <Latex
       >\beta</Latex
@@ -158,20 +158,31 @@
     > to
     <Latex>\sigma_j</Latex> and <Latex>\beta_j</Latex> to <Latex>\mu_j</Latex> that
     essentially neutralizes the normalization. If normalization indeed worsens the
-    performance, the neural network has the option to reverse the normalization and
-    thereby to produce the identity function.
+    performance, the neural network has the option to reverse the normalization step.
   </p>
   <p>
     Our formulations above indicated that batch normalization is applied to
     activations. This procedure is similar to input feature scaling, because you
-    normalize the data to be processed in the next layer.
+    normalize the data that is processed in the next layer.
   </p>
-  <NeuralNetwork height={50} width={250} maxWidth={"700px"} layers={batch} />
+  <NeuralNetwork
+    height={50}
+    width={250}
+    maxWidth="600px"
+    layers={batch}
+    padding={{ left: 0, right: 30 }}
+  />
   <p>
     In practice though batch norm is often applied to the net inputs and the
     result is forwarded to the activation function.
   </p>
-  <NeuralNetwork height={50} width={250} maxWidth={"700px"} layers={batch2} />
+  <NeuralNetwork
+    height={50}
+    width={250}
+    maxWidth={"600px"}
+    layers={batch2}
+    padding={{ left: 0, right: 30 }}
+  />
   <p>
     There is no real consensus about how you should apply batch normalization,
     but this decision in all likelihood should not make or break your project.
@@ -189,30 +200,77 @@
     The authors observed several adantages that batch normalization provides.
     For once batch norm makes the model less sensitive to the choice of the
     learning rate, which allows us to increase the learning rate and thereby
-    increase the speed of learning. Second, the model is more forgiving when
-    choosing bad initial weights and seems to help with the vanishing gradients
-    problem. Overall the authors observed a significant increase in training
-    speed, requiring less epochs to arrive at the same performance. Finally
-    batch norm seems to act as a regularizer. When we train the neural network
-    we calculate the mean <Latex>\mu_j</Latex> and the standard deviation <Latex
-      >\sigma_j</Latex
-    > one batch at a time. This calculation is noisy and the neural network has to
-    learn to tune out that noise in order to achieve a reasonable performance. During
-    inference this procedure would cause problems, because different inference runs
-    would create different batches and therefore generate different outputs. But
-    we want the neural network to be deterministic during inference. The same inputs
-    should always lead to the same outputs. For that reason during training the batch
-    norm layer calculates a moving average of <Latex>\mu</Latex> and <Latex
-      >\sigma</Latex
-    > that can be used at inference time.
+    increase the speed of convergence. Second, the model is more forgiving when
+    choosing bad initial weights. Third, batch normalization seems to help with
+    the vanishing gradients problem. Overall the authors observed a significant
+    increase in training speed, thus requiring less epochs to reach the desired
+    performance. Finally batch norm seems to act as a regularizer. When we train
+    the neural network we calculate the mean <Latex>\mu_j</Latex> and the standard
+    deviation <Latex>\sigma_j</Latex> one batch at a time. This calculation is noisy
+    and the neural network has to learn to tune out that noise in order to achieve
+    a reasonable performance.
   </p>
   <p>
-    Let us finish this chapter by mentioning that no one really seems to know
-    why batch norm works. Different hypotheses have been formulated over the
-    years, but there seems to be no clear consensus on the matter. All you have
-    to know is that batch normalization works well and is almost a requirement
-    when training modern deep neural networks. This technique will become one of
-    your main tools when designing modern neural network architectures.
+    During inference the procedure of calculating per batch statistics would
+    cause problems, because different inference runs would generate different
+    means and standard deviations and therefore generate different outputs. We
+    want the neural network to be deterministic during inference. The same
+    inputs should always lead to the same outputs. For that reason during
+    training the batch norm layer calculates a moving average of <Latex
+      >\mu</Latex
+    > and <Latex>\sigma</Latex> that can be used at inference time.
+  </p>
+  <p>
+    Let also mention that no one really seems to know why batch norm works.
+    Different hypotheses have been formulated over the years, but there seems to
+    be no clear consensus on the matter. All you have to know is that batch
+    normalization works well and is almost a requirement when training modern
+    deep neural networks. This technique will become one of your main tools when
+    designing modern neural network architectures.
+  </p>
+  <p>
+    PyToch has an explicit <code>BatchNorm1d</code> module that can be applied
+    to a flattened tensor, like the flattened MNIST image. The 2d version will
+    become important when we start dealing with 2d images. Below we create a
+    small module that combines a linear mapping, batch normalization and a
+    non-linear activation. Notice that we we provide the linear module with the
+    argument <code>bias=False</code> in order to deactivate the bias calculation.
+  </p>
+  <PythonCode
+    code={`HIDDEN_FEATURES = 70
+class BatchModule(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(HIDDEN_FEATURES, HIDDEN_FEATURES, bias=False),
+            nn.BatchNorm1d(HIDDEN),
+            nn.ReLU()
+        )
+    
+    def forward(self, features):
+        return self.layers(features)`}
+  />
+  <p>We can reuse the above defined module several times.</p>
+  <PythonCode
+    code={`class Model(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.layers = nn.Sequential(
+                nn.Flatten(),
+                nn.Linear(NUM_FEATURES, HIDDEN_FEATURES),
+                BatchModule(),
+                BatchModule(),
+                BatchModule(),
+                nn.Linear(HIDDEN, NUM_LABELS),
+            )
+    
+    def forward(self, features):
+        return self.layers(features)`}
+  />
+  <p>
+    As the batch normalization layer behaves differently during training and
+    evalutation, don't forget to switch between <code>model.train()</code>
+    and <code>model.eval()</code>.
   </p>
 </Container>
 <Footer {references} />
