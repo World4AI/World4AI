@@ -6,6 +6,7 @@
   import StepButton from "$lib/button/StepButton.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import Plot from "$lib/plt/Plot.svelte";
   import Ticks from "$lib/plt/Ticks.svelte";
@@ -207,10 +208,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Optimizers</title>
+  <title>Optimizers - World4AI</title>
   <meta
     name="description"
-    content="Optimizers like momentum gradient descent, RMSProp and adam have several advantages over vanilla gradient descent and can speed up training significantly."
+    content="Optimizers like momentum gradient descent, RMSProp and adam have several advantages over vanilla gradient descent and can speed up training significantly. Switching out optimizers in PyTorch is relatively easy and usually requires switching just a single line of code."
   />
 </svelte:head>
 
@@ -221,11 +222,15 @@
   <p>
     In deep learning the specific gradient descent algorithm is called an
     <Highlight>optimizer</Highlight>. So far we have only really looked at the
-    plain vanilla gradient descent optimizer. With each batch we use the
-    backpropagation algorithm to calculate the gradient vector <Latex
-      >{String.raw`\mathbf{\nabla}_w`}</Latex
-    >. The gradient descent optimizer directly subtracts the gradient, scaled by
-    the learning rate <Latex>\alpha</Latex>, from the weight vector <Latex
+    plain vanilla gradient descent optimizer called <code>SGD</code>, short for
+    stochastic gradient descent.
+  </p>
+  <PythonCode code={`optimizer = optim.SGD(model.parameters(), lr=0.01)`} />
+  <p>
+    With each batch we use the backpropagation algorithm to calculate the
+    gradient vector <Latex>{String.raw`\mathbf{\nabla}_w`}</Latex>. The gradient
+    descent optimizer directly subtracts the gradient, scaled by the learning
+    rate <Latex>\alpha</Latex>, from the weight vector <Latex
       >{String.raw`\mathbf{w}`}</Latex
     > without any further adjustments.
   </p>
@@ -241,45 +246,50 @@
 
   <h2>Momentum</h2>
   <p>
-    The plain vanilla gradient descent algorithm lacks any form of memory. If
-    the derivative for a variable is +1 at timestep 1 and -1 at timestep 2, the
-    optimizer will disregard the past direction and only move into the -1
-    direction.
+    The plain vanilla gradient descent algorithm lacks any form of memory. This
+    optimizer only takes the gradient direction from the current batch into
+    consideration and disregards any past gradient calculations.
   </p>
   <p>
-    Momentum on the other hand keeps a moving average of the past directions and
-    uses that average additionally to the current gradient.
+    When we use stochastic gradient descent with momentum on the other hand, we
+    keep a moving average of the past directions and use that average
+    additionally to the current gradient to adjust the weights.
   </p>
   <Latex
     >{String.raw`\mathbf{m_t} = \beta \mathbf{m}_{t-1} + (1 - \beta) \mathbf{\nabla}_w `}</Latex
   >
   <p>
-    The vector <Latex>{String.raw`\mathbf{m}_t`}</Latex> contains the momentum vector,
-    which is build as a weighted average of the past momentum <Latex
-      >{String.raw`\mathbf{m}_{t-1}`}</Latex
-    > and the current gradient <Latex>{String.raw`\mathbf{\nabla}_w`}</Latex> . At
-    each timepoint <Latex>t</Latex> we multiply the momentum vector from the previous
-    period <Latex>{String.raw`\mathbf{m}_{t-1}`}</Latex> with the momentum factor
-    <Latex>\beta</Latex>. Usually this factor is around 0.9. We scale the
-    current gradient vector <Latex>{String.raw`\mathbf{\nabla}_w`}</Latex> by <Latex
-      >1-\beta</Latex
-    >. This sum and not the gradients directly is what we use to adjust the
-    weights.
+    At each timestep <Latex>{String.raw`t`}</Latex> we calculate the momentum vector
+    <Latex>{String.raw`\mathbf{m}_t`}</Latex> as a weighted average of the previous
+    momentum <Latex>{String.raw`\mathbf{m}_{t-1}`}</Latex> and the current gradient
+    <Latex>{String.raw`\mathbf{\nabla}_w`}</Latex>, where
+    <Latex>\beta</Latex> is usually around 0.9. As the initial momentum vector <Latex
+      >{String.raw`\mathbf{m}_0`}</Latex
+    > is essentially empty, deep learning frameworks like PyTorch initialize the
+    vector by setting the momentum to the actual gradient vector.
+  </p>
+  <Latex>{String.raw`\mathbf{m}_0 = \mathbf{\nabla}_w`}</Latex>
+  <p>
+    When we apply gradient descent, we do not use the gradient vector <Latex
+      >\nabla</Latex
+    > directly to adjust the weights of the neural network, but use momentum instead.
   </p>
   <Latex
     >{String.raw`\mathbf{w}_{t+1} := \mathbf{w}_t - \alpha \mathbf{m}_t`}</Latex
   >
   <p>
-    As the momentum vector <Latex>{String.raw`\mathbf{m}_0`}</Latex> is essentially
-    empty, the deep learning frameworks like PyTorch and Keras initialize the vector
-    by setting the momentum to the actual gradient vector.
+    In PyTorch we can use gradient descent with momentum by passing an
+    additional argument to the <code>SGD</code> object.
   </p>
-  <Latex>{String.raw`\mathbf{m}_0 = \mathbf{\nabla}_w`}</Latex>
+  <PythonCode
+    code={`optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)`}
+  />
   <p>
-    Below we see the same example with the local minimum, that we studied the
-    first time we encountered gradient descent. The example showed, that
-    gradient descent will get stuck in a local minimum. Gradient descent with
-    momentum on the other has a chance to escape the local minimum.
+    But why is momentum actually useful? Below we see the same example with the
+    local minimum, that we studied the first time we encountered gradient
+    descent. The example showed, that gradient descent will get stuck in a local
+    minimum. Gradient descent with momentum on the other has a chance to escape
+    the local minimum.
   </p>
 
   <ButtonContainer>
@@ -291,25 +301,23 @@
     maxWidth="500"
     domain={[-3, 7]}
     range={[-40, 120]}
-    padding={{ top: 40, right: 40, bottom: 40, left: 50 }}
+    padding={{ top: 20, right: 20, bottom: 20, left: 25 }}
   >
     <Ticks
       xTicks={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7]}
       yTicks={[-40, -20, 0, 20, 40, 60, 80, 100, 120]}
     />
-    <XLabel text="x" type="latex" />
-    <YLabel text="f(x)" type="latex" />
     <Path data={localMinimumData} />
     <Circle data={localPoint} />
   </Plot>
 
   <p>
-    But even given a direct path towards the minimum without any saddle points
-    and local minima, the momentum optimizer will build acceleration and
-    converge faster towards the minimum. Below we compare the convergence speed
-    between simple stochastic gradient descent and momentum for <Latex
-      >{String.raw`x^2 + y^2`}</Latex
-    >. The momentum based approach arrives faster at the optimum.
+    Even when we are dealing with a direct path towards the minimum without any
+    saddle points and local minima, the momentum optimizer will build
+    acceleration and converge faster towards the minimum. Below we compare the
+    convergence speed between simple stochastic gradient descent and momentum
+    for <Latex>{String.raw`x^2 + y^2`}</Latex>. The momentum based approach
+    arrives faster at the optimum.
   </p>
   <Plot
     width="600"
@@ -345,10 +353,10 @@
   <h2>RMSProp</h2>
   <p>
     Adaptive optimizers, like RMSProp<InternalLink type="note" id="1" />, do not
-    focus on speed per se, but help to determine a better direction for gradient
-    descent. If we are dealing with a bowl shaped loss function, the gradients
-    will not be symmetrical. That means that we will approach the optimal value
-    not in a direct line, but rather in a zig zagging manner.
+    adjust speed per se, but determine a better direction for gradient descent.
+    If we are dealing with a bowl shaped loss function for example, the
+    gradients will not be symmetrical. That means that we will approach the
+    optimal value not in a direct line, but rather in a zig zagging manner.
   </p>
   <Plot
     width="1000"
@@ -389,7 +397,7 @@
     which would result in a straight line towards the optimium. Theoretically we
     could offset the zig zag by using an individual learning rate for each of
     the weights, but given that there are million of weights in modern deep
-    learning, this approach is not feasable. Adaptive optimizers scales each
+    learning, this approach is not feasable. Adaptive optimizers scale each
     gradient in such a way, that we approach the optimum in a much straighter
     line. These optimizers allow to use a single learning rate for the whole
     neural network.
@@ -436,7 +444,7 @@
     <Path data={vanillaCoordinates2} stroke="4" strokeDashArray={"3 6"} />
     <Path
       data={momentumCoordinates2}
-      color="var(--main-color-4)"
+      color="var(--main-color-2)"
       stroke="4"
       strokeDashArray={"3 6"}
     />
@@ -455,7 +463,7 @@
     <Legend
       coordinates={{ x: -0.9, y: -0.9 }}
       text="Gradient Descent With Momentum"
-      legendColor="var(--main-color-4)"
+      legendColor="var(--main-color-2)"
     />
     <Legend
       coordinates={{ x: -0.9, y: -0.95 }}
@@ -463,6 +471,12 @@
       legendColor="var(--main-color-3)"
     />
   </Plot>
+  <p>
+    The api for all optimizers in PyTorch is identical, so we can simply replace
+    the <code>SGD</code> object with the <code>RMSprop</code> object and we are good
+    to go.
+  </p>
+  <PythonCode code={`optimizer = optim.RMSprop(model.parameters(), lr=0.01)`} />
   <div class="separator" />
 
   <h2>Adam</h2>
@@ -487,6 +501,7 @@
     in time. If you don't have any specific reason to use a different optimizer,
     use adam.
   </p>
-  <div class="separator" />
+  <p>We can implement the adam optimizer in PyTorch the following way.</p>
+  <PythonCode code={`optimizer = optim.Adam(model.parameters(), lr=0.01)`} />
 </Container>
 <Footer {references} {notes} />
