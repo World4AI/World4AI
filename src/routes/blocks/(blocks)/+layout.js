@@ -216,39 +216,39 @@ export function load() {
       },
       /*
       {
-        name: "Image Classification",
+        name: "Computer Vision",
         links: [
           {
             name: "Introduction",
-            link: "/blocks/deep_learning/image_classification/introduction",
+            link: "/blocks/deep_learning/computer_vision/introduction",
           },
           {
             name: "Fundamentals of Convolutional Neural Networks",
-            link: "/blocks/deep_learning/image_classification/convolutional_neural_networks_fundamentals",
+            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_fundamentals",
           },
           {
             name: "CNN Architectures",
-            link: "/blocks/deep_learning/image_classification/architectures",
+            link: "/blocks/deep_learning/computer_vision/architectures",
           },
           {
             name: "LeNet-5",
-            link: "/blocks/deep_learning/image_classification/lenet_5",
+            link: "/blocks/deep_learning/computer_vision/lenet_5",
           },
           {
             name: "AlexNet",
-            link: "/blocks/deep_learning/image_classification/alexnet",
+            link: "/blocks/deep_learning/computer_vision/alexnet",
           },
           {
             name: "VGG",
-            link: "/blocks/deep_learning/image_classification/vgg",
+            link: "/blocks/deep_learning/computer_vision/vgg",
           },
           {
             name: "GoogLeNet",
-            link: "/blocks/deep_learning/image_classification/googlenet",
+            link: "/blocks/deep_learning/computer_vision/googlenet",
           },
           {
             name: "ResNet",
-            link: "/blocks/deep_learning/image_classification/resnet",
+            link: "/blocks/deep_learning/computer_vision/resnet",
           },
         ],
       },
