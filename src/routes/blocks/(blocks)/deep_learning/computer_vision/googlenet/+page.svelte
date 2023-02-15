@@ -3,8 +3,7 @@
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
-  import Diagram from "$lib/diagram/Diagram.svelte";
-  import Convolution from "../../image_classification/_convolution/Convolution.svelte";
+  import Convolution from "../../computer_vision/_convolution/Convolution.svelte";
 
   let header = ["Type", "Input Size", "Output Size"];
   let data = [
@@ -444,18 +443,22 @@
     going to implement these so called auxilary losses. Batch normalization is a
     much simpler approach.
   </p>
+  <!--
   <Diagram
     width={basicWidth}
     height={basicHeight}
     maxWidth={basicMaxWidth}
     components={basicComponents}
   />
+  -->
   <p>
     The Inception block takes an input from a previous layer and applies
     calculations in 4 different branches, before concatenating the branches in
     the last step.
   </p>
+  <!--
   <Diagram arrowStrokeWidth={3} {width} {height} {maxWidth} {components} />
+  -->
   <p>
     You will notice that aside from the expected 3x3 convolutions, 5x5
     convolutions and max pooling, there is a 1x1 convolution in each single

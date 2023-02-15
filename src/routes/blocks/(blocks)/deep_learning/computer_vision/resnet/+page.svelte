@@ -3,8 +3,7 @@
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
-  import Diagram from "$lib/diagram/Diagram.svelte";
-  import Convolution from "../../image_classification/_convolution/Convolution.svelte";
+  import Convolution from "../../computer_vision/_convolution/Convolution.svelte";
 
   let header = ["Type", "Repeat", "Parameters"];
   let data = [
@@ -288,12 +287,14 @@
     basic building blocks. Only this time the block is based on skip
     connections.
   </p>
+  <!--
   <Diagram
     width={basicWidth}
     height={basicHeight}
     maxWidth={basicMaxWidth}
     components={basicComponents}
   />
+  -->
   <p>
     The block consists of two convolutions. The skip connection goes directly
     from the output of the previous layer, past the two convolutions and is

@@ -3,7 +3,6 @@
   import Container from "$lib/Container.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
-  import Diagram from "$lib/diagram/Diagram.svelte";
 
   // basic block
   let gap = 1;
@@ -157,12 +156,14 @@
     you omit normalization step, the network will suffer from vanishing
     gradients.
   </p>
+  <!--
   <Diagram
     width={basicWidth}
     height={basicHeight}
     maxWidth={basicMaxWidth}
     components={basicComponents}
   />
+  -->
   <p>
     The full VGG16 implementation looks as follows. All pooling layers have a
     kernel size and stride of 2.
