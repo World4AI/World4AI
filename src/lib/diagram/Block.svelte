@@ -24,8 +24,11 @@
   {#if type === "text"}
     <text font-size={fontSize} {x} {y}>{text}</text>
   {:else if type === "latex"}
-    <foreignObject x={x - width/2} y={y-height/2} {width} {height}>
-      <div style="font-size: {fontSize}px; height: {height}px">
+    <foreignObject x={x - width / 2} y={y - height / 2} {width} {height}>
+      <div
+        style="font-size: {fontSize}px; height: {height}px"
+        class="flex justify-center items-center"
+      >
         <Latex>{text}</Latex>
       </div>
     </foreignObject>
@@ -36,11 +39,5 @@
   text {
     dominant-baseline: middle;
     text-anchor: middle;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 </style>

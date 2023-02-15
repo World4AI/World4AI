@@ -3,7 +3,7 @@
   export let y;
   export let radius = 3.5;
   export let offset = 1;
-  export let color = "none"
+  export let color = "none";
 </script>
 
 <circle cx={x} cy={y} r={radius} fill={color} stroke="black" />
