@@ -214,7 +214,6 @@ export function load() {
           },
         ],
       },
-      /*
       {
         name: "Computer Vision",
         links: [
@@ -222,6 +221,9 @@ export function load() {
             name: "Introduction",
             link: "/blocks/deep_learning/computer_vision/introduction",
           },
+        ],
+      },
+      /*
           {
             name: "Fundamentals of Convolutional Neural Networks",
             link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_fundamentals",

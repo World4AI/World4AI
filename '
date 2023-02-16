@@ -1,0 +1,37 @@
+<script>
+  import Container from "$lib/Container.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+
+  import SvgContainer from "$lib/SvgContainer.svelte";
+  import Block from "$lib/diagram/Block.svelte";
+  import Border from "$lib/diagram/Border.svelte";
+</script>
+
+<svelte:head>
+  <title>Computer Vision - World4AI</title>
+  <meta
+    name="description"
+    content="Computer vision is strongly inspired by human vision. It encompasses a large variety of tasks, but the main categories could be subdivided into image recognition, object detection and semantic segmentation."
+  />
+</svelte:head>
+
+<h1>Computer Vision</h1>
+<div class="separator" />
+
+<Container>
+  <p>
+    <Highlight>Computer vision</Highlight> encompasses quite a large variety of tasks
+    but in a nutshell we could say that computer vision tasks try to emulate animal
+    vision. The computer receives images or videos as input and and is expected to
+    processes those in a useful manner.
+  </p>
+  <p>
+    Broadly speaking many computer vision tasks can be subdivided into 3 major
+    tasks.
+  </p>
+  <p>Image Classification</p>
+
+  <p>Object Detection</p>
+  <p>Semantic Segmentation</p>
+  <div class="separator" />
+</Container>
