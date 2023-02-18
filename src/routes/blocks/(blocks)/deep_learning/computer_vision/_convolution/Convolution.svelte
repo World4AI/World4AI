@@ -140,7 +140,7 @@
 {/if}
 
 <SvgContainer maxWidth={maxWidth + "px"}>
-  <svg viewBox="0 0 {width} {height}">
+  <svg viewBox="0 0 {width + 2} {height + 2}">
     <!-- original image -->
     {#each Array(numChannels) as _, channelIdx}
       <g
@@ -151,24 +151,33 @@
           {#each Array(imageWidth + padding * 2) as _, pixelIdx}
             <!-- padding -->
             <rect
-              x={pixelIdx * (blockSize + gap)}
-              y={rowIdx * (blockSize + gap)}
+              x={1 + pixelIdx * (blockSize + gap)}
+              y={1 + rowIdx * (blockSize + gap)}
               width={blockSize}
               height={blockSize}
-              fill={pixelIdx < filterLocation.column + kernel &&
-              rowIdx < filterLocation.row + kernel &&
-              pixelIdx >= filterLocation.column &&
-              rowIdx >= filterLocation.row
-                ? "var(--main-color-1)"
-                : padding > 0 &&
-                  (rowIdx < padding ||
-                    rowIdx > imageHeight + padding - 1 ||
-                    pixelIdx < padding ||
-                    pixelIdx > imageWidth + padding - 1)
-                ? "var(--main-color-3)"
-                : "var(--main-color-4)"}
-              stroke="black"
+              class={`stroke-black ${
+                pixelIdx < filterLocation.column + kernel &&
+                rowIdx < filterLocation.row + kernel &&
+                pixelIdx >= filterLocation.column &&
+                rowIdx >= filterLocation.row
+                  ? "fill-red-400"
+                  : padding > 0 &&
+                    (rowIdx < padding ||
+                      rowIdx > imageHeight + padding - 1 ||
+                      pixelIdx < padding ||
+                      pixelIdx > imageWidth + padding - 1)
+                  ? "fill-gray-400"
+                  : "fill-slate-400"
+              }`}
             />
+            {#if padding > 0 && (rowIdx < padding || rowIdx > imageHeight + padding - 1 || pixelIdx < padding || pixelIdx > imageWidth + padding - 1)}
+              <text
+                class=""
+                fill="black"
+                x={1 + pixelIdx * (blockSize + gap) + blockSize / 2}
+                y={1 + rowIdx * (blockSize + gap) + blockSize / 2}>0</text
+              >
+            {/if}
           {/each}
         {/each}
       </g>
@@ -190,11 +199,12 @@
                 y={heightPadding + rowIdx * (blockSize + gap)}
                 width={blockSize}
                 height={blockSize}
-                fill={filterLocation.row / stride == rowIdx &&
-                filterLocation.column / stride == pixelIdx
-                  ? "var(--main-color-1)"
-                  : "var(--main-color-4)"}
-                stroke="black"
+                class={`stroke-black ${
+                  filterLocation.row / stride == rowIdx &&
+                  filterLocation.column / stride == pixelIdx
+                    ? "fill-red-400"
+                    : "fill-slate-400"
+                }`}
               />
             {/each}
           {/each}
@@ -207,9 +217,10 @@
       {#each imageNumbers as row, rowIdx}
         {#each row as num, colIdx}
           <text
+            class="text-xs"
             fill="black"
-            x={colIdx * (blockSize + gap) + blockSize / 2}
-            y={rowIdx * (blockSize + gap) + blockSize / 2}>{num}</text
+            x={1 + colIdx * (blockSize + gap) + blockSize / 2}
+            y={1 + rowIdx * (blockSize + gap) + blockSize / 2}>{num}</text
           >
         {/each}
       {/each}
@@ -217,14 +228,13 @@
       {#each kernelNumbers as row, rowIdx}
         {#each row as num, colIdx}
           <text
-            class="kernel-number"
+            class="text-[8px] font-bold fill-w4ai-lightblue"
             x={(filterLocation.column + colIdx) * (blockSize + gap) +
               blockSize -
               3}
             y={(filterLocation.row + rowIdx) * (blockSize + gap) +
               blockSize -
-              4}
-            fill="var(--main-color-3)">{num}</text
+              4}>{num}</text
           >
         {/each}
       {/each}
@@ -234,6 +244,7 @@
         {#each outputNumbers as row, rowIdx}
           {#each row as num, pixelIdx}
             <text
+              class="text-sm"
               x={imageWidth * (blockSize + gap) +
                 imageDistance +
                 pixelIdx * (blockSize + gap) +
@@ -252,11 +263,5 @@
   text {
     dominant-baseline: middle;
     text-anchor: middle;
-    font-size: 14px;
-  }
-
-  .kernel-number {
-    font-size: 10px;
-    font-weight: bold;
   }
 </style>

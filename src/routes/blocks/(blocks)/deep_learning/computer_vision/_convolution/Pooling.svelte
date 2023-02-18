@@ -79,21 +79,23 @@
 </ButtonContainer>
 
 <SvgContainer maxWidth={maxWidth + "px"}>
-  <svg viewBox="0 0 {width} {height}">
+  <svg viewBox="0 0 {width + 2} {height + 2}">
     <!-- original image -->
     {#each Array(imageHeight) as _, rowIdx}
       {#each Array(imageWidth) as _, pixelIdx}
         <rect
-          x={pixelIdx * (blockSize + gap)}
-          y={rowIdx * (blockSize + gap)}
+          x={1 + pixelIdx * (blockSize + gap)}
+          y={1 + rowIdx * (blockSize + gap)}
           width={blockSize}
           height={blockSize}
-          fill={pixelIdx < filterLocation.column + kernel &&
-          rowIdx < filterLocation.row + kernel &&
-          pixelIdx >= filterLocation.column &&
-          rowIdx >= filterLocation.row
-            ? "var(--main-color-1)"
-            : "var(--main-color-4)"}
+          class={`stroke ${
+            pixelIdx < filterLocation.column + kernel &&
+            rowIdx < filterLocation.row + kernel &&
+            pixelIdx >= filterLocation.column &&
+            rowIdx >= filterLocation.row
+              ? "fill-lime-200"
+              : "fill-slate-400"
+          }`}
           stroke="black"
         />
       {/each}
@@ -109,11 +111,12 @@
           y={heightPadding + rowIdx * (blockSize + gap)}
           width={blockSize}
           height={blockSize}
-          fill={filterLocation.row / stride == rowIdx &&
-          filterLocation.column / stride == pixelIdx
-            ? "var(--main-color-1)"
-            : "var(--main-color-4)"}
-          stroke="black"
+          class={`stroke-black ${
+            filterLocation.row / stride == rowIdx &&
+            filterLocation.column / stride == pixelIdx
+              ? "fill-w4ai-red"
+              : "fill-w4ai-lightblue"
+          }`}
         />
       {/each}
     {/each}
@@ -123,8 +126,8 @@
       {#each row as num, colIdx}
         <text
           fill="black"
-          x={colIdx * (blockSize + gap) + blockSize / 2}
-          y={rowIdx * (blockSize + gap) + blockSize / 2}>{num}</text
+          x={1 + colIdx * (blockSize + gap) + blockSize / 2}
+          y={1 + rowIdx * (blockSize + gap) + blockSize / 2}>{num}</text
         >
       {/each}
     {/each}
