@@ -221,13 +221,13 @@ export function load() {
             name: "Introduction",
             link: "/blocks/deep_learning/computer_vision/introduction",
           },
+          {
+            name: "Convolutional Neural Networks",
+            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks",
+          },
         ],
       },
       /*
-          {
-            name: "Fundamentals of Convolutional Neural Networks",
-            link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks_fundamentals",
-          },
           {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/architectures",
