@@ -38,6 +38,7 @@ Some of the sections have already reached a working state and can be used to stu
   - [ ] Computer Vision
   - [ ] Sequence Modelling
   - [ ] Attention
+  - [ ] Multi-Modal Models
   - [ ] Autoregressive Generative Models
   - [ ] Latent Variable Models
   - [ ] Normalizing Flows
@@ -46,7 +47,7 @@ Some of the sections have already reached a working state and can be used to stu
   - [ ] Energy Based Models
   - [ ] Graph Neural Networks
   - [ ] Reinforcement Learning and Deep Reinforcement Learning
-  - [ ] MLOps 
+  - [ ] MLOps
 
 - [ ] GOFAI Block
 
