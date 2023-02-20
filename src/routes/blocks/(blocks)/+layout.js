@@ -225,6 +225,10 @@ export function load() {
             name: "Convolutional Neural Networks",
             link: "/blocks/deep_learning/computer_vision/convolutional_neural_networks",
           },
+          {
+            name: "Mixed Precision Training",
+            link: "/blocks/deep_learning/computer_vision/mixed_precision_training",
+          },
         ],
       },
       /*
