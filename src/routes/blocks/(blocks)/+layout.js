@@ -229,16 +229,16 @@ export function load() {
             name: "Mixed Precision Training",
             link: "/blocks/deep_learning/computer_vision/mixed_precision_training",
           },
+          {
+            name: "LeNet-5",
+            link: "/blocks/deep_learning/computer_vision/lenet_5",
+          },
         ],
       },
       /*
           {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/architectures",
-          },
-          {
-            name: "LeNet-5",
-            link: "/blocks/deep_learning/computer_vision/lenet_5",
           },
           {
             name: "AlexNet",
