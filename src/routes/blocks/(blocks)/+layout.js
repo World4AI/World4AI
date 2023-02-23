@@ -233,16 +233,16 @@ export function load() {
             name: "LeNet-5",
             link: "/blocks/deep_learning/computer_vision/lenet_5",
           },
+          {
+            name: "AlexNet",
+            link: "/blocks/deep_learning/computer_vision/alexnet",
+          },
         ],
       },
       /*
           {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/architectures",
-          },
-          {
-            name: "AlexNet",
-            link: "/blocks/deep_learning/computer_vision/alexnet",
           },
           {
             name: "VGG",
