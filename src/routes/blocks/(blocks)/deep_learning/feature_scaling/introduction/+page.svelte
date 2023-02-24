@@ -1,6 +1,5 @@
 <script>
   import Container from "$lib/Container.svelte";
-  import Table from "$lib/Table.svelte";
   import Latex from "$lib/Latex.svelte";
   // plotting components
   import Plot from "$lib/plt/Plot.svelte";
@@ -8,6 +7,14 @@
   import Contour from "$lib/plt/Contour.svelte";
   import Circle from "$lib/plt/Circle.svelte";
   import Path from "$lib/plt/Path.svelte";
+
+  // table library
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
 
   import * as d3 from "d3";
 
@@ -150,7 +157,24 @@
   </p>
 </Container>
 <Container maxWidth="500px">
-  <Table {header} {data} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each header as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each data as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
 </Container>
 <Container>
   <p>
@@ -283,7 +307,24 @@
     following feature values.
   </p>
   <Container maxWidth="500px">
-    <Table {header} data={normalizedData} />
+    <Table>
+      <TableHead>
+        <Row>
+          {#each header as colName}
+            <HeaderEntry>{colName}</HeaderEntry>
+          {/each}
+        </Row>
+      </TableHead>
+      <TableBody>
+        {#each normalizedData as row}
+          <Row>
+            {#each row as cell}
+              <DataEntry>{cell}</DataEntry>
+            {/each}
+          </Row>
+        {/each}
+      </TableBody>
+    </Table>
   </Container>
   <div class="separator" />
 
@@ -299,7 +340,24 @@
     following features.
   </p>
   <Container maxWidth="500px">
-    <Table {header} data={standardizedData} />
+    <Table>
+      <TableHead>
+        <Row>
+          {#each header as colName}
+            <HeaderEntry>{colName}</HeaderEntry>
+          {/each}
+        </Row>
+      </TableHead>
+      <TableBody>
+        {#each standardizedData as row}
+          <Row>
+            {#each row as cell}
+              <DataEntry>{cell}</DataEntry>
+            {/each}
+          </Row>
+        {/each}
+      </TableBody>
+    </Table>
   </Container>
   <div class="separator" />
 </Container>

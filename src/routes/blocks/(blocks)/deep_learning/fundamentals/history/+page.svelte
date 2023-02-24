@@ -13,7 +13,6 @@
   import ForwardBackward from "../_history/ForwardBackward.svelte";
   import Cnn from "../_history/Cnn.svelte";
   import Rnn from "../_history/Rnn.svelte";
-  import Table from "$lib/Table.svelte";
   import Relu from "../_history/Relu.svelte";
 
   //plotting library
@@ -23,6 +22,14 @@
   import XLabel from "$lib/plt/XLabel.svelte";
   import YLabel from "$lib/plt/YLabel.svelte";
   import Path from "$lib/plt/Path.svelte";
+
+  // table library
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
 
   //image
   import neuronImg from "../_history/neuron.png";
@@ -516,7 +523,24 @@
     <Highlight>or</Highlight>
     input 2 amount to 1.
   </p>
-  <Table data={orTableData} header={orTableHeader} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each orTableHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each orTableData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>
     We can use the perceptron algorithm to draw a decision boundary between the
     two classes.
@@ -546,7 +570,24 @@
     when input 1 <Highlight>and</Highlight>
     input 2 amount to 1 respectively.
   </p>
-  <Table data={andTableData} header={andTableHeader} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each andTableHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each andTableData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>The decision boundary is easily implemented.</p>
   <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
     <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15} />
@@ -576,7 +617,24 @@
     to simulate a so called <Highlight>xor</Highlight> gate. The xor gate (exclusive
     or) outputs 1 only when one and only one of the inputs is 1.
   </p>
-  <Table data={xorTableData} header={xorTableHeader} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each xorTableHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each xorTableData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>
     If you try to separate the data by drawing a single line, you will come to
     the conclusion, that it is impossible.
@@ -604,7 +662,24 @@
     combine the output from the <em>or</em> gate with the output from the
     <em>and</em> gate and use those outputs as inputs in the neuron of the next layer.
   </p>
-  <Table data={mlpTableData} header={mlpTableHeader} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each mlpTableHeader as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each mlpTableData as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
   <p>That makes the data separable with a single line.</p>
   <Plot maxWidth={700} domain={[0, 1]} range={[0, 1]}>
     <Ticks xTicks={[0, 1]} yTicks={[0, 1]} xOffset={-15} yOffset={15} />

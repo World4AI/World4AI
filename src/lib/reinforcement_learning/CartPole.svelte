@@ -5,7 +5,13 @@
   // https://coneural.org/florian/papers/05_cart_pole.pdf
 
   import { onMount } from "svelte";
-  import Table from "$lib/Table.svelte";
+
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
 
   export let showState = true;
 
@@ -172,5 +178,22 @@
 </svg>
 
 {#if showState}
-  <Table {header} {data} />
+  <Table>
+    <TableHead>
+      <Row>
+        {#each header as colName}
+          <HeaderEntry>{colName}</HeaderEntry>
+        {/each}
+      </Row>
+    </TableHead>
+    <TableBody>
+      {#each data as row}
+        <Row>
+          {#each row as cell}
+            <DataEntry>{cell}</DataEntry>
+          {/each}
+        </Row>
+      {/each}
+    </TableBody>
+  </Table>
 {/if}
