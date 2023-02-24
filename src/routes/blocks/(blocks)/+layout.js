@@ -237,16 +237,16 @@ export function load() {
             name: "AlexNet",
             link: "/blocks/deep_learning/computer_vision/alexnet",
           },
+          {
+            name: "VGG",
+            link: "/blocks/deep_learning/computer_vision/vgg",
+          },
         ],
       },
       /*
           {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/architectures",
-          },
-          {
-            name: "VGG",
-            link: "/blocks/deep_learning/computer_vision/vgg",
           },
           {
             name: "GoogLeNet",
