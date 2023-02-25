@@ -228,7 +228,7 @@ val_dataset = Subset(train_val_dataset, val_idxs)`}
   />
   <PythonCode
     code={`# In the paper a batch size of 256 was used
-batch_size=32
+batch_size=128
 train_dataloader = DataLoader(
     dataset=train_dataset,
     batch_size=batch_size,
@@ -394,7 +394,7 @@ criterion = nn.CrossEntropyLoss(reduction="sum")`}
   />
   <p>
     When we train VGG16 on the CIFAR-10 dataset, we reach an accuracy of roughly <Highlight
-      >86%</Highlight
+      >88%</Highlight
     >, thereby beating the LeCun-5 and the AlexNet implementation.
   </p>
   <PythonCode
@@ -410,41 +410,40 @@ criterion = nn.CrossEntropyLoss(reduction="sum")`}
   />
   <PythonCode
     isOutput={true}
-    code={`Epoch:  1/30 | Epoch Duration: 44.329 sec | Val Loss: 1.59811 | Val Acc: 0.369 |
-Epoch:  2/30 | Epoch Duration: 43.818 sec | Val Loss: 1.28220 | Val Acc: 0.528 |
-Epoch:  3/30 | Epoch Duration: 43.788 sec | Val Loss: 1.07582 | Val Acc: 0.616 |
-Epoch:  4/30 | Epoch Duration: 43.785 sec | Val Loss: 0.88148 | Val Acc: 0.684 |
-Epoch:  5/30 | Epoch Duration: 43.857 sec | Val Loss: 0.83410 | Val Acc: 0.713 |
-Epoch:  6/30 | Epoch Duration: 44.058 sec | Val Loss: 0.73667 | Val Acc: 0.760 |
-Epoch:  7/30 | Epoch Duration: 43.944 sec | Val Loss: 0.68140 | Val Acc: 0.771 |
-Epoch:  8/30 | Epoch Duration: 43.986 sec | Val Loss: 0.66568 | Val Acc: 0.775 |
-Epoch:  9/30 | Epoch Duration: 44.200 sec | Val Loss: 0.60432 | Val Acc: 0.800 |
-Epoch: 10/30 | Epoch Duration: 44.085 sec | Val Loss: 0.56420 | Val Acc: 0.811 |
-Epoch: 11/30 | Epoch Duration: 43.931 sec | Val Loss: 0.55904 | Val Acc: 0.816 |
-Epoch: 12/30 | Epoch Duration: 43.955 sec | Val Loss: 0.55706 | Val Acc: 0.831 |
-Epoch: 13/30 | Epoch Duration: 43.865 sec | Val Loss: 0.53854 | Val Acc: 0.833 |
-Epoch: 14/30 | Epoch Duration: 43.942 sec | Val Loss: 0.54444 | Val Acc: 0.833 |
-Epoch: 15/30 | Epoch Duration: 44.052 sec | Val Loss: 0.56500 | Val Acc: 0.829 |
-Epoch: 16/30 | Epoch Duration: 44.420 sec | Val Loss: 0.59908 | Val Acc: 0.827 |
-Epoch 00016: reducing learning rate of group 0 to 1.0000e-04.
-Epoch: 17/30 | Epoch Duration: 44.404 sec | Val Loss: 0.55250 | Val Acc: 0.861 |
-Epoch: 18/30 | Epoch Duration: 44.398 sec | Val Loss: 0.59180 | Val Acc: 0.861 |
-Epoch: 19/30 | Epoch Duration: 44.369 sec | Val Loss: 0.63396 | Val Acc: 0.859 |
-Epoch 00019: reducing learning rate of group 0 to 1.0000e-05.
-Epoch: 20/30 | Epoch Duration: 44.336 sec | Val Loss: 0.64396 | Val Acc: 0.861 |
-Epoch: 21/30 | Epoch Duration: 44.284 sec | Val Loss: 0.66723 | Val Acc: 0.864 |
-Epoch: 22/30 | Epoch Duration: 44.499 sec | Val Loss: 0.67943 | Val Acc: 0.861 |
-Epoch 00022: reducing learning rate of group 0 to 1.0000e-06.
-Epoch: 23/30 | Epoch Duration: 44.465 sec | Val Loss: 0.68677 | Val Acc: 0.863 |
-Epoch: 24/30 | Epoch Duration: 44.003 sec | Val Loss: 0.66321 | Val Acc: 0.864 |
-Epoch: 25/30 | Epoch Duration: 44.001 sec | Val Loss: 0.66218 | Val Acc: 0.861 |
-Epoch 00025: reducing learning rate of group 0 to 1.0000e-07.
-Epoch: 26/30 | Epoch Duration: 43.933 sec | Val Loss: 0.67842 | Val Acc: 0.862 |
-Epoch: 27/30 | Epoch Duration: 43.856 sec | Val Loss: 0.68216 | Val Acc: 0.862 |
-Epoch: 28/30 | Epoch Duration: 43.897 sec | Val Loss: 0.67129 | Val Acc: 0.863 |
-Epoch 00028: reducing learning rate of group 0 to 1.0000e-08.
-Epoch: 29/30 | Epoch Duration: 43.911 sec | Val Loss: 0.68369 | Val Acc: 0.862 |
-Epoch: 30/30 | Epoch Duration: 44.182 sec | Val Loss: 0.67892 | Val Acc: 0.861 |`}
+    code={`Epoch:  1/30 | Epoch Duration: 25.635 sec | Val Loss: 1.81580 | Val Acc: 0.296 |
+Epoch:  2/30 | Epoch Duration: 24.916 sec | Val Loss: 1.38543 | Val Acc: 0.463 |
+Epoch:  3/30 | Epoch Duration: 25.014 sec | Val Loss: 1.28278 | Val Acc: 0.547 |
+Epoch:  4/30 | Epoch Duration: 25.074 sec | Val Loss: 1.19473 | Val Acc: 0.595 |
+Epoch:  5/30 | Epoch Duration: 25.043 sec | Val Loss: 0.88059 | Val Acc: 0.689 |
+Epoch:  6/30 | Epoch Duration: 25.063 sec | Val Loss: 0.71676 | Val Acc: 0.752 |
+Epoch:  7/30 | Epoch Duration: 25.054 sec | Val Loss: 0.69538 | Val Acc: 0.760 |
+Epoch:  8/30 | Epoch Duration: 25.065 sec | Val Loss: 0.77932 | Val Acc: 0.738 |
+Epoch:  9/30 | Epoch Duration: 25.053 sec | Val Loss: 0.64442 | Val Acc: 0.792 |
+Epoch: 10/30 | Epoch Duration: 25.080 sec | Val Loss: 0.55705 | Val Acc: 0.817 |
+Epoch: 11/30 | Epoch Duration: 25.084 sec | Val Loss: 0.54697 | Val Acc: 0.821 |
+Epoch: 12/30 | Epoch Duration: 25.086 sec | Val Loss: 0.51530 | Val Acc: 0.836 |
+Epoch: 13/30 | Epoch Duration: 25.099 sec | Val Loss: 0.52571 | Val Acc: 0.832 |
+Epoch: 14/30 | Epoch Duration: 25.081 sec | Val Loss: 0.52763 | Val Acc: 0.834 |
+Epoch: 15/30 | Epoch Duration: 25.100 sec | Val Loss: 0.51354 | Val Acc: 0.852 |
+Epoch: 16/30 | Epoch Duration: 25.063 sec | Val Loss: 0.49283 | Val Acc: 0.854 |
+Epoch: 17/30 | Epoch Duration: 25.072 sec | Val Loss: 0.60646 | Val Acc: 0.839 |
+Epoch: 18/30 | Epoch Duration: 25.110 sec | Val Loss: 0.68762 | Val Acc: 0.831 |
+Epoch: 19/30 | Epoch Duration: 25.067 sec | Val Loss: 0.55200 | Val Acc: 0.852 |
+Epoch 00019: reducing learning rate of group 0 to 1.0000e-04.
+Epoch: 20/30 | Epoch Duration: 25.090 sec | Val Loss: 0.52681 | Val Acc: 0.877 |
+Epoch: 21/30 | Epoch Duration: 25.084 sec | Val Loss: 0.54211 | Val Acc: 0.880 |
+Epoch: 22/30 | Epoch Duration: 25.084 sec | Val Loss: 0.59634 | Val Acc: 0.878 |
+Epoch 00022: reducing learning rate of group 0 to 1.0000e-05.
+Epoch: 23/30 | Epoch Duration: 25.104 sec | Val Loss: 0.59584 | Val Acc: 0.881 |
+Epoch: 24/30 | Epoch Duration: 25.052 sec | Val Loss: 0.60467 | Val Acc: 0.880 |
+Epoch: 25/30 | Epoch Duration: 25.068 sec | Val Loss: 0.61155 | Val Acc: 0.880 |
+Epoch 00025: reducing learning rate of group 0 to 1.0000e-06.
+Epoch: 26/30 | Epoch Duration: 25.117 sec | Val Loss: 0.61680 | Val Acc: 0.879 |
+Epoch: 27/30 | Epoch Duration: 25.059 sec | Val Loss: 0.62156 | Val Acc: 0.881 |
+Epoch: 28/30 | Epoch Duration: 25.089 sec | Val Loss: 0.61393 | Val Acc: 0.878 |
+Epoch 00028: reducing learning rate of group 0 to 1.0000e-07.
+Epoch: 29/30 | Epoch Duration: 25.077 sec | Val Loss: 0.62117 | Val Acc: 0.880 |
+Epoch: 30/30 | Epoch Duration: 25.075 sec | Val Loss: 0.61320 | Val Acc: 0.880 |`}
   />
 </Container>
 
