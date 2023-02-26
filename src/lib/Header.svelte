@@ -28,12 +28,20 @@
   <div class="container mx-auto flex flex-row justify-between items-center">
     <div class="flex items-center space-x-3">
       <a href="/">
-        <img src="/logo/logo.svg" class="max-w-[20px]" alt="World4AI Logo" />
+        <img
+          src="/logo/logo.svg"
+          class="w-[20px] h-[20px] max-w-[20px]"
+          alt="World4AI Logo"
+        />
       </a>
       <span class="font-bold tracking-[5px] uppercase">World4AI</span>
     </div>
     <!--Hamburger Menu-->
-    <button class="md:hidden" on:click={hamburgerEventHandler}>
+    <button
+      class="md:hidden"
+      aria-label="hamburger-navigation"
+      on:click={hamburgerEventHandler}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
