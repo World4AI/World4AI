@@ -23,7 +23,10 @@
 
 <div class="container mx-auto mb-2">
   <div class="py-2 border-b xl:hidden">
-    <button on:click={() => (showSidebar = !showSidebar)}>
+    <button
+      aria-label="toggle-sidebar"
+      on:click={() => (showSidebar = !showSidebar)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

@@ -21,12 +21,12 @@
   }`}
 >
   {#if idx !== 0}
-    <a href={links[idx - 1]}>
+    <a aria-label="previous-page" href={links[idx - 1]}>
       <ArrowLeftCircle />
     </a>
   {/if}
   {#if idx !== links.length - 1}
-    <a href={links[idx + 1]}>
+    <a aria-label="next-page" href={links[idx + 1]}>
       <ArrowRightCircle />
     </a>
   {/if}
