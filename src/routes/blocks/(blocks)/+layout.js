@@ -245,16 +245,16 @@ export function load() {
             name: "GoogLeNet",
             link: "/blocks/deep_learning/computer_vision/googlenet",
           },
+          {
+            name: "ResNet",
+            link: "/blocks/deep_learning/computer_vision/resnet",
+          },
         ],
       },
       /*
           {
             name: "CNN Architectures",
             link: "/blocks/deep_learning/computer_vision/architectures",
-          },
-          {
-            name: "ResNet",
-            link: "/blocks/deep_learning/computer_vision/resnet",
           },
         ],
       },
