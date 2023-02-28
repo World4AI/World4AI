@@ -249,15 +249,13 @@ export function load() {
             name: "ResNet",
             link: "/blocks/deep_learning/computer_vision/resnet",
           },
-        ],
-      },
-      /*
           {
-            name: "CNN Architectures",
-            link: "/blocks/deep_learning/computer_vision/architectures",
+            name: "Transfer Learning",
+            link: "/blocks/deep_learning/computer_vision/transfer_learning",
           },
         ],
       },
+      /*
       {
         name: "Sequence Modelling",
         links: [
