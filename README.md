@@ -20,8 +20,8 @@
 
 ## World4AI Roadmap 2023 (and beyond)
 
-For the time being we are focusing on deep learning.
-Some of the sections have already reached a working state and can be used to study.
+❗ For the time being we are focusing on deep learning.
+If a chapter is marked 🗸, that indicates that it has already reached a working state and can be used for studying purposes, but that does not mean that the chapter is finalized and will never be updated.
 
 - [ ] Math Block
 
@@ -35,7 +35,7 @@ Some of the sections have already reached a working state and can be used to stu
   - [x] Overfitting
   - [x] Vanishing and Exploding Gradients
   - [x] Stability and Speedup
-  - [ ] Computer Vision
+  - [x] Computer Vision
   - [ ] Sequence Modelling
   - [ ] Attention
   - [ ] Multi-Modal Models
