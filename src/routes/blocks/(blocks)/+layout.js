@@ -255,7 +255,6 @@ export function load() {
           },
         ],
       },
-      /*
       {
         name: "Sequence Modelling",
         links: [
@@ -263,6 +262,9 @@ export function load() {
             name: "Introduction",
             link: "/blocks/deep_learning/sequence_modelling/introduction",
           },
+        ],
+      },
+      /*
           {
             name: "Fundamentals of Recurrent Neural Networks",
             link: "/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_fundamentals",
@@ -287,8 +289,6 @@ export function load() {
             name: "Language Model",
             link: "/blocks/deep_learning/sequence_modelling/language_model",
           },
-        ],
-      },
       {
         name: "Attention",
         links: [
