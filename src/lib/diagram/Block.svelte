@@ -8,6 +8,9 @@
   export let type = "text";
 
   export let color = "none";
+
+  let className = "";
+  export { className as class };
   export let fontSize = 7;
 </script>
 
@@ -17,6 +20,7 @@
   {width}
   {height}
   stroke="black"
+  class={className}
   fill={color}
 />
 
