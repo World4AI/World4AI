@@ -263,8 +263,8 @@ export function load() {
             link: "/blocks/deep_learning/sequence_modelling/introduction",
           },
           {
-            name: "Fundamentals of Recurrent Neural Networks",
-            link: "/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_fundamentals",
+            name: "Recurrent Neural Networks",
+            link: "/blocks/deep_learning/sequence_modelling/recurrent_neural_networks",
           },
           {
             name: "Types Of Recurrent Neural Networks",
