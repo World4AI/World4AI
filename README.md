@@ -53,6 +53,8 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
 
 - [ ] Neuroscience Block
 
+- [ ] Robotics
+
 ## Contributions
 
 If you notice any bugs, inconsistencies or have otherwise suggestions, please feel free to open an issue.
