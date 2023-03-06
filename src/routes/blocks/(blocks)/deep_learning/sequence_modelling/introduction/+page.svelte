@@ -6,6 +6,10 @@
   import SvgContainer from "$lib/SvgContainer.svelte";
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import StepButton from "$lib/button/StepButton.svelte";
+  import Latex from "$lib/Latex.svelte";
+
+  import Block from "$lib/diagram/Block.svelte";
+  import Arrow from "$lib/diagram/Arrow.svelte";
 
   let shuffled = false;
   let sentence = [
@@ -50,14 +54,10 @@
 <div class="separator" />
 <Container>
   <p>
-    This chapter is dedicated to sequence modelling, a series of techniques that
-    are very well suited to deal with <Highlight>sequential data</Highlight>.
-  </p>
-  <p>
     Most data that humans are dealing with and use for learning in their day to
     day life is sequential. The texts we are reading, the language we are
     hearing and the visual input we are processing are all sequential. A lot of
-    structured data, like stock prices and weather data, also tends also to be
+    structured data, like stock prices and weather data, also tends to be
     sequential.
   </p>
   <Alert type="info">
@@ -73,9 +73,9 @@
     strictly sequential way.
   </p>
   <p>
-    Look at the sentence below. You have probably seen this sentence before and
-    it makes sense to you. If you interract with the example the sequence will
-    shuffle.
+    Look at the sentence below for example. You have probably seen this sentence
+    before and it should make sense to you. If you interract with the example
+    the sequence will shuffle.
   </p>
   <ButtonContainer>
     <StepButton on:click={changeOrder} />
@@ -101,11 +101,64 @@
     neural network be able to work with a randomly shuffled sequence then?
   </p>
   <p>
+    In this chapter we are going to focus on <Highlight
+      >sequence modelling</Highlight
+    >, a series of techniques that are very well suited to deal with sequential
+    data. Especially we will focus on so called <Highlight
+      >autoregressive models</Highlight
+    >.
+  </p>
+  <Alert type="info"
+    >An autoregressive model uses past values of the sequence to predict the
+    next value in the sequence.</Alert
+  >
+  <p>
+    We could use an autoregressive model for example to predict the fifth word
+    in a sentence, given the previous four words.
+  </p>
+  <SvgContainer maxWidth={"500px"}>
+    <svg viewBox="0 0 275 150">
+      {#each Array(5) as _, idx}
+        <Block
+          width={30}
+          height={30}
+          x={17 + 60 * idx}
+          y={130}
+          text="x_{idx + 1}"
+          type={"latex"}
+          fontSize={15}
+          class={idx !== 4 ? "fill-sky-100" : "fill-red-400"}
+        />
+        {#if idx !== 4}
+          <Arrow
+            strokeWidth={1.5}
+            dashed={true}
+            strokeDashArray="4 4"
+            moving={true}
+            data={[
+              { x: 17 + 60 * idx, y: 115 },
+              { x: 17 + 60 * idx, y: 10 + 30 * idx },
+              { x: 28 + 60 * 4 - idx * 8, y: 10 + 30 * idx },
+              { x: 28 + 60 * 4 - idx * 8, y: 110 },
+            ]}
+          />
+        {/if}
+      {/each}
+    </svg>
+  </SvgContainer>
+  <p>
+    Mathematically we can express this idea as the probability of a value in a
+    sequence, given the previous values: <Latex
+      >{String.raw`P(x_t | x_{t-1}, x_{t-2}, \dots, x_1 )`}</Latex
+    >.
+  </p>
+  <p>
     The feed forward neural networks that we have worked with so far do not take
     the sequence of the data into account. This chapter will therefore introduce
     a new type of a neural network that is very well suited for sequential data:
     a <Highlight>recurrent neural network</Highlight>.
   </p>
+
   <div class="separator" />
 </Container>
 
