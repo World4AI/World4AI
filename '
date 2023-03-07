@@ -789,16 +789,14 @@ h_0 = torch.zeros(num_layers, batch_size, hidden_size)`}
   <PythonCode code={`h_n.shape`} />
   <PythonCode code={`torch.Size([2, 4, 3])`} type="output" />
   <p>
+    The above explanations might not make a lot of sense to you, therefore we
+    provide a manual implementation below, that should produce the same results.
     In order to be able to reconstruct the functionality of the <code
       >nn.RNN</code
-    >
-    module, we will extract the weights and biases that the module was initialized
-    with. There are two sets of weights for each of the layer:
-    <code>ih</code> is input-hidden set of weights and <code>hh</code> is
-    hidden-hidden set of weights. The layers are marked with either
-    <code>l0</code>
-    or <code>l1</code>. If we created a three layer network, there would be a
-    <code>l2</code>.
+    > module, we will extract the weights and biases that the module is initialized
+    with. There are two sets of weights for each of the layer: `ih` is input-hidden
+    and `hh` is hidden-hidden. The layers are marked with either `l0` or `l1`. If
+    we created a three layer network, there would be a `l2`.
   </p>
   <PythonCode
     code={`# ---------------------------- #
@@ -824,34 +822,5 @@ b_ih_l1 = rnn.bias_ih_l1
 w_hh_l1 = rnn.weight_hh_l1
 b_hh_l1 = rnn.bias_hh_l1`}
   />
-  <p>
-    We iterate over the sequence and use the same set of weights and biases per
-    layer.
-  </p>
-  <PythonCode
-    code={`def manual_rnn():
-    hidden = h_0.clone()
-    output = torch.zeros(sequence_length, batch_size, hidden_size)
-    with torch.inference_mode():
-        for idx, seq in enumerate(sequence):
-            for layer in range(num_layers):
-                if layer == 0:
-                    hidden[0] = torch.tanh(seq @ w_ih_l0.T + b_ih_l0 + hidden[0] @ w_hh_l0.T + b_hh_l0)
-                elif layer == 1:
-                    hidden[1] = torch.tanh(hidden[0] @ w_ih_l1.T + b_ih_l1 + hidden[1] @ w_hh_l1.T + b_hh_l1)
-                    output[idx] = hidden[1]
-    return output, hidden
-`}
-  />
-  <p>
-    Lastly we compare the outputs of the <code>nn.RNN</code> module and our manual
-    implementation. They are mostly identical. The tiny differences are due to rounding
-    errors.
-  </p>
-  <PythonCode code={`manual_output, manual_h_n = manual_rnn()`} />
-  <PythonCode code={`torch.sum((output - manual_output) > 0.000001).item()`} />
-  <PythonCode code={`0`} isOutput={true} />
-  <PythonCode code={`torch.sum((h_n - manual_h_n) > 0.000001).item()`} />
-  <PythonCode code={`0`} isOutput={true} />
   <div class="separator" />
 </Container>
