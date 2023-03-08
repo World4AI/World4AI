@@ -267,11 +267,11 @@ export function load() {
             link: "/blocks/deep_learning/sequence_modelling/recurrent_neural_networks",
           },
           {
-            name: "Types Of Recurrent Neural Networks",
+            name: "Types Of RNNs",
             link: "/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types",
           },
           {
-            name: "Biderectional Recurrent Neural Networks",
+            name: "Biderectional RNNs",
             link: "/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks",
           },
           {
