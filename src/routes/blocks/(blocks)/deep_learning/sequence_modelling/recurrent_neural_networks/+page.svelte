@@ -788,9 +788,9 @@ h_0 = torch.zeros(num_layers, batch_size, hidden_size)`}
     output, h_n = rnn(sequence, h_0)`}
   />
   <PythonCode code={`output.shape`} />
-  <PythonCode code={`torch.Size([5, 4, 3])`} type="output" />
+  <PythonCode code={`torch.Size([5, 4, 3])`} isOutput={true} />
   <PythonCode code={`h_n.shape`} />
-  <PythonCode code={`torch.Size([2, 4, 3])`} type="output" />
+  <PythonCode code={`torch.Size([2, 4, 3])`} isOutput={true} />
   <p>
     In order to be able to reconstruct the functionality of the <code
       >nn.RNN</code
