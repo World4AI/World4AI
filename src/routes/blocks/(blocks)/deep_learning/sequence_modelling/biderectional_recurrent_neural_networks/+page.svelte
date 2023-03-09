@@ -1,6 +1,8 @@
 <script>
   import Container from "$lib/Container.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -9,10 +11,10 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Bidirectional Recurrent Neural Network</title>
+  <title>Bidirectional Recurrent Neural Network - World4AI</title>
   <meta
     name="description"
-    content="Unlike a plain vanilla recurrent neural network, a biderectional rnn traverses the sequence in two directions. From front to back and from back to front. The output concatenates the two sets of hidden units. This architecture is especially well suited for translation task, as it becomes easier to determine context."
+    content="Unlike a plain vanilla recurrent neural network, a biderectional rnn traverses the sequence in two directions. From front to back and from back to front. The output concatenates the two sets of hidden units."
   />
 </svelte:head>
 
@@ -20,41 +22,140 @@
 <div class="separator" />
 
 <Container>
-  <p>A recurrent neural network processes one part of the sequence at a time. When we are dealing with a sentence, the neural network starts with the very first letter and moves forward through the sentence. A biderectional recurrent neural network traverses the sequence from two directions. As usual from the start to finish and in the reverse direction, from finish to start. The output of the network, <Latex>y_t</Latex>, simply concatenates the two vectors that come from different directions.</p>
-  <SvgContainer maxWidth={"800px"}>
-    <svg viewBox="0 0 500 160">
+  <p>
+    A recurrent neural network processes one part of the sequence at a time.
+    When we are dealing with a sentence for example, the neural network starts
+    with the very first word and moves forward through the sentence. A
+    <Highlight>biderectional recurrent neural network</Highlight> traverses the sequence
+    from two directions. As usual from the start to finish and in the reverse direction,
+    from finish to start. The output of the network, <Latex
+      >{String.raw`\mathbf{y_t}`}</Latex
+    >, simply concatenates the two vectors that come from different directions.
+  </p>
+  <SvgContainer maxWidth={"250px"}>
+    <svg viewBox="0 0 200 470">
       {#each Array(4) as _, idx}
-        <g transform="translate({idx*120 - 20}, 0)">
-          <Arrow strokeWidth=1 data={[{x: 50, y:140}, {x:50, y: 100}]} />
-          <Arrow strokeWidth=1 data={[{x: 50, y:55}, {x:50, y: 10}]} />
-          <Block x=50 y=75 width=30 height=30 color="var(--main-color-3)" />
-          <Block text="X {idx+1}" fontSize={12} x=50 y=150 width=25 height=15 color="var(--main-color-4)" />
-          <Block text="Y_{idx+1}" fontSize={12} x=65 y=20 width=25 height=15 color="var(--main-color-4)" />
-
-          <!-- move in the forward direction -->
-          <Arrow strokeWidth=1 data={[{x: 70, y:65}, {x:150, y: 65}] } />
-          <Block text="H_{idx+1}" fontSize={12} x=125 y=65 width=25 height=15 color="var(--main-color-2)" />
-
-          <!-- move in the reverse direction -->
-          <Arrow strokeWidth=1 data={[{x: 150, y:85}, {x:70, y: 85}] } />
-          <Block text="H_{4 - idx}" fontSize={12} x=95 y=85 width=25 height=15 color="var(--main-color-1)" />
+        <g transform="translate(0, {idx * 120 - 20})">
+          <Arrow
+            strokeWidth="2"
+            data={[
+              { x: 31, y: 45 },
+              { x: 76, y: 45 },
+            ]}
+            dashed={true}
+            moving={true}
+            strokeDashArray="4 4"
+          />
+          <Arrow
+            strokeWidth="2"
+            data={[
+              { x: 120, y: 45 },
+              { x: 164, y: 45 },
+            ]}
+            dashed={true}
+            moving={true}
+            strokeDashArray="4 4"
+          />
+          <Arrow
+            strokeWidth="2"
+            data={[
+              { x: 87, y: 62 },
+              { x: 87, y: 140 },
+            ]}
+            dashed={true}
+            moving={true}
+            strokeDashArray="4 4"
+          />
+          <Arrow
+            strokeWidth="2"
+            data={[
+              { x: 112, y: 145 },
+              { x: 112, y: 68 },
+            ]}
+            dashed={true}
+            moving={true}
+            strokeDashArray="4 4"
+          />
+          <Block x="100" y="45" width="30" height="30" class="fill-slate-500" />
+          <Block
+            text="x_{idx + 1}"
+            type="latex"
+            fontSize={12}
+            x="15"
+            y="45"
+            width="25"
+            height="25"
+            class="fill-blue-100"
+          />
+          <Block
+            type="latex"
+            text="y_{idx + 1}"
+            fontSize={12}
+            x="185"
+            y="45"
+            width="25"
+            height="25"
+            class="fill-blue-100"
+          />
+          <Block
+            type="latex"
+            text="h_{idx + 1}"
+            fontSize={12}
+            x="80"
+            y="100"
+            width="25"
+            height="25"
+            class="fill-yellow-100"
+          />
+          <Block
+            type="latex"
+            text="h_{idx + 1}"
+            fontSize={12}
+            x="115"
+            y="100"
+            width="25"
+            height="25"
+            class="fill-red-100"
+          />
         </g>
       {/each}
     </svg>
   </SvgContainer>
-  <p>A biderectional recurrent neural network is especially well suited for translation tasks. Look at the two sentences below.</p>
-  <p class="sentence">The bank opens ...</p>
-  <p class="sentence">The bank of the river ...</p>
-  <p>While the sentences start out with the same two words, the meaning can only be understood by reading through the whole sentence.</p>
-  <p>But a biderectional RNN is not suited for every task. If you intend to predict future points of a time series data and the sequence contains that information somewhere in the sequence ahead, you will introduce data leakage.</p>
+  <p>
+    A biderectional recurrent neural network is especially well suited for
+    language tasks. Look at the two sentences below.
+  </p>
+  <p class="bg-slate-200 py-2 px-0 text-center rounded-xl">
+    The bank opens ...
+  </p>
+  <p class="bg-red-200 py-2 px-0 text-center rounded-xl">
+    The bank of the river ...
+  </p>
+  <p>
+    While the sentences start out with the same two words, the meaning can only
+    be understood by reading through the whole sentence.
+  </p>
+  <p>
+    A biderectional RNN is not suited for every task though. If you intend to
+    predict future points of a time series data and you use a biderectional RNN,
+    you will introduce <Highlight>data leakage</Highlight>. Data leakage means
+    that during training your network has access to the type of information,
+    that is not available during inference. Using a biderectional RNN would
+    imply that you use future time series information to train your neural
+    network, like training a RNN to predict the stock price, that the network
+    has already observed.
+  </p>
+  <p>
+    We can implement a biderectional RNN in PyTorch by simply setting the <code
+      >bidirectional</code
+    >
+    flag to <code>True</code>.
+  </p>
+  <PythonCode
+    code={`rnn = nn.RNN(input_size=INPUT_SIZE, 
+             hidden_size=HIDDEN_SIZE, 
+             num_layers=NUM_LAYERS, 
+             bidirectional=True)`}
+  />
   <div class="separator" />
 </Container>
-
-<style>
-  .sentence {
-    background-color: var(--main-color-4);
-    padding: 10px 0;
-    text-align: center;
-  }
-</style>
-
