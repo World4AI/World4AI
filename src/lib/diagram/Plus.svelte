@@ -3,10 +3,12 @@
   export let y;
   export let radius = 3.5;
   export let offset = 1;
-  export let color = "none";
+
+  let className = "";
+  export { className as class };
 </script>
 
-<circle cx={x} cy={y} r={radius} fill={color} stroke="black" />
+<circle cx={x} cy={y} r={radius} class={className} fill="none" stroke="black" />
 <line
   x1={x}
   y1={y - radius + offset}
