@@ -10,6 +10,10 @@
           name: "Deep Learning",
           link: "/blocks/deep_learning/fundamentals/introduction",
         },
+        {
+          name: "Reinforcement Learning",
+          link: "/blocks/reinforcement_learning/intuition/introduction",
+        },
       ],
     },
     { name: "Sponsor", link: "/sponsor" },

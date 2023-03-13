@@ -410,5 +410,40 @@ export function load() {
       },
       */
     ],
+    reinforcement_learning: [
+      {
+        name: "Intuition",
+        links: [
+          {
+            name: "Introduction",
+            link: "/blocks/reinforcement_learning/intuition/introduction",
+          },
+          {
+            name: "Applications",
+            link: "/blocks/reinforcement_learning/intuition/applications",
+          },
+          {
+            name: "Agent and Environment",
+            link: "/blocks/reinforcement_learning/intuition/agent_and_environment",
+          },
+          {
+            name: "Definition",
+            link: "/blocks/reinforcement_learning/intuition/definition",
+          },
+          {
+            name: "States, Actions, Rewards",
+            link: "/blocks/reinforcement_learning/intuition/states_actions_rewards",
+          },
+          {
+            name: "Value, Policy, Model",
+            link: "/blocks/reinforcement_learning/intuition/value_policy_model",
+          },
+          {
+            name: "Terminology",
+            link: "/blocks/reinforcement_learning/intuition/terminology",
+          },
+        ],
+      },
+    ],
   };
 }

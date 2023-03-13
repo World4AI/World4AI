@@ -3,6 +3,16 @@
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Sentence from "$lib/BlockLetters/Sentence.svelte";
   import Alert from "$lib/Alert.svelte";
+
+  import { onMount } from "svelte";
+  onMount(() => {
+    let interval = setInterval(() => {
+      offset -= 10;
+    }, 300);
+
+    return () => clearInterval(interval);
+  });
+  let offset = 0;
 </script>
 
 <svelte:head>
@@ -147,6 +157,145 @@
     </p>
     <div class="action">
       <a href="/blocks/deep_learning/fundamentals/introduction">
+        <!-- feather icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="var(--main-color-3)"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-arrow-right-circle"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 16 16 12 12 8" /><line
+            x1="8"
+            y1="12"
+            x2="16"
+            y2="12"
+          />
+        </svg>
+      </a>
+    </div>
+    <div class="separator" />
+
+    <h2>Reinforcement Learning</h2>
+    <Alert type="warning">
+      The block has been started, but this is very early work in progress.
+    </Alert>
+    <p>
+      A reasonable way to think about reinforcement learning is to think about
+      animals whom you would like to teach good behaviour and discourage from
+      bad behaviour. The way you would go about it would probably involve some
+      reward when the animal behaves the way you desire and punishment when it
+      doesn’t.
+    </p>
+    <SvgContainer maxWidth="700px">
+      <svg
+        version="1.1"
+        viewBox="0 0 400 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g fill="none" class="stroke-black" stroke-linecap="square">
+          <g id="lines" stroke-width="2px">
+            <path d="m0 10v190h390" />
+            <path d="m400 190v-190h-390" />
+            <g>
+              <path d="m15 70v-55" />
+              <path d="m15 15h65" />
+              <path d="m90 0v25" />
+              <path d="m90 25h75" />
+              <path d="m15 85v60" />
+              <path d="m60 200v-25" />
+              <path d="m15 175h75" />
+              <path d="m35 35h75" />
+              <path d="m70 35v25" />
+              <path d="m90 35v25" />
+              <path d="m50 55v25" />
+              <path d="m35 80h90" />
+              <path d="m185 0v80" />
+              <path d="m185 40h-65" />
+              <path d="m140 40v40" />
+              <path d="m140 80h25" />
+              <path d="m165 80v-30" />
+              <path d="m35 95h215" />
+              <path d="m200 95v-80" />
+              <path d="m15 160h115" />
+              <path d="m130 110v75" />
+              <path d="m105 160v40" />
+              <path d="m100 95v55" />
+              <path d="m80 160v-55" />
+              <path d="m60 95v55" />
+              <path d="m40 160v-55" />
+              <path d="m145 95v70" />
+              <path d="m140 185h100" />
+              <path d="m160 110h95v50h10v40" />
+              <path d="m205 185v-75" />
+              <path d="m225 110v65" />
+              <path d="m185 110v65" />
+              <path d="m165 185v-65" />
+              <path d="m220 95v-60" />
+              <path d="m215 15h70v85h85" />
+              <path d="m250 15v-15" />
+              <path d="m240 15v60" />
+              <path d="m255 70v-35h30" />
+              <path d="m300 85v-85" />
+              <path d="m315 15v85" />
+              <path d="m335 0v60" />
+              <path d="m355 15v55" />
+              <path d="m335 70h50" />
+              <path d="m375 0v60" />
+              <path d="m335 70v20" />
+              <path d="m400 95h-20" />
+              <path d="m355 100v-10" />
+              <path d="m400 185h-35v-35h20" />
+              <path d="m385 115v25h-60v-10h-40v-10" />
+              <path d="m360 140v-20" />
+              <path d="m340 115v25" />
+              <path d="m265 80v70h60" />
+              <path d="m280 150v35" />
+              <path d="m295 200v-40h45v-10" />
+              <path d="m340 170h-35v30" />
+              <path d="m350 160v40" />
+            </g>
+          </g>
+          <path
+            id="path-bad"
+            class="stroke-red-600"
+            d="m5 10v160h90v10h-30v15h35v-30h-90v-15h15v-50h25v55h20v-55h20v55h25v-55h20v90h-10v-25h-15v30h30v-25h15v-70h105v55h15v40h10v-40h45v-10h25v50h40"
+            stroke-dasharray="4, 4"
+            stroke-dashoffset={offset}
+          />
+          <path
+            id="path-good"
+            class="stroke-blue-600"
+            d="m10 10h75v20h30v40h15v15h65v-75h15v15h20v60h30v-30h15v55h120v35h-35v45h35"
+            stroke-dasharray="4, 4"
+            stroke-dashoffset={offset}
+          />
+        </g>
+      </svg>
+    </SvgContainer>
+    <p>
+      Let's consider mice in a maze that get food once they arrive at the goal.
+      The amount of food could depend on the time a mouse needs to complete the
+      maze. If the mouse takes the blue path, the route is relatively straight
+      forward and the mouse ends up at the goal without any delays. The red path
+      on the other hand leads to a dead end, which forces the mouse to retrace
+      the steps. Over time the mouse will learn the shourtest route which
+      maximizes the amount of food.
+    </p>
+    <p>
+      In reinforcement learning we similarly deal with agents which have to
+      learn certain behaviour. The world (environment) that the agent interacts
+      with provides reinforcement in form of numeric rewards which can be used
+      to learn the desired behaviour.
+    </p>
+    <div class="action">
+      <a href="/blocks/reinforcement_learning/intuition/introduction">
         <!-- feather icon -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
