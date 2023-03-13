@@ -46,8 +46,20 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
   - [ ] Diffusion Models
   - [ ] Energy Based Models
   - [ ] Graph Neural Networks
-  - [ ] Reinforcement Learning and Deep Reinforcement Learning
   - [ ] MLOps
+
+- [ ] Reinforcement Learning and Deep Reinforcement Learning Block
+
+  - [ ] Intuition
+  - [ ] Exploration vs Exploitation
+  - [ ] Markov Decision Process
+  - [ ] Dynamic Programming
+  - [ ] Tabular RL
+  - [ ] Value Based Deep RL
+  - [ ] Policy Gradient Methods
+  - [ ] Actor Critic Methods
+  - [ ] Trust Region Methods
+  - [ ] AlphaGo and Relatives
 
 - [ ] GOFAI Block
 
