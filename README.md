@@ -36,7 +36,7 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
   - [x] Vanishing and Exploding Gradients
   - [x] Stability and Speedup
   - [x] Computer Vision
-  - [ ] Sequence Modelling
+  - [x] Sequence Modelling
   - [ ] Attention
   - [ ] Multi-Modal Models
   - [ ] Autoregressive Generative Models
