@@ -14,9 +14,6 @@
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
-  import rnn from "./rnn.png";
-  import sine from "./sine.png";
-
   // coordinates of the circles in the fc diagram
   let fcCirclex = 100;
   let fcCircley = 50;
