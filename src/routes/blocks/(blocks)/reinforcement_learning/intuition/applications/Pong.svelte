@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
 
-  // TODO
   // Find a way to figure out global css colors
   export let color = "black";
 
@@ -29,6 +28,9 @@
 
   function canvasAction(node) {
     width = node.parentNode.clientWidth;
+    if (width > 800) {
+      width = 800;
+    }
     reset();
   }
 
@@ -40,7 +42,7 @@
     paddleLeftX = 10;
     paddleRightX = width - widthPaddle - 10;
 
-    paddleOffset = heightPaddle / 2;
+    paddleOffset = heightPaddle / 2 - 1;
     paddleLeftY = height / 2 - paddleOffset;
     paddleRightY = height / 2 - paddleOffset;
 
@@ -123,6 +125,3 @@
 <canvas use:canvasAction bind:this={canvas} {width} {height}>
   The game of Pong
 </canvas>
-
-<style>
-</style>

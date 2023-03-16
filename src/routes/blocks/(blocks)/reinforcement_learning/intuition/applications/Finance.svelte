@@ -176,12 +176,11 @@
       </g>
     {/each}
     {#if visible}
-      <g fill="none" stroke="var(--text-color)">
-        <path in:draw={1000} d={path} />
-        <path in:draw={1000} d={path2} />
-        <path in:draw={1000} d={path3} />
+      <g fill="none" class="stroke-2">
+        <path in:draw={1000} d={path} class="stroke-blue-300" />
+        <path in:draw={1000} d={path2} class="stroke-gray-300" />
+        <path in:draw={1000} d={path3} class="stroke-red-300" />
       </g>
     {/if}
   </svg>
 </SvgContainer>
-

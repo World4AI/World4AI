@@ -4,7 +4,7 @@
 
 <SvgContainer maxWidth={"100px"}>
   <svg version="1.1" viewBox="0 0 84.72 200" xmlns="http://www.w3.org/2000/svg">
-    <g fill="none" stroke="var(--text-color)">
+    <g fill="none" class="stroke-black fill-slate-200">
       <g id="legs" stroke-linecap="round" stroke-linejoin="round">
         <rect
           transform="rotate(90)"
@@ -166,4 +166,3 @@
     </g>
   </svg>
 </SvgContainer>
-

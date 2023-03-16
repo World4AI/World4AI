@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Highlight from "$lib/Highlight.svelte";
   import { Interaction } from "$lib/reinforcement_learning/grid_world/Interaction";
   import { RandomAgent } from "$lib/reinforcement_learning/grid_world/RandomAgent";
   import { GridEnvironment } from "$lib/reinforcement_learning/grid_world/GridEnvironment";
@@ -9,13 +10,11 @@
   let agent = new RandomAgent(env.getObservationSpace(), env.getActionSpace());
   let interaction = new Interaction(agent, env, 3);
 
-  import Pong from "$lib/reinforcement_learning/intuition/applications/Pong.svelte";
-  import Go from "$lib/reinforcement_learning/intuition/applications/Go.svelte";
-  import Strategy from "$lib/reinforcement_learning/intuition/applications/Strategy.svelte";
-  import Finance from "$lib/reinforcement_learning/intuition/applications/Finance.svelte";
-  import Robot from "$lib/reinforcement_learning/intuition/applications/Robot.svelte";
-  import Healthcare from "$lib/reinforcement_learning/intuition/applications/Healthcare.svelte";
-  import AutonomousVehicles from "$lib/reinforcement_learning/intuition/applications/AutonomousVehicles.svelte";
+  import Pong from "./Pong.svelte";
+  import Go from "./Go.svelte";
+  import Finance from "./Finance.svelte";
+  import Robot from "./Robot.svelte";
+  import AutonomousVehicles from "./AutonomousVehicles.svelte";
 
   const cellsStore = env.cellsStore;
   const playerStore = interaction.observationStore;
@@ -25,39 +24,37 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Reinforcement Learning Applications</title>
+  <title>Reinforcement Learning Applications - World4AI</title>
   <meta
     name="description"
     content="Reinforcement learning is used in many different applications, like games, finance, robotics, healcare and autonomous vehicles."
   />
 </svelte:head>
 
-<h1>Applications</h1>
+<h1>Reinforcement Learning Applications</h1>
 <div class="separator" />
 
 <Container>
   <p>
-    It is possible to introduce reinforcement learning using only formal
-    definitions and math, but we will start this journey by exploring what
-    reinforcement learning can actually achieve rather than what it is and how
-    you can apply it. The formalism will come soon enough.
+    Over the last decade research in reinforcement learning has skyrocketed.
+    Initially most research projects focused on computer games and board games,
+    but over the last couple of years more and more practical applications are
+    being developed.
+  </p>
+  <p>
+    In this section we will focus on a couple of areas, where reinforcement
+    learning is known to be used, but this list is far from being exhaustive.
   </p>
   <div class="separator" />
-
-  <h2>Games</h2>
-
-  <h3>Grid Worlds</h3>
+  <h2>Grid Worlds</h2>
   <p>
     Most beginner reinforcement learning problems are grid world problems. They
     are easy enough to understand and do not require a lot of computational
-    power to solve. A grid world is a rectangular-shaped game with a certain
-    number of rows and columns, where an intersection of a row and a column is a
-    so-called cell in the grid world. A gridworld is (usually) a simple game.
-    You have some sort of a player that can move through the gridworld, some
-    obstacles to prevent the player from entering a certain cell and a goal the
-    player needs to achieve, which then terminates (or restarts) the game. But
-    of course there are grid worlds that are substantially more complex. These
-    can for example include powerups, enemies and many levels.
+    power to solve. A gridworld is (usually) a simple game. You have some sort
+    of a player that can move from cell to cell, while avoiding some obstacles
+    and trying to reach a goal. Of course there are grid worlds that are
+    substantially more complex. These can for example include powerups, enemies
+    and many different levels.
   </p>
   <Grid {cells} {player} />
   <p>
@@ -79,7 +76,7 @@
   </p>
   <div class="separator" />
 
-  <h3>Atari 2600 Games</h3>
+  <h2>Computer Games</h2>
   <p>
     Computer games have become a testing ground for reinforcement learning
     algorithms. Most new algorithms are tested on the Atari 2600 games in order
@@ -90,102 +87,54 @@
     strategies that are used to solve the grid worlds break down. Good solutions
     require the use of neural networks.
   </p>
+  <Pong />
   <p>
-    The most known atari game is probably pong. In pong for example you steer a
-    paddle at the right of the screen. The goal of the game is to prevent the
-    ball from reaching the right border by moving the paddle into the path of
-    the ball. The ball bounces off the paddle and if the ball to passes the
-    paddle of the enemy, then we have earned ourselve a point. The enemy on the
-    left can be controlled by a simple hardcoded AI or just a different player.
-    In reinfocement learning a trained AI is responsible for the control of the
-    right paddle.
-  </p>
-  <div class="flex-center">
-    <Pong />
-  </div>
-  <p>
-    The computer receives the current frames of the game and has to decide how
-    to act based on the pixel values. There are of course versions of the game,
-    where the computer receives the positions of the ball and the paddles as
-    coordinate values, but using that version would be essentially cheating.
-    Looking at the pictures and behaving accordingly is not unlike how humans
-    act. Therefore it is especially impressive that with the help of
-    reinforcement learning it is possible to create computer programs that are
-    able to beat human scores in all the Atari 2600 games while making decisions
-    on the basis of the screenshots of the game.
+    Pong for example seems to be a relatively easy bask, but a computer program
+    needs to learn to transform raw pixel values of the screen into actions.
+    Nowadays we have the necessary tools to solve such problems, but just 10
+    years ago this task seemed impossible.
   </p>
   <div class="separator" />
 
-  <h3>Board Games</h3>
+  <h2>Board Games</h2>
   <p>
-    Board games, like backgammon, chess and go used to be the frontier for AI.
+    Board games, like backgammon, chess and Go used to be the frontier for AI.
     There was an assumption that a computer would require creativity and
-    imagination to beat a professional player at backgammon, chess and go.
-    Essentially that meant that the computer needed to possess human
-    characteristics in order to win against a professional player. Nevertheless
-    in all three games professionals and even world champions were beaten by AI
-    systems.
+    imagination to beat a professional player. This assumption implied that the
+    computer needed to possess human characteristics in order to win against a
+    professional player. Nevertheless in all three games professionals and even
+    world champions were beaten by AI systems.
   </p>
   <p>
-    Even though all solutions were an unbelievable milestone for the AI
-    community, the win of DeepMind with their AlphaGo system against the go
-    world champion was most likely the most impressive and the hardest
-    achievement in AI thus far. For a number of years the challenge of winning
-    against the world champion was considered impossible. The number of legal
-    board positions in the game of go is far greater than there are atoms in the
-    observable universe. Iterating through all positions is therefore
-    impossible. Nevertheless, not only did the algorithm win against the world
-    champion Lee Sedol in the 4 of 5 games, but according to go experts AlphaGo
-    showed creativity. In the second of the five games AlphaGo shocked the world
-    with the now iconic move. This move has become known as <strong
-      >Move 37</strong
-    >.
+    Most cecently DeepMind's AlphaGo won against the Go world champion. For a
+    number of years the challenge of winning against the world champion was
+    considered impossible. The number of legal board positions in the game of go
+    is far greater than the number atoms in the observable universe. Iterating
+    through all positions is impossible. Nevertheless, not only did the
+    algorithm win against the world champion, Lee Sedol, in the 4 of 5 games,
+    but according to some Go experts AlphaGo showed creativity. In the second of
+    the five games AlphaGo shocked the world with the now iconic move. This move
+    has become known as <Highlight>Move 37</Highlight>.
   </p>
   <Go />
   <div class="separator" />
 
-  <h3>Modern Games</h3>
-  <p>
-    Compared to Atari games, modern games have become a lot more complex and
-    even for human players there is a steep learning curve, especially if you
-    wish to become a professional player. In spite of that OpenAI and DeepMind
-    have beaten top players in two of the most famous esports games, Dota II and
-    StarCraft II. StarCraft II for example is a so-called rts (real time
-    strategy) game. In these types of games you have to collect resources, build
-    workers and different types of attack vehicles, construct buildings, improve
-    your technology, scout the area for opponents and to finally destroy the
-    buildings and units of your opponents. Many of these decisions have
-    tradeoffs and there is no single best strategy, the player has to adapt to
-    the current situation.
-  </p>
-  <Strategy />
-  <p>
-    The image above shows how an imagined rts game configuration might look
-    like. The picture indicates how a player has to balance several decisions at
-    the same time. What makes these types of games additionally hard is the
-    so-called “fog of war”. The grey areas are not visible to the player, so
-    that only a part of the map is observable. That creates an information
-    imbalance and requires scouting the area to gain information.
-  </p>
-  <div class="separator" />
-
   <h2>Finance</h2>
   <p>
-    Nowadays it seems that reinforcement learning is taking over the financial
+    Nowadays it seems that machine learning is taking over the financial
     industry in every aspect imaginable. From valuing financial products to
     chatbots that communicate with prospective clients.
   </p>
   <Finance />
   <p>
     The most exciting part still seems to be portfolio management though.
-    Imagine an artificial intelligence that decides what financial instrument to
-    invest in and in what proportion. And the exact decisions could depend on
-    the risk aversion of the client. There is an abundance of financial data
-    (often free) going back sometimes a hundred of years. That data can be used
-    to train a reinforcement learning AI to potentially perform better than
-    humans over a long period of time. Even if the AI performs equally well to
-    human portfolio managers, the banks could cut costs, as automated trading
-    bots tend to be much cheaper than human portfolio managers.
+    Imagine an AI agent that decides what financial instrument to invest in and
+    in what proportion. There is an abundance of financial data going back
+    sometimes a hundred years. That data can be used to train a reinforcement
+    learning agent to potentially perform better than humans over a long period
+    of time. Even if the AI performs equally well to human portfolio managers,
+    the banks could cut costs, as automated trading bots tend to be much cheaper
+    than human portfolio managers.
   </p>
   <div class="separator" />
 
@@ -197,40 +146,13 @@
   </p>
   <Robot />
   <p>
-    For example a bipedal robot can be taught to walk on two legs through the
-    means of reinforcement learning. Each good or bad step of the robot can be
-    used as a learning experience. In fact that is partially already actively
-    done but still remains an active research field. At the moment most
-    successful bipedal robots, like those made by Boston Dynamics, are not
-    actually trained through reinforcement learning, but are hardcoded to solve
-    their task. Therefore these are great feats of pure engineering and not AI,
-    but 10 years down the road and AI will probably replace a lot of hardcoded
-    parts.
-  </p>
-  <div class="separator" />
-
-  <h2>Healthcare</h2>
-  <p>
-    The possible advances in healthcare through the help of reinforcement
-    learning are probably the ones that are of the greatest benefit to the
-    general population. Several applications come to mind when I think about the
-    intersection of healthcare and reinforcement learning.
-  </p>
-  <p>
-    Individual treatment plans for example, where drugs and treatments are
-    adjusted quickly depending on the reaction of the patient could be
-    developed. With each new patient the experience of the AI would increase.
-    Unlike human doctors that have to go through medical studies, practice and
-    have to eventually retire, the experience of AI could be centralized and
-    made available to newer systems without loss of data. Thus the amount of
-    mistakes and the cost of treatment should potentially decrease.
-  </p>
-  <Healthcare />
-  <p>
-    The development of new drugs is another exciting possible application of
-    reinforcement learning. The abundance of medical data should allow the AI to
-    learn to accelerate the drug discovery phase while making the overall
-    development process safer.
+    A bipedal robot can for example be taught to walk on two legs through the
+    means of reinforcement learning. Each step or fall of the robot can be used
+    as a learning experience. At the moment many bipedal robots, like those made
+    by Boston Dynamics, are not actually trained through reinforcement learning,
+    but are hardcoded to solve their task. These results are great feats of pure
+    engineering and not AI, but 10 years down the road and AI will probably
+    replace a lot of hardcoded parts.
   </p>
   <div class="separator" />
 
@@ -243,14 +165,10 @@
     and Google’s Waymo and old German car manufacturers like Volkswagen all
     invest an enormous amount of time and money in the development of autonomous
     vehicles. Research in the area has been going on since at least the 80’s,
-    with demonstrations by Daimler, but the behaviour of these vehicles in edge
-    cases made their use often dangerous for everyday use. Since the DARPA Grand
-    Challenge (2007) great leaps have been made and reinforcement learning
-    played a huge role in that success story. It is probably only a matter of
-    time until autonomous vehicles become fully legalized. The advantages are
-    tremendous. Expected lower mortality rates due to traffic accidents, lower
-    cost for taxi fares and more efficient logistics, as drivers won't have to
-    sleep on overnight journeys.
+    but the behaviour of these vehicles in edge cases made their use often
+    dangerous for everyday use. Since the DARPA Grand Challenge (2007) great
+    leaps have been made and reinforcement learning played a huge role in that
+    success story.
   </p>
   <div class="separator" />
 </Container>
