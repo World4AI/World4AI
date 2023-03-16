@@ -4,7 +4,7 @@
 
   onMount(() => {
     let interval = setInterval(() => {
-      offset += 40;
+      offset -= 35;
     }, 300);
 
     return () => clearInterval(interval);
@@ -14,7 +14,7 @@
 
 <SvgContainer maxWidth="500px">
   <svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-    <g id="agent" fill="none" stroke="var(--text-color)">
+    <g id="agent" fill="none" class="stroke-black">
       <g>
         <rect x="451.86" y="64.657" width="29.624" height="29.623" ry="0" />
         <rect x="454.82" y="67.619" width="23.698" height="23.698" ry="0" />
@@ -49,7 +49,7 @@
         </g>
       </g>
     </g>
-    <g id="robot" fill="none" stroke="var(--text-color)">
+    <g id="robot" class="fill-slate-300 stroke-black">
       <g
         id="legs"
         transform="translate(243.74)"
@@ -228,11 +228,11 @@
       id="connection"
       d="m426 75h-90"
       fill="none"
-      stroke="var(--text-color)"
-      stroke-dasharray="2, 4"
+      class="stroke-violet-600"
+      stroke-dasharray="14, 14"
       stroke-dashoffset={offset}
     />
-    <g id="batteries" stroke="var(--text-color)" stroke-linejoin="round">
+    <g id="batteries" class="stroke-black" stroke-linejoin="round">
       <rect
         transform="rotate(90)"
         x="171.83"
@@ -243,7 +243,7 @@
         fill="none"
         stroke-width="1"
       />
-      <g fill="none">
+      <g class="fill-gray-400">
         <rect
           transform="rotate(90)"
           x="174.7"
@@ -313,7 +313,7 @@
         fill="none"
         stroke-width="1"
       />
-      <g fill="none">
+      <g class="fill-gray-400">
         <rect
           transform="rotate(90)"
           x="146.7"
@@ -383,7 +383,7 @@
         fill="none"
         stroke-width="1"
       />
-      <g fill="none">
+      <g class="fill-gray-400">
         <rect
           transform="rotate(90)"
           x="120.7"
@@ -391,6 +391,7 @@
           width="19.279"
           height="5.4133"
           ry="0"
+          class="fill-none"
         />
         <rect
           transform="rotate(90)"
@@ -398,6 +399,7 @@
           y="-96.067"
           width="19.279"
           height="5.4133"
+          class="fill-none"
         />
         <rect
           transform="rotate(90)"
@@ -433,6 +435,7 @@
           y="-120.62"
           width="15"
           height="5"
+          class="fill-none"
         />
         <rect
           transform="rotate(90)"
@@ -441,10 +444,16 @@
           width="19.279"
           height="5.4133"
           ry="0"
+          class="fill-none"
         />
       </g>
     </g>
-    <g id="sparks" fill="none" stroke="var(--text-color)" stroke-width="1px">
+    <g
+      id="sparks"
+      fill="none"
+      class="stroke-2 stroke-red-200"
+      stroke-width="1px"
+    >
       <path d="m85.269 106.99v-13.502" />
       <path d="m96.258 106.66 6.2446-10.545" />
       <path d="m111.01 108.75 10.389-11.87" />
@@ -467,4 +476,3 @@
     </g>
   </svg>
 </SvgContainer>
-

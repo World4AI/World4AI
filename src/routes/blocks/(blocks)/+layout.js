@@ -420,7 +420,7 @@ export function load() {
           },
           {
             name: "Agent and Environment",
-            link: "/blocks/reinforcement_learning/intuition/agent_and_environment",
+            link: "/blocks/reinforcement_learning/intuition/agent_environment",
           },
           {
             name: "Definition",
