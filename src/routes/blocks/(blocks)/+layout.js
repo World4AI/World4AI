@@ -423,7 +423,7 @@ export function load() {
             link: "/blocks/reinforcement_learning/intuition/agent_environment",
           },
           {
-            name: "Definition",
+            name: "Definition of RL",
             link: "/blocks/reinforcement_learning/intuition/definition",
           },
           {
