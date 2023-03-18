@@ -1,38 +1,35 @@
 <script>
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+
   export let state;
 </script>
 
-<table>
-  <thead>
-    <tr>
-      <th>Column</th>
-      <th>Row</th>
-    </tr>
-  </thead>
-  <tbody>
+<Table>
+  <TableHead>
+    <Row>
+      <HeaderEntry>Column</HeaderEntry>
+      <HeaderEntry>Row</HeaderEntry>
+    </Row>
+  </TableHead>
+  <TableBody>
     {#if state}
-      <tr>
-        <td>{state.c}</td>
-        <td>{state.r}</td>
-      </tr>
+      <Row>
+        <DataEntry>
+          <span class="inline-block bg-red-100 px-5 py-1 rounded-full">
+            {state.c}
+          </span>
+        </DataEntry>
+        <DataEntry>
+          <span class="inline-block bg-blue-100 px-5 py-1 rounded-full">
+            {state.r}
+          </span>
+        </DataEntry>
+      </Row>
     {/if}
-  </tbody>
-</table>
-
-<style>
-  table {
-    width: 100%;
-    max-width: 200px;
-  }
-
-  th {
-    text-transform: uppercase;
-  }
-
-  td,
-  th {
-    border: 1px double var(--text-color);
-    padding: 7px;
-    text-align: center;
-  }
-</style>
+  </TableBody>
+</Table>

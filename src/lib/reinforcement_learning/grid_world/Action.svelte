@@ -3,6 +3,13 @@
   import { cubicOut } from "svelte/easing";
   import SvgContainer from "$lib/SvgContainer.svelte";
 
+  import Table from "$lib/base/table/Table.svelte";
+  import TableHead from "$lib/base/table/TableHead.svelte";
+  import TableBody from "$lib/base/table/TableBody.svelte";
+  import Row from "$lib/base/table/Row.svelte";
+  import DataEntry from "$lib/base/table/DataEntry.svelte";
+  import HeaderEntry from "$lib/base/table/HeaderEntry.svelte";
+
   const rotation = tweened(0, {
     duration: 200,
     easing: cubicOut,
@@ -28,73 +35,57 @@
   let y2 = size / 2;
 </script>
 
-<div class="container">
-  <SvgContainer maxWidth={size}>
-    <svg>
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={size / 2 - 5}
-        fill="none"
-        stroke="var(--text-color)"
+<SvgContainer maxWidth="100px">
+  <svg viewBox="0 0 150 150">
+    <circle
+      cx={size / 2}
+      cy={size / 2}
+      r={size / 2 - 5}
+      fill="none"
+      stroke="black"
+      class="fill-slate-300"
+    />
+    <defs>
+      <marker
+        id="arrowhead"
+        markerWidth="10"
+        markerHeight="7"
+        refX="0"
+        refY="3.5"
+        orient="auto"
+        fill="black"
+      >
+        <polygon points="0 0, 10 3.5, 0 7" />
+      </marker>
+    </defs>
+    {#if action !== null}
+      <line
+        {x1}
+        {y1}
+        {x2}
+        {y2}
+        transform="rotate({$rotation}, {size / 2}, {size / 2})"
+        stroke="black"
+        stroke-width="2"
+        marker-end="url(#arrowhead)"
       />
-      <defs>
-        <marker
-          id="arrowhead"
-          markerWidth="10"
-          markerHeight="7"
-          refX="0"
-          refY="3.5"
-          orient="auto"
-          fill="var(--text-color)"
-        >
-          <polygon points="0 0, 10 3.5, 0 7" />
-        </marker>
-      </defs>
-      {#if action !== null}
-        <line
-          {x1}
-          {y1}
-          {x2}
-          {y2}
-          transform="rotate({$rotation}, {size / 2}, {size / 2})"
-          stroke="var(--text-color)"
-          stroke-width="2"
-          marker-end="url(#arrowhead)"
-        />
-      {/if}
-    </svg>
-  </SvgContainer>
+    {/if}
+  </svg>
+</SvgContainer>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{action}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<style>
-  table {
-    margin-top: 50px;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  th {
-    text-transform: uppercase;
-  }
-
-  td,
-  th {
-    border: 1px double var(--text-color);
-    padding: 7px;
-    text-align: center;
-  }
-</style>
+<Table>
+  <TableHead>
+    <Row>
+      <HeaderEntry>Action</HeaderEntry>
+    </Row>
+  </TableHead>
+  <TableBody>
+    <Row>
+      <DataEntry>
+        <span class="bg-red-100 px-5 py-1 rounded-full">
+          {action}
+        </span>
+      </DataEntry>
+    </Row>
+  </TableBody>
+</Table>
