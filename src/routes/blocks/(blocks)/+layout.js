@@ -431,6 +431,10 @@ export function load() {
             link: "/blocks/reinforcement_learning/intuition/states_actions_rewards",
           },
           {
+            name: "Exploration vs Exploitation",
+            link: "/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma",
+          },
+          {
             name: "Value, Policy, Model",
             link: "/blocks/reinforcement_learning/intuition/value_policy_model",
           },
