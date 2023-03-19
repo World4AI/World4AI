@@ -438,10 +438,6 @@ export function load() {
             name: "Value, Policy, Model",
             link: "/blocks/reinforcement_learning/intuition/value_policy_model",
           },
-          {
-            name: "Terminology",
-            link: "/blocks/reinforcement_learning/intuition/terminology",
-          },
         ],
       },
     ],
