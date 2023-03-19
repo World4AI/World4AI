@@ -50,7 +50,7 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
 
 - [ ] Reinforcement Learning and Deep Reinforcement Learning Block
 
-  - [ ] Intuition
+  - [x] Intuition
   - [ ] Exploration vs Exploitation
   - [ ] Markov Decision Process
   - [ ] Dynamic Programming
