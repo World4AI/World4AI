@@ -25,6 +25,7 @@
   export let showColoredReward = false;
   export let showColoredValues = false;
   export let showOnlyGrid = false;
+  export let showReward = false;
 
   //additional input
   export let policy = null;
@@ -51,26 +52,30 @@
       {#each cells as cell}
         <!-- cells -->
         <rect
-          fill="#889"
           stroke-width={strokeWidth}
-          stroke="white"
           x={cell.c * colSize}
           y={cell.r * rowSize}
           width={colSize}
           height={rowSize}
+          class="fill-gray-600 stroke-white"
         />
 
         <!-- color coded rewards, depening on how large the reward is -->
         {#if showColoredReward}
           <rect
-            fill={cell.reward > 0
-              ? "var(--main-color-2)"
-              : "var(--main-color-1"}
+            class={cell.reward > 0 ? "fill-blue-500" : "fill-red-500"}
             x={cell.c * colSize}
             y={cell.r * rowSize}
             width={colSize}
             height={rowSize}
           />
+        {/if}
+        {#if showReward}
+          <text
+            font-size={25}
+            x={cell.c * colSize + colSize / 4}
+            y={cell.r * rowSize + colSize / 4}>{cell.reward}</text
+          >
         {/if}
 
         <!-- color coded rewards, depening on how large the reward is -->
@@ -88,21 +93,20 @@
           <!-- blocks -->
           {#if cell.type === "block"}
             <rect
-              fill="var(--main-color-4)"
-              stroke="black"
               stroke-width="3"
               x={cell.c * colSize + obstaclePadding}
               y={cell.r * rowSize + obstaclePadding}
               width={colSize - obstaclePadding * 2}
               height={rowSize - obstaclePadding * 2}
+              class="fill-red-400 stroke-black"
             />
           {/if}
 
           <!-- goal -->
           {#if cell.type === "goal"}
             <polygon
-              fill="#FFF"
               stroke="black"
+              class="fill-blue-400"
               stroke-width="2"
               points={`${cell.c * colSize + colSize / 2},${
                 cell.r * rowSize + goalPadding
@@ -118,7 +122,7 @@
 
           {#if valueFunction && cell.type != "goal" && cell.type != "block"}
             <text
-              fill="var(--text-color)"
+              fill="black"
               dominant-baseline="middle"
               text-anchor="middle"
               x={cell.c * colSize + colSize / 2}
@@ -135,14 +139,14 @@
                 refX="0"
                 refY="3.5"
                 orient="auto"
-                fill="var(--text-color)"
+                class="fill-white"
               >
-                <polygon points="0 0, 10 3.5, 0 7" />
+                <polygon points="0 0, 5 3.5, 0 7" />
               </marker>
             </defs>
             <g>
               <line
-                x1={cell.c * colSize + colSize / 2}
+                x1={(cell.c - 0.1) * colSize + colSize / 2}
                 y1={cell.r * rowSize + rowSize / 2}
                 x2={cell.c * colSize + colSize - 38}
                 y2={cell.r * rowSize + rowSize / 2}
@@ -150,8 +154,8 @@
                   policy[cell.r][cell.c]
                 ]}, {cell.c * colSize + colSize / 2}, {cell.r * rowSize +
                   rowSize / 2})"
-                stroke="var(--text-color)"
-                stroke-width="1"
+                class="stroke-white"
+                stroke-width="1.2"
                 marker-end="url(#arrowhead)"
               />
             </g>
@@ -165,12 +169,17 @@
           cx={player.c * colSize + colSize / 2}
           cy={player.r * rowSize + rowSize / 2}
           r={colSize * 0.25}
-          fill="var(--main-color-3)"
-          opacity="0.8"
-          stroke="black"
           stroke-width="3"
+          class="fill-yellow-200 opacity-80 stroke-black"
         />
       {/if}
     </g>
   </svg>
 </SvgContainer>
+
+<style>
+  text {
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+</style>
