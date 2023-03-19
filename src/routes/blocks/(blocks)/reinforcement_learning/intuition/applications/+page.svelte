@@ -89,7 +89,7 @@
   </p>
   <Pong />
   <p>
-    Pong for example seems to be a relatively easy bask, but a computer program
+    Pong for example seems to be a relatively easy task, but a computer program
     needs to learn to transform raw pixel values of the screen into actions.
     Nowadays we have the necessary tools to solve such problems, but just 10
     years ago this task seemed impossible.
