@@ -284,7 +284,6 @@ export function load() {
           },
         ],
       },
-      /*
       {
         name: "Attention",
         links: [
@@ -314,6 +313,7 @@ export function load() {
           },
         ],
       },
+      /*
       {
         name: "Autoregressive Generative Models",
         links: [
