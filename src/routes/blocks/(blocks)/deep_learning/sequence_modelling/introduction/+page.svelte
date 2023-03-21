@@ -156,9 +156,13 @@
     The feed forward neural networks that we have worked with so far do not take
     the sequence of the data into account. This chapter will therefore introduce
     a new type of a neural network that is very well suited for sequential data:
-    a <Highlight>recurrent neural network</Highlight>.
+    a <Highlight>recurrent neural network</Highlight>. To give you a broader
+    overview of the field, we will additionally cover the <Highlight
+      >WaveNet</Highlight
+    > architecture, a 1d convolutional neural network with dilations. The most powerful
+    sequence models, called <Highlight>Transformers</Highlight>, will be covered
+    in the next chapter.
   </p>
-
   <div class="separator" />
 </Container>
 
