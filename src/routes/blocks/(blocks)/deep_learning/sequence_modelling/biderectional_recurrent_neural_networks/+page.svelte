@@ -152,10 +152,36 @@
     flag to <code>True</code>.
   </p>
   <PythonCode
-    code={`rnn = nn.RNN(input_size=INPUT_SIZE, 
-             hidden_size=HIDDEN_SIZE, 
-             num_layers=NUM_LAYERS, 
+    code={`batch_size=4
+sequence_length=5
+input_size=6
+hidden_size=3
+num_layers=2`}
+  />
+  <PythonCode
+    code={`rnn = nn.RNN(input_size=input_size, 
+             hidden_size=hidden_size, 
+             num_layers=num_layers, 
              bidirectional=True)`}
   />
+  <PythonCode
+    code={`sequence = torch.randn(sequence_length, batch_size, input_size)
+# 2*num_layers due to biderectional model
+h_0 = torch.zeros(2*num_layers, batch_size, hidden_size)`}
+  />
+  <p>
+    Due to the biderectional nature of the recurrent neural network, the
+    dimensions of the outputs and the hidden states increase.
+  </p>
+  <PythonCode
+    code={`with torch.inference_mode():
+    output, h_n = rnn(sequence, h_0)
+print(output.shape, h_n.shape)`}
+  />
+  <PythonCode
+    code={`torch.Size([5, 4, 6]) torch.Size([4, 4, 3])`}
+    isOutput={true}
+  />
+
   <div class="separator" />
 </Container>

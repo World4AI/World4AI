@@ -366,10 +366,42 @@
     approach, but the results of the computation should be the same.
   </p>
   <p>
-    The embedding layer from PyTorch requires only two arguments: num_embeddings
-    corresponds to the size of the vocabulary and embedding_dim corresponds to
-    the dimension of the embedding vector.
+    The <a
+      href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html"
+      target="_blank"
+      rel="noreferrer"><code>nn.Embedding</code></a
+    > layer from PyTorch has two positional arguments: the first corresponds to the
+    size of the vocabulary and the second corresponds to the dimension of the embedding
+    vector.
   </p>
-  <PythonCode code={`torch.nn.Embedding(num_embeddings, embedding_dim)`} />
+  <PythonCode
+    code={`vocabulary_size = 10
+embedding_dim = 4
+batch_size=5
+seq_len=3`}
+  />
+  <p>We assume that we have 5 sentences, each consisting of 3 words.</p>
+  <PythonCode
+    code={`sequence = torch.randint(low=0, 
+                         high=vocabulary_size, 
+                         size=(batch_size, seq_len))
+print(sequence.shape)`}
+  />
+  <PythonCode code={`torch.Size([5, 3])`} isOutput={true} />
+  <p>
+    The embedding maps directly from one of ten indices to the 4 dimensional
+    embedding and there is no need to create one-hot encodings in PyTorch.
+  </p>
+  <PythonCode
+    code={`embedding = nn.Embedding(num_embeddings=vocabulary_size, 
+                         embedding_dim=embedding_dim)
+print(embedding.weight.shape)`}
+  />
+  <PythonCode code={`torch.Size([10, 4])`} isOutput={true} />
+  <PythonCode
+    code={`embeddings = embedding(sequence)
+print(embeddings.shape)`}
+  />
+  <PythonCode code={`torch.Size([5, 3, 4])`} isOutput={true} />
   <div class="separator" />
 </Container>

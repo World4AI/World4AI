@@ -647,13 +647,45 @@
     >
   </div>
   <p>
-    Replacing a plain vanilla neural network by a LSTM in PyTorch is as usual a
-    matter of a single line of code.
+    If we want to use a LSTM instead of a plain valilla recurrent neural net, we
+    have to use the <a
+      href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html"
+      target="_blank"
+      rel="noreferrer"><code>nn.LSTM</code></a
+    >
+    module instead of the
+    <code>nn.RNN</code>.
   </p>
   <PythonCode
-    code={`lstm = nn.LSTM(input_size=INPUT_SIZE, 
-               hidden_size=HIDDEN_SIZE, 
-               num_layers=NUM_LAYERS)`}
+    code={`batch_size=4
+sequence_length=5
+input_size=6
+hidden_size=3
+num_layers=2`}
+  />
+  <PythonCode
+    code={`lstm = nn.LSTM(input_size=input_size, 
+               hidden_size=hidden_size, 
+               num_layers=num_layers)`}
+  />
+  <p>
+    We need to account for the long term memory, but the rest of the
+    implementation is almost identical.
+  </p>
+  <PythonCode
+    code={`# create inputs to the LSTM
+sequence = torch.randn(sequence_length, batch_size, input_size)
+h_0 = torch.zeros(num_layers, batch_size, hidden_size)
+c_0 = torch.zeros(num_layers, batch_size, hidden_size)`}
+  />
+  <PythonCode
+    code={`with torch.inference_mode():
+    output, (h_n, c_n) = lstm(sequence, (h_0, c_0))
+print(output.shape, h_n.shape, c_n.shape)`}
+  />
+  <PythonCode
+    code={`torch.Size([5, 4, 3]) torch.Size([2, 4, 3]) torch.Size([2, 4, 3])`}
+    isOutput={true}
   />
 </Container>
 <Footer {references} />

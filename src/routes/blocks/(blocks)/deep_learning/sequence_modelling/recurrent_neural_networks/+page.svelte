@@ -704,26 +704,25 @@
     layer.
   </p>
   <p>
-    Now let's have a look at what a recurrent neural network does under the hood
-    in PyTorch. We will first use <code>nn.RNN</code> on a dummy dataset and then
-    manually implement a recurrent neural network using only matrix multiplications.
-    This will give us the necessary intuition to work with more complex architectures
-    in the future.
-  </p>
-  <PythonCode
-    code={`import torch
-import torch.nn as nn`}
-  />
-  <p>
-    Similar to linear and convolutional layers, a recurrent neural network is a <code
-      >nn.Module</code
-    >. The module takes a parameter <code>nonlinearity</code> as input, which
-    determines which activation function is going to be used throughout the
-    network. We will stick with the default value of <code>tanh</code>. Below we
-    initialize additional parameters that will be useful in our example. We use
-    distinct values, in order to be able to differentiate the dimensionalities
-    of tensors. If you work through the example below and ask yourself why the
-    output is shaped in a particular way, return to these parameters.
+    In PyTorch we can either use the
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html"
+      ><code>nn.RNN</code></a
+    >
+    module or the
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href="https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html"
+      ><code>nn.RNNCell</code></a
+    >. Both can be used to achive the same goal, but
+    <code>nn.RNN</code> unrolls the neural net automatically, while the
+    <code>nn.RNNCell</code> module needs to be applied to each part of the
+    sequence manually. Often it is more convenient to simply use
+    <code>nn.RNN</code>, but some more complex architecures will require us to
+    use of <code>nn.RNNCell</code>.
   </p>
   <PythonCode
     code={`# number of samples in our dataset
@@ -741,117 +740,73 @@ num_layers=2
   />
   <p>
     A recurrent neural network in PyTorch uses an input of shape of <code
-      >(sequence length, batch size, features)</code
+      >(sequence length, batch size, input_size)</code
     >
     as the default. If you set the parameter <code>batch_first</code> to True,
-    then you must provide the rnn with the shape
-    <code>(batch size, sequence length, features)</code>. For now we will use
+    then you must provide the shape
+    <code>(batch size, sequence length, input_size)</code>. For now we will use
     the default behaviour, but in some future examples it will be convenient to
     set this to True.
   </p>
   <p>
-    If you want to read more on the module, we refer you to the official PyTorch
-    <a
-      target="_blank"
-      rel="noreferrer"
-      href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html"
-      >documentation</a
-    >.
-  </p>
-  <p>
-    We create a module and generate two tensors: the first is our dummy data and
-    the second is the initial value for the hidden unit.
+    We create a module and generate two tensors: the first is our dummy sequence
+    and the second is the initial value for the hidden state.
   </p>
   <PythonCode
     code={`rnn = nn.RNN(input_size=input_size, 
              hidden_size=hidden_size, 
-             num_layers=num_layers)`}
+             num_layers=num_layers,
+             nonlinearity='tanh')`}
   />
   <PythonCode
     code={`sequence = torch.randn(sequence_length, batch_size, input_size)
 h_0 = torch.zeros(num_layers, batch_size, hidden_size)`}
   />
   <p>
-    The network generates two outputs. The <code>output</code> tensor contains
-    the <Latex>{String.raw`\mathbf{y}`}</Latex> values. We get an output of size
-    3 for each of the 5 values in the sequence. Given that we use a batch size of
-    4, the output dimension is (5, 4, 3). The <code>h_n</code> tensor contains
-    the last hidden values for all layers. This would correspond to <Latex
-      >{String.raw`\mathbf{h}_5`}</Latex
-    > units of size 3, one for each layer and batch.
+    The recurrent network generates two outputs. The <code>output</code> tensor
+    corresponds to the <Latex>{String.raw`\mathbf{y}`}</Latex> values from the diagrams
+    above. We get an output vector of dimension 3 for each of the 5 values in the
+    sequence and each of the 4 batches, therefore the output dimension is (5, 4,
+    3). The <code>h_n</code>
+    tensor contains the last hidden values for all layers. This would correspond
+    to <Latex>{String.raw`\mathbf{h}_n`}</Latex> values in the diagram above. Given
+    that we have 2 layers, 4 batches and hidden units of dimension 3, the dimensionality
+    is (2, 4, 3).
   </p>
   <PythonCode
     code={`with torch.inference_mode():
-    output, h_n = rnn(sequence, h_0)`}
+    output, h_n = rnn(sequence, h_0)
+print(output.shape, h_n.shape)`}
   />
-  <PythonCode code={`output.shape`} />
-  <PythonCode code={`torch.Size([5, 4, 3])`} isOutput={true} />
-  <PythonCode code={`h_n.shape`} />
-  <PythonCode code={`torch.Size([2, 4, 3])`} isOutput={true} />
+  <PythonCode
+    code={`torch.Size([5, 4, 3]) torch.Size([2, 4, 3])`}
+    isOutput={true}
+  />
   <p>
-    In order to be able to reconstruct the functionality of the <code
-      >nn.RNN</code
-    >
-    module, we will extract the weights and biases that the module was initialized
-    with. There are two sets of weights for each of the layer:
-    <code>ih</code> is input-hidden set of weights and <code>hh</code> is
-    hidden-hidden set of weights. The layers are marked with either
-    <code>l0</code>
-    or <code>l1</code>. If we created a three layer network, there would be a
-    <code>l2</code>.
+    When we want to have more control over the learning process, we might need
+    to resort to <code>nn.RNNCell</code>. Each such cell represents a recurrent
+    layer, so if you want to use more leayers, you have to create more cells.
   </p>
   <PythonCode
-    code={`# ---------------------------- #
-# layer 1
-# ---------------------------- #
-
-# input to hidden weights and biases
-w_ih_l0 = rnn.weight_ih_l0
-b_ih_l0 = rnn.bias_ih_l0
-
-# hidden to hidden weights and biases
-w_hh_l0 = rnn.weight_hh_l0
-b_hh_l0 = rnn.bias_hh_l0
-
-# ---------------------------- #
-# layer 2
-# ---------------------------- #
-# input to hidden weights and biases
-w_ih_l1 = rnn.weight_ih_l1
-b_ih_l1 = rnn.bias_ih_l1
-
-# hidden to hidden weights and biases
-w_hh_l1 = rnn.weight_hh_l1
-b_hh_l1 = rnn.bias_hh_l1`}
+    code={`cell = nn.RNNCell(input_size=input_size, 
+                    hidden_size=hidden_size, 
+                    nonlinearity='tanh')`}
+  />
+  <PythonCode
+    code={`sequence = torch.randn(sequence_length, batch_size, input_size)
+h_n = torch.zeros(batch_size, hidden_size)`}
   />
   <p>
-    We iterate over the sequence and use the same set of weights and biases per
-    layer.
+    This time we loop over the sequence manually, always using the last hidden
+    state as the input in the next iteration.
   </p>
   <PythonCode
-    code={`def manual_rnn():
-    hidden = h_0.clone()
-    output = torch.zeros(sequence_length, batch_size, hidden_size)
-    with torch.inference_mode():
-        for idx, seq in enumerate(sequence):
-            for layer in range(num_layers):
-                if layer == 0:
-                    hidden[0] = torch.tanh(seq @ w_ih_l0.T + b_ih_l0 + hidden[0] @ w_hh_l0.T + b_hh_l0)
-                elif layer == 1:
-                    hidden[1] = torch.tanh(hidden[0] @ w_ih_l1.T + b_ih_l1 + hidden[1] @ w_hh_l1.T + b_hh_l1)
-                    output[idx] = hidden[1]
-    return output, hidden
-`}
+    code={`with torch.inference_mode():
+    for t in range(sequence_length):
+        h_n = cell(sequence[t], h_t)
+print(h_t.shape)`}
   />
-  <p>
-    Lastly we compare the outputs of the <code>nn.RNN</code> module and our manual
-    implementation. They are mostly identical. The tiny differences are due to rounding
-    errors.
-  </p>
-  <PythonCode code={`manual_output, manual_h_n = manual_rnn()`} />
-  <PythonCode code={`torch.sum((output - manual_output) > 0.000001).item()`} />
-  <PythonCode code={`0`} isOutput={true} />
-  <PythonCode code={`torch.sum((h_n - manual_h_n) > 0.000001).item()`} />
-  <PythonCode code={`0`} isOutput={true} />
+  <PythonCode code={`torch.Size([4, 3])`} isOutput={true} />
+
   <div class="separator" />
 </Container>
