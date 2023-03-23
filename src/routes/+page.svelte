@@ -1,5 +1,5 @@
 <script>
-  import { ArrowRight } from "lucide-svelte";
+  import landing1 from "./_landing_img/landing_1.png";
 </script>
 
 <svelte:head>
@@ -10,32 +10,23 @@
   />
 </svelte:head>
 
-<main class="polka container mx-auto mt-4 w-full h-[90vh]">
-  <div
-    class="polka bg-white py-10 md:py-20 w-full flex flex-col justify-between items-center"
-  >
-    <h1
-      class="flex flex-col lg:flex-row text-6xl sm:text-8xl xl:text-8xl font-bold mb-10"
-    >
-      <span> Intuition.</span>
-      <span> Math.</span>
-      <span> Code.</span>
-    </h1>
-    <h2 class="text-lg md:text-2xl font-normal m-10 max-w-3xl text-gray-600">
-      World4AI is a free and open source AI education plattform, that takes you
-      from an absolute beginner to an intermediary level.
-    </h2>
-    <a
-      href="/blocks/introduction"
-      class="flex gap-2 transition border border-red-500 hover:border-black bg-white hover:bg-black hover:text-white rounded-md py-3 px-12 m-10 font-bold text-center no-underline"
-      ><span>Start Learning</span> <ArrowRight /></a
-    >
+<main class="container mx-auto">
+  <div class="flex flex-col md:flex-row mt-20 gap-2 text-center">
+    <div class="my-auto p-5">
+      <h1 class="text-5xl sm:text-6xl xl:text-8xl m-0">Learn AI</h1>
+      <h2 class="text-5xl sm:text-6xl xl:text-8xl m-0">From The Ground Up</h2>
+      <a
+        href="/blocks/introduction"
+        class="inline-block transition border hover:border-black bg-red-500 hover:bg-white text-white hover:text-black rounded-md py-3 px-12 m-10 font-bold text-center no-underline"
+        >Start Here</a
+      >
+    </div>
+    <div class="mx-auto">
+      <img
+        src={landing1}
+        class="rounded-md"
+        alt="Brain made out of tubes and machinery"
+      />
+    </div>
   </div>
 </main>
-
-<style>
-  .polka {
-    background-image: radial-gradient(#dadada 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-</style>
