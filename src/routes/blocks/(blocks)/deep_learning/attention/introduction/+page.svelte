@@ -1,5 +1,6 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Alert from "$lib/Alert.svelte";
   import plantImg from "./photo_plant.jpg";
 </script>
 
@@ -11,6 +12,10 @@
   />
 </svelte:head>
 
+<Alert type="danger"
+  >The chapter is work in progress! Many parts are in the process of being
+  refactored.</Alert
+>
 <h1>Attention</h1>
 <div class="separator" />
 
