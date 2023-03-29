@@ -440,6 +440,31 @@ export function load() {
           },
         ],
       },
+      {
+          name: 'Markov Decision Process',
+          links: [
+              {
+                  name: 'Introduction',
+                  link: '/blocks/reinforcement_learning/markov_decision_process/introduction'
+              },
+              {
+                  name: 'MDP as Sequential Interaction',
+                  link: '/blocks/reinforcement_learning/markov_decision_process/sequential_interaction'
+              },
+              {
+                  name: 'MDP as Stochastic Process',
+                  link: '/blocks/reinforcement_learning/markov_decision_process/stochastic_process'
+              },			
+              {
+                  name: 'MDP as Tuple',
+                  link: '/blocks/reinforcement_learning/markov_decision_process/tuple'
+              },			
+              {
+                  name: 'Solution',
+                  link: '/blocks/reinforcement_learning/markov_decision_process/solution'
+              },			
+          ]
+      },
     ],
   };
 }
