@@ -1,20 +1,16 @@
 <script>
   import Container from "$lib/Container.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
-  import Alert from '$lib/Alert.svelte' 
+  import Highlight from "$lib/Highlight.svelte";
 </script>
 
 <svelte:head>
-  <title>World4AI | Reinforcement Learning | MDP Introduction</title>
+  <title>Markov Decision Process - World4AI</title>
   <meta
     name="description"
     content="In reinforcement learning the Markov decison process is the mathematical formalization of the agent environment interaction."
   />
 </svelte:head>
-
-<Alert type='danger'>
-  The chapter is in the process of being refactored.
-</Alert>
 
 <h1>Markov Decision Process</h1>
 <div class="separator" />
@@ -23,12 +19,7 @@
   <SvgContainer maxWidth="300px">
     <svg version="1.1" viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg">
       <g stroke="#000">
-        <g
-          id="connections"
-          fill="none"
-          stroke="var(--text-color)"
-          stroke-width="1px"
-        >
+        <g id="connections" class="stroke-black fill-none" stroke-width="1px">
           <path d="m250 34 100 130" />
           <path d="m250 34-100 120" />
           <path d="m150 154-110 160" />
@@ -38,8 +29,7 @@
         </g>
         <g
           id="actions"
-          stroke="var(--text-color)"
-          fill="var(--background-color)"
+          class="fill-blue-200 stroke-black"
           stroke-dasharray="1, 1"
           stroke-linecap="round"
         >
@@ -49,6 +39,7 @@
             cy="157.52"
             rx="25"
             ry="25"
+            opacity="0.7"
           />
           <ellipse
             id="left-action"
@@ -67,8 +58,7 @@
         </g>
         <g
           id="states"
-          fill="var(--text-color)"
-          stroke-dasharray="0.999998, 0.999998"
+          class="fill-slate-800"
           stroke-linecap="round"
           stroke="none"
         >
@@ -78,7 +68,7 @@
             cy="36.616"
             rx="35"
             ry="35"
-            opacity="0.1"
+            opacity="0.2"
           />
           <ellipse id="top-state" cx="249.5" cy="36.616" rx="24.5" ry="24.5" />
           <ellipse
@@ -94,7 +84,7 @@
             cy="313.73"
             rx="35"
             ry="35"
-            opacity="0.1"
+            opacity="0.2"
           />
           <ellipse id="mid-state" cx="248.06" cy="313.73" rx="24.5" ry="24.5" />
           <ellipse
@@ -112,21 +102,14 @@
     In order to find an optimal solution to a reinforcement learning problem it
     is essential to formalize the problem in a mathematical framework. This
     allows researchers to study the properties of the problem and to develop
-    algorithms. In reinforcement learning the tool that is commonly used for
-    those purposes is the Markov decision process (often abbreviated as MDP).
-  </p>
-  <p>
+    algorithms to solve the problem. In reinforcement learning the tool that is
+    used for this purpos is the <Highlight
+      >Markov Decision Process</Highlight
+    >, often abbrevieated as MDP.
     Many of the components of the Markov decision process were already covered
-    in the previous chaptes, but while the focus of the previous chapter was the
-    intuition of reinforcement learning this chapter is going to develop the
+    in the previous chapter, but while the focus of the previous chapter was the
+    intuition, this chapter is going to develop the
     necessary mathematical foundation.
-  </p>
-  <p>
-    There are several ways to introduce MDPs, each way has it's own advantages
-    and a different level of mathematical rigour. We are going to look at three
-    different viewpoints of MDPs, while increasing the mathematical complexity
-    one step at a time. At the end of the chapter we will have a look at what it
-    means to find a solution to a Markov decision process.
   </p>
 </Container>
 <div class="separator" />
