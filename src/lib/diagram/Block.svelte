@@ -24,7 +24,7 @@
   fill={color}
 />
 
-{#if text}
+{#if text !== ''}
   {#if type === "text"}
     <text font-size={fontSize} {x} {y}>{text}</text>
   {:else if type === "latex"}
