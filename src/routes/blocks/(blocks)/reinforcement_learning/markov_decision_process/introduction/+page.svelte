@@ -103,12 +103,10 @@
     is essential to formalize the problem in a mathematical framework. This
     allows researchers to study the properties of the problem and to develop
     algorithms to solve the problem. In reinforcement learning the tool that is
-    used for this purpos is the <Highlight
-      >Markov Decision Process</Highlight
-    >, often abbrevieated as MDP.
-    Many of the components of the Markov decision process were already covered
-    in the previous chapter, but while the focus of the previous chapter was the
-    intuition, this chapter is going to develop the
+    used for this purpos is the <Highlight>Markov Decision Process</Highlight>,
+    often abbrevieated as MDP. Many of the components of the Markov decision
+    process were already covered in the previous chapter, but while the focus of
+    the previous chapter was the intuition, this chapter is going to develop the
     necessary mathematical foundation.
   </p>
 </Container>
