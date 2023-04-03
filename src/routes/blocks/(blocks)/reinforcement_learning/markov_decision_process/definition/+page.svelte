@@ -4,8 +4,8 @@
   import Latex from "$lib/Latex.svelte";
   import Alert from "$lib/Alert.svelte";
 
-  import Mdp from "./Mdp.svelte";
-  import Sequence from "./Sequence.svelte";
+  import Mdp from "../Mdp.svelte";
+  import Sequence from "../Sequence.svelte";
 
   // stochastic processes
   function bernoulliSequence() {

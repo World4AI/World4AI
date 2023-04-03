@@ -6,14 +6,19 @@
   import Circle from "$lib/diagram/Circle.svelte";
 
   export let f;
+  export let showReturn = false;
 
   let step = 0;
+  let ret = 0;
   const maxLen = 10;
   let results = [];
   function fillSequence() {
     let result = f();
     if (result.type === "state") {
       step = step + 1;
+    }
+    if (result.type === "reward") {
+      ret += result.value;
     }
     if (results.length >= maxLen) {
       results.shift();
@@ -32,6 +37,16 @@
       </span>
     {/key}
   </span>
+  {#if showReturn}
+    <span class="bg-green-100 mx-2 px-2"
+      >Return <Latex>G_0</Latex>:
+      {#key ret}
+        <span class="inline-block" in:fly={{ y: -20 }}>
+          {ret}
+        </span>
+      {/key}
+    </span>
+  {/if}
 </div>
 <SvgContainer maxWidth={"600px"}>
   <svg viewBox="0 0 500 80">
