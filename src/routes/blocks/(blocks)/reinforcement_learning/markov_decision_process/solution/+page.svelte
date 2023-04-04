@@ -371,8 +371,8 @@
   </div>
   <p>
     It is not hard to imagine the optimal strategy for the two-states MDP. The
-    agent needs to take the action B as often as possible. This action increases
-    the probability to land in the state 2 and thus increases the probability of
+    agent needs to always take the action B. This policy increases the
+    probability to land in the state 2 and thus increases the probability of
     getting a reward of 5. In other words always taking the actio B would
     maximize the value function.
   </p>
