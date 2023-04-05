@@ -22,11 +22,8 @@
 </script>
 
 <div class="container mx-auto mb-2">
-  <div class="py-2 border-b xl:hidden">
-    <button
-      aria-label="toggle-sidebar"
-      on:click={() => (showSidebar = !showSidebar)}
-    >
+  <div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50">
+    <button on:click={() => (showSidebar = !showSidebar)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
