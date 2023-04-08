@@ -7,7 +7,7 @@
 </svelte:head>
 
 <main
-  class="container h-[80vh] mx-auto bg-no-repeat bg-left bg-[url('/landing.png')]"
+  class="container h-[80vh] mx-auto bg-no-repeat bg-left bg-[url('/landing.webp')]"
 >
   <div class="flex h-full justify-center items-center mt-20 gap-2 text-center">
     <div class="flex flex-col justify-center items-center p-5">
