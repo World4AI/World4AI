@@ -441,21 +441,42 @@ export function load() {
         ],
       },
       {
-          name: 'Markov Decision Process',
-          links: [
-              {
-                  name: 'Introduction',
-                  link: '/blocks/reinforcement_learning/markov_decision_process/introduction'
-              },
-              {
-                  name: 'Definition',
-                  link: '/blocks/reinforcement_learning/markov_decision_process/definition'
-              },
-              {
-                  name: 'Solution',
-                  link: '/blocks/reinforcement_learning/markov_decision_process/solution'
-              },			
-          ]
+        name: "Markov Decision Process",
+        links: [
+          {
+            name: "Introduction",
+            link: "/blocks/reinforcement_learning/markov_decision_process/introduction",
+          },
+          {
+            name: "Definition",
+            link: "/blocks/reinforcement_learning/markov_decision_process/definition",
+          },
+          {
+            name: "Solution",
+            link: "/blocks/reinforcement_learning/markov_decision_process/solution",
+          },
+        ],
+      },
+      {
+        name: "Dynamic Programming",
+        links: [
+          {
+            name: "Introduction",
+            link: "/blocks/reinforcement_learning/dynamic_programming/introduction",
+          },
+          {
+            name: "Policy Iteration",
+            link: "/blocks/reinforcement_learning/dynamic_programming/policy_iteration",
+          },
+          {
+            name: "Value Iteration",
+            link: "/blocks/reinforcement_learning/dynamic_programming/value_iteration",
+          },
+          {
+            name: "Generalized Policy Iteration",
+            link: "/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration",
+          },
+        ],
       },
     ],
   };
