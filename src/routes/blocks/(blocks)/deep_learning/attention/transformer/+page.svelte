@@ -1570,12 +1570,15 @@ class Decoder(nn.Module):
 
   <h2>Further Sources</h2>
   <p>
-    Understanding the transformer will all the details is not an easy task. It
-    is unlikely that the section above will be sufficient for you, so here are
-    some additional reccomendations.
+    Understanding the transformer with all the details is not an easy task. It
+    is unlikely that the section above is sufficient to completely cover this
+    architecture. You should therefore study as many sources as possible. Up to
+    this day the transformer is the most performant architecture in deep
+    learning and it is essential to have a solid understanding of the basic
+    principles of this architecture.
   </p>
   <p>
-    You have to read the original payer by Vasvani et. al. We had to omit some
+    You have to read the original paper by Vasvani et. al. We had to omit some
     of the implementation details, so if you want to implement the transformer
     on your own, reading this paper is a must.
   </p>
@@ -1588,13 +1591,22 @@ class Decoder(nn.Module):
     and explanations.
   </p>
   <p>
-    We will provide a simple implementation of the transformer in the next
-    section. <a
+    <a
       href="http://nlp.seas.harvard.edu/annotated-transformer/"
       target="_blank"
-      rel="noreferrer">The Annotated Transformer"</a
-    > from the Harvard University is a great choice if you a more in depths PyTorch
+      rel="noreferrer">"The Annotated Transformer"</a
+    > from the Harvard University is a great choice if you need an in depths PyTorch
     implementation.
+  </p>
+  <p>
+    The book <a
+      href="https://transformersbook.com/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      "Natural Language Processing with Transformers"</a
+    > covers theory and applications of different transformer models in a very approachable
+    manner.
   </p>
 </Container>
 
