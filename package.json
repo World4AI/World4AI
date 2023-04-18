@@ -12,15 +12,15 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "^2.0.2",
-    "@sveltejs/kit": "^1.15.4",
+    "@sveltejs/kit": "^1.15.7",
     "autoprefixer": "^10.4.14",
     "d3": "^7.8.4",
     "d3-contour": "^4.0.2",
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
-    "katex": "^0.16.4",
-    "lucide-svelte": "^0.143.0",
-    "postcss": "^8.4.21",
+    "katex": "^0.16.6",
+    "lucide-svelte": "^0.162.0",
+    "postcss": "^8.4.22",
     "sharp": "^0.32.0",
     "svelte": "^3.58.0",
     "svelte-highlight": "^7.2.1",
@@ -28,7 +28,7 @@
     "svelte-preprocess": "^5.0.3",
     "svgo": "^3.0.2",
     "tailwindcss": "^3.3.1",
-    "vite": "^4.2.1",
-    "vite-imagetools": "^4.0.18"
+    "vite": "^4.2.2",
+    "vite-imagetools": "^4.0.19"
   }
 }
