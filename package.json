@@ -19,8 +19,8 @@
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
     "katex": "^0.16.6",
-    "lucide-svelte": "^0.162.0",
-    "postcss": "^8.4.22",
+    "lucide-svelte": "^0.171.0",
+    "postcss": "^8.4.23",
     "sharp": "^0.32.0",
     "svelte": "^3.58.0",
     "svelte-highlight": "^7.2.1",
@@ -28,7 +28,7 @@
     "svelte-preprocess": "^5.0.3",
     "svgo": "^3.0.2",
     "tailwindcss": "^3.3.1",
-    "vite": "^4.2.2",
+    "vite": "^4.3.1",
     "vite-imagetools": "^4.0.19"
   }
 }
