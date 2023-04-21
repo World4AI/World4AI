@@ -12,10 +12,6 @@
   />
 </svelte:head>
 
-<Alert type="danger"
-  >The chapter is work in progress! Many parts are in the process of being
-  refactored.</Alert
->
 <h1>Attention</h1>
 <div class="separator" />
 
