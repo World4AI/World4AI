@@ -11,10 +11,10 @@
     content="In dynamic programming we have access to the model of the finite Markov decision process and can use iterative planning techniques to find the optimal value function and optimal policy."
   />
 </svelte:head>
+<Alert type="danger">The whole chapter is very early work in progress.</Alert>
 
 <h1>Dynamic Programming</h1>
 <div class="separator" />
-
 <Container>
   <p>
     The algorithms that we are going to cover in this section are known as <Highlight
