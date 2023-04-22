@@ -3,6 +3,7 @@
   import Highlight from "$lib/Highlight.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   // imports for the diagrams
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -436,10 +437,61 @@
     from scratch. Instead we will use the pre-trained BERT weights to solve our
     task at hand. Nowadays the most efficient way to use BERT is with the help
     of the <a href="https://huggingface.co/" target="_blank" rel="noreferrer"
-      >🤗HuggingFace library</a
-    >. This library contains models, pretrained weights, datasets and much more.
+      >🤗HuggingFace</a
+    >. HuggingFace includes models, pretrained weights, datasets and much more.
     We will make heavy use of it in future, and not only for natural language
     processing.
   </p>
+  <PythonCode
+    code={`import numpy as np
+import torch
+from transformers import pipeline
+from datasets import load_dataset
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import Trainer, TrainingArguments
+import evaluate
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+batch_size = 64
+model_ckpt = "bert-base-uncased"
+dataset_name = "sst2"
+
+dataset = load_dataset(dataset_name)
+tokenizer = AutoTokenizer.from_pretrained(model_ckpt)
+tokenize = lambda batch: tokenizer(batch["sentence"], padding=True, truncation=True)
+tokenized_dataset = dataset.map(tokenize, batched=True, batch_size=None)
+
+model = AutoModelForSequenceClassification.from_pretrained(model_ckpt).to(device)
+
+metric_name = "accuracy"
+metric = evaluate.load(metric_name)
+
+
+def compute_metrics(pred):
+    logits, labels = pred
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
+
+
+training_args = TrainingArguments(
+    output_dir="bert",
+    num_train_epochs=1,
+    learning_rate=1e-5,
+    per_device_train_batch_size=batch_size,
+    per_device_eval_batch_size=batch_size,
+    evaluation_strategy="epoch",
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_dataset["train"],
+    eval_dataset=tokenized_dataset["validation"],
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics,
+)
+
+trainer.train()`}
+  />
 </Container>
 <Footer {references} />
