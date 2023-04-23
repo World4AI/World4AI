@@ -3,7 +3,7 @@
   import Footer from "$lib/Footer.svelte";
   import Highlight from "$lib/Highlight.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
-  import Latex from "$lib/Latex.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -317,6 +317,44 @@
     writing their largest model, GPT-NeoX-20B, consists of 20 billion
     parameters, but they plan to train even larger models to match the
     performance of the newest models by OpenAI.
+  </p>
+  <p>
+    We can use the transformers library by HuggingFace to interract with GPT-2.
+    The easiest way to accomplish that is to use the text-generation pipeline. A
+    pipeline abstracts away most of code running in the background. We do not
+    need to take care of the tokenizer or the model, just by using
+    'text-generation' as the input, HuggingFace downloads GPT-2 weights and
+    allows you to generate text.
+  </p>
+  <PythonCode
+    code={`from transformers import pipeline
+
+generator = pipeline("text-generation")
+prompt = (
+    "In the year 2035 humanity will have created human level artificial intelligence."
+)
+outputs = generator(prompt, max_length=100)`}
+  />
+  <p>
+    When we use the prompt <em>
+      "In the year 2035 humanity will have created human level artificial
+      intelligence."
+    </em>
+    we might get the following result.
+  </p>
+  <p class="font-mono bg-slate-50 p-3">
+    In the year 2035 humanity will have created human level artificial
+    intelligence. Some experts believe that the first phase of AI could arrive
+    around 2030 and be capable of being applied in a multitude of applications,
+    including transportation, health or the arts.\n\nAs humans live longer and
+    more efficiently and interact more quickly with computers, we will probably
+    see a gradual step towards being a multi-systemed society. A society which
+    will have more people involved and will focus on information management,
+    education, marketing, governance,
+  </p>
+  <p>
+    This is relatively cohesive, but the results will depend on your initial
+    prompt and will change each time you run the code.
   </p>
 </Container>
 <Footer {references} />
