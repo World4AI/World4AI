@@ -313,7 +313,6 @@ export function load() {
           },
         ],
       },
-      /*
       {
         name: "Autoregressive Generative Models",
         links: [
@@ -331,6 +330,7 @@ export function load() {
           },
         ],
       },
+      /*
       {
         name: "Latent Variable Models",
         links: [
