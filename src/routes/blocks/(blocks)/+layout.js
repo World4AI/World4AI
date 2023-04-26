@@ -321,8 +321,8 @@ export function load() {
             link: "/blocks/deep_learning/autoregressive_generative_models/introduction",
           },
           {
-            name: "PixelRNN",
-            link: "/blocks/deep_learning/autoregressive_generative_models/pixel_rnn",
+            name: "PixelCNN",
+            link: "/blocks/deep_learning/autoregressive_generative_models/pixel_cnn",
           },
           {
             name: "Gated PixelCNN",
