@@ -37,9 +37,9 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
   - [x] Stability and Speedup
   - [x] Computer Vision
   - [x] Sequence Modelling
-  - [ ] Attention
+  - [x] Attention
   - [ ] Multi-Modal Models
-  - [ ] Autoregressive Generative Models
+  - [x] Autoregressive Generative Models
   - [ ] Latent Variable Models
   - [ ] Normalizing Flows
   - [ ] GANs
