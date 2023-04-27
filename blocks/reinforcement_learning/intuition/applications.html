@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-reinforcement_learning-intuition-applications-page.svelte.47e0c278.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Interaction.6c345f67.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/RandomAgent.2a3051e9.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/maps.0f079072.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js"><title>Reinforcement Learning Applications - World4AI</title><!-- HEAD_svelte-b67z5g_START --><meta name="description" content="Reinforcement learning is used in many different applications, like games, finance, robotics, healcare and autonomous vehicles."><!-- HEAD_svelte-b67z5g_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Reinforcement Learning Applications</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>Over the last decade research in reinforcement learning has skyrocketed.
+    Initially most research projects focused on computer games and board games,
+    but over the last couple of years more and more practical applications are
+    being developed.
+  </p>
+  <p>In this section we will focus on a couple of areas, where reinforcement
+    learning is known to be used, but this list is far from being exhaustive.
+  </p>
+  <div class="separator"></div>
+  <h2>Grid Worlds</h2>
+  <p>Most beginner reinforcement learning problems are grid world problems. They
+    are easy enough to understand and do not require a lot of computational
+    power to solve. A gridworld is (usually) a simple game. You have some sort
+    of a player that can move from cell to cell, while avoiding some obstacles
+    and trying to reach a goal. Of course there are grid worlds that are
+    substantially more complex. These can for example include powerups, enemies
+    and many different levels.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect stroke-width="0.3" x="0" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="10" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="110" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="210" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon stroke="black" class="fill-blue-400" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div></div>
+  <p>In the above example the player has to move the circle from the top left
+    corner to the goal (represented by a triangle) in bottom left corner, while
+    avoiding the walls (represented by the three squares). This seems like a
+    trivial task for a human being, but it gets nontrivial if you are not
+    allowed to hardcode the solution. Instead you have to make your computer
+    learn the goal of the game and the strategy to achieve the goal.
+  </p>
+  <p>That is exactly where reinforcement learning comes into play. By applying
+    reinforcement learning algorithms it becomes possible to learn the optimal
+    behaviour, where the circle arrives at the goal in as few steps as possible.
+    In our example above the circle moves randomly and therefore it might take a
+    while for the circle to get to the goal. In a few chapter we will implement
+    our first algorithms and see how this simple task can be solved though
+    reinforcement learning.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Computer Games</h2>
+  <p>Computer games have become a testing ground for reinforcement learning
+    algorithms. Most new algorithms are tested on the Atari 2600 games in order
+    to show how efficient the algorithms are. For a human it is not especially
+    hard to learn the rules of the game (although it might require some time to
+    master the game), but for computers it is an entirely different story. Due
+    to the vast number of possible pixel values on the screen the usual
+    strategies that are used to solve the grid worlds break down. Good solutions
+    require the use of neural networks.
+  </p>
+  <canvas width="200" height="300">The game of Pong
+</canvas>
+  <p>Pong for example seems to be a relatively easy task, but a computer program
+    needs to learn to transform raw pixel values of the screen into actions.
+    Nowadays we have the necessary tools to solve such problems, but just 10
+    years ago this task seemed impossible.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Board Games</h2>
+  <p>Board games, like backgammon, chess and Go used to be the frontier for AI.
+    There was an assumption that a computer would require creativity and
+    imagination to beat a professional player. This assumption implied that the
+    computer needed to possess human characteristics in order to win against a
+    professional player. Nevertheless in all three games professionals and even
+    world champions were beaten by AI systems.
+  </p>
+  <p>Most cecently DeepMind&#39;s AlphaGo won against the Go world champion. For a
+    number of years the challenge of winning against the world champion was
+    considered impossible. The number of legal board positions in the game of go
+    is far greater than the number atoms in the observable universe. Iterating
+    through all positions is impossible. Nevertheless, not only did the
+    algorithm win against the world champion, Lee Sedol, in the 4 of 5 games,
+    but according to some Go experts AlphaGo showed creativity. In the second of
+    the five games AlphaGo shocked the world with the now iconic move. This move
+    has become known as <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Move 37</strong>.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g><g class="fill-black" stroke-width="2" stroke="black" stroke-opacity="0.5"><path d="m0.5 0.5v499"></path><path d="m28.222 0.5v499"></path><path d="m55.944 0.5v499"></path><path d="m83.667 0.5v499"></path><path d="m111.39 0.5v499"></path><path d="m139.11 0.5v499"></path><path d="m166.83 0.5v499"></path><path d="m194.56 0.5v499"></path><path d="m222.28 0.5v499"></path><path d="m250 0.5v499"></path><path d="m277.72 0.5v499"></path><path d="m305.44 0.5v499"></path><path d="m333.17 0.5v499"></path><path d="m360.89 0.5v499"></path><path d="m388.61 0.5v499"></path><path d="m416.33 0.5v499"></path><path d="m444.06 0.5v499"></path><path d="m471.78 0.5v499"></path><path d="m499.5 0.5v499"></path><path d="m0.5 0.5h499"></path><path d="m0.5 28.222h499"></path><path d="m0.5 55.944h499"></path><path d="m0.5 83.667h499"></path><path d="m0.5 111.39h499"></path><path d="m0.5 139.11h499"></path><path d="m0.5 166.83h499"></path><path d="m0.5 194.56h499"></path><path d="m0.5 222.28h499"></path><path d="m0.5 250h499"></path><path d="m0.5 277.72h499"></path><path d="m0.5 305.44h499"></path><path d="m0.5 333.17h499"></path><path d="m0.5 360.89h499"></path><path d="m0.5 388.61h499"></path><path d="m0.5 416.33h499"></path><path d="m0.5 444.06h499"></path><path d="m0.5 471.78h499"></path><path d="m0.5 499.5h499"></path></g><g fill-rule="evenodd" stroke-width="1" stroke-opacity="0.5" fill="white" class="stroke-black"><circle cx="416.33" cy="83.667" r="11.341" class="fill-white"></circle><circle cx="83.667" cy="416.33" r="11.341" class="fill-black"></circle><circle cx="55.944" cy="83.667" r="11.341" class="fill-white"></circle><circle cx="444.06" cy="416.33" r="11.341" class="fill-black"></circle><circle cx="388.61" cy="416.33" r="11.341" class="fill-white"></circle><circle cx="388.61" cy="444.06" r="11.341" class="fill-black"></circle><circle cx="360.89" cy="444.06" r="11.341" class="fill-white"></circle><circle cx="416.33" cy="444.06" r="11.341" class="fill-black"></circle><circle cx="55.944" cy="360.89" r="11.341" class="fill-white"></circle><circle cx="139.11" cy="444.06" r="11.341" class="fill-black"></circle><circle cx="333.17" cy="416.33" r="11.341" class="fill-white"></circle><circle cx="444.06" cy="360.89" r="11.341" class="fill-black"></circle><circle cx="222.28" cy="55.944" r="11.341" class="fill-white"></circle><circle cx="83.667" cy="250" r="11.341" class="fill-black"></circle><circle cx="416.33" cy="388.61" r="11.341" class="fill-white"></circle><circle cx="444.06" cy="388.61" r="11.341" class="fill-black"></circle><circle cx="55.944" cy="416.33" r="11.341" class="fill-white"></circle><circle cx="55.944" cy="444.06" r="11.341" class="fill-black"></circle><circle cx="28.222" cy="444.06" r="11.341" class="fill-white"></circle><circle cx="55.944" cy="388.61" r="11.341" class="fill-black"></circle><circle cx="28.222" cy="416.33" r="11.341" class="fill-white"></circle><circle cx="28.222" cy="388.61" r="11.341" class="fill-black"></circle><circle cx="83.667" cy="388.61" r="11.341" class="fill-white"></circle><circle cx="83.667" cy="444.06" r="11.341" class="fill-white"></circle><circle cx="111.39" cy="416.33" r="11.341" class="fill-black"></circle><circle cx="83.667" cy="471.78" r="11.341" class="fill-white"></circle><circle cx="55.944" cy="333.17" r="11.341" class="fill-black"></circle><circle cx="250" cy="416.33" r="11.341" class="fill-white"></circle><circle cx="55.944" cy="166.83" r="11.341" class="fill-black"></circle><circle cx="111.39" cy="83.667" r="11.341" class="fill-white"></circle><circle cx="444.06" cy="139.11" r="11.341" class="fill-black"></circle><circle cx="444.06" cy="111.39" r="11.341" class="fill-white"></circle><circle cx="416.33" cy="139.11" r="11.341" class="fill-black"></circle><circle cx="360.89" cy="83.667" r="11.341" class="fill-white"></circle><circle cx="416.33" cy="222.28" r="11.341" class="fill-black"></circle><circle cx="388.61" cy="250" r="11.341" class="fill-slate-100"></circle><circle cx="28.222" cy="360.89" r="11.341" class="fill-black"></circle></g><g fill="none"><g class="stroke-red-400 stroke-2"><path d="m2100 900 400 500"></path><path d="m363.94 226.16 12.614 12.752"></path><path d="m364.91 271.76 12.752-10.396"></path><path d="m412.73 274.26-11.921-13.307"></path><path d="m406.35 232.4-7.485 7.2078"></path><path d="m382.24 225.47 2.2178 10.396"></path><path d="m364.49 257.76 9.98-3.0495"></path><path d="m378.08 275.23 5.1286-10.673"></path><path d="m413.15 239.19-9.4256 5.5444"></path><path d="m403.17 254.99 9.0097 3.4653"></path></g></g></g></svg></div></div>
+  <div class="separator"></div>
+
+  <h2>Finance</h2>
+  <p>Nowadays it seems that machine learning is taking over the financial
+    industry in every aspect imaginable. From valuing financial products to
+    chatbots that communicate with prospective clients.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 500 200"><g transform="translate(0,200)"><text stroke="none" fill="var(--text-color)">1980</text></g><g transform="translate(125,200)"><text stroke="none" fill="var(--text-color)">1990</text></g><g transform="translate(250,200)"><text stroke="none" fill="var(--text-color)">2000</text></g><g transform="translate(375,200)"><text stroke="none" fill="var(--text-color)">2010</text></g><g fill="none" class="stroke-2"><path d="M0,100L12.5,98L25,96L37.5,99.6L50,89.99999999999999L62.5,88.00000000000001L75,94L87.5,85.99999999999999L100,76L112.5,80L125,84.00000000000001L137.5,74L150,72L162.5,73.6L175,76L187.5,77.60000000000001L200,80L212.5,69L225,71.39999999999999L237.5,75.6L250,65.99999999999999L262.5,58.00000000000001L275,60.00000000000001L287.5,64.00000000000001L300,56.00000000000001L312.5,52L325,60.00000000000001L337.5,50L350,55.60000000000001L362.5,49L375,41.99999999999999L387.5,38.000000000000014L400,39.99999999999999L412.5,31.400000000000006L425,20.199999999999996L437.5,16.000000000000014L450,26.00000000000002L462.5,27L475,39.99999999999999L487.5,30.000000000000004L500,28.999999999999982" class="stroke-blue-300"></path><path d="M0,19.999999999999996L12.5,38.000000000000014L25,36.00000000000001L37.5,39.600000000000016L50,30.000000000000004L62.5,28.000000000000004L75,54L87.5,46L100,56.00000000000001L112.5,60.00000000000001L125,43.99999999999999L137.5,54L150,52L162.5,73.6L175,76L187.5,77.60000000000001L200,100L212.5,89.00000000000001L225,91.40000000000002L237.5,115.60000000000001L250,85.99999999999999L262.5,78L275,80L287.5,64.00000000000001L300,56.00000000000001L312.5,52L325,39.99999999999999L337.5,70L350,75.6L362.5,69L375,41.99999999999999L387.5,58.00000000000001L400,60.00000000000001L412.5,51.4L425,40.19999999999999L437.5,36.00000000000001L450,46L462.5,47L475,80L487.5,70L500,69" class="stroke-gray-300"></path><path d="M0,140L12.5,138L25,136L37.5,139.6L50,130L62.5,128L75,134L87.5,126L100,136L112.5,140L125,124L137.5,134L150,132L162.5,133.6L175,136L187.5,137.6L200,140L212.5,129L225,131.4L237.5,135.6L250,126L262.5,138L275,140L287.5,124L300,156L312.5,152L325,160L337.5,150L350,155.6L362.5,149L375,142L387.5,158L400,160L412.5,151.4L425,140.2L437.5,156L450,146L462.5,147L475,160L487.5,150L500,149" class="stroke-red-300"></path></g></svg></div></div>
+  <p>The most exciting part still seems to be portfolio management though.
+    Imagine an AI agent that decides what financial instrument to invest in and
+    in what proportion. There is an abundance of financial data going back
+    sometimes a hundred years. That data can be used to train a reinforcement
+    learning agent to potentially perform better than humans over a long period
+    of time. Even if the AI performs equally well to human portfolio managers,
+    the banks could cut costs, as automated trading bots tend to be much cheaper
+    than human portfolio managers.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Robotics</h2>
+  <p>The field of robotics is vast. We could talk about robots on assembly lines,
+    drones or bipedal robots. In all the above mentioned cases it is possible to
+    apply reinforcement learning to learn the desired task for the robot.
+  </p>
+  <div class="w-full"><div style="max-width: 100px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 84.72 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" class="stroke-black fill-slate-200"><g id="legs" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="189.87" y="-68.075" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="189.87" y="-26.273" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect></g><g id="body" stroke-linecap="round" stroke-linejoin="round"><rect x="13.448" y="62.557" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="45.977" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="29.396" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="18.801" y="79.137" width="47.11" height="20.333" style="paint-order:markers fill stroke"></rect></g><g id="arms" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="30.167" y="-10.136" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="matrix(0,1,1,0,0,0)" x="30.584" y="74.576" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect x="1.425" y="43.824" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="scale(-1,1)" x="-83.287" y="44.241" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="matrix(.99997 -.0075742 .0075215 .99997 0 0)" x=".85526" y="75.756" width="7.286" height="27.77" style="paint-order:markers fill stroke"></rect><rect transform="matrix(-.99999 .0041997 .0042671 .99999 0 0)" x="-82.846" y="75.723" width="7.3762" height="27.793" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-8.3844" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-82.751" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect></g><g id="head"><rect x="29.508" y=".5" width="25.696" height="25.684" ry="0" stroke-linecap="round" stroke-linejoin="round" style="paint-order:markers fill stroke"></rect><path d="m42.356 8.3955v10.702"></path></g></g></svg></div></div>
+  <p>A bipedal robot can for example be taught to walk on two legs through the
+    means of reinforcement learning. Each step or fall of the robot can be used
+    as a learning experience. At the moment many bipedal robots, like those made
+    by Boston Dynamics, are not actually trained through reinforcement learning,
+    but are hardcoded to solve their task. These results are great feats of pure
+    engineering and not AI, but 10 years down the road and AI will probably
+    replace a lot of hardcoded parts.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Autonomous Vehicles</h2>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" class="stroke-black"><g stroke-width="1px"><path d="m0 24.242h500"></path><path d="m500 175.76h-500"></path></g><g id="car" stroke-linejoin="round"><rect transform="rotate(90)" x="40.513" y="-447" width="23.368" height="80.823" ry="0" class="fill-gray-200"></rect><rect transform="rotate(90)" x="44.26" y="-438.68" width="15.873" height="54.901" ry="0" stroke-width=".67927" class="fill-gray-300"></rect></g><path id="stripes" d="m-11.924 100h533.36" stroke-dasharray="40,80" stroke-dashoffset="0" stroke-width="10" class="stroke-slate-600"></path></g></svg></div></div>
+  <p>Autonomous vehicles (a.k.a. self-driving cars) are at the moment of writing
+    the current frontier for reinforcement learning. There are many car
+    companies that invest in self-driving cars. Newer car companies like Tesla
+    and Google’s Waymo and old German car manufacturers like Volkswagen all
+    invest an enormous amount of time and money in the development of autonomous
+    vehicles. Research in the area has been going on since at least the 80’s,
+    but the behaviour of these vehicles in edge cases made their use often
+    dangerous for everyday use. Since the DARPA Grand Challenge (2007) great
+    leaps have been made and reinforcement learning played a huge role in that
+    success story.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/reinforcement_learning/intuition/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/reinforcement_learning/intuition/agent_environment"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 90],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

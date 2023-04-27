@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-reinforcement_learning-intuition-agent_environment-page.svelte.d7afc914.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/RandomAgent.2a3051e9.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Interaction.6c345f67.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/maps.0f079072.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js"><title>Agent and Environment - World4AI</title><!-- HEAD_svelte-k13x36_START --><meta name="description" content="The agent and the environment are the two main components in reinforcement learning. The agent is the component that generates the decisons. The environment is everything else."><!-- HEAD_svelte-k13x36_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Agent and Environment</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>All of reinforcement learning is based on two main components, the
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">agent</strong>
+    and the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">environment</strong>. Let&#39;s use the gridworld below to
+    get familiar with the two components.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect stroke-width="0.3" x="0" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="10" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="110" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="210" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon stroke="black" class="fill-blue-400" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div></div>
+  <p>In the gridworld the main player is represented by a circle. The player can
+    move into 4 different directions: North, East, South and West. If the circle
+    is against an outer wall or a barrier (red boxes) the circle can not move in
+    that particular direction. The goal of the game is for the circle to reach
+    the triangle in the bottom left corner in as few steps as possible. For the
+    time being the circle moves randomly.
+  </p>
+
+  <p>Intuitively we could say that the circle is the agent and the grid world is
+    the environment, but that definition would not be entirely correct. There is
+    actually a relatively strict separation between the agent and the
+    environment.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">The agent is the decision maker.</p></div>
+  <p>All the agent can actually do is to make the decisions. In the case of the
+    above gridworld the agent chooses the direction. Whether the circle actually
+    moves in that direction is outside of the influence of the agent.
+  </p></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>For example in the gridworld above the agent can decide to go north even
+    when the circle is against a barrier or a wall in the northern direction.
+    That decision might be legitimate in many grid worlds, but the position of
+    the circle will not change.
+  </p>
+  <p>The agent is the program that generates the decision and the decision of the
+    agent is then relayed to the environment. The environment processes the
+    decision, but that is not something that the agent can influence. In the
+    simple grid-world game if the agent decides to go north the circle might
+    actually move north or it could move in a totally different direction or not
+    move at all.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">Anything outside of the agent is the environment.</p></div>
+  <p>The environment on the other hand is everything that is not the agent. The
+    enviroment in the grid world reacts to the decisions of the agent and
+    calculates what position the circle moves to. Additionally the environment
+    rewards the agent for its decisions.
+  </p>
+  <p>A different example that is often used to make the distinction between the
+    agent and the environment is that of a robot that interacts with the real
+    world.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg"><g id="agent" fill="none" class="stroke-black"><g><rect x="451.86" y="64.657" width="29.624" height="29.623" ry="0"></rect><rect x="454.82" y="67.619" width="23.698" height="23.698" ry="0"></rect><circle cx="466.67" cy="79.468" r="4.5016" fill-rule="evenodd" stroke-linejoin="round"></circle></g><g><g><path d="m456.71 63.966v-6.1912h-6.1912v-6.1912"></path><path d="m462.9 63.966v-12.382"></path><path d="m469.1 63.966v-12.382"></path></g><path d="m475.29 63.967v-6.1913h6.1912v-6.1913"></path><g><path d="m481.48 70.158h6.1912v-6.1912h6.1912"></path><path d="m481.48 76.349h12.382"></path><path d="m481.48 82.54h12.382"></path><path d="m481.48 88.731h6.1912v6.1912h6.1912"></path><path d="m450.52 70.158h-6.1912v-6.1912h-6.1912"></path><path d="m450.52 76.349h-12.382"></path><path d="m450.52 82.54h-12.382"></path><path d="m450.52 88.731h-6.1912v6.1912h-6.1912"></path><path d="m456.71 94.922v6.1912h-6.1912v6.1912"></path><path d="m462.9 94.922v12.382"></path><path d="m469.1 94.922v12.382"></path><path d="m475.29 94.922v6.1912h6.1912v6.1912"></path></g></g></g><g id="robot" class="fill-slate-300 stroke-black"><g id="legs" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="189.87" y="-68.075" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="189.87" y="-26.273" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="144.97" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-68.075" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="101.26" y="-26.273" width="41.736" height="9.6361" style="paint-order:markers fill stroke"></rect></g><g id="body" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect x="13.448" y="62.557" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="45.977" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="13.448" y="29.396" width="57.816" height="13.912" style="paint-order:markers fill stroke"></rect><rect x="18.801" y="79.137" width="47.11" height="20.333" style="paint-order:markers fill stroke"></rect></g><g id="arms" transform="translate(243.74)" stroke-linecap="round" stroke-linejoin="round"><rect transform="rotate(90)" x="30.167" y="-10.136" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect transform="matrix(0,1,1,0,0,0)" x="30.584" y="74.576" width="9.6314" height="9.6361" style="paint-order:markers fill stroke"></rect><rect x="1.425" y="43.824" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="scale(-1,1)" x="-83.287" y="44.241" width="7.4947" height="27.824" style="paint-order:markers fill stroke"></rect><rect transform="matrix(.99997 -.0075742 .0075215 .99997 0 0)" x=".85526" y="75.756" width="7.286" height="27.77" style="paint-order:markers fill stroke"></rect><rect transform="matrix(-.99999 .0041997 .0042671 .99999 0 0)" x="-82.846" y="75.723" width="7.3762" height="27.793" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-8.3844" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect><rect transform="rotate(90)" x="105.2" y="-82.751" width="6.4209" height="6.424" style="paint-order:markers fill stroke"></rect></g><g id="head" transform="translate(243.74)"><rect x="29.508" y=".5" width="25.696" height="25.684" ry="0" stroke-linecap="round" stroke-linejoin="round" style="paint-order:markers fill stroke"></rect><path d="m42.356 8.3955v10.702"></path></g></g><path id="connection" d="m426 75h-90" fill="none" class="stroke-violet-600" stroke-dasharray="14, 14" stroke-dashoffset="0"></path><g id="batteries" class="stroke-black" stroke-linejoin="round"><rect transform="rotate(90)" x="171.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g class="fill-gray-400"><rect transform="rotate(90)" x="174.7" y="-104.89" width="19.279" height="5.4133" ry="0"></rect><rect transform="rotate(90)" x="174.7" y="-96.067" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="174.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="176.83" y="-120.62" width="15" height="5"></rect><rect transform="rotate(90)" x="174.7" y="-112.89" width="19.279" height="5.4133" ry="0"></rect></g><rect transform="rotate(90)" x="143.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g class="fill-gray-400"><rect transform="rotate(90)" x="146.7" y="-104.89" width="19.279" height="5.4133" ry="0"></rect><rect transform="rotate(90)" x="146.7" y="-96.067" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="146.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="148.83" y="-120.62" width="15" height="5"></rect><rect transform="rotate(90)" x="146.7" y="-112.89" width="19.279" height="5.4133" ry="0"></rect></g><rect transform="rotate(90)" x="117.83" y="-115.62" width="25" height="63.617" ry="4.8936" fill="none" stroke-width="1"></rect><g class="fill-gray-400"><rect transform="rotate(90)" x="120.7" y="-104.89" width="19.279" height="5.4133" ry="0" class="fill-none"></rect><rect transform="rotate(90)" x="120.7" y="-96.067" width="19.279" height="5.4133" class="fill-none"></rect><rect transform="rotate(90)" x="120.7" y="-87.241" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-78.414" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-69.587" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="120.7" y="-60.761" width="19.279" height="5.4133"></rect><rect transform="rotate(90)" x="122.83" y="-120.62" width="15" height="5" class="fill-none"></rect><rect transform="rotate(90)" x="120.7" y="-112.89" width="19.279" height="5.4133" ry="0" class="fill-none"></rect></g></g><g id="sparks" fill="none" class="stroke-2 stroke-red-200" stroke-width="1px"><path d="m85.269 106.99v-13.502"></path><path d="m96.258 106.66 6.2446-10.545"></path><path d="m111.01 108.75 10.389-11.87"></path><path d="m70.604 104.41-7.2062-12.956"></path><path d="m58.697 105.93-12.772-10.241"></path><path d="m44.772 119.77-11.367-8.2351"></path><path d="m45.065 129.08-17.702-2.6742"></path><path d="m41.728 140.73-16.064 0.5"></path><path d="m42.142 151.62-14.957 5.7583"></path><path d="m37.988 167.94-17.506 4.6349"></path><path d="m44.09 182.83-18.866 3.4485"></path><path d="m121.14 115.96 13.629-4.1756"></path><path d="m127.85 129.11 13.056-1"></path><path d="m131.54 144.72 13.358 0.5"></path><path d="m134.86 160.38 11.758-3.6032"></path><path d="m133.74 172.81 13.268 2.4387"></path><path d="m133.35 183.45 13.832 1.9768"></path><path d="m135.63 194.65h13.316"></path><path d="m43.768 193.9-15.104 1.7727"></path></g></svg></div></div>
+  <p>The goal of the agent might be to move the robot from right to left to
+    recharge its battery. The agent sends the decison to move the robot. But it
+    is entirely possible that the robot does not even start moving because the
+    battery is already completely depleted. In this example the agent is the
+    code that makes the decision to move left. While the arms, the legs, the
+    cooling system of the robot, the battery, the floor and everything else in
+    the image is part of the environment.
+  </p>
+  <p>A similar argument can be made for a human or any other form of a biological
+    machine. The neural network in our brain makes the decisions to move, to
+    study or to sleep. How the body actually reacts is not really in our
+    control. For example the movement could be stopped when you are parallyzed
+    either because of an illness or through fear. The desire to study could be
+    stopped through external triggers like the smell of food or a habit to
+    listen to music. And the decision to go to bed to fall asleep is not always
+    accompanied by actual sleep. We do not have full control of our body. For
+    example, no matter how hard we try, we can not stop our heart though our
+    will.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/reinforcement_learning/intuition/applications"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/reinforcement_learning/intuition/definition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 89],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_page.ff246c12.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Circle.dd91c35f.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-stability_speedup-learning_rate_scheduling-page.svelte.5246a8ad.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Circle.f281e92b.js"><title>Learning Rate Scheduling - World4AI</title><!-- HEAD_svelte-gcga6n_START --><meta name="description" content="It is not always an easy task to finetune the learning rate. Learning rate schedulers are a common way to otpimize this hyperparameter, but changing the learning rate over time."><!-- HEAD_svelte-gcga6n_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Learning Rate Scheduling</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>There is probably no hyperparameter that is more important than the learning
+    rate <span class="hidden">\alpha</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. If the learning rate is too high, we might
+    overshood or oscilate. If the learning rate is too low, training might be
+    too slow, or we might get stuck in some local minimum.
+  </p>
+  <p>In the example below for example we pick a learning rate that is relatively
+    large. The gradient descent algorithm (with momentum) overshoots and keeps
+    oscilating for a while, before settling on the minimum.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 1000px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">0</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 181.66666666666666)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">10</text></g><g class="tick tick-20 svelte-1v7xslh" transform="translate(0, 153.33333333333337)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">20</text></g><g class="tick tick-30 svelte-1v7xslh" transform="translate(0, 125)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">30</text></g><g class="tick tick-40 svelte-1v7xslh" transform="translate(0, 96.66666666666669)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">40</text></g><g class="tick tick-50 svelte-1v7xslh" transform="translate(0, 68.33333333333333)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">50</text></g><g class="tick tick-60 svelte-1v7xslh" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">60</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(-12.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(92.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(145,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(197.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(302.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(355,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(407.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(512.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">10</text></g></g>
+    <path d="M40,28.666666666666668L42.62499999999999,33.17166666666667L45.24999999999998,37.61999999999996L47.87499999999997,42.01166666666663L50.49999999999996,46.34666666666661L53.12499999999996,50.62499999999992L55.74999999999994,54.84666666666658L58.374999999999936,59.01166666666657L60.99999999999993,63.11999999999989L63.624999999999915,67.17166666666654L66.2499999999999,71.16666666666652L68.87499999999989,75.10499999999983L71.49999999999989,78.98666666666651L74.12499999999989,82.81166666666648L76.74999999999987,86.57999999999981L79.37499999999986,90.29166666666647L81.99999999999986,93.94666666666646L84.62499999999984,97.54499999999977L87.24999999999983,101.08666666666646L89.87499999999983,104.57166666666645L92.4999999999998,107.99999999999976L95.1249999999998,111.37166666666641L97.7499999999998,114.68666666666641L100.37499999999977,117.94499999999974L102.99999999999977,121.14666666666639L105.62499999999977,124.29166666666639L108.24999999999974,127.37999999999973L110.87499999999974,130.41166666666638L113.49999999999974,133.3866666666664L116.12499999999973,136.3049999999997L118.74999999999972,139.16666666666634L121.37499999999972,141.97166666666635L123.9999999999997,144.7199999999997L126.62499999999969,147.41166666666635L129.2499999999997,150.04666666666637L131.8749999999997,152.6249999999997L134.49999999999966,155.14666666666636L137.12499999999966,157.61166666666637L139.74999999999966,160.01999999999967L142.37499999999963,162.37166666666633L144.99999999999963,164.66666666666634L147.62499999999963,166.9049999999997L150.24999999999963,169.08666666666636L152.87499999999966,171.21166666666636L155.49999999999963,173.27999999999972L158.12499999999963,175.2916666666664L160.74999999999963,177.2466666666664L163.37499999999966,179.14499999999973L165.99999999999963,180.98666666666645L168.62499999999963,182.77166666666645L171.24999999999966,184.49999999999977L173.87499999999966,186.17166666666645L176.49999999999966,187.78666666666646L179.12499999999963,189.3449999999998L181.74999999999966,190.84666666666647L184.37499999999966,192.2916666666665L186.99999999999966,193.67999999999984L189.62499999999966,195.0116666666665L192.24999999999966,196.28666666666652L194.8749999999997,197.50499999999982L197.49999999999966,198.66666666666652L200.12499999999966,199.77166666666653L202.7499999999997,200.81999999999988L205.3749999999997,201.81166666666655L207.9999999999997,202.74666666666658L210.62499999999966,203.6249999999999L213.2499999999997,204.4466666666666L215.8749999999997,205.2116666666666L218.4999999999997,205.9199999999999L221.1249999999997,206.57166666666657L223.7499999999997,207.1666666666666L226.3749999999997,207.70499999999993L228.9999999999997,208.1866666666666L231.6249999999997,208.61166666666662L234.2499999999997,208.97999999999996L236.8749999999997,209.29166666666663L239.4999999999997,209.54666666666665L242.1249999999997,209.74499999999998L244.7499999999997,209.88666666666666L247.3749999999997,209.97166666666664L249.9999999999997,210L252.62499999999972,209.97166666666666L255.2499999999997,209.88666666666668L257.87499999999966,209.74500000000003L260.49999999999966,209.54666666666668L263.12499999999966,209.2916666666667L265.7499999999997,208.98000000000002L268.37499999999966,208.6116666666667L270.99999999999966,208.1866666666667L273.62499999999966,207.70500000000007L276.2499999999997,207.16666666666674L278.87499999999966,206.57166666666674L281.49999999999966,205.92000000000007L284.12499999999966,205.21166666666676L286.74999999999966,204.44666666666674L289.3749999999998,203.62500000000009L291.99999999999966,202.74666666666678L294.62499999999966,201.81166666666678L297.24999999999966,200.8200000000001L299.8749999999997,199.7716666666668L302.4999999999997,198.66666666666677L305.12499999999966,197.50500000000014L307.74999999999966,196.2866666666668L310.3749999999997,195.01166666666683L312.9999999999997,193.68000000000015L315.6249999999997,192.29166666666683L318.24999999999966,190.8466666666668L320.87499999999966,189.34500000000017L323.4999999999997,187.78666666666683L326.1249999999997,186.17166666666685L328.7499999999997,184.50000000000017L331.3749999999997,182.77166666666685L333.9999999999997,180.98666666666685L336.6249999999997,179.1450000000002L339.2499999999997,177.24666666666687L341.8749999999997,175.29166666666688L344.4999999999997,173.2800000000002L347.1249999999997,171.21166666666684L349.7499999999997,169.08666666666687L352.3749999999998,166.90500000000023L354.9999999999998,164.66666666666688L357.6249999999997,162.3716666666669L360.2499999999997,160.0200000000002L362.8749999999997,157.6116666666669L365.4999999999997,155.14666666666693L368.1249999999997,152.62500000000028L370.74999999999966,150.04666666666697L373.37499999999966,147.41166666666697L375.99999999999966,144.7200000000003L378.6249999999997,141.971666666667L381.2499999999997,139.16666666666703L383.8749999999997,136.30500000000038L386.49999999999966,133.38666666666708L389.12499999999966,130.41166666666706L391.74999999999966,127.38000000000041L394.37499999999966,124.29166666666711L396.99999999999966,121.14666666666713L399.6249999999996,117.94500000000048L402.2499999999996,114.68666666666716L404.8749999999996,111.37166666666718L407.4999999999996,108.00000000000055L410.1249999999996,104.57166666666724L412.7499999999996,101.08666666666726L415.37499999999955,97.54500000000061L417.99999999999955,93.94666666666728L420.62499999999955,90.29166666666731L423.24999999999955,86.58000000000068L425.87499999999955,82.81166666666736L428.4999999999995,78.98666666666739L431.1249999999995,75.10500000000073L433.7499999999995,71.16666666666742L436.3749999999995,67.17166666666748L438.9999999999995,63.12000000000083L441.6249999999995,59.011666666667516L444.24999999999943,54.846666666667545L446.87499999999943,50.62500000000091L449.49999999999943,46.34666666666759L452.12499999999943,42.01166666666763L454.74999999999943,37.62000000000098L457.3749999999994,33.17166666666768L459.9999999999994,28.666666666667723" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <circle fill="var(--main-color-1)" cx="460" cy="28.666666666666668" r="5" class="svelte-j95o6m"></circle>
+    
+<text font-size="20" class="title svelte-1nh78f2" x="250" y="20">Constant Learning Rate 0.10</text></svg></div></div>
+
+  <p>It is possible, that a single constant rate is not the optimal solution.
+    What if we start out with a relatively large learning rate to gain momentum
+    at the beginning of trainig, but decrease the learning rate either over time
+    or at specific events. In deep learning this is called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">learning rate decay</strong> or <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">learning rate scheduling</strong>. There are dozens of
+    different schedulers (see the
+    <a href="https://pytorch.org/docs/stable/optim.html" target="_blank" rel="noreferrer">PyTorch documentation</a>
+    for more info). You could for example decay the learing rate by subtracting a
+    constant rate every <span class="hidden">n</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ episodes. Or you could multiply the learning
+    rate at the end of each epoch by a constant factor, for example
+    <span class="hidden">0.9</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. Below we use a popular learning rate decay technique
+    that is called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">reduce learning rate on plateau</strong>. Once
+    a metric (like a loss) stops improving for certain amount of epochs we
+    decrease the learning rate by a predetermined factor. Below we use this
+    technique, which reduces the learning rate once the algorithm overshoots. It
+    almost looks like the ball &quot;glides&quot; into the optimal value.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 1000px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">0</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 181.66666666666666)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">10</text></g><g class="tick tick-20 svelte-1v7xslh" transform="translate(0, 153.33333333333337)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">20</text></g><g class="tick tick-30 svelte-1v7xslh" transform="translate(0, 125)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">30</text></g><g class="tick tick-40 svelte-1v7xslh" transform="translate(0, 96.66666666666669)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">40</text></g><g class="tick tick-50 svelte-1v7xslh" transform="translate(0, 68.33333333333333)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">50</text></g><g class="tick tick-60 svelte-1v7xslh" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="12" class="svelte-1v7xslh">60</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(-12.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(92.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(145,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(197.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(302.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(355,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(407.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(512.5,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="238" class="svelte-1v7xslh">10</text></g></g>
+    <path d="M40,28.666666666666668L42.62499999999999,33.17166666666667L45.24999999999998,37.61999999999996L47.87499999999997,42.01166666666663L50.49999999999996,46.34666666666661L53.12499999999996,50.62499999999992L55.74999999999994,54.84666666666658L58.374999999999936,59.01166666666657L60.99999999999993,63.11999999999989L63.624999999999915,67.17166666666654L66.2499999999999,71.16666666666652L68.87499999999989,75.10499999999983L71.49999999999989,78.98666666666651L74.12499999999989,82.81166666666648L76.74999999999987,86.57999999999981L79.37499999999986,90.29166666666647L81.99999999999986,93.94666666666646L84.62499999999984,97.54499999999977L87.24999999999983,101.08666666666646L89.87499999999983,104.57166666666645L92.4999999999998,107.99999999999976L95.1249999999998,111.37166666666641L97.7499999999998,114.68666666666641L100.37499999999977,117.94499999999974L102.99999999999977,121.14666666666639L105.62499999999977,124.29166666666639L108.24999999999974,127.37999999999973L110.87499999999974,130.41166666666638L113.49999999999974,133.3866666666664L116.12499999999973,136.3049999999997L118.74999999999972,139.16666666666634L121.37499999999972,141.97166666666635L123.9999999999997,144.7199999999997L126.62499999999969,147.41166666666635L129.2499999999997,150.04666666666637L131.8749999999997,152.6249999999997L134.49999999999966,155.14666666666636L137.12499999999966,157.61166666666637L139.74999999999966,160.01999999999967L142.37499999999963,162.37166666666633L144.99999999999963,164.66666666666634L147.62499999999963,166.9049999999997L150.24999999999963,169.08666666666636L152.87499999999966,171.21166666666636L155.49999999999963,173.27999999999972L158.12499999999963,175.2916666666664L160.74999999999963,177.2466666666664L163.37499999999966,179.14499999999973L165.99999999999963,180.98666666666645L168.62499999999963,182.77166666666645L171.24999999999966,184.49999999999977L173.87499999999966,186.17166666666645L176.49999999999966,187.78666666666646L179.12499999999963,189.3449999999998L181.74999999999966,190.84666666666647L184.37499999999966,192.2916666666665L186.99999999999966,193.67999999999984L189.62499999999966,195.0116666666665L192.24999999999966,196.28666666666652L194.8749999999997,197.50499999999982L197.49999999999966,198.66666666666652L200.12499999999966,199.77166666666653L202.7499999999997,200.81999999999988L205.3749999999997,201.81166666666655L207.9999999999997,202.74666666666658L210.62499999999966,203.6249999999999L213.2499999999997,204.4466666666666L215.8749999999997,205.2116666666666L218.4999999999997,205.9199999999999L221.1249999999997,206.57166666666657L223.7499999999997,207.1666666666666L226.3749999999997,207.70499999999993L228.9999999999997,208.1866666666666L231.6249999999997,208.61166666666662L234.2499999999997,208.97999999999996L236.8749999999997,209.29166666666663L239.4999999999997,209.54666666666665L242.1249999999997,209.74499999999998L244.7499999999997,209.88666666666666L247.3749999999997,209.97166666666664L249.9999999999997,210L252.62499999999972,209.97166666666666L255.2499999999997,209.88666666666668L257.87499999999966,209.74500000000003L260.49999999999966,209.54666666666668L263.12499999999966,209.2916666666667L265.7499999999997,208.98000000000002L268.37499999999966,208.6116666666667L270.99999999999966,208.1866666666667L273.62499999999966,207.70500000000007L276.2499999999997,207.16666666666674L278.87499999999966,206.57166666666674L281.49999999999966,205.92000000000007L284.12499999999966,205.21166666666676L286.74999999999966,204.44666666666674L289.3749999999998,203.62500000000009L291.99999999999966,202.74666666666678L294.62499999999966,201.81166666666678L297.24999999999966,200.8200000000001L299.8749999999997,199.7716666666668L302.4999999999997,198.66666666666677L305.12499999999966,197.50500000000014L307.74999999999966,196.2866666666668L310.3749999999997,195.01166666666683L312.9999999999997,193.68000000000015L315.6249999999997,192.29166666666683L318.24999999999966,190.8466666666668L320.87499999999966,189.34500000000017L323.4999999999997,187.78666666666683L326.1249999999997,186.17166666666685L328.7499999999997,184.50000000000017L331.3749999999997,182.77166666666685L333.9999999999997,180.98666666666685L336.6249999999997,179.1450000000002L339.2499999999997,177.24666666666687L341.8749999999997,175.29166666666688L344.4999999999997,173.2800000000002L347.1249999999997,171.21166666666684L349.7499999999997,169.08666666666687L352.3749999999998,166.90500000000023L354.9999999999998,164.66666666666688L357.6249999999997,162.3716666666669L360.2499999999997,160.0200000000002L362.8749999999997,157.6116666666669L365.4999999999997,155.14666666666693L368.1249999999997,152.62500000000028L370.74999999999966,150.04666666666697L373.37499999999966,147.41166666666697L375.99999999999966,144.7200000000003L378.6249999999997,141.971666666667L381.2499999999997,139.16666666666703L383.8749999999997,136.30500000000038L386.49999999999966,133.38666666666708L389.12499999999966,130.41166666666706L391.74999999999966,127.38000000000041L394.37499999999966,124.29166666666711L396.99999999999966,121.14666666666713L399.6249999999996,117.94500000000048L402.2499999999996,114.68666666666716L404.8749999999996,111.37166666666718L407.4999999999996,108.00000000000055L410.1249999999996,104.57166666666724L412.7499999999996,101.08666666666726L415.37499999999955,97.54500000000061L417.99999999999955,93.94666666666728L420.62499999999955,90.29166666666731L423.24999999999955,86.58000000000068L425.87499999999955,82.81166666666736L428.4999999999995,78.98666666666739L431.1249999999995,75.10500000000073L433.7499999999995,71.16666666666742L436.3749999999995,67.17166666666748L438.9999999999995,63.12000000000083L441.6249999999995,59.011666666667516L444.24999999999943,54.846666666667545L446.87499999999943,50.62500000000091L449.49999999999943,46.34666666666759L452.12499999999943,42.01166666666763L454.74999999999943,37.62000000000098L457.3749999999994,33.17166666666768L459.9999999999994,28.666666666667723" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <circle fill="var(--main-color-1)" cx="460" cy="28.666666666666668" r="5" class="svelte-j95o6m"></circle>
+    
+<text font-size="20" class="title svelte-1nh78f2" x="250" y="20">Variable Learning Rate 0.100</text></svg></div></div>
+  <p>Deep learning frameworks like PyTorch or Keras make it extremely easy to
+    create learning rate schedulers. Usually it involves no more than 2-3 lines
+    of code.
+  </p>
+  <p>Schedulers in PyTorch are located in <code>otpim.lr_scheduler</code>, in our
+    example we pick <code>optim.lr_scheduler.ReduceLROnPlateau</code>. All
+    schedulers take an optimizer as input. This is necessary because the
+    learning rate is a part of an optimizer and the scheduler has to modify that
+    paramter. The <code>patience</code> attribute is a ReduceLROnPlateau
+    specific paramter that inidicates for how many epochs the performance metric
+    (like cross-entropy) has to shrink in order to for the learning rate to be
+    multiplied by the <code>factor</code> parameter of 0.1.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->model = Model().to(DEVICE)
+criterion = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;sum&quot;</span>)
+optimizer = optim.Adam(model.parameters(), lr=<span class="hljs-number">0.01</span>)
+scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=<span class="hljs-number">2</span>, factor=<span class="hljs-number">0.1</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We have to adjust the train function to introduce the scheduler logic. This
+    function might for example look as below. Similar to the <code>optimizer.step()</code>
+    method there is a
+    <code>scheduler.step()</code> method. This function takes a performance measure
+    lke the validation loss and adjusts the learning rate if necessary.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">train_dataloader, val_dataloader, model, criterion, optimizer, scheduler</span>):
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(NUM_EPOCHS):
+        <span class="hljs-keyword">for</span> batch_idx, (features, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_dataloader):
+            <span class="hljs-comment"># switch to training mode</span>
+            model.train()
+            <span class="hljs-comment"># move features and labels to GPU</span>
+            features = features.view(-<span class="hljs-number">1</span>, NUM_FEATURES).to(DEVICE)
+            labels = labels.to(DEVICE)
+
+            <span class="hljs-comment"># ------ FORWARD PASS --------</span>
+            probs = model(features)
+
+            <span class="hljs-comment"># ------CALCULATE LOSS --------</span>
+            loss = criterion(probs, labels)
+
+            <span class="hljs-comment"># ------BACKPROPAGATION --------</span>
+            loss.backward()
+
+            <span class="hljs-comment"># ------GRADIENT DESCENT --------</span>
+            optimizer.step()
+
+            <span class="hljs-comment"># ------CLEAR GRADIENTS --------</span>
+            optimizer.zero_grad()
+
+        <span class="hljs-comment"># ------TRACK LOSS --------</span>
+        train_loss, train_acc = track_performance(train_dataloader, model, criterion)
+        val_loss, val_acc = track_performance(val_dataloader, model, criterion)
+        
+        <span class="hljs-comment"># ------ADJUST LEARNING RATE --------</span>
+        scheduler.step(val_loss)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>There are no hard rules what scheduler you need to use in what situation,
+    but when you use PyTorch you need to always call <code>optimizer.step()</code>
+    before you call <code>scheduler.step()</code>.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/stability_speedup/skip_connections"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/computer_vision/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 78],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

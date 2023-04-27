@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_page.f35e2b04.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/StepButton.c542e4f5.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/YLabel.883a8d74.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Legend.6dc6b920.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-overfitting-train_test_validate-page.svelte.ff7418a5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/StepButton.2fb0289b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/YLabel.182e66a3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Legend.de38c007.js"><title>Train, Test, Validate - World4AI</title><!-- HEAD_svelte-3baip0_START --><meta name="description" content="In order to measure the level of overfitting we need to split the dataset into the trainig, the validation and the test sets. The training dataset is used for backpropagation and gradient descent, the validation dataset is used to measure the generalization of the model and the test dataset is the final measure of performance that can only be used once."><!-- HEAD_svelte-3baip0_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Train, Test, Validate</h1>
+<div class="separator"></div>
+<div class="container mx-auto" style="max-width: 1000px"><p>Intuitively we understand that overfitting leads to a model that does not
+    generalize well to new unforseen data, but we would also like to have some
+    tools that would allow us to measure the level of overfitting during the
+    training process. It turns out that splitting the dataset into different
+    buckets, called sets is essential to achieve the goal of measuring
+    overfitting.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Data Splitting</h2>
+  <p>All examples that we covered so far assumed that we have a training dataset.
+    In practice we split the dataset into preferably 3 sets. The training set,
+    the validation set and the test set.
+  </p>
+  <p>The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">training</strong> set contians the vast majority of available
+    data. It is the part of the data that is actually used to train a neural network.
+    The other sets are never used to directly adjust the weights and biases of a
+    neural network.
+  </p>
+  <p>The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">validation</strong> set is also used in the training process,
+    but only during the performance measurement step. The validation set allows us
+    to simulate a situation, where the neural network encounters new data. After
+    each epoch (or batch) we use the training and the validation sets separately
+    to measure the loss. At first both losses will decline, but after a while the
+    validation loss might start to increase again, while the training loss keeps
+    decreasing. This is a strong indication that our model overfits to the training
+    data. The larger the divergence, the larger the level of overfitting.
+  </p>
+  <div class="w-full"><div style="max-width: 700px;" class="my-0 mx-auto"><svg viewBox="0 0 500 300" class="svelte-1m8fbsa"><path d="M40,40L44.2,53.20000000000001L48.400000000000006,65.608L52.599999999999994,77.27152000000002L56.8,88.23522880000004L61,98.54111507200005L65.19999999999999,108.22864816768006L69.4,117.33492927761925L73.60000000000001,125.89483352096212L77.8,133.94114350970437L82,141.50467489912214L86.2,148.61439440517483L90.4,155.29753074086435L94.6,161.57967889641247L98.80000000000001,167.48489816262773L103,173.03580427287008L107.20000000000002,178.2536560164979L111.4,183.158436655508L115.6,187.76893045617754L119.80000000000001,192.1027946288069L124,196.17662695107848L128.2,200.00602933401376L132.4,203.60566757397297L136.60000000000002,206.98932751953456L140.79999999999998,210.1699678683625L145,213.15976979626075L149.20000000000002,215.97018360848512L153.4,218.611972591976L157.60000000000002,221.09525423645746L161.79999999999998,223.42953898227L166,225.62376664333382L170.2,227.68634064473375L174.4,229.62516020604977L178.60000000000002,231.44765059368675L182.8,233.16079155806557L187,234.77114406458162L191.2,236.28487542070675L195.39999999999998,237.70778289546433L199.60000000000002,239.0453159217365L203.8,240.30259696643228L208,241.48444114844636L212.2,242.5953746795396L216.39999999999998,243.63965219876718L220.6,244.62127306684116L224.8,245.5439966828307L229,246.41135688186085L233.20000000000002,247.2266754689492L237.39999999999998,247.99307494081225L241.6,248.71349044436352L245.8,249.39068101770172L250,250.02724015663964L254.2,250.62560574724125L258.40000000000003,251.18806940240677L262.6,251.71678523826236L266.8,252.21377812396662L271,252.68095143652863L275.20000000000005,253.12009435033693L279.4,253.53288868931668L283.59999999999997,253.9209153679577L287.79999999999995,254.2856604458802L292,254.62852081912737L296.2,254.95080956997978L300.4,255.25376099578097L304.6,255.53853533603413L308.8,255.80622321587208L313,256.05784982291976L317.20000000000005,256.29437883354456L321.40000000000003,256.5167161035319L325.6,256.72571313731993L329.79999999999995,256.9221703490808L334,257.10684012813596L338.2,257.2804297204478L342.4,257.44360393722087L346.6,257.5969877009876L350.79999999999995,257.74116843892836L355,257.8766983325927L359.20000000000005,258.0040964326371L363.4,258.12385064667893L367.6,258.23641960787813L371.8,258.3422344314055L376,258.44170036552117L380.20000000000005,258.53519834358985L384.4,258.62308644297445L388.59999999999997,258.705701256396L392.79999999999995,258.78335918101226L397,258.85635763015154L401.2,258.92497617234244L405.4,258.9894776020019L409.6,259.0501089458818L413.8,259.10710240912886L418,259.1606762645811L422.20000000000005,259.21103568870626L426.40000000000003,259.2583735473839L430.6,259.30287113454085L434.79999999999995,259.34469886646843L439,259.3840169344803L443.2,259.42097591841144L447.4,259.4557173633068L451.6,259.4883743215084L455.79999999999995,259.5190718622179" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M40,40L44.2,51.000000000000014L48.400000000000006,61.45000000000001L52.599999999999994,71.37750000000003L56.8,80.80862500000003L61,89.76819375000002L65.19999999999999,98.27978406250004L69.4,106.36579485937506L73.60000000000001,114.04750511640631L77.8,121.345129860586L82,128.2778733675567L86.2,134.8639796991789L90.4,141.12078071421996L94.6,147.06474167850897L98.80000000000001,152.71150459458352L103,158.07592936485435L107.20000000000002,163.17213289661163L111.4,168.0135262517811L115.6,172.61284993919202L119.80000000000001,176.98220744223244L124,181.13309707012084L128.2,185.0764422166148L132.4,188.82262010578404L136.60000000000002,192.38148910049483L140.79999999999998,195.76241464547007L145,198.97429391319662L149.20000000000002,202.02557921753677L153.4,204.9243002566599L157.60000000000002,207.67808524382693L161.79999999999998,210.29418098163558L166,212.7794719325538L170.2,215.14049833592614L174.4,216.93487840248912L178.60000000000002,218.6574832663895L182.8,220.31118393573394L187,221.89873657830458L191.2,223.4227871151724L195.39999999999998,224.8858756305655L199.60000000000002,226.2904406053429L203.8,227.63882298112918L208,228.93327006188403L212.2,230.17593925940864L216.39999999999998,231.0706610816264L220.6,231.93854124917763L224.8,232.7803850117023L229,233.59697346135124L233.20000000000002,234.38906425751068L237.39999999999998,235.15739232978535L241.6,235.90267055989182L245.8,236.62559044309504L250,237.3268227298022L254.2,238.00701804790813L258.40000000000003,238.44687768694993L262.6,238.87794013321096L266.8,239.30038133054677L271,239.71437370393582L275.20000000000005,240.1200862298571L279.4,240.51768450525998L283.59999999999997,240.90733081515475L287.79999999999995,241.28918419885167L292,241.66340051487464L296.2,242.03013250457713L300.4,242.03013250457713L304.6,242.03013250457713L308.8,242.03013250457713L313,242.03013250457713L317.20000000000005,242.03013250457713L321.40000000000003,241.85043382962292L325.6,241.66893816791915L329.79999999999995,241.48562754959832L334,241.30048382509432L338.2,241.11348866334524L342.4,240.54689332324563L346.6,239.963300122943L350.79999999999995,239.36219912663125L355,238.7430651004302L359.20000000000005,238.10535705344313L363.4,237.44851776504643L367.6,236.77197329799782L371.8,236.07513249693773L376,235.35738647184587L380.20000000000005,234.61810806600124L384.4,233.85665130798128L388.59999999999997,233.07235084722072L392.79999999999995,232.26452137263732L397,231.43245701381645L401.2,230.57543072423096L405.4,229.6926936459579L409.6,228.7834744553366L413.8,227.8469786889967L418,226.88238804966662L422.20000000000005,225.88885969115663L426.40000000000003,224.8655254818913L430.6,223.81149124634806L434.79999999999995,222.72583598373848L439,221.60761106325063L443.2,220.4558393951482L447.4,219.2695145770026L451.6,218.04760001431265L455.79999999999995,216.78902801474206" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 260)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0</text></g><g class="tick tick-0.1 svelte-1v7xslh" transform="translate(0, 238)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.1</text></g><g class="tick tick-0.2 svelte-1v7xslh" transform="translate(0, 216)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.2</text></g><g class="tick tick-0.3 svelte-1v7xslh" transform="translate(0, 194)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.3</text></g><g class="tick tick-0.4 svelte-1v7xslh" transform="translate(0, 172)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.4</text></g><g class="tick tick-0.5 svelte-1v7xslh" transform="translate(0, 150)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.5</text></g><g class="tick tick-0.6 svelte-1v7xslh" transform="translate(0, 128)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.6</text></g><g class="tick tick-0.7 svelte-1v7xslh" transform="translate(0, 106.00000000000001)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.7</text></g><g class="tick tick-0.8 svelte-1v7xslh" transform="translate(0, 83.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.8</text></g><g class="tick tick-0.9 svelte-1v7xslh" transform="translate(0, 61.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">0.9</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="10" x="28" class="svelte-1v7xslh">1</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">10</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">20</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">30</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">40</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">50</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">60</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">70</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">80</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">90</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="260" y2="40" class="svelte-1v7xslh"></line><text font-size="10" y="271" class="svelte-1v7xslh">100</text></g></g>
+    <text font-size="15" x="250" y="292.5" class="svelte-co4blx">Time</text>
+    <text class="label svelte-1iobque" font-size="15" transform="rotate(-90 7.5 150)" x="7.5" y="150">Loss</text>
+    <rect x="352.5" y="55.099999999999994" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="365" y="57.599999999999994" font-size="12" class="svelte-9icl3e">Validation Loss</text>
+    <rect x="352.5" y="70.5" width="5" height="5" fill="var(--main-color-1)" stroke="black"></rect>
+<text fill="black" x="365" y="73" font-size="12" class="svelte-9icl3e">Training Loss</text></svg></div></div>
+  <p>When we encounter overfitting we will most likely change several
+    hyperparameters of the neural network and apply some techniques in order to
+    reduce overfitting. It is not unlikely that we will continue doing that
+    until we are satisfied with the performance. While we are not using the
+    validation dataset directly in training, we are still observing the
+    performance of the validation data and adjust accordingly, thus injecting
+    our knowledge about the validation dataset into the training of the weights
+    and biases. At some point it becomes hard to argue that the validation
+    dataset represents completely unforseen data. The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">test</strong> set on the other hand is neither touched nor seen during the training process
+    at all. The intention of having this additional dataset is to provide a method
+    to test the performance of our model when it encounters truly never before seen
+    data. We only use the data once. If we find out that we overfitted to the training
+    and the validation dataset, we can not go back to tweak the parameters, because
+    we would require a completely new test dataset, which we might not posess.
+  </p>
+  <p>While there are no hard rules when it comes to the proportions of your
+    splits, there are some rules of thumb. A 10-10-80 split is for example
+    relatively common.
+  </p>
+  <div class="w-full"><div style="max-width: 700px;" class="my-0 mx-auto"><svg class="split" viewBox="0 0 500 40"><rect x="0" y="0" width="50" height="40" class="fill-blue-200"></rect><rect x="51" y="0" width="50" height="40" class="fill-red-200"></rect><rect x="102" y="0" width="400" height="40" class="fill-gray-200"></rect><text x="25" y="20" class="svelte-142ygny">Test</text><text x="75" y="20" class="svelte-142ygny">Validate</text><text x="300" y="20" class="svelte-142ygny">Train</text></svg></div></div>
+  <p>In that case we want to keep the biggest chunk of our data for training and
+    keep roughly 10 percent for validation and 10 percent for testing.
+  </p>
+  <p>We have a couple of options, when we split the dataset. The simplest
+    approach would be to separate the data randomly. While this type of split is
+    easy to implement, it might pose some problems. In the example below we are
+    faced with a dataset consisting of 10 classes (numbers 0 to 9) with 10
+    samples each. In the random procedure that we use below we generate a random
+    number between 0 and 1. If the number is below 0.5 we assign the number to
+    the blue split, otherwise the number is assigned to the red split.
+  </p>
+  <svg viewBox="0 0 500 220"><rect x="2" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="24" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="46" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="68" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="90" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="112" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="134" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="156" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="178" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="200" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="2" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="24" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="46" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="68" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="90" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="112" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="134" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="156" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="178" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="200" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="2" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="24" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="46" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="68" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="90" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="112" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="134" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="156" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="178" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="200" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="2" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="24" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="46" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="68" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="90" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="112" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="134" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="156" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="178" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="200" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="2" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="24" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="46" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="68" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="90" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="112" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="134" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="156" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="178" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="200" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="2" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="24" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="46" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="68" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="90" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="112" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="134" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="156" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="178" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="200" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="2" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="24" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="46" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="68" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="90" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="112" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="134" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="156" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="178" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="200" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="2" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="24" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="46" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="68" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="90" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="112" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="134" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="156" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="178" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="200" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="2" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="24" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="46" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="68" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="90" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="112" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="134" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="156" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="178" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="200" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="2" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="24" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="46" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="68" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="90" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="112" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="134" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="156" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="178" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="200" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="478" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="13" class="svelte-uhpxmv">0</text><rect x="456" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="466" y="13" class="svelte-uhpxmv">0</text><rect x="434" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="13" class="svelte-uhpxmv">0</text><rect x="412" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="13" class="svelte-uhpxmv">0</text><rect x="390" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="13" class="svelte-uhpxmv">0</text><rect x="368" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="13" class="svelte-uhpxmv">0</text><rect x="346" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="13" class="svelte-uhpxmv">0</text><rect x="324" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="13" class="svelte-uhpxmv">0</text><rect x="302" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="13" class="svelte-uhpxmv">0</text><rect x="280" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="13" class="svelte-uhpxmv">0</text><rect x="478" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="35" class="svelte-uhpxmv">1</text><rect x="456" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="466" y="35" class="svelte-uhpxmv">1</text><rect x="434" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="35" class="svelte-uhpxmv">1</text><rect x="412" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="35" class="svelte-uhpxmv">1</text><rect x="390" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="35" class="svelte-uhpxmv">1</text><rect x="368" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="35" class="svelte-uhpxmv">1</text><rect x="346" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="35" class="svelte-uhpxmv">1</text><rect x="324" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="35" class="svelte-uhpxmv">1</text><rect x="302" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="312" y="35" class="svelte-uhpxmv">1</text><rect x="280" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="35" class="svelte-uhpxmv">1</text><rect x="478" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="57" class="svelte-uhpxmv">2</text><rect x="456" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="466" y="57" class="svelte-uhpxmv">2</text><rect x="434" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="57" class="svelte-uhpxmv">2</text><rect x="412" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="422" y="57" class="svelte-uhpxmv">2</text><rect x="390" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="57" class="svelte-uhpxmv">2</text><rect x="368" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="378" y="57" class="svelte-uhpxmv">2</text><rect x="346" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="57" class="svelte-uhpxmv">2</text><rect x="324" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="334" y="57" class="svelte-uhpxmv">2</text><rect x="302" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="312" y="57" class="svelte-uhpxmv">2</text><rect x="280" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="57" class="svelte-uhpxmv">2</text><rect x="478" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="79" class="svelte-uhpxmv">3</text><rect x="456" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="466" y="79" class="svelte-uhpxmv">3</text><rect x="434" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="79" class="svelte-uhpxmv">3</text><rect x="412" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="422" y="79" class="svelte-uhpxmv">3</text><rect x="390" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="79" class="svelte-uhpxmv">3</text><rect x="368" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="79" class="svelte-uhpxmv">3</text><rect x="346" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="79" class="svelte-uhpxmv">3</text><rect x="324" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="334" y="79" class="svelte-uhpxmv">3</text><rect x="302" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="79" class="svelte-uhpxmv">3</text><rect x="280" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="79" class="svelte-uhpxmv">3</text><rect x="478" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="101" class="svelte-uhpxmv">4</text><rect x="456" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="101" class="svelte-uhpxmv">4</text><rect x="434" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="101" class="svelte-uhpxmv">4</text><rect x="412" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="101" class="svelte-uhpxmv">4</text><rect x="390" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="101" class="svelte-uhpxmv">4</text><rect x="368" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="378" y="101" class="svelte-uhpxmv">4</text><rect x="346" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="101" class="svelte-uhpxmv">4</text><rect x="324" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="101" class="svelte-uhpxmv">4</text><rect x="302" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="101" class="svelte-uhpxmv">4</text><rect x="280" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="101" class="svelte-uhpxmv">4</text><rect x="478" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="123" class="svelte-uhpxmv">5</text><rect x="456" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="123" class="svelte-uhpxmv">5</text><rect x="434" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="123" class="svelte-uhpxmv">5</text><rect x="412" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="123" class="svelte-uhpxmv">5</text><rect x="390" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="123" class="svelte-uhpxmv">5</text><rect x="368" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="378" y="123" class="svelte-uhpxmv">5</text><rect x="346" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="123" class="svelte-uhpxmv">5</text><rect x="324" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="334" y="123" class="svelte-uhpxmv">5</text><rect x="302" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="123" class="svelte-uhpxmv">5</text><rect x="280" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="123" class="svelte-uhpxmv">5</text><rect x="478" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="145" class="svelte-uhpxmv">6</text><rect x="456" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="145" class="svelte-uhpxmv">6</text><rect x="434" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="145" class="svelte-uhpxmv">6</text><rect x="412" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="422" y="145" class="svelte-uhpxmv">6</text><rect x="390" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="400" y="145" class="svelte-uhpxmv">6</text><rect x="368" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="145" class="svelte-uhpxmv">6</text><rect x="346" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="356" y="145" class="svelte-uhpxmv">6</text><rect x="324" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="334" y="145" class="svelte-uhpxmv">6</text><rect x="302" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="145" class="svelte-uhpxmv">6</text><rect x="280" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="145" class="svelte-uhpxmv">6</text><rect x="478" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="167" class="svelte-uhpxmv">7</text><rect x="456" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="167" class="svelte-uhpxmv">7</text><rect x="434" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="167" class="svelte-uhpxmv">7</text><rect x="412" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="167" class="svelte-uhpxmv">7</text><rect x="390" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="167" class="svelte-uhpxmv">7</text><rect x="368" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="378" y="167" class="svelte-uhpxmv">7</text><rect x="346" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="167" class="svelte-uhpxmv">7</text><rect x="324" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="167" class="svelte-uhpxmv">7</text><rect x="302" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="312" y="167" class="svelte-uhpxmv">7</text><rect x="280" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="167" class="svelte-uhpxmv">7</text><rect x="478" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="189" class="svelte-uhpxmv">8</text><rect x="456" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="189" class="svelte-uhpxmv">8</text><rect x="434" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="189" class="svelte-uhpxmv">8</text><rect x="412" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="422" y="189" class="svelte-uhpxmv">8</text><rect x="390" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="189" class="svelte-uhpxmv">8</text><rect x="368" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="189" class="svelte-uhpxmv">8</text><rect x="346" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="189" class="svelte-uhpxmv">8</text><rect x="324" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="334" y="189" class="svelte-uhpxmv">8</text><rect x="302" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="189" class="svelte-uhpxmv">8</text><rect x="280" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="290" y="189" class="svelte-uhpxmv">8</text><rect x="478" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="488" y="211" class="svelte-uhpxmv">9</text><rect x="456" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="466" y="211" class="svelte-uhpxmv">9</text><rect x="434" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="444" y="211" class="svelte-uhpxmv">9</text><rect x="412" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="211" class="svelte-uhpxmv">9</text><rect x="390" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="211" class="svelte-uhpxmv">9</text><rect x="368" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="211" class="svelte-uhpxmv">9</text><rect x="346" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="211" class="svelte-uhpxmv">9</text><rect x="324" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="211" class="svelte-uhpxmv">9</text><rect x="302" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="211" class="svelte-uhpxmv">9</text><rect x="280" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="211" class="svelte-uhpxmv">9</text></svg>
+  <p>If you observe the splits, you will most likely notice that some splits have
+    more numbers of a certain category. That means that the proportions of some
+    categories in the two splits are different. This is especially a problem,
+    when some of the categories have a limited number of samples. We could end
+    up creating a split that doesn&#39;t include a particular category at all.
+  </p>
+  <p>A <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">stratified</strong> split on the other hand tries to keep the
+    proportions of the different classes consistent.
+  </p>
+  <svg viewBox="0 0 500 220"><rect x="2" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="24" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="46" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="68" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="90" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="112" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="134" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="156" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="178" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="200" y="2" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="13" class="fill-white svelte-uhpxmv">0</text><rect x="2" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="24" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="46" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="68" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="90" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="112" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="134" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="156" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="178" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="200" y="24" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="35" class="fill-white svelte-uhpxmv">1</text><rect x="2" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="24" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="46" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="68" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="90" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="112" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="134" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="156" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="178" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="200" y="46" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="57" class="fill-white svelte-uhpxmv">2</text><rect x="2" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="24" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="46" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="68" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="90" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="112" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="134" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="156" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="178" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="200" y="68" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="79" class="fill-white svelte-uhpxmv">3</text><rect x="2" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="24" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="46" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="68" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="90" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="112" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="134" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="156" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="178" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="200" y="90" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="101" class="fill-white svelte-uhpxmv">4</text><rect x="2" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="24" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="46" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="68" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="90" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="112" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="134" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="156" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="178" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="200" y="112" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="123" class="fill-white svelte-uhpxmv">5</text><rect x="2" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="24" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="46" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="68" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="90" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="112" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="134" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="156" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="178" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="200" y="134" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="145" class="fill-white svelte-uhpxmv">6</text><rect x="2" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="24" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="46" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="68" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="90" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="112" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="134" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="156" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="178" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="200" y="156" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="167" class="fill-white svelte-uhpxmv">7</text><rect x="2" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="24" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="46" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="68" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="90" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="112" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="134" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="156" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="178" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="200" y="178" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="189" class="fill-white svelte-uhpxmv">8</text><rect x="2" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="12" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="24" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="34" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="46" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="56" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="68" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="78" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="90" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="100" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="112" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="122" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="134" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="144" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="156" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="166" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="178" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="188" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="200" y="200" class="fill-slate-600 stroke-black" width="20" height="20"></rect>
+
+      <text x="210" y="211" class="fill-white svelte-uhpxmv">9</text><rect x="478" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="13" class="svelte-uhpxmv">0</text><rect x="456" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="13" class="svelte-uhpxmv">0</text><rect x="434" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="13" class="svelte-uhpxmv">0</text><rect x="412" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="13" class="svelte-uhpxmv">0</text><rect x="390" y="2" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="13" class="svelte-uhpxmv">0</text><rect x="368" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="13" class="svelte-uhpxmv">0</text><rect x="346" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="13" class="svelte-uhpxmv">0</text><rect x="324" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="13" class="svelte-uhpxmv">0</text><rect x="302" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="13" class="svelte-uhpxmv">0</text><rect x="280" y="2" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="13" class="svelte-uhpxmv">0</text><rect x="478" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="35" class="svelte-uhpxmv">1</text><rect x="456" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="35" class="svelte-uhpxmv">1</text><rect x="434" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="35" class="svelte-uhpxmv">1</text><rect x="412" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="35" class="svelte-uhpxmv">1</text><rect x="390" y="24" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="35" class="svelte-uhpxmv">1</text><rect x="368" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="35" class="svelte-uhpxmv">1</text><rect x="346" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="35" class="svelte-uhpxmv">1</text><rect x="324" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="35" class="svelte-uhpxmv">1</text><rect x="302" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="35" class="svelte-uhpxmv">1</text><rect x="280" y="24" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="35" class="svelte-uhpxmv">1</text><rect x="478" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="57" class="svelte-uhpxmv">2</text><rect x="456" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="57" class="svelte-uhpxmv">2</text><rect x="434" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="57" class="svelte-uhpxmv">2</text><rect x="412" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="57" class="svelte-uhpxmv">2</text><rect x="390" y="46" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="57" class="svelte-uhpxmv">2</text><rect x="368" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="57" class="svelte-uhpxmv">2</text><rect x="346" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="57" class="svelte-uhpxmv">2</text><rect x="324" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="57" class="svelte-uhpxmv">2</text><rect x="302" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="57" class="svelte-uhpxmv">2</text><rect x="280" y="46" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="57" class="svelte-uhpxmv">2</text><rect x="478" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="79" class="svelte-uhpxmv">3</text><rect x="456" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="79" class="svelte-uhpxmv">3</text><rect x="434" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="79" class="svelte-uhpxmv">3</text><rect x="412" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="79" class="svelte-uhpxmv">3</text><rect x="390" y="68" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="79" class="svelte-uhpxmv">3</text><rect x="368" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="79" class="svelte-uhpxmv">3</text><rect x="346" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="79" class="svelte-uhpxmv">3</text><rect x="324" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="79" class="svelte-uhpxmv">3</text><rect x="302" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="79" class="svelte-uhpxmv">3</text><rect x="280" y="68" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="79" class="svelte-uhpxmv">3</text><rect x="478" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="101" class="svelte-uhpxmv">4</text><rect x="456" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="101" class="svelte-uhpxmv">4</text><rect x="434" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="101" class="svelte-uhpxmv">4</text><rect x="412" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="101" class="svelte-uhpxmv">4</text><rect x="390" y="90" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="101" class="svelte-uhpxmv">4</text><rect x="368" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="101" class="svelte-uhpxmv">4</text><rect x="346" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="101" class="svelte-uhpxmv">4</text><rect x="324" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="101" class="svelte-uhpxmv">4</text><rect x="302" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="101" class="svelte-uhpxmv">4</text><rect x="280" y="90" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="101" class="svelte-uhpxmv">4</text><rect x="478" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="123" class="svelte-uhpxmv">5</text><rect x="456" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="123" class="svelte-uhpxmv">5</text><rect x="434" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="123" class="svelte-uhpxmv">5</text><rect x="412" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="123" class="svelte-uhpxmv">5</text><rect x="390" y="112" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="123" class="svelte-uhpxmv">5</text><rect x="368" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="123" class="svelte-uhpxmv">5</text><rect x="346" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="123" class="svelte-uhpxmv">5</text><rect x="324" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="123" class="svelte-uhpxmv">5</text><rect x="302" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="123" class="svelte-uhpxmv">5</text><rect x="280" y="112" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="123" class="svelte-uhpxmv">5</text><rect x="478" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="145" class="svelte-uhpxmv">6</text><rect x="456" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="145" class="svelte-uhpxmv">6</text><rect x="434" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="145" class="svelte-uhpxmv">6</text><rect x="412" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="145" class="svelte-uhpxmv">6</text><rect x="390" y="134" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="145" class="svelte-uhpxmv">6</text><rect x="368" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="145" class="svelte-uhpxmv">6</text><rect x="346" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="145" class="svelte-uhpxmv">6</text><rect x="324" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="145" class="svelte-uhpxmv">6</text><rect x="302" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="145" class="svelte-uhpxmv">6</text><rect x="280" y="134" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="145" class="svelte-uhpxmv">6</text><rect x="478" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="167" class="svelte-uhpxmv">7</text><rect x="456" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="167" class="svelte-uhpxmv">7</text><rect x="434" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="167" class="svelte-uhpxmv">7</text><rect x="412" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="167" class="svelte-uhpxmv">7</text><rect x="390" y="156" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="167" class="svelte-uhpxmv">7</text><rect x="368" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="167" class="svelte-uhpxmv">7</text><rect x="346" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="167" class="svelte-uhpxmv">7</text><rect x="324" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="167" class="svelte-uhpxmv">7</text><rect x="302" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="167" class="svelte-uhpxmv">7</text><rect x="280" y="156" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="167" class="svelte-uhpxmv">7</text><rect x="478" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="189" class="svelte-uhpxmv">8</text><rect x="456" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="189" class="svelte-uhpxmv">8</text><rect x="434" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="189" class="svelte-uhpxmv">8</text><rect x="412" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="189" class="svelte-uhpxmv">8</text><rect x="390" y="178" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="189" class="svelte-uhpxmv">8</text><rect x="368" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="189" class="svelte-uhpxmv">8</text><rect x="346" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="189" class="svelte-uhpxmv">8</text><rect x="324" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="189" class="svelte-uhpxmv">8</text><rect x="302" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="189" class="svelte-uhpxmv">8</text><rect x="280" y="178" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="189" class="svelte-uhpxmv">8</text><rect x="478" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="488" y="211" class="svelte-uhpxmv">9</text><rect x="456" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="466" y="211" class="svelte-uhpxmv">9</text><rect x="434" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="444" y="211" class="svelte-uhpxmv">9</text><rect x="412" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="422" y="211" class="svelte-uhpxmv">9</text><rect x="390" y="200" class="stroke-black fill-red-300" width="20" height="20"></rect>
+
+      <text x="400" y="211" class="svelte-uhpxmv">9</text><rect x="368" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="378" y="211" class="svelte-uhpxmv">9</text><rect x="346" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="356" y="211" class="svelte-uhpxmv">9</text><rect x="324" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="334" y="211" class="svelte-uhpxmv">9</text><rect x="302" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="312" y="211" class="svelte-uhpxmv">9</text><rect x="280" y="200" class="stroke-black fill-blue-300" width="20" height="20"></rect>
+
+      <text x="290" y="211" class="svelte-uhpxmv">9</text></svg>
+  <p>Now let&#39;s see how we can create and utilize the three datasets in PyTorch
+    and whether theory matches the practice.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">import</span> torch 
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader, Subset
+<span class="hljs-keyword">from</span> torchvision.datasets <span class="hljs-keyword">import</span> MNIST
+<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms <span class="hljs-keyword">as</span> T
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The <code>MNIST</code> object does not provide any functionality to get a validation
+    dataset out of the box. We will download the training and testing datasets first
+    and divide the training dataset into two parts: one for training one for validation.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->train_validation_dataset = MNIST(root=<span class="hljs-string">&quot;../datasets/&quot;</span>, train=<span class="hljs-literal">True</span>, download=<span class="hljs-literal">True</span>, transform=T.ToTensor())
+test_dataset = MNIST(root=<span class="hljs-string">&quot;../datasets&quot;</span>, train=<span class="hljs-literal">False</span>, download=<span class="hljs-literal">False</span>, transform=T.ToTensor())<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We use the <code>train_test_split</code> function from sklearn to generate indices.
+    Those indices indicate if a particular sample is going to be used for training
+    or testing. We conduct a stratified split to keep the distribution of labels
+    consistent. 90% of the data is going to be used for training and 10% for validation.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->stratify = train_validation_dataset.targets.numpy()
+train_idxs, val_idxs = train_test_split(
+                                <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(train_validation_dataset)),
+                                stratify=stratify,
+                                test_size=<span class="hljs-number">0.1</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>To separate the dataset we use the <code>Subset</code> class which takes the
+    original dataset and the indices and returns the modified dataset, where the
+    samples that are not contained in the index list have been filtered out.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->train_dataset = Subset(train_validation_dataset, train_idxs)
+val_dataset = Subset(train_validation_dataset, val_idxs)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We keep the parameters similar to those in the previous section, but
+    increase the number of epochs to show the effect of overfitting.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># parameters</span>
+DEVICE = (<span class="hljs-string">&quot;cuda:0&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+NUM_EPOCHS=<span class="hljs-number">50</span>
+BATCH_SIZE=<span class="hljs-number">32</span>
+HIDDEN_SIZE_1 = <span class="hljs-number">100</span>
+HIDDEN_SIZE_2 = <span class="hljs-number">50</span>
+NUM_LABELS = <span class="hljs-number">10</span>
+NUM_FEATURES = <span class="hljs-number">28</span>*<span class="hljs-number">28</span>
+ALPHA = <span class="hljs-number">0.1</span><!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>Now we have everything that we require to create the three dataloaders: one
+    for training, one for validating, one for testing.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->train_dataloader = DataLoader(dataset=train_dataset, 
+                              batch_size=BATCH_SIZE,
+                              shuffle=<span class="hljs-literal">True</span>,
+                              drop_last=<span class="hljs-literal">True</span>,
+                              num_workers=<span class="hljs-number">4</span>)
+
+val_dataloader = DataLoader(dataset=val_dataset, 
+                              batch_size=BATCH_SIZE,
+                              shuffle=<span class="hljs-literal">False</span>,
+                              drop_last=<span class="hljs-literal">False</span>,
+                              num_workers=<span class="hljs-number">4</span>)
+
+test_dataloader = DataLoader(dataset=test_dataset, 
+                              batch_size=BATCH_SIZE,
+                              shuffle=<span class="hljs-literal">False</span>,
+                              drop_last=<span class="hljs-literal">False</span>,
+                              num_workers=<span class="hljs-number">4</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We create the <code>track_performance()</code> function to calculate the average
+    loss and the accuracy of the model.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">track_performance</span>(<span class="hljs-params">dataloader, model, criterion</span>):
+    <span class="hljs-comment"># switch to evaluation mode</span>
+    num_samples = <span class="hljs-number">0</span>
+    num_correct = <span class="hljs-number">0</span>
+    loss_sum = <span class="hljs-number">0</span>
+    
+    <span class="hljs-comment"># no need to calculate gradients</span>
+    <span class="hljs-keyword">with</span> torch.inference_mode():
+        <span class="hljs-keyword">for</span> batch_idx, (features, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataloader):
+            features = features.view(-<span class="hljs-number">1</span>, NUM_FEATURES).to(DEVICE)
+            labels = labels.to(DEVICE)
+            logits = model(features)
+            
+            predictions = logits.<span class="hljs-built_in">max</span>(dim=<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>]
+            num_correct += (predictions == labels).<span class="hljs-built_in">sum</span>().item()
+            
+            loss = criterion(logits, labels)
+            loss_sum += loss.cpu().item()
+            num_samples += <span class="hljs-built_in">len</span>(features)
+    
+    <span class="hljs-comment"># we return the average loss and the accuracy</span>
+    <span class="hljs-keyword">return</span> loss_sum/num_samples, num_correct/num_samples<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The <code>train_epoch()</code> function trains the model for a single epoch.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">train_epoch</span>(<span class="hljs-params">dataloader, model, criterion, optimizer</span>):
+    <span class="hljs-keyword">for</span> batch_idx, (features, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(train_dataloader):
+        <span class="hljs-comment"># move features and labels to GPU</span>
+        features = features.to(DEVICE)
+        labels = labels.to(DEVICE)
+
+        <span class="hljs-comment"># ------ FORWARD PASS --------</span>
+        output = model(features)
+
+        <span class="hljs-comment"># ------CALCULATE LOSS --------</span>
+        loss = criterion(output, labels)
+
+        <span class="hljs-comment"># ------BACKPROPAGATION --------</span>
+        loss.backward()
+
+        <span class="hljs-comment"># ------GRADIENT DESCENT --------</span>
+        optimizer.step()
+
+        <span class="hljs-comment"># ------CLEAR GRADIENTS --------</span>
+        optimizer.zero_grad()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The <code>train()</code> function simply loops over the number of epochs and
+    puts measures the performance after each iteration. The results are saved in
+    the <code>history</code> dictionary.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">epochs, train_dataloader, val_dataloader, model, criterion, optimizer</span>):
+    <span class="hljs-comment"># track progress over time</span>
+    history = {<span class="hljs-string">&quot;train_loss&quot;</span>: [], <span class="hljs-string">&quot;val_loss&quot;</span>: [], <span class="hljs-string">&quot;train_acc&quot;</span>: [], <span class="hljs-string">&quot;val_acc&quot;</span>: []}
+
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epochs):
+        train_epoch(train_dataloader, model, criterion, optimizer)
+        
+        <span class="hljs-comment"># ------TRACK LOSS and ACCURACY --------</span>
+        train_loss, train_acc = track_performance(train_dataloader, model, criterion)
+        val_loss, val_acc = track_performance(val_dataloader, model, criterion)
+
+        history[<span class="hljs-string">&quot;train_loss&quot;</span>].append(train_loss)
+        history[<span class="hljs-string">&quot;val_loss&quot;</span>].append(val_loss)
+        history[<span class="hljs-string">&quot;train_acc&quot;</span>].append(train_acc)
+        history[<span class="hljs-string">&quot;val_acc&quot;</span>].append(val_acc)
+
+        <span class="hljs-keyword">if</span> (epoch + <span class="hljs-number">1</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> epoch == <span class="hljs-number">0</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch: <span class="hljs-subst">{epoch+<span class="hljs-number">1</span>}</span>/<span class="hljs-subst">{epochs}</span>|&#x27;</span> 
+                  <span class="hljs-string">f&#x27;Train Loss: <span class="hljs-subst">{train_loss:<span class="hljs-number">.4</span>f}</span> |&#x27;</span> 
+                  <span class="hljs-string">f&#x27;Val Loss: <span class="hljs-subst">{val_loss:<span class="hljs-number">.4</span>f}</span> |&#x27;</span> 
+                  <span class="hljs-string">f&#x27;Train Acc: <span class="hljs-subst">{train_acc:<span class="hljs-number">.4</span>f}</span> |&#x27;</span> 
+                  <span class="hljs-string">f&#x27;Val Acc: <span class="hljs-subst">{val_acc:<span class="hljs-number">.4</span>f}</span>&#x27;</span>)
+    <span class="hljs-keyword">return</span> history<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The model is identical to the one we have used over the last sections.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+                nn.Flatten(),
+                nn.Linear(NUM_FEATURES, HIDDEN_SIZE_1),
+                nn.Sigmoid(),
+                nn.Linear(HIDDEN_SIZE_1, HIDDEN_SIZE_2),
+                nn.Sigmoid(),
+                nn.Linear(HIDDEN_SIZE_2, NUM_LABELS),
+            )
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->model = Model().to(DEVICE)
+criterion = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;sum&quot;</span>)
+optimizer = optim.SGD(model.parameters(), lr=ALPHA)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We print our metrics for the training and the valdiation dataset. You can
+    see that the model starts to overfit relatively fast.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->history = train(NUM_EPOCHS, train_dataloader, val_dataloader, model, criterion, optimizer)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->Epoch: 1/50|Train Loss: 0.1983 |Val Loss: 0.2199 |Train Acc: 0.9451 |Val Acc: 0.9372
+Epoch: 10/50|Train Loss: 0.0416 |Val Loss: 0.1211 |Train Acc: 0.9871 |Val Acc: 0.9677
+Epoch: 20/50|Train Loss: 0.0162 |Val Loss: 0.1297 |Train Acc: 0.9951 |Val Acc: 0.9713
+Epoch: 30/50|Train Loss: 0.0141 |Val Loss: 0.1429 |Train Acc: 0.9953 |Val Acc: 0.9727
+Epoch: 40/50|Train Loss: 0.0005 |Val Loss: 0.1363 |Train Acc: 1.0000 |Val Acc: 0.9780
+Epoch: 50/50|Train Loss: 0.0003 |Val Loss: 0.1428 |Train Acc: 1.0000 |Val Acc: 0.9787
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>To reinforce our results, we draw the progression for the two datasets.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_history</span>(<span class="hljs-params">history</span>):
+    fig = plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">5</span>))
+
+    fig.add_subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+    plt.plot(history[<span class="hljs-string">&quot;train_loss&quot;</span>], label=<span class="hljs-string">&quot;Training Loss&quot;</span>)
+    plt.plot(history[<span class="hljs-string">&quot;val_loss&quot;</span>], label=<span class="hljs-string">&quot;Validation Loss&quot;</span>)
+    plt.xlabel(<span class="hljs-string">&quot;Epochs&quot;</span>)
+    plt.ylabel(<span class="hljs-string">&quot;Cross-Entropy&quot;</span>)
+    plt.legend()
+    
+    fig.add_subplot(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+    plt.plot(history[<span class="hljs-string">&quot;train_acc&quot;</span>], label=<span class="hljs-string">&quot;Training Accuracy&quot;</span>)
+    plt.plot(history[<span class="hljs-string">&quot;val_acc&quot;</span>], label=<span class="hljs-string">&quot;Validation Accuracy&quot;</span>)
+    plt.xlabel(<span class="hljs-string">&quot;Epochs&quot;</span>)
+    plt.ylabel(<span class="hljs-string">&quot;Accuracy&quot;</span>)
+    plt.legend()
+    plt.savefig(<span class="hljs-string">&#x27;overfitting.png&#x27;</span>)
+    plt.show()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The divergence due to overfitting is obvious.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->plot_history(history)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <img src="/_app/immutable/assets/overfitting.311ef762.webp" alt="Signs of overfitting">
+  <p>The metrics for the test dataset are relatively close to those based on the
+    validation dataset.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->test_loss, test_acc = track_performance(test_dataloader, model, criterion)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Test Loss: <span class="hljs-subst">{test_loss:<span class="hljs-number">.4</span>f}</span> | Test Acc: <span class="hljs-subst">{test_acc:<span class="hljs-number">.4</span>f}</span>&#x27;</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->Test Loss: 0.1349 | Test Acc: 0.9768<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div>
+
+  <h2>K-Fold Cross-Validation</h2>
+  <p>In the approach above we divided the dataset into three distinct buckets and
+    kept them constant during the whole training process, but ideally we would
+    like to somehow use all available data in training and testing
+    simultaneously. This is especially important if our dataset is relatively
+    small. While we need to keep the test data separate, untouched by training,
+    we can use the rest of the data simultaneously for training and validation
+    by using <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">k-fold cross-validation</strong>.
+  </p>
+  <p>We divide the data (excluding the test set) into k equal sets, called folds.
+    k is a hyperparameter, but usually we construct 5 or 10 folds. Each fold is
+    basically a bucket of data that can be used either for trainig or
+    validation. We use one of the folds for validation and the rest (k-1 folds)
+    for training and we repeat the trainig process k times, switching the fold
+    that is used for validation each time. After the k iterations we are left
+    with k models and k measures of overfitting.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button class="outline-none border-none hover:scale-105 svelte-tog6xp" ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Take an animation step" class="lucide-icon lucide lucide-arrow-right-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+</button></div>
+<br>
+<div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 252"><rect x="2" y="2" width="100" height="223.27272727272725" fill="var(--main-color-3)" class="svelte-9ss2l3"></rect><rect x="2" y="225.27272727272725" width="100" height="20.727272727272727" fill="var(--main-color-3)" class="svelte-9ss2l3"></rect><line x1="102" x2="200" y1="111.63636363636363" y2="10.363636363636363" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="113.63636363636363" y2="33.09090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="115.63636363636363" y2="55.81818181818181" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="117.63636363636363" y2="78.54545454545455" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="119.63636363636363" y2="101.27272727272727" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="121.63636363636363" y2="123.99999999999999" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="123.63636363636363" y2="146.72727272727275" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="125.63636363636363" y2="169.45454545454547" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="127.63636363636363" y2="192.1818181818182" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><line x1="102" x2="200" y1="129.63636363636363" y2="214.9090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="5 5"></line><text x="50" y="111.63636363636363" class="svelte-9ss2l3">Train + Validate</text><text x="50" y="235.63636363636363" class="svelte-9ss2l3">Test</text><rect x="200" y="0" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="10.363636363636363" class="svelte-9ss2l3">Fold Nr. 1</text><rect x="200" y="22.727272727272727" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="33.09090909090909" class="svelte-9ss2l3">Fold Nr. 2</text><rect x="200" y="45.45454545454545" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="55.81818181818181" class="svelte-9ss2l3">Fold Nr. 3</text><rect x="200" y="68.18181818181819" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="78.54545454545455" class="svelte-9ss2l3">Fold Nr. 4</text><rect x="200" y="90.9090909090909" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="101.27272727272727" class="svelte-9ss2l3">Fold Nr. 5</text><rect x="200" y="113.63636363636363" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="123.99999999999999" class="svelte-9ss2l3">Fold Nr. 6</text><rect x="200" y="136.36363636363637" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="146.72727272727275" class="svelte-9ss2l3">Fold Nr. 7</text><rect x="200" y="159.0909090909091" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="169.45454545454547" class="svelte-9ss2l3">Fold Nr. 8</text><rect x="200" y="181.8181818181818" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="192.1818181818182" class="svelte-9ss2l3">Fold Nr. 9</text><rect x="200" y="204.54545454545453" width="100" height="20.727272727272727" fill="var(--main-color-4)" class="svelte-9ss2l3"></rect>
+      <text x="250" y="214.9090909090909" class="svelte-9ss2l3">Fold Nr. 10</text><rect x="400" y="0" width="100" height="20.727272727272727" fill="var(--main-color-1)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="10.363636363636363" class="svelte-9ss2l3">Validate</text><rect x="400" y="22.727272727272727" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="33.09090909090909" class="svelte-9ss2l3">Train</text><rect x="400" y="45.45454545454545" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="55.81818181818181" class="svelte-9ss2l3">Train</text><rect x="400" y="68.18181818181819" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="78.54545454545455" class="svelte-9ss2l3">Train</text><rect x="400" y="90.9090909090909" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="101.27272727272727" class="svelte-9ss2l3">Train</text><rect x="400" y="113.63636363636363" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="123.99999999999999" class="svelte-9ss2l3">Train</text><rect x="400" y="136.36363636363637" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="146.72727272727275" class="svelte-9ss2l3">Train</text><rect x="400" y="159.0909090909091" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="169.45454545454547" class="svelte-9ss2l3">Train</text><rect x="400" y="181.8181818181818" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="192.1818181818182" class="svelte-9ss2l3">Train</text><rect x="400" y="204.54545454545453" width="100" height="20.727272727272727" fill="var(--main-color-2)" class="svelte-9ss2l3"></rect>
+      <text x="450" y="214.9090909090909" class="svelte-9ss2l3">Train</text><line x1="300" x2="400" y1="10.363636363636363" y2="10.363636363636363" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="33.09090909090909" y2="33.09090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="55.81818181818181" y2="55.81818181818181" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="78.54545454545455" y2="78.54545454545455" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="101.27272727272727" y2="101.27272727272727" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="123.99999999999999" y2="123.99999999999999" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="146.72727272727275" y2="146.72727272727275" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="169.45454545454547" y2="169.45454545454547" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="192.1818181818182" y2="192.1818181818182" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line><line x1="300" x2="400" y1="214.9090909090909" y2="214.9090909090909" stroke="black" stroke-width="0.5px" stroke-dasharray="2 2"></line></svg></div></div>
+  <p>K-Fold cross-validation provides a much more robust measure of performance.
+    At the end of the trainig process we average over the results of the k-folds
+    to get a more accurate estimate of how our model performs. Once we are
+    satisfied with the choise of our hyperparameters, we could retrain the model
+    on the full k folds.
+  </p>
+  <p>There is obviously also a downside to using k models. Training a neural
+    network just once requires a lot of computaional resources. By using k folds
+    we will more or less increase the training time by a factor of k-1.
+  </p>
+  <p>To implement k-fold cross-validation with PyTorch we will mostly reuse the
+    code from above, but we still require a couple more components. PyTorch does
+    not offer k-fold out of the box, but once again sklearn is the perfect
+    companion for that purpose. Additionally we import the <code>SubsetRandomSampler</code>. A sampler can be used as an input into the <code>DataLoader</code>
+    object, in order to determine how the samples in a dataset are going to be
+    drawn. A random subset sampler specifically allows us to determine a subset,
+    like a fold and the data is going to be sampled in a random fashion. We
+    could have used the <code>Subset</code> object from above to accomplish the same,
+    but we wanted to teach you different approaches.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> SubsetRandomSampler<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We use the <code>seed</code> variable as input into <code>KFold</code> and
+    <code>torch.maual_seed</code>. A seed is variable that is used as input into
+    the random number generator. The initial weights and biases of a neural
+    network are generated randomly. By providing a seed into the function
+    <code>torch.manual_seed()</code> we make the parameters of the neural network
+    identical for each of the folds and make our results reproduceble.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->epochs = <span class="hljs-number">5</span>
+seed = <span class="hljs-number">42</span>
+kf = KFold(n_splits=<span class="hljs-number">5</span>, shuffle=<span class="hljs-literal">True</span>, random_state=seed)
+<span class="hljs-keyword">for</span> i, (train_index, val_index) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(kf.split(train_validation_dataset)):
+    
+    train_subsetsampler = SubsetRandomSampler(train_index)
+    val_subsetsampler = SubsetRandomSampler(val_index)
+    
+    train_dataloader = DataLoader(train_validation_dataset, 
+                                  batch_size=BATCH_SIZE, 
+                                  sampler=train_subsetsampler)
+    val_dataloader = DataLoader(train_validation_dataset, 
+                              batch_size=BATCH_SIZE, 
+                              sampler=val_subsetsampler)
+    torch.manual_seed(seed)
+    model = Model().to(DEVICE)
+    criterion = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;sum&quot;</span>)
+    optimizer = optim.SGD(model.parameters(), lr=ALPHA)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;-&#x27;</span>*<span class="hljs-number">50</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Fold <span class="hljs-subst">{i+<span class="hljs-number">1</span>}</span>&#x27;</span>)
+    <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epochs):
+        train_epoch(train_dataloader, model, criterion, optimizer)
+        val_loss, val_acc = track_performance(val_dataloader, model, criterion)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch: <span class="hljs-subst">{epoch+<span class="hljs-number">1</span>}</span>/<span class="hljs-subst">{epochs}</span> | Val Loss: <span class="hljs-subst">{val_loss:<span class="hljs-number">.4</span>f}</span> | Val Acc: <span class="hljs-subst">{val_acc:<span class="hljs-number">.4</span>f}</span>&#x27;</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->--------------------------------------------------
+Fold 1
+Epoch: 1/5 | Val Loss: 0.2120 | Val Acc: 0.9386
+Epoch: 2/5 | Val Loss: 0.1681 | Val Acc: 0.9497
+Epoch: 3/5 | Val Loss: 0.1360 | Val Acc: 0.9594
+Epoch: 4/5 | Val Loss: 0.1169 | Val Acc: 0.9673
+Epoch: 5/5 | Val Loss: 0.1295 | Val Acc: 0.9630
+--------------------------------------------------
+Fold 2
+Epoch: 1/5 | Val Loss: 0.1770 | Val Acc: 0.9465
+Epoch: 2/5 | Val Loss: 0.1451 | Val Acc: 0.9577
+Epoch: 3/5 | Val Loss: 0.1387 | Val Acc: 0.9578
+Epoch: 4/5 | Val Loss: 0.1375 | Val Acc: 0.9598
+Epoch: 5/5 | Val Loss: 0.1140 | Val Acc: 0.9676
+--------------------------------------------------
+Fold 3
+Epoch: 1/5 | Val Loss: 0.2109 | Val Acc: 0.9397
+Epoch: 2/5 | Val Loss: 0.2501 | Val Acc: 0.9206
+Epoch: 3/5 | Val Loss: 0.1246 | Val Acc: 0.9616
+Epoch: 4/5 | Val Loss: 0.1163 | Val Acc: 0.9650
+Epoch: 5/5 | Val Loss: 0.1192 | Val Acc: 0.9650
+--------------------------------------------------
+Fold 4
+Epoch: 1/5 | Val Loss: 0.2243 | Val Acc: 0.9316
+Epoch: 2/5 | Val Loss: 0.1793 | Val Acc: 0.9463
+Epoch: 3/5 | Val Loss: 0.1270 | Val Acc: 0.9630
+Epoch: 4/5 | Val Loss: 0.1172 | Val Acc: 0.9660
+Epoch: 5/5 | Val Loss: 0.1158 | Val Acc: 0.9666
+--------------------------------------------------
+Fold 5
+Epoch: 1/5 | Val Loss: 0.1983 | Val Acc: 0.9386
+Epoch: 2/5 | Val Loss: 0.1628 | Val Acc: 0.9517
+Epoch: 3/5 | Val Loss: 0.1320 | Val Acc: 0.9601
+Epoch: 4/5 | Val Loss: 0.1161 | Val Acc: 0.9654
+Epoch: 5/5 | Val Loss: 0.1173 | Val Acc: 0.9666
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>There is some variability in the folds, but that is not too bad for our
+    first attempt.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/overfitting/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/overfitting/data_augmentation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 68],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

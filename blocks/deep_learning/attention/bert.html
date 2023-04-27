@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-attention-bert-page.svelte.9cdb1ccf.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js"><title>BERT - World4AI</title><!-- HEAD_svelte-1c05h5m_START --><meta name="description" content="BERT (short for biderectional encoder representation from transformers) is a pretrained language model, that can used for different fine-tuning tasks, like text summarization, sentiment analysis and much more. BERT (and its relatives) has become the de facto standard transfer learning tool for natural language processing."><!-- HEAD_svelte-1c05h5m_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<div class="container mx-auto" style="max-width: 1000px"><h1>BERT</h1>
+  <div class="separator"></div>
+  <p>When the original transformer paper was released in the year 2017, it was
+    not clear what tremendous impact that architecture would have on deep
+    learning. Slowly but surely researchers from different research labs begun
+    to release transformer-based architectures and the more time passed, the
+    more areas were conquered by transformers. One of the first models that
+    garnered a lot of attention was <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">BERT</strong> from Google<a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a>. BERT is a pre-trained language model that allowes practitioners to
+    fine-tune the model to their specific needs. Nowadays BERT (and its
+    relatives) is de facto standard tool that is used for transfer learning in
+    the area of natural language processing.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Architecture</h2>
+  <p>BERT is short for <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">B</strong>iderectional <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">E</strong>ncoder <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">R</strong>epresentation from <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">T</strong>ransformers. We can infer from the name, that the model architecture
+    consists solely from a stack of transformer encoders, without a decoder.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 200 300"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,300L100,5" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.6" marker-end="url(#triangle)"></path><rect x="20" y="15" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="30" class="svelte-1i3ahvn">Encoder Layer</text><rect x="20" y="65" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="80" class="svelte-1i3ahvn">Encoder Layer</text><rect x="20" y="115" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="130" class="svelte-1i3ahvn">Encoder Layer</text><rect x="20" y="165" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="180" class="svelte-1i3ahvn">Encoder Layer</text><rect x="20" y="215" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="230" class="svelte-1i3ahvn">Encoder Layer</text><rect x="20" y="265" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="280" class="svelte-1i3ahvn">Encoder Layer</text></svg></div></div>
+  <p>The original BERT paper introduced two models. The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">BERT-Base</strong> model consists of 12 encoder layers, each with 12 attention heads and 768 hidden
+    units for each token. <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">BERT-Large</strong> on the other hand uses
+    24 layers with 16 heads and 1024 hidden units.
+  </p>
+  <p>Each layer takes a certain amount of tokens and outputs the same number of
+    tokens. The number of tokens never changes between the encoder layers.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 200 150"><rect x="25" y="5" width="10" height="10" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M30,55L30,25" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path>
+        <rect x="25" y="135" width="10" height="10" stroke="black" class="fill-red-300" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M30,130L30,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="60" y="5" width="10" height="10" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,55L65,25" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path>
+        <rect x="60" y="135" width="10" height="10" stroke="black" class="fill-red-300" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,130L65,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="95" y="5" width="10" height="10" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,55L100,25" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path>
+        <rect x="95" y="135" width="10" height="10" stroke="black" class="fill-red-300" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,130L100,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="130" y="5" width="10" height="10" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M135,55L135,25" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path>
+        <rect x="130" y="135" width="10" height="10" stroke="black" class="fill-red-300" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M135,130L135,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="165" y="5" width="10" height="10" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M170,55L170,25" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path>
+        <rect x="165" y="135" width="10" height="10" stroke="black" class="fill-red-300" fill="none"></rect>
+
+
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M170,130L170,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="20" y="60" width="160" height="30" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="15" x="100" y="75" class="svelte-1i3ahvn">Encoder Layer</text></svg></div></div>
+  <p>The <em>biderectional</em> part means, that the encoder can pay attention to
+    all tokens contained in the sequence. For that reason BERT is primarily used
+    for tasks, that have access to the full sequence at inference time. For example
+    in a classification task we process the whole sequence in order to classify the
+    sentence.
+  </p>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 300 150"><rect x="15" y="4" width="50" height="12" stroke="black" class="" fill="none"></rect>
+
+<text font-size="7" x="40" y="10" class="svelte-1i3ahvn">BERT Family</text><rect x="15" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="25" y="130" class="svelte-1i3ahvn">T_1</text>
+        <rect x="15" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="25" y="35" class="svelte-1i3ahvn">T_1</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="65" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="75" y="130" class="svelte-1i3ahvn">T_2</text>
+        <rect x="65" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="75" y="35" class="svelte-1i3ahvn">T_2</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="115" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="125" y="130" class="svelte-1i3ahvn">T_3</text>
+        <rect x="115" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="125" y="35" class="svelte-1i3ahvn">T_3</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="165" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="175" y="130" class="svelte-1i3ahvn">T_4</text>
+        <rect x="165" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="175" y="35" class="svelte-1i3ahvn">T_4</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="215" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="225" y="130" class="svelte-1i3ahvn">T_5</text>
+        <rect x="215" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="225" y="35" class="svelte-1i3ahvn">T_5</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="265" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="275" y="130" class="svelte-1i3ahvn">T_6</text>
+        <rect x="265" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="275" y="35" class="svelte-1i3ahvn">T_6</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path></svg></div></div>
+  <p>In the next section we will additionally encouter the GPT family of models,
+    that are created by stacking transformer decoders. A GPT like decoder
+    creates output tokens, based on all current or previous input
+    embeddings/tokens.
+  </p>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 300 150"><rect x="15" y="4" width="50" height="12" stroke="black" class="" fill="none"></rect>
+
+<text font-size="7" x="40" y="10" class="svelte-1i3ahvn">GPT Family</text><rect x="15" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="25" y="130" class="svelte-1i3ahvn">T_1</text>
+        <rect x="15" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="25" y="35" class="svelte-1i3ahvn">T_1</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L25,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M25,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="65" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="75" y="130" class="svelte-1i3ahvn">T_2</text>
+        <rect x="65" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="75" y="35" class="svelte-1i3ahvn">T_2</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L75,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M75,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="115" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="125" y="130" class="svelte-1i3ahvn">T_3</text>
+        <rect x="115" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="125" y="35" class="svelte-1i3ahvn">T_3</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L125,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M125,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="165" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="175" y="130" class="svelte-1i3ahvn">T_4</text>
+        <rect x="165" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="175" y="35" class="svelte-1i3ahvn">T_4</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L175,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="215" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="225" y="130" class="svelte-1i3ahvn">T_5</text>
+        <rect x="215" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="225" y="35" class="svelte-1i3ahvn">T_5</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L225,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M225,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path><rect x="265" y="120" width="20" height="20" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="7" x="275" y="130" class="svelte-1i3ahvn">T_6</text>
+        <rect x="265" y="25" width="20" height="20" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="7" x="275" y="35" class="svelte-1i3ahvn">T_6</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M275,120L275,45" stroke="black" stroke-dasharray="2 1" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="none"></path></svg></div></div>
+  <div class="separator"></div>
+
+  <h2>Pre-Training</h2>
+  <p>BERT was pre-trained jointly on two different objectives: <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">masked language model</strong> and <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">next section prediction</strong>.
+  </p>
+  <p>In a masked language model, we replace some parts of the original sequence
+    randomly with a special [MASK] token and the model has to predict the
+    missing word. Let&#39;s for example look at the below sentence to understand,
+    why this task matters for pretraining.
+  </p>
+  <p class="text-center">today i went to a <span class="inline-block py-1 px-2 bg-lime-100 font-bold border border-black">[MASK]</span> to get my hair done
+  </p>
+  <p>While you probably have a couple of options to fill out the masked word,
+    your options are still limited by logic and the rules of the english
+    language. The word &quot;hairdresser&quot; is probably the most likely option, but the
+    word &quot;salon&quot; or even &quot;friend&quot; are also valid options. When a model learns to
+    replace [MASK] by a valid word, that shows that in the very least, the model
+    learned the basic statistics that govern the english language. And those
+    statistics are useful not only for the task at hand, but also for many other
+    tasks that require natural language understanding.
+  </p>
+  <p>In the next section prediction task, the model faces two sequences and has
+    to predict if the second sequence is the logical continuation of the first
+    sequence.
+  </p>
+  <p>The two sentences below seem to have a logical connection, so we expect the
+    model to return true.
+  </p>
+  <div class="text-center font-bold mb-4"><span class="inline-text py-1 px-2 bg-lime-100 border border-black">a man went to the store</span></div>
+  <div class="text-center font-bold"><span class="inline-text py-1 px-2 bg-lime-100 border border-black">he bought a gallon of milk</span></div>
+  <p>The next two sentences on the other hand are unrelated and the model should
+    return false.
+  </p>
+  <div class="text-center font-bold mb-4"><span class="inline-text py-1 px-2 bg-lime-100 border border-black">a man went to the store</span></div>
+  <div class="text-center font-bold"><span class="inline-text py-1 px-2 bg-red-100 border border-black">penguins are flightless birds</span></div>
+  <p>Similarly to the masked model, solving this task is related to understanding
+    the english language. Once a model is competent at solving this task, we can
+    assume that it has learned some important statistics of the language and
+    those statistics can be used for downstream tasks.
+  </p>
+  <p>Let&#39;s for a second assume, that we are training on two sentences, each
+    consisting of 2 words (2 tokens).
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 350 100"><rect x="3" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="22" y="90" class="svelte-1i3ahvn">[CLS]</text>
+        <rect x="3" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="22" y="10" class="svelte-1i3ahvn">[CLS]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M22,80L22,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="54" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="73" y="90" class="svelte-1i3ahvn">[MASK]</text>
+        <rect x="54" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="73" y="10" class="svelte-1i3ahvn">[MASK]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M73,80L73,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="105" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="124" y="90" class="svelte-1i3ahvn">TOK 2</text>
+        <rect x="105" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="124" y="10" class="svelte-1i3ahvn">TOK 2</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M124,80L124,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="156" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="175" y="90" class="svelte-1i3ahvn">[SEP]</text>
+        <rect x="156" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="175" y="10" class="svelte-1i3ahvn">[SEP]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,80L175,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="207" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="226" y="90" class="svelte-1i3ahvn">TOK 1</text>
+        <rect x="207" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="226" y="10" class="svelte-1i3ahvn">TOK 1</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M226,80L226,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="258" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="277" y="90" class="svelte-1i3ahvn">TOK 2</text>
+        <rect x="258" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="277" y="10" class="svelte-1i3ahvn">TOK 2</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M277,80L277,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="309" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="328" y="90" class="svelte-1i3ahvn">[SEP]</text>
+        <rect x="309" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="328" y="10" class="svelte-1i3ahvn">[SEP]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M328,80L328,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="2.5" y="40" width="345" height="20" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="12" x="175" y="50" class="svelte-1i3ahvn">Encoder Layers</text></svg></div></div>
+  <p>We first prepend the two sentences with the [CLS] token. Once this token is
+    processed by a stack of encoders, it is used for the binary classification
+    to determine if the second sentence should follow the first sentence: the
+    next section prediction task. We separate the two sentences by the [SEP]
+    token and additionally append this token at the end of the sentence. We mask
+    out some of the words for the masked language model. Those masked tokens are
+    also processed by layers of encoders and are used to predict the correct
+    token that was masked out. Both losses are aggregated for the gradient
+    descent step.
+  </p>
+  <p>It is important to mention that both those tasks are trained using
+    self-supervised learning. We do not require anyone to collect and label a
+    dataset. We can for example use Wikipedia articles and pick out random
+    consecutive sentences and mask out some of the tokens. This gives us a huge
+    dataset for pre-training.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Fine-Tuning</h2>
+  <p>When we have a labeled language dataset, we can use BERT for fine-tuning.
+    BERT can be used How the pre-trained BERT model can be used for fine-tuning
+    depends on the task at hand.
+  </p>
+  <p>Let&#39;s assume we are dealing with a classification task, like sentiment
+    analysis. The first token, CLS, is the start token and is generally used for
+    classification tasks. We can use the embedding for the class token from the
+    last encoder layer as an input into a classification layer and ignore the
+    rest.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 350 100"><rect x="3" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="22" y="90" class="svelte-1i3ahvn">[CLS]</text>
+        <rect x="3" y="2" width="38" height="16" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<text font-size="10" x="22" y="10" class="svelte-1i3ahvn">[CLS]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M22,80L22,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="54" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="73" y="90" class="svelte-1i3ahvn">TOK 1</text>
+        <rect x="54" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="73" y="10" class="svelte-1i3ahvn">TOK 1</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M73,80L73,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="105" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="124" y="90" class="svelte-1i3ahvn">TOK 2</text>
+        <rect x="105" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="124" y="10" class="svelte-1i3ahvn">TOK 2</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M124,80L124,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="156" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="175" y="90" class="svelte-1i3ahvn">TOK 3</text>
+        <rect x="156" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="175" y="10" class="svelte-1i3ahvn">TOK 3</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M175,80L175,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="207" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="226" y="90" class="svelte-1i3ahvn">TOK 4</text>
+        <rect x="207" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="226" y="10" class="svelte-1i3ahvn">TOK 4</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M226,80L226,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="258" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="277" y="90" class="svelte-1i3ahvn">TOK 5</text>
+        <rect x="258" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="277" y="10" class="svelte-1i3ahvn">TOK 5</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M277,80L277,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="309" y="82" width="38" height="16" stroke="black" class="fill-red-300" fill="none"></rect>
+
+<text font-size="10" x="328" y="90" class="svelte-1i3ahvn">[SEP]</text>
+        <rect x="309" y="2" width="38" height="16" stroke="black" class="fill-black" fill="none"></rect>
+
+<text font-size="10" x="328" y="10" class="svelte-1i3ahvn">[SEP]</text>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M328,80L328,25" stroke="black" stroke-dasharray="none" stroke-dashoffset="0" fill="none" stroke-width="1.5" marker-end="url(#triangle)"></path><rect x="2.5" y="40" width="345" height="20" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<text font-size="12" x="175" y="50" class="svelte-1i3ahvn">Encoder Layers</text></svg></div></div>
+  <p>BERT is designed for fine-tuning, so it makes no sense to train the model
+    from scratch. Instead we will use the pre-trained BERT weights to solve our
+    task at hand. Nowadays the most efficient way to use BERT is with the help
+    of the <a href="https://huggingface.co/" target="_blank" rel="noreferrer">🤗HuggingFace</a>. HuggingFace includes models, pretrained weights, datasets and much more.
+    We will make heavy use of it in future, and not only for natural language
+    processing.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> pipeline
+<span class="hljs-keyword">from</span> datasets <span class="hljs-keyword">import</span> load_dataset
+<span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> AutoTokenizer, AutoModelForSequenceClassification
+<span class="hljs-keyword">from</span> transformers <span class="hljs-keyword">import</span> Trainer, TrainingArguments
+<span class="hljs-keyword">import</span> evaluate
+
+device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+batch_size = <span class="hljs-number">64</span>
+model_ckpt = <span class="hljs-string">&quot;bert-base-uncased&quot;</span>
+dataset_name = <span class="hljs-string">&quot;sst2&quot;</span>
+
+dataset = load_dataset(dataset_name)
+tokenizer = AutoTokenizer.from_pretrained(model_ckpt)
+tokenize = <span class="hljs-keyword">lambda</span> batch: tokenizer(batch[<span class="hljs-string">&quot;sentence&quot;</span>], padding=<span class="hljs-literal">True</span>, truncation=<span class="hljs-literal">True</span>)
+tokenized_dataset = dataset.<span class="hljs-built_in">map</span>(tokenize, batched=<span class="hljs-literal">True</span>, batch_size=<span class="hljs-literal">None</span>)
+
+model = AutoModelForSequenceClassification.from_pretrained(model_ckpt).to(device)
+
+metric_name = <span class="hljs-string">&quot;accuracy&quot;</span>
+metric = evaluate.load(metric_name)
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">compute_metrics</span>(<span class="hljs-params">pred</span>):
+    logits, labels = pred
+    predictions = np.argmax(logits, axis=-<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> metric.compute(predictions=predictions, references=labels)
+
+
+training_args = TrainingArguments(
+    output_dir=<span class="hljs-string">&quot;bert&quot;</span>,
+    num_train_epochs=<span class="hljs-number">1</span>,
+    learning_rate=<span class="hljs-number">1e-5</span>,
+    per_device_train_batch_size=batch_size,
+    per_device_eval_batch_size=batch_size,
+    evaluation_strategy=<span class="hljs-string">&quot;epoch&quot;</span>,
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_dataset[<span class="hljs-string">&quot;train&quot;</span>],
+    eval_dataset=tokenized_dataset[<span class="hljs-string">&quot;validation&quot;</span>],
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics,
+)
+
+trainer.train()<!-- HTML_TAG_END --></code></pre>
+</div></div>
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3">Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina.
+            BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.
+            
+            
+            
+            
+            (2018).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/attention/transformer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/attention/gpt"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 6],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

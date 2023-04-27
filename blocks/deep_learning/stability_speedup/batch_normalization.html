@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/NeuralNetwork.184807dc.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-stability_speedup-batch_normalization-page.svelte.3a8da25e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/NeuralNetwork.9b1e2957.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js"><title>World4AI | Deep Learning | Batch Normalization</title><!-- HEAD_svelte-1o2shcx_START --><meta name="description" content="Similar to feature scaling, batch normalization normalizes hidden layers, thereby speeding up the training process, reducing overfitting and decreasin the chances of vanishing gradients."><!-- HEAD_svelte-1o2shcx_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Batch Normalization</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>In a previous chapter we have discussed feature scaling. Feature scaling
+    only applies to the input layer, so should we try to scale the intermediary
+    features that are produced by hidden units? Would that be in any form
+    benefitiary for trainig?
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 250 100">
+      <text class="title svelte-10sqo8g" x="1" y="0">Input</text>
+      
+        <rect x="1" y="12.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="1" y="12.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="1" y="42.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="1" y="42.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="1" y="72.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="1" y="72.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="78.66666666666667" y="0">Hidden Layer 1</text>
+      
+        <rect x="78.66666666666667" y="12.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="78.66666666666667" y="12.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="78.66666666666667" y="42.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="78.66666666666667" y="42.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="78.66666666666667" y="72.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="78.66666666666667" y="72.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="156.33333333333334" y="0">Hidden Layer 2</text>
+      
+        <rect x="156.33333333333334" y="12.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="156.33333333333334" y="12.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="156.33333333333334" y="42.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="156.33333333333334" y="42.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="156.33333333333334" y="72.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="156.33333333333334" y="72.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="234" y="0">Out</text>
+      
+        <rect x="234" y="12.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="234" y="12.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="234" y="42.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="234" y="42.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="234" y="72.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-white"></rect>
+        
+        <foreignObject x="234" y="72.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+          <line x1="16" y1="20" x2="78.66666666666667" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="20" x2="78.66666666666667" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="20" x2="78.66666666666667" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="16" y1="50" x2="78.66666666666667" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="50" x2="78.66666666666667" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="50" x2="78.66666666666667" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="16" y1="80" x2="78.66666666666667" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="80" x2="78.66666666666667" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="80" x2="78.66666666666667" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="93.66666666666667" y1="20" x2="156.33333333333334" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="20" x2="156.33333333333334" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="20" x2="156.33333333333334" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="93.66666666666667" y1="50" x2="156.33333333333334" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="50" x2="156.33333333333334" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="50" x2="156.33333333333334" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="93.66666666666667" y1="80" x2="156.33333333333334" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="80" x2="156.33333333333334" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="93.66666666666667" y1="80" x2="156.33333333333334" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="171.33333333333334" y1="20" x2="234" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="20" x2="234" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="20" x2="234" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="171.33333333333334" y1="50" x2="234" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="50" x2="234" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="50" x2="234" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="171.33333333333334" y1="80" x2="234" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="80" x2="234" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="171.33333333333334" y1="80" x2="234" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line></svg></div></div>
+  <p>Sergey Ioffe and Christian Szegedy answered the question with a definitive
+    yes<a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a>. When we add so called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">batch normalizaton</strong>
+    to hidden features, we can speed up the training process significantly, while
+    gaining other additional advantages.
+  </p>
+  <p>Consider a particular layer <span class="hidden">l</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, to which output we would like
+    to apply batch normalization. Using a batch of data we calculate the mean <span class="hidden">\mu_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the variance
+    <span class="hidden">\sigma_j^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ for each hidden unit <span class="hidden">j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ in the layer.
+  </p>
+  <div class="flex justify-center"><span class="hidden">
+  \begin{aligned}
+    \mu_j &amp;= \dfrac{1}{n}\sum_{i=1}^n a_j^{(i)} \\
+    \sigma_j^2 &amp;= \dfrac{1}{n}\sum_{i=1}^n (a_j^{(i)} - \mu_j)
+  \end{aligned}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>Given those parameters we can normalize the hidden features, using the same
+    procedure we used for feature scaling.
+  </p>
+  <div class="flex justify-center"><span class="hidden">\hat{a}_j^{(i)} = \dfrac{a_j^{(i)} - \mu_j}{\sqrt{\sigma_j^2 + \epsilon}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The authors argued that this normalization procedure might theoretically be
+    detremental to the performance, because it might reduce the expressiveness
+    of the neural network. To combat that they introduced an additional step
+    that allowed the neural network to reverse the standardization.
+  </p>
+  <div class="flex justify-center"><span class="hidden">\bar{a}_j^{(i)} = \gamma_j \hat{a}_j^{(i)} + \beta_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The feature specific parameters <span class="hidden">\gamma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and <span class="hidden">\beta</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ are learned by the neural network. If the network decides to set <span class="hidden">\gamma_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ to
+    <span class="hidden">\sigma_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and <span class="hidden">\beta_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ to <span class="hidden">\mu_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ that
+    essentially neutralizes the normalization. If normalization indeed worsens the
+    performance, the neural network has the option to reverse the normalization step.
+  </p>
+  <p>Our formulations above indicated that batch normalization is applied to
+    activations. This procedure is similar to input feature scaling, because you
+    normalize the data that is processed in the next layer.
+  </p>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 250 50">
+      <text class="title svelte-10sqo8g" x="1" y="0">Net Input</text>
+      
+        <rect x="1" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="1" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{z}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="102.5" y="0">Activations</text>
+      
+        <rect x="102.5" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="102.5" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{a}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="204" y="0">Batch Norm</text>
+      
+        <rect x="204" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="204" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{\bar{a}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+          <line x1="16" y1="25" x2="102.5" y2="25" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="117.5" y1="25" x2="204" y2="25" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line></svg></div></div>
+  <p>In practice though batch norm is often applied to the net inputs and the
+    result is forwarded to the activation function.
+  </p>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 250 50">
+      <text class="title svelte-10sqo8g" x="1" y="0">Net Input</text>
+      
+        <rect x="1" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="1" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{z}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="102.5" y="0">Batch Norm</text>
+      
+        <rect x="102.5" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="102.5" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{\bar{z}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="204" y="0">Activations</text>
+      
+        <rect x="204" y="17.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-w4ai-yellow"></rect>
+        
+        <foreignObject x="204" y="17.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">\mathbf{a}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+          <line x1="16" y1="25" x2="102.5" y2="25" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="117.5" y1="25" x2="204" y2="25" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line></svg></div></div>
+  <p>There is no real consensus about how you should apply batch normalization,
+    but this decision in all likelihood should not make or break your project.
+  </p>
+  <p>There is an additional caveat. In practice we often remove the bias term <span class="hidden">b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ from the calculation of the net input <span class="hidden">z = \mathbf{xw^T} + b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. This is done due to the assumption, that <span class="hidden">\beta</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ essentially
+    does the same operation. Both are used to shift the calculation by a constant
+    and there is hardly a reason to do that calculation twice.
+  </p>
+  <p>The authors observed several adantages that batch normalization provides.
+    For once batch norm makes the model less sensitive to the choice of the
+    learning rate, which allows us to increase the learning rate and thereby
+    increase the speed of convergence. Second, the model is more forgiving when
+    choosing bad initial weights. Third, batch normalization seems to help with
+    the vanishing gradients problem. Overall the authors observed a significant
+    increase in training speed, thus requiring less epochs to reach the desired
+    performance. Finally batch norm seems to act as a regularizer. When we train
+    the neural network we calculate the mean <span class="hidden">\mu_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the standard
+    deviation <span class="hidden">\sigma_j</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ one batch at a time. This calculation is noisy
+    and the neural network has to learn to tune out that noise in order to achieve
+    a reasonable performance.
+  </p>
+  <p>During inference the procedure of calculating per batch statistics would
+    cause problems, because different inference runs would generate different
+    means and standard deviations and therefore generate different outputs. We
+    want the neural network to be deterministic during inference. The same
+    inputs should always lead to the same outputs. For that reason during
+    training the batch norm layer calculates a moving average of <span class="hidden">\mu</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and <span class="hidden">\sigma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ that can be used at inference time.
+  </p>
+  <p>Let also mention that no one really seems to know why batch norm works.
+    Different hypotheses have been formulated over the years, but there seems to
+    be no clear consensus on the matter. All you have to know is that batch
+    normalization works well and is almost a requirement when training modern
+    deep neural networks. This technique will become one of your main tools when
+    designing modern neural network architectures.
+  </p>
+  <p>PyToch has an explicit <code>BatchNorm1d</code> module that can be applied
+    to a flattened tensor, like the flattened MNIST image. The 2d version will
+    become important when we start dealing with 2d images. Below we create a
+    small module that combines a linear mapping, batch normalization and a
+    non-linear activation. Notice that we we provide the linear module with the
+    argument <code>bias=False</code> in order to deactivate the bias calculation.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->HIDDEN_FEATURES = <span class="hljs-number">70</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BatchModule</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(HIDDEN_FEATURES, HIDDEN_FEATURES, bias=<span class="hljs-literal">False</span>),
+            nn.BatchNorm1d(HIDDEN),
+            nn.ReLU()
+        )
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We can reuse the above defined module several times.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+                nn.Flatten(),
+                nn.Linear(NUM_FEATURES, HIDDEN_FEATURES),
+                BatchModule(),
+                BatchModule(),
+                BatchModule(),
+                nn.Linear(HIDDEN, NUM_LABELS),
+            )
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>As the batch normalization layer behaves differently during training and
+    evalutation, don&#39;t forget to switch between <code>model.train()</code>
+    and <code>model.eval()</code>.
+  </p></div>
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3">Sergey Ioffe, Christian Szegedy.
+            Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.
+            
+            
+            
+            
+            (2005).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/stability_speedup/optimizers"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/stability_speedup/skip_connections"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 76],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

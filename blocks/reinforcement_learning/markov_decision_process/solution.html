@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Slider.4cf2b7fb.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/YLabel.883a8d74.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-reinforcement_learning-markov_decision_process-solution-page.svelte.595e3d1b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Slider.93409d64.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/YLabel.182e66a3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/HeaderEntry.2b6e8f51.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Sequence.ddbdf7ae.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Circle.6709e74f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js"><title>Markov Decision Process Solution - World4AI</title><!-- HEAD_svelte-16e4egp_START --><meta name="description" content="A Markov decision process is considered to be solved once the agent found the optimal policy and the optimal value function. In essence that means that the agent has to maximize the expected sum of rewards."><!-- HEAD_svelte-16e4egp_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<div class="container mx-auto" style="max-width: 1000px"><h1>Solution to a Markov Decision Process</h1>
+  <div class="separator"></div>
+  <p>The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">reward hypothesis</strong> states that the goal of the environment
+    is encoded in the rewards. If you want the agent to learn how to play chess for
+    example you give out a reward of +1 when the agent wins, a reward of -1 when
+    the agent loses and a reward of 0 whenever there is a draw. The goal of the agent
+    is therefore to collect as many rewards as possible.
+  </p>
+  <p>We can express the same idea mathematically by defining the goal <span class="hidden">G_t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, also called the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">return</strong>, as the sum of rewards from
+    the timestep <span class="hidden">t+1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ to either the terminal state
+    <span class="hidden">T</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ if we are dealing with episodic tasks or to infinity if we are
+    dealing with continuing tasks.
+  </p>
+  <div class="flex justify-center"><span class="hidden">G_t = R_{t+1} + R_{t+2} + R_{t+3} + R_{t+4} + \dots</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>To demonstrate this idea with a simple example let&#39;s once again take the MDP
+    from the previous section. We are dealing with two states and an agent that
+    takes random actions. Whenever the agent lands in the state 1 it receives a
+    reward of 1, other wise it receives a negative reward of -1.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.9</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>In the example below we calculate the return from the perspective of the
+    initial state <span class="hidden">G_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. Each time the agent receives a reward we
+    add the value to the return value.
+  </p>
+  <div class="flex justify-center items-center text-lg"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button>
+  <span class="bg-blue-100 mx-2 px-2">Timestep <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+    <span class="inline-block">0</span></span>
+  <span class="bg-green-100 mx-2 px-2">Return <span class="hidden">G_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+      <span class="inline-block">0</span></span></div>
+<div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 80"></svg></div></div>
+  <p>In order to reduce the value of future rewards we discount each reward, by
+    applying a discount factor <span class="hidden">\gamma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, a value between 0 and 1.
+    The farther away the reward is from the current time step <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+,
+    the lower its contribution to the return <span class="hidden">G_t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <div class="flex justify-center"><span class="hidden">G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \dots</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The easiest way to illustrate this concept is by thinking about the time
+    value of money. If we have to choose between getting 1000$ now and getting
+    1000$ in 10 years, we should definetely choose the 1000$ in the present. The
+    money could be invested for a ten year period, such that in 10 years the
+    investor gets back an amout that is larger than 1000$. A reward now is
+    always more valuable thant a future reward.
+  </p>
+  <p>Discounting is especially important for continuing tasks. If the episode has
+    no natural ending, the return <span class="hidden">G</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ could theoretically become infinite.
+    Discounted rewards on the other hand approach 0 when they are far into the future.
+  </p>
+  <p>The interactive example below shows how the discounting rate dependings on
+    the value of the <span class="hidden">\gamma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The lower the gamma the faster the
+    progression towards 0.
+  </p>
+  <div class="w-full"><div style="max-width: 700px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(85,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">10</text></g><g class="tick svelte-1v7xslh" transform="translate(130,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">20</text></g><g class="tick svelte-1v7xslh" transform="translate(175,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">30</text></g><g class="tick svelte-1v7xslh" transform="translate(220,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">40</text></g><g class="tick svelte-1v7xslh" transform="translate(265,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">50</text></g><g class="tick svelte-1v7xslh" transform="translate(310,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">60</text></g><g class="tick svelte-1v7xslh" transform="translate(355,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">70</text></g><g class="tick svelte-1v7xslh" transform="translate(400,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">80</text></g><g class="tick svelte-1v7xslh" transform="translate(445,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">90</text></g><g class="tick svelte-1v7xslh" transform="translate(490,0)"><line y1="210" y2="10" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">100</text></g></g>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 210)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0</text></g><g class="tick tick-0.2 svelte-1v7xslh" transform="translate(0, 170)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0.2</text></g><g class="tick tick-0.4 svelte-1v7xslh" transform="translate(0, 130)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0.4</text></g><g class="tick tick-0.6 svelte-1v7xslh" transform="translate(0, 90)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0.6</text></g><g class="tick tick-0.8 svelte-1v7xslh" transform="translate(0, 49.99999999999999)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0.8</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 10)"><line x1="40" x2="490" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">1</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"></g>
+    <text font-size="12" x="250" y="244" class="svelte-co4blx">Steps</text>
+    <text class="label svelte-1iobque" font-size="12" transform="rotate(-90 6 125)" x="6" y="125">Discount Factor</text>
+    <path d="M40,10L44.5,20.000000000000007L49,29.500000000000007L53.5,38.52500000000002L58,47.098750000000024L62.5,55.24381250000005L67,62.981621875000044L71.5,70.33254078125006L76,77.31591374218755L80.5,83.95011805507819L85,90.25261215232429L89.5,96.23998154470807L94,101.92798246747267L98.5,107.33158334409904L103,112.4650041768941L107.5,117.34175396804939L112,121.97466626964695L116.5,126.37593295616458L121,130.55713630835638L125.5,134.52927949293857L130,138.30281551829162L134.5,141.88767474237704L139,145.2932910052582L143.5,148.52862645499528L148,151.60219513224553L152.5,154.52208537563325L157,157.29598110685157L161.5,159.931182051509L166,162.4346229489336L170.5,164.8128918014869L175,167.07224721141256L179.5,169.21863485084194L184,171.25770310829984L188.5,173.19481795288485L193.00000000000003,175.0350770552406L197.5,176.78332320247856L202,178.44415704235465L206.5,180.02194919023694L211,181.52085173072507L215.5,182.9448091441888L220,184.2975686869794L224.49999999999997,185.5826902526304L229,186.8035557399989L233.5,187.96337795299894L238,189.06520905534902L242.5,190.11194860258155L247,191.1063511724525L251.5,192.05103361382984L256,192.94848193313834L260.5,193.80105783648142L265,194.61100494465737L269.5,195.3804546974245L274,196.11143196255327L278.5,196.80586036442563L283,197.46556734620435L287.5,198.09228897889412L292.00000000000006,198.68767452994942L296.49999999999994,199.25329080345193L301,199.79062626327934L305.49999999999994,200.30109495011538L310,200.7860402026096L314.5,201.24673819247914L319,201.6844012828552L323.5,202.1001812187124L328,202.4951721577768L332.5,202.87041354988796L337.00000000000006,203.22689287239356L341.5,203.56554822877388L346.00000000000006,203.88727081733518L350.49999999999994,204.19290727646842L355,204.483261912645L359.5,204.75909881701276L364,205.02114387616214L368.5,205.27008668235402L373,205.5065823482363L377.5,205.7312532308245L382,205.94469056928327L386.5,206.14745604081912L391,206.34008323877816L395.5,206.52307907683928L400,206.69692512299727L404.50000000000006,206.8620788668474L408.99999999999994,207.01897492350506L413.5,207.1680261773298L417.99999999999994,207.3096248684633L422.5,207.44414362504014L427,207.57193644378816L431.5,207.6933396215987L436,207.8086726405188L440.5,207.91823900849286L445,208.0223270580682L449.50000000000006,208.1212107051648L454,208.21515016990656L458.50000000000006,208.3043926614112L462.99999999999994,208.38917302834065L467.5,208.46971437692363L472,208.54622865807744L476.5,208.61891722517356L481,208.6879713639149L485.5,208.75357279571918L490,208.8158941559332" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path></svg></div></div>
+  <label for="">Discount Factor</label>
+  <span class="inline-block bg-blue-100 px-2 rounded-lg">0.95</span>
+<input id="" class="inline-block align-middle svelte-86m1h1" type="range" min="0.9" max="0.999" step="0.001" style="background-size: 50.505050505050455% 100%;" value="0.95">
+  <p>The return is very tighly integrated with the strategy thate the agent is
+    following. This strategy is called policy. A better policy will obviously
+    generate better returns and vice versa.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A policy is a mapping from a state to a probability of an action.
+  </p></div>
+  <p>A policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ as a mapping from a particular state
+    <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    to a probability of an action <span class="hidden">a</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+: <span class="hidden">\pi{(a \mid s)} = Pr[A_t = a \mid S_t = s]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. To take an action in a state the agent simply draws an action from the
+    policy distribution <span class="hidden">A_t \sim \pi{(. \mid S_t)}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p>In the above example we are dealing with 2 possible states and 2 possible
+    actions. We can therefore simply store the policy in a mapping table. In
+    future chapters we will use neural networks for more complex MDPs.
+  </p>
+  <div class="overflow-auto rounded-lg shadow"><table class="w-full"><thead class="bg-gray-50 border-b-2 border-gray-200"><tr><th class="p-3 text-sm text-left font-semibold tracking-wide">State</th>
+        <th class="p-3 text-sm text-left font-semibold tracking-wide">Action</th>
+        <th class="p-3 text-sm text-left font-semibold tracking-wide">Probability</th></tr></thead>
+    <tbody class="divide-y divide-gray-100"><tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">A</td>
+        <span class="bg-blue-200 rounded-full font-bold"><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0.5</td></span></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">B</td>
+        <span class="bg-blue-200 rounded-full font-bold"><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0.5</td></span></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">1</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">A</td>
+        <span class="bg-blue-200 rounded-full font-bold"><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0.5</td></span></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">1</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap">B</td>
+        <span class="bg-blue-200 rounded-full font-bold"><td class="p-3 text-sm text-gray-700 whitespace-nowrap">0.5</td></span></tr></tbody></table></div>
+  <p>The goal of the agent is to find a policy that maximizes returns, but simply
+    maximizing the return is tricky, because in reinforcement learning we often
+    deal with stochastic policies and environments. That stochasticity produces
+    different trajectories and therefore different returns <span class="hidden">G_t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+    But how can we measure how good it is for the agent to use a certain policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ if the generated returns are not consistent? By utilizing <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">value functions</strong>.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A value function measures the expected value of returns.</p></div>
+  <p>The state-value function <span class="hidden">v_{\pi}(s)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ calculates the
+    expected return when the agent is in the state <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    and follows the policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <div class="flex justify-center"><span class="hidden">v_{\pi}(s) = \mathbb{E_{\pi}}[G_t \mid S_t = s]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The action-value function <span class="hidden">q_{\pi}(s, a)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ calculates
+    the expected return when the agent is the state <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, takes the
+    action <span class="hidden">a</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ at first and then keeps following the policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <div class="flex justify-center"><span class="hidden">q_{\pi}(s, a) = \mathbb{E_{\pi}}[G_t \mid S_t = s, A_t = a]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>For the time being we do not have the tools to exactly calculate the value
+    function for each state, but we can make an educated guess. Let&#39;s take the
+    same Markov decision we have been dealing so far, but only focus on the
+    state 0.
+  </p>
+  <p>The random policy that we have been using so far is clearly not optimal.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>The below agent implements a policy that tends to take the action B more
+    often. This behaviour will generate a higher expected return.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>A state-value function allows the agent to assign a goodness value to each
+    of the states for a given policy. Change the policy and observe if you see
+    any improvements. That is where the action-value function comes into play.
+    The action-value function allows us to reason about changing a single
+    action. We can ask the question what would happen if we generally keep the
+    same policy and only change the next action. Would that new policy be more
+    benefitial to us? If yes, maybe we should change our policy. And the goal of
+    the agent is to find the optimal policy.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">For the agent to solve the Markov decision process means to find the optimal
+    policy.
+  </p></div>
+  <p>Optimality implies that there is a way to compare different policies and to
+    determine which of the policies is better. In a Markov decision process
+    value functions are used as a metric of the goodness of a policy. The policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    is said to be better than the policy <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ if and
+    only if the value function of <span class="hidden">\pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is larger or equal
+    to the value function of policy <span class="hidden">\pi'</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ for all states
+    in the state set <span class="hidden">\mathcal{S}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+
+  <div class="flex justify-center"><span class="hidden">\pi \geq \pi \iff
+   v_{\pi}(s) \geq v_{\pi'}(s) 
+    \text{ for all } s \in \mathcal{S}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The optimal policy <span class="hidden">\pi_*</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is therefore the policy
+    that is better (or at least not worse) than any other policy.
+  </p>
+  <div class="flex justify-center"><span class="hidden">\pi_* \geq \pi \text{ for all }
+     \pi</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>It is not hard to imagine the optimal strategy for the two-states MDP. The
+    agent needs to always take the action B. This policy increases the
+    probability to land in the state 2 and thus increases the probability of
+    getting a reward of 5. In other words always taking the actio B would
+    maximize the value function.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.9</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>How we can numerically find the optimal policy <span class="hidden">\pi_*</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the corresponding
+    value functions <span class="hidden">v_*</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, <span class="hidden">q_*</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is going to be the topic
+    of the rest of the reinforcement learning block. The essence of reinforcement
+    learning is to find the optimal policy, given that the environment contains a
+    Markov decision process under the hood.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/reinforcement_learning/markov_decision_process/definition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/reinforcement_learning/dynamic_programming/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 98],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

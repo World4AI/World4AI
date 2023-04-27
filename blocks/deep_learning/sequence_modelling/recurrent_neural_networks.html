@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-sequence_modelling-recurrent_neural_networks-page.svelte.4338e3eb.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Circle.6709e74f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js"><title>Recurrent Neural Networks - World4AI</title><!-- HEAD_svelte-7r8r05_START --><meta name="description" content="A recurrent neural network is very well suited to process sequential data. The RNN processes one piece at a time and keeps the outputs from the previous parts of the sequence in the memory which is used as an additional input in the next step."><!-- HEAD_svelte-7r8r05_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Recurrent Neural Networks</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>Let&#39;s start this section by contrasting and comparing a plain vanilla feed
+    forward neural network with a recurrent neural network.
+  </p>
+  <p>Let&#39;s assume for the moment that we are dealing with a single neuron that
+    receives a single input. This input could for example be the current
+    temperature level and our prediction is the temperature for the next day.
+    The feedforward neural network processes the input and generates the output.
+    Once the input has left the neuron it is forgotten. This neuron has no
+    memory.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 400 100"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M130,50L215,50" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M280,50L380,50" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="90" y="40" width="20" height="20" stroke="black" class="fill-slate-300" fill="none"></rect>
+
+<rect x="225" y="25" width="50" height="50" stroke="black" class="fill-slate-600" fill="none"></rect>
+
+<circle cx="100" cy="50" r="5" stroke="black" class="fill-yellow-400" fill="none"></circle>
+
+</svg></div></div>
+  <p>When the model is dealing with sequences, it should probably remember at
+    least some parts of the previous inputs. The meaning of a sentence for
+    example depends on the understanding of the whole sentence and not a single
+    word. A similar argument can be made for the prediction of the temperature.
+    It would probably be useful for the model to remember the temperature of the
+    previous couple of days. We could try to circumvent the problem by adding
+    additional neuron. Two neurons for example could be used to represent the
+    temperature from the past day and the day before that. The output of the two
+    neurons would be passed to the next layer.
+  </p>
+  
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 400 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M5,50L65,50" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M5,150L65,150" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M130,50L215,90" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M130,150L215,110" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M280,100L380,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="90" y="40" width="20" height="20" stroke="black" class="fill-slate-300" fill="none"></rect>
+
+<rect x="90" y="140" width="20" height="20" stroke="black" class="fill-slate-300" fill="none"></rect>
+
+<rect x="225" y="75" width="50" height="50" stroke="black" class="fill-slate-600" fill="none"></rect>
+
+<circle cx="10" cy="50" r="5" stroke="black" class="fill-yellow-400" fill="none"></circle>
+
+<circle cx="10" cy="150" r="5" stroke="black" class="fill-yellow-400" fill="none"></circle>
+
+</svg></div></div>
+  <p>The above approach does not completely solve the problem though. Many
+    sequences have a variable length. The length of a sentence that we would
+    like to translate for example can change dramatically. We need a more
+    flexible system. A <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">recurrent neural network</strong> offers a way
+    out.
+  </p>
+  <p>A recurrent neural network (often abbreviated as RNN) processes each piece
+    of a sequence at a time. At each time step the neuron takes a part of the
+    sequence and its own output from the previous timestep as input. In the very
+    first time step there is no output from the previous step, so it is common
+    to use 0 instead.
+  </p>
+  <p>Below for example we are dealing with a sequence of size 4. This could for
+    example be temperature measuremets from the 4 previous days. Once the
+    sequence is exhaused, the output is sent to the next unit, for example the
+    next recurrent layer.
+  </p>
+  
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 400 250"><rect x="40" y="20" width="20" height="20" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="15" x="50" y="30" class="svelte-1i3ahvn">1</text><rect x="80" y="20" width="20" height="20" stroke="black" class="" fill="var(--main-color-4)"></rect>
+
+<text font-size="15" x="90" y="30" class="svelte-1i3ahvn">2</text><rect x="120" y="20" width="20" height="20" stroke="black" class="" fill="var(--main-color-4)"></rect>
+
+<text font-size="15" x="130" y="30" class="svelte-1i3ahvn">3</text><rect x="160" y="20" width="20" height="20" stroke="black" class="" fill="var(--main-color-4)"></rect>
+
+<text font-size="15" x="170" y="30" class="svelte-1i3ahvn">4</text><g transform="translate(0 50)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M5,50L65,50" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M250,125L250,190L10,190L10,150L65,150" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M130,50L215,90" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M130,150L215,110" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M280,100L380,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="90" y="40" width="20" height="20" stroke="black" class="fill-slate-300" fill="none"></rect>
+
+<rect x="90" y="140" width="20" height="20" stroke="black" class="fill-slate-300" fill="none"></rect>
+
+<rect x="225" y="75" width="50" height="50" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<circle cx="10" cy="50" r="5" stroke="black" class="" fill="var(--main-color-1)"></circle>
+
+<circle cx="10" cy="150" r="5" stroke="black" class="" fill="var(--main-color-1)"></circle>
+
+</g></svg></div></div>
+  <p>When you start to study recurrent neural networks, you might encounter a
+    specific visual notation for RNNs, similar to the one below. This notation
+    represents a recurrent neural network as a self referential unit.
+  </p>
+  
+  <div class="w-full"><div style="max-width: 200px;" class="my-0 mx-auto"><svg viewBox="0 0 100 150"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M40,150L40,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M50,55L50,10" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M70,75L90,75L90,115L60,115L60,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1.2" marker-end="url(#triangle)"></path><rect x="35" y="60" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+</svg></div></div>
+  <p>As the neural network has to remember the output from the previous run, you
+    can say that it posesses a type of a memory. Such a unit is therefore often
+    called a <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">memory cell</strong> or simply <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">cell</strong>.
+  </p>
+  <p>So far we used only two numbers as an input into a RNN: the current sequence
+    value and the previous output. In reality this cell works with vectors just
+    like a feedforward neural network. Below for example the unit takes four
+    inputs: two come from the part of a sequence and two from the previous
+    output.
+  </p>
+
+  
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 100 150"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M40,150L40,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M50,55L50,10" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M70,75L90,75L90,115L60,115L60,100" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="1" marker-end="url(#triangle)"></path><rect x="35" y="60" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="36.5" y="82.5" width="5" height="5" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<rect x="43.5" y="82.5" width="5" height="5" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<rect x="50.5" y="82.5" width="5" height="5" stroke="black" class="fill-red-400" fill="none"></rect>
+
+<rect x="57.5" y="82.5" width="5" height="5" stroke="black" class="fill-red-400" fill="none"></rect>
+
+<rect x="67.5" y="72.5" width="5" height="5" stroke="black" class="fill-red-400" fill="none"></rect>
+
+<rect x="75.5" y="72.5" width="5" height="5" stroke="black" class="fill-red-400" fill="none"></rect>
+
+<rect x="37.5" y="127.5" width="5" height="5" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<rect x="37.5" y="137.5" width="5" height="5" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+</svg></div></div>
+
+  <p>We can unroll the recurrent neural network through time. Taking the example
+    with a four part sequence from before, the unrolled network will look as
+    follows.
+  </p>
+  
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 200 470"><g transform="translate(0, -20)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L164,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 100)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L164,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 220)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L164,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 340)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L164,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g></svg></div></div>
+  <p>While the unrolled network looks like it consists of four units, you
+    shouldn&#39;t forget that we are dealing with the same layer. That means that
+    each of the boxes in the middle has the same weights and the same bias. At
+    this point we also make a distinction between outputs <span class="hidden">\mathbf{y_t}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    and the hidden units <span class="hidden">\mathbf{h_t}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. For the time
+    being there is no difference between the hidden units and the outputs, but
+    we will see shortly that there might be differences.
+  </p>
+  <p>We use two sets of weights to calculate the hidden value <span class="hidden">\mathbf{h}_t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+: the weight to process the previous hidden values <span class="hidden">\mathbf{W_h}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the weights to process the sequence <span class="hidden">\mathbf{W_x}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The hidden value is therefore calculated as <span class="hidden">\mathbf{h_t} = f(\mathbf{h_{t-1}}\mathbf{W_h}^T + \mathbf{x_t} \mathbf{W_x}^T + b)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The activation function that is used most commonly with recurrent neural
+    networks is tanh. Because we use the very same weights for the whole
+    sequence, if the weights are above 1, we will deal with exploding gradients,
+    therefore a saturating activation function is preferred. On the other hand a
+    long sequence like a sentence or a book, that can consist of hundreds of
+    steps, will cause vanishing gradients. We will look into ways of dealing
+    with those in the next sections.
+  </p>
+  <p>We will not go over the whole process of backpropagation for recurrent
+    neural networks, called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">backpropagation through time</strong>.
+    Still we will give you an intuition how you might approach calculating
+    gradients for a RNN. In essence backpropagation for fully connected neural
+    networks and RNNs is not different. We can use automatic differentiation the
+    same way we did in the previous chapters. When you unroll a recurrent neural
+    network, each part of a sequence is processed by the same weights and
+    gradients are accumulated for those weights in the process. Once the whole
+    sequence is exhausted, we can use backpropagation and apply gradient
+    descent.
+  </p>
+
+  <p>Often we will want to create several recurrent layers. In that case the
+    hidden outputs of the series are used as the inputs into the next layer.
+  </p>
+  
+  <div class="w-full"><div style="max-width: 350px;" class="my-0 mx-auto"><svg viewBox="0 0 300 470"><g transform="translate(0, -20)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L160,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M205,45L260,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M185,62L185,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="170" y="30" width="30" height="30" stroke="black" class="fill-red-500" fill="none"></rect>
+
+<rect x="272.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="272.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="87.5" width="25" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 100)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L160,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M205,45L260,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M185,62L185,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="170" y="30" width="30" height="30" stroke="black" class="fill-red-500" fill="none"></rect>
+
+<rect x="272.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="272.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="87.5" width="25" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 220)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L160,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M205,45L260,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M185,62L185,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="170" y="30" width="30" height="30" stroke="black" class="fill-red-500" fill="none"></rect>
+
+<rect x="272.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="272.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="87.5" width="25" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><g transform="translate(0, 340)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M31,45L76,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,45L160,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M205,45L260,45" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M100,62L100,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M185,62L185,140" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="85" y="30" width="30" height="30" stroke="black" class="fill-slate-500" fill="none"></rect>
+
+<rect x="2.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="2.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">x_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="170" y="30" width="30" height="30" stroke="black" class="fill-red-500" fill="none"></rect>
+
+<rect x="272.5" y="32.5" width="25" height="25" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<foreignObject x="272.5" y="32.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">y_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87.5" y="87.5" width="25" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="87.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="172.5" y="87.5" width="25" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="172.5" y="87.5" width="25" height="25"><div style="font-size: 12px; height: 25px" class="flex justify-center items-center"><span class="hidden">h_4</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g></svg></div></div>
+  <p>This time around there is a destinction between the output and the hidden
+    values. We regard the output to be the hidden values from the very last
+    layer.
+  </p>
+  <p>In PyTorch we can either use the
+    <a target="_blank" rel="noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html"><code>nn.RNN</code></a>
+    module or the
+    <a target="_blank" rel="noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.RNNCell.html"><code>nn.RNNCell</code></a>. Both can be used to achive the same goal, but
+    <code>nn.RNN</code> unrolls the neural net automatically, while the
+    <code>nn.RNNCell</code> module needs to be applied to each part of the
+    sequence manually. Often it is more convenient to simply use
+    <code>nn.RNN</code>, but some more complex architecures will require us to
+    use of <code>nn.RNNCell</code>.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># number of samples in our dataset</span>
+batch_size=<span class="hljs-number">4</span>
+<span class="hljs-comment">#sequence lengths represents for example the number of words in a sentence </span>
+sequence_length=<span class="hljs-number">5</span>
+<span class="hljs-comment"># dimensionality of each input in the sequence</span>
+<span class="hljs-comment"># so each value in the sequence is a vector of length 6</span>
+input_size=<span class="hljs-number">6</span>
+<span class="hljs-comment"># the output dimension of each RNN layer</span>
+hidden_size=<span class="hljs-number">3</span>
+<span class="hljs-comment"># number of recurrent layers in the network</span>
+num_layers=<span class="hljs-number">2</span>
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>A recurrent neural network in PyTorch uses an input of shape of <code>(sequence length, batch size, input_size)</code>
+    as the default. If you set the parameter <code>batch_first</code> to True,
+    then you must provide the shape
+    <code>(batch size, sequence length, input_size)</code>. For now we will use
+    the default behaviour, but in some future examples it will be convenient to
+    set this to True.
+  </p>
+  <p>We create a module and generate two tensors: the first is our dummy sequence
+    and the second is the initial value for the hidden state.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->rnn = nn.RNN(input_size=input_size, 
+             hidden_size=hidden_size, 
+             num_layers=num_layers,
+             nonlinearity=<span class="hljs-string">&#x27;tanh&#x27;</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->sequence = torch.randn(sequence_length, batch_size, input_size)
+h_0 = torch.zeros(num_layers, batch_size, hidden_size)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The recurrent network generates two outputs. The <code>output</code> tensor
+    corresponds to the <span class="hidden">\mathbf{y}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ values from the diagrams
+    above. We get an output vector of dimension 3 for each of the 5 values in the
+    sequence and each of the 4 batches, therefore the output dimension is (5, 4,
+    3). The <code>h_n</code>
+    tensor contains the last hidden values for all layers. This would correspond
+    to <span class="hidden">\mathbf{h}_n</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ values in the diagram above. Given
+    that we have 2 layers, 4 batches and hidden units of dimension 3, the dimensionality
+    is (2, 4, 3).
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">with</span> torch.inference_mode():
+    output, h_n = rnn(sequence, h_0)
+<span class="hljs-built_in">print</span>(output.shape, h_n.shape)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->torch.Size([5, 4, 3]) torch.Size([2, 4, 3])<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>When we want to have more control over the learning process, we might need
+    to resort to <code>nn.RNNCell</code>. Each such cell represents a recurrent
+    layer, so if you want to use more leayers, you have to create more cells.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->cell = nn.RNNCell(input_size=input_size, 
+                    hidden_size=hidden_size, 
+                    nonlinearity=<span class="hljs-string">&#x27;tanh&#x27;</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->sequence = torch.randn(sequence_length, batch_size, input_size)
+h_n = torch.zeros(batch_size, hidden_size)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>This time we loop over the sequence manually, always using the last hidden
+    state as the input in the next iteration.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">with</span> torch.inference_mode():
+    <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(sequence_length):
+        h_n = cell(sequence[t], h_t)
+<span class="hljs-built_in">print</span>(h_t.shape)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->torch.Size([4, 3])<!-- HTML_TAG_END --></code></pre>
+</div>
+
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/sequence_modelling/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 73],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

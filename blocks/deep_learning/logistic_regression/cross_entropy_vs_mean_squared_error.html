@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/YLabel.883a8d74.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Legend.6dc6b920.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-logistic_regression-cross_entropy_vs_mean_squared_error-page.svelte.384076b0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/YLabel.182e66a3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Legend.de38c007.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/HeaderEntry.2b6e8f51.js"><title>Cross-Entropy vs Mean Squared Error - World4AI</title><!-- HEAD_svelte-12fnlo5_START --><meta name="description" content="The cross-entropy loss is more suited for classification tasks, due to higher gradients, especially when the true label and the predicted label diverge strongly. Higher gradients lead to faster convergence. It is therefore advisable to avoid the mean squared error in classification tasks."><!-- HEAD_svelte-12fnlo5_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<div class="container mx-auto" style="max-width: 1000px"><h1>Cross-Entropy vs Mean Squared Error</h1>
+  <div class="separator"></div>
+
+  <p>The cross-entropy is almost exclusively used as the loss function for
+    classification tasks, but it is not obvious why we can not use the mean
+    squared error. Actually we can, but as we will see shortly, the
+    cross-entropy is a more convenient measure of loss for classification tasks.
+  </p>
+  <p>For this discusson we will deal with a single sample and distinquish between
+    different cases.
+  </p>
+
+  <div class="overflow-auto rounded-lg shadow"><table class="w-full"><thead class="bg-gray-50 border-b-2 border-gray-200"><tr><th class="p-3 text-sm text-left font-semibold tracking-wide">Loss Function</th>
+        <th class="p-3 text-sm text-left font-semibold tracking-wide">True Label</th>
+        <th class="p-3 text-sm text-left font-semibold tracking-wide">Loss</th></tr></thead>
+    <tbody class="divide-y divide-gray-100"><tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">MSE: <span class="hidden">(y-\hat{y})^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">(0-\hat{y})^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">MSE: <span class="hidden">(y-\hat{y})^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">(1-\hat{y})^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">CE: <span class="hidden">-\Big[y \log (\hat{y}) + (1 - y) \log ( 1 - \hat{y})\Big]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">-\log ( 1 - \hat{y})</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td></tr>
+      <tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap">CE: <span class="hidden">-\Big[y \log (\hat{y}) + (1 - y) \log ( 1 - \hat{y})\Big]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td>
+        <td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="hidden">-\log ( \hat{y})</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</td></tr></tbody></table></div>
+  <p>If the label equals to 0 both losses increase as the predicted probability
+    grows. If the true label is 1 on the other hand the error decreases when the
+    predicted probability grows.
+  </p>
+  <p>Below we plot the mean squared error and the cross-entropy based on the
+    predicted probability <span class="hidden">\hat{y}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The red plot
+    depicts the mean squared error, while the blue plot depicts the
+    cross-entropy. There are two plots for each of the losses, one for each
+    value of the target.
+  </p>
+
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 153.33333333333337)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">1</text></g><g class="tick tick-2 svelte-1v7xslh" transform="translate(0, 96.66666666666669)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">2</text></g><g class="tick tick-3 svelte-1v7xslh" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">3</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.1</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.2</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.3</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.4</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.5</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.6</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.7</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.8</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.9</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">1</text></g></g>
+    <text font-size="15" x="250" y="242.5" class="svelte-co4blx">Predicted Probability</text>
+    <text class="label svelte-1iobque" font-size="15" transform="rotate(-90 7.5 125)" x="7.5" y="125">Error</text>
+    <path d="M40,210L44.2,209.99433333333332L48.400000000000006,209.97733333333335L52.599999999999994,209.949L56.8,209.9093333333333L61,209.85833333333332L65.19999999999999,209.796L69.4,209.72233333333332L73.60000000000001,209.63733333333332L77.8,209.541L82,209.43333333333334L86.19999999999999,209.31433333333334L90.39999999999999,209.184L94.6,209.04233333333332L98.79999999999998,208.88933333333335L103,208.72500000000002L107.20000000000002,208.54933333333332L111.4,208.3623333333333L115.60000000000001,208.164L119.80000000000001,207.95433333333332L124.00000000000001,207.73333333333335L128.20000000000002,207.50099999999998L132.40000000000003,207.25733333333332L136.60000000000002,207.00233333333333L140.80000000000004,206.736L145.00000000000003,206.45833333333334L149.20000000000002,206.16933333333333L153.40000000000003,205.869L157.60000000000002,205.55733333333333L161.80000000000004,205.23433333333332L166.00000000000006,204.89999999999998L170.20000000000005,204.55433333333332L174.40000000000003,204.19733333333332L178.60000000000008,203.829L182.80000000000007,203.44933333333336L187.00000000000006,203.0583333333333L191.20000000000007,202.656L195.40000000000006,202.2423333333333L199.60000000000008,201.81733333333332L203.8000000000001,201.38099999999997L208.00000000000009,200.93333333333334L212.20000000000007,200.47433333333333L216.4000000000001,200.004L220.60000000000008,199.52233333333334L224.80000000000007,199.0293333333333L229.0000000000001,198.52499999999998L233.2000000000001,198.00933333333333L237.4000000000001,197.48233333333332L241.6000000000001,196.944L245.80000000000013,196.39433333333332L250.0000000000001,195.83333333333334L254.2000000000001,195.26099999999997L258.4000000000001,194.6773333333333L262.60000000000014,194.0823333333333L266.8000000000001,193.476L271.0000000000001,192.85833333333332L275.2000000000001,192.2293333333333L279.40000000000015,191.58899999999997L283.60000000000014,190.9373333333333L287.8000000000001,190.27433333333332L292.00000000000017,189.6L296.2000000000001,188.9143333333333L300.40000000000015,188.21733333333333L304.6000000000002,187.509L308.8000000000001,186.7893333333333L313.00000000000017,186.05833333333334L317.20000000000016,185.31599999999997L321.40000000000015,184.5623333333333L325.6000000000002,183.7973333333333L329.8000000000002,183.021L334.00000000000017,182.2333333333333L338.20000000000016,181.4343333333333L342.4000000000002,180.62399999999997L346.60000000000014,179.80233333333328L350.8000000000002,178.96933333333328L355.0000000000002,178.12499999999994L359.20000000000016,177.2693333333333L363.4000000000002,176.4023333333333L367.6000000000002,175.52399999999994L371.8000000000002,174.63433333333327L376.0000000000002,173.73333333333326L380.2000000000002,172.82099999999997L384.4000000000002,171.89733333333328L388.6000000000002,170.9623333333333L392.80000000000024,170.01599999999996L397.0000000000002,169.05833333333328L401.2000000000002,168.0893333333333L405.40000000000026,167.10899999999995L409.6000000000002,166.1173333333333L413.80000000000024,165.1143333333333L418.0000000000003,164.09999999999994L422.2000000000002,163.07433333333327L426.40000000000026,162.03733333333327L430.60000000000025,160.98899999999992L434.80000000000024,159.92933333333326L439.0000000000003,158.85833333333326L443.2000000000003,157.77599999999993L447.40000000000026,156.68233333333328L451.60000000000025,155.57733333333326L455.8000000000003,154.46099999999993" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M40,153.33333333333337L44.2,154.461L48.400000000000006,155.5773333333333L52.599999999999994,156.68233333333333L56.8,157.77600000000004L61,158.85833333333335L65.19999999999999,159.92933333333332L69.4,160.989L73.60000000000001,162.03733333333335L77.8,163.07433333333333L82,164.1L86.19999999999999,165.11433333333332L90.39999999999999,166.11733333333333L94.6,167.109L98.79999999999998,168.08933333333334L103,169.05833333333334L107.20000000000002,170.016L111.4,170.96233333333333L115.60000000000001,171.89733333333334L119.80000000000001,172.821L124.00000000000001,173.73333333333335L128.20000000000002,174.63433333333336L132.40000000000003,175.524L136.60000000000002,176.40233333333336L140.80000000000004,177.26933333333335L145.00000000000003,178.125L149.20000000000002,178.96933333333334L153.40000000000003,179.80233333333334L157.60000000000002,180.62400000000002L161.80000000000004,181.4343333333333L166.00000000000006,182.23333333333332L170.20000000000005,183.02100000000002L174.40000000000003,183.79733333333334L178.60000000000008,184.56233333333333L182.80000000000007,185.316L187.00000000000006,186.05833333333334L191.20000000000007,186.78933333333333L195.40000000000006,187.50900000000001L199.60000000000008,188.21733333333336L203.8000000000001,188.91433333333333L208.00000000000009,189.60000000000002L212.20000000000007,190.27433333333335L216.4000000000001,190.93733333333333L220.60000000000008,191.589L224.80000000000007,192.22933333333336L229.0000000000001,192.85833333333332L233.2000000000001,193.47600000000003L237.4000000000001,194.08233333333334L241.6000000000001,194.67733333333334L245.80000000000013,195.26100000000002L250.0000000000001,195.83333333333337L254.2000000000001,196.39433333333335L258.4000000000001,196.94400000000002L262.60000000000014,197.48233333333337L266.8000000000001,198.00933333333336L271.0000000000001,198.525L275.2000000000001,199.02933333333337L279.40000000000015,199.52233333333334L283.60000000000014,200.00400000000002L287.8000000000001,200.47433333333333L292.00000000000017,200.93333333333334L296.2000000000001,201.381L300.40000000000015,201.81733333333335L304.6000000000002,202.24233333333336L308.8000000000001,202.65600000000003L313.00000000000017,203.05833333333334L317.20000000000016,203.44933333333336L321.40000000000015,203.829L325.6000000000002,204.19733333333335L329.8000000000002,204.55433333333335L334.00000000000017,204.9L338.20000000000016,205.23433333333335L342.4000000000002,205.55733333333336L346.60000000000014,205.86900000000003L350.8000000000002,206.16933333333333L355.0000000000002,206.45833333333337L359.20000000000016,206.73600000000002L363.4000000000002,207.00233333333335L367.6000000000002,207.25733333333335L371.8000000000002,207.501L376.0000000000002,207.73333333333335L380.2000000000002,207.95433333333335L384.4000000000002,208.16400000000002L388.6000000000002,208.36233333333334L392.80000000000024,208.54933333333332L397.0000000000002,208.72500000000002L401.2000000000002,208.88933333333335L405.40000000000026,209.04233333333335L409.6000000000002,209.18400000000003L413.80000000000024,209.31433333333334L418.0000000000003,209.43333333333334L422.2000000000002,209.54100000000003L426.40000000000026,209.63733333333332L430.60000000000025,209.72233333333335L434.80000000000024,209.796L439.0000000000003,209.85833333333332L443.2000000000003,209.90933333333334L447.40000000000026,209.949L451.60000000000025,209.97733333333335L455.8000000000003,209.99433333333332" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M44.2,209.43048096830157L48.400000000000006,208.85517991867388L52.599999999999994,208.27397824253316L56.8,207.6867536438522L61,207.09337998470545L65.19999999999999,206.4937271226417L69.4,205.88766073935932L73.60000000000001,205.27504216012042L77.8,204.65572816329632L82,204.02957077938984L86.19999999999999,203.3964170788294L90.39999999999999,202.75610894777319L94.6,202.10848285110123L98.79999999999998,201.45336958170694L103,200.79059399512607L107.20000000000002,200.11997472846258L111.4,199.44132390248203L115.60000000000001,198.75444680564917L119.80000000000001,198.0591415587797L124.00000000000001,197.35519875886146L128.20000000000002,196.6424011004727L132.40000000000003,195.920522973085L136.60000000000002,195.18933003238357L140.80000000000004,194.4485787435669L145.00000000000003,193.69801589439908L149.20000000000002,192.93737807557775L153.40000000000003,192.1663911257503L157.60000000000002,191.38476953825128L161.80000000000004,190.59221582634936L166.00000000000006,189.78841984347181L170.20000000000005,188.97305805451953L174.40000000000003,188.14579275398754L178.60000000000008,187.3062712261629L182.80000000000007,186.45412484217223L187.00000000000006,185.58896808809425L191.20000000000007,184.7103975177229L195.40000000000006,183.81799062286166L199.60000000000008,182.91130461323L203.8000000000001,181.98987509716244L208.00000000000009,181.0532146532605L212.20000000000007,180.1008112819989L216.4000000000001,179.1321267249719L220.60000000000008,178.146594637966L224.80000000000007,177.14361860233328L229.0000000000001,176.1225699571815L233.2000000000001,175.08278543265035L237.4000000000001,174.02356456196168L241.6000000000001,172.9441668469557L245.80000000000013,171.84380864838658L250.0000000000001,170.72165976826972L254.2000000000001,169.57683968694366L258.4000000000001,168.40841341212194L262.60000000000014,167.21538689091145L266.8000000000001,165.99670192839017L271.0000000000001,164.75123054765956L275.2000000000001,163.47776871604293L279.40000000000015,162.17502934997665L283.60000000000014,160.84163449673235L287.8000000000001,159.47610657391888L292.00000000000017,158.07685852713118L296.2000000000001,156.64218274135473L300.40000000000015,155.17023851183663L304.6000000000002,153.6590378438475L308.8000000000001,152.10642930652102L313.00000000000017,150.51007961174153L317.20000000000016,148.86745252225725L321.40000000000015,147.17578461044198L325.6000000000002,145.43205728599258L329.8000000000002,143.6329643814997L334.00000000000017,141.77487442153023L338.20000000000016,139.8537864932416L342.4000000000002,137.86527837060294L346.60000000000014,135.80444520092004L350.8000000000002,133.6658266152254L355.0000000000002,131.44331953653943L359.20000000000016,129.13007318039163L363.4000000000002,126.71836169665985L367.6000000000002,124.19942848431259L371.8000000000002,121.56329426500201L376.0000000000002,118.79851829540084L380.2000000000002,115.89189828010632L384.4000000000002,112.82808907479065L388.6000000000002,109.58911229052688L392.80000000000024,106.15371705426224L397.0000000000002,102.49653418979986L401.2000000000002,98.5869381388726L405.40000000000026,94.387486383495L409.6000000000002,89.85173294866124L413.80000000000024,84.9210882525822L418.0000000000003,79.52017806367043L422.2000000000002,73.54974884306021L426.40000000000026,66.87537682253179L430.60000000000025,59.30859790714208L434.80000000000024,50.5733927169307L439.0000000000003,40.241837831939804L443.2000000000003,27.597036590801046L447.40000000000026,11.295052485199825L451.60000000000025,-11.681303640930118L455.8000000000003,-50.95964387266227" stroke="var(--main-color-2)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M44.2,-50.959643872658496L48.400000000000006,-11.681303640928277L52.599999999999994,11.295052485201033L56.8,27.597036590801956L61,40.24183783194053L65.19999999999999,50.573392716931274L69.4,59.3085979071426L73.60000000000001,66.87537682253219L77.8,73.5497488430606L82,79.52017806367073L86.19999999999999,84.92108825258246L90.39999999999999,89.8517329486615L94.6,94.38748638349523L98.79999999999998,98.5869381388728L103,102.49653418980006L107.20000000000002,106.15371705426242L111.4,109.58911229052707L115.60000000000001,112.82808907479082L119.80000000000001,115.89189828010646L124.00000000000001,118.798518295401L128.20000000000002,121.56329426500213L132.40000000000003,124.19942848431273L136.60000000000002,126.71836169665997L140.80000000000004,129.13007318039175L145.00000000000003,131.44331953653955L149.20000000000002,133.6658266152255L153.40000000000003,135.80444520092016L157.60000000000002,137.86527837060308L161.80000000000004,139.85378649324173L166.00000000000006,141.77487442153028L170.20000000000005,143.6329643814998L174.40000000000003,145.4320572859927L178.60000000000008,147.17578461044204L182.80000000000007,148.86745252225734L187.00000000000006,150.51007961174162L191.20000000000007,152.1064293065211L195.40000000000006,153.65903784384756L199.60000000000008,155.17023851183671L203.8000000000001,156.6421827413548L208.00000000000009,158.07685852713124L212.20000000000007,159.47610657391897L216.4000000000001,160.8416344967324L220.60000000000008,162.17502934997674L224.80000000000007,163.47776871604296L229.0000000000001,164.75123054765965L233.2000000000001,165.99670192839022L237.4000000000001,167.21538689091147L241.6000000000001,168.408413412122L245.80000000000013,169.57683968694369L250.0000000000001,170.7216597682698L254.2000000000001,171.84380864838664L258.4000000000001,172.9441668469557L262.60000000000014,174.02356456196176L266.8000000000001,175.0827854326504L271.0000000000001,176.12256995718153L275.2000000000001,177.1436186023333L279.40000000000015,178.14659463796602L283.60000000000014,179.13212672497195L287.8000000000001,180.10081128199894L292.00000000000017,181.05321465326057L296.2000000000001,181.9898750971625L300.40000000000015,182.91130461323004L304.6000000000002,183.8179906228617L308.8000000000001,184.7103975177229L313.00000000000017,185.5889680880943L317.20000000000016,186.4541248421723L321.40000000000015,187.30627122616292L325.6000000000002,188.14579275398756L329.8000000000002,188.97305805451956L334.00000000000017,189.78841984347184L338.20000000000016,190.5922158263494L342.4000000000002,191.3847695382513L346.60000000000014,192.16639112575035L350.8000000000002,192.9373780755778L355.0000000000002,193.6980158943991L359.20000000000016,194.44857874356697L363.4000000000002,195.1893300323836L367.6000000000002,195.92052297308504L371.8000000000002,196.64240110047274L376.0000000000002,197.3551987588615L380.2000000000002,198.05914155877971L384.4000000000002,198.75444680564917L388.6000000000002,199.44132390248208L392.80000000000024,200.11997472846264L397.0000000000002,200.79059399512613L401.2000000000002,201.45336958170694L405.40000000000026,202.10848285110126L409.6000000000002,202.7561089477732L413.80000000000024,203.39641707882944L418.0000000000003,204.0295707793899L422.2000000000002,204.65572816329637L426.40000000000026,205.27504216012048L430.60000000000025,205.88766073935938L434.80000000000024,206.49372712264173L439.0000000000003,207.0933799847055L443.2000000000003,207.68675364385223L447.40000000000026,208.27397824253322L451.60000000000025,208.8551799186739L455.8000000000003,209.43048096830162" stroke="var(--main-color-2)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <rect x="163.5" y="48.83333333333335" width="5" height="5" fill="var(--main-color-2)" stroke="black"></rect>
+<text fill="black" x="176" y="51.33333333333335" font-size="12" class="svelte-9icl3e">Cross Entropy</text>
+    <rect x="163.5" y="65.83333333333333" width="5" height="5" fill="var(--main-color-1)" stroke="black"></rect>
+<text fill="black" x="176" y="68.33333333333333" font-size="12" class="svelte-9icl3e">Mean Squared Error</text></svg></div></div>
+  <p>The mean squared error and the cross-entropy start at the same position, but
+    the difference in errors starts to grow as the predicted probability starts
+    to deviate from the true label. The cross-entropy punishes
+    misclassifications with a much higher loss, than the mean squared error.
+    When we deal with probabilities the difference between the label and the
+    predicted probability can not be larger than 1. That means that the mean
+    squared error also can not grow beyond 1. The logarithm on the other hand
+    literally explodes when the value starts approaching 0.
+  </p>
+  <p>This behaviour can also be observed when we draw the predicted probability
+    against the derivative of the loss function. While the derivatives of the
+    mean squared error are linear, the cross-entropy derivatives grow
+    exponentially when the quality of predictions deteriorates.
+  </p>
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick--10 svelte-1v7xslh" transform="translate(0, 210)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">-10</text></g><g class="tick tick--8 svelte-1v7xslh" transform="translate(0, 193)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">-8</text></g><g class="tick tick--6 svelte-1v7xslh" transform="translate(0, 176)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">-6</text></g><g class="tick tick--4 svelte-1v7xslh" transform="translate(0, 159)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">-4</text></g><g class="tick tick--2 svelte-1v7xslh" transform="translate(0, 142)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">-2</text></g><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 125)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">0</text></g><g class="tick tick-2 svelte-1v7xslh" transform="translate(0, 108)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">2</text></g><g class="tick tick-4 svelte-1v7xslh" transform="translate(0, 91)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">4</text></g><g class="tick tick-6 svelte-1v7xslh" transform="translate(0, 74)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">6</text></g><g class="tick tick-8 svelte-1v7xslh" transform="translate(0, 57)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">8</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 40)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="12" x="27" class="svelte-1v7xslh">10</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.1</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.2</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.3</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.4</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.5</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.6</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.7</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.8</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">0.9</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="210" y2="40" class="svelte-1v7xslh"></line><text font-size="12" y="223" class="svelte-1v7xslh">1</text></g></g>
+    <text font-size="15" x="250" y="242.5" class="svelte-co4blx">Predicted Probability</text>
+    <text class="label svelte-1iobque" font-size="15" transform="rotate(-90 7.5 125)" x="7.5" y="125">Derivative</text>
+    <path d="M40,125L44.2,124.83000000000001L48.400000000000006,124.66L52.599999999999994,124.49000000000001L56.8,124.32L61,124.15L65.19999999999999,123.97999999999999L69.4,123.81L73.60000000000001,123.63999999999999L77.8,123.47L82,123.29999999999998L86.19999999999999,123.13L90.39999999999999,122.96000000000001L94.6,122.78999999999999L98.79999999999998,122.62L103,122.44999999999999L107.20000000000002,122.28L111.4,122.10999999999999L115.60000000000001,121.94L119.80000000000001,121.77L124.00000000000001,121.6L128.20000000000002,121.42999999999999L132.40000000000003,121.25999999999999L136.60000000000002,121.09L140.80000000000004,120.91999999999999L145.00000000000003,120.75L149.20000000000002,120.57999999999998L153.40000000000003,120.41L157.60000000000002,120.24L161.80000000000004,120.07L166.00000000000006,119.89999999999999L170.20000000000005,119.72999999999999L174.40000000000003,119.56L178.60000000000008,119.38999999999999L182.80000000000007,119.22L187.00000000000006,119.05L191.20000000000007,118.88L195.40000000000006,118.71L199.60000000000008,118.53999999999999L203.8000000000001,118.36999999999999L208.00000000000009,118.19999999999999L212.20000000000007,118.02999999999999L216.4000000000001,117.85999999999999L220.60000000000008,117.69L224.80000000000007,117.52L229.0000000000001,117.35L233.2000000000001,117.17999999999999L237.4000000000001,117.00999999999999L241.6000000000001,116.83999999999999L245.80000000000013,116.66999999999999L250.0000000000001,116.49999999999999L254.2000000000001,116.33000000000001L258.4000000000001,116.15999999999998L262.60000000000014,115.99L266.8000000000001,115.82L271.0000000000001,115.64999999999999L275.2000000000001,115.47999999999999L279.40000000000015,115.30999999999999L283.60000000000014,115.13999999999999L287.8000000000001,114.97000000000001L292.00000000000017,114.8L296.2000000000001,114.62999999999998L300.40000000000015,114.46L304.6000000000002,114.28999999999999L308.8000000000001,114.11999999999999L313.00000000000017,113.94999999999999L317.20000000000016,113.77999999999999L321.40000000000015,113.61000000000001L325.6000000000002,113.43999999999998L329.8000000000002,113.27L334.00000000000017,113.1L338.20000000000016,112.92999999999999L342.4000000000002,112.75999999999999L346.60000000000014,112.58999999999999L350.8000000000002,112.41999999999999L355.0000000000002,112.25000000000001L359.20000000000016,112.08L363.4000000000002,111.90999999999998L367.6000000000002,111.74L371.8000000000002,111.57L376.0000000000002,111.39999999999999L380.2000000000002,111.22999999999999L384.4000000000002,111.05999999999999L388.6000000000002,110.89000000000001L392.80000000000024,110.71999999999998L397.0000000000002,110.54999999999998L401.2000000000002,110.38L405.40000000000026,110.21L409.6000000000002,110.03999999999999L413.80000000000024,109.86999999999999L418.0000000000003,109.69999999999999L422.2000000000002,109.53L426.40000000000026,109.35999999999999L430.60000000000025,109.18999999999998L434.80000000000024,109.01999999999998L439.0000000000003,108.85L443.2000000000003,108.67999999999998L447.40000000000026,108.50999999999999L451.60000000000025,108.33999999999999L455.8000000000003,108.17000000000002" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M40,142L44.2,141.82999999999998L48.400000000000006,141.66000000000003L52.599999999999994,141.48999999999998L56.8,141.32L61,141.14999999999998L65.19999999999999,140.98L69.4,140.81L73.60000000000001,140.64L77.8,140.47L82,140.3L86.19999999999999,140.13L90.39999999999999,139.95999999999998L94.6,139.79L98.79999999999998,139.62L103,139.45L107.20000000000002,139.27999999999997L111.4,139.10999999999999L115.60000000000001,138.94L119.80000000000001,138.76999999999998L124.00000000000001,138.6L128.20000000000002,138.42999999999998L132.40000000000003,138.26000000000002L136.60000000000002,138.08999999999997L140.80000000000004,137.92L145.00000000000003,137.75L149.20000000000002,137.58L153.40000000000003,137.41000000000003L157.60000000000002,137.23999999999998L161.80000000000004,137.07L166.00000000000006,136.9L170.20000000000005,136.73L174.40000000000003,136.56L178.60000000000008,136.39L182.80000000000007,136.22000000000003L187.00000000000006,136.05L191.20000000000007,135.88L195.40000000000006,135.70999999999998L199.60000000000008,135.54000000000002L203.8000000000001,135.37L208.00000000000009,135.2L212.20000000000007,135.02999999999997L216.4000000000001,134.86L220.60000000000008,134.69L224.80000000000007,134.51999999999998L229.0000000000001,134.35L233.2000000000001,134.18L237.4000000000001,134.01L241.6000000000001,133.83999999999997L245.80000000000013,133.67L250.0000000000001,133.5L254.2000000000001,133.33L258.4000000000001,133.16L262.60000000000014,132.98999999999998L266.8000000000001,132.82000000000002L271.0000000000001,132.64999999999998L275.2000000000001,132.48L279.40000000000015,132.31L283.60000000000014,132.14000000000001L287.8000000000001,131.97000000000003L292.00000000000017,131.79999999999998L296.2000000000001,131.63L300.40000000000015,131.46L304.6000000000002,131.29L308.8000000000001,131.12L313.00000000000017,130.95L317.20000000000016,130.78L321.40000000000015,130.61L325.6000000000002,130.44L329.8000000000002,130.26999999999998L334.00000000000017,130.10000000000002L338.20000000000016,129.92999999999998L342.4000000000002,129.76L346.60000000000014,129.58999999999997L350.8000000000002,129.42000000000002L355.0000000000002,129.25L359.20000000000016,129.07999999999998L363.4000000000002,128.91L367.6000000000002,128.74L371.8000000000002,128.57L376.0000000000002,128.39999999999998L380.2000000000002,128.23L384.4000000000002,128.06L388.6000000000002,127.89000000000001L392.80000000000024,127.71999999999998L397.0000000000002,127.54999999999998L401.2000000000002,127.38L405.40000000000026,127.20999999999998L409.6000000000002,127.03999999999999L413.80000000000024,126.86999999999998L418.0000000000003,126.70000000000002L422.2000000000002,126.53L426.40000000000026,126.35999999999999L430.60000000000025,126.18999999999998L434.80000000000024,126.02000000000001L439.0000000000003,125.85L443.2000000000003,125.67999999999998L447.40000000000026,125.50999999999999L451.60000000000025,125.34L455.8000000000003,125.16999999999999" stroke="var(--main-color-1)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M44.2,116.41414141414141L48.400000000000006,116.3265306122449L52.599999999999994,116.23711340206185L56.8,116.14583333333334L61,116.05263157894737L65.19999999999999,115.95744680851065L69.4,115.86021505376343L73.60000000000001,115.76086956521739L77.8,115.65934065934064L82,115.55555555555554L86.19999999999999,115.44943820224718L90.39999999999999,115.34090909090907L94.6,115.22988505747125L98.79999999999998,115.11627906976744L103,115L107.20000000000002,114.88095238095238L111.4,114.7590361445783L115.60000000000001,114.63414634146342L119.80000000000001,114.50617283950616L124.00000000000001,114.375L128.20000000000002,114.24050632911393L132.40000000000003,114.10256410256409L136.60000000000002,113.96103896103895L140.80000000000004,113.81578947368422L145.00000000000003,113.66666666666666L149.20000000000002,113.51351351351352L153.40000000000003,113.35616438356163L157.60000000000002,113.19444444444446L161.80000000000004,113.0281690140845L166.00000000000006,112.85714285714286L170.20000000000005,112.68115942028984L174.40000000000003,112.5L178.60000000000008,112.31343283582089L182.80000000000007,112.12121212121211L187.00000000000006,111.92307692307693L191.20000000000007,111.71875L195.40000000000006,111.5079365079365L199.60000000000008,111.29032258064515L203.8000000000001,111.06557377049178L208.00000000000009,110.83333333333331L212.20000000000007,110.59322033898304L216.4000000000001,110.34482758620689L220.60000000000008,110.0877192982456L224.80000000000007,109.82142857142857L229.0000000000001,109.54545454545455L233.2000000000001,109.25925925925925L237.4000000000001,108.96226415094341L241.6000000000001,108.65384615384616L245.80000000000013,108.33333333333334L250.0000000000001,108L254.2000000000001,107.65306122448976L258.4000000000001,107.29166666666666L262.60000000000014,106.91489361702128L266.8000000000001,106.52173913043478L271.0000000000001,106.1111111111111L275.2000000000001,105.68181818181819L279.40000000000015,105.23255813953489L283.60000000000014,104.76190476190473L287.8000000000001,104.26829268292681L292.00000000000017,103.74999999999997L296.2000000000001,103.20512820512818L300.40000000000015,102.63157894736841L304.6000000000002,102.027027027027L308.8000000000001,101.38888888888886L313.00000000000017,100.7142857142857L317.20000000000016,99.99999999999997L321.40000000000015,99.24242424242422L325.6000000000002,98.43749999999997L329.8000000000002,97.58064516129028L334.00000000000017,96.66666666666663L338.20000000000016,95.68965517241375L342.4000000000002,94.6428571428571L346.60000000000014,93.51851851851848L350.8000000000002,92.30769230769225L355.0000000000002,90.99999999999993L359.20000000000016,89.58333333333327L363.4000000000002,88.0434782608695L367.6000000000002,86.36363636363629L371.8000000000002,84.52380952380942L376.0000000000002,82.49999999999989L380.2000000000002,80.26315789473672L384.4000000000002,77.77777777777764L388.6000000000002,74.99999999999983L392.80000000000024,71.8749999999998L397.0000000000002,68.33333333333314L401.2000000000002,64.28571428571405L405.40000000000026,59.61538461538434L409.6000000000002,54.16666666666636L413.80000000000024,47.72727272727234L418.0000000000003,39.99999999999951L422.2000000000002,30.555555555554907L426.40000000000026,18.749999999999204L430.60000000000025,3.571428571427532L434.80000000000024,-16.666666666668128L439.0000000000003,-45.00000000000212L443.2000000000003,-87.50000000000341L447.40000000000026,-158.33333333333943L451.60000000000025,-300.00000000001376L455.8000000000003,-725.0000000000559" stroke="var(--main-color-2)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <path d="M44.2,975L48.400000000000006,550L52.599999999999994,408.33333333333337L56.8,337.5L61,295L65.19999999999999,266.6666666666667L69.4,246.4285714285714L73.60000000000001,231.25L77.8,219.44444444444446L82,210L86.19999999999999,202.27272727272728L90.39999999999999,195.83333333333337L94.6,190.3846153846154L98.79999999999998,185.71428571428572L103,181.66666666666666L107.20000000000002,178.125L111.4,175L115.60000000000001,172.2222222222222L119.80000000000001,169.73684210526315L124.00000000000001,167.5L128.20000000000002,165.47619047619045L132.40000000000003,163.63636363636363L136.60000000000002,161.95652173913044L140.80000000000004,160.41666666666663L145.00000000000003,159L149.20000000000002,157.6923076923077L153.40000000000003,156.48148148148147L157.60000000000002,155.35714285714283L161.80000000000004,154.3103448275862L166.00000000000006,153.33333333333334L170.20000000000005,152.4193548387097L174.40000000000003,151.56249999999997L178.60000000000008,150.75757575757575L182.80000000000007,150L187.00000000000006,149.28571428571428L191.20000000000007,148.61111111111111L195.40000000000006,147.97297297297297L199.60000000000008,147.36842105263156L203.8000000000001,146.7948717948718L208.00000000000009,146.24999999999997L212.20000000000007,145.73170731707316L216.4000000000001,145.2380952380952L220.60000000000008,144.7674418604651L224.80000000000007,144.3181818181818L229.0000000000001,143.88888888888886L233.2000000000001,143.4782608695652L237.4000000000001,143.08510638297872L241.6000000000001,142.70833333333331L245.80000000000013,142.34693877551018L250.0000000000001,142L254.2000000000001,141.66666666666666L258.4000000000001,141.3461538461538L262.60000000000014,141.0377358490566L266.8000000000001,140.74074074074073L271.0000000000001,140.45454545454544L275.2000000000001,140.17857142857142L279.40000000000015,139.91228070175438L283.60000000000014,139.6551724137931L287.8000000000001,139.40677966101697L292.00000000000017,139.16666666666666L296.2000000000001,138.9344262295082L300.40000000000015,138.70967741935482L304.6000000000002,138.4920634920635L308.8000000000001,138.28125L313.00000000000017,138.07692307692307L317.20000000000016,137.87878787878788L321.40000000000015,137.6865671641791L325.6000000000002,137.5L329.8000000000002,137.31884057971016L334.00000000000017,137.14285714285714L338.20000000000016,136.97183098591552L342.4000000000002,136.80555555555554L346.60000000000014,136.64383561643837L350.8000000000002,136.48648648648648L355.0000000000002,136.33333333333334L359.20000000000016,136.18421052631575L363.4000000000002,136.03896103896102L367.6000000000002,135.8974358974359L371.8000000000002,135.75949367088606L376.0000000000002,135.625L380.2000000000002,135.49382716049382L384.4000000000002,135.3658536585366L388.6000000000002,135.24096385542168L392.80000000000024,135.11904761904762L397.0000000000002,135L401.2000000000002,134.88372093023253L405.40000000000026,134.77011494252872L409.6000000000002,134.6590909090909L413.80000000000024,134.55056179775283L418.0000000000003,134.44444444444446L422.2000000000002,134.34065934065936L426.40000000000026,134.2391304347826L430.60000000000025,134.13978494623655L434.80000000000024,134.04255319148933L439.0000000000003,133.94736842105263L443.2000000000003,133.85416666666666L447.40000000000026,133.76288659793815L451.60000000000025,133.6734693877551L455.8000000000003,133.5858585858586" stroke="var(--main-color-2)" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <rect x="163.5" y="54.5" width="5" height="5" fill="var(--main-color-2)" stroke="black"></rect>
+<text fill="black" x="176" y="57" font-size="12" class="svelte-9icl3e">Cross Entropy</text>
+    <rect x="163.5" y="71.5" width="5" height="5" fill="var(--main-color-1)" stroke="black"></rect>
+<text fill="black" x="176" y="74" font-size="12" class="svelte-9icl3e">Mean Squared Error</text></svg></div></div>
+  <p>The exponential growth of derivative of the cross-entropy loss implies, that
+    the gradient descent algorithm will take much larger steps compared to the
+    mean squared error, when the classification predictions are way off, thereby
+    converging at a higher rate.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/logistic_regression/cross_entropy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 49],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

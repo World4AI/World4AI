@@ -1,0 +1,27 @@
+import{S as B,i as H,s as J,k as c,a as v,q as _,y as O,W as Q,l as f,h as a,c as x,m as d,r as g,z as K,n as i,N as l,b as s,A as X,g as Z,d as ee,B as te,L as ae,C as oe}from"../chunks/index.4d92b023.js";import{C as ne}from"../chunks/Container.b0705c7b.js";const se=""+new URL("../assets/photo_plant.45ccb466.webp",import.meta.url).href;function re(G){let r,b,m,w,$,p,h,n,k,t,o,y,E,L,M,A,U,C,I,Y,D,T,F,q,P;return{c(){r=c("p"),b=_(`When we look at pictures or read text we do not focus on all the available
+    data with equal strength, rather we focus on some specific parts. In other
+    words we pay attention to certain elements, while we disregard others.`),m=v(),w=c("p"),$=_(`Look at the image below for example. What part of the image do you notice
+    first? Most likely the yellow blossoms of the plant.`),p=v(),h=c("figure"),n=c("img"),t=v(),o=c("figcaption"),y=_("Photo by "),E=c("a"),L=_("Woody Yan"),M=_(`
+      on
+      `),A=c("a"),U=_("Unsplash"),C=v(),I=c("p"),Y=_(`Did you notice the large leafs outside the window? Did you notice that the
+    white circle that surrounds the window has a small defect at the top right?
+    Your mind automatically wandered to the plant, filtering out the unnecessary
+    noise that is not relevant to your understanding of the image.`),D=v(),T=c("p"),F=_(`The attention mechanisms that we are going to study in this chapter are
+    designed to learn what parts of the data the neural network has to pay
+    attention to. Attention models have become state of the art in natural
+    language processing and even computer vision. These models were originally
+    developed for language translation, therefore that is where we are going to
+    start our journey.`),q=v(),P=c("div"),this.h()},l(e){r=f(e,"P",{});var u=d(r);b=g(u,`When we look at pictures or read text we do not focus on all the available
+    data with equal strength, rather we focus on some specific parts. In other
+    words we pay attention to certain elements, while we disregard others.`),u.forEach(a),m=x(e),w=f(e,"P",{});var R=d(w);$=g(R,`Look at the image below for example. What part of the image do you notice
+    first? Most likely the yellow blossoms of the plant.`),R.forEach(a),p=x(e),h=f(e,"FIGURE",{class:!0});var j=d(h);n=f(j,"IMG",{src:!0,class:!0,alt:!0}),t=x(j),o=f(j,"FIGCAPTION",{class:!0});var W=d(o);y=g(W,"Photo by "),E=f(W,"A",{rel:!0,href:!0,target:!0});var S=d(E);L=g(S,"Woody Yan"),S.forEach(a),M=g(W,`
+      on
+      `),A=f(W,"A",{rel:!0,target:!0,href:!0});var N=d(A);U=g(N,"Unsplash"),N.forEach(a),W.forEach(a),j.forEach(a),C=x(e),I=f(e,"P",{});var V=d(I);Y=g(V,`Did you notice the large leafs outside the window? Did you notice that the
+    white circle that surrounds the window has a small defect at the top right?
+    Your mind automatically wandered to the plant, filtering out the unnecessary
+    noise that is not relevant to your understanding of the image.`),V.forEach(a),D=x(e),T=f(e,"P",{});var z=d(T);F=g(z,`The attention mechanisms that we are going to study in this chapter are
+    designed to learn what parts of the data the neural network has to pay
+    attention to. Attention models have become state of the art in natural
+    language processing and even computer vision. These models were originally
+    developed for language translation, therefore that is where we are going to
+    start our journey.`),z.forEach(a),q=x(e),P=f(e,"DIV",{class:!0}),d(P).forEach(a),this.h()},h(){ae(n.src,k=se)||i(n,"src",k),i(n,"class","rounded-xl object-contain"),i(n,"alt","A plant seen through a round window."),i(E,"rel","noreferrer"),i(E,"href","https://unsplash.com/@woodyyan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"),i(E,"target","_blank"),i(A,"rel","noreferrer"),i(A,"target","_blank"),i(A,"href","https://unsplash.com/photos/ARQv6dJG4Fg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"),i(o,"class","text-sm text-center"),i(h,"class","flex flex-col justify-center items-center max-w-sm mx-auto"),i(P,"class","separator")},m(e,u){s(e,r,u),l(r,b),s(e,m,u),s(e,w,u),l(w,$),s(e,p,u),s(e,h,u),l(h,n),l(h,t),l(h,o),l(o,y),l(o,E),l(E,L),l(o,M),l(o,A),l(A,U),s(e,C,u),s(e,I,u),l(I,Y),s(e,D,u),s(e,T,u),l(T,F),s(e,q,u),s(e,P,u)},p:oe,d(e){e&&a(r),e&&a(m),e&&a(w),e&&a(p),e&&a(h),e&&a(C),e&&a(I),e&&a(D),e&&a(T),e&&a(q),e&&a(P)}}}function le(G){let r,b,m,w,$,p,h,n,k;return n=new ne({props:{$$slots:{default:[re]},$$scope:{ctx:G}}}),{c(){r=c("meta"),b=v(),m=c("h1"),w=_("Attention"),$=v(),p=c("div"),h=v(),O(n.$$.fragment),this.h()},l(t){const o=Q("svelte-1w8vsh8",document.head);r=f(o,"META",{name:!0,content:!0}),o.forEach(a),b=x(t),m=f(t,"H1",{});var y=d(m);w=g(y,"Attention"),y.forEach(a),$=x(t),p=f(t,"DIV",{class:!0}),d(p).forEach(a),h=x(t),K(n.$$.fragment,t),this.h()},h(){document.title="Attention - World4AI",i(r,"name","description"),i(r,"content","Since 2017 attention mechanism and transformers especially have taken the world by storm. These mechanisms allows the model to focus only on the relevant parts of the input and disregard the other. This simple idea is at the core of most modern deep learning systems."),i(p,"class","separator")},m(t,o){l(document.head,r),s(t,b,o),s(t,m,o),l(m,w),s(t,$,o),s(t,p,o),s(t,h,o),X(n,t,o),k=!0},p(t,[o]){const y={};o&1&&(y.$$scope={dirty:o,ctx:t}),n.$set(y)},i(t){k||(Z(n.$$.fragment,t),k=!0)},o(t){ee(n.$$.fragment,t),k=!1},d(t){a(r),t&&a(b),t&&a(m),t&&a($),t&&a(p),t&&a(h),te(n,t)}}}class ue extends B{constructor(r){super(),H(this,r,null,le,J,{})}}export{ue as default};

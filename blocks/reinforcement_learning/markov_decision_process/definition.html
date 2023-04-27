@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-reinforcement_learning-markov_decision_process-definition-page.svelte.28db58b6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Sequence.ddbdf7ae.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Circle.6709e74f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js"><title>Markov Decision Process Definition - World4AI</title><!-- HEAD_svelte-oxmc4j_START --><meta name="description" content="The Markov decision process (MDP) is a stochastic process with the markov property that contains an interface for an agent to take actions."><!-- HEAD_svelte-oxmc4j_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Definition of a Markov Decision Process</h1>
+<div class="container mx-auto" style="max-width: 1000px"><div class="separator"></div>
+  <p>In reinforcement learning the agent and the environment interract with each
+    other in discrete timesteps. At the beginnig of the interraction the agent
+    receives the initial state of the environment
+    <span class="hidden">S_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and produces the action <span class="hidden">A_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    . Based on that action the environment transitions into a new state <span class="hidden">S_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and generates the corresponding reward for the agent <span class="hidden">R_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+    The agent in turn reacts with the action <span class="hidden">A_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    and the interaction continues. In order to be able to model this interaction,
+    each environment has a so called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Markov decision process</strong> under the hood. These three words allow us to fully describe how the interaction
+    works.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A Markov decision process is a
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">stochastic process</strong> with a <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Markov</strong>
+    property, that provides a mechanism for the agent to make
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">decisions</strong> and receive rewards.
+  </p></div>
+  <p>Intuitively we can define a stochastic process in the following way.</p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A stochastic process is a sequence of random variables that develops over
+    time.
+  </p></div>
+  <p>Let&#39;s have a look at the Bernoulli distribution <span class="hidden">X</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ for example.
+    This random variable produces the value 1 with the probability <span class="hidden">p</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the value 0 with the probability <span class="hidden">1-p</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. Let&#39;s assume that <span class="hidden">p</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ eqauls to 0.5.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L20,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+      <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L280,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">X</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="170" class="svelte-1i3ahvn">0</text><circle cx="279" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="170" class="svelte-1i3ahvn">1</text><rect x="1" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>At each timestep we draw a value from the distribution and generate a
+    sequence of random variables.
+  </p>
+  <div class="flex justify-center items-center text-lg"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button>
+  <span class="bg-blue-100 mx-2 px-2">Timestep <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+    <span class="inline-block">0</span></span>
+  </div>
+<div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 80"></svg></div></div>
+  <p>In essence we can regard the Bernoulli process as an environment with just
+    two states: state 0 and state 1. The environment transitions from one state
+    to the next based on the probability <span class="hidden">p</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. In this type of
+    environment no actions or rewards are present. If we used the Bernoulli
+    process in reinforcement learning our agent would drift from one state into
+    the next state without any agency and any rewards to guide its actions. The
+    stochastic process that is used for reinforcement learning is called the
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Markov chain</strong>.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A Markov chain is a stochastic process that has the Markov property.
+  </p></div>
+  <p>The Bernoulli process generates a sequence of independent random variables.
+    No matter what state came before the current time step, the probability for
+    the next state stays unchanged. The Markov chain on the other hand exhibits
+    a so called Markov property. In simple words that means that the probability
+    of transitioning into the next state depends on the current state, and the
+    current state only. The whole history of past states is irrelevant.
+  </p>
+  <p>Let&#39;s have a look at an example of a Markov chain with two possible states.
+  </p>
+  <p>If the current state of the environment is 0 the environment transitions
+    into the state 1 with 20% probability and remains with 80% probability in
+    state 0.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L20,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+      <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L280,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="170" class="svelte-1i3ahvn">0</text><circle cx="279" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="170" class="svelte-1i3ahvn">1</text><rect x="1" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>If the current state of the environment is 1 on the other hand the
+    environment transitions into the state 0 with 20% probability and remains
+    with 80% probability in the state 0.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L20,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+      <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L280,170" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="170" class="svelte-1i3ahvn">0</text><circle cx="279" cy="170" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="170" class="svelte-1i3ahvn">1</text><rect x="1" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="105" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="105" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>In other words in this example the environment tends to stay in the same
+    state.
+  </p>
+  <div class="flex justify-center items-center text-lg"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button>
+  <span class="bg-blue-100 mx-2 px-2">Timestep <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+    <span class="inline-block">0</span></span>
+  </div>
+<div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 80"></svg></div></div>
+  <p>But why does it make sense to model the agent-environment interaction with a
+    Markov chain? Why can&#39;t we just use for example the Bernoulli process? Think
+    about a chess board for example. The state of the board does not change
+    randomly from move to move. We move one piece at a time, while other pieces
+    remain fairly constant. The board configuration always depends on the
+    configuration from the previous time step, but only on the directly
+    preceding state configuration. You do not need to know how the whole game
+    developed in order to make the next move. The current positions of the chess
+    pieces and your actions are sufficient to create the next state of the
+    board.
+  </p>
+  <p>The <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Markov reward process</strong> adds a reward for to each state.
+  </p>
+  <p>In the below example whenever the agent lands in the state 0, it gets a
+    negative reward of -1 and whenever the agent lands in the state 1 it gets a
+    positive reward of 5. The reward can theoretically also be calculated
+    stochastically, but let&#39;s keep it simple and assume a deterministic reward.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L20,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+      <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L280,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="120" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="120" class="svelte-1i3ahvn">0</text><circle cx="279" cy="120" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="120" class="svelte-1i3ahvn">1</text><circle cx="21" cy="170" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="170" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="170" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="170" class="svelte-1i3ahvn">5</text><rect x="1" y="55" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="55" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="55" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="55" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L20,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+      <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L280,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="120" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="120" class="svelte-1i3ahvn">0</text><circle cx="279" cy="120" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="120" class="svelte-1i3ahvn">1</text><circle cx="21" cy="170" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="170" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="170" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="170" class="svelte-1i3ahvn">5</text><rect x="1" y="55" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="55" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="55" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="55" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>In a Markov reward process the sequence of random variables not only
+    contains states but also rewards. The process drifts randomly from one state
+    into the next and gives out rewards to the agent, but the agent has no
+    influence on the process whatsoever, even though the agent would prefer to
+    gravitate towards the state 1 as its goal is to maximize the expected sum of
+    rewards.
+  </p>
+  <div class="flex justify-center items-center text-lg"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button>
+  <span class="bg-blue-100 mx-2 px-2">Timestep <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+    <span class="inline-block">0</span></span>
+  </div>
+<div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 80"></svg></div></div>
+  <p>A Markov decision process adds, as the name suggests, decisions to the
+    Markov chain. In other words the agent gets some agency.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A Markov decision process is a Markov chain, such that the agent can
+    partially influence the outcomes of the chain.
+  </p></div>
+  <p>Additionally to the two states we add the option for the agent to take one
+    of the actions: A or B. The action A increases the likelihood to move
+    towards the 0&#39;s state, while the action B increases the probability to move
+    towards the state 1. For the time being let&#39;s assume that the agent takes
+    random actions.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 300">
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L65,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L21,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M65,100L107,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M150,20L237,100" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L193,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path>
+        <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M237,100L279,220" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="3" marker-end="none"></path><circle cx="150" cy="20" r="18" stroke="black" class="fill-slate-400" fill="none"></circle>
+
+<foreignObject x="132" y="2" width="36" height="36"><div style="font-size: 20px; height: 36px" class="flex justify-center items-center"><span class="hidden">1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="21" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="21" y="220" class="svelte-1i3ahvn">0</text><circle cx="107" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="107" y="220" class="svelte-1i3ahvn">1</text><circle cx="193" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="193" y="220" class="svelte-1i3ahvn">0</text><circle cx="279" cy="220" r="20" stroke="black" class="fill-red-400" fill="none"></circle>
+
+<text font-size="25" x="279" y="220" class="svelte-1i3ahvn">1</text><circle cx="65" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="65" y="100" class="svelte-1i3ahvn">A</text><circle cx="237" cy="100" r="20" stroke="black" class="fill-purple-100" fill="none"></circle>
+
+<text font-size="25" x="237" y="100" class="svelte-1i3ahvn">B</text><circle cx="21" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="21" y="270" class="svelte-1i3ahvn">-1</text><circle cx="107" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="107" y="270" class="svelte-1i3ahvn">5</text><circle cx="193" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="193" y="270" class="svelte-1i3ahvn">-1</text><circle cx="279" cy="270" r="20" stroke="black" class="fill-green-100" fill="none"></circle>
+
+<text font-size="25" x="279" y="270" class="svelte-1i3ahvn">5</text><rect x="1" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="1" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.9</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="87" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="87" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="173" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="173" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="259" y="155" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="259" y="155" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.7</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="45" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="45" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="217" y="35" width="40" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<foreignObject x="217" y="35" width="40" height="30"><div style="font-size: 18px; height: 30px" class="flex justify-center items-center"><span class="hidden">0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>This time around the random process does not only contain states and
+    rewards, but also actions taken by the agent.
+  </p>
+  <div class="flex justify-center items-center text-lg"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button>
+  <span class="bg-blue-100 mx-2 px-2">Timestep <span class="hidden">t</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+:
+    <span class="inline-block">0</span></span>
+  </div>
+<div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 80"></svg></div></div>
+  <p>In the example above the environment has still two states, state 0 and state
+    1. Landing in state 1 is more advantagous as the agent receives a reward of
+    5, while landing in the 0&#39;s state generates a reward of -1. In both states
+    the agent can choose between two actions. The action A is the action toward
+    the state 0 and the action B is the action towards the state 1. For example
+    if the agent is in the state 0 it should choose the action B to move with a
+    probability of 70% to the state B and receive a reward of 5. The whole
+    process is the succession of states, actions and rewards. This is the same
+    mechanism, that we introduced previously as the interaction between the
+    agent and the environment. The interaction is nothing more than a Markov
+    chain that is made out of two elements. The first element, the environment
+    is static and can not be changed in any form. The second component is the
+    agent. The agent can change the probabilities of the whole chain, by
+    tweaking the probabilities of actions. In the example above, we expect the
+    agent to improve by increasing the probabilities to move to state 1. Ideally
+    that would mean that the agent will only choose action B.
+  </p>
+  <p>Now we are ready to look at the formal definition of a Markov decision
+    process. This definition deals with the four components that a MDP has to
+    contain in order to be valid.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A Markov decision process can be defined as a tuple with four components: <span class="hidden">(\mathcal{S, A}, P, R)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p></div>
+  <p><span class="hidden">\mathcal{S}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">state space</strong>, that contains all possible states of the environment. In the examples
+    above we were dealing with just two states, therefore our state space would
+    correspond to: <span class="hidden">\mathcal{S}=[0, 1]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p><span class="hidden">\mathcal{A}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">action space</strong>, that contains all possible actions of the environment. Above we were
+    dealing with the environment with two actions:
+    <span class="hidden">\mathcal{A}=[A, B]</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p><span class="hidden">P</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">transition probability function</strong>
+    that provides a probability for the next state <span class="hidden">s&#39;</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ given the current
+    state <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the action <span class="hidden">a</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. Mathematically we
+    can express that idea as:
+    <span class="hidden">P(s' \mid s, a) \doteq Pr[S_{t+1}=s' \mid S_t=s, A_t=a], \forall s, s' \in \mathcal{S}, a \in \mathcal{A}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. For example the probability to transition into the state 1 from state 0,
+    given that the agent chose the action B is 80%: <span class="hidden">P(1 \mid 0, B) = 0.8</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p><span class="hidden">R</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">reward function</strong>. This function
+    calculates the reward given the state <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    , the action <span class="hidden">a</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the next state <span class="hidden">s&#39;</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <span class="hidden">R(s,a, s')</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. For example our agent would receive
+    a reward of 5, whenever it landed in state 1, <span class="hidden">R(1, A, 1) = 5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p>It does not matter if we are talking about a grid world, a game of chess,
+    StarCraft or the real world. We always expect the environment to conain a
+    MDP with the four components under the hood. Usually we do not have access
+    to those components and can not examine them explicitly, but just knowing
+    that they are there allows the agent to interract with the environement and
+    to learn from those interractions.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/reinforcement_learning/markov_decision_process/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/reinforcement_learning/markov_decision_process/solution"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 96],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

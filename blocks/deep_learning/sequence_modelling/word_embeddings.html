@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-sequence_modelling-word_embeddings-page.svelte.f501b43c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js"><title>Word Embeddings - World4AI</title><!-- HEAD_svelte-19zhfy3_START --><meta name="description" content="It is not possible to train a neural network directly on text, as a neural network requires numerical input. Before we can train language models, we have to turn text into word embeddings, dense vectors, that represent a word in vector space."><!-- HEAD_svelte-19zhfy3_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Word Embeddings</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>In the previous sections we have learned how we can use recurrent neural
+    networks to deal with sequences. Yet we still face a problem that we need to
+    solve, before we can train those models on textual data.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">A neural network takes only numerical values as input, while text is
+    represented as a sequence of characters or words. In order to make text
+    compatible with nearal networks, it needs to be transformed into a numerical
+    representation. In other words: <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">text needs to be vectorized</strong>.
+  </p></div>
+  <p>In order to get a good intuition for the vectorization process let&#39;s work
+    through a dummy example. The whole time we will assume that our dataset
+    consists of these two sentences.
+  </p>
+  
+  <p class="bg-violet-100 text-center p-1 rounded-xl">Charles III is the king of the United Kingdom.</p>
+  <p class="bg-red-100 text-center p-1 rounded-xl">Queen Elizabeth II ruled for 70 years.</p>
+  <p>In the first step of the transformation process we need to tokenize our
+    sentences. During the tokenization process we divide the sentence into its
+    atomic parts, so called tokens. While theoretically we can divide a sentence
+    into a set of characters (like letters), usually a sentence is divided into
+    individual words (or subwords). Tokenization can be a daunting task, so we
+    will stick to the basics here.
+  </p>
+  
+  <div class="flex justify-center items-start mb-2"><div class="flex justify-center items-center flex-col "><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">Charles</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">III</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">is</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">king</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">of</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">United</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">Kingdom.</span></div>
+    <div class="flex justify-center items-center flex-col"><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">Queen</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">Elizabeth</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">II</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">ruled</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">for</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">70</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">years.</span></div></div>
+  <p>During tokenization, the words are often also standardized, by stripping
+    punctuation and turning letters into their lower case counterparts.
+  </p>
+  
+  <div class="flex justify-center items-start mb-2"><div class="flex justify-center items-center flex-col mb-2"><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">charles</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">iii</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">is</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">king</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">of</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">united</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">kingdom</span></div>
+    <div class="flex justify-center items-center flex-col"><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">queen</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">elizabeth</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">ii</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">ruled</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">for</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">70</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">years</span></div></div>
+
+  <p>Once we have tokenized all words, we can create a vocabulary. A vocabulary
+    is the set of all available tokens. For the sentences above we will end up
+    with the following vocabulary.
+  </p>
+
+  
+  <div class="flex justify-center items-center flex-col"><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">&lt;unk>
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">&lt;pad>
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">charles
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">is
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">the
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">king
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">of
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">united
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">kingdom
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">queen
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">elizabeth
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">ruled
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">for
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">70
+      </div><div class="bg-slate-300 w-32 text-center border border-gray-400 mb-1">years
+      </div></div>
+  <p>You have probably noticed that additionally to the tokens we have derived
+    from our dataset we have also introduced &lt;pad> and &lt;unk>. For the
+    most part the size of the sentences is going to be of different size, but if
+    we want to use batches of samples, we need to standardize the length of the
+    sequence. For that purpose we use padding, which means that we fill the
+    shorter sentences with &lt;pad> tokens. The token for unknown words &lt;unk>
+    is used for words that are outside of the vocabulary. This happens for example
+    if the vocabulary that is built using the training dataset does not contain some
+    words from the testing dataset. Additionally we often limit the size of the vocabulary
+    in order to save computational power. In our example we assume that roman numerals
+    are extremely rare and replace them by the special tokens.
+  </p>
+
+  <div class="flex justify-center items-start mb-2">
+    <div class="flex justify-center items-center flex-col mb-2"><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">charles</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">&lt;unk></span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">is</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">king</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">of</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">the</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">united</span><span class="bg-violet-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">kingdom</span></div>
+    <div class="flex justify-center items-center flex-col mb-2"><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">queen</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">elizabeth</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">&lt;unk></span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">ruled</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">for</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">70</span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">years</span>
+      <span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">&lt;pad></span><span class="bg-red-100 text-center p-1 m-1 w-32 flex justify-center border border-gray-300">&lt;pad></span></div></div>
+
+  <p>In the next step each token in the vocabulary gets assigned an index.</p>
+  
+  <div class="flex justify-center items-center flex-col"><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">&lt;unk></div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">0</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">&lt;pad></div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">1</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">charles</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">2</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">is</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">3</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">the</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">4</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">king</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">5</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">of</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">6</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">united</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">7</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">kingdom</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">8</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">queen</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">9</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">elizabeth</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">10</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">ruled</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">11</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">for</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">12</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">70</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">13</div>
+      </div><div class="flex text-center mb-1 border border-gray-300"><div class="bg-slate-300 w-28 py-1 ">years</div>
+        <div class="bg-yellow-200 w-10 flex justify-center items-center">14</div>
+      </div></div>
+
+  <p>Next we replace all tokens in the sentence by the corresponding index.</p>
+  
+  <div class="flex justify-center items-start mb-2"><div class="flex justify-center items-center flex-col mb-2"><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">2</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">0</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">3</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">4</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">5</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">6</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">4</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">7</span><span class="bg-violet-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">8</span></div>
+    <div class="flex justify-center items-center flex-col mb-2"><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">9</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">10</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">0</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">11</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">12</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">13</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">14</span>
+      <span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">1</span><span class="bg-red-100 text-center p-1 m-1 w-14 flex justify-center border border-gray-300">1</span></div></div>
+  <p>Theoretically we have already accomplished the task of turning words into
+    numerical values, but using indices as input inot the neural netowrk is
+    problematic, because those indices imply that there is a ranking in the
+    words. So the word with the index 2 is somehow higher than the word with the
+    index 1. Instead we create so called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">one-hot vectors</strong>.
+    These vectors have as many dimensions, as there are tokens in the
+    vocabulary. For the most part the vector consists of zeros, but at the index
+    that corresponds to the word in the vocabulary the value is 1. For our
+    vocabulary of size 15, so we have access to 15 one-hot vectors.
+  </p>
+  <div class="flex justify-center items-center"><div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">0</span>
+          <span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">1</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">2</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">3</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">4</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">5</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">6</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">7</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">8</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">9</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">10</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">11</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">12</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">13</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">14</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span>
+        </div></div></div>
+
+  <p>Our first sentence for example would correspond to a sequence of the
+    following one-hot vectors.
+  </p>
+  <div class="flex justify-center items-center"><div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">2</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">0</span>
+          <span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">3</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">4</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">5</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">6</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">4</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">7</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div><div class="flex justify-center items-center"><span class="bg-slate-100 w-6 flex justify-center items-center">8</span>
+          <span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-red-100 w-4 flex justify-center items-center">1</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span><span class="bg-blue-100 w-4 flex justify-center items-center">0</span>
+        </div></div></div>
+
+  <p>While we have managed to turn our sentences into vectors, this is not the
+    final step. One-hot vectors are problematic, because the dimensionaly of
+    vectors growth with the size of the vocabulary. We might deal with a
+    vocabulary of 30,000 words, which will produce vectors of size 30,000. If we
+    input those vectors directly into a recurrent neural network, the
+    computation will become intractable.
+  </p>
+  <p>Instead we first turn the one-hot representation into a dense representation
+    of lower dimensionality, those vectors are called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">embeddings</strong>.
+  </p>
+  <p>For example those embeddings might look like the following vecors. We turn
+    15-dimensional sparse vectors into 4-dimensional dense vectors.
+  </p>
+  <div class="flex justify-center items-center"><div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">0</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.29</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.99</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.74</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.70</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">1</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.93</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.31</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.74</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.77</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">2</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.41</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.43</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.50</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.57</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">3</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.84</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.99</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.70</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.62</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">4</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.81</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.14</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.68</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.75</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">5</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.56</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.34</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.86</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.34</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">6</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.98</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.21</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.06</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.47</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">7</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.77</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.14</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.24</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.75</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">8</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.67</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.11</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.83</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.35</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">9</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">1.00</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.91</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.20</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.50</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">10</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.32</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.72</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.42</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.98</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">11</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.99</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.88</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.87</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.38</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">12</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.68</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.29</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.12</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.42</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">13</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.44</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.13</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.95</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.46</span>
+        </div><div class="flex justify-center items-center mb-1"><span class="bg-slate-100 w-6 flex justify-center items-center">14</span>
+          <span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.60</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.20</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.35</span><span class="bg-red-100 w-10 flex justify-center items-center border border-b-gray-300">0.78</span>
+        </div></div></div>
+  <p>Theoretically such a word embedding matrix can be trained using a fully
+    connected layer. Assuming that we have a 5-dimensional one-hot vector and
+    that we want to turn it into a 2-dimensional word embedding, we define the
+    word embedding matrix as trainable weights of the corresponding size.
+  </p>
+  <div class="flex justify-center"><span class="hidden">
+    \begin{bmatrix}
+      w_1 &amp; w_2 \\ 
+      w_3 &amp; w_4 \\ 
+      w_5 &amp; w_6 \\ 
+      w_7 &amp; w_8 \\ 
+      w_9 &amp; w_{10} \\ 
+    \end{bmatrix}
+  </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>When we want to obtain the embedding for a corresponding one-hot vector, we
+    multiply the two.
+  </p>
+  <div class="flex justify-center"><span class="hidden">
+    \begin{bmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      w_1 &amp; w_2 \\ 
+      w_3 &amp; w_4 \\ 
+      w_5 &amp; w_6 \\ 
+      w_7 &amp; w_8 \\ 
+      w_9 &amp; w_{10} \\ 
+    \end{bmatrix}
+  </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>The multiplication will select the correct row and result in a 2-dimensional
+    vector, that can be used as an input into our sequence-language model. This
+    operation will be tracked by the autograd package and those weights will
+    update over the time, optimizing the embedding representation.
+  </p>
+  <p>In practice all major frameworks have a dedicated embedding layer, that does
+    this operation via a lookup. Instead of actually using matrix
+    multiplication, this layer takes the value from the embedding, that
+    corresponds to the index of the word. This is just a more efficient
+    approach, but the results of the computation should be the same.
+  </p>
+  <p>The <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank" rel="noreferrer"><code>nn.Embedding</code></a> layer from PyTorch has two positional arguments: the first corresponds to the
+    size of the vocabulary and the second corresponds to the dimension of the embedding
+    vector.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->vocabulary_size = <span class="hljs-number">10</span>
+embedding_dim = <span class="hljs-number">4</span>
+batch_size=<span class="hljs-number">5</span>
+seq_len=<span class="hljs-number">3</span><!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We assume that we have 5 sentences, each consisting of 3 words.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->sequence = torch.randint(low=<span class="hljs-number">0</span>, 
+                         high=vocabulary_size, 
+                         size=(batch_size, seq_len))
+<span class="hljs-built_in">print</span>(sequence.shape)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->torch.Size([5, 3])<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The embedding maps directly from one of ten indices to the 4 dimensional
+    embedding and there is no need to create one-hot encodings in PyTorch.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->embedding = nn.Embedding(num_embeddings=vocabulary_size, 
+                         embedding_dim=embedding_dim)
+<span class="hljs-built_in">print</span>(embedding.weight.shape)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->torch.Size([10, 4])<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->embeddings = embedding(sequence)
+<span class="hljs-built_in">print</span>(embeddings.shape)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->torch.Size([5, 3, 4])<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/sequence_modelling/lstm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/attention/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 75],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

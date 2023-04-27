@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/YLabel.883a8d74.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-vanishing_exploding_gradients-activation_functions-page.svelte.8063ffd3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/YLabel.182e66a3.js"><title>Activation Functions - World4AI</title><!-- HEAD_svelte-yyuxtp_START --><meta name="description" content="There are many different activation functions out there, but many encourage vanishing gradients. The sigmoid activation function is one of the main drivers of the vanishing gradients problem. The tanh is a slighly better option, but can still lead to vanishing gradients. ReLU (and its variants) is better suited for hidden units and is therefore the most popular activation function."><!-- HEAD_svelte-yyuxtp_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Activation Functions</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>The sigmoid activation function is one of the main causes of the vanishing
+    gradients problem. Because of that researchers have tried to come up with
+    activation functions with better properties. In this section we are going to
+    compare and contrast some of the most popular activation functions, while
+    emphasizing when each of the activations should be used.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Sigmoid and Softmax</h2>
+  <p>From our previous discussion it might have seemed, that the sigmoid
+    activation function (and by extension softmax) is the root cause of the
+    vanishing gradient problem and should be avoided at all cost.
+  </p>
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa"><path d="M40,219.99023945822898L42.09999999999999,219.989212984593L44.19999999999999,219.98807856718457L46.29999999999998,219.98682485598243L48.39999999999997,219.98543930783174L50.49999999999996,219.9839080610852L52.59999999999995,219.9822157970869L54.699999999999946,219.98034558712177L56.79999999999994,219.9782787233098L58.899999999999935,219.97599453176463L60.99999999999993,219.97347016616297L63.099999999999916,219.9706803796779L65.1999999999999,219.96759727301713L67.2999999999999,219.96419001607288L69.39999999999989,219.96042454043288L71.49999999999989,219.95626319971814L73.59999999999988,219.9516643943998L75.69999999999987,219.94658215740455L77.79999999999987,219.9409656964382L79.89999999999986,219.93475888854377L81.99999999999986,219.9278997219497L84.09999999999984,219.92031967976533L86.19999999999985,219.911943059528L88.29999999999984,219.9026862220033L90.39999999999982,219.89245676197788L92.4999999999998,219.88115259306142L94.5999999999998,219.86866093772161L96.69999999999979,219.85485721291394L98.7999999999998,219.83960380072511L100.89999999999978,219.82274869242434L102.99999999999977,219.8041239932039L105.09999999999977,219.7835442736816L107.19999999999976,219.76080475293503L109.29999999999976,219.7356792964254L111.39999999999975,219.7079182106578L113.49999999999974,219.67724581480155L115.59999999999972,219.64335776776252L117.69999999999972,219.60591812736405L119.79999999999973,219.56455611635425L121.89999999999972,219.5188625679256L123.9999999999997,219.4683860213235L126.09999999999968,219.41262843595263L128.19999999999968,219.35104049018773L130.29999999999967,219.28301642890614L132.3999999999997,219.20788842162128L134.49999999999966,219.12492039108236L136.59999999999965,219.03330127039766L138.69999999999965,218.93213764523776L140.79999999999964,218.82044573661818L142.89999999999964,218.69714267930945L144.99999999999963,218.5610370512788L147.09999999999962,218.4108186109794L149.1999999999996,218.24504720207065L151.2999999999996,218.06214078963777L153.39999999999958,217.8603625986156L155.49999999999957,217.63780733442252L157.5999999999996,217.3923864783811L159.6999999999996,217.12181266705213L161.79999999999956,216.82358318594638L163.89999999999955,216.4949626351403L165.99999999999955,216.1329648581504L168.09999999999954,215.7343342671734L170.19999999999956,215.29552674873204L172.29999999999956,214.8126903952012L174.39999999999955,214.28164638097397L176.49999999999955,213.6978703884585L178.59999999999957,213.05647508983327L180.69999999999956,212.35219430638335L182.79999999999956,211.57936959869585L184.89999999999958,210.73194018766665L186.99999999999955,209.80343726682332L189.09999999999957,208.78698393814042L191.1999999999996,207.67530218174346L193.29999999999956,206.46072844774602L195.39999999999958,205.13523962618072L197.49999999999957,203.69049129543293L199.5999999999996,202.117870253807L201.6999999999996,200.4085633818063L203.79999999999959,198.55364483926806L205.8999999999996,196.54418344294362L207.99999999999957,194.3713717652452L210.0999999999996,192.0266780119559L212.1999999999996,189.50202104639564L214.29999999999959,186.78996800704056L216.3999999999996,183.88395280379433L218.4999999999996,180.77851238163402L220.59999999999957,177.46953604009573L222.6999999999996,173.9545213541508L224.7999999999996,170.2328284522895L226.8999999999996,166.30592270295102L228.99999999999963,162.17759440545186L231.09999999999962,157.85414306437667L233.1999999999996,153.34451344243755L235.2999999999996,148.6603710161566L237.3999999999996,143.81610583854695L239.4999999999996,138.82875620839965L241.59999999999962,133.71784692417813L243.69999999999965,128.50514111450767L245.79999999999959,123.21430942218377L247.8999999999996,117.8705253079731L249.99999999999957,112.500000000001L252.09999999999962,107.12947469202894L254.19999999999965,101.78569057781824L256.2999999999996,96.49485888549431L258.3999999999996,91.2821530758238L260.4999999999996,86.17124379160222L262.5999999999996,81.1838941614549L264.6999999999996,76.33962898384517L266.7999999999996,71.6554865575642L268.8999999999996,67.14585693562498L270.9999999999996,62.822405594549735L273.09999999999957,58.69407729705046L275.1999999999996,54.767171547711925L277.2999999999996,51.045478645850565L279.39999999999964,47.53046395990556L281.4999999999996,44.22148761836719L283.59999999999957,41.11604719620677L285.6999999999996,38.210031992960474L287.7999999999996,35.497978953605354L289.89999999999964,32.97332198804497L291.99999999999966,30.62862823475566L294.09999999999957,28.45581655705716L296.1999999999996,26.44635516073265L298.2999999999996,24.59143661819439L300.39999999999964,22.882129746193613L302.49999999999966,21.30950870456763L304.5999999999996,19.864760373819806L306.6999999999996,18.539271552254487L308.7999999999996,17.324697818256993L310.89999999999964,16.213016061860017L312.99999999999966,15.196562733177018L315.0999999999996,14.268059812333638L317.19999999999965,13.420630401304452L319.29999999999967,12.647805693616913L321.39999999999964,11.943524910166968L323.49999999999966,11.302129611541712L325.5999999999996,10.718353619026276L327.69999999999965,10.187309604798974L329.79999999999967,9.70447325126812L331.8999999999997,9.26566573282675L333.99999999999966,8.86703514184973L336.0999999999996,8.505037364859842L338.19999999999965,8.176416814053757L340.29999999999967,7.878187332947997L342.39999999999964,7.607613521619021L344.49999999999966,7.362192665577583L346.59999999999957,7.139637401384462L348.6999999999996,6.9378592103623085L350.7999999999996,6.754952797929422L352.8999999999996,6.589181389020652L354.9999999999996,6.438962948721265L357.09999999999957,6.302857320690613L359.1999999999996,6.17955426338186L361.29999999999956,6.067862354762261L363.3999999999995,5.966698729602394L365.49999999999955,5.875079608917696L367.59999999999957,5.792111578378765L369.69999999999953,5.71698357109391L371.79999999999956,5.648959509812341L373.8999999999995,5.587371564047405L375.9999999999995,5.531613978676498L378.0999999999995,5.4811374320744255L380.1999999999995,5.435443883645728L382.2999999999995,5.3940818726359545L384.3999999999995,5.35664223223751L386.4999999999995,5.322754185198457L388.59999999999945,5.292081789342262L390.6999999999994,5.264320703574631L392.79999999999944,5.239195247064993L394.8999999999994,5.216455726318404L396.9999999999994,5.19587600679613L399.09999999999945,5.177251307575638L401.1999999999995,5.160396199274885L403.29999999999944,5.145142787086046L405.39999999999935,5.131339062278392L407.4999999999994,5.118847406938574L409.59999999999945,5.107543238022091L411.6999999999994,5.097313777996707L413.79999999999933,5.088056940472008L415.89999999999935,5.0796803202346865L417.9999999999994,5.072100278050318L420.09999999999934,5.0652411114561975L422.1999999999993,5.059034303561809L424.29999999999933,5.0534178425954845L426.39999999999935,5.048335605600167L428.4999999999993,5.043736800281868L430.5999999999993,5.0395754595671285L432.69999999999936,5.035809983927114L434.79999999999933,5.032402726982834L436.89999999999924,5.02931962032211L438.9999999999992,5.026529833837058L441.0999999999993,5.024005468235357L443.19999999999936,5.021721276690167L445.29999999999933,5.0196544128782215L447.39999999999924,5.01778420291309L449.4999999999992,5.016091938914764L451.5999999999993,5.014560692168223L453.69999999999925,5.013175144017584L455.7999999999992,5.011921432815409L457.89999999999924,5.0107870154070255L459.99999999999926,5.009760541771014" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <foreignObject x="0" y="235" width="500" height="100%"><div class="flex justify-center" style="font-size: 10px"><span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-1iobque"><span class="hidden">\sigma(z)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 220)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0</text></g><g class="tick tick-0.2 svelte-1v7xslh" transform="translate(0, 177)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.2</text></g><g class="tick tick-0.4 svelte-1v7xslh" transform="translate(0, 134)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.4</text></g><g class="tick tick-0.6 svelte-1v7xslh" transform="translate(0, 91)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.6</text></g><g class="tick tick-0.8 svelte-1v7xslh" transform="translate(0, 47.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.8</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">1</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">10</text></g></g></svg></div></div>
+  <p>While this is somewhat true, the original argumentation that we used when we
+    implemented logistic regression still applies. We can use the sigmoid and
+    the softmax to turn logits into probabilities. Nowadays we primarily use the
+    sigmoid <span class="hidden">\dfrac{1}{1+e^{-z}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the softmax <span class="hidden">\dfrac{e^{z}}{\sum e^{z}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ in the last layer of the neural network, to determine the probability to belong
+    to a particular class.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">Use the sigmoid and the softmax as activations if you need to scale values
+    between 0 and 1.
+  </p></div>
+  <p>There are generally two ways to implement activation functions. We can use
+    PyTorch in a functional way and apply <code>torch.sigmoid(X)</code> in the
+    <code>forward()</code>
+    function of the model or as we have done so far, we can use the object-oriented
+    way and use the <code>torch.nn.Sigmoid()</code> as part of
+    <code>nn.Sequential()</code>.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-comment"># functional way</span>
+sigmoid_output = torch.sigmoid(X)
+<span class="hljs-comment"># object-oriented way</span>
+sigmoid_layer = torch.nn.Sigmoid()
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>If we can fit the whole logic of the model into <code>nn.Sequential</code>,
+    we will generally do that and use the object-oriented way. Sometimes, when
+    the code gets more complicated, this will not possible and we will resort to
+    the functional approach. The choice is generally yours.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Hyperbolic Tangent</h2>
+  <p>The tanh activation function <span class="hidden">\dfrac{e^{z} - e^{-z}}{e^{z} + e^{-z}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ (also called hypterbolic tangent) is similar in spirit to the sigmoid activation
+    function. Looking from a distance you might confuse the two, but there are some
+    subtle differences.
+  </p>
+  <p>While both functions saturate when we use very low and very high inputs, the
+    sigmoid squishes values between 0 and 1, while the tanh squishes values
+    between -1 and 1.
+  </p>
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa"><path d="M40,219.99999955685195L42.09999999999999,219.99999945873776L44.19999999999999,219.99999933890084L46.29999999999998,219.99999919253165L48.39999999999997,219.99999901375594L50.49999999999996,219.99999879539877L52.59999999999995,219.99999852869675L54.699999999999946,219.99999820294613L56.79999999999994,219.99999780507343L58.899999999999935,219.99999731911072L60.99999999999993,219.9999967255544L63.099999999999916,219.99999600058314L65.1999999999999,219.9999951151012L67.2999999999999,219.9999940335712L69.39999999999989,219.9999927125874L71.49999999999989,219.99999109913426L73.59999999999988,219.99998912845814L75.69999999999987,219.99998672146896L77.79999999999987,219.99998378156573L79.89999999999986,219.99998019076003L81.99999999999986,219.99997580494016L84.09999999999984,219.9999704480879L86.19999999999985,219.99996390521417L88.29999999999984,219.99995591373064L90.39999999999982,219.99994615291146L92.4999999999998,219.99993423102123L94.5999999999998,219.99991966959337L96.69999999999979,219.99990188422785L98.7999999999998,219.9998801611374L100.89999999999978,219.99985362850077L102.99999999999977,219.99982122147406L105.09999999999977,219.99978163945548L107.19999999999976,219.99973329388868L109.29999999999976,219.99967424450946L111.39999999999975,219.99960212147883L113.49999999999974,219.99951403027595L115.59999999999972,219.9994064355357L117.69999999999972,219.9992750191693L119.79999999999973,219.9991145070749L121.89999999999972,219.99891845748513L123.9999999999997,219.99867900246053L126.09999999999968,219.99838653215664L128.19999999999968,219.99802930920023L130.29999999999967,219.9975929977064L132.3999999999997,219.99706008804682L134.49999999999966,219.99640919430266L136.59999999999965,219.99561419623484L138.69999999999965,219.99464319137803L140.79999999999964,219.99345721526635L142.89999999999964,219.9920086785229L144.99999999999963,219.99023945822896L147.09999999999962,219.98807856718457L149.1999999999996,219.98543930783174L151.2999999999996,219.9822157970869L153.39999999999958,219.9782787233098L155.49999999999957,219.97347016616297L157.5999999999996,219.96759727301716L159.6999999999996,219.96042454043288L161.79999999999956,219.9516643943998L163.89999999999955,219.9409656964382L165.99999999999955,219.9278997219497L168.09999999999954,219.911943059528L170.19999999999956,219.89245676197788L172.29999999999956,219.86866093772161L174.39999999999955,219.83960380072511L176.49999999999955,219.8041239932039L178.59999999999957,219.76080475293503L180.69999999999956,219.7079182106578L182.79999999999956,219.64335776776252L184.89999999999958,219.56455611635428L186.99999999999955,219.46838602132354L189.09999999999957,219.35104049018773L191.1999999999996,219.20788842162133L193.29999999999956,219.0333012703977L195.39999999999958,218.8204457366182L197.49999999999957,218.56103705127884L199.5999999999996,218.24504720207068L201.6999999999996,217.8603625986156L203.79999999999959,217.3923864783811L205.8999999999996,216.8235831859464L207.99999999999957,216.13296485815044L210.0999999999996,215.29552674873216L212.1999999999996,214.28164638097405L214.29999999999959,213.0564750898334L216.3999999999996,211.57936959869602L218.4999999999996,209.80343726682352L220.59999999999957,207.67530218174366L222.6999999999996,205.13523962618098L224.7999999999996,202.11787025380733L226.8999999999996,198.5536448392684L228.99999999999963,194.37137176524556L231.09999999999962,189.5020210463961L233.1999999999996,183.8839528037949L235.2999999999996,177.46953604009636L237.3999999999996,170.23282845229022L239.4999999999996,162.17759440545262L241.59999999999962,153.3445134424384L243.69999999999965,143.81610583854786L245.79999999999959,133.71784692417913L247.8999999999996,123.21430942218477L249.99999999999957,112.50000000000203L252.09999999999962,101.78569057781925L254.19999999999965,91.28215307582475L256.2999999999996,81.1838941614558L258.3999999999996,71.65548655756506L260.4999999999996,62.822405594550546L262.5999999999996,54.767171547712636L264.6999999999996,47.5304639599062L266.7999999999996,41.11604719620737L268.8999999999996,35.49797895360586L270.9999999999996,30.62862823475614L273.09999999999957,26.446355160733034L275.1999999999996,22.882129746193925L277.2999999999996,19.864760373820094L279.39999999999964,17.324697818257206L281.4999999999996,15.196562733177233L283.59999999999957,13.420630401304642L285.6999999999996,11.943524910167111L287.7999999999996,10.718353619026372L289.89999999999964,9.70447325126824L291.99999999999966,8.867035141849826L294.09999999999957,8.17641681405383L296.1999999999996,7.6076135216190455L298.2999999999996,7.13963740138451L300.39999999999964,6.754952797929422L302.49999999999966,6.438962948721288L304.5999999999996,6.179554263381885L306.6999999999996,5.96669872960237L308.7999999999996,5.792111578378765L310.89999999999964,5.648959509812341L312.99999999999966,5.531613978676523L315.0999999999996,5.435443883645753L317.19999999999965,5.356642232237534L319.29999999999967,5.292081789342214L321.39999999999964,5.23919524706497L323.49999999999966,5.19587600679613L325.5999999999996,5.160396199274885L327.69999999999965,5.131339062278392L329.79999999999967,5.107543238022114L331.8999999999997,5.088056940472031L333.99999999999966,5.072100278050318L336.0999999999996,5.059034303561784L338.19999999999965,5.048335605600167L340.29999999999967,5.0395754595671285L342.39999999999964,5.032402726982834L344.49999999999966,5.026529833837033L346.59999999999957,5.021721276690167L348.6999999999996,5.017784202913114L350.7999999999996,5.0145606921682475L352.8999999999996,5.011921432815409L354.9999999999996,5.009760541771038L357.09999999999957,5.007991321477105L359.1999999999996,5.006542784733636L361.29999999999956,5.005356808621958L363.3999999999995,5.00438580376518L365.49999999999955,5.003590805697358L367.59999999999957,5.002939911953186L369.69999999999953,5.0024070022936L371.79999999999956,5.001970690799759L373.8999999999995,5.001613467843362L375.9999999999995,5.001320997539475L378.0999999999995,5.001081542514877L380.1999999999995,5.000885492925123L382.2999999999995,5.000724980830693L384.3999999999995,5.000593564464294L386.4999999999995,5.0004859697240605L388.59999999999945,5.000397878521175L390.6999999999994,5.000325755490538L392.79999999999944,5.000266706111338L394.8999999999994,5.0002183605444985L396.9999999999994,5.000178778525946L399.09999999999945,5.000146371499245L401.1999999999995,5.000119838862589L403.29999999999944,5.00009811577213L405.39999999999935,5.0000803304066395L407.4999999999994,5.0000657689787795L409.59999999999945,5.000053847088537L411.6999999999994,5.00004408626933L413.79999999999933,5.0000360947858145L415.89999999999935,5.000029551912086L417.9999999999994,5.000024195059847L420.09999999999934,5.000019809239987L422.1999999999993,5.0000162184342525L424.29999999999933,5.000013278531046L426.39999999999935,5.000010871541876L428.4999999999993,5.000008900865729L430.5999999999993,5.00000728741257L432.69999999999936,5.000005966428801L434.79999999999933,5.000004884898796L436.89999999999924,5.000003999416883L438.9999999999992,5.000003274445593L441.0999999999993,5.000002680889292L443.19999999999936,5.000002194926546L445.29999999999933,5.000001797053869L447.39999999999924,5.0000014713032535L449.4999999999992,5.0000012046012365L451.5999999999993,5.000000986244075L453.69999999999925,5.000000807468357L455.7999999999992,5.00000066109918L457.89999999999924,5.000000541262235L459.99999999999926,5.000000443148044" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <foreignObject x="0" y="235" width="500" height="100%"><div class="flex justify-center" style="font-size: 10px"><span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-1iobque"><span class="hidden">\tanh(z)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick--1 svelte-1v7xslh" transform="translate(0, 220)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">-1</text></g><g class="tick tick--0.8 svelte-1v7xslh" transform="translate(0, 198.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">-0.8</text></g><g class="tick tick--0.6 svelte-1v7xslh" transform="translate(0, 177)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">-0.6</text></g><g class="tick tick--0.4 svelte-1v7xslh" transform="translate(0, 155.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">-0.4</text></g><g class="tick tick--0.2 svelte-1v7xslh" transform="translate(0, 134)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">-0.2</text></g><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 112.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0</text></g><g class="tick tick-0.2 svelte-1v7xslh" transform="translate(0, 91)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.2</text></g><g class="tick tick-0.4 svelte-1v7xslh" transform="translate(0, 69.50000000000001)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.4</text></g><g class="tick tick-0.6 svelte-1v7xslh" transform="translate(0, 47.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.6</text></g><g class="tick tick-0.8 svelte-1v7xslh" transform="translate(0, 26.499999999999996)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.8</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">1</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">10</text></g></g></svg></div></div>
+
+  <p>For a long time researchers used the tanh activation function instead of the
+    sigmoid, because it worked better in practice. Generally tanh exhibits a
+    more favourable derivative function. While the sigmoid can only have very
+    low derivatives of up to 0.25, the tanh can exhibit a derivative of up to 1,
+    thereby reducing the risk of vanishing gradients.
+  </p>
+  <p><div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa"><path d="M40,219.99023990133676L42.09999999999999,219.9892135258009L44.19999999999999,219.98807922821047L46.29999999999998,219.98682566335182L48.39999999999997,219.98544029394225L50.49999999999996,219.98390926550613L52.59999999999995,219.98221726814677L54.699999999999946,219.9803473838471L56.79999999999994,219.97828091779292L58.899999999999935,219.97599721205538L60.99999999999993,219.97347343980056L63.099999999999916,219.9706843780041L65.1999999999999,219.96760215644375L67.2999999999999,219.96419598051452L69.39999999999989,219.96043182516308L71.49999999999989,219.95627209696323L73.59999999999988,219.9516752610546L75.69999999999987,219.946595429339L77.79999999999987,219.94098190596844L79.89999999999986,219.93477868576528L81.99999999999986,219.92792390078733L84.09999999999984,219.9203492097813L86.19999999999985,219.91197912475948L88.29999999999984,219.90273026838184L90.39999999999982,219.89251055522462L92.4999999999998,219.88121828936903L94.5999999999998,219.86874117004385L96.69999999999979,219.854955196303L98.7999999999998,219.8397234609146L100.89999999999978,219.82289482277804L102.99999999999977,219.80430244627382L105.09999999999977,219.7837621949907L107.19999999999976,219.76107086626627L109.29999999999976,219.7360042519339L111.39999999999975,219.70831500959574L113.49999999999974,219.67773032765766L115.59999999999972,219.64394936628258L117.69999999999972,219.60664045537493L119.79999999999973,219.5654380297301L121.89999999999972,219.51993928061648L123.9999999999997,219.4697005023576L126.09999999999968,219.4142331120189L128.19999999999968,219.35299932016616L130.29999999999967,219.28540743095832L132.3999999999997,219.2108067507031L134.49999999999966,219.128482085603L136.59999999999965,219.0376478119503L138.69999999999965,218.93744150574344L140.79999999999964,218.8269171238752L142.89999999999964,218.7050377360447L144.99999999999963,218.57066781578015L147.09999999999962,218.4225651109199L149.1999999999996,218.25937212915417L151.2999999999996,218.07960729344794L153.39999999999958,217.8816558461012L155.49999999999957,217.6637606097216L157.5999999999996,217.42401274944214L159.6999999999996,217.16034272437093L161.79999999999956,216.87051166862824L163.89999999999955,216.55210350457776L165.99999999999955,216.20251816414248L168.09999999999954,215.8189663794721L170.19999999999956,215.3984666025548L172.29999999999956,214.93784472513627L174.39999999999955,214.43373739544944L176.49999999999955,213.88259986585697L178.59999999999957,213.2807194534524L180.69999999999956,212.62423585023137L182.79999999999956,211.90916967476733L184.89999999999958,211.13146080480615L186.99999999999955,210.28701815785408L189.09999999999957,209.3717826786219L191.1999999999996,208.38180532737758L193.29999999999956,207.31334181595844L195.39999999999958,206.16296567720894L197.49999999999957,204.927700942802L199.5999999999996,203.60517520385204L201.6999999999996,202.19379309699096L203.79999999999959,200.69292925638553L205.8999999999996,199.10313846786588L207.99999999999957,197.4263791382464L210.0999999999996,195.6662442586852L212.1999999999996,193.828191838277L214.29999999999959,191.91976440226563L216.3999999999996,189.95078473439227L218.4999999999996,187.9335128048788L220.59999999999957,185.88274703844326L222.6999999999996,183.81585206915244L224.7999999999996,181.75269526093714L226.8999999999996,179.71547589728345L228.99999999999963,177.72843435308175L231.09999999999962,175.81743392141368L233.1999999999996,174.00941524813703L235.2999999999996,172.33173224198185L237.3999999999996,170.81138830181897L239.4999999999996,169.47420187665742L241.59999999999962,168.34393966557144L243.69999999999965,167.4414629864898L245.79999999999959,166.7839368669502L247.8999999999996,166.38415135852827L249.99999999999957,166.25L252.09999999999962,166.3841513585282L254.19999999999965,166.78393686695L256.2999999999996,167.44146298648946L258.3999999999996,168.34393966557104L260.4999999999996,169.47420187665696L262.5999999999996,170.8113883018184L264.6999999999996,172.33173224198126L266.7999999999996,174.00941524813635L268.8999999999996,175.817433921413L270.9999999999996,177.72843435308104L273.09999999999957,179.71547589728272L275.1999999999996,181.7526952609364L277.2999999999996,183.81585206915167L279.39999999999964,185.8827470384425L281.4999999999996,187.9335128048781L283.59999999999957,189.95078473439153L285.6999999999996,191.91976440226495L287.7999999999996,193.8281918382763L289.89999999999964,195.66624425868454L291.99999999999966,197.4263791382458L294.09999999999957,199.10313846786525L296.1999999999996,200.69292925638496L298.2999999999996,202.1937930969904L300.39999999999964,203.60517520385153L302.49999999999966,204.92770094280155L304.5999999999996,206.1629656772085L306.6999999999996,207.313341815958L308.7999999999996,208.38180532737718L310.89999999999964,209.3717826786215L312.99999999999966,210.28701815785377L315.0999999999996,211.1314608048059L317.19999999999965,211.90916967476704L319.29999999999967,212.6242358502311L321.39999999999964,213.28071945345215L323.49999999999966,213.88259986585675L325.5999999999996,214.4337373954492L327.69999999999965,214.93784472513607L329.79999999999967,215.39846660255466L331.8999999999997,215.8189663794719L333.99999999999966,216.20251816414236L336.0999999999996,216.55210350457764L338.19999999999965,216.8705116686281L340.29999999999967,217.1603427243708L342.39999999999964,217.42401274944206L344.49999999999966,217.66376060972152L346.59999999999957,217.88165584610115L348.6999999999996,218.07960729344785L350.7999999999996,218.25937212915412L352.8999999999996,218.42256511091986L354.9999999999996,218.5706678157801L357.09999999999957,218.70503773604463L359.1999999999996,218.8269171238752L361.29999999999956,218.9374415057434L363.3999999999995,219.03764781195025L365.49999999999955,219.12848208560297L367.59999999999957,219.2108067507031L369.69999999999953,219.28540743095826L371.79999999999956,219.35299932016616L373.8999999999995,219.41423311201888L375.9999999999995,219.46970050235757L378.0999999999995,219.51993928061648L380.1999999999995,219.5654380297301L382.2999999999995,219.60664045537493L384.3999999999995,219.64394936628256L386.4999999999995,219.67773032765766L388.59999999999945,219.7083150095957L390.6999999999994,219.73600425193393L392.79999999999944,219.76107086626627L394.8999999999994,219.7837621949907L396.9999999999994,219.80430244627382L399.09999999999945,219.82289482277804L401.1999999999995,219.8397234609146L403.29999999999944,219.854955196303L405.39999999999935,219.86874117004385L407.4999999999994,219.88121828936903L409.59999999999945,219.89251055522462L411.6999999999994,219.90273026838187L413.79999999999933,219.91197912475948L415.89999999999935,219.92034920978128L417.9999999999994,219.9279239007873L420.09999999999934,219.93477868576528L422.1999999999993,219.9409819059684L424.29999999999933,219.94659542933897L426.39999999999935,219.9516752610546L428.4999999999993,219.95627209696323L430.5999999999993,219.96043182516308L432.69999999999936,219.96419598051452L434.79999999999933,219.96760215644375L436.89999999999924,219.9706843780041L438.9999999999992,219.97347343980053L441.0999999999993,219.97599721205538L443.19999999999936,219.97828091779292L445.29999999999933,219.9803473838471L447.39999999999924,219.9822172681468L449.4999999999992,219.98390926550616L451.5999999999993,219.98544029394228L453.69999999999925,219.98682566335182L455.7999999999992,219.98807922821047L457.89999999999924,219.9892135258009L459.99999999999926,219.99023990133676" stroke="black" stroke-width="1" stroke-dasharray="2,4" class="svelte-1ylgbqq"></path>
+      <path d="M40,219.99999822740781L42.09999999999999,219.99999783495105L44.19999999999999,219.99999735560323L46.29999999999998,219.99999677012661L48.39999999999997,219.99999605502373L50.49999999999996,219.99999518159507L52.59999999999995,219.99999411478703L54.699999999999946,219.99999281178458L56.79999999999994,219.9999912202939L58.899999999999935,219.99998927644296L60.99999999999993,219.99998690221776L63.099999999999916,219.99998400233275L65.1999999999999,219.99998046040534L67.2999999999999,219.99997613428545L69.39999999999989,219.99997085035073L71.49999999999989,219.9999643965385L73.59999999999988,219.99995651383475L75.69999999999987,219.9999468858791L77.79999999999987,219.99993512626793L79.89999999999986,219.9999207630474L81.99999999999986,219.99990321977154L84.09999999999984,219.99988179236794L86.19999999999985,219.99985562088096L88.29999999999984,219.9998236549588L90.39999999999982,219.99978461169985L92.4999999999998,219.99973692416535L94.5999999999998,219.99967867849352L96.69999999999979,219.9996075370906L98.7999999999998,219.9995206448168L100.89999999999978,219.99941451440162L102.99999999999977,219.99928488649087L105.09999999999977,219.99912655870915L107.19999999999976,219.99893317687804L109.29999999999976,219.9986969800121L111.39999999999975,219.99840848886055L113.49999999999974,219.99805612549756L115.59999999999972,219.99762574869754L117.69999999999972,219.99710008645573L119.79999999999973,219.9964580428873L121.89999999999972,219.99567385170297L123.9999999999997,219.99471604230786L126.09999999999968,219.99354617705959L128.19999999999968,219.9921173090544L130.29999999999967,219.9903720986146L132.3999999999997,219.98824051298882L134.49999999999966,219.98563701709688L136.59999999999965,219.98245714280486L138.69999999999965,219.97857329938L140.79999999999964,219.973829657494L142.89999999999964,219.96803590220728L144.99999999999963,219.96095960534703L147.09999999999962,219.9523169128418L149.1999999999996,219.941761175769L151.2999999999996,219.9288690725871L153.39999999999958,219.91312367117163L155.49999999999957,219.89389375920226L157.5999999999996,219.870408625775L159.6999999999996,219.84172730065242L161.79999999999956,219.80670104421827L163.89999999999955,219.7639276238737L165.99999999999955,219.7116956031494L168.09999999999954,219.64791649903793L170.19999999999956,219.57004222089842L172.29999999999956,219.47496468017536L174.39999999999955,219.35889384365848L176.49999999999955,219.2172097850952L178.59999999999957,219.04428346506518L180.69999999999956,218.83326003838306L182.79999999999956,218.5757974651304L184.89999999999958,218.26175211892053L186.99999999999955,217.87880200943044L189.09999999999957,217.41199728066485L191.1999999999996,216.84322700281277L193.29999999999956,216.1505912478012L195.39999999999958,215.3076684955009L197.49999999999957,214.28267126312073L199.5999999999996,213.03748851661683L201.6999999999996,211.52662338440496L203.79999999999959,209.69605099776882L205.8999999999996,207.48204667451319L207.99999999999957,204.81007265657024L210.0999999999996,201.59386641021965L212.1999999999996,197.7349495817981L214.29999999999959,193.12287781380996L216.3999999999996,187.63667869906985L218.4999999999996,181.14807263141694L220.59999999999957,173.52722130951105L222.6999999999996,164.65186270883663L224.7999999999996,154.42070081540913L226.8999999999996,142.77171702554324L228.99999999999963,129.70551655298695L231.09999999999962,115.31276735310935L233.1999999999996,99.80313893757057L235.2999999999996,83.5309881537745L237.3999999999996,67.01078104375017L239.4999999999996,50.913737412328544L241.59999999999962,36.03766099254944L243.69999999999965,23.24555320727687L245.79999999999959,13.375758662286465L247.8999999999996,7.135747467801254L249.99999999999957,5L252.09999999999962,7.135747467799655L254.19999999999965,13.37575866228341L256.2999999999996,23.24555320727258L258.3999999999996,36.03766099254417L260.4999999999996,50.91373741232267L262.5999999999996,67.01078104374403L264.6999999999996,83.53098815376832L266.7999999999996,99.80313893756454L268.8999999999996,115.31276735310374L270.9999999999996,129.70551655298175L273.09999999999957,142.77171702553858L275.1999999999996,154.42070081540498L277.2999999999996,164.65186270883297L279.39999999999964,173.52722130950795L281.4999999999996,181.1480726314142L283.59999999999957,187.6366786990675L285.6999999999996,193.12287781380803L287.7999999999996,197.73494958179657L289.89999999999964,201.59386641021823L291.99999999999966,204.81007265656916L294.09999999999957,207.48204667451216L296.1999999999996,209.6960509977681L298.2999999999996,211.52662338440436L300.39999999999964,213.03748851661646L302.49999999999966,214.2826712631203L304.5999999999996,215.30766849550065L306.6999999999996,216.15059124780097L308.7999999999996,216.84322700281243L310.89999999999964,217.41199728066462L312.99999999999966,217.87880200943022L315.0999999999996,218.26175211892033L317.19999999999965,218.57579746513022L319.29999999999967,218.833260038383L321.39999999999964,219.04428346506512L323.49999999999966,219.2172097850952L325.5999999999996,219.35889384365848L327.69999999999965,219.47496468017536L329.79999999999967,219.57004222089842L331.8999999999997,219.6479164990378L333.99999999999966,219.7116956031494L336.0999999999996,219.7639276238737L338.19999999999965,219.80670104421827L340.29999999999967,219.84172730065242L342.39999999999964,219.870408625775L344.49999999999966,219.89389375920226L346.59999999999957,219.91312367117163L348.6999999999996,219.9288690725871L350.7999999999996,219.941761175769L352.8999999999996,219.9523169128418L354.9999999999996,219.96095960534703L357.09999999999957,219.96803590220728L359.1999999999996,219.973829657494L361.29999999999956,219.97857329938L363.3999999999995,219.98245714280486L365.49999999999955,219.98563701709688L367.59999999999957,219.98824051298882L369.69999999999953,219.9903720986146L371.79999999999956,219.9921173090544L373.8999999999995,219.99354617705959L375.9999999999995,219.99471604230786L378.0999999999995,219.99567385170297L380.1999999999995,219.9964580428873L382.2999999999995,219.99710008645573L384.3999999999995,219.99762574869754L386.4999999999995,219.99805612549756L388.59999999999945,219.99840848886055L390.6999999999994,219.9986969800121L392.79999999999944,219.99893317687804L394.8999999999994,219.99912655870915L396.9999999999994,219.99928488649087L399.09999999999945,219.99941451440162L401.1999999999995,219.9995206448168L403.29999999999944,219.9996075370906L405.39999999999935,219.99967867849352L407.4999999999994,219.99973692416535L409.59999999999945,219.99978461169985L411.6999999999994,219.9998236549588L413.79999999999933,219.99985562088096L415.89999999999935,219.99988179236794L417.9999999999994,219.99990321977154L420.09999999999934,219.9999207630474L422.1999999999993,219.99993512626793L424.29999999999933,219.9999468858791L426.39999999999935,219.99995651383475L428.4999999999993,219.9999643965385L430.5999999999993,219.99997085035073L432.69999999999936,219.99997613428545L434.79999999999933,219.99998046040534L436.89999999999924,219.99998400233275L438.9999999999992,219.99998690221776L441.0999999999993,219.99998927644296L443.19999999999936,219.9999912202939L445.29999999999933,219.99999281178458L447.39999999999924,219.99999411478703L449.4999999999992,219.99999518159507L451.5999999999993,219.99999605502373L453.69999999999925,219.99999677012661L455.7999999999992,219.99999735560323L457.89999999999924,219.99999783495105L459.99999999999926,219.99999822740781" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+      <foreignObject x="0" y="230" width="500" height="100%"><div class="flex justify-center" style="font-size: 10px"><span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-1iobque"><span class="hidden">f(z)'</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 220)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0</text></g><g class="tick tick-0.2 svelte-1v7xslh" transform="translate(0, 177)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.2</text></g><g class="tick tick-0.4 svelte-1v7xslh" transform="translate(0, 134)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.4</text></g><g class="tick tick-0.6 svelte-1v7xslh" transform="translate(0, 91)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.6</text></g><g class="tick tick-0.8 svelte-1v7xslh" transform="translate(0, 47.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0.8</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">1</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="220" y2="5" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">10</text></g></g></svg></div></div></p>
+  <p>Over time researchers found better activations functoions that they prefer
+    over tanh, but in case you actually desire outputs between -1 and 1, you
+    should use the tanh.
+  </p>
+
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">Use the tanh as your activation function if you need to scale values between
+    -1 and 1.
+  </p></div>
+  <p>Once again there are two broad approaches to activation functions: the
+    functional and the object-oriented one.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->tanh_output = torch.tanh(X)
+tanh_layer = torch.nn.Tanh()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div>
+
+  <h2>ReLU</h2>
+  <p>The ReLU (rectified linear unit) is at the same time extremely simple and
+    extremely powerful. The function returns the unchanged input <span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ as its output when the input value is positive and 0 otherwise <a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a>.
+  </p>
+  <span class="hidden">
+    \text{ReLU}(z) = 
+        \begin{cases}
+        z &amp; \text{if } z > 0 \\
+            0 &amp; \text{ otherwise }
+        \end{cases}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa"><path d="M40,220L42.09999999999999,220L44.19999999999999,220L46.29999999999998,220L48.39999999999997,220L50.49999999999996,220L52.59999999999995,220L54.699999999999946,220L56.79999999999994,220L58.899999999999935,220L60.99999999999993,220L63.099999999999916,220L65.1999999999999,220L67.2999999999999,220L69.39999999999989,220L71.49999999999989,220L73.59999999999988,220L75.69999999999987,220L77.79999999999987,220L79.89999999999986,220L81.99999999999986,220L84.09999999999984,220L86.19999999999985,220L88.29999999999984,220L90.39999999999982,220L92.4999999999998,220L94.5999999999998,220L96.69999999999979,220L98.7999999999998,220L100.89999999999978,220L102.99999999999977,220L105.09999999999977,220L107.19999999999976,220L109.29999999999976,220L111.39999999999975,220L113.49999999999974,220L115.59999999999972,220L117.69999999999972,220L119.79999999999973,220L121.89999999999972,220L123.9999999999997,220L126.09999999999968,220L128.19999999999968,220L130.29999999999967,220L132.3999999999997,220L134.49999999999966,220L136.59999999999965,220L138.69999999999965,220L140.79999999999964,220L142.89999999999964,220L144.99999999999963,220L147.09999999999962,220L149.1999999999996,220L151.2999999999996,220L153.39999999999958,220L155.49999999999957,220L157.5999999999996,220L159.6999999999996,220L161.79999999999956,220L163.89999999999955,220L165.99999999999955,220L168.09999999999954,220L170.19999999999956,220L172.29999999999956,220L174.39999999999955,220L176.49999999999955,220L178.59999999999957,220L180.69999999999956,220L182.79999999999956,220L184.89999999999958,220L186.99999999999955,220L189.09999999999957,220L191.1999999999996,220L193.29999999999956,220L195.39999999999958,220L197.49999999999957,220L199.5999999999996,220L201.6999999999996,220L203.79999999999959,220L205.8999999999996,220L207.99999999999957,220L210.0999999999996,220L212.1999999999996,220L214.29999999999959,220L216.3999999999996,220L218.4999999999996,220L220.59999999999957,220L222.6999999999996,220L224.7999999999996,220L226.8999999999996,220L228.99999999999963,220L231.09999999999962,220L233.1999999999996,220L235.2999999999996,220L237.3999999999996,220L239.4999999999996,220L241.59999999999962,220L243.69999999999965,220L245.79999999999959,220L247.8999999999996,220L249.99999999999957,220L252.09999999999962,217.9500000000004L254.19999999999965,215.9000000000004L256.2999999999996,213.85000000000036L258.3999999999996,211.80000000000038L260.4999999999996,209.75000000000037L262.5999999999996,207.7000000000004L264.6999999999996,205.6500000000004L266.7999999999996,203.6000000000004L268.8999999999996,201.55000000000038L270.9999999999996,199.5000000000004L273.09999999999957,197.4500000000004L275.1999999999996,195.4000000000004L277.2999999999996,193.35000000000036L279.39999999999964,191.30000000000038L281.4999999999996,189.25000000000037L283.59999999999957,187.2000000000004L285.6999999999996,185.1500000000004L287.7999999999996,183.10000000000036L289.89999999999964,181.05000000000038L291.99999999999966,179.00000000000037L294.09999999999957,176.9500000000004L296.1999999999996,174.90000000000038L298.2999999999996,172.85000000000036L300.39999999999964,170.80000000000035L302.49999999999966,168.75000000000037L304.5999999999996,166.70000000000036L306.6999999999996,164.65000000000038L308.7999999999996,162.60000000000034L310.89999999999964,160.55000000000035L312.99999999999966,158.50000000000034L315.0999999999996,156.45000000000036L317.19999999999965,154.40000000000035L319.29999999999967,152.35000000000036L321.39999999999964,150.30000000000035L323.49999999999966,148.25000000000034L325.5999999999996,146.20000000000036L327.69999999999965,144.15000000000035L329.79999999999967,142.10000000000036L331.8999999999997,140.05000000000032L333.99999999999966,138.00000000000034L336.0999999999996,135.95000000000033L338.19999999999965,133.90000000000035L340.29999999999967,131.85000000000036L342.39999999999964,129.80000000000035L344.49999999999966,127.75000000000037L346.59999999999957,125.70000000000037L348.6999999999996,123.65000000000036L350.7999999999996,121.60000000000039L352.8999999999996,119.55000000000038L354.9999999999996,117.50000000000041L357.09999999999957,115.45000000000041L359.1999999999996,113.4000000000004L361.29999999999956,111.35000000000043L363.3999999999995,109.30000000000042L365.49999999999955,107.25000000000045L367.59999999999957,105.20000000000044L369.69999999999953,103.15000000000045L371.79999999999956,101.10000000000046L373.8999999999995,99.05000000000047L375.9999999999995,97.00000000000048L378.0999999999995,94.95000000000049L380.1999999999995,92.90000000000049L382.2999999999995,90.85000000000049L384.3999999999995,88.8000000000005L386.4999999999995,86.75000000000051L388.59999999999945,84.70000000000051L390.6999999999994,82.65000000000052L392.79999999999944,80.60000000000053L394.8999999999994,78.55000000000054L396.9999999999994,76.50000000000055L399.09999999999945,74.45000000000056L401.1999999999995,72.40000000000055L403.29999999999944,70.35000000000058L405.39999999999935,68.30000000000058L407.4999999999994,66.2500000000006L409.59999999999945,64.20000000000059L411.6999999999994,62.15000000000059L413.79999999999933,60.100000000000605L415.89999999999935,58.05000000000061L417.9999999999994,56.000000000000625L420.09999999999934,53.95000000000063L422.1999999999993,51.900000000000624L424.29999999999933,49.85000000000065L426.39999999999935,47.800000000000644L428.4999999999993,45.75000000000066L430.5999999999993,43.700000000000664L432.69999999999936,41.65000000000066L434.79999999999933,39.600000000000676L436.89999999999924,37.55000000000068L438.9999999999992,35.5000000000007L441.0999999999993,33.4500000000007L443.19999999999936,31.400000000000695L445.29999999999933,29.35000000000072L447.39999999999924,27.300000000000715L449.4999999999992,25.25000000000074L451.5999999999993,23.200000000000735L453.69999999999925,21.150000000000734L455.7999999999992,19.100000000000755L457.89999999999924,17.050000000000754L459.99999999999926,15.000000000000774" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <foreignObject x="0" y="235" width="500" height="100%"><div class="flex justify-center" style="font-size: 10px"><span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-1iobque"><span class="hidden">relu(z)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 220)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 199.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">1</text></g><g class="tick tick-2 svelte-1v7xslh" transform="translate(0, 179)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">2</text></g><g class="tick tick-3 svelte-1v7xslh" transform="translate(0, 158.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">3</text></g><g class="tick tick-4 svelte-1v7xslh" transform="translate(0, 138)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">4</text></g><g class="tick tick-5 svelte-1v7xslh" transform="translate(0, 117.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">5</text></g><g class="tick tick-6 svelte-1v7xslh" transform="translate(0, 97)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">6</text></g><g class="tick tick-7 svelte-1v7xslh" transform="translate(0, 76.50000000000001)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">7</text></g><g class="tick tick-8 svelte-1v7xslh" transform="translate(0, 55.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">8</text></g><g class="tick tick-9 svelte-1v7xslh" transform="translate(0, 35.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">9</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 15)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">10</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">10</text></g></g></svg></div></div>
+  <p>The calculation of the derivative is also extremely straightforward. It is
+    exactly 1 when the net input <span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is above 1 and 0 otherwise. While
+    technically we can not differentiate the function at the knick, in practice this
+    works very well.
+  </p>
+  <span class="hidden">
+    \text{ReLU Derivative} = 
+        \begin{cases}
+        1 &amp; \text{if } z > 0 \\
+            0 &amp; \text{ otherwise }
+        \end{cases}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+  <p>Hopefully you will interject at this point and point out, that while the
+    derivative of exactly 1 will help to fight the problem of vanishing
+    gradients, a derivative of 0 will push the product in the chain rule to
+    exactly 0. This is true and is known as the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">dying relu problem</strong>, but in practice you will not encounter the problem too often. Given that
+    you have a large amount of neurons in each layer, there should be enough
+    paths to propagate the signal.
+  </p>
+  <p>PyTorch offers the two approaches for ReLU as well.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->relu_output = torch.relu(X)
+relu_layer = torch.nn.ReLU()
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>Over time researchers tried to come up with improvements for the ReLU
+    activation. The leaky ReLU for example does not completely kill off the
+    signal, but provides a small slope when the net input is negative.
+  </p>
+  <span class="hidden">
+    \text{ReLU} = 
+        \begin{cases}
+        z &amp; \text{if } z > 0 \\
+            \alpha * z &amp; \text{ otherwise }
+        \end{cases}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+  <p>In the example below alpha corresponds to 0.1.</p>
+  <div class="w-full"><div style="max-width: 800px;" class="my-0 mx-auto"><svg viewBox="0 0 500 250" class="svelte-1m8fbsa"><path d="M40,240.50000000000003L42.09999999999999,240.295L44.19999999999999,240.09000000000003L46.29999999999998,239.885L48.39999999999997,239.68L50.49999999999996,239.475L52.59999999999995,239.27L54.699999999999946,239.06499999999997L56.79999999999994,238.86L58.899999999999935,238.65499999999997L60.99999999999993,238.45000000000002L63.099999999999916,238.24499999999998L65.1999999999999,238.04000000000002L67.2999999999999,237.83499999999998L69.39999999999989,237.63000000000002L71.49999999999989,237.42499999999998L73.59999999999988,237.22000000000003L75.69999999999987,237.015L77.79999999999987,236.81000000000003L79.89999999999986,236.605L81.99999999999986,236.40000000000003L84.09999999999984,236.19500000000005L86.19999999999985,235.99000000000004L88.29999999999984,235.78500000000003L90.39999999999982,235.58L92.4999999999998,235.37500000000003L94.5999999999998,235.17L96.69999999999979,234.96500000000003L98.7999999999998,234.76L100.89999999999978,234.55500000000004L102.99999999999977,234.35L105.09999999999977,234.14500000000004L107.19999999999976,233.94L109.29999999999976,233.73500000000004L111.39999999999975,233.53L113.49999999999974,233.32500000000005L115.59999999999972,233.12L117.69999999999972,232.91500000000005L119.79999999999973,232.71L121.89999999999972,232.50500000000005L123.9999999999997,232.3L126.09999999999968,232.09500000000006L128.19999999999968,231.89000000000001L130.29999999999967,231.68500000000006L132.3999999999997,231.48000000000002L134.49999999999966,231.27500000000003L136.59999999999965,231.07000000000005L138.69999999999965,230.865L140.79999999999964,230.66000000000005L142.89999999999964,230.455L144.99999999999963,230.25000000000006L147.09999999999962,230.04500000000002L149.1999999999996,229.84000000000006L151.2999999999996,229.63500000000002L153.39999999999958,229.43000000000006L155.49999999999957,229.22500000000002L157.5999999999996,229.02000000000007L159.6999999999996,228.81500000000003L161.79999999999956,228.61000000000007L163.89999999999955,228.40500000000003L165.99999999999955,228.20000000000007L168.09999999999954,227.99500000000003L170.19999999999956,227.79000000000008L172.29999999999956,227.58500000000004L174.39999999999955,227.38000000000005L176.49999999999955,227.17500000000004L178.59999999999957,226.97000000000006L180.69999999999956,226.76500000000001L182.79999999999956,226.56000000000006L184.89999999999958,226.35500000000002L186.99999999999955,226.15000000000003L189.09999999999957,225.94500000000002L191.1999999999996,225.74000000000004L193.29999999999956,225.53500000000003L195.39999999999958,225.33000000000004L197.49999999999957,225.12500000000003L199.5999999999996,224.92000000000004L201.6999999999996,224.71500000000003L203.79999999999959,224.51000000000005L205.8999999999996,224.30500000000004L207.99999999999957,224.10000000000005L210.0999999999996,223.89500000000004L212.1999999999996,223.69000000000005L214.29999999999959,223.48500000000004L216.3999999999996,223.28000000000003L218.4999999999996,223.07500000000005L220.59999999999957,222.87000000000003L222.6999999999996,222.66500000000002L224.7999999999996,222.46000000000004L226.8999999999996,222.25500000000002L228.99999999999963,222.05000000000004L231.09999999999962,221.84500000000003L233.1999999999996,221.64000000000004L235.2999999999996,221.43500000000003L237.3999999999996,221.23000000000005L239.4999999999996,221.02500000000003L241.59999999999962,220.82000000000005L243.69999999999965,220.615L245.79999999999959,220.41000000000005L247.8999999999996,220.205L249.99999999999957,220.00000000000006L252.09999999999962,217.9500000000004L254.19999999999965,215.9000000000004L256.2999999999996,213.85000000000036L258.3999999999996,211.80000000000038L260.4999999999996,209.75000000000037L262.5999999999996,207.7000000000004L264.6999999999996,205.6500000000004L266.7999999999996,203.6000000000004L268.8999999999996,201.55000000000038L270.9999999999996,199.5000000000004L273.09999999999957,197.4500000000004L275.1999999999996,195.4000000000004L277.2999999999996,193.35000000000036L279.39999999999964,191.30000000000038L281.4999999999996,189.25000000000037L283.59999999999957,187.2000000000004L285.6999999999996,185.1500000000004L287.7999999999996,183.10000000000036L289.89999999999964,181.05000000000038L291.99999999999966,179.00000000000037L294.09999999999957,176.9500000000004L296.1999999999996,174.90000000000038L298.2999999999996,172.85000000000036L300.39999999999964,170.80000000000035L302.49999999999966,168.75000000000037L304.5999999999996,166.70000000000036L306.6999999999996,164.65000000000038L308.7999999999996,162.60000000000034L310.89999999999964,160.55000000000035L312.99999999999966,158.50000000000034L315.0999999999996,156.45000000000036L317.19999999999965,154.40000000000035L319.29999999999967,152.35000000000036L321.39999999999964,150.30000000000035L323.49999999999966,148.25000000000034L325.5999999999996,146.20000000000036L327.69999999999965,144.15000000000035L329.79999999999967,142.10000000000036L331.8999999999997,140.05000000000032L333.99999999999966,138.00000000000034L336.0999999999996,135.95000000000033L338.19999999999965,133.90000000000035L340.29999999999967,131.85000000000036L342.39999999999964,129.80000000000035L344.49999999999966,127.75000000000037L346.59999999999957,125.70000000000037L348.6999999999996,123.65000000000036L350.7999999999996,121.60000000000039L352.8999999999996,119.55000000000038L354.9999999999996,117.50000000000041L357.09999999999957,115.45000000000041L359.1999999999996,113.4000000000004L361.29999999999956,111.35000000000043L363.3999999999995,109.30000000000042L365.49999999999955,107.25000000000045L367.59999999999957,105.20000000000044L369.69999999999953,103.15000000000045L371.79999999999956,101.10000000000046L373.8999999999995,99.05000000000047L375.9999999999995,97.00000000000048L378.0999999999995,94.95000000000049L380.1999999999995,92.90000000000049L382.2999999999995,90.85000000000049L384.3999999999995,88.8000000000005L386.4999999999995,86.75000000000051L388.59999999999945,84.70000000000051L390.6999999999994,82.65000000000052L392.79999999999944,80.60000000000053L394.8999999999994,78.55000000000054L396.9999999999994,76.50000000000055L399.09999999999945,74.45000000000056L401.1999999999995,72.40000000000055L403.29999999999944,70.35000000000058L405.39999999999935,68.30000000000058L407.4999999999994,66.2500000000006L409.59999999999945,64.20000000000059L411.6999999999994,62.15000000000059L413.79999999999933,60.100000000000605L415.89999999999935,58.05000000000061L417.9999999999994,56.000000000000625L420.09999999999934,53.95000000000063L422.1999999999993,51.900000000000624L424.29999999999933,49.85000000000065L426.39999999999935,47.800000000000644L428.4999999999993,45.75000000000066L430.5999999999993,43.700000000000664L432.69999999999936,41.65000000000066L434.79999999999933,39.600000000000676L436.89999999999924,37.55000000000068L438.9999999999992,35.5000000000007L441.0999999999993,33.4500000000007L443.19999999999936,31.400000000000695L445.29999999999933,29.35000000000072L447.39999999999924,27.300000000000715L449.4999999999992,25.25000000000074L451.5999999999993,23.200000000000735L453.69999999999925,21.150000000000734L455.7999999999992,19.100000000000755L457.89999999999924,17.050000000000754L459.99999999999926,15.000000000000774" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+    <foreignObject x="0" y="235" width="500" height="100%"><div class="flex justify-center" style="font-size: 10px"><span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    <foreignObject x="0" y="0" width="500" height="250"><div style="font-size: 10px; transform-origin: 10px 125px" class="svelte-1iobque"><span class="hidden">relu(z)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+    
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 220)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">0</text></g><g class="tick tick-1 svelte-1v7xslh" transform="translate(0, 199.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">1</text></g><g class="tick tick-2 svelte-1v7xslh" transform="translate(0, 179)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">2</text></g><g class="tick tick-3 svelte-1v7xslh" transform="translate(0, 158.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">3</text></g><g class="tick tick-4 svelte-1v7xslh" transform="translate(0, 138)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">4</text></g><g class="tick tick-5 svelte-1v7xslh" transform="translate(0, 117.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">5</text></g><g class="tick tick-6 svelte-1v7xslh" transform="translate(0, 97)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">6</text></g><g class="tick tick-7 svelte-1v7xslh" transform="translate(0, 76.50000000000001)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">7</text></g><g class="tick tick-8 svelte-1v7xslh" transform="translate(0, 55.99999999999999)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">8</text></g><g class="tick tick-9 svelte-1v7xslh" transform="translate(0, 35.5)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">9</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 15)"><line x1="40" x2="460" class="svelte-1v7xslh"></line><text font-size="8" x="31" class="svelte-1v7xslh">10</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(40,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-10</text></g><g class="tick svelte-1v7xslh" transform="translate(82,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-8</text></g><g class="tick svelte-1v7xslh" transform="translate(124,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-6</text></g><g class="tick svelte-1v7xslh" transform="translate(166,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-4</text></g><g class="tick svelte-1v7xslh" transform="translate(208,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">-2</text></g><g class="tick svelte-1v7xslh" transform="translate(250,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(292,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">2</text></g><g class="tick svelte-1v7xslh" transform="translate(334,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">4</text></g><g class="tick svelte-1v7xslh" transform="translate(376,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">6</text></g><g class="tick svelte-1v7xslh" transform="translate(418,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">8</text></g><g class="tick svelte-1v7xslh" transform="translate(460,0)"><line y1="220" y2="15" class="svelte-1v7xslh"></line><text font-size="8" y="232" class="svelte-1v7xslh">10</text></g></g></svg></div></div>
+  <p>When activation functions start to get slighly more exotic, you will often
+    not find the in the <code>torch</code> namespace directly, but in the
+    <code>torch.nn.functional</code> namespace.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->lrelu_output = torch.nn.functional.leaky_relu(X, negative_slope=<span class="hljs-number">0.01</span>)
+lrelu_layer = torch.nn.LeakyReLU(negative_slope=<span class="hljs-number">0.01</span>)
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>There are many more activation functions out there, expecially those that
+    try to improve the original ReLU. For the most part we will use the plain
+    vanilla ReLU, because the mentioned improvements generally do not provide
+    significant advantages.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">You should use the ReLU (or its relatives) as your main activation function.
+    Deviate only from this activation, if you have any specific reason to do so.
+  </p></div>
+
+  <p>Now let&#39;s have a peak at the difference in the performance between the
+    sigmoid and the ReLU activation functions. Once again we are dealing with
+    the MNIST dataset, but this time around we create two models, each with a
+    different set of activation functions. Both models are larger, than they
+    need to be, in order to demonstrate the vanishing gradient problem.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">SigmoidModel</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(NUM_FEATURES, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, NUM_LABELS)
+        )
+        
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)
+    
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ReluModel</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(NUM_FEATURES, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.ReLU(),
+            nn.Linear(HIDDEN, NUM_LABELS)
+        )
+        
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)<!-- HTML_TAG_END --></code></pre>
+</div>
+
+  <p>The sigmoid model starts out very slowly and even after 30 iterations has
+    not managed to decrease the training loss significantly. If you train the
+    same sigmoid model several times, you will notice, that sometimes the loss
+    does not decrease at all. It all depends on the starting weights.
+  </p>
+  <img src="/_app/immutable/assets/sigmoid_metrics.8ff37c5b.webp" alt="Metrics with sigmoid activation">
+  <p>The loss of the ReLU model on the other hand decreases significantly, thus
+    indicating that the gradients propagate much better with this type of
+    activation function.
+  </p>
+  <img src="/_app/immutable/assets/relu_metrics.88132013.webp" alt="Metrics with relu activation"></div>
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3">Glorot, Xavier and Bordes, Antoine and Bengio, Yoshua.
+            Deep Sparse Rectifier Neural Networks, Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics.
+            
+            Vol. 15.
+            
+            pp. 315-323.
+            (2011).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 81],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

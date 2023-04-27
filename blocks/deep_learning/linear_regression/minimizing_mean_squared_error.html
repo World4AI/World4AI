@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Ticks.d0becf56.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Circle.dd91c35f.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/YLabel.883a8d74.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Path.1227219c.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Legend.6dc6b920.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-linear_regression-minimizing_mean_squared_error-page.svelte.68e3166b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Mse.e3b58c1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Ticks.45eca5c5.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/linear.f56dae1f.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Circle.f281e92b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/YLabel.182e66a3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Path.7e6df014.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Legend.de38c007.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/BackpropGraph.6a7a3666.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Network.03de8e4c.js"><title>Minimizing Mean Squared Error- World4AI</title><!-- HEAD_svelte-116j2b7_START --><meta name="description" content="In linear regression we can calculate the gradients of the weights and bias by construction a computational graph and applying automatic differentiation. Those gradients can be used in the gradient descent procedure to find optimal weights and biases."><!-- HEAD_svelte-116j2b7_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Minimizing MSE</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><h2>Single Training Sample</h2>
+  <p>Let us remind ourselves that our goal is to minimize the mean squared error,
+    by tweaking the weight vector <span class="hidden">\mathbf{w}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the
+    bias scalar <span class="hidden">b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ using gradient descent.
+    <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0"><span class="hidden">
+        MSE=\dfrac{1}{n}\sum_i^n (y^{(i)} - \hat{y}^{(i)})^2 \\
+
+        </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+      <div class="my-2"></div>
+      <span class="hidden">
+             \hat{y}^{(i)} = \mathbf{x}^{(i)} \mathbf{w}^T + b 
+     </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</p></div>
+    To make our journey easier, let us for now assume that we have one single feature
+    <span class="hidden">x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and one single training sample. That reduces the mean squared
+    error to a much simpler form:
+    <span class="hidden"> MSE=(y - [xw + b])^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. We will extend our
+    calculations once we have covered the basics.
+  </p>
+  <p>The computation of gradients in the deep learning world relies heavily on
+    the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">chain rule</strong>.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">If we have a composite function <span class="hidden">z(y(x))</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, we can calculate the
+    derivative of <span class="hidden">z</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ with respect of <span class="hidden">x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ by applying the
+    chain rule.
+    <div class="mb-2"></div>
+    <span class="hidden">
+        \dfrac{dz}{dx} = \dfrac{dz}{dy} \dfrac{dy}{dx} = \dfrac{dz}{\xcancel{dy}} \dfrac{\xcancel{dy}}{dx} = \dfrac{dz}{dx} 
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</p></div>
+  <p>The mean squared error <span class="hidden">(y - [xw + b])^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is a great
+    example of a composite function. We start by calculating the scaled feature
+    <span class="hidden">s</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, where <span class="hidden">s = w\times x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. We use s as an input
+    and calculate the linear regression prediction, <span class="hidden">\hat{y} = s + b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. Using <span class="hidden">\hat{y}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ as input, we can calculate the
+    error <span class="hidden">e</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ as the difference between the prediction and the true
+    target <span class="hidden">y</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, <span class="hidden">e = y - \hat{y}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+    Finally we calculate the mean squared error for one single training example, <span class="hidden">mse = e^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p>If we utilize the chain rule, we can calculate the derivative of the mean
+    squared error with respect to the bias <span class="hidden">b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the weight <span class="hidden">w</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ by multiplying the intermediary derivatives.
+  </p>
+  <div class="flex justify-center items-center flex-col"><span class="hidden">\dfrac{\partial mse}{\partial b} = \dfrac{\partial mse}{\partial e} \times \dfrac{\partial e}{\partial \hat{y}} \times \dfrac{\partial \hat{y}}{\partial b}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div></div>
+    <span class="hidden">\dfrac{\partial mse}{dw} = \dfrac{\partial mse}{\partial e} \times \dfrac{\partial e}{\partial \hat{y}} \times \dfrac{\partial \hat{y}}{\partial s} \times \dfrac{\partial s}{\partial w}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">For didactic reasons we are focusing on linear regression with a single
+    feature, but for the most part the calcultion with more than one feature
+    would be the same.
+    <div class="mb-2"></div>
+    <span class="hidden">\dfrac{\partial mse}{\partial w_j} = \dfrac{\partial mse}{\partial e} \times \dfrac{\partial e}{\partial \hat{y}} \times \dfrac{\partial \hat{y}}{\partial s} \times \dfrac{\partial s}{\partial w_j}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-2"></div>
+    In that case we have to calculate as many partial derivatives, as there are features.
+  </p></div>
+  <p>Calculating those intermediary derivatives is relatively straightforward,
+    using basic rules of calculus.
+  </p>
+  <div class="flex justify-center items-center flex-col"><span class="hidden">\dfrac{\partial mse}{\partial e} = 2e</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-1"></div>
+    <span class="hidden">\dfrac{\partial e}{\partial \hat{y}} = -1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-1"></div>
+    <span class="hidden">\dfrac{\partial \hat{y}}{\partial \hat{b}} = 1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-1"></div>
+    <span class="hidden">\dfrac{\partial \hat{y}}{\partial \hat{s}} = 1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-1"></div>
+    <span class="hidden">\dfrac{\partial s}{\partial w} = x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>Using the chain rule we can easily calculate the derivatives with respect to
+    the weight and bias.
+  </p>
+  <div class="flex justify-center items-center flex-col"><span class="hidden">
+  \begin{aligned} 
+  \dfrac{\partial mse}{\partial b} &amp;= 2e * (-1) * 1 \\
+  &amp;= -2(y - \hat{y})  \\
+  &amp;= -2(y - (wx + b)) 
+  \end{aligned}
+  </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div></div>
+    <span class="hidden">
+  \begin{aligned} 
+  \dfrac{\partial mse}{\partial b} &amp;= 2e * (-1) * 1 * x \\
+  &amp;= -2x(y - \hat{y})  \\
+  &amp;= -2x(y - (wx + b)) 
+  \end{aligned}
+  </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div>
+  <p>Once we have the gradients, the gradient descent algorithm works as
+    expected.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0"><span class="hidden">\mathbf{w}_{t+1} \coloneqq \mathbf{w}_t - \alpha \mathbf{\nabla}_w </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    <div class="mb-2"></div>
+    <span class="hidden">b_{t+1} \coloneqq b_t - \alpha \dfrac{\partial}{\partial b} </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</p></div>
+  <div class="separator"></div>
+
+  <h2>Computationial Graph</h2>
+  <p>We have mentioned before, that the chain rule plays an integral role in deep
+    learning, but what we have covered so far has probably not made it clear why
+    it is so essential.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">We can construct a so called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">computational graph</strong> and use
+    the chain rule for <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">automatic differentiation</strong>.
+  </p></div>
+  <p>So let&#39;s construct the computational graph for the mean squared error step
+    by step and see how automatic differentiation looks like.
+  </p>
+  <p>A computational graph basically tracks all atomic calculatios and their
+    results in a tree like structure. We start out the calculation of MSE by
+    creating the weight node <span class="hidden">w</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the feature node <span class="hidden">x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, but at that point those two variables are not connected to each other
+    yet. Once we calculate <span class="hidden">w*x</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, we connect the two and the result
+    is a new node, that lies on a higher level.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 280 300">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L210,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="225" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="270" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="270" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>The yellow box represents the operations (like additions and
+    multiplications), blue boxes contains the values of the node, while the red
+    boxes contain the derivatives. We assume a feature of 5 and the weight of 1
+    at the beginning, so the resulting node has the value of 5. At this point in
+    time we have not calculated any derivatives yet, so all derivatives will
+    amount to 0 for now.
+  </p>
+  <p>Next we create the bias <span class="hidden">b</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ node with the initial value of 1 and
+    add the node to the previously calculated node. Once again those nodes are reflected
+    in the computational graph.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 500 500">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L360,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="225" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="270" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="270" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>We keep creating new nodes, and connect them to previous generated nodes and
+    the graph keeps growing. We do that until we reach the final node, in our
+    case the mean squared error.
+  </p>
+  <div class="w-full"><div style="max-width: 350px;" class="my-0 mx-auto"><svg viewBox="0 0 450 910">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">0.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">0.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>Once we have created our comutational graph, we can start calculating the
+    gradients and applying the chain rule. This time around we start with the
+    last node and go all the way to the nodes we would like to adjust: the
+    weigth and the bias.
+  </p>
+  <p>Remember that we want to calculate the derivatives of MSE with respect to
+    the weight and the bias. To achieve that we need to calculate the
+    intermediary derivatives and apply the chain rule along the way. First we
+    calculate the derivative of MSE with respect to itself. Basically we are
+    asking ourselves, how much does the MSE change when we increase the MSE by
+    1. As expected the result is just 1.
+  </p>
+  <div class="w-full"><div style="max-width: 150px;" class="my-0 mx-auto"><svg viewBox="0 0 150 100">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">28.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">-140.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>This might seem to be an unnecessary step, but the chain rule in the
+    computational graph relies on multiplying intermediary derivatives by the
+    derivative of the above node and if we left the value of 0, the algorithm
+    would not have worked.
+  </p>
+  <p>Next we go a level below and calculate the local derivative of the error
+    with respect to MSE. The derivative of <span class="hidden">e^2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ is just <span class="hidden">2 \times error</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, wich is 28. We apply the chain rule and multiply 28 by the derivative
+    value of the above node and end up with 28.00.
+  </p>
+  <div class="w-full"><div style="max-width: 150px;" class="my-0 mx-auto"><svg viewBox="0 0 150 300">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">28.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">-140.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>We keep going down and calculate and calculate the next intermediary
+    derivatives. This time around we face two nodes. The target node and the
+    prediction node, where <span class="hidden">Error = Target - Prediction</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The
+    intermediary derivative of the error node with respect to the target is just
+    1. The intermediary derivative of the error with respect to the prediction
+    node is -1. Multiplying the intermediary derivatives with the derivative
+    from the above node yields 28 and -28 respectively. These are the
+    derivatives of the mean squared error with respect to the target and the
+    prediction.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 300 500">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">28.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">-140.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>If we continue doing these calculations we will eventually end up with the
+    below graph.
+  </p>
+  <div class="w-full"><div style="max-width: 350px;" class="my-0 mx-auto"><svg viewBox="0 0 450 910">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">28.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">-140.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>Once we have the gradients, we can apply the gradient descent algorithm. The
+    below example iterates between constructing the graph, calculating the
+    gradients and applying gradient descent, eventually leading to a mean
+    squared error of 0.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 350px;" class="my-0 mx-auto"><svg viewBox="0 0 450 910">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">**2</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Error</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">28.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">-</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Target</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">20.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Prediction</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">6.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="195" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="210" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,500L210,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="625" class="svelte-1i3ahvn">w * x</text>
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight: w</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">-140.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature: x</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M210,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="625" class="svelte-1i3ahvn">Bias b</text>
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">-28.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>The best part about the calculations above is that we do not have to track
+    the nodes manually or to calculate the gradients ourselves. The connections
+    between the nodes happen automatically. When we do any operations on these
+    node objects, the computational graph is adjusted automatically to reflect
+    the operations. The same goes for the calculation of the gradients, thus the
+    name autodiff. Because the local nodes operations are usually very common
+    operations like additions, multiplications and other common operations that
+    are known to the deep learning community, we know how to calculate the
+    intermediary derivatives. This behaviour is implemented in all deep learning
+    packages and we do need to think about these things explicitly.
+  </p>
+  <p>There are several more advantages to utilizing a computation graph. For
+    once, this allows us to easily calculate the gradients of arbitrary
+    expressions, even if the expressions are extremely complex. As you can
+    imagine, neural networks are such expressions, but if you only think in
+    terms of local node gradients and the gradients that come from the node
+    above, the calculations are rather simple to think about. Secondly, often we
+    can reuse many gradient calculations, as these are used as inputs in
+    multiple locations. For example the prediction node derivative is moved down
+    to the bias and the scaled value and we only need to calculate the above
+    derivative once. This is especially important for neural networks, as this
+    algorithm allows us to efficiently distribute gradients, thus saving a lot
+    of computational time.
+  </p>
+  <p>At this point we should mention, that in deep learning the graph
+    construction phase and the gradient calculation phase have distinct names,
+    that you will hear over and over again. The so called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">forward pass</strong> is essentially the graph constructon phase. In the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">backward pass</strong> we start to propagate the gradients from the the mean squared error to the
+    weights and bias using automatic differentiation. This algorithm of finding the
+    gradients of individual nodes, by utilizing the chain rule and a computational
+    graph is also called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">backpropagation</strong>. Backpropagation
+    is the bread and butter of modern deep learning.
+  </p>
+
+  <div class="separator"></div>
+
+  <h2>Multiple Training Samples</h2>
+  <p>As it turns out making a jump from one to several samples is not that
+    complicated. Let&#39;s for example assume that we have two samples. This creates
+    two branches in our computational graph.
+  </p>
+  <div class="w-full"><div style="max-width: 350px;" class="my-0 mx-auto"><svg viewBox="0 0 450 500">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">MSE</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">348.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="225" class="svelte-1i3ahvn">Sum</text>
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">696.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">0.50</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">Branch 1</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">500.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">0.50</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L210,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="425" class="svelte-1i3ahvn">Branch 2</text>
+
+
+<rect x="150" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="470" class="svelte-1i3ahvn">196.00</text>
+
+
+<rect x="210" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="470" class="svelte-1i3ahvn">0.50</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L360,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="300" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="270" class="svelte-1i3ahvn">0.50</text>
+
+
+<rect x="360" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="270" class="svelte-1i3ahvn">696.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>The branch nr. 2 that amounts to 196.0 is essentially the same path that we
+    calulated above. For the other branch we would have to do the same
+    calculations that we did above, but using the features from the other
+    sample. To finish the calculations of the mean squared error, we would have
+    to sum up the two branches and calculate the average. When we initiate the
+    backward pass, the gradients are propagated into the individual branches.
+    You should remember the the same weights and the same bias exist in the
+    different branches. That means that those parameters receive different
+    gradient signals. In that case the gradients are accumulated through a sum.
+    This is the same as saying: &quot;the derivative of a sum is the sum of
+    derivatives&quot;. You should also observe, that the mean squared error scales
+    each of the gradient signals by the number of samples that we use for
+    training. If we have two samples, each of the gradients is divided by 2 (or
+    multiplied by 0.5).
+  </p>
+  <p>So the calculations remain very similar: construct the graph and distribute
+    the gradients to the weight and bias using automatic differentiation. When
+    we use the procedures described above it does not make a huge difference
+    whether we use 1, 4 or 100 samples.
+  </p>
+  <p>To convince ourselves that automatic differentiation actually works, below
+    we present the example from the last section, that we solve by implementing
+    a custom autodiff package in JavaScript.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 600px;" class="my-0 mx-auto"><svg viewBox="0 0 500 500" class="svelte-1m8fbsa">
+<g class="axis y-axis svelte-1v7xslh"><g class="tick tick-0 svelte-1v7xslh" transform="translate(0, 450)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">0</text></g><g class="tick tick-10 svelte-1v7xslh" transform="translate(0, 381.6666666666667)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">10</text></g><g class="tick tick-20 svelte-1v7xslh" transform="translate(0, 313.33333333333337)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">20</text></g><g class="tick tick-30 svelte-1v7xslh" transform="translate(0, 245)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">30</text></g><g class="tick tick-40 svelte-1v7xslh" transform="translate(0, 176.66666666666669)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">40</text></g><g class="tick tick-50 svelte-1v7xslh" transform="translate(0, 108.33333333333331)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">50</text></g><g class="tick tick-60 svelte-1v7xslh" transform="translate(0, 40)"><line x1="60" x2="485" class="svelte-1v7xslh"></line><text font-size="20" x="45" class="svelte-1v7xslh">60</text></g></g>
+
+<g class="axis x-axis svelte-1v7xslh"><g class="tick svelte-1v7xslh" transform="translate(60,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">0</text></g><g class="tick svelte-1v7xslh" transform="translate(130.83333333333331,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">10</text></g><g class="tick svelte-1v7xslh" transform="translate(201.66666666666666,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">20</text></g><g class="tick svelte-1v7xslh" transform="translate(272.5,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">30</text></g><g class="tick svelte-1v7xslh" transform="translate(343.3333333333333,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">40</text></g><g class="tick svelte-1v7xslh" transform="translate(414.1666666666667,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">50</text></g><g class="tick svelte-1v7xslh" transform="translate(485,0)"><line y1="450" y2="40" class="svelte-1v7xslh"></line><text font-size="20" y="465" class="svelte-1v7xslh">60</text></g></g>
+  <text font-size="25" x="250" y="487.5" class="svelte-co4blx">Feature</text>
+  <text class="label svelte-1iobque" font-size="25" transform="rotate(-90 12.5 250)" x="12.5" y="250">Target</text>
+  <path d="M95.41666666666666,313.33333333333337L194.58333333333331,313.33333333333337L194.58333333333331,409L95.41666666666666,409L95.41666666666666,313.33333333333337" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path><path d="M130.83333333333331,176.66666666666669L336.25,176.66666666666669L336.25,374.8333333333333L130.83333333333331,374.8333333333333L130.83333333333331,176.66666666666669" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path><path d="M307.9166666666667,204L456.6666666666667,204L456.6666666666667,347.5L307.9166666666667,347.5L307.9166666666667,204" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path><path d="M378.75,46.83333333333335L470.8333333333333,46.83333333333335L470.8333333333333,135.66666666666663L378.75,135.66666666666663L378.75,46.83333333333335" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+  <circle fill="var(--main-color-1)" cx="95.41666666666666" cy="313.33333333333337" r="5" class="svelte-j95o6m"></circle><circle fill="var(--main-color-1)" cx="130.83333333333331" cy="176.66666666666669" r="5" class="svelte-j95o6m"></circle><circle fill="var(--main-color-1)" cx="307.9166666666667" cy="347.5" r="5" class="svelte-j95o6m"></circle><circle fill="var(--main-color-1)" cx="378.75" cy="46.83333333333335" r="5" class="svelte-j95o6m"></circle>
+  <path d="M60,443.1666666666667L485,33.16666666666669" stroke="black" stroke-width="1" stroke-dasharray="none" class="svelte-1ylgbqq"></path>
+  <rect x="78.75" y="51.16666666666666" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="91.25" y="53.66666666666666" font-size="20" class="svelte-9icl3e">Weight 1.00</text>
+  <rect x="78.75" y="78.5" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="91.25" y="81" font-size="20" class="svelte-9icl3e">Bias 1.00</text>
+  <rect x="78.75" y="105.83333333333331" width="5" height="5" fill="black" stroke="black"></rect>
+<text fill="black" x="91.25" y="108.33333333333331" font-size="20" class="svelte-9icl3e">MSE 411.75</text></svg></div></div>
+  <div class="separator"></div>
+
+  <h2>Autograd</h2>
+  <p>As mentioned before, in modern deep learning we do not iterate over
+    individual samples to construct a graph, but work with tensors to
+    parallelize the computations. When we utilize any of the modern deep
+    learning packages and use the provided tensor objects, we get
+    parallelisation and automatic differentiation out of the box. We do not need
+    to explicitly construct a graph and make sure that all nodes are connected.
+    PyTorch for example has a built in automatic differentiation library, called <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">autograd</strong>, so let&#39;s see how we can utilize the package.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> sklearn.datasets <span class="hljs-keyword">as</span> datasets<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We start by creating the features <span class="hidden">\mathbf{X}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and
+    the labels <span class="hidden">\mathbf{y}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->X, y = datasets.make_regression(n_samples=<span class="hljs-number">100</span>, n_features=<span class="hljs-number">2</span>, n_informative=<span class="hljs-number">2</span>, noise=<span class="hljs-number">0.01</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We transorm the generated numpy arrays into PyTorch Tensors. For the labels
+    Tensor we use the <code>unsqueeze(dim)</code> method. This adds an additional
+    dimension, transforming the labels from a (100,) into a (100, 1) dimensional
+    Tensor. This makes sure that the predictions that are generated in the the forward
+    pass and the actual labels have identical dimensions.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->X = torch.from_numpy(X).to(torch.float32);
+y = torch.from_numpy(y).to(torch.float32).unsqueeze(<span class="hljs-number">1</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>We generate the <code>init_weights()</code> function, which initializes the
+    weights and the biases randomly using the standard normal distribution. This
+    time around we set the <code>requires_grad</code> property to
+    <code>True</code> in order to track the gradients. We didn&#39;t do that for the
+    features and the label tensors, as those are fixed and should not be adjusted.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">init_weights</span>():
+    w = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, requires_grad=<span class="hljs-literal">True</span>)
+    b = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, requires_grad=<span class="hljs-literal">True</span>)
+    <span class="hljs-keyword">return</span> w, b
+w, b = init_weights()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>For the sake of making our explanations easier let us introduce the <code>print_all()</code>
+    function. This function makes use of the two imortant properties that each
+    Tensor object posesses. The <code>data</code> and the <code>grad</code> property.
+    Those properties are probaly self explanatory: data contains the actual values
+    of a tensor, while grad contains the gradiens with respect to each value in the
+    data list.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">print_all</span>():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Weight: <span class="hljs-subst">{w.data}</span>, Grad: <span class="hljs-subst">{w.grad}</span>&#x27;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Bias: <span class="hljs-subst">{b.data}</span>, Grad: <span class="hljs-subst">{b.grad}</span>&#x27;</span>)
+print_all()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="text-sm">    Weight: tensor([[-0.6779,  0.4228]]), Grad: None
+    Bias: tensor([[0.2107]]), Grad: None
+  </pre>
+  <p>When we print the data and the grad right after initializing the tensors,
+    the objects posess a randomized value, but gradients amount to <code>None</code>.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">w, b</span>):
+    y_hat = X @ w.T + b
+    <span class="hljs-keyword">return</span> ((y - y_hat)**<span class="hljs-number">2</span>).<span class="hljs-built_in">sum</span>() / <span class="hljs-number">100.0</span>
+mse = forward(w, b)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>Even when we calculate the mean squared error, by running through the
+    forward pass, the gradients remain empty.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->print_all()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="text-sm">    Weight: tensor([[-0.6779,  0.4228]]), Grad: None
+    Bias: tensor([[0.2107]]), Grad: None
+  </pre>
+  <p>To actually run the backward pass, we have to call the <code>backward()</code> method on the loss function. The gradients are always based on the tensor that
+    initiated the backward pass. So if we run the backward pass on the mean squared
+    error tensor, the gradients tell us how we should shift the weights and the bias
+    to reduce the loss. This is exactly what we are looking for.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->mse.backward()
+print_all()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="text-sm">    Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-102.5140,  -98.1595]])
+    Bias: tensor([[0.2107]]), Grad: tensor([[4.4512]])
+  </pre>
+  <p>If we run the forward and the backward passes again, you will notice, that
+    the weights and the bias gradients are twice as large. Each time we
+    calculate the gradients, the gradients are accumulated. The old gradient
+    values are not erased, as one might assume.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->mse = forward(w, b)
+mse.backward()
+print_all()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="text-sm">    Weight: tensor([[-0.6779,  0.4228]]), Grad: tensor([[-205.0279, -196.3191]])
+    Bias: tensor([[0.2107]]), Grad: tensor([[8.9024]])
+  </pre>
+  <p>Each time we are done with a gradient descent step, we should clear the
+    gradients. We can do that by using the <code>zero_()</code> method, which zeroes
+    out the gradients inplace.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->w.grad.zero_()
+<span class="hljs-built_in">print</span>(w.grad)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="text-sm">    tensor([[0., 0.]])
+  </pre>
+  <p>Below we show the full implementation of gradiet descent. Most of the
+    implementation was already discussed before, but the context manager <code>torch.inference_mode()</code> might be new to you. This part tells PyTorch to not include the following parts
+    in the computational graph. The actual gradient descent step is not part of the
+    forward pass and should therefore not be tracked.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->lr = <span class="hljs-number">0.1</span>
+w, b = init_weights()
+<span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+    <span class="hljs-comment"># forward pass</span>
+    mse = forward(w, b)
+    
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Mean squared error: <span class="hljs-subst">{mse.data}</span>&#x27;</span>)
+    
+    <span class="hljs-comment"># backward pass</span>
+    mse.backward()
+    
+    <span class="hljs-comment"># gradient descent</span>
+    <span class="hljs-keyword">with</span> torch.inference_mode():
+        w.data.sub_(w.grad * lr)
+        b.data.sub_(b.grad * lr)
+        w.grad.zero_()
+        b.grad.zero_()<!-- HTML_TAG_END --></code></pre>
+</div>
+  <pre class="flex justify-center text-sm">Mean squared error: 6125.7783203125
+Mean squared error: 4322.3662109375
+Mean squared error: 3054.9150390625
+Mean squared error: 2162.31787109375
+Mean squared error: 1532.5537109375
+Mean squared error: 1087.494873046875
+Mean squared error: 772.5029907226562
+Mean squared error: 549.2703857421875
+Mean squared error: 390.8788757324219
+Mean squared error: 278.37469482421875
+  </pre>
+  <p>We iterate over the forward pass, the backward pass and the gradient descent
+    step for 10 iterations and the mean squared error decreases dramatically.
+    This iteration process is called the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">training loop</strong> in
+    deep learning lingo. We will encounter those loops over and over again.
+  </p>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/linear_regression/gradient_descent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/linear_regression/linear_neuron"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 46],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

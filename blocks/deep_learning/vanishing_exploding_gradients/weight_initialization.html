@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/NeuralNetwork.184807dc.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-vanishing_exploding_gradients-weight_initialization-page.svelte.5396a934.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/NeuralNetwork.9b1e2957.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/BackpropGraph.6a7a3666.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Network.03de8e4c.js"><title>Weight Initialization - World4AI</title><!-- HEAD_svelte-18ilasu_START --><meta name="description" content="Proper weight initialization techniques, like Xavier/Glorot or Kaiming/He initialization, can decrease the chances of exploding or vanishing gradients. Deep learning frameworks like PyTorch or Keras provide initializatin techniques out of the box."><!-- HEAD_svelte-18ilasu_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>Weight Initialization</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>Previously we had mentioned that weights can contribute to vanishing and
+    exploding gradients. For the most part we adjust weights in a completely
+    automated process by using backpropagation and applying gradient descent.
+    For that reason we do not have a lot of influence on how the weights
+    develop. The one place where we directly determine the distribution of
+    weights is during the initialization process. This section is going to be
+    dedicated to weight initialization: the pitfalls and best practices.
+  </p>
+  <p>The first idea we might come up with is to initialize all weights equally,
+    specifically to use 0 as the starting value for all weights and biases.
+  </p>
+  <p>We will use this simple neural network to demonstrate the danger of such
+    initialization. All we need to do is to work through a single forward and
+    backward pass to realize the problem.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 200 65">
+      <text class="title svelte-10sqo8g" x="1" y="0">Input</text>
+      
+        <rect x="1" y="10" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="1" y="10" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="1" y="40" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="1" y="40" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="87.5" y="0">Hidden Layer</text>
+      
+        <rect x="87.5" y="10" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="87.5" y="10" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="87.5" y="40" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="87.5" y="40" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="174" y="0">Output</text>
+      
+        <rect x="174" y="25" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="174" y="25" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">o</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+          <line x1="16" y1="17.5" x2="87.5" y2="17.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="17.5" x2="87.5" y2="47.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="16" y1="47.5" x2="87.5" y2="17.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="47.5" x2="87.5" y2="47.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="102.5" y1="17.5" x2="174" y2="32.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="102.5" y1="47.5" x2="174" y2="32.5" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line></svg></div></div>
+  <p>We will make the simplifying assumption, that there are no activation
+    functions in the neural network and that we want to minimize the value of
+    the output neuron and not some loss function. These assumptions do not have
+    any effect on the results, but simplify notation and the depiction of the
+    computational graph.
+  </p>
+  <p>If we have the same weight <span class="hidden">w</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ for all nodes and layers, then in
+    the very first forward pass all the neurons from the same layer will produce
+    the same value.
+  </p>
+  <span class="hidden">
+  \begin{aligned}
+    a_1 &amp;= x_1 * w_1 + x_2 * w_2 \\
+    a_2 &amp;= x_1 * w_3 + x_2 * w_4 \\
+    a_1 &amp;= a_2 
+  \end{aligned}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+  <p>When we apply backpropagation we will quickly notice that the gradients with
+    respect to the weights of the same feature are identical in each node.
+  </p>
+  <span class="hidden">
+    \dfrac{\partial o}{\partial a_1}
+    \dfrac{\partial a_1}{\partial w_1}
+    =
+    \dfrac{\partial o}{\partial a_2}
+    \dfrac{\partial a_2}{\partial w_3}
+    </span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+  <p>The same starting values and the same gradients can only mean that all nodes
+    in a layer will always have the same value. This is no different than having
+    a neural network with a single neuron per layer. The network will never be
+    able to solve complex problems. And if you initialize all your weights with
+    zero, the network will always have dead neurons, always staying at the 0
+    value.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-red" style="color: white;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-alert-octagon "><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+      <p class="m-0">Danger</p></div>
+  <p class="m-0">Never initialize your weights uniformly. Break the symmetry!
+  </p></div>
+  <p>Now let&#39;s use the same neural network and actually work though a dummy
+    example. We assume feature values of 5 and 2 respectively and initialize all
+    weights to 1.
+  </p>
+  <div class="w-full"><div style="max-width: 900px;" class="my-0 mx-auto"><svg viewBox="0 0 1180 920">
+
+
+<rect x="0" y="10" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="25" class="svelte-1i3ahvn">Output</text>
+
+
+<rect x="0" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="70" class="svelte-1i3ahvn">14.00</text>
+
+
+<rect x="60" y="40" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="70" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="155" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="170" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,100L60,155" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L60,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="0" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="270" class="svelte-1i3ahvn">7.00</text>
+
+
+<rect x="60" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="270" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="370" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,300L60,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L60,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="425" class="svelte-1i3ahvn">a_1</text>
+
+
+<rect x="0" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="470" class="svelte-1i3ahvn">7.00</text>
+
+
+<rect x="60" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="470" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,500L60,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,585L60,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="0" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="60" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="45" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="60" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,700L60,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L60,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="0" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="60" y="825" class="svelte-1i3ahvn">Weight 1</text>
+
+
+<rect x="0" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="30" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="60" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="90" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,785L210,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="150" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="210" y="825" class="svelte-1i3ahvn">Feature 1</text>
+
+
+<rect x="150" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="180" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="210" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="240" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,585L360,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="300" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="670" class="svelte-1i3ahvn">2.00</text>
+
+
+<rect x="360" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="345" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="360" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M360,700L360,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M360,785L360,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="300" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="360" y="825" class="svelte-1i3ahvn">Weight 2</text>
+
+
+<rect x="300" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="330" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="360" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="390" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M360,785L510,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="450" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="510" y="825" class="svelte-1i3ahvn">Feature 2</text>
+
+
+<rect x="450" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="480" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+<rect x="510" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="540" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,385L510,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="450" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="510" y="425" class="svelte-1i3ahvn">Weight 5</text>
+
+
+<rect x="450" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="480" y="470" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="510" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="540" y="470" class="svelte-1i3ahvn">7.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M60,185L660,210" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="600" y="210" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="600" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="630" y="270" class="svelte-1i3ahvn">7.00</text>
+
+
+<rect x="660" y="240" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="690" y="270" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="645" y="355" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="660" y="370" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,300L660,355" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,385L660,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="600" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="660" y="425" class="svelte-1i3ahvn">a_2</text>
+
+
+<rect x="600" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="630" y="470" class="svelte-1i3ahvn">7.00</text>
+
+
+<rect x="660" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="690" y="470" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="645" y="555" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="660" y="570" class="svelte-1i3ahvn">+</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,500L660,555" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,585L660,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="600" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="600" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="630" y="670" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="660" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="690" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="645" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="660" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,700L660,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,785L660,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="600" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="660" y="825" class="svelte-1i3ahvn">Weight 3</text>
+
+
+<rect x="600" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="630" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="660" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="690" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,785L810,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="750" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="810" y="825" class="svelte-1i3ahvn">Feature 1</text>
+
+
+<rect x="750" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="780" y="870" class="svelte-1i3ahvn">5.00</text>
+
+
+<rect x="810" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="840" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,585L960,610" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="900" y="610" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+
+
+
+<rect x="900" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="930" y="670" class="svelte-1i3ahvn">2.00</text>
+
+
+<rect x="960" y="640" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="990" y="670" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="945" y="755" width="30" height="30" stroke="black" class="" fill="var(--main-color-3)"></rect>
+
+<text font-size="20" x="960" y="770" class="svelte-1i3ahvn">*</text>
+  <marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M960,700L960,755" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M960,785L960,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="900" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="960" y="825" class="svelte-1i3ahvn">Weight 4</text>
+
+
+<rect x="900" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="930" y="870" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="960" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="990" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M960,785L1110,810" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="1050" y="810" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="1110" y="825" class="svelte-1i3ahvn">Feature 2</text>
+
+
+<rect x="1050" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="1080" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+<rect x="1110" y="840" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="1140" y="870" class="svelte-1i3ahvn">2.00</text>
+
+
+
+
+
+<marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M660,385L1110,410" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="none"></path>
+
+
+<rect x="1050" y="410" width="120" height="30" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="1110" y="425" class="svelte-1i3ahvn">Weight 6</text>
+
+
+<rect x="1050" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-2)"></rect>
+
+<text font-size="16" x="1080" y="470" class="svelte-1i3ahvn">1.00</text>
+
+
+<rect x="1110" y="440" width="60" height="60" stroke="black" class="" fill="var(--main-color-1)"></rect>
+
+<text font-size="16" x="1140" y="470" class="svelte-1i3ahvn">7.00</text>
+
+
+
+
+
+</svg></div></div>
+  <p>Essentially you can observe two paths (left path and right path) in the
+    computational graph above, representing the two neurons. But the paths are
+    identical in their values and in their gradients. Even though there are 6
+    weights in the neural network, half of them are basically clones.
+  </p>
+  <p>In order to break the symmetry researchers used to apply either a normal
+    distribution (e.g. <span class="hidden">\mu = 0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and <span class="hidden">\sigma = 0.1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+)
+    or a uniform distribution (e.g in the range <span class="hidden">-0.5 \text{ to } 0.5</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+) to initialize weights. This might seem reasonable, but Glorot and Bengio<a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a> showed that it is much more preferable to initialize weights based on the
+    number of neurons that are used as input into the layer and the number of neurons
+    that are inside a layer. This initializiation technique makes sure, that during
+    the forward pass the variance of neurons stays similar from layer to layer and
+    during the backward pass the gradients keep a constant variance from layer to
+    layer. That condition reduces the likelihood of vanishing or exploding gradients.
+    The authors proposed to initialize weights either using a uniform distribution
+    <span class="hidden">\mathcal{U}(-a, a)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ where <span class="hidden">a = \sqrt{\dfrac{6}{fan_{in} + fan_{out}}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ or the normal distribution <span class="hidden">\mathcal{N}(0, \sigma^2)</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+, where
+    <span class="hidden">\sigma = \sqrt{\dfrac{2}{fan_{in} + fan_{out}}}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+.
+  </p>
+  <p>The words <span class="hidden">fan_{in}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and <span class="hidden">fan_{out}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ stand for the number of neurons that go into the layer as input and the number
+    of neurons that are in the layer respectively. In the below example in the first
+    hidden layer <span class="hidden">fan_{in}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ would be 2 and <span class="hidden">fan_{out}</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ would be 3 respectively. In the second hidden layer the numbers would be exactly
+    the other way around.
+  </p>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg viewBox="0 0 200 100">
+      <text class="title svelte-10sqo8g" x="1" y="0">Input</text>
+      
+        <rect x="1" y="27.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="1" y="27.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="1" y="57.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="1" y="57.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">x_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="82.5" y="0">Hidden 1</text>
+      
+        <rect x="82.5" y="12.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="82.5" y="12.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="82.5" y="42.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="82.5" y="42.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="82.5" y="72.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="82.5" y="72.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_3</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+      <text class="title svelte-10sqo8g" x="164" y="0">Hidden 2</text>
+      
+        <rect x="164" y="27.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="164" y="27.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+        <rect x="164" y="57.5" width="15" height="15" stroke-width="1" stroke="var(--text-color)" class="fill-gray-300"></rect>
+        
+        <foreignObject x="164" y="57.5" width="15" height="15"><div class="svelte-10sqo8g"><span class="hidden">a_2</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject>
+          <line x1="16" y1="35" x2="82.5" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="35" x2="82.5" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="35" x2="82.5" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="16" y1="65" x2="82.5" y2="20" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="65" x2="82.5" y2="50" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="16" y1="65" x2="82.5" y2="80" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="97.5" y1="20" x2="164" y2="35" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="97.5" y1="20" x2="164" y2="65" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="97.5" y1="50" x2="164" y2="35" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="97.5" y1="50" x2="164" y2="65" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line>
+          <line x1="97.5" y1="80" x2="164" y2="35" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line><line x1="97.5" y1="80" x2="164" y2="65" class="stroke-black" stroke-dasharray="2 2" stroke-width="0.3" stroke-dashoffset="0"></line></svg></div></div>
+  <p>While the Xavier/Glorot initialization was studied in conjunction with the
+    sigmoind and the tanh activation function, the Kaiming/He initialization was
+    designed to work with the ReLU activation<a id="reference-origin-2" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-2">[2]
+</a>. This is the standard initialization mode used in PyTorch.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">For the most part you will not spend a lot of time dealing with weight
+    initializations. Libraries like PyTorch and Keras have good common sense
+    initialization values and allow you to switch between the initialization
+    modes relatively easy. You do not nead to memorize those formulas. If you
+    implement backpropagation on your own don&#39;t forget to at least break the
+    symmetry.
+  </p></div>
+  <p>Implementing weight initialization in PyTorch is a piece of cake. PyTorch
+    provides in <code>nn.init</code> different functions that can be used to
+    initialize a tensor. You should have a look at the official
+    <a href="https://pytorch.org/docs/stable/nn.init.html" target="_blank" rel="noreferrer">PyTorch documentation</a> if you would like to explore more initialization schemes. Below for example
+    we use the Kaiming uniform initialization on an empty tensor. Notice that the
+    initialization is done inplace.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->W = torch.empty(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
+<span class="hljs-comment"># initializations are defined in nn.init</span>
+nn.init.kaiming_uniform_(W)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->tensor([[-0.9263, -0.0416,  0.0063, -0.8040,  0.8433],
+        [ 0.3724, -0.9250, -0.2109, -0.1961,  0.3596],
+        [ 0.6127,  0.2282,  0.1292,  0.8036,  0.8993],
+        [-0.3890,  0.8515,  0.2224,  0.6172,  0.0440],
+        [ 1.0282, -0.7566, -0.0305, -0.4382, -0.0368]])
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>When we use the <code>nn.Linear</code> module, PyTorch automatically initializes
+    weights and biases using the Kaiming He uniform initialization scheme. The sigmoid
+    model from the last section was suffering from vanishing gradients, but we might
+    remedy the problem, by changing the weight initialization. The Kaiming|He initialization
+    was developed for the ReLU activation function, while the Glorot|Xavier initialization
+    should be used with sigmoid activation functions. We once again create the same
+    model that uses sigmoid activation functions. Only this time we loop over weights
+    and biases and use the Xavier uniform initialization for weights and we set all
+    biases to 0 at initialization.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">SigmoidModel</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(NUM_FEATURES, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, HIDDEN),
+            nn.Sigmoid(),
+            nn.Linear(HIDDEN, NUM_LABELS)
+        )
+        
+        self.reset_parameters()
+        
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">reset_parameters</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">with</span> torch.inference_mode():
+            <span class="hljs-keyword">for</span> param <span class="hljs-keyword">in</span> self.parameters():
+                <span class="hljs-keyword">if</span> param.ndim &gt; <span class="hljs-number">1</span>:
+                    nn.init.xavier_uniform_(param)
+                <span class="hljs-keyword">else</span>:
+                    param.zero_()
+            
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, features</span>):
+        <span class="hljs-keyword">return</span> self.layers(features)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->model = SigmoidModel().to(DEVICE)
+criterion = nn.CrossEntropyLoss(reduction=<span class="hljs-string">&quot;sum&quot;</span>)
+optimizer = optim.SGD(model.parameters(), lr=ALPHA)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>This time around the model performs much better.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->history = train(train_dataloader, val_dataloader, model, criterion, optimizer)<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python-repl" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->Epoch: 1/30 | Train Loss: 2.308537656906164 | Val Loss: 2.308519915898641
+Epoch: 10/30 | Train Loss: 0.20434634447115443 | Val Loss: 0.2530187802116076
+Epoch: 20/30 | Train Loss: 0.07002673296947375 | Val Loss: 0.15957480862239998
+Epoch: 30/30 | Train Loss: 0.04259131510365781 | Val Loss: 0.1637446080291023
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START -->plot_history(history, <span class="hljs-string">&quot;xavier_metrics&quot;</span>)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <img src="/_app/immutable/assets/xavier_metrics.ec7b538b.webp" alt="Performance metrics with Xavier initialization">
+  <p>You should still use the ReLU activation function for deep neural networks,
+    but be aware that weight initialization might have a significant impact on
+    the performance of your model.
+  </p></div>
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3">Glorot, Xavier and Bengio Yoshua.
+            Understanding the Difficulty of Training Deep Feedforward Neural Networks.
+            Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics, Journal of Machine Learning Research.
+            Vol. 9.
+            
+            pp. 249-256.
+            (2010).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li><li id="reference-2" class="text-sm leading-3 opacity-50 mb-3">K. He, X. Zhang, S. Ren and J. Sun.
+             Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification.
+            2015 IEEE International Conference on Computer Vision (ICCV).
+            
+            
+            pp. 1026-1024.
+            (2015).
+            <a href="#reference-origin-2" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 84],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-autoregressive_generative_models-gated_pixel_cnn-page.svelte.ee68ab29.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Plus.fc904b16.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Multiply.cec66028.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js"><title>Gated PixelCNN - World4AI</title><!-- HEAD_svelte-1e21r36_START --><meta name="description" content="The gated PixelCNN model was developed by DeepMind to improve the generative quality of the common PixelCNN. The model utilizes two stacks of masked convolutions and a gated architecture to improve the performance."><!-- HEAD_svelte-1e21r36_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<div class="container mx-auto" style="max-width: 1000px"><h1>Gated PixelCNN</h1>
+  <div class="separator"></div>
+  <p>Shortly after the initial release of the PixelCNN architecture, DeepMind
+    released the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">Gated PixelCNN</strong><a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a>. The paper introduced several improvements simultaneously, that reduced
+    the gap with the recurrent PixelRNN.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Vertical and horizontal Stacks</h2>
+  <p>The PixelCNN has a limitation, that is not obvious at first glance. To
+    explain that limitation let&#39;s remember how a convolutional neural network
+    usually works. The very first layer applies convolutions to a tight
+    receptive field around a particular pixel. If we apply a 3x3 convolution,
+    then the neural network can only look at the immediate surroundings of a
+    particular pixel. But as we stack more and more convolutional layers on top
+    of each other, the receptive field starts to grow.
+  </p>
+  <p>In this interactive example we assume that all calculations are considered
+    from the perspective of the black pixel, the kernel size is 3x3 and the
+    padding is always 1 in order to keep the size of the image constant.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 250 250"><rect x="5" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="113" width="22" height="22" class="stroke-black" fill="black"></rect><rect x="113" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="221" width="22" height="22" class="stroke-black" fill="none"></rect></svg></div></div>
+
+  <p>Now let&#39;s see how the receptive field grows, once we incorporate masked
+    convolutions.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 250 250"><rect x="5" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="5" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="32" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="59" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="86" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="113" width="22" height="22" class="stroke-black" fill="black"></rect><rect x="113" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="113" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="140" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="167" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="194" y="221" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="5" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="32" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="59" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="86" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="113" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="140" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="167" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="194" width="22" height="22" class="stroke-black" fill="none"></rect><rect x="221" y="221" width="22" height="22" class="stroke-black" fill="none"></rect></svg></div></div>
+  <p>While the receptive field grows, we are left with a blind spot. Many pixels
+    above the black dot are not taken into the account, which will most likely
+    deteriorate the performance.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">MaskedConvolution</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, in_channels, out_channels, mask, dilation=<span class="hljs-number">1</span></span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        kernel_size = mask.shape
+        padding = <span class="hljs-built_in">tuple</span>([dilation * (size - <span class="hljs-number">1</span>) // <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> kernel_size])
+
+        self.conv = nn.Conv2d(
+            in_channels=in_channels,
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            padding=padding,
+            dilation=dilation,
+        )
+        self.register_buffer(<span class="hljs-string">&quot;mask&quot;</span>, mask)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        <span class="hljs-keyword">with</span> torch.no_grad():
+            self.conv.weight *= self.mask
+        <span class="hljs-keyword">return</span> self.conv(x)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>To deal with this problem the researchers at DeepMind separated the
+    convolution into two distinct stacks: the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">vertical stack</strong>, which processes the pixels above the black pixel and the <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">horizontal stack</strong>, which processes the pixels to the left.
+  </p>
+  <p>You can think about the vertical stack as a regular convolution, that can
+    only access the upper half of the image.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 250 250"><rect x="5" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="113" width="22" height="22" stroke="var(--text-color)" fill="black"></rect><rect x="113" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect></svg></div></div>
+  <p>The horizontal stack is a 1d convolution that processes the pixels to the
+    left.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 250 250"><rect x="5" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="5" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="32" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="59" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="86" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="113" width="22" height="22" stroke="var(--text-color)" fill="black"></rect><rect x="113" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="113" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="140" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="167" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="194" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="5" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="32" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="59" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="86" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="113" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="140" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="167" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="194" width="22" height="22" stroke="var(--text-color)" fill="none"></rect><rect x="221" y="221" width="22" height="22" stroke="var(--text-color)" fill="none"></rect></svg></div></div>
+  <p>The combination of both produces the desired output.</p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">VerticalStackConvolution</span>(<span class="hljs-title class_ inherited__">MaskedConvolution</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">
+        self, in_channels, out_channels, kernel_size=<span class="hljs-number">3</span>, mask_type=<span class="hljs-string">&quot;B&quot;</span>, dilation=<span class="hljs-number">1</span>
+    </span>):
+        <span class="hljs-keyword">assert</span> mask_type <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>]
+        mask = torch.ones(kernel_size, kernel_size)
+        mask[kernel_size // <span class="hljs-number">2</span> + <span class="hljs-number">1</span> :, :] = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">if</span> mask_type == <span class="hljs-string">&quot;A&quot;</span>:
+            mask[kernel_size // <span class="hljs-number">2</span>, :] = <span class="hljs-number">0</span>
+
+        <span class="hljs-built_in">super</span>().__init__(in_channels, out_channels, mask, dilation=dilation)
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">HorizontalStackConvolution</span>(<span class="hljs-title class_ inherited__">MaskedConvolution</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">
+        self, in_channels, out_channels, kernel_size=<span class="hljs-number">3</span>, mask_type=<span class="hljs-string">&quot;B&quot;</span>, dilation=<span class="hljs-number">1</span>
+    </span>):
+        <span class="hljs-keyword">assert</span> mask_type <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>]
+        mask = torch.ones(<span class="hljs-number">1</span>, kernel_size)
+        mask[<span class="hljs-number">0</span>, kernel_size // <span class="hljs-number">2</span> + <span class="hljs-number">1</span> :] = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">if</span> mask_type == <span class="hljs-string">&quot;A&quot;</span>:
+            mask[<span class="hljs-number">0</span>, kernel_size // <span class="hljs-number">2</span>] = <span class="hljs-number">0</span>
+        <span class="hljs-built_in">super</span>().__init__(in_channels, out_channels, mask, dilation=dilation)<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div>
+
+  <h2>Gated Architecture</h2>
+  <p>The gated PixelCNN architecture was developed in order to close the
+    performance gap between the PixelCNN and the RowLSTM. The researcher
+    hypothesised, that the multiplicative units from an LSTM can help the model
+    to learn more complex patterns and introduced similar units to the
+    convolutional layers.
+  </p>
+  <div class="w-full"><div style="max-width: 400px;" class="my-0 mx-auto"><svg viewBox="0 0 400 400" class="border"><g><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M0,70L105,70" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,70L120,20L155,20" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,70L120,120L155,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M220,20L260,20L260,50" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M220,120L260,120L260,90" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M260,70L390,70" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="12.5" y="57.5" width="55" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="12.5" y="57.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">n \times n</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="112.5" y="62.5" width="15" height="15" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<circle cx="260" cy="70" r="10" class="fill-red-300" fill="none" stroke="black"></circle>
+<circle cx="260" cy="70" r="1" fill="black" stroke="black"></circle><rect x="162.5" y="7.5" width="55" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="162.5" y="7.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">tanh</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="162.5" y="107.5" width="55" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="162.5" y="107.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">\sigma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M90,70L90,250" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="62.5" y="157.5" width="55" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="62.5" y="157.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">1 \times 1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><g transform="translate(0 200)"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M0,180L390,180" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M40,180L40,90" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M0,70L105,70" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,70L120,20L155,20" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M260,70L350,70L350,160" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,70L120,120L155,120" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M220,20L260,20L260,50" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M220,120L260,120L260,90" stroke="black" stroke-dasharray="6 6" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="12.5" y="57.5" width="55" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="12.5" y="57.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">1 \times n</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><circle cx="90" cy="70" r="10" class="fill-red-300" fill="none" stroke="black"></circle>
+<line x1="90" y1="64" x2="90" y2="76" stroke="black"></line>
+<line x1="96" y1="70" x2="84" y2="70" stroke="black"></line><circle cx="350" cy="180" r="10" class="fill-red-300" fill="none" stroke="black"></circle>
+<line x1="350" y1="174" x2="350" y2="186" stroke="black"></line>
+<line x1="356" y1="180" x2="344" y2="180" stroke="black"></line><rect x="322.5" y="57.5" width="55" height="25" stroke="black" class="fill-green-100" fill="none"></rect>
+
+<foreignObject x="322.5" y="57.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">1 \times 1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="112.5" y="62.5" width="15" height="15" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<circle cx="260" cy="70" r="10" class="fill-red-300" fill="none" stroke="black"></circle>
+<circle cx="260" cy="70" r="1" fill="black" stroke="black"></circle><rect x="162.5" y="7.5" width="55" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="162.5" y="7.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">tanh</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="162.5" y="107.5" width="55" height="25" stroke="black" class="fill-yellow-100" fill="none"></rect>
+
+<foreignObject x="162.5" y="107.5" width="55" height="25"><div style="font-size: 15px; height: 25px" class="flex justify-center items-center"><span class="hidden">\sigma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></g></svg></div></div>
+  <p>Let&#39;s start our discussion with the upper part of the graph: the vertical
+    stack. The vertical layer receives the output from the previous vertical
+    stack and applies a <span class="hidden">n \times n</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ masked convolution of type &#39;B&#39;,
+    such that the mask only looks at the above pixels. The convolution takes in <span class="hidden">p</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    feature maps and produces twice that amount as the output. This is done because
+    one half goes into the <span class="hidden">\tanh</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the other goes into the sigmoid
+    activation <span class="hidden">\sigma</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. We multiply both results positionwise. In
+    essence we can interpret the sigmoid output as a gate, that decides which
+    part of the <span class="hidden">\tanh</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ output is allowed to flow.
+  </p>
+  <p>The lower part of the graph is the horizontal stack. First we process the
+    output from the vertical convolution through a 1x1 convolution and add that
+    result to the output of the horizontal convolution. That way the model can
+    attend to all above pixels and all pixels to the left. Second we use skip
+    connections in the vertical stack in order to facilitate training.
+  </p>
+  <p>Lastly the PixelCNN paper focused on conditional models. For example we
+    would like to condition the model on the label we would like to produce. As
+    we are dealing with MNIST, we could use the numbers 0-9 as an additional
+    input to the model, so that it can learn to generate specific numbers on
+    demand. This should make it easier for a model to create coherent numbers.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConditionalGatedResidualBlock</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, in_channels, kernel_size=<span class="hljs-number">3</span>, dilation=<span class="hljs-number">1</span></span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.v = VerticalStackConvolution(
+            in_channels,
+            out_channels=<span class="hljs-number">2</span> * in_channels,
+            kernel_size=kernel_size,
+            dilation=dilation,
+        )
+        self.h = HorizontalStackConvolution(
+            in_channels,
+            out_channels=<span class="hljs-number">2</span> * in_channels,
+            kernel_size=kernel_size,
+            dilation=dilation,
+        )
+        self.v_to_h = nn.Conv2d(<span class="hljs-number">2</span> * in_channels, <span class="hljs-number">2</span> * in_channels, kernel_size=<span class="hljs-number">1</span>)
+        self.v_to_res = nn.Conv2d(in_channels, in_channels, kernel_size=<span class="hljs-number">1</span>)
+
+        self.v_embedding = nn.Embedding(num_embeddings=<span class="hljs-number">10</span>, embedding_dim=in_channels)
+        self.h_embedding = nn.Embedding(num_embeddings=<span class="hljs-number">10</span>, embedding_dim=in_channels)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, v_prev, h_prev, num_cls</span>):
+        <span class="hljs-comment"># calculate embeddings to condition the model</span>
+        v_embedding = self.v_embedding(num_cls).unsqueeze(-<span class="hljs-number">1</span>).unsqueeze(-<span class="hljs-number">1</span>)
+        h_embedding = self.h_embedding(num_cls).unsqueeze(-<span class="hljs-number">1</span>).unsqueeze(-<span class="hljs-number">1</span>)
+
+        <span class="hljs-comment"># vertical stack</span>
+        v = self.v(v_prev + v_embedding)
+        v_f, v_g = v.chunk(<span class="hljs-number">2</span>, dim=<span class="hljs-number">1</span>)
+        v_out = torch.tanh(v_f) * torch.sigmoid(v_g)
+
+        <span class="hljs-comment"># vertical to horizontal</span>
+        v_to_h = self.v_to_h(v)
+
+        <span class="hljs-comment"># horizontal stack</span>
+        h = self.h(h_prev + h_embedding) + v_to_h
+        h_f, h_g = h.chunk(<span class="hljs-number">2</span>, dim=<span class="hljs-number">1</span>)
+        h_out = torch.tanh(h_f) * torch.sigmoid(h_g)
+
+        <span class="hljs-comment"># skip connection</span>
+        h_out = self.v_to_res(h_out)
+        h_out += h_prev
+
+        <span class="hljs-keyword">return</span> v_out, h_out
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ConditionalGatedPixelCNN</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_dim, dilations=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.v = VerticalStackConvolution(
+            in_channels=<span class="hljs-number">1</span>, out_channels=hidden_dim, kernel_size=<span class="hljs-number">7</span>, mask_type=<span class="hljs-string">&quot;A&quot;</span>
+        )
+        self.h = HorizontalStackConvolution(
+            in_channels=<span class="hljs-number">1</span>, kernel_size=<span class="hljs-number">7</span>, out_channels=hidden_dim, mask_type=<span class="hljs-string">&quot;A&quot;</span>
+        )
+
+        self.gated_residual_blocks = nn.ModuleList(
+            [
+                ConditionalGatedResidualBlock(
+                    hidden_dim, kernel_size=<span class="hljs-number">3</span>, dilation=dilation
+                )
+                <span class="hljs-keyword">for</span> dilation <span class="hljs-keyword">in</span> dilations
+            ]
+        )
+
+        self.conv = nn.Conv2d(
+            in_channels=hidden_dim, out_channels=hidden_dim, kernel_size=<span class="hljs-number">1</span>
+        )
+
+        <span class="hljs-comment"># we apply a 256 way softmax</span>
+        self.output = nn.Conv2d(in_channels=hidden_dim, out_channels=<span class="hljs-number">256</span>, kernel_size=<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x, label</span>):
+        v = self.v(x)
+        h = self.h(x)
+
+        <span class="hljs-keyword">for</span> gated_layer <span class="hljs-keyword">in</span> self.gated_residual_blocks:
+            v, h = gated_layer(v, h, label)
+
+        out = self.conv(F.relu(h))
+        out = self.output(F.relu(out))
+        <span class="hljs-comment"># from Batch, Classes, Height, Width to Batch, Classes, Channel, Height, Width</span>
+        out = out.unsqueeze(dim=<span class="hljs-number">2</span>)
+        <span class="hljs-keyword">return</span> out<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>If we train our model for 25 epochs we get images similar to those below.
+    The quality of the generated images is clearly a lot better than those we
+    created in the previous section.
+  </p>
+  <div class="flex justify-center items-center"><img src="/_app/immutable/assets/generated_images.8d1cf45f.webp" alt="Generated MNIST Images" class="w-96"></div>
+  <div class="separator"></div></div>
+
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3"> van den Oord, Aäron and Kalchbrenner, Nal and Vinyals, Oriol and Espeholt, Lasse and Graves, Alex and Kavukcuoglu, Koray.
+            Conditional Image Generation with PixelCNN Decoders.
+            
+            
+            
+            
+            (2016).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  </div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 14],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

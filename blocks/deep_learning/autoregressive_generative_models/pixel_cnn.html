@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/PythonCode.ad6e34a0.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-deep_learning-autoregressive_generative_models-pixel_cnn-page.svelte.cf0aa007.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/InternalLink.7deb899c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PlayButton.85103c5a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/ButtonContainer.e9aac418.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/PythonCode.212ba7a6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Plus.fc904b16.js"><title>PixelCNN - World4AI</title><!-- HEAD_svelte-hl6non_START --><meta name="description" content="PixelCNN is an anotregressive generative image model, that was developed by DeepMind. The model uses masked convolutions, thereby filtering out future pixels that the model should not have access to. At the time of the publishing the research at DeepMind produced state of the art results in image generation."><!-- HEAD_svelte-hl6non_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END --><!-- HEAD_svelte-32u38c_START --><!-- HTML_TAG_START --><style>/*!
+  Theme: Github
+  Author: Defman21
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.09.0
+*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{color:#333;background:#fff}.hljs ::selection,.hljs::selection{background-color:#c8c8fa;color:#333}.hljs-comment{color:#969896}.hljs-tag{color:#e8e8e8}.hljs-operator,.hljs-punctuation,.hljs-subst{color:#333}.hljs-operator{opacity:.7}.hljs-bullet,.hljs-deletion,.hljs-name,.hljs-selector-tag,.hljs-template-variable,.hljs-variable{color:#ed6a43}.hljs-attr,.hljs-link,.hljs-literal,.hljs-number,.hljs-symbol,.hljs-variable.constant_{color:#0086b3}.hljs-class .hljs-title,.hljs-title,.hljs-title.class_{color:#795da3}.hljs-strong{font-weight:700;color:#795da3}.hljs-addition,.hljs-built_in,.hljs-code,.hljs-doctag,.hljs-keyword.hljs-atrule,.hljs-quote,.hljs-regexp,.hljs-string,.hljs-title.class_.inherited__{color:#183691}.hljs-attribute,.hljs-function .hljs-title,.hljs-section,.hljs-title.function_,.ruby .hljs-property{color:#795da3}.diff .hljs-meta,.hljs-keyword,.hljs-template-tag,.hljs-type{color:#a71d5d}.hljs-emphasis{color:#a71d5d;font-style:italic}.hljs-meta,.hljs-meta .hljs-keyword,.hljs-meta .hljs-string{color:#333}.hljs-meta .hljs-keyword,.hljs-meta-keyword{font-weight:700}</style><!-- HTML_TAG_END --><!-- HEAD_svelte-32u38c_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Fundamentals</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/artificial_intelligence">Artificial Intelligence</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/machine_learning">Machine Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/definition">Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/history">History Of Deep Learning</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/faq">FAQ</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/fundamentals/mathematical_notation">Mathematical Notation</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Linear Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/pytorch_tensors">PyTorch Tensors</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_model">Linear Model</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/mean_squared_error">Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/gradient_descent">Gradient Descent</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/minimizing_mean_squared_error">Minimizing MSE</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/linear_regression/linear_neuron">Linear Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Logistic Regression</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_softmax">Sigmoid and Softmax</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy">Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/cross_entropy_vs_mean_squared_error">Cross-Entropy vs Mean Squared Error</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/minimizing_cross_entropy">Minimizing Cross-Entropy</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/logistic_regression/sigmoid_neuron">Sigmoid Neuron</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Neural Network</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/nonlinear_problems">Nonlinear Problems</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/training">Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/geometric_interpretation">Geometric Interpretation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/neural_network/data_modules_optimizers_losses">Data, Modules, Optimizers, Losses</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Feature Scaling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/feature_scaling/solving_mnist">Solving MNIST</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Overfitting</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/train_test_validate">Train, Test, Validate</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/data_augmentation">Data Augmentation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/regularization">Regularization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/dropout">Dropout</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/overfitting/early_stopping">Early Stopping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Vanishing and Exploding Gradients</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/activation_functions">Activation Functions</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/weight_initialization">Weight Initialization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/vanishing_exploding_gradients/gradient_clipping">Gradient Clipping</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Stability and Speedup</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/optimizers">Optimizers</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/batch_normalization">Batch Normalization</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/skip_connections">Skip Connections</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/stability_speedup/learning_rate_scheduling">Learning Rate Scheduling</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Computer Vision</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/convolutional_neural_networks">Convolutional Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/mixed_precision_training">Mixed Precision Training</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/lenet_5">LeNet-5</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/alexnet">AlexNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/vgg">VGG</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/googlenet">GoogLeNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/resnet">ResNet</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/computer_vision/transfer_learning">Transfer Learning</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Sequence Modelling</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks">Recurrent Neural Networks</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/recurrent_neural_networks_types">Types Of RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/biderectional_recurrent_neural_networks">Biderectional RNNs</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/lstm">LSTM</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/sequence_modelling/word_embeddings">Word Embeddings</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Attention</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bahdanau_attention">Bahdanau Attention</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/transformer">Transformer</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/bert">BERT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/gpt">GPT</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/attention/vision_transformer">Vision Transformer</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Autoregressive Generative Models</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/deep_learning/autoregressive_generative_models/pixel_cnn">PixelCNN</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn">Gated PixelCNN</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<div class="container mx-auto" style="max-width: 1000px"><h1>PixelCNN</h1>
+  <div class="separator"></div>
+  <p><strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">PixelCNN</strong><a id="reference-origin-1" class="text-black text-xs align-top font-bold scroll-mt-24 no-underline" href="#reference-1">[1]
+</a> is an
+    autoregressive generative image model that came out of DeepMind. The authors
+    introduced 4 types of models simultaneously: RowLSTM, Diagonal BiLSTM, Multi-Scale
+    PixelRNN and PixelCNN. While the models that were based on recurrent neural networks
+    performed better originally, PixelCNN was a lot easier to parallelize. Over the
+    next years a lot of improvement were done to PixelCNN, which resulted in a much
+    better performance. In this section we will focus on the original PixelCNN implementation
+    and look at some improvements in the coming sections.
+  </p>
+  <p>Our PyTorch implementation is inspired by <a href="https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/tutorial12/Autoregressive_Image_Modeling.html" target="_blank" rel="noreferrer">UvA Deep Learning Tutorials</a>. We recommend you check out their tutotorial if you want to get a deeper
+    understanding of PixelCNN and Gated PixelCNN (will be covered in the next
+    section).
+  </p>
+  <div class="separator"></div>
+
+  <h2>Masked Convolutions</h2>
+  <p>Let&#39;s utilize a stylized example of a 4x4 image in order to understand what
+    role <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">masked convolutions</strong> play and why they are necessary.
+  </p>
+
+  <div class="w-full"><div style="max-width: 120px;" class="my-0 mx-auto"><svg viewBox="0 0 120 120"><rect x="2" y="2" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="2" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="2" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="2" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="2" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="2" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="2" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect></svg></div></div>
+  <p>We need to process the image in such a way, that the size (height and width)
+    of the input and the output feature maps are identical. So given a 4x4 image
+    and a 3x3 convolution, we need a padding of 1 on each side of the 2d image.
+  </p>
+  <div class="w-full"><div style="max-width: 180px;" class="my-0 mx-auto"><svg viewBox="0 0 180 180"><rect x="2" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="152" width="25" height="25" class="fill-white" stroke="black"></rect></svg></div></div>
+  <p>This is required, because we want to end up with a probability distribution
+    for each pixel. For each of the 4x4 pixels we end up with a 256-way softmax
+    layer. Each of the 256 numbers represents the probability of the pixel to be
+    one of the 256 integer values between 0 and 255. We can use those
+    probabilities to sample pixel values from the multinomial distribution. So
+    in our example we would start with a greyscale image of shape 1x4x4 and end
+    up with 256x1x4x4.
+  </p>
+  <p>Now if you look at the kernel below, as indicated by the red dots, you will
+    hopefully see a problem in this type of calculation. The very first output
+    contains knowledge about future pixels. Autoregressive generative models
+    take in previous pixels to generate future pixels. If previous pixels
+    contain knowledge about the future, that would be considered cheating and
+    while our training process would look great, inference would produce
+    garbage, because the model would not have learned how to generate pixels
+    based solely on the past.
+  </p>
+  <div class="w-full"><div style="max-width: 180px;" class="my-0 mx-auto"><svg viewBox="0 0 180 180"><rect x="2" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><circle cx="14.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="74.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="74.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="74.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="74.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="74.5" cy="74.5" r="4" class="fill-red-400" stroke="black"></circle></svg></div></div>
+  <p>To deal with this problem, we need to apply a mask to the kernel.
+    Essentially we multiply the kernel values that would access future pixels
+    with zeros, thereby zeroing out the weights of kernel positions that relate
+    to future pixels.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 180px;" class="my-0 mx-auto"><svg viewBox="0 0 180 180"><rect x="2" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><circle cx="14.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle><circle cx="44.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="44.5" r="4" class="fill-none" stroke="black"></circle><circle cx="44.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle><circle cx="74.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="74.5" cy="44.5" r="4" class="fill-none" stroke="black"></circle><circle cx="74.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle></svg></div></div>
+  <p>There are two types of kernel masks that are used for PixelRNNs. The above
+    mask is of type <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">A</strong>. A type A mask zeroes out all
+    values up to the position we would like to produceIn the below example on
+    the other hand we use a mask of type <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">B</strong>. A type B mask
+    does not zero out the position in the input feature map that corresponds to
+    the position in the output feature map.
+  </p>
+  <div class="flex items-center justify-center py-1 px-0 my-2 mx-auto bg-slate-200 rounded-xl max-w-sm"><button>
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-label="Start the animation" class="lucide-icon lucide lucide-play-circle fill-w4ai-yellow"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg></button></div>
+  <div class="w-full"><div style="max-width: 180px;" class="my-0 mx-auto"><svg viewBox="0 0 180 180"><rect x="2" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="2" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="32" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="32" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="62" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="62" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="92" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="92" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="122" y="32" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="62" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="92" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="122" width="25" height="25" class="fill-slate-300" stroke="black"></rect><rect x="122" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="2" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="32" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="62" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="92" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="122" width="25" height="25" class="fill-white" stroke="black"></rect><rect x="152" y="152" width="25" height="25" class="fill-white" stroke="black"></rect><circle cx="14.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="14.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle><circle cx="44.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="44.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="44.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle><circle cx="74.5" cy="14.5" r="4" class="fill-red-400" stroke="black"></circle><circle cx="74.5" cy="44.5" r="4" class="fill-none" stroke="black"></circle><circle cx="74.5" cy="74.5" r="4" class="fill-none" stroke="black"></circle></svg></div></div>
+  <p>The PixelCNN architecture uses type A masks for the input image, while type
+    B masks are applied to all intermediary results. When we get the actual
+    image as input and try to generate a pixel, we have to use mask A in order
+    to hide the actual pixel the model tries to predict. So when we try to
+    predict the very first pixel, the model can only look at zero padded values.
+    After the first processing step with mask of type A the values do not
+    contain actual information about the original pixel in that position, but
+    only information about pixel values that surround the pixel we are trying to
+    produce, so we can use mask B safely.
+  </p>
+  <p>We create a special <code>MaskedConvolution</code> module, that we can reuse
+    in several places. The module implements a different mask depending on the type
+    of the mask. The padding of the convolution operation is determined automatically
+    based on the kernel size and dilations. Dilations are not explicitly mentioned
+    in the research paper, but they seem to slightly imrove the quality of the generated
+    images.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">MaskedConvolution</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">
+        self, in_channels, out_channels, kernel_size=(<span class="hljs-params"><span class="hljs-number">3</span>, <span class="hljs-number">3</span></span>), mask_type=<span class="hljs-string">&quot;B&quot;</span>, dilation=<span class="hljs-number">1</span>
+    </span>):
+        <span class="hljs-built_in">super</span>().__init__()
+
+        <span class="hljs-keyword">assert</span> mask_type <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>]
+        mask = torch.zeros(kernel_size)
+        mask[: kernel_size[<span class="hljs-number">0</span>] // <span class="hljs-number">2</span>, :] = <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> mask_type == <span class="hljs-string">&quot;A&quot;</span>:
+            mask[kernel_size[<span class="hljs-number">0</span>] // <span class="hljs-number">2</span>, : kernel_size[<span class="hljs-number">1</span>] // <span class="hljs-number">2</span>] = <span class="hljs-number">1</span>
+        <span class="hljs-keyword">elif</span> mask_type == <span class="hljs-string">&quot;B&quot;</span>:
+            mask[kernel_size[<span class="hljs-number">0</span>] // <span class="hljs-number">2</span>, : kernel_size[<span class="hljs-number">1</span>] // <span class="hljs-number">2</span> + <span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
+        self.register_buffer(<span class="hljs-string">&quot;mask&quot;</span>, mask)
+
+        <span class="hljs-comment"># add conv2d layer</span>
+        padding = <span class="hljs-built_in">tuple</span>([dilation * (size - <span class="hljs-number">1</span>) // <span class="hljs-number">2</span> <span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> kernel_size])
+        self.conv = nn.Conv2d(
+            in_channels=in_channels,
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            dilation=dilation,
+            padding=padding,
+        )
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        <span class="hljs-keyword">with</span> torch.inference_mode():
+            self.conv.weight *= self.mask
+        <span class="hljs-keyword">return</span> self.conv(x)
+<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div>
+
+  <h2>Skip Connections</h2>
+  <p>In order to facilitate training, PixelCNN utilizes skip connections, by
+    constructing residual blocks. The residual block scales down the number of
+    hidden features from 2h to h, before a masked &#39;B&#39; convolution is applied.
+    Afterwards the dimension is scaled up again and the original input to the
+    block and the output are summed.
+  </p>
+  <div class="w-full"><div style="max-width: 250px;" class="my-0 mx-auto"><svg viewBox="0 0 220 220"><g transform="translate(-5 -10)"><circle cx="30" cy="40" r="10" class="" fill="none" stroke="black"></circle>
+<line x1="30" y1="34" x2="30" y2="46" stroke="black"></line>
+<line x1="36" y1="40" x2="24" y2="40" stroke="black"></line><rect x="110" y="185" width="100" height="30" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<text font-size="20px" x="160" y="200" class="svelte-1i3ahvn">1x1 Conv</text><rect x="110" y="105" width="100" height="30" stroke="black" class="fill-red-100" fill="none"></rect>
+
+<text font-size="20px" x="160" y="120" class="svelte-1i3ahvn">3x3 Conv</text><rect x="110" y="25" width="100" height="30" stroke="black" class="fill-blue-100" fill="none"></rect>
+
+<text font-size="20px" x="160" y="40" class="svelte-1i3ahvn">1x1 Conv</text><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M30,220L30,60" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M30,200L100,200" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M160,180L160,145" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M160,100L160,65" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M110,40L50,40" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="57.5" y="167.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="70" y="180" class="svelte-1i3ahvn">2h</text><rect x="57.5" y="47.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="70" y="60" class="svelte-1i3ahvn">2h</text><rect x="127.5" y="67.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="140" y="80" class="svelte-1i3ahvn">h</text><rect x="127.5" y="147.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="140" y="160" class="svelte-1i3ahvn">h</text></g></svg></div></div>
+  <p>Additionally to the behaviour described above, we add <code>BatchNorm2d</code> before each activation function. This helps out with the training stability
+    and overfitting.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">ResidualBlock</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_dim, dilation=<span class="hljs-number">1</span></span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.block = nn.Sequential(
+            nn.Conv2d(
+                in_channels=hidden_dim * <span class="hljs-number">2</span>, out_channels=hidden_dim, kernel_size=<span class="hljs-number">1</span>
+            ),
+            nn.BatchNorm2d(hidden_dim),
+            nn.ReLU(),
+            MaskedConvolution(
+                in_channels=hidden_dim, out_channels=hidden_dim, dilation=dilation
+            ),
+            nn.BatchNorm2d(hidden_dim),
+            nn.ReLU(),
+            nn.Conv2d(
+                in_channels=hidden_dim, out_channels=hidden_dim * <span class="hljs-number">2</span>, kernel_size=<span class="hljs-number">1</span>
+            ),
+            nn.BatchNorm2d(hidden_dim * <span class="hljs-number">2</span>),
+            nn.ReLU(),
+        )
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        block = self.block(x)
+        <span class="hljs-keyword">return</span> x + block<!-- HTML_TAG_END --></code></pre>
+</div>
+  <div class="separator"></div>
+
+  <h2>Model</h2>
+  <p>At this point we have all the ingredients to describe a PixelCNN
+    architecture. We use a 7x7 masked convolutional layer of type &#39;A&#39; to the
+    input image. The output is followed up by 7 residual blocks, which utilize
+    masked convolutions of type &#39;B&#39;. The final outputs adjust the number of
+    feature maps to the desired 256 and the softmax nonlinearity is applied.
+  </p>
+  <div class="w-full"><div style="max-width: 300px;" class="my-0 mx-auto"><svg viewBox="0 0 220 200"><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M140,0L140,190" stroke="black" stroke-dasharray="4 4" stroke-dashoffset="0" fill="none" stroke-width="2" marker-end="url(#triangle)"></path><rect x="65" y="25" width="150" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<text font-size="15px" x="140" y="40" class="svelte-1i3ahvn">7x7 Conv, Type 'A'</text><rect x="65" y="65" width="150" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<text font-size="15px" x="140" y="80" class="svelte-1i3ahvn">Skip Connections</text><rect x="7.5" y="67.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="20" y="80" class="svelte-1i3ahvn">7x</text><rect x="65" y="105" width="150" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<text font-size="15px" x="140" y="120" class="svelte-1i3ahvn">1x1 Conv</text><rect x="7.5" y="107.5" width="25" height="25" stroke="black" class="" fill="none"></rect>
+
+<text font-size="15px" x="20" y="120" class="svelte-1i3ahvn">2x</text><rect x="65" y="145" width="150" height="30" stroke="black" class="fill-blue-200" fill="none"></rect>
+
+<text font-size="15px" x="140" y="160" class="svelte-1i3ahvn">256-way Softmax</text></svg></div></div>
+  <p>We add different types of dialitions for each ResidialBlock to allow the
+    model to attend to pixels, that are farther away from the current position.
+    You can experiment with those values to see if you can achieve better
+    results.
+  </p>
+  
+
+<div class="border my-2 text-sm">
+  <pre data-language="python" class=" svelte-1h28s4b"><code class="hljs"><!-- HTML_TAG_START --><span class="hljs-keyword">class</span> <span class="hljs-title class_">PixelCNN</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_dim</span>):
+        <span class="hljs-built_in">super</span>().__init__()
+        self.layers = nn.Sequential(
+            MaskedConvolution(
+                in_channels=<span class="hljs-number">1</span>,
+                out_channels=hidden_dim * <span class="hljs-number">2</span>,
+                kernel_size=(<span class="hljs-number">7</span>, <span class="hljs-number">7</span>),
+                mask_type=<span class="hljs-string">&quot;A&quot;</span>,
+            ),
+            nn.BatchNorm2d(hidden_dim * <span class="hljs-number">2</span>),
+            nn.ReLU(),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">1</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">2</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">1</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">3</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">1</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">2</span>),
+            ResidualBlock(hidden_dim, dilation=<span class="hljs-number">1</span>),
+            nn.Conv2d(hidden_dim * <span class="hljs-number">2</span>, hidden_dim * <span class="hljs-number">2</span>, kernel_size=<span class="hljs-number">1</span>),
+            nn.BatchNorm2d(hidden_dim * <span class="hljs-number">2</span>),
+            nn.ReLU(),
+            nn.Conv2d(hidden_dim * <span class="hljs-number">2</span>, <span class="hljs-number">256</span>, kernel_size=<span class="hljs-number">1</span>),
+        )
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        x = self.layers(x)
+        x = x.view(-<span class="hljs-number">1</span>, <span class="hljs-number">256</span>, <span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>)
+        <span class="hljs-keyword">return</span> x<!-- HTML_TAG_END --></code></pre>
+</div>
+  <p>The qualityt of the generated images is far from optimal. Some of the images
+    actually correspond to digits, others look &#39;digit-like&#39;, but overall there
+    is room for improvement. Gated PixelCNNs will allow us to generate higher
+    quality images. This is going to be the topic of the next section.
+  </p>
+  <div class="flex justify-center items-center"><img src="/_app/immutable/assets/generated_images.d51f44b4.webp" alt="Generated MNIST Images" class="w-96"></div></div>
+<div class="separator"></div>
+<footer class="container mx-auto"><section></section>
+  <section class="references"><h4 class="mb-2">References</h4>
+      <ol class="references"><li id="reference-1" class="text-sm leading-3 opacity-50 mb-3">Oord, Aaron and Kalchbrenner, Nal and Kavukcuoglu, Koray.
+            Pixel Recurrent Neural Networks.
+            
+            
+            
+            
+            (2016).
+            <a href="#reference-origin-1" class="inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg></a>
+          </li></ol></section></footer>
+<div class="separator"></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/deep_learning/autoregressive_generative_models/introduction"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/deep_learning/autoregressive_generative_models/gated_pixel_cnn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 16],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

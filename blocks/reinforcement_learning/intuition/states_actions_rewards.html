@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-security-policy" content="">
+		<link href="../../../_app/immutable/assets/_layout.1428866a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/_layout.c302c1ba.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Block.5196796e.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/start.0686d7cc.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4d92b023.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/singletons.b5fab157.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.e1ba4c1e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/app.bbaaaf6b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.svelte.cd4aa2d6.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Icon.8b13d35a.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/_layout.js.984db11e.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.da46b06b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.svelte.8aefdd09.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/stores.ead570af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/arrow-right-circle.181d46af.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-layout.js.b7894951.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/_layout.02aace96.js">
+		<link rel="modulepreload" href="../../../_app/immutable/entry/blocks-(blocks)-reinforcement_learning-intuition-states_actions_rewards-page.svelte.2f014d8b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Container.b0705c7b.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Alert.25a852b3.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Highlight.b7c1de53.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Latex.e0b308c0.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/RandomAgent.2a3051e9.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Interaction.6c345f67.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/maps.0f079072.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/SvgContainer.f70b5745.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/color.667ef569.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Block.059eddcd.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/Arrow.ae91874c.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.5d25d445.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.7e899070.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/index.4de27e87.js">
+		<link rel="modulepreload" href="../../../_app/immutable/chunks/HeaderEntry.2b6e8f51.js"><title>States, Actions, Rewards - World4AI</title><!-- HEAD_svelte-1epgo2s_START --><meta name="description" content="In reinforcement learning the agent and the environment exchange three distinct signals between each other: the state, the action and reward."><!-- HEAD_svelte-1epgo2s_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END --><!-- HEAD_svelte-a6me6e_START --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous"><!-- HEAD_svelte-a6me6e_END -->
+  </head>
+  <body>
+    <div id="svelte">
+
+
+<header class="sticky top-0 left-0 w-full z-50 select-none py-2 bg-white border-b"><div class="container mx-auto flex flex-row justify-between items-center"><div class="flex items-center space-x-3"><a href="/"><img src="/logo/logo.svg" class="w-[20px] h-[20px] max-w-[20px]" alt="World4AI Logo"></a>
+      <span class="font-bold tracking-[5px] uppercase">World4AI</span></div>
+    
+    <button class="md:hidden" aria-label="hamburger-navigation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-more-vertical "><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></button>
+
+    
+    <nav class="bg-white hidden md:block drop-shadow-md md:drop-shadow-none absolute md:relative right-2 top-full p-2 md:p-0 hidden"><div class="flex flex-col md:flex-row"><ul class="flex flex-col md:flex-row md:space-x-10 lg:space-x-20 text-sm"><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/">Home</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/blocks/introduction">Blocks</a>
+              <ul class="z-10 bg-white text-left whitespace-nowrap md:hidden md:group-hover:block md:absolute md:drop-shadow-lg"><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/introduction">Introduction</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/deep_learning/fundamentals/introduction">Deep Learning</a>
+                    </li><li><a class="no-underline inline-block py-2 px-4 w-full hover:bg-gray-100" href="/blocks/reinforcement_learning/intuition/introduction">Reinforcement Learning</a>
+                    </li>
+                </ul>
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/sponsor">Sponsor</a>
+              
+            </li><li class="group relative"><a class="no-underline inline-block p-2 hover:bg-gray-100" href="/about">About</a>
+              
+            </li></ul>
+        <div class="flex justify-center items-center gap-2 ml-6"><a href="https://github.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github "><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+          <a href="https://twitter.com/World4AI" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter "><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a></div></div></nav></div></header>
+<div class="container mx-auto mb-2"><div class="py-2 xl:hidden sticky top-12 left-0 right-0 z-50"><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div>
+
+  <div class="xl:hidden hidden"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+  <div class="xl:grid xl:grid-cols-5 gap-2"><div class="hidden xl:block"><aside class="bg-gray-100 select-none border-r sticky top-[53px] left-0 max-h-[92vh] overflow-y-auto z-40 svelte-guid7z"><nav class="p-4"><h6 class="font-bold text-sm">Intuition</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/applications">Applications</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/agent_environment">Agent and Environment</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/definition">Definition of RL</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200 border-red-400" href="/blocks/reinforcement_learning/intuition/states_actions_rewards">States, Actions, Rewards</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma">Exploration vs Exploitation</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/intuition/value_policy_model">Value, Policy, Model</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Markov Decision Process</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/definition">Definition</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/markov_decision_process/solution">Solution</a>
+          </li>
+      </ul><h6 class="font-bold text-sm">Dynamic Programming</h6>
+      <ul class="text-sm mb-4"><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/introduction">Introduction</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/policy_iteration">Policy Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/value_iteration">Value Iteration</a>
+          </li><li><a class="no-underline border-l inline-block py-2 px-4 w-full hover:bg-gray-200" href="/blocks/reinforcement_learning/dynamic_programming/generalized_policy_iteration">Generalized Policy Iteration</a>
+          </li>
+      </ul></nav>
+</aside></div>
+    <main class="lg:col-span-4"><article>
+
+<h1>States, Actions, Rewards</h1>
+<div class="separator"></div>
+
+<div class="container mx-auto" style="max-width: 1000px"><p>In reinforcement learning the agent and the environment interact with each
+    other. In this context interaction means that signals flows sequentially
+    between the two. The agent and the environment interact continuously, each
+    reacting to the data sent by the other.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">In reinforcement learning the sequential information flow between the agent
+    and the environment is called interaction.
+  </p></div>
+  <p>It is important to understand that this stream of data is exchanged in a
+    strictly sequential way. When the environment sends a signal for example, it
+    has to wait until it receives the response signal from the agent. Only then
+    can the environment generate a new batch of data. Reinforcement learning
+    works in discrete timesteps. Each iteration where the environment and the
+    agent exchanged their data constitutes a <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">timestep</strong>.
+  </p>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">In reinforcement learning there are just 3 types of data that need to be
+    send between the agent and the environment: <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">states</strong>,
+    <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">actions</strong>
+    and <strong class="bg-slate-200 text-black inline-block py-1 px-2 m-0 leading-5">rewards</strong>.
+  </p></div>
+  <div class="w-full"><div style="max-width: 400px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 400 400"><rect x="120" y="5" width="160" height="60" stroke="black" class="fill-yellow-200" fill="none"></rect>
+
+<text font-size="23" x="200" y="35" class="svelte-1i3ahvn">Agent</text><rect x="120" y="335" width="160" height="60" stroke="black" class="fill-green-200" fill="none"></rect>
+
+<text font-size="23" x="200" y="365" class="svelte-1i3ahvn">Environment</text><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M120,365L50,365L50,35L110,35" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2.5" marker-end="url(#triangle)"></path><marker xmlns="http://www.w3.org/2000/svg" id="triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto" fill="black" stroke="black"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker>
+
+<path d="M280,35L350,35L350,365L290,365" stroke="black" stroke-dasharray="8 8" stroke-dashoffset="0" fill="none" stroke-width="2.5" marker-end="url(#triangle)"></path><rect x="332.5" y="182.5" width="35" height="35" stroke="black" class="fill-slate-200" fill="none"></rect>
+
+<foreignObject x="332.5" y="182.5" width="35" height="35"><div style="font-size: 22px; height: 35px" class="flex justify-center items-center"><span class="hidden">A</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="7.5" y="182.5" width="35" height="35" stroke="black" class="fill-slate-200" fill="none"></rect>
+
+<foreignObject x="7.5" y="182.5" width="35" height="35"><div style="font-size: 22px; height: 35px" class="flex justify-center items-center"><span class="hidden">S</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject><rect x="57.5" y="182.5" width="35" height="35" stroke="black" class="fill-slate-200" fill="none"></rect>
+
+<foreignObject x="57.5" y="182.5" width="35" height="35"><div style="font-size: 22px; height: 35px" class="flex justify-center items-center"><span class="hidden">R</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+</div></foreignObject></svg></div></div>
+  <p>The interaction cycle starts with the the agent receiving the initial state
+    <span class="hidden">S_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+
+    from the environment. Based on that state the agent generates the action <span class="hidden">A_0</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ it would like to take, which is transmitted to the environment. The environment
+    transitions into the new state<span class="hidden">S_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and calculates the reward <span class="hidden">R_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+. The new state and the reward are finally transmitted to the agent. The
+    agent can use the reward as a feedback to learn, while the new state is used
+    to generates the action <span class="hidden">A_1</span>
+<span class="inline-block px-0 py-[2px] md:whitespace-nowrap"><!-- HTML_TAG_START -->undefined<!-- HTML_TAG_END --></span>
+
+ and the cycle keeps repeating, ponentially
+    forever.
+  </p>
+  <div class="separator"></div>
+
+  <h2>State</h2>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">The state is the representation of the current condition of the environment.
+  </p></div>
+  <p>The state describes how the environment actually looks like. It is the
+    condition that the agent is facing and the one parameter that the agent
+    bases its decisions on.
+  </p>
+  <p>In our simple gridworld example all the agent needs to know to make the
+    decisions is the location of the circle in the environment. In the starting
+    position the state would be row=0 and column=0. The state to the right of
+    the starting position would be row equals to 0 and column equals to 1,
+    meaning (0, 1). Based on the position the agent can choose the path towards
+    the triangle.
+  </p>
+  <div class="mx-auto mb-4 max-w-sm"><div class="overflow-auto rounded-lg shadow"><table class="w-full"><thead class="bg-gray-50 border-b-2 border-gray-200"><tr><th class="p-3 text-sm text-left font-semibold tracking-wide">Column</th>
+      <th class="p-3 text-sm text-left font-semibold tracking-wide">Row</th></tr></thead>
+  <tbody class="divide-y divide-gray-100"></tbody></table></div></div>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect stroke-width="0.3" x="0" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="10" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="110" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="210" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon stroke="black" class="fill-blue-400" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div></div>
+  <p>This is not the only way to represent the the state of the environment. The
+    state can be represented by a scalar, a vector, a matrix or a tensor and can
+    be either discrete or continuous. In future chapters we will see more
+    complex environments and learn how to deal with those. For now it is
+    sufficient to know what role the state plays in the action-environment
+    interaction.
+  </p>
+  <div class="separator"></div>
+
+  <h2>Action</h2>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">The action is the representation of the decision of the agent.
+  </p></div>
+  <p>The action is the behaviour the agent chooses based on the state of the
+    environment. Like the state the action can be a scalar, a vector, a matrix
+    or a tensor of discrete or continuous values.
+  </p>
+  <p>In the gridworld example the agent can move north, east, south and west.
+    Each action is encoded by a discrete scalar value, where north equals 0,
+    east equals 1, south equals 2 and west equals 3.
+  </p>
+  <div class="mx-auto mb-4 max-w-xs"><div class="w-full"><div style="max-width: 100px;" class="my-0 mx-auto"><svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="70" fill="none" stroke="black" class="fill-slate-300"></circle><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" fill="black"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs></svg></div></div>
+
+<div class="overflow-auto rounded-lg shadow"><table class="w-full"><thead class="bg-gray-50 border-b-2 border-gray-200"><tr><th class="p-3 text-sm text-left font-semibold tracking-wide">Action</th></tr></thead>
+  <tbody class="divide-y divide-gray-100"><tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="bg-red-100 px-5 py-1 rounded-full">null</span></td></tr></tbody></table></div></div>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect stroke-width="0.3" x="0" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="10" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="110" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="210" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon stroke="black" class="fill-blue-400" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div></div>
+  <div class="separator"></div>
+
+  <h2>Reward</h2>
+  <div class="flex flex-col justify-start items-start gap-3 px-6 py-4 my-2 bg-w4ai-lightblue" style="color: black;"><div class="flex justify-start items-center gap-2 border-b border-black/5 w-full pb-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-info "><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+      <p class="m-0">Info</p></div>
+  <p class="m-0">The reward is the scalar signal to reinforce certain behaviour of the agent.
+  </p></div>
+  <p>The reward is what the agent receives from the environment for an action. It
+    is the value that the environment uses to reinforce a behaviour and it is
+    the value that the agent uses to improve it&#39;s behaviour.
+  </p>
+  <p>Unlike the action or the state the reward has to be a scalar, one single
+    number, it is not possible for the reward to be a vector, matrix or tensor.
+    As expected larger numbers represent larger or better rewards so that the
+    reward of 1 is higher than the reward of -1.
+  </p>
+  <p>In this gridworld example the agent receives a reward of -1 for each step
+    taken with the exception of reaching the triangle, where the agent receives
+    a reward of +1.
+  </p>
+  <div class="mx-auto mb-4 max-w-xs"><div class="overflow-auto rounded-lg shadow"><table class="w-full"><thead class="bg-gray-50 border-b-2 border-gray-200"><tr><th class="p-3 text-sm text-left font-semibold tracking-wide">Reward</th></tr></thead>
+  <tbody class="divide-y divide-gray-100"><tr><td class="p-3 text-sm text-gray-700 whitespace-nowrap"><span class="bg-red-100 px-5 py-1 rounded-full">null</span></td></tr></tbody></table></div></div>
+  <div class="w-full"><div style="max-width: 500px;" class="my-0 mx-auto"><svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><g id="grid">
+        <rect stroke-width="0.3" x="0" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="0" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="100" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="10" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="110" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          <rect stroke-width="3" x="210" y="210" width="80" height="80" class="fill-red-400 stroke-black"></rect>
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="200" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="300" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="0" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          <polygon stroke="black" class="fill-blue-400" stroke-width="2" points="50,440                     60,460                     40,460"></polygon>
+
+          
+          
+        <rect stroke-width="0.3" x="100" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="200" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="300" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          
+        <rect stroke-width="0.3" x="400" y="400" width="100" height="100" class="fill-gray-600 stroke-white"></rect>
+
+        
+        
+        
+
+        
+        
+
+        
+          
+
+          
+          
+
+          
+          </g></svg></div></div>
+  <div class="separator"></div></div></article>
+      <div class="container mx-auto flex justify-between"><a aria-label="previous-page" href="/blocks/reinforcement_learning/intuition/definition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-left-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" x2="8" y1="12" y2="12"></line></svg></a>
+  <a aria-label="next-page" href="/blocks/reinforcement_learning/intuition/exploration_exploitation_dilemma"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right-circle "><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" x2="16" y1="12" y2="12"></line></svg></a></div></main></div></div>
+
+
+			
+			<script>
+				{
+					__sveltekit_w0xmvm = {
+						base: new URL("../../..", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null,null];
+
+					Promise.all([
+						import("../../../_app/immutable/entry/start.0686d7cc.js"),
+						import("../../../_app/immutable/entry/app.bbaaaf6b.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2, 94],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>
