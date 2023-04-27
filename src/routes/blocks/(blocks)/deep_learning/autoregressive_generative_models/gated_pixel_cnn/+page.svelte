@@ -4,21 +4,26 @@
   import InternalLink from "$lib/InternalLink.svelte";
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Latex from "$lib/Latex.svelte";
+  import Highlight from "$lib/Highlight.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
 
   import ButtonContainer from "$lib/button/ButtonContainer.svelte";
   import PlayButton from "$lib/button/PlayButton.svelte";
 
   import Block from "$lib/diagram/Block.svelte";
   import Plus from "$lib/diagram/Plus.svelte";
+  import Multiply from "$lib/diagram/Multiply.svelte";
   import Arrow from "$lib/diagram/Arrow.svelte";
-  import Circle from "$lib/diagram/Circle.svelte";
+
+  import results from "./generated_images.png";
 
   const references = [
     {
-        author: " van den Oord, Aäron and Kalchbrenner, Nal and Vinyals, Oriol and Espeholt, Lasse and Graves, Alex and Kavukcuoglu, Koray",
-        title: "Conditional Image Generation with PixelCNN Decoders",
-        year: "2016",
-    }
+      author:
+        " van den Oord, Aäron and Kalchbrenner, Nal and Vinyals, Oriol and Espeholt, Lasse and Graves, Alex and Kavukcuoglu, Koray",
+      title: "Conditional Image Generation with PixelCNN Decoders",
+      year: "2016",
+    },
   ];
 
   const centerIdx = 4;
@@ -31,114 +36,139 @@
   let layerHorizontal = 0;
 
   function fCommon() {
-    if (layerCommon === 4){
-        layerCommon = 0;
+    if (layerCommon === 4) {
+      layerCommon = 0;
     } else {
-          layerCommon += 1;
+      layerCommon += 1;
     }
   }
 
   function fMasked() {
-    if (layerMasked === 4){
-        layerMasked = 0;
+    if (layerMasked === 4) {
+      layerMasked = 0;
     } else {
-          layerMasked += 1;
+      layerMasked += 1;
     }
   }
 
   function fVertical() {
-    if (layerVertical === 4){
-        layerVertical = 0;
+    if (layerVertical === 4) {
+      layerVertical = 0;
     } else {
-          layerVertical += 1;
+      layerVertical += 1;
     }
   }
 
   function fHorizontal() {
-    if (layerHorizontal === 4){
-        layerHorizontal = 0;
+    if (layerHorizontal === 4) {
+      layerHorizontal = 0;
     } else {
-          layerHorizontal += 1;
+      layerHorizontal += 1;
     }
   }
 
   //assume padding of 1 and kernel size 3
   function colorCommon(colIdx, rowIdx, layer) {
-    let rowDistance = Math.abs(rowIdx-centerIdx);
-    let colDistance = Math.abs(colIdx-centerIdx);
+    let rowDistance = Math.abs(rowIdx - centerIdx);
+    let colDistance = Math.abs(colIdx - centerIdx);
     if (colIdx === centerIdx && rowIdx === centerIdx) {
-        return 'black';
-    }else if(rowDistance <= layer && colDistance <= layer) {
-        return `hsl(10, ${100/Math.max(rowDistance, colDistance)+10}%, 50%)`;
+      return "black";
+    } else if (rowDistance <= layer && colDistance <= layer) {
+      return `hsl(10, ${100 / Math.max(rowDistance, colDistance) + 10}%, 50%)`;
     } else {
-        return 'none';
-    }     
+      return "none";
+    }
   }
 
   function colorMasked(colIdx, rowIdx, layer) {
-    let rowDistance = Math.abs(rowIdx-centerIdx);
-    let colDistance = Math.abs(colIdx-centerIdx);
-    let beyondMiddleLineRow = numPixels-colIdx;
+    let rowDistance = Math.abs(rowIdx - centerIdx);
+    let colDistance = Math.abs(colIdx - centerIdx);
+    let beyondMiddleLineRow = numPixels - colIdx;
     if (colIdx === centerIdx && rowIdx === centerIdx) {
-        return 'black';
-     } else if(rowDistance <= layer 
-                && colDistance <= layer
-                && rowIdx <= centerIdx
-                && rowIdx < beyondMiddleLineRow) {
-        return `hsl(10, ${100/Math.max(rowDistance, colDistance)+10}%, 50%)`;
+      return "black";
+    } else if (
+      rowDistance <= layer &&
+      colDistance <= layer &&
+      rowIdx <= centerIdx &&
+      rowIdx < beyondMiddleLineRow
+    ) {
+      return `hsl(10, ${100 / Math.max(rowDistance, colDistance) + 10}%, 50%)`;
     } else {
-        return 'none';
-    }     
+      return "none";
+    }
   }
 
   //assume padding of 1 and kernel size 3
   function colorVertical(colIdx, rowIdx, layer) {
-    let rowDistance = Math.abs(rowIdx-centerIdx);
-    let colDistance = Math.abs(colIdx-centerIdx);
+    let rowDistance = Math.abs(rowIdx - centerIdx);
+    let colDistance = Math.abs(colIdx - centerIdx);
     if (colIdx === centerIdx && rowIdx === centerIdx) {
-        return 'black';
-    }else if(rowDistance <= layer && colDistance <= layer && rowIdx < centerIdx) {
-        return `hsl(10, ${100/Math.max(rowDistance, colDistance)+10}%, 50%)`;
+      return "black";
+    } else if (
+      rowDistance <= layer &&
+      colDistance <= layer &&
+      rowIdx < centerIdx
+    ) {
+      return `hsl(10, ${100 / Math.max(rowDistance, colDistance) + 10}%, 50%)`;
     } else {
-        return 'none';
-    }     
+      return "none";
+    }
   }
 
   function colorHorizontal(colIdx, rowIdx, layer) {
-    let rowDistance = Math.abs(rowIdx-centerIdx);
-    let colDistance = Math.abs(colIdx-centerIdx);
+    let rowDistance = Math.abs(rowIdx - centerIdx);
+    let colDistance = Math.abs(colIdx - centerIdx);
     if (colIdx === centerIdx && rowIdx === centerIdx) {
-        return 'black';
-    }else if(rowDistance <= layer 
-              && colDistance <= layer 
-              && colIdx < centerIdx 
-              && rowIdx === centerIdx) {
-        return `hsl(10, ${100/Math.max(rowDistance, colDistance)+10}%, 50%)`;
+      return "black";
+    } else if (
+      rowDistance <= layer &&
+      colDistance <= layer &&
+      colIdx < centerIdx &&
+      rowIdx === centerIdx
+    ) {
+      return `hsl(10, ${100 / Math.max(rowDistance, colDistance) + 10}%, 50%)`;
     } else {
-        return 'none';
-    }     
+      return "none";
+    }
   }
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Gated PixelCNN</title>
+  <title>Gated PixelCNN - World4AI</title>
   <meta
     name="description"
     content="The gated PixelCNN model was developed by DeepMind to improve the generative quality of the common PixelCNN. The model utilizes two stacks of masked convolutions and a gated architecture to improve the performance."
   />
 </svelte:head>
 
-<h1>Gated PixelCNN</h1>
-<div class="separator"></div>
-
 <Container>
-  <p>In this section we will continue our discussion of autoregressive generative models. Specificylly we will improve the PixelCNN model by introducing gated PixelCNNs<InternalLink id={1} type="reference" />.</p>
-  <div class="separator"></div>
+  <h1>Gated PixelCNN</h1>
+  <div class="separator" />
+  <p>
+    Shortly after the initial release of the PixelCNN architecture, DeepMind
+    released the <Highlight>Gated PixelCNN</Highlight><InternalLink
+      id={1}
+      type="reference"
+    />. The paper introduced several improvements simultaneously, that reduced
+    the gap with the recurrent PixelRNN.
+  </p>
+  <div class="separator" />
 
   <h2>Vertical and horizontal Stacks</h2>
-  <p>There are several reasons why we would like to improve the PixelCNN model from the previous section. The most obvious reason is the computational performance advantage of convolutional networks over recurrent networks due to parallelization. RowLSTM on the other hand produced better quality images. Our goal is therefore to keep the computational performance of PixelCNN, while trying to improve the generative performance.</p>
-  <p>Let's start by remembering how a convolutional neural network usually works. The very first layer applies convolutions to a very tight receptive field. If we apply a 3x3 convolution, then the neural network can only look at the immediate surrounding of a particular pixel. But as we stack more and more convolutional layers on top of each other, the receptive field starts to grow.</p>
-  <p>In this interactive example we assume all calculations are considered from the perspective of the black pixel, the kernel size is 3x3 and the padding is always 1 in order to keep the size of the image constant.</p>
+  <p>
+    The PixelCNN has a limitation, that is not obvious at first glance. To
+    explain that limitation let's remember how a convolutional neural network
+    usually works. The very first layer applies convolutions to a tight
+    receptive field around a particular pixel. If we apply a 3x3 convolution,
+    then the neural network can only look at the immediate surroundings of a
+    particular pixel. But as we stack more and more convolutional layers on top
+    of each other, the receptive field starts to grow.
+  </p>
+  <p>
+    In this interactive example we assume that all calculations are considered
+    from the perspective of the black pixel, the kernel size is 3x3 and the
+    padding is always 1 in order to keep the size of the image constant.
+  </p>
   <ButtonContainer>
     <PlayButton f={fCommon} />
   </ButtonContainer>
@@ -146,20 +176,23 @@
     <svg viewBox="0 0 250 250">
       {#each Array(numPixels) as _, colIdx}
         {#each Array(numPixels) as _, rowIdx}
-          <rect 
-            x={gap+colIdx*(pixelSize+gap)} 
-            y={gap+rowIdx*(pixelSize+gap)} 
-            width={pixelSize} 
-            height={pixelSize} 
-            stroke="var(--text-color)"
+          <rect
+            x={gap + colIdx * (pixelSize + gap)}
+            y={gap + rowIdx * (pixelSize + gap)}
+            width={pixelSize}
+            height={pixelSize}
+            class="stroke-black"
             fill={colorCommon(colIdx, rowIdx, layerCommon)}
-            />
+          />
         {/each}
       {/each}
     </svg>
   </SvgContainer>
 
-  <p>Now let's see how the receptive field grows, once we incorporate masked convolutions. There is a less obvious problem that we have to face.</p>
+  <p>
+    Now let's see how the receptive field grows, once we incorporate masked
+    convolutions.
+  </p>
   <ButtonContainer>
     <PlayButton f={fMasked} />
   </ButtonContainer>
@@ -167,22 +200,56 @@
     <svg viewBox="0 0 250 250">
       {#each Array(numPixels) as _, colIdx}
         {#each Array(numPixels) as _, rowIdx}
-          <rect 
-            x={gap+colIdx*(pixelSize+gap)} 
-            y={gap+rowIdx*(pixelSize+gap)} 
-            width={pixelSize} 
-            height={pixelSize} 
-            stroke="var(--text-color)"
+          <rect
+            x={gap + colIdx * (pixelSize + gap)}
+            y={gap + rowIdx * (pixelSize + gap)}
+            width={pixelSize}
+            height={pixelSize}
+            class="stroke-black"
             fill={colorMasked(colIdx, rowIdx, layerMasked)}
-            />
+          />
         {/each}
       {/each}
     </svg>
   </SvgContainer>
-  <p>While the receptive field grows, we are left with a blind spot. Many pixels above the black dot are not taken into the account, which will most likely deteriorate the performance.</p>
+  <p>
+    While the receptive field grows, we are left with a blind spot. Many pixels
+    above the black dot are not taken into the account, which will most likely
+    deteriorate the performance.
+  </p>
+  <PythonCode
+    code={`class MaskedConvolution(nn.Module):
+    def __init__(self, in_channels, out_channels, mask, dilation=1):
+        super().__init__()
+        kernel_size = mask.shape
+        padding = tuple([dilation * (size - 1) // 2 for size in kernel_size])
 
-  <p>To deal with this problem the researchers at DeepMind separated the convolution into two distinct stacks: the vertical stack, which processes the pixels above the black pixel and the horizontal stack, which processes the pixels to the left.</p>
-  <p>You can think about the vertical stack as a regular convolution, that can only access the upper half of the image.</p>
+        self.conv = nn.Conv2d(
+            in_channels=in_channels,
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            padding=padding,
+            dilation=dilation,
+        )
+        self.register_buffer("mask", mask)
+
+    def forward(self, x):
+        with torch.no_grad():
+            self.conv.weight *= self.mask
+        return self.conv(x)`}
+  />
+  <p>
+    To deal with this problem the researchers at DeepMind separated the
+    convolution into two distinct stacks: the <Highlight
+      >vertical stack</Highlight
+    >, which processes the pixels above the black pixel and the <Highlight
+      >horizontal stack</Highlight
+    >, which processes the pixels to the left.
+  </p>
+  <p>
+    You can think about the vertical stack as a regular convolution, that can
+    only access the upper half of the image.
+  </p>
   <ButtonContainer>
     <PlayButton f={fVertical} />
   </ButtonContainer>
@@ -190,20 +257,22 @@
     <svg viewBox="0 0 250 250">
       {#each Array(numPixels) as _, colIdx}
         {#each Array(numPixels) as _, rowIdx}
-          <rect 
-            x={gap+colIdx*(pixelSize+gap)} 
-            y={gap+rowIdx*(pixelSize+gap)} 
-            width={pixelSize} 
-            height={pixelSize} 
+          <rect
+            x={gap + colIdx * (pixelSize + gap)}
+            y={gap + rowIdx * (pixelSize + gap)}
+            width={pixelSize}
+            height={pixelSize}
             stroke="var(--text-color)"
             fill={colorVertical(colIdx, rowIdx, layerVertical)}
-            />
+          />
         {/each}
       {/each}
     </svg>
   </SvgContainer>
-
-  <p>The horizontal stack is a 1d convolution that processes the pixels to the left.</p>
+  <p>
+    The horizontal stack is a 1d convolution that processes the pixels to the
+    left.
+  </p>
   <ButtonContainer>
     <PlayButton f={fHorizontal} />
   </ButtonContainer>
@@ -211,104 +280,434 @@
     <svg viewBox="0 0 250 250">
       {#each Array(numPixels) as _, colIdx}
         {#each Array(numPixels) as _, rowIdx}
-          <rect 
-            x={gap+colIdx*(pixelSize+gap)} 
-            y={gap+rowIdx*(pixelSize+gap)} 
-            width={pixelSize} 
-            height={pixelSize} 
+          <rect
+            x={gap + colIdx * (pixelSize + gap)}
+            y={gap + rowIdx * (pixelSize + gap)}
+            width={pixelSize}
+            height={pixelSize}
             stroke="var(--text-color)"
             fill={colorHorizontal(colIdx, rowIdx, layerHorizontal)}
-            />
+          />
         {/each}
       {/each}
     </svg>
   </SvgContainer>
-  <p>The combination of both produces the desired output. The model is theoretically able to incorporate information from all previously generated pixels to the left and above.</p>
-  <div class="separator"></div>
+  <p>The combination of both produces the desired output.</p>
+  <PythonCode
+    code={`class VerticalStackConvolution(MaskedConvolution):
+    def __init__(
+        self, in_channels, out_channels, kernel_size=3, mask_type="B", dilation=1
+    ):
+        assert mask_type in ["A", "B"]
+        mask = torch.ones(kernel_size, kernel_size)
+        mask[kernel_size // 2 + 1 :, :] = 0
+        if mask_type == "A":
+            mask[kernel_size // 2, :] = 0
+
+        super().__init__(in_channels, out_channels, mask, dilation=dilation)
+
+
+class HorizontalStackConvolution(MaskedConvolution):
+    def __init__(
+        self, in_channels, out_channels, kernel_size=3, mask_type="B", dilation=1
+    ):
+        assert mask_type in ["A", "B"]
+        mask = torch.ones(1, kernel_size)
+        mask[0, kernel_size // 2 + 1 :] = 0
+        if mask_type == "A":
+            mask[0, kernel_size // 2] = 0
+        super().__init__(in_channels, out_channels, mask, dilation=dilation)`}
+  />
+  <div class="separator" />
 
   <h2>Gated Architecture</h2>
-  <p>The gated PixelCNN architecture was developed in order to close the performance gap between the PixelCNN and the RowLSTM. The researcher hypothesised, that the multiplicative units from an LSTM can help the model to learn more complex patterns and introduced similar units to the convolutional layers.</p>
-  <SvgContainer maxWidth="700px">
-    <svg viewBox="0 0 700 400">
-      <!-- left part -->
+  <p>
+    The gated PixelCNN architecture was developed in order to close the
+    performance gap between the PixelCNN and the RowLSTM. The researcher
+    hypothesised, that the multiplicative units from an LSTM can help the model
+    to learn more complex patterns and introduced similar units to the
+    convolutional layers.
+  </p>
+  <SvgContainer maxWidth="400px">
+    <svg viewBox="0 0 400 400" class="border">
+      <!-- upper part -->
       <g>
-        <Arrow data={[{x: 120, y:400}, {x: 120, y: 245}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:230}, {x: 190, y: 230}, {x: 190, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:230}, {x: 50, y: 230}, {x: 50, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 190, y:160}, {x: 190, y: 130}, {x:150 , y: 130}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 50, y:160}, {x: 50, y: 130}, {x:90, y: 130}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:130}, {x: 120, y: 10}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-  
-        <Circle x=120 y=130 r=15 color="var(--main-color-1)"/>
-        <Circle x=50 y=180 r=20 color="var(--main-color-3)"/>
-        <Circle x=190 y=180 r=20 color="var(--main-color-3)"/>
-        <Block x=120 y=230 width=15 height=15 color="var(--main-color-4)" />
-        <Block x={120} y={320} width={80} height={30} text="n \times n" type="latex" fontSize="20" color="var(--main-color-2)" />
-  
-  
-        <Block x={50} y={180} width={60} height={20} text="\tanh" type="latex" fontSize="20" color="var(--main-color-3)" border={false} />
-        <Block x={190} y={180} width={60} height={20} text="\sigma" type="latex" fontSize="20" color="var(--main-color-3)" border={false} />
-        <Block x={120} y={130} width={20} height={20} text="\times" type="latex" fontSize="20" color="var(--main-color-1)" border={false} />
-  
-        <Block x={100} y={280} width={30} height={30} text="2p" fontSize="18" color="var(--main-color-1)" border={false} />
-        <Block x={60} y={250} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
-        <Block x={180} y={250} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
-        <Block x={100} y={80} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
+        <Arrow
+          data={[
+            { x: 0, y: 70 },
+            { x: 105, y: 70 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 120, y: 70 },
+            { x: 120, y: 20 },
+            { x: 155, y: 20 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 120, y: 70 },
+            { x: 120, y: 120 },
+            { x: 155, y: 120 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 220, y: 20 },
+            { x: 260, y: 20 },
+            { x: 260, y: 50 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 220, y: 120 },
+            { x: 260, y: 120 },
+            { x: 260, y: 90 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 260, y: 70 },
+            { x: 390, y: 70 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Block
+          x={40}
+          y={70}
+          width={55}
+          height={25}
+          text="n \times n"
+          fontSize={15}
+          type="latex"
+          class="fill-green-100"
+        />
+        <Block x={120} y={70} width={15} height={15} class="fill-blue-100" />
+        <Multiply x={260} y={70} radius={10} class="fill-red-300" />
+        <Block
+          x={190}
+          y={20}
+          width={55}
+          height={25}
+          text="tanh"
+          fontSize={15}
+          type="latex"
+          class="fill-yellow-100"
+        />
+        <Block
+          x={190}
+          y={120}
+          width={55}
+          height={25}
+          text="\sigma"
+          fontSize={15}
+          type="latex"
+          class="fill-yellow-100"
+        />
       </g>
-      <!-- right part -->
-      <g transform="translate(370 0)">
-        <Arrow data={[{x: 120, y:320}, {x: 120, y: 245}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:230}, {x: 190, y: 230}, {x: 190, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:230}, {x: 50, y: 230}, {x: 50, y: 210}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 190, y:160}, {x: 190, y: 130}, {x:150 , y: 130}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 50, y:160}, {x: 50, y: 130}, {x:90, y: 130}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-        <Arrow data={[{x: 120, y:130}, {x: 120, y: 30}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-  
-        <Circle x=120 y=130 r=15 color="var(--main-color-1)"/>
-        <Circle x=50 y=180 r=20 color="var(--main-color-3)"/>
-        <Circle x=190 y=180 r=20 color="var(--main-color-3)"/>
-        <Block x=120 y=230 width=15 height=15 color="var(--main-color-4)" />
-        <Block x={120} y={320} width={80} height={30} text="1 \times n" type="latex" fontSize="20" color="var(--main-color-2)" />
-  
-  
-        <Block x={50} y={180} width={60} height={20} text="\tanh" type="latex" fontSize="20" color="var(--main-color-3)" border={false} />
-        <Block x={190} y={180} width={60} height={20} text="\sigma" type="latex" fontSize="20" color="var(--main-color-3)" border={false} />
-        <Block x={120} y={130} width={20} height={20} text="\times" type="latex" fontSize="20" color="var(--main-color-1)" border={false} />
-  
-        <Block x={160} y={280} width={30} height={30} text="2p" fontSize="18" color="var(--main-color-1)" border={false} />
-        <Block x={60} y={250} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
-        <Block x={180} y={250} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
-        <Block x={120} y={40} width={80} height={30} text="1 \times 1" type="latex" fontSize="20" color="var(--main-color-2)" />
+      <!-- conection -->
+      <Arrow
+        data={[
+          { x: 90, y: 70 },
+          { x: 90, y: 250 },
+        ]}
+        strokeWidth={2}
+        dashed={true}
+        strokeDashArray="6 6"
+        moving={true}
+      />
+
+      <Block
+        x={90}
+        y={170}
+        width={55}
+        height={25}
+        text="1 \times 1"
+        fontSize={15}
+        type="latex"
+        class="fill-green-100"
+      />
+
+      <!-- lower part -->
+      <g transform="translate(0 200)">
+        <Arrow
+          data={[
+            { x: 0, y: 180 },
+            { x: 390, y: 180 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 40, y: 180 },
+            { x: 40, y: 90 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 0, y: 70 },
+            { x: 105, y: 70 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 120, y: 70 },
+            { x: 120, y: 20 },
+            { x: 155, y: 20 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 260, y: 70 },
+            { x: 350, y: 70 },
+            { x: 350, y: 160 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 120, y: 70 },
+            { x: 120, y: 120 },
+            { x: 155, y: 120 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 220, y: 20 },
+            { x: 260, y: 20 },
+            { x: 260, y: 50 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Arrow
+          data={[
+            { x: 220, y: 120 },
+            { x: 260, y: 120 },
+            { x: 260, y: 90 },
+          ]}
+          strokeWidth={2}
+          dashed={true}
+          strokeDashArray="6 6"
+          moving={true}
+        />
+        <Block
+          x={40}
+          y={70}
+          width={55}
+          height={25}
+          text="1 \times n"
+          fontSize={15}
+          type="latex"
+          class="fill-green-100"
+        />
+        <Plus x={90} y={70} radius={10} offset={4} class="fill-red-300" />
+        <Plus x={350} y={180} radius={10} offset={4} class="fill-red-300" />
+        <Block
+          x={350}
+          y={70}
+          width={55}
+          height={25}
+          text="1 \times 1"
+          fontSize={15}
+          type="latex"
+          class="fill-green-100"
+        />
+        <Block x={120} y={70} width={15} height={15} class="fill-blue-100" />
+        <Multiply x={260} y={70} radius={10} class="fill-red-300" />
+        <Block
+          x={190}
+          y={20}
+          width={55}
+          height={25}
+          text="tanh"
+          fontSize={15}
+          type="latex"
+          class="fill-yellow-100"
+        />
+        <Block
+          x={190}
+          y={120}
+          width={55}
+          height={25}
+          text="\sigma"
+          fontSize={15}
+          type="latex"
+          class="fill-yellow-100"
+        />
       </g>
-
-      <!-- vertical to horizontal connection -->
-      <Arrow data={[{x: 120, y: 280}, {x: 460, y: 280}]} strokeWidth=2 />
-      <Plus x={490} y={280} radius={15} offset={6} color="var(--main-color-1)"/>
-      <Block x={300} y={280} width={80} height={30} text="1 \times 1" type="latex" fontSize="20" color="var(--main-color-2)" />
-
-      <!-- skip connection -->
-      <Arrow data={[{x: 670, y:400}, {x: 670, y: 10}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-      <Arrow data={[{x: 660, y: 320}, {x: 540, y:320}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-      <Arrow data={[{x: 530, y:40}, {x: 660, y: 40}]} strokeWidth=2 dashed={true} strokeDashArray="4 4" />
-      <Plus x={670} y={40} radius={15} offset={6} color="var(--main-color-1)"/>
-      <Block x={655} y={320} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
-      <Block x={600} y={25} width={20} height={20} text="p" fontSize="18" color="white" border={false} />
     </svg>
   </SvgContainer>
-  <p>Let's start our discussion with the left side of the graph, the vertical stack. The vertical layer receives the output from the previous vertical stack and applies an nxn masked convolution of type 'B', where the mask allows the model to only look at the above pixels. The convolution takes in p feature maps and produces twice that amount as the output. This is done because one half goes into the <Latex>\tanh</Latex> and the other goes into the sigmoid activation <Latex>\sigma</Latex>. We multiply both results positionwise. In essence we can interpret the sigmoid output as a sort of gate, that decides which part of the <Latex>\tanh</Latex> output is allowed to flow and which is closed.</p>
-  <p>The right side of the graph is the horizontal stack. The calculation is similar to the left side, but with slightly more complexity. First we process the output from the vertical convolution through a 1x1 convolution and add that result to the output of the horizontal convolution. We can't do the addition the other way around, otherwise the vertical stack would get access to future pixels. Second we use skip connections in the vertical stack in order to facilitate training.</p>
-  <p>It is ok if you don't fully grasp all the details of the image above. This calculation should get much clearer once we start to implement it in PyTorch. Return to this drawing when you start working through the code.</p>
-  <div class="separator"></div>
+  <p>
+    Let's start our discussion with the upper part of the graph: the vertical
+    stack. The vertical layer receives the output from the previous vertical
+    stack and applies a <Latex>n \times n</Latex> masked convolution of type 'B',
+    such that the mask only looks at the above pixels. The convolution takes in <Latex
+      >p</Latex
+    >
+    feature maps and produces twice that amount as the output. This is done because
+    one half goes into the <Latex>\tanh</Latex> and the other goes into the sigmoid
+    activation <Latex>\sigma</Latex>. We multiply both results positionwise. In
+    essence we can interpret the sigmoid output as a gate, that decides which
+    part of the <Latex>\tanh</Latex> output is allowed to flow.
+  </p>
+  <p>
+    The lower part of the graph is the horizontal stack. First we process the
+    output from the vertical convolution through a 1x1 convolution and add that
+    result to the output of the horizontal convolution. That way the model can
+    attend to all above pixels and all pixels to the left. Second we use skip
+    connections in the vertical stack in order to facilitate training.
+  </p>
+  <p>
+    Lastly the PixelCNN paper focused on conditional models. For example we
+    would like to condition the model on the label we would like to produce. As
+    we are dealing with MNIST, we could use the numbers 0-9 as an additional
+    input to the model, so that it can learn to generate specific numbers on
+    demand. This should make it easier for a model to create coherent numbers.
+  </p>
+  <PythonCode
+    code={`class ConditionalGatedResidualBlock(nn.Module):
+    def __init__(self, in_channels, kernel_size=3, dilation=1):
+        super().__init__()
+        self.v = VerticalStackConvolution(
+            in_channels,
+            out_channels=2 * in_channels,
+            kernel_size=kernel_size,
+            dilation=dilation,
+        )
+        self.h = HorizontalStackConvolution(
+            in_channels,
+            out_channels=2 * in_channels,
+            kernel_size=kernel_size,
+            dilation=dilation,
+        )
+        self.v_to_h = nn.Conv2d(2 * in_channels, 2 * in_channels, kernel_size=1)
+        self.v_to_res = nn.Conv2d(in_channels, in_channels, kernel_size=1)
 
-  <h2>Conditioning</h2>
-  <p>Lastly we would like to condition the model on the label we would like to produce. If we are dealing with MNIST for example, we could use the numbers 0-9 as an additional input to the model, so that it can learn to generate specific numbers on demand.</p>
-  <div class="separator"></div>
+        self.v_embedding = nn.Embedding(num_embeddings=10, embedding_dim=in_channels)
+        self.h_embedding = nn.Embedding(num_embeddings=10, embedding_dim=in_channels)
+
+    def forward(self, v_prev, h_prev, num_cls):
+        # calculate embeddings to condition the model
+        v_embedding = self.v_embedding(num_cls).unsqueeze(-1).unsqueeze(-1)
+        h_embedding = self.h_embedding(num_cls).unsqueeze(-1).unsqueeze(-1)
+
+        # vertical stack
+        v = self.v(v_prev + v_embedding)
+        v_f, v_g = v.chunk(2, dim=1)
+        v_out = torch.tanh(v_f) * torch.sigmoid(v_g)
+
+        # vertical to horizontal
+        v_to_h = self.v_to_h(v)
+
+        # horizontal stack
+        h = self.h(h_prev + h_embedding) + v_to_h
+        h_f, h_g = h.chunk(2, dim=1)
+        h_out = torch.tanh(h_f) * torch.sigmoid(h_g)
+
+        # skip connection
+        h_out = self.v_to_res(h_out)
+        h_out += h_prev
+
+        return v_out, h_out
+
+
+class ConditionalGatedPixelCNN(nn.Module):
+    def __init__(self, hidden_dim, dilations=[1, 2, 1, 4, 1, 2, 1]):
+        super().__init__()
+        self.v = VerticalStackConvolution(
+            in_channels=1, out_channels=hidden_dim, kernel_size=7, mask_type="A"
+        )
+        self.h = HorizontalStackConvolution(
+            in_channels=1, kernel_size=7, out_channels=hidden_dim, mask_type="A"
+        )
+
+        self.gated_residual_blocks = nn.ModuleList(
+            [
+                ConditionalGatedResidualBlock(
+                    hidden_dim, kernel_size=3, dilation=dilation
+                )
+                for dilation in dilations
+            ]
+        )
+
+        self.conv = nn.Conv2d(
+            in_channels=hidden_dim, out_channels=hidden_dim, kernel_size=1
+        )
+
+        # we apply a 256 way softmax
+        self.output = nn.Conv2d(in_channels=hidden_dim, out_channels=256, kernel_size=1)
+
+    def forward(self, x, label):
+        v = self.v(x)
+        h = self.h(x)
+
+        for gated_layer in self.gated_residual_blocks:
+            v, h = gated_layer(v, h, label)
+
+        out = self.conv(F.relu(h))
+        out = self.output(F.relu(out))
+        # from Batch, Classes, Height, Width to Batch, Classes, Channel, Height, Width
+        out = out.unsqueeze(dim=2)
+        return out`}
+  />
+  <p>
+    If we train our model for 25 epochs we get images similar to those below.
+    The quality of the generated images is clearly a lot better than those we
+    created in the previous section.
+  </p>
+  <div class="flex justify-center items-center">
+    <img src={results} alt="Generated MNIST Images" class="w-96" />
+  </div>
+  <div class="separator" />
 </Container>
 
 <Footer {references} />
-
-<style>
-  svg {
-    border: 1px solid black;
-  }
-</style>
