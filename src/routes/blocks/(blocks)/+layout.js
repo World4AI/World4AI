@@ -330,6 +330,19 @@ export function load() {
           },
         ],
       },
+      {
+        name: "Generative Adversarial Networks",
+        links: [
+          {
+            name: "Introduction",
+            link: "/blocks/deep_learning/generative_adversarial_networks/introduction",
+          },
+          {
+            name: "DCGAN",
+            link: "/blocks/deep_learning/generative_adversarial_networks/dcgan",
+          },
+        ],
+      },
       /*
       {
         name: "Latent Variable Models",
@@ -375,15 +388,6 @@ export function load() {
           {
             name: "VQ-VAE",
             link: "/blocks/deep_learning/autoencoders/vq_vae",
-          },
-        ],
-      },
-      {
-        name: "Generative Adversarial Networks",
-        links: [
-          {
-            name: "Introduction",
-            link: "/blocks/deep_learning/generative_adversarial_networks/introduction",
           },
         ],
       },
