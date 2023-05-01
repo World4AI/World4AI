@@ -1,5 +1,5 @@
 <script>
-  import { Info, AlertTriangle, AlertOctagon } from "lucide-svelte";
+  import { Info, AlertTriangle, AlertOctagon, Quote } from "lucide-svelte";
   // can be info, warning and danger
   export let type;
   let background;
@@ -10,6 +10,8 @@
     background = "bg-w4ai-yellow";
   } else if (type === "danger") {
     background = "bg-w4ai-red";
+  } else if (type === "quote") {
+    background = "bg-gray-200";
   }
 
   let color = type === "danger" ? "white" : "black";
@@ -32,6 +34,9 @@
     {:else if type === "danger"}
       <AlertOctagon />
       <p class="m-0">Danger</p>
+    {:else if type === "quote"}
+      <Quote />
+      <p class="m-0">Quote</p>
     {/if}
   </div>
   <p class="m-0">
