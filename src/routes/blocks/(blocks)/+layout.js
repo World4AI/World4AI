@@ -343,7 +343,6 @@ export function load() {
           },
         ],
       },
-      /*
       {
         name: "Latent Variable Models",
         links: [
@@ -351,46 +350,25 @@ export function load() {
             name: "Introduction",
             link: "/blocks/deep_learning/latent_variable_models/introduction",
           },
-        ],
-      },
-      {
-        name: "Normalizing Flows",
-        links: [
           {
-            name: "Introduction",
-            link: "/blocks/deep_learning/normalizing_flows",
-          },
-          {
-            name: "NICE",
-            link: "/blocks/deep_learning/normalizing_flows/nice",
-          },
-          {
-            name: "RealNVP",
-            link: "/blocks/deep_learning/normalizing_flows/real_nvp",
-          },
-          {
-            name: "Glow",
-            link: "/blocks/deep_learning/normalizing_flows/glow",
-          },
-        ],
-      },
-      {
-        name: "Autoencoders",
-        links: [
-          {
-            name: "Introduction",
-            link: "/blocks/deep_learning/autoencoders/introduction",
+            name: "Autoencoders",
+            link: "/blocks/deep_learning/latent_variable_models/autoencoders",
           },
           {
             name: "Variational Autoencoder",
-            link: "/blocks/deep_learning/autoencoders/variational_autoencoder",
+            link: "/blocks/deep_learning/latent_variable_models/variational_autoencoder",
           },
           {
             name: "VQ-VAE",
-            link: "/blocks/deep_learning/autoencoders/vq_vae",
+            link: "/blocks/deep_learning/latent_variable_models/vq_vae",
+          },
+          {
+            name: "Normalizing Flows",
+            link: "/blocks/deep_learning/latent_variable_models/normalizing_flows",
           },
         ],
       },
+      /*
       {
         name: "Diffusion Models",
         links: [
