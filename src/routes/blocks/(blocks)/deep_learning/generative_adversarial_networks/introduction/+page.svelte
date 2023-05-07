@@ -51,6 +51,7 @@
 </svelte:head>
 
 <Container>
+  <Alert type="warning">This chapter is early work in progress</Alert>
   <h1>Generative Adversarial Networks</h1>
   <div class="separator" />
   <p>
