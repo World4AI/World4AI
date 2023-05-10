@@ -362,10 +362,6 @@ export function load() {
             name: "VQ-VAE",
             link: "/blocks/deep_learning/latent_variable_models/vq_vae",
           },
-          {
-            name: "Normalizing Flows",
-            link: "/blocks/deep_learning/latent_variable_models/normalizing_flows",
-          },
         ],
       },
       /*
