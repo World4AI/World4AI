@@ -40,9 +40,8 @@ If a chapter is marked 🗸, that indicates that it has already reached a workin
   - [x] Attention
   - [ ] Multi-Modal Models
   - [x] Autoregressive Generative Models
-  - [ ] Latent Variable Models
-  - [ ] Normalizing Flows
   - [ ] GANs
+  - [ ] Latent Variable Models
   - [ ] Diffusion Models
   - [ ] Energy Based Models
   - [ ] Graph Neural Networks
