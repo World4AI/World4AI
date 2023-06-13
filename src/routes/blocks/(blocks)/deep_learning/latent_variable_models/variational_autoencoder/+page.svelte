@@ -1,13 +1,14 @@
 <script>
   import Container from "$lib/Container.svelte";
+  import Highlight from "$lib/Highlight.svelte";
   import Latex from "$lib/Latex.svelte";
-
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
   import Block from "$lib/diagram/Block.svelte";
+  import Circle from "$lib/diagram/Circle.svelte";
   import Arrow from "$lib/diagram/Arrow.svelte";
   import Border from "$lib/diagram/Border.svelte";
 
@@ -23,181 +24,266 @@
 </script>
 
 <svelte:head>
-  <title>World4AI | Deep Learning | Variational Autoencoder</title>
+  <title>Variational Autoencoder - World4AI</title>
   <meta
     name="description"
-    content="Unlike a regular autoencoder, a variational autoencoder (VAE) maps an input image to a latent variable distribution. We can use that distribution to sample new images."
+    content="A variational autoencoder (VAE) is based on variational inference. Unlike a regular autoencoder, a variational autoencoder maps an input image to a latent variable distribution. We can use that distribution to sample new images."
   />
 </svelte:head>
 
-<h1>Variational Autoencoders</h1>
-<div class="separator" />
-
 <Container>
-  <p>
-    Variational autoencoders (VAE) are a family of autoencoders that are based
-    on variational Bayesian methods. The mathematical background knowledge that
-    is required to fully understand all intricacies of VAEs is quite extensive
-    and can be intimidating for beginners. Therefore we will introduce VAEs
-    using an intuitive setting first. In a second step we will delve deeper into
-    the theoretical justification of variational autoencoders and provide
-    additional sources for you to study. Fortunately the intuitive introduction
-    is sufficient to implement a VAE from scratch in PyTorch, so you might skip
-    the theoretical part for now and return to it at a later point, once you
-    gained a better mathematical foundation.
-  </p>
+  <h1>Variational Autoencoders</h1>
   <div class="separator" />
-
-  <h2>VAE Intuition</h2>
   <p>
-    The autoencoder, that we have discussed in the previous section follow a
-    very simple approach: map an image to a latent vector <Latex
+    Variational autoencoders (VAE)<InternalLink id={1} type="reference" /> are latent
+    variable models that have been relatively successfull in recent years. The mathematical
+    background knowledge that is required to fully understand all intricacies of
+    VAEs is quite extensive and can be intimidating for beginners. Therefore in this
+    chapter we will mostly focus on the basics and the intuition, but we will also
+    provide additional resources for you to study in case you would like to dive
+    deeper into the theory. Fortunately the intuitive introduction is sufficient
+    to implement a VAE from scratch in PyTorch, so you might skip the theory for
+    now and return to it at a later point.
+  </p>
+  <p>
+    VAEs generate new data in a two step process. First we sample a latent
+    variable <Latex>{String.raw`\mathbf{z}`}</Latex> from the multivariate Gaussian
+    distribution
+    <Latex>{String.raw`\mathcal{N}(\mathbf{0}, \mathbf{I})`}</Latex>. Each value
+    of the latent vector is distributed according to the standard normal
+    distribution <Latex>{String.raw`\mathcal{N}(0, 1 )`}</Latex>
+    and there is no interaction between the values within the vector. In the second
+    step we generate the new sampe <Latex>{String.raw`\mathbf{X}`}</Latex> from the
+    latent vector. The latent variable determines the characteristics of the data.
+    In our implementation below for example we are going to generate new handwritten
+    digits from Gaussian noise.
+  </p>
+  <SvgContainer maxWidth={"200px"}>
+    <svg viewBox="0 0 200 300">
+      <Arrow
+        data={[
+          { x: 30, y: 50 },
+          { x: 30, y: 210 },
+        ]}
+        dashed={true}
+        strokeDashArray="8 4"
+        strokeWidth={2.5}
+        moving={true}
+        speed={50}
+      />
+      <Arrow
+        data={[
+          { x: 100, y: 50 },
+          { x: 65, y: 50 },
+        ]}
+        dashed={true}
+        strokeDashArray="8 4"
+        strokeWidth={2.5}
+        moving={true}
+        speed={50}
+      />
+      <Circle
+        x={30}
+        y={50}
+        r={25}
+        text={"z"}
+        class={"fill-red-100 stroke-2"}
+        fontSize={30}
+      />
+      <Circle
+        x={30}
+        y={250}
+        r={25}
+        text={"X"}
+        class={"fill-blue-100 stroke-2"}
+        fontSize={30}
+      />
+      <Block
+        x={145}
+        y={50}
+        width={90}
+        height={55}
+        text={String.raw`\mathcal{N}(0, 1)`}
+        type="latex"
+        fontSize="20"
+        color="var(--main-color-3)"
+      />
+    </svg>
+  </SvgContainer>
+  <p>
+    How can we make an autoencoder learn a model that can generate data from
+    Gaussian noise? The autoencoder that we have discussed in the previous
+    section follows a very simple approach: we map an image to a latent vector <Latex
       >{String.raw`\mathbf{z}`}</Latex
-    > and reconstruct the original image from from the latent variable.
+    > and reconstruct the original image <Latex>{String.raw`\mathbf{X}`}</Latex>
+    from the latent variable. While this procedure is ideal for simple compression
+    tasks, when it comes to generating new images the simple autoencoder is suboptimal.
+    The latent space that is learned might not be smooth or continuous, so when you
+    use a latent vector that deviates slightly from the samples that the decoder
+    saw during training, you will end up with an invalid image. Moreover there is
+    no built-in mechanism for sampling, yet the purpose of our task is to train a
+    generative model that we can sample new images from.
   </p>
-  <SvgContainer maxWidth={"600px"}>
-    <svg viewBox="0 0 400 250">
-      <!-- Arrows -->
+  <p>
+    The variational autoencoder remedies those problems by mapping the image <Latex
+      >{String.raw`\mathbf{X}`}</Latex
+    > to a whole distribution of latent variables <Latex
+      >{String.raw`q_{\phi}(\mathbf{z} | \mathbf{x})`}</Latex
+    >. Our encoder neural network with parameters <Latex
+      >{String.raw`\phi`}</Latex
+    > produces two latent vectors: the vector with means
+    <Latex>{String.raw`\mu_{\phi}`}</Latex> and the vector with variances <Latex
+      >{String.raw`\sigma^2`}</Latex
+    >. We use those values as input into an isotropic Gaussian distribution <Latex
+      >{String.raw`\mathcal{N}(\mu_{\phi}, \sigma^2_{\phi} \mathbf{I})`}</Latex
+    > (Gaussian with 0 covariance) and sample the latent variable <Latex
+      >{String.raw`\mathbf{z}`}</Latex
+    >.
+  </p>
+  <SvgContainer maxWidth="300px">
+    <svg viewBox="0 0 200 320">
       <Arrow
         data={[
-          { x: svgOffset + 12.5 + 5, y: 90 - 75 },
-          { x: svgOffset + 80 * 2 - 12.5 - 10, y: 90 - 20 },
+          { x: 30, y: 40 },
+          { x: 80, y: 160 },
         ]}
         dashed={true}
-        strokeDashArray="4 4"
-        strokeWidth={1.5}
+        strokeDashArray="8 4"
+        strokeWidth={2}
         moving={true}
         speed={50}
       />
       <Arrow
         data={[
-          { x: svgOffset + 12.5 + 5, y: 90 + 75 },
-          { x: svgOffset + 80 * 2 - 12.5 - 10, y: 90 + 20 },
+          { x: 170, y: 40 },
+          { x: 120, y: 160 },
         ]}
         dashed={true}
-        strokeDashArray="4 4"
-        strokeWidth={1.5}
-        moving={true}
-        speed={50}
-      />
-
-      <Arrow
-        data={[
-          { x: svgOffset + 80 * 2 + 12.5 + 5, y: 90 - 20 },
-          { x: svgOffset + 80 * 4 - 12.5 - 10, y: 90 - 75 },
-        ]}
-        dashed={true}
-        strokeDashArray="4 4"
-        strokeWidth={1.5}
+        strokeDashArray="8 4"
+        strokeWidth={2}
         moving={true}
         speed={50}
       />
       <Arrow
         data={[
-          { x: svgOffset + 80 * 2 + 12.5 + 5, y: 90 + 20 },
-          { x: svgOffset + 80 * 4 - 12.5 - 10, y: 90 + 75 },
+          { x: 80, y: 180 },
+          { x: 80, y: 205 },
         ]}
         dashed={true}
-        strokeDashArray="4 4"
-        strokeWidth={1.5}
+        strokeDashArray="8 4"
+        strokeWidth={2}
         moving={true}
         speed={50}
       />
-
-      <!-- Encoder -->
+      <Arrow
+        data={[
+          { x: 120, y: 180 },
+          { x: 120, y: 205 },
+        ]}
+        dashed={true}
+        strokeDashArray="8 4"
+        strokeWidth={2}
+        moving={true}
+        speed={50}
+      />
+      <Arrow
+        data={[
+          { x: 100, y: 220 },
+          { x: 100, y: 275 },
+        ]}
+        dashed={true}
+        strokeDashArray="8 4"
+        strokeWidth={2}
+        moving={true}
+        speed={50}
+      />
       <Block
-        x={svgOffset + 0}
-        y={90}
-        width={25}
-        height={150}
+        x={100}
+        y={20}
+        width={150}
+        height={30}
+        class="fill-yellow-100"
+        fontSize={20}
         text="X"
+      />
+      <Block
+        x={100}
+        y={90}
+        width={100}
+        height={30}
+        class="fill-blue-100"
+        fontSize={20}
+      />
+      <Block
+        x={80}
+        y={160}
+        width={30}
+        height={30}
+        class="fill-red-300"
+        fontSize={20}
+        text={String.raw`\mu`}
         type="latex"
-        fontSize="20"
-        color="var(--main-color-3)"
       />
       <Block
-        x={svgOffset + 80}
-        y={90}
-        width={25}
-        height={100}
-        color="var(--main-color-2)"
-      />
-      <!-- Bottleneck -->
-      <Block
-        x={svgOffset + 80 * 2}
-        y={90}
-        width={25}
-        height={40}
-        text={String.raw`\mathbf{z}`}
+        x={120}
+        y={160}
+        width={30}
+        height={30}
+        class="fill-red-300"
+        fontSize={20}
+        text={String.raw`\sigma`}
         type="latex"
-        fontSize="20"
-        color="var(--main-color-1)"
-      />
-      <!-- Decoder -->
-      <Block
-        x={svgOffset + 80 * 3}
-        y={90}
-        width={25}
-        height={100}
-        color="var(--main-color-2)"
       />
       <Block
-        x={svgOffset + 80 * 4}
-        y={90}
-        width={25}
-        height={150}
-        text="X'"
-        type="latex"
-        fontSize="20"
-        color="var(--main-color-3)"
-      />
-
-      <!-- Borders -->
-      <Border x={10} y={5} width={140} height={180} />
-      <Border x={250} y={5} width={140} height={180} />
-
-      <!-- Labels -->
-      <Block
-        x={50}
+        x={100}
         y={230}
-        width={80}
-        height={25}
-        text="Encoder"
-        fontSize="15"
+        width={70}
+        height={30}
+        class="fill-red-300"
+        fontSize={15}
+        text={String.raw`\mathcal{N}(\mu, \sigma)`}
+        type="latex"
       />
       <Block
-        x={200}
-        y={40}
-        width={80}
-        height={20}
-        text="Bottleneck"
-        fontSize="12"
+        x={100}
+        y={300}
+        width={30}
+        height={30}
+        class="fill-red-300"
+        fontSize={20}
+        text={String.raw`z`}
       />
-      <Block
-        x={350}
-        y={230}
-        width={80}
-        height={25}
-        text="Decoder"
-        fontSize="15"
-      />
-      <svg /></svg
-    ></SvgContainer
-  >
+    </svg>
+  </SvgContainer>
   <p>
-    While this procedure might be good enough for simple compression tasks, when
-    it comes to generating new images, this simple mapping approach might break
-    down. The latent space that is learned might not be smooth or continuous, so
-    when you sample a latent vector that deviates slightly from the samples that
-    the decoder saw during training, you will end up with a nonsence image.
+    If you look at the graph above you might recognize the problem in the
+    approach we described so far. How can we backpropagate our loss through the
+    normal distribution? We can reframe our problem using the so called <Highlight
+      >reparameterization trick</Highlight
+    >. We rewrite the latent variable <Latex>{String.raw`\mathbf{z}`}</Latex> as
+    the function of the mean, the standard deviation and the Gaussian noise <Latex
+      >{String.raw`\epsilon \sim \mathcal{N}(0, 1)`}</Latex
+    >.
+  </p>
+  <Latex
+    >{String.raw`\mathbf{z} = \boldsymbol \mu + \boldsymbol \sigma \odot \boldsymbol \epsilon \text{, where } \odot \text{ is elementwise multiplication}`}</Latex
+  >.
+  <p>
+    This rewriting does not change the fact that the latent vector <Latex
+      >{String.raw`\mathbf{z}`}</Latex
+    > is distributed according to a multivariate Gaussian with mean <Latex
+      >{String.raw`\boldsymbol \mu`}</Latex
+    >, but we can backpropagate through the mean and the variance and treat <Latex
+      >{String.raw`\boldsymbol \epsilon`}</Latex
+    > as some constant that does not need to be optimized.
   </p>
   <p>
-    Variational autoencoders <InternalLink id={1} type="reference" /> on the other
-    hand use a different approach. Instead of mapping the input image to a constant
-    latent vector <Latex>{String.raw`\mathbf{z}`}</Latex>, they map the input <Latex
-      >{String.raw`X`}</Latex
-    > to a probability distribution of the latent variable.
+    The decoder of the variation autoencoder works in the exact same way as the
+    one introduced in the previous section: given a latent vector <Latex
+      >{String.raw`\mathbf{z}`}</Latex
+    > reconstruct the original image as close as possible.
   </p>
+  <p>The complete variational autoencoder looks as follows.</p>
   <SvgContainer maxWidth={"700px"}>
     <svg viewBox="0 0 470 250">
       <!-- Encoder Arrows -->
@@ -269,14 +355,14 @@
         text="X"
         type="latex"
         fontSize="20"
-        color="var(--main-color-3)"
+        class="fill-yellow-100"
       />
       <Block
         x={svgOffset + 80}
         y={90}
         width={25}
         height={100}
-        color="var(--main-color-2)"
+        class="fill-blue-100"
       />
 
       <!-- mu, sigma and epsilon -->
@@ -288,7 +374,7 @@
         text="\boldsymbol \mu"
         type="latex"
         fontSize="20"
-        color="var(--main-color-1)"
+        class="fill-red-300"
       />
       <Block
         x={svgOffset + 80 * 2}
@@ -298,7 +384,7 @@
         text="\boldsymbol \sigma"
         type="latex"
         fontSize="20"
-        color="var(--main-color-1)"
+        class="fill-red-300"
       />
       <Block
         x={svgOffset + 80 * 2}
@@ -308,7 +394,7 @@
         text="\boldsymbol \epsilon"
         type="latex"
         fontSize="20"
-        color="var(--main-color-1)"
+        class="fill-red-300"
       />
 
       <g transform="translate(80, 0)">
@@ -345,7 +431,7 @@
           text={String.raw`\mathbf{z}`}
           type="latex"
           fontSize="20"
-          color="var(--main-color-1)"
+          class="fill-red-300"
         />
 
         <!-- Decoder -->
@@ -354,85 +440,49 @@
           y={90}
           width={25}
           height={100}
-          color="var(--main-color-2)"
+          class="fill-blue-200"
         />
         <Block
           x={svgOffset + 80 * 4}
           y={90}
           width={25}
           height={150}
-          text="X'"
+          text={String.raw`\hat{X}`}
           type="latex"
           fontSize="20"
-          color="var(--main-color-3)"
+          class="fill-yellow-100"
         />
       </g>
       <!-- Borders -->
       <Border x={10} y={5} width={140} height={180} />
       <Border x={300} y={5} width={160} height={180} />
-
-      <!-- Labels -->
-      <Block
-        x={50}
-        y={230}
-        width={80}
-        height={25}
-        text="Encoder"
-        fontSize="15"
-      />
-      <Block
-        x={420}
-        y={230}
-        width={80}
-        height={25}
-        text="Decoder"
-        fontSize="15"
-      />
       <svg /></svg
     ></SvgContainer
   >
   <p>
-    Instead of producing the latent vector <Latex
-      >{String.raw`\mathbf{x}`}</Latex
-    > directly, the encoder generates two vectors: one containing the mean vector
-    <Latex>{String.raw`\boldsymbol \mu`}</Latex> and the other containing the standard
-    deviation vector <Latex>{String.raw`\boldsymbol \sigma`}</Latex>. The <Latex
-      >{String.raw`\epsilon`}</Latex
-    > vector is drawn from a standard normal distribution <Latex
-      >{String.raw`\epsilon_i \sim \mathcal{N}(0, 1)`}</Latex
-    >. The random vector is not part of the computational graph and is treated
-    as a constant during the backpropagation step.
-  </p>
-  <p>
-    Once the encoder has produced the relevant mean and standard deviation
-    vectors, we can create the latent vector <Latex
-      >{String.raw`\mathbf{z}`}</Latex
-    >.
-  </p>
-  <Latex
-    >{String.raw`\mathbf{z} = \boldsymbol \mu + \boldsymbol \sigma \odot \boldsymbol \epsilon \text{, where } \odot \text{ is elementwise multiplication}`}</Latex
-  >
-  <p>
     The last remaining puzzle is the loss function that we use to train a VAE,
-    which consists of two parts: the reconstruction loss and a regularizer term.
+    which consists of two parts: the <Highlight>reconstruction loss</Highlight> and
+    a <Highlight>regularizer term</Highlight>.
   </p>
-  <Latex>{String.raw`\mathcal{L} = Reconstruction + Regularizer`}</Latex>
   <p>
     The reconstruction loss we are going to use is the mean squared error
     between each pixel of the original image <Latex>{String.raw`X`}</Latex> and the
-    reconstructed image <Latex>{String.raw`X'`}</Latex>.
+    reconstructed image <Latex>{String.raw`X'`}</Latex>. This is the exact same
+    loss that we used with the regular autoencoder. Be aware that sometimes the
+    cross-entropy loss is used to measure the reconstruction quality, but for
+    MNIST MSE works great.
   </p>
   <p>
-    The regularizer on the other hand tries to make the distribution of the
-    latent variables <Latex>{String.raw`\mathbf{z}`}</Latex> close to a normal distribution,
-    by minimizing the following expression: <Latex
+    The regularizer on the other hand tries to push the mean and the variance
+    that is output by the encoder close to 0 and 1 respectively. This can be
+    achieved by minimizing the following expression: <Latex
       >{String.raw`- \dfrac{1}{2} \sum^n_i (1 + \log \sigma_i^2 - \mu_i^2 - \sigma_i^2)`}</Latex
-    >, where n is the size of the latent variable vector.
+    >, where n is the size of the latent variable vector. Try to replace the
+    mean by 0 and the variance by 1 in the above expression and see what
+    happens. The loss goes to 0. This regularizer allows us to sample from the
+    isotropic Gaussian with mean vector of 0 and the standard deviation vector
+    of 1 and generate realistic images from this Gaussian noise.
   </p>
-  <div class="separator" />
-
-  <h2>Theoretical Background</h2>
-  <p>Coming soon ...</p>
   <div class="separator" />
 </Container>
 <Footer {references} />
