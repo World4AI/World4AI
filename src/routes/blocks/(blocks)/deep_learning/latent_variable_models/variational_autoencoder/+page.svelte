@@ -4,6 +4,8 @@
   import Latex from "$lib/Latex.svelte";
   import Footer from "$lib/Footer.svelte";
   import InternalLink from "$lib/InternalLink.svelte";
+  import PythonCode from "$lib/PythonCode.svelte";
+  import sampled from "./sampled.png";
 
   // imports for the diagram
   import SvgContainer from "$lib/SvgContainer.svelte";
@@ -278,6 +280,21 @@
     > as some constant that does not need to be optimized.
   </p>
   <p>
+    Once we start to implement the encoder in PyTorch we will notice a problem
+    with our approach. The ecoder neural network produces <Latex
+      >{String.raw`\boldsymbol \mu`}</Latex
+    > and <Latex>{String.raw`\boldsymbol \sigma`}</Latex> as the output of a linear
+    layer. A linear layer can theoretically produce positive and negative numbers.
+    While this is not a problem for the mean, the variance and the standard deviation
+    are always positive. To circumvent this problem we will assume that the linear
+    layer generates <Latex>{String.raw`\log \boldsymbol \sigma^2`}</Latex>,
+    which can be positive or negative. To transform the logarithm of the
+    variance back to standard deviation we can use the following equality: <Latex
+      >{String.raw`\large \sigma = e^{0.5\times \log\sigma^2}`}</Latex
+    >.
+  </p>
+
+  <p>
     The decoder of the variation autoencoder works in the exact same way as the
     one introduced in the previous section: given a latent vector <Latex
       >{String.raw`\mathbf{z}`}</Latex
@@ -473,15 +490,168 @@
     MNIST MSE works great.
   </p>
   <p>
-    The regularizer on the other hand tries to push the mean and the variance
-    that is output by the encoder close to 0 and 1 respectively. This can be
-    achieved by minimizing the following expression: <Latex
+    The regularizer (Kullback-Leibler divergence) on the other hand tries to
+    push the mean and the variance that the encoder outputs close to 0 and 1
+    respectively. This can be achieved by minimizing the following expression: <Latex
       >{String.raw`- \dfrac{1}{2} \sum^n_i (1 + \log \sigma_i^2 - \mu_i^2 - \sigma_i^2)`}</Latex
     >, where n is the size of the latent variable vector. Try to replace the
     mean by 0 and the variance by 1 in the above expression and see what
     happens. The loss goes to 0. This regularizer allows us to sample from the
     isotropic Gaussian with mean vector of 0 and the standard deviation vector
     of 1 and generate realistic images from this Gaussian noise.
+  </p>
+  <p>
+    Below is the implementation of the VAE. There should not be any unexptected
+    code snippets at this point.
+  </p>
+  <PythonCode
+    code={`class VAE(nn.Module):
+    def __init__(self, latent_dim):
+        super().__init__()
+
+        self.encoder = nn.Sequential(
+            nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=2),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=2),
+            nn.ReLU(inplace=True),
+            nn.Flatten(),
+        )
+
+        self.mu = nn.Linear(in_features=1600, out_features=latent_dim)
+        self.log_var = nn.Linear(in_features=1600, out_features=latent_dim)
+
+        self.decoder = nn.Sequential(
+            nn.Linear(in_features=latent_dim, out_features=1600),
+            nn.ReLU(inplace=True),
+            nn.Unflatten(1, (64, 5, 5)),
+            nn.ConvTranspose2d(
+                in_channels=64, out_channels=64, kernel_size=3, stride=2
+            ),
+            nn.ReLU(inplace=True),
+            nn.ConvTranspose2d(
+                in_channels=64,
+                out_channels=32,
+                kernel_size=3,
+                stride=2,
+                output_padding=1,
+            ),
+            nn.ReLU(inplace=True),
+            nn.ConvTranspose2d(in_channels=32, out_channels=16, kernel_size=3),
+            nn.ReLU(inplace=True),
+            nn.ConvTranspose2d(in_channels=16, out_channels=1, kernel_size=3),
+            nn.Sigmoid(),
+        )
+
+    def decode(self, z):
+        return self.decoder(z)
+
+    def forward(self, x):
+        x = self.encoder(x)
+        mu, sigma = self.mu(x), torch.exp(self.log_var(x) / 2)
+        epsilon = torch.randn_like(mu, device=DEVICE)
+        x = mu + sigma * epsilon
+        x = self.decoder(x)
+        return x, mu, sigma`}
+  />
+  <p>
+    The <code>train</code> function on the other hand still holds a little
+    surprise for us. When we calculate our full loss we scale the
+    <code>reconstruction_loss</code> by a factor of 0.01. The MSE loss and the regularizer
+    (kl_loss) are on different scales. In our implementation the MSE loss can be
+    100 times larger than the regularizer. If we do not scale MSE by 0.01 the improvement
+    of the regularizer will progress slowly and the sampling quality from Gaussian
+    noise will deteriorate.
+  </p>
+  <PythonCode
+    code={`def train(num_epochs, train_dataloader, model, criterion, optimizer):
+    history = {"reconstruction_loss": [], "kl_loss": [], "full_loss": []}
+    model.to(DEVICE)
+    for epoch in range(num_epochs):
+        num_batches = 0
+        history["reconstruction_loss"] = []
+        history["kl_loss"] = []
+        history["full_loss"] = []
+
+        for batch_idx, (features, _) in enumerate(train_dataloader):
+            model.train()
+            num_batches += 1
+
+            features = features.to(DEVICE)
+
+            # Forward Pass
+            output, mu, sigma = model(features)
+
+            # Calculate Loss
+
+            # RECONSTRUCTION LOSS
+            reconstruction_loss = criterion(output, features)
+            reconstruction_loss = reconstruction_loss.mean()
+
+            history["reconstruction_loss"].append(reconstruction_loss.cpu().item())
+
+            # KL LOSS
+            kl_loss = -0.5 * (1 + (sigma**2).log() - mu**2 - sigma**2).sum(dim=1)
+            kl_loss = kl_loss.mean()
+
+            history["kl_loss"].append(kl_loss.cpu().item())
+
+            # FULL LOSS
+            loss = 0.01 * reconstruction_loss + kl_loss
+
+            history["full_loss"].append(loss.cpu().item())
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+        reconstruction_loss, kl_loss, full_loss = (
+            sum(history["reconstruction_loss"]) / num_batches,
+            sum(history["kl_loss"]) / num_batches,
+            sum(history["full_loss"]) / num_batches,
+        )
+
+        print(
+            f"Epoch: {epoch+1:>2}/{num_epochs} | Reconstruction Loss: {reconstruction_loss:.5f} | KL Loss: {kl_loss:.5f} | Full Loss: {full_loss:.5f}"
+        )
+`}
+  />
+  <p>
+    To sample images, we first sample random noise from the standad normal
+    distribution and pass the noise throught the decoder. After training the
+    model for 50 epochst we get the following results. The quality is not ideal,
+    but for the most part we can recognize the digits.
+  </p>
+  <PythonCode
+    code={`num_images = 6
+    with torch.inference_mode():
+        z = torch.randn(num_images, LATENT_DIM).to(DEVICE)
+        images = vae.decode(z)
+        fig = plt.figure(figsize=(15, 4))
+        for i, img in enumerate(images):
+            fig.add_subplot(1, 6, i + 1)
+            img = img.squeeze().cpu().numpy()
+            plt.imshow(img, cmap="gray")
+            plt.axis("off")
+    plt.savefig("sampled.png", bbox_inches="tight")
+`}
+  />
+  <img src={sampled} alt="Handwritten digits sampled from a VAE" />
+  <p>
+    If you would like to dive deeper into the mathematical derivations of the
+    VAE, there are a couple of sources we would recommend. This <a
+      href="https://lilianweng.github.io/posts/2018-08-12-vae/"
+      target="_blank">blog post</a
+    >
+    by Lilian Weng contains a good overview of different autoencoders. Additionally
+    we would recommend this
+    <a href="https://www.youtube.com/watch?v=7Pcvdo4EJeo" target="_blank"
+      >YouTube video</a
+    > by DeepMind, which provides a good introduction into the theory of latent variable
+    models.
   </p>
   <div class="separator" />
 </Container>
