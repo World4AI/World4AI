@@ -20,7 +20,7 @@
     "katex": "^0.16.7",
     "lucide-svelte": "^0.242.0",
     "postcss": "^8.4.24",
-    "sharp": "^0.32.1",
+    "sharp": "^0.32.6",
     "svelte": "^3.59.1",
     "svelte-highlight": "^7.3.0",
     "svelte-markdown": "^0.2.3",
