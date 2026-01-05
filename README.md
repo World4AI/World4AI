@@ -2,7 +2,7 @@
 
 # World4AI
 
-[World4AI](https://world4ai.org) is an interactive online book designed to learn different areas of artificial intelligence.
+[World4AI](https://world4ai.com) is an interactive online book designed to learn different areas of artificial intelligence.
 
 ⚠️ The website is still in the early stages of development and is expected to change over the next weeks, months and years.
 
