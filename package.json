@@ -21,7 +21,7 @@
     "lucide-svelte": "^0.242.0",
     "postcss": "^8.4.31",
     "sharp": "^0.32.1",
-    "svelte": "^5.18.0",
+    "svelte": "^5.53.5",
     "svelte-highlight": "^7.3.0",
     "svelte-markdown": "^0.4.1",
     "svelte-preprocess": "^5.0.4",
